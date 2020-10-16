@@ -14,39 +14,40 @@
 
 class Person {
 public:
-    Person(const std::string &name, int tributaryNumber);
-    Person()=default;
+    Person(std::string name, int tributaryNumber);
     std::string getName() const;
     int getTributaryNumber() const;
+    std::vector<const Shipping*> getOrders();
+    virtual void addOrder(const Shipping* order);
+    bool removeOrder(const Shipping* order);
 private:
     std::string _name;
     int _tributaryNumber;
+protected:
+    std::vector<const Shipping*> _orders;
 };
 
 class Store;
 
 class Client : public Person {
 public:
-    Client(const std::string &name, int tributaryNumber, bool premium);
-    Client()=default;
-    std::string getName() const;
-    int getTributaryName() const;
+    Client(std::string name, int tributaryNumber, bool premium);
     bool isPremium() const;
     unsigned getPoints() const;
+    void addOrder(const Shipping* order) override;
+    float getMeanEvaluation() const;
+    std::vector<float> getEvaluations() const;
 private:
     bool _premium;
     unsigned _points;
-    std::map<const Store*, float> _evaluation;
-    std::map<const Store*, std::vector<const Shipping*>> _orders;
+    std::vector<float> _evaluations;
 };
 
 class Worker : public Person{
 public:
-    Worker(const std::string &name, int tributaryNumber, float salary);
-    Worker()=default;
+    Worker(std::string name, int tributaryNumber, float salary);
 private:
     float _salary;
-    std::vector<const Shipping*> _shippings;
 };
 
 #endif //SRC_PERSON_H

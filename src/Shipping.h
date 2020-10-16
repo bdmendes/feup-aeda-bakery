@@ -16,6 +16,8 @@ public:
 private:
     std::vector<std::pair<const Product&, unsigned>> _elements;
     float _totalPrice;
+    //date
+    //worker
 };
 
 
