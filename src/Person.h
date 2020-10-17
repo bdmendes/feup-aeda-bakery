@@ -9,7 +9,7 @@
 #include <vector>
 #include <map>
 
-#include "Shipping.h"
+#include "Order.h"
 #include "Store.h"
 
 class Person {
@@ -18,9 +18,20 @@ public:
     Person()=default;
     std::string getName() const;
     int getTributaryNumber() const;
+<<<<<<< Updated upstream
 private:
     std::string _name;
     int _tributaryNumber;
+=======
+    std::vector<const Order*> getOrders();
+    virtual void addOrder(const Order* order);
+    bool removeOrder(const Order* order);
+private:
+    std::string _name;
+    int _tributaryNumber;
+protected:
+    std::vector<const Order*> _orders;
+>>>>>>> Stashed changes
 };
 
 class Store;
@@ -33,6 +44,12 @@ public:
     int getTributaryName() const;
     bool isPremium() const;
     unsigned getPoints() const;
+<<<<<<< Updated upstream
+=======
+    void addOrder(const Order* order) override;
+    float getMeanEvaluation() const;
+    std::vector<float> getEvaluations() const;
+>>>>>>> Stashed changes
 private:
     bool _premium;
     unsigned _points;
