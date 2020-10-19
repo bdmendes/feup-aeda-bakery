@@ -9,61 +9,54 @@
 #include <vector>
 #include <map>
 
-#include "Order.h"
-#include "Store.h"
+struct Credential {
+    std::string userName;
+    std::string password;
+};
 
 class Person {
 public:
-    Person(const std::string &name, int tributaryNumber);
-    Person()=default;
+    Person(std::string name, int tributaryNumber,
+           Credential credential = {"person", "person"} );
     std::string getName() const;
     int getTributaryNumber() const;
-<<<<<<< Updated upstream
+    Credential getCredential() const;
+    void changeCredential (const Credential& credential);
+    void changeName(const std::string& name);
 private:
     std::string _name;
     int _tributaryNumber;
-=======
-    std::vector<const Order*> getOrders();
-    virtual void addOrder(const Order* order);
-    bool removeOrder(const Order* order);
-private:
-    std::string _name;
-    int _tributaryNumber;
-protected:
-    std::vector<const Order*> _orders;
->>>>>>> Stashed changes
-};
+    Credential _credential;
 
-class Store;
+};
 
 class Client : public Person {
 public:
-    Client(const std::string &name, int tributaryNumber, bool premium);
-    Client()=default;
-    std::string getName() const;
-    int getTributaryName() const;
+    Client(std::string name, int tributaryNumber, bool premium,
+           Credential credential = {"client", "client"});
     bool isPremium() const;
     unsigned getPoints() const;
-<<<<<<< Updated upstream
-=======
-    void addOrder(const Order* order) override;
+    void addPoints(unsigned points);
     float getMeanEvaluation() const;
     std::vector<float> getEvaluations() const;
->>>>>>> Stashed changes
 private:
     bool _premium;
     unsigned _points;
-    std::map<const Store*, float> _evaluation;
-    std::map<const Store*, std::vector<const Shipping*>> _orders;
+    std::vector<float> _evaluations;
 };
 
 class Worker : public Person{
 public:
-    Worker(const std::string &name, int tributaryNumber, float salary);
-    Worker()=default;
+    Worker(std::string name, int tributaryNumber, float salary,
+           Credential credential = {"worker", "worker"});
 private:
     float _salary;
-    std::vector<const Shipping*> _shippings;
+};
+
+class Boss : public Worker {
+public:
+    Boss(std::string name, int tributaryNumber, float salary,
+         Credential credential = {"boss", "boss"});
 };
 
 #endif //SRC_PERSON_H

@@ -4,21 +4,16 @@
 
 #ifndef SRC_PRODUCT_H
 #define SRC_PRODUCT_H
-#include <string>
 
-enum TOPPING {
-    CRUNCHY,
-    MEAT_SAUCE,
-    SPONGE,
-    CHOCOLATE,
-    VANILLA,
-    STRAWBERRY,
-    PUFF
-};
+#include <string>
+#include <map>
+#include <set>
 
 class Product {
 public:
-    Product(const std::string &name, float price);
+    Product(std::string name, float price);
+    std::string getName() const;
+    float getPrice() const;
 private:
     std::string _name;
     float _price;
@@ -26,16 +21,23 @@ private:
 
 class Bread : public Product{
 public:
-    Bread(const std::string &name, float price, bool small);
+    Bread(std::string name, float price, bool small);
+    bool isSmall() const;
 private:
-    float _small;
+    bool _small;
 };
 
 class Cake : public Product{
 public:
-    Cake(const std::string &name, float price, enum TOPPING firstTopping, enum TOPPING secondTopping);
+    Cake(std::string name, float price, std::string category);
+    std::string getCategory() const;
+    static void addCategory(const std::string &newCategory);
+    static void removeCategory(const std::string &category);
+    static std::set<std::string> availableCategories;
+    bool operator == (const Cake &cake);
 private:
-    enum TOPPING _firstTopping;
-    enum TOPPING _secondTopping;
+    std::string _category;
 };
+
+
 #endif //SRC_PRODUCT_H

@@ -1,6 +1,21 @@
-cmake_minimum_required(VERSION 3.17)
-project(src)
+# Use C++11
+set(CMAKE_CXX_STANDARD 11)
+# Require (at least) it
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# Don't use e.g. GNU extension (like -std=gnu++11) for portability
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(CMAKE_CXX_STANDARD 17)
+if (WIN32)
+    link_libraries(wsock32 ws2_32)
+    set(CMAKE_CXX_STANDARD_LIBRARIES "-static-libgcc -static-libstdc++ -lwsock32 -lws2_32")
+    SET(CMAKE_CXX_FLAGS -Wcpp)
+endif (WIN32)
 
-add_executable(src main.cpp Product.cpp Product.h Order.cpp Order.h Store.cpp Store.h Person.cpp Person.h)
+add_library(feup-aeda-project main.cpp Product.cpp Product.h Store.cpp Store.h Person.cpp Person.h Order.cpp Order.h)
+
+add_executable(application
+        main.cpp Product.cpp Product.h Store.cpp Store.h Person.cpp Person.h Order.cpp Order.h)
+
+target_include_directories(feup-aeda-project PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_link_libraries(feup-aeda-project PUBLIC gtest_main coverage_config)

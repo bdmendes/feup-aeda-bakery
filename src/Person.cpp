@@ -3,16 +3,11 @@
 //
 
 #include "Person.h"
-
-<<<<<<< Updated upstream
-//Client::Client(const std::string &name, int tributaryNumber, bool premium) : Person(name, tributaryNumber), _premium(premium){}
-=======
 #include <utility>
 #include <algorithm>
 
-Person::Person(std::string name, int tributaryNumber) :
-    _name{std::move(name)}, _tributaryNumber{tributaryNumber},
-    _orders{std::vector<const Order*>()}{
+Person::Person(std::string name, int tributaryNumber, Credential credential) :
+    _name{std::move(name)}, _tributaryNumber{tributaryNumber}, _credential{ credential } {
 
 }
 
@@ -24,26 +19,20 @@ int Person::getTributaryNumber() const {
     return _tributaryNumber;
 }
 
-void Person::addOrder(const Order *order) {
-    _orders.push_back(order);
+Credential Person::getCredential() const {
+    return _credential;
 }
 
-bool Person::removeOrder(const Order *order) {
-    for (auto it = _orders.begin(); it != _orders.end(); ++it){
-        if (*it == order){
-            _orders.erase(it);
-            return true;
-        }
-    }
-    return false;
+void Person::changeCredential(const Credential& credential) {
+    _credential = credential;
 }
 
-std::vector<const Order *> Person::getOrders() {
-    return _orders;
+void Person::changeName(const std::string& name){
+    _name = name;
 }
 
-Client::Client(const std::string name, int tributaryNumber, bool premium):
-    Person(name,tributaryNumber), _premium{premium}, _points{0}{
+Client::Client(std::string name, int tributaryNumber, bool premium, Credential credential):
+    Person(std::move(name), tributaryNumber, std::move(credential)){
 
 }
 
@@ -53,17 +42,6 @@ bool Client::isPremium() const {
 
 unsigned Client::getPoints() const {
     return _points;
-}
-
-void Client::addOrder(const Order* order) {
-    _orders.push_back(order);
-    _points += order->getTotalPrice();
-    if (_premium && _points >= 100){
-        //...
-    }
-    else if (!_premium && _points >= 200){
-        //...
-    }
 }
 
 float Client::getMeanEvaluation() const {
@@ -76,8 +54,16 @@ std::vector<float> Client::getEvaluations() const {
     return _evaluations;
 }
 
-Worker::Worker(std::string name, int tributaryNumber, float salary):
-    Person(name,tributaryNumber), _salary{salary}{
+void Client::addPoints(unsigned int points) {
+    _points += points;
+}
+
+Worker::Worker(std::string name, int tributaryNumber, float salary, Credential credential):
+    Person(std::move(name),tributaryNumber, std::move(credential)), _salary{salary}{
 
 }
->>>>>>> Stashed changes
+
+Boss::Boss(std::string name, int tributaryNumber, float salary, Credential credential) :
+        Worker(std::move(name), tributaryNumber, salary, std::move(credential)) {
+
+}

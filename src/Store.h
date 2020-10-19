@@ -22,9 +22,9 @@ public:
     std::vector<const Worker*> getWorkers() const;
     //void newOrder(const Client* client, const Product* product, const Order* order);
 private:
+    float _evaluation;
     const std::string _location;
     std::vector<const Client*> _clients;
-    float _evaluation;
     std::vector<const Worker*> _workers;
 };
 

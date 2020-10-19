@@ -12,11 +12,11 @@
 
 class Order {
 public:
-    Order(const std::vector<std::pair<const Product&, unsigned>> &elements);
+    Order(std::map<Product, unsigned int>& elements);
     float getTotalPrice() const;
-    std::vector<std::pair<const Product&, unsigned>> getElements() const;
+    std::map<Product, unsigned int> getElements() const;
 private:
-    std::vector<std::pair<const Product&, unsigned>> _elements;
+    std::map<Product, unsigned int> _elements;
     float _totalPrice;
     //date
     //worker
