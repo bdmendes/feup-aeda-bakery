@@ -9,30 +9,31 @@
 #include <vector>
 #include <map>
 
+struct Credential {
+    std::string userName;
+    std::string password;
+};
+
 class Person {
 public:
     Person(std::string name, int tributaryNumber,
-           std::string username = "person", std::string password = "person");
+           Credential credential = {"person", "person"} );
     std::string getName() const;
     int getTributaryNumber() const;
-    std::string getUsername() const;
-    std::string getPassword() const;
-    void changeUsername(const std::string& username);
-    void changePassword(const std::string& password);
+    Credential getCredential() const;
+    void changeCredential (const Credential& credential);
     void changeName(const std::string& name);
-
 private:
     std::string _name;
     int _tributaryNumber;
-    std::string _username;
-    std::string _password;
-protected:
+    Credential _credential;
+
 };
 
 class Client : public Person {
 public:
     Client(std::string name, int tributaryNumber, bool premium,
-           std::string username = "client", std::string password = "client");
+           Credential credential = {"client", "client"});
     bool isPremium() const;
     unsigned getPoints() const;
     void addPoints(unsigned points);
@@ -47,7 +48,7 @@ private:
 class Worker : public Person{
 public:
     Worker(std::string name, int tributaryNumber, float salary,
-           std::string username = "worker", std::string password = "worker");
+           Credential credential = {"worker", "worker"});
 private:
     float _salary;
 };
@@ -55,7 +56,7 @@ private:
 class Boss : public Worker {
 public:
     Boss(std::string name, int tributaryNumber, float salary,
-         std::string username = "boss", std::string password = "boss");
+         Credential credential = {"boss", "boss"});
 };
 
 #endif //SRC_PERSON_H

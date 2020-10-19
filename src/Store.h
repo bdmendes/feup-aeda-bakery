@@ -16,7 +16,13 @@ class Worker;
 class Store {
 public:
     Store(const std::string &location);
+    std::string getLocation() const;
+    std::vector<const Client*> getClients() const;
+    float getEvaluation() const;
+    std::vector<const Worker*> getWorkers() const;
+    //void newOrder(const Client* client, const Product* product, const Order* order);
 private:
+    float _evaluation;
     const std::string _location;
     std::vector<const Client*> _clients;
     std::vector<const Worker*> _workers;
