@@ -9,44 +9,53 @@
 #include <vector>
 #include <map>
 
-#include "Shipping.h"
-#include "Store.h"
-
 class Person {
 public:
-    Person(const std::string &name, int tributaryNumber);
-    Person()=default;
+    Person(std::string name, int tributaryNumber,
+           std::string username = "person", std::string password = "person");
     std::string getName() const;
     int getTributaryNumber() const;
+    std::string getUsername() const;
+    std::string getPassword() const;
+    void changeUsername(const std::string& username);
+    void changePassword(const std::string& password);
+    void changeName(const std::string& name);
+
 private:
     std::string _name;
     int _tributaryNumber;
+    std::string _username;
+    std::string _password;
+protected:
 };
-
-class Store;
 
 class Client : public Person {
 public:
-    Client(const std::string &name, int tributaryNumber, bool premium);
-    Client()=default;
-    std::string getName() const;
-    int getTributaryName() const;
+    Client(std::string name, int tributaryNumber, bool premium,
+           std::string username = "client", std::string password = "client");
     bool isPremium() const;
     unsigned getPoints() const;
+    void addPoints(unsigned points);
+    float getMeanEvaluation() const;
+    std::vector<float> getEvaluations() const;
 private:
     bool _premium;
     unsigned _points;
-    std::map<const Store*, float> _evaluation;
-    std::map<const Store*, std::vector<const Shipping*>> _orders;
+    std::vector<float> _evaluations;
 };
 
 class Worker : public Person{
 public:
-    Worker(const std::string &name, int tributaryNumber, float salary);
-    Worker()=default;
+    Worker(std::string name, int tributaryNumber, float salary,
+           std::string username = "worker", std::string password = "worker");
 private:
     float _salary;
-    std::vector<const Shipping*> _shippings;
+};
+
+class Boss : public Worker {
+public:
+    Boss(std::string name, int tributaryNumber, float salary,
+         std::string username = "boss", std::string password = "boss");
 };
 
 #endif //SRC_PERSON_H

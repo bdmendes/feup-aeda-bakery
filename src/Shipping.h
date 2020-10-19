@@ -8,14 +8,19 @@
 #include <utility>
 #include <vector>
 
+#include "Person.h"
 #include "Product.h"
 
 class Shipping {
 public:
-    Shipping(const std::vector<std::pair<const Product&, unsigned>> &elements);
+    Shipping(const std::vector<std::pair<const Product&, unsigned>> &products,
+             Client& client, Worker& worker);
 private:
-    std::vector<std::pair<const Product&, unsigned>> _elements;
+    std::vector<std::pair<const Product&, unsigned>> _products;
     float _totalPrice;
+    Client& _client;
+    Worker& _worker;
+    float clientEvaluation;
 };
 
 
