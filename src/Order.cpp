@@ -7,7 +7,6 @@
 
 Order::Order(std::map<Product, unsigned int>& elements) :
     _elements{elements}, _totalPrice(0){
-
 }
 
 float Order::getTotalPrice() const {
