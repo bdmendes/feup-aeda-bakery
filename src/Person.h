@@ -9,25 +9,30 @@
 #include <vector>
 #include <map>
 
-#include "Shipping.h"
-#include "Store.h"
-
 class Person {
 public:
-    Person(std::string name, int tributaryNumber);
+    Person(std::string name, int tributaryNumber,
+           std::string username = "person", std::string password = "person");
     std::string getName() const;
     int getTributaryNumber() const;
+    std::string getUsername() const;
+    std::string getPassword() const;
+    void changeUsername(const std::string& newUsername);
+    void changePassword(const std::string& password);
+    void changeName(const std::string& newName);
+
 private:
     std::string _name;
     int _tributaryNumber;
+    std::string _username;
+    std::string _password;
 protected:
 };
 
-class Store;
-
 class Client : public Person {
 public:
-    Client(std::string name, int tributaryNumber, bool premium);
+    Client(std::string name, int tributaryNumber, bool premium,
+           std::string username = "client", std::string password = "client");
     bool isPremium() const;
     unsigned getPoints() const;
     void addPoints(unsigned points);
@@ -41,11 +46,16 @@ private:
 
 class Worker : public Person{
 public:
-    Worker(std::string name, int tributaryNumber, float salary);
-    void addDelivery();
+    Worker(std::string name, int tributaryNumber, float salary,
+           std::string username = "worker", std::string password = "worker");
 private:
     float _salary;
-    unsigned totalDeliveries;
+};
+
+class Boss : public Worker {
+public:
+    Boss(std::string name, int tributaryNumber, float salary,
+         std::string username = "boss", std::string password = "boss");
 };
 
 #endif //SRC_PERSON_H

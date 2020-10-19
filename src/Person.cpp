@@ -7,8 +7,9 @@
 #include <utility>
 #include <algorithm>
 
-Person::Person(std::string name, int tributaryNumber) :
-    _name{std::move(name)}, _tributaryNumber{tributaryNumber},{
+Person::Person(std::string name, int tributaryNumber, std::string username, std::string password) :
+    _name{std::move(name)}, _tributaryNumber{tributaryNumber},
+    _username{std::move(username)}, _password{std::move(password)} {
 
 }
 
@@ -20,9 +21,13 @@ int Person::getTributaryNumber() const {
     return _tributaryNumber;
 }
 
+std::string Person::getUsername() const {
+    return _username;
+}
 
-Client::Client(const std::string name, int tributaryNumber, bool premium):
-    Person(name,tributaryNumber), _premium{premium}, _points{0}{
+
+Client::Client(std::string name, int tributaryNumber, bool premium, std::string username, std::string password):
+    Person(std::move(name),tributaryNumber, std::move(username), std::move(password)), _premium{premium}, _points{0}{
 
 }
 
@@ -44,7 +49,16 @@ std::vector<float> Client::getEvaluations() const {
     return _evaluations;
 }
 
-Worker::Worker(std::string name, int tributaryNumber, float salary):
-    Person(name,tributaryNumber), _salary{salary}{
+void Client::addPoints(unsigned int points) {
+    _points += points;
+}
+
+Worker::Worker(std::string name, int tributaryNumber, float salary, std::string username, std::string password):
+    Person(std::move(name),tributaryNumber, std::move(username), std::move(password)), _salary{salary}{
+
+}
+
+Boss::Boss(std::string name, int tributaryNumber, float salary, std::string username, std::string password) : Worker(
+        std::move(name), tributaryNumber, salary, std::move(username), std::move(password)) {
 
 }
