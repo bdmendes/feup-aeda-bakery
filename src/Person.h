@@ -27,7 +27,6 @@ private:
     std::string _name;
     int _tributaryNumber;
     Credential _credential;
-
 };
 
 class Client : public Person {
