@@ -19,6 +19,7 @@ public:
 private:
     const std::string _location;
     std::vector<const Client*> _clients;
+    float _evaluation;
     std::vector<const Worker*> _workers;
 };
 

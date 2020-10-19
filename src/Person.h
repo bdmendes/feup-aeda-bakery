@@ -9,53 +9,44 @@
 #include <vector>
 #include <map>
 
+#include "Shipping.h"
+#include "Store.h"
+
 class Person {
 public:
-    Person(std::string name, int tributaryNumber,
-           std::string username = "person", std::string password = "person");
+    Person(const std::string &name, int tributaryNumber);
+    Person()=default;
     std::string getName() const;
     int getTributaryNumber() const;
-    std::string getUsername() const;
-    std::string getPassword() const;
-    void changeUsername(const std::string& username);
-    void changePassword(const std::string& password);
-    void changeName(const std::string& name);
-
 private:
     std::string _name;
     int _tributaryNumber;
-    std::string _username;
-    std::string _password;
-protected:
 };
+
+class Store;
 
 class Client : public Person {
 public:
-    Client(std::string name, int tributaryNumber, bool premium,
-           std::string username = "client", std::string password = "client");
+    Client(const std::string &name, int tributaryNumber, bool premium);
+    Client()=default;
+    std::string getName() const;
+    int getTributaryName() const;
     bool isPremium() const;
     unsigned getPoints() const;
-    void addPoints(unsigned points);
-    float getMeanEvaluation() const;
-    std::vector<float> getEvaluations() const;
 private:
     bool _premium;
     unsigned _points;
-    std::vector<float> _evaluations;
+    std::map<const Store*, float> _evaluation;
+    std::map<const Store*, std::vector<const Shipping*>> _orders;
 };
 
 class Worker : public Person{
 public:
-    Worker(std::string name, int tributaryNumber, float salary,
-           std::string username = "worker", std::string password = "worker");
+    Worker(const std::string &name, int tributaryNumber, float salary);
+    Worker()=default;
 private:
     float _salary;
-};
-
-class Boss : public Worker {
-public:
-    Boss(std::string name, int tributaryNumber, float salary,
-         std::string username = "boss", std::string password = "boss");
+    std::vector<const Shipping*> _shippings;
 };
 
 #endif //SRC_PERSON_H
