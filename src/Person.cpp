@@ -8,8 +8,7 @@
 #include <algorithm>
 
 Person::Person(std::string name, int tributaryNumber) :
-    _name{std::move(name)}, _tributaryNumber{tributaryNumber},
-    _orders{std::vector<const Shipping*>()}{
+    _name{std::move(name)}, _tributaryNumber{tributaryNumber},{
 
 }
 
@@ -21,23 +20,6 @@ int Person::getTributaryNumber() const {
     return _tributaryNumber;
 }
 
-void Person::addOrder(const Shipping *order) {
-    _orders.push_back(order);
-}
-
-bool Person::removeOrder(const Shipping *order) {
-    for (auto it = _orders.begin(); it != _orders.end(); ++it){
-        if (*it == order){
-            _orders.erase(it);
-            return true;
-        }
-    }
-    return false;
-}
-
-std::vector<const Shipping *> Person::getOrders() {
-    return _orders;
-}
 
 Client::Client(const std::string name, int tributaryNumber, bool premium):
     Person(name,tributaryNumber), _premium{premium}, _points{0}{
@@ -50,17 +32,6 @@ bool Client::isPremium() const {
 
 unsigned Client::getPoints() const {
     return _points;
-}
-
-void Client::addOrder(const Shipping* order) {
-    _orders.push_back(order);
-    //_points += order.getTotalPrice();
-    if (_premium && _points >= 100){
-        //...
-    }
-    else if (!_premium && _points >= 200){
-        //...
-    }
 }
 
 float Client::getMeanEvaluation() const {

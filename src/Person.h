@@ -17,14 +17,10 @@ public:
     Person(std::string name, int tributaryNumber);
     std::string getName() const;
     int getTributaryNumber() const;
-    std::vector<const Shipping*> getOrders();
-    virtual void addOrder(const Shipping* order);
-    bool removeOrder(const Shipping* order);
 private:
     std::string _name;
     int _tributaryNumber;
 protected:
-    std::vector<const Shipping*> _orders;
 };
 
 class Store;
@@ -34,7 +30,7 @@ public:
     Client(std::string name, int tributaryNumber, bool premium);
     bool isPremium() const;
     unsigned getPoints() const;
-    void addOrder(const Shipping* order) override;
+    void addPoints(unsigned points);
     float getMeanEvaluation() const;
     std::vector<float> getEvaluations() const;
 private:
@@ -46,8 +42,10 @@ private:
 class Worker : public Person{
 public:
     Worker(std::string name, int tributaryNumber, float salary);
+    void addDelivery();
 private:
     float _salary;
+    unsigned totalDeliveries;
 };
 
 #endif //SRC_PERSON_H
