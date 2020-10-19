@@ -39,6 +39,5 @@ private:
     std::string _category;
 };
 
-//implementar igualdade -> preço e nome-> pesquisar
 
 #endif //SRC_PRODUCT_H
