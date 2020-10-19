@@ -25,6 +25,21 @@ std::string Person::getUsername() const {
     return _username;
 }
 
+std::string Person::getPassword() const {
+    return _password;
+}
+
+void Person::changeUsername(const std::string& username) {
+    _username = username;
+}
+
+void Person::changePassword(const std::string& password){
+    _password = password;
+}
+
+void Person::changeName(const std::string& name){
+    _name = name;
+}
 
 Client::Client(std::string name, int tributaryNumber, bool premium, std::string username, std::string password):
     Person(std::move(name),tributaryNumber, std::move(username), std::move(password)), _premium{premium}, _points{0}{

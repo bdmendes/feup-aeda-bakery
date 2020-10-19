@@ -17,9 +17,9 @@ public:
     int getTributaryNumber() const;
     std::string getUsername() const;
     std::string getPassword() const;
-    void changeUsername(const std::string& newUsername);
+    void changeUsername(const std::string& username);
     void changePassword(const std::string& password);
-    void changeName(const std::string& newName);
+    void changeName(const std::string& name);
 
 private:
     std::string _name;
