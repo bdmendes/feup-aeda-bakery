@@ -31,8 +31,8 @@ class Cake : public Product{
 public:
     Cake(std::string name, float price, std::string category);
     std::string getCategory() const;
-    void addCategory(const std::string &newCategory);
-    void removeCategory(const std::string &category);
+    static void addCategory(const std::string &newCategory);
+    static void removeCategory(const std::string &category);
     static std::set<std::string> availableCategories;
     bool operator == (const Cake &cake);
 private:
