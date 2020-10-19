@@ -8,7 +8,6 @@
 Store::Store(const std::string &location) :
     _location(location), _clients(std::vector<const Client*>()),
     _evaluation(0), _workers(std::vector<const Worker*>()){
-
 }
 
 std::string Store::getLocation() const {
