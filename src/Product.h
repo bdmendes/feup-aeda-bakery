@@ -6,15 +6,12 @@
 #define SRC_PRODUCT_H
 
 #include <string>
+#include <map>
 #include <set>
-
-//if we want to add or remove flavours we cant use enum
-std::set<std::string> FLAVOURS = {"Crunchy","Meat Sauce", "Sponge","Chocolate","Vanilla","Red Velvet","Puff","Caramel","Orange",
-                                  "Apple", "Carrot","Coconut"};
 
 class Product {
 public:
-    Product(const std::string &name, float price);
+    Product(std::string name, float price);
     std::string getName() const;
     float getPrice() const;
 private:
@@ -24,21 +21,24 @@ private:
 
 class Bread : public Product{
 public:
-    Bread(const std::string &name, float price, bool small);
+    Bread(std::string name, float price, bool small);
     bool isSmall() const;
 private:
-    float _small;
+    bool _small;
 };
 
 class Cake : public Product{
 public:
-    Cake(const std::string &name, float price, std::string firstFlavour, std::string secondFlavour);
-    std::string getFirstFlavour() const;
-    std::string getSecondFlavour() const;
-    void addFlavour(const std::string flavourName);
-    void removeFlavour(const std::string flavourName);
+    Cake(std::string name, float price, std::string category);
+    std::string getCategory() const;
+    void addCategory(const std::string &newCategory);
+    void removeCategory(const std::string &category);
+    static std::set<std::string> availableCategories;
+    bool operator == (const Cake &cake);
 private:
-    std::string _firstFlavour;
-    std::string _secondFlavour;
+    std::string _category;
 };
+
+//implementar igualdade -> preço e nome-> pesquisar
+
 #endif //SRC_PRODUCT_H

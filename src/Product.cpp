@@ -4,16 +4,18 @@
 
 #include "Product.h"
 
+#include <utility>
+
+std::set<std::string> Cake::availableCategories = {"Pie", "Sponge Cake", "Puff Pastry Cake", "Crunchy"};
+
 //CONSTRUCTORS
 
-Product::Product(const std::string &name, float price) : _name(name), _price(price) {}
+Product::Product(std::string name, float price) : _name(std::move(name)), _price(price) {}
 
-Bread::Bread(const std::string &name, float price, bool small) : Product(name, price), _small(small) {}
+Bread::Bread(std::string name, float price, bool small) : Product(name, price), _small(small) {}
 
-Cake::Cake(const std::string &name, float price, std::string firstFlavour, std::string secondFlavour) : Product(name, price),
-        _firstFlavour(firstFlavour), _secondFlavour(secondFlavour) {
+Cake::Cake(std::string name, float price, std::string category) : Product(name, price), _category(std::move(category)){}
 
-}
 
 //GET METHODS
 
@@ -23,14 +25,19 @@ float Product::getPrice() const { return _price;}
 
 bool Bread::isSmall() const { return _small;}
 
-std::string Cake::getFirstFlavour() const { return _firstFlavour;}
+std::string Cake::getCategory() const { return _category;}
 
-std::string Cake::getSecondFlavour() const { return _secondFlavour;}
 
-//ADD AND REMOVE FLAVOURS
+//ADD AND REMOVE CATEGORIES
 
-void Cake::addFlavour(const std::string flavourName) { FLAVOURS.insert(flavourName);}
+void Cake::addCategory(const std::string &newCategory) {availableCategories.insert(newCategory);}
 
-void Cake::removeFlavour(const std::string flavourName) { FLAVOURS.erase(flavourName);}
+void Cake::removeCategory(const std::string &category) { availableCategories.erase(category);}
 
+
+//OPERATORS OVERLOADING
+bool Cake::operator==(const Cake &cake) {
+    return (_category==cake.getCategory());
+}
+//adicionar possíveis operadores depois de acordo com as necessidades
 
