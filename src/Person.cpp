@@ -3,11 +3,13 @@
 //
 
 #include "Person.h"
+
 #include <utility>
 #include <algorithm>
 
-Person::Person(std::string name, int tributaryNumber, Credential credential) :
-    _name{std::move(name)}, _tributaryNumber{tributaryNumber}, _credential{ credential } {
+Person::Person(std::string name, int tributaryNumber, std::string username, std::string password) :
+        _name{std::move(name)}, _tributaryNumber{tributaryNumber},
+        _username{std::move(username)}, _password{std::move(password)} {
 
 }
 
@@ -19,20 +21,28 @@ int Person::getTributaryNumber() const {
     return _tributaryNumber;
 }
 
-Credential Person::getCredential() const {
-    return _credential;
+std::string Person::getUsername() const {
+    return _username;
 }
 
-void Person::changeCredential(const Credential& credential) {
-    _credential = credential;
+std::string Person::getPassword() const {
+    return _password;
+}
+
+void Person::changeUsername(const std::string& username) {
+    _username = username;
+}
+
+void Person::changePassword(const std::string& password){
+    _password = password;
 }
 
 void Person::changeName(const std::string& name){
     _name = name;
 }
 
-Client::Client(std::string name, int tributaryNumber, bool premium, Credential credential):
-    Person(std::move(name), tributaryNumber, std::move(credential)){
+Client::Client(std::string name, int tributaryNumber, bool premium, std::string username, std::string password):
+        Person(std::move(name),tributaryNumber, std::move(username), std::move(password)), _premium{premium}, _points{0}{
 
 }
 
@@ -58,12 +68,29 @@ void Client::addPoints(unsigned int points) {
     _points += points;
 }
 
-Worker::Worker(std::string name, int tributaryNumber, float salary, Credential credential):
-    Person(std::move(name),tributaryNumber, std::move(credential)), _salary{salary}{
+Worker::Worker(std::string name, int tributaryNumber, float salary, std::string username, std::string password):
+        Person(std::move(name),tributaryNumber, std::move(username), std::move(password)), _salary{salary}, _orders(0){
 
 }
 
-Boss::Boss(std::string name, int tributaryNumber, float salary, Credential credential) :
-        Worker(std::move(name), tributaryNumber, salary, std::move(credential)) {
+unsigned Worker::getOrders() const {
+    return _orders;
+}
+
+void Worker::addOrder() {
+    _orders++;
+}
+
+void Worker::removeOrder(){
+    _orders--;
+}
+
+void Worker::setSalary(float salary) {
+    _salary = salary;
+}
+
+
+Boss::Boss(std::string name, int tributaryNumber, float salary, std::string username, std::string password) : Worker(
+        std::move(name), tributaryNumber, salary, std::move(username), std::move(password)) {
 
 }

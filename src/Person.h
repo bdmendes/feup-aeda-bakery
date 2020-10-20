@@ -9,31 +9,30 @@
 #include <vector>
 #include <map>
 
-struct Credential {
-    std::string userName;
-    std::string password;
-};
-
 class Person {
 public:
     Person(std::string name, int tributaryNumber,
-           Credential credential = {"person", "person"} );
+           std::string username = "person", std::string password = "person");
     std::string getName() const;
     int getTributaryNumber() const;
-    Credential getCredential() const;
-    void changeCredential (const Credential& credential);
+    std::string getUsername() const;
+    std::string getPassword() const;
+    void changeUsername(const std::string& username);
+    void changePassword(const std::string& password);
     void changeName(const std::string& name);
+
 private:
     std::string _name;
     int _tributaryNumber;
-    Credential _credential;
-
+    std::string _username;
+    std::string _password;
+protected:
 };
 
 class Client : public Person {
 public:
     Client(std::string name, int tributaryNumber, bool premium,
-           Credential credential = {"client", "client"});
+           std::string username = "client", std::string password = "client");
     bool isPremium() const;
     unsigned getPoints() const;
     void addPoints(unsigned points);
@@ -48,15 +47,20 @@ private:
 class Worker : public Person{
 public:
     Worker(std::string name, int tributaryNumber, float salary,
-           Credential credential = {"worker", "worker"});
+           std::string username = "worker", std::string password = "worker");
+    unsigned getOrders() const;
+    void addOrder();
+    void removeOrder();
+    void setSalary(float salary);
 private:
     float _salary;
+    unsigned _orders;
 };
 
 class Boss : public Worker {
 public:
     Boss(std::string name, int tributaryNumber, float salary,
-         Credential credential = {"boss", "boss"});
+         std::string username = "boss", std::string password = "boss");
 };
 
 #endif //SRC_PERSON_H
