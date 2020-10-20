@@ -4,10 +4,6 @@
 
 #include "Store.h"
 
-/*Store::Store(const std::string &location) :
-    _location(location), _clients(std::vector<const Client*>()), _workers(std::vector<const Worker*>()){
-
-}*/
 
 Store::Store(const std::string &location, const Boss& boss) :
         _location(location), _boss(boss), _orders(std::vector<const Order*>()), _clientEvaluations(std::vector<float>()){
