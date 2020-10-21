@@ -24,9 +24,7 @@ public:
 private:
     std::string _name;
     int _tributaryNumber;
-    std::string _username;
-    std::string _password;
-protected:
+    Credential _credential;
 };
 
 class Client : public Person {
