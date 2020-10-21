@@ -58,6 +58,10 @@ void Client::addPoints(unsigned int points) {
     _points += points;
 }
 
+void Client::resetPoints() {
+    _points = 0;
+}
+
 unsigned Worker::getOrders() const {
     return _orders;
 }

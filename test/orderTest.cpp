@@ -3,10 +3,10 @@
 //
 
 #include <gtest/gtest.h>
-#include <Person.h>
-#include <Store.h>
-#include <Order.h>
-#include <Product.h>
+#include <model/Person.h>
+#include <model/Store.h>
+#include <model/Order.h>
+#include <model/Product.h>
 
 
 using testing::Eq;

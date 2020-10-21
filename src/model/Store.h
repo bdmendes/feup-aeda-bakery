@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <map>
 
 #include "Person.h"
 #include "Order.h"
@@ -19,22 +20,22 @@ class Boss;
 
 class Store {
 public:
-    Store(const std::string& name, const Boss& boss);
+    Store(std::string name);
     std::string getName() const;
     float getMeanEvaluation() const;
+
     void hireWorker(Worker* worker);
     void fireWorker(const Worker* worker);
-    void newOrder(const Order* order);
-    void deliveredOrder(const Order* order);
-    const Worker& assignWorker();
+
+    void addOrder(const std::map<Product, unsigned>& _products, Client& client);
+
+    Worker* getAvailableWorker();
     void changeWorkerSalary(Worker *worker, float salary);
-    static bool compareNumOrders(Worker* worker1, Worker* worker2);
 private:
     const std::string _name;
-    const Boss& _boss;
     std::vector<const Client*> _clients;
     std::vector<Worker*> _workers; //Workers are not const because the number of orders is going to change
-    std::vector<const Order*> _orders;
+    std::vector<Order> _orders;
     std::vector<float> _clientEvaluations;
 };
 

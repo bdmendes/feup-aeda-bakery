@@ -6,11 +6,11 @@
 
 Order::Order(const std::map<Product, unsigned int> &products, Client &client, Worker &worker) :
         _products{std::map<Product, unsigned int>()},
-        _client{client}, _worker(worker), _clientEvaluation(0){
+        _client{client}, _worker(worker), _clientEvaluation(0), _delivered(false){
     //Verifies if client has discount in this order
     if((_client.isPremium() && _client.getPoints() >= 100) || (!_client.isPremium() && _client.getPoints() >=200)) {
-        _discount == true;
-        _client.addPoints(_client.getPoints()*(-1)); //Reset client's points
+        _discount = true;
+        _client.resetPoints(); //Reset client's points
     }
 }
 

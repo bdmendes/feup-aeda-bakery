@@ -1,9 +1,9 @@
 #include <iostream>
 
-#include "Order.h"
-#include "Store.h"
-#include "Person.h"
-#include "Product.h"
+#include "model/Order.h"
+#include "model/Store.h"
+#include "model/Person.h"
+#include "model/Product.h"
 
 #include <iostream>
 
