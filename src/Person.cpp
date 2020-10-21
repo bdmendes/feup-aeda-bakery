@@ -8,7 +8,6 @@
 
 Person::Person(std::string name, int tributaryNumber, Credential credential) :
     _name{std::move(name)}, _tributaryNumber{tributaryNumber}, _credential{ credential } {
-
 }
 
 std::string Person::getName() const {
@@ -33,7 +32,6 @@ void Person::changeName(const std::string& name){
 
 Client::Client(std::string name, int tributaryNumber, bool premium, Credential credential):
     Person(std::move(name), tributaryNumber, std::move(credential)){
-
 }
 
 bool Client::isPremium() const {
@@ -60,10 +58,8 @@ void Client::addPoints(unsigned int points) {
 
 Worker::Worker(std::string name, int tributaryNumber, float salary, Credential credential):
     Person(std::move(name),tributaryNumber, std::move(credential)), _salary{salary}{
-
 }
 
 Boss::Boss(std::string name, int tributaryNumber, float salary, Credential credential) :
         Worker(std::move(name), tributaryNumber, salary, std::move(credential)) {
-
 }
