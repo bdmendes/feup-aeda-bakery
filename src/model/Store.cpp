@@ -4,12 +4,12 @@
 
 #include "Store.h"
 
-Store::Store(const std::string &location, const Boss& boss) :
-        _location(location), _boss(boss), _orders(std::vector<const Order*>()), _clientEvaluations(std::vector<float>()){
+Store::Store(const std::string& name, const Boss& boss) :
+        _name(name), _boss(boss), _orders(std::vector<const Order*>()), _clientEvaluations(std::vector<float>()){
 }
 
-std::string Store::getLocation() const {
-    return _location;
+std::string Store::getName() const {
+    return _name;
 }
 
 float Store::getMeanEvaluation() const {

@@ -8,7 +8,7 @@
 #include <algorithm>
 
 Person::Person(std::string name, int tributaryNumber, Credential credential) :
-    _name{std::move(name)}, _tributaryNumber{tributaryNumber}, _credential{ credential } {
+    _name{std::move(name)}, _tributaryNumber{tributaryNumber}, _credential{ std::move(credential) } {
 }
 
 std::string Person::getName() const {
@@ -19,28 +19,21 @@ int Person::getTributaryNumber() const {
     return _tributaryNumber;
 }
 
-std::string Person::getUsername() const {
-    return _username;
-}
-
-std::string Person::getPassword() const {
-    return _password;
-}
-
-void Person::changeUsername(const std::string& username) {
-    _username = username;
-}
-
-void Person::changePassword(const std::string& password){
-    _password = password;
-}
-
 void Person::changeName(const std::string& name){
     _name = name;
 }
 
+Credential Person::getCredential() const {
+    return _credential;
+}
+
+void Person::changeCredential(const Credential &credential) {
+    // if no change, throw
+    _credential = credential;
+}
+
 Client::Client(std::string name, int tributaryNumber, bool premium, Credential credential):
-    Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}{
+    Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}, _premium(premium){
 }
 
 bool Client::isPremium() const {
@@ -82,7 +75,7 @@ void Worker::setSalary(float salary) {
 }
 
 Worker::Worker(std::string name, int tributaryNumber, float salary, Credential credential):
-    Person(std::move(name),tributaryNumber, std::move(credential)), _salary{salary}{
+    Person(std::move(name),tributaryNumber, std::move(credential)), _salary{salary}, _orders(0){
 }
 
 Boss::Boss(std::string name, int tributaryNumber, float salary, Credential credential) :

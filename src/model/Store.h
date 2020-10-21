@@ -19,8 +19,8 @@ class Boss;
 
 class Store {
 public:
-    Store(const std::string &location, const Boss& boss);
-    std::string getLocation() const;
+    Store(const std::string& name, const Boss& boss);
+    std::string getName() const;
     float getMeanEvaluation() const;
     void hireWorker(Worker* worker);
     void fireWorker(const Worker* worker);
@@ -30,7 +30,7 @@ public:
     void changeWorkerSalary(Worker *worker, float salary);
     static bool compareNumOrders(Worker* worker1, Worker* worker2);
 private:
-    const std::string _location;
+    const std::string _name;
     const Boss& _boss;
     std::vector<const Client*> _clients;
     std::vector<Worker*> _workers; //Workers are not const because the number of orders is going to change
