@@ -10,6 +10,10 @@ Store::Store(const std::string &location, const Boss& boss) :
 
 }
 
+std::string Store::getLocation() const {
+    return _location;
+}
+
 float Store::getMeanEvaluation() const {
     float sum = 0;
     for(const auto& order : _orders)
@@ -28,23 +32,30 @@ void Store::fireWorker(const Worker *worker) {
 }
 
 void Store::newOrder(const Order* order) {
-    _orders.push_back(order);
-    (order->getWorker())->addOrder();
-    _workers.push_back(order->getWorker());
-    _clients.push_back(order->getClient());
+    if(std::find(_workers.begin(),_workers.end(), order->getWorker()) == _workers.end())
+        throw WorkerDoesNotExist((order->getWorker())->getName(), (order->getWorker())->getTributaryNumber());
+    else if(std::find(_clients.begin(),_clients.end(),order->getClient()) == _clients.end())
+        throw ClientDoesNotExist((order->getClient())->getName(), (order->getClient())->getTributaryNumber());
+    else{
+        _orders.push_back(order);
+        (order->getWorker())->addOrder();
+        _workers.push_back(order->getWorker());
+        _clients.push_back(order->getClient());
+    }
+
 }
 
 const Worker& Store::assignWorker() {
-    const Worker* worker = nullptr;
-    for(auto const& worker1 : _workers){
-        for(auto const& worker2 : _workers){
-            if(worker1->getOrders() < worker2->getOrders())
-                worker = worker1;
-            else
-                worker = worker2;
-        }
-    }
-    return *worker;
+   /* std::sort(_workers.begin(), _workers.end(), [](Worker* worker1,Worker* worker2){
+        return ((worker1->getOrders()) < (worker2->getOrders()));
+    });
+    return *(_workers[0]);*/
+   std::vector<Worker*>::iterator it = std::min_element(_workers.begin(),_workers.end(),  [](Worker* worker1,Worker* worker2){
+        return ((worker1->getOrders()) < (worker2->getOrders()));
+    });
+   return *(_workers[std::distance(_workers.begin(),it)]);
+
+
 }
 
 void Store::deliveredOrder(const Order *order) {
