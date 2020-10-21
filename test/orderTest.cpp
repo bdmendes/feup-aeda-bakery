@@ -41,12 +41,6 @@ TEST(Boss, create_boss){
     EXPECT_EQ(meatCake.getPrice(), 1.20);
 }*/
 
-TEST(Store, create_store){
-    Boss b("Marcelo Rebelo de Sousa", 294839201, 10000);
-    Store s("Barcelos", b);
-    EXPECT_EQ(s.getLocation(),"Barcelos");
-}
-
 /*TEST(Order, create_order){
     Client c("Manel", 256789324, true);
     Worker w("Joao", 203574345, 600);
