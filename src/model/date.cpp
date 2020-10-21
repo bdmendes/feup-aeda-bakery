@@ -7,7 +7,7 @@
 
 Date::Date(){
     std::time_t t = std::time(0);
-    std::tm* currentTime = localtime(&t);
+    std::tm* currentTime = localtime_r(&t);
     _minute = currentTime->tm_min;
     _hour = currentTime->tm_hour;
     _day = currentTime->tm_mday;

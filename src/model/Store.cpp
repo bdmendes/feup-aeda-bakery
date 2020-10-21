@@ -49,3 +49,7 @@ void Store::changeWorkerSalary(Worker *worker, float salary) {
 void Store::addOrder(const std::map<Product, unsigned int>& products, Client& client) {
     _orders.emplace_back(products,client,*getAvailableWorker());
 }
+
+void Store::fireWorker(const Worker *worker) {
+
+}

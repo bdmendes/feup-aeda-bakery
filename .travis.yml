@@ -17,7 +17,7 @@ addons:
 branches:
   only:
     - main
-    
+
 before_install:
   - chmod +x build.sh
 

@@ -45,13 +45,11 @@ public:
     int _tributaryNumber;
     ClientDoesNotExist(std::string name, int tributaryNumber) :
             _name(name), _tributaryNumber(tributaryNumber){
-
     }
     std::ostream & operator<<(std::ostream &out)
     { out << "Client does not exist: " << _name << ", " << _tributaryNumber << std::endl; return out;}
 
 };
-
 
 class WorkerDoesNotExist{
 public:
@@ -59,11 +57,9 @@ public:
     int _tributaryNumber;
     WorkerDoesNotExist(std::string name, int tributaryNumber):
             _name(name), _tributaryNumber(tributaryNumber){
-
     }
     std::ostream & operator<<(std::ostream &out)
     { out << "Client does not exist: " << _name << ", " << _tributaryNumber << std::endl; return out;}
 };
-
 
 #endif //SRC_STORE_H
