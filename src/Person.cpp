@@ -3,6 +3,7 @@
 //
 
 #include "Person.h"
+
 #include <utility>
 #include <algorithm>
 
@@ -18,12 +19,20 @@ int Person::getTributaryNumber() const {
     return _tributaryNumber;
 }
 
-Credential Person::getCredential() const {
-    return _credential;
+std::string Person::getUsername() const {
+    return _username;
 }
 
-void Person::changeCredential(const Credential& credential) {
-    _credential = credential;
+std::string Person::getPassword() const {
+    return _password;
+}
+
+void Person::changeUsername(const std::string& username) {
+    _username = username;
+}
+
+void Person::changePassword(const std::string& password){
+    _password = password;
 }
 
 void Person::changeName(const std::string& name){
@@ -31,7 +40,7 @@ void Person::changeName(const std::string& name){
 }
 
 Client::Client(std::string name, int tributaryNumber, bool premium, Credential credential):
-    Person(std::move(name), tributaryNumber, std::move(credential)){
+    Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}{
 }
 
 bool Client::isPremium() const {
@@ -54,6 +63,22 @@ std::vector<float> Client::getEvaluations() const {
 
 void Client::addPoints(unsigned int points) {
     _points += points;
+}
+
+unsigned Worker::getOrders() const {
+    return _orders;
+}
+
+void Worker::addOrder() {
+    _orders++;
+}
+
+void Worker::removeOrder(){
+    _orders--;
+}
+
+void Worker::setSalary(float salary) {
+    _salary = salary;
 }
 
 Worker::Worker(std::string name, int tributaryNumber, float salary, Credential credential):

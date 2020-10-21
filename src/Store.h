@@ -7,25 +7,61 @@
 
 #include <vector>
 #include <string>
+#include <algorithm>
 
 #include "Person.h"
+#include "Order.h"
 
 class Client;
 class Worker;
+class Boss;
+
 
 class Store {
 public:
-    Store(const std::string &location);
+    Store(const std::string &location, const Boss& boss);
     std::string getLocation() const;
-    std::vector<const Client*> getClients() const;
-    float getEvaluation() const;
-    std::vector<const Worker*> getWorkers() const;
-    //void newOrder(const Client* client, const Product* product, const Order* order);
+    float getMeanEvaluation() const;
+    void hireWorker(Worker* worker);
+    void fireWorker(const Worker* worker);
+    void newOrder(const Order* order);
+    void deliveredOrder(const Order* order);
+    const Worker& assignWorker();
+    void changeWorkerSalary(Worker *worker, float salary);
+    static bool compareNumOrders(Worker* worker1, Worker* worker2);
 private:
-    float _evaluation;
     const std::string _location;
+    const Boss& _boss;
     std::vector<const Client*> _clients;
-    std::vector<const Worker*> _workers;
+    std::vector<Worker*> _workers; //Workers are not const because the number of orders is going to change
+    std::vector<const Order*> _orders;
+    std::vector<float> _clientEvaluations;
+};
+
+class ClientDoesNotExist{
+public:
+    std::string _name;
+    int _tributaryNumber;
+    ClientDoesNotExist(std::string name, int tributaryNumber) :
+            _name(name), _tributaryNumber(tributaryNumber){
+
+    }
+    std::ostream & operator<<(std::ostream &out)
+    { out << "Client does not exist: " << _name << ", " << _tributaryNumber << std::endl; return out;}
+
+};
+
+
+class WorkerDoesNotExist{
+public:
+    std::string _name;
+    int _tributaryNumber;
+    WorkerDoesNotExist(std::string name, int tributaryNumber):
+            _name(name), _tributaryNumber(tributaryNumber){
+
+    }
+    std::ostream & operator<<(std::ostream &out)
+    { out << "Client does not exist: " << _name << ", " << _tributaryNumber << std::endl; return out;}
 };
 
 
