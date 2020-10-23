@@ -3,6 +3,7 @@
 //
 
 #include "Person.h"
+#include "../exceptions/store_exceptions.h"
 
 #include <utility>
 #include <algorithm>
@@ -83,5 +84,15 @@ Worker::Worker(std::string name, int tributaryNumber, float salary, Credential c
 }
 
 Boss::Boss(std::string name, int tributaryNumber, float salary, Credential credential) :
-        Worker(std::move(name), tributaryNumber, salary, std::move(credential)) {
+        Worker(std::move(name), tributaryNumber, salary, std::move(credential)),
+        _stores (std::set<Store*, StoreComp>()){
+}
+
+Store *Boss::getStore(const std::string& name) {
+    Store toFind = Store(name);
+    auto it = _stores.find(&toFind);
+    if (it == _stores.end()){
+        throw StoreDoesNotExist(name);
+    }
+    return *it;
 }

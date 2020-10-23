@@ -14,7 +14,7 @@ endif (WIN32)
 add_library(feup-aeda-project main.cpp model/Product.cpp model/Product.h model/Store.cpp model/Store.h model/Person.cpp model/Person.h model/Order.cpp model/Order.h)
 
 add_executable(application
-        main.cpp model/Product.cpp model/Product.h model/Store.cpp model/Store.h model/Person.cpp model/Person.h model/Order.cpp model/Order.h model/date.cpp model/date.h)
+        main.cpp model/Product.cpp model/Product.h model/Store.cpp model/Store.h model/Person.cpp model/Person.h model/Order.cpp model/Order.h model/date.cpp model/date.h exceptions/store_exceptions.cpp exceptions/store_exceptions.h exceptions/person_exceptions.cpp exceptions/person_exceptions.h)
 
 target_include_directories(feup-aeda-project PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

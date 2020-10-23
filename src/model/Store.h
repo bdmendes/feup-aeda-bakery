@@ -13,11 +13,6 @@
 #include "Person.h"
 #include "Order.h"
 
-class Client;
-class Worker;
-class Boss;
-
-
 class Store {
 public:
     Store(std::string name);
@@ -31,6 +26,10 @@ public:
 
     Worker* getAvailableWorker();
     void changeWorkerSalary(Worker *worker, float salary);
+
+    bool operator== (const std::string& name){
+        return getName() == name;
+    }
 private:
     const std::string _name;
     std::vector<const Client*> _clients;
@@ -39,27 +38,10 @@ private:
     std::vector<float> _clientEvaluations;
 };
 
-class ClientDoesNotExist{
-public:
-    std::string _name;
-    int _tributaryNumber;
-    ClientDoesNotExist(std::string name, int tributaryNumber) :
-            _name(name), _tributaryNumber(tributaryNumber){
+struct StoreComp {
+    bool operator() (const Store* s1, const Store* s2) const {
+        return s1->getName() < s2->getName();
     }
-    std::ostream & operator<<(std::ostream &out)
-    { out << "Client does not exist: " << _name << ", " << _tributaryNumber << std::endl; return out;}
-
-};
-
-class WorkerDoesNotExist{
-public:
-    std::string _name;
-    int _tributaryNumber;
-    WorkerDoesNotExist(std::string name, int tributaryNumber):
-            _name(name), _tributaryNumber(tributaryNumber){
-    }
-    std::ostream & operator<<(std::ostream &out)
-    { out << "Client does not exist: " << _name << ", " << _tributaryNumber << std::endl; return out;}
 };
 
 #endif //SRC_STORE_H
