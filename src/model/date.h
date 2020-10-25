@@ -11,7 +11,13 @@ class Date{
 public:
     Date();
     std::ostream & operator<<(std::ostream & out) const;
+    bool testDate();
 private:
+    bool isLeapYear(unsigned year);
+    void testMonth();
+    void testDay();
+    void testHour();
+    void testMinute();
     unsigned _minute, _hour, _day, _month, _year;
 };
 

@@ -39,10 +39,9 @@ bool isPresent(const std::string &category) {
 }
 
 TEST(Cake, changeCategories){
-    Cake cake("bolinho fofinho", 22.30, "Bolo de pedra");
-    cake.addCategory("Bolo de pedra");
+    Cake::addCategory("Bolo de pedra");
     EXPECT_EQ(isPresent("Bolo de pedra"), true);
-    cake.removeCategory("Bolo de pedra");
+    Cake::removeCategory("Bolo de pedra");
     EXPECT_EQ(isPresent("Bolo de pedra"), false);
 }
 
