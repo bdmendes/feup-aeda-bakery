@@ -41,15 +41,24 @@ std::vector<Order> Store::getWorkerHistory(const Worker *worker) {
     return workerOrders;
 }
 
-int Store::searchWorkerByTributaryNumber(const Worker *worker) {
+int Store::searchWorkerByName(std::string name) {
     for(unsigned int i = 0; i < _workers.size(); i++)
-        if (_workers[i]->getTributaryNumber() == worker->getTributaryNumber()) return i;
+        if (_workers[i]->getName() == name) return i;
     return -1;
 }
 
-int Store::searchWorkerByName(const Worker *worker) {
+int Store::searchWorkerByTributaryNumber(int tributaryNumber) {
     for(unsigned int i = 0; i < _workers.size(); i++)
-        if (_workers[i]->getName() == worker->getName()) return i;
+        if (_workers[i]->getTributaryNumber() == tributaryNumber) return i;
+    return -1;
+}
+
+
+
+int Store::findWorker(const Worker *worker) {
+    int index1 = searchWorkerByName(worker->getName());
+    int index2 = searchWorkerByTributaryNumber(worker->getTributaryNumber());
+    if((index1 != -1) && (index2 != -1) && (index1 == index2)) return index1;
     return -1;
 }
 

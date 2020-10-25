@@ -30,8 +30,9 @@ public:
     float getMeanEvaluation() const;
     std::vector<Order> getClientHistory(const Client* client);
     std::vector<Order> getWorkerHistory(const Worker* worker);
-    int searchWorkerByName(const Worker* worker);
-    int searchWorkerByTributaryNumber(const Worker* worker);
+    int searchWorkerByName(std::string name);
+    int searchWorkerByTributaryNumber(int tributaryNumber);
+    int findWorker(const Worker* worker);
     void hireWorker(Worker* worker);
     void fireWorker(const Worker* worker);
     void addOrder(const std::map<Product, unsigned>& _products, Client& client);
