@@ -13,10 +13,10 @@
 class PersonDoesNotExist{
 public:
     PersonDoesNotExist(std::string name, int tributaryNumber);
+    explicit PersonDoesNotExist(std::string name);
     std::ostream & operator<<(std::ostream &out);
 private:
-    std::string _name;
-    int _tributaryNumber;
+    std::string _message;
 };
 
 #endif //FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H

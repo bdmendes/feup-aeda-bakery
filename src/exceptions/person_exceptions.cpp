@@ -5,11 +5,15 @@
 #include "person_exceptions.h"
 
 PersonDoesNotExist::PersonDoesNotExist(std::string name, int tributaryNumber) :
-    _name(std::move(name)), _tributaryNumber(tributaryNumber){
+    _message(name + " does not exist!\n"){
 }
 
 std::ostream &PersonDoesNotExist::operator<<(std::ostream &out) {
-    out << "Client does not exist: " << _name << ", " << _tributaryNumber << std::endl;
+    out << _message;
     return out;
+}
+
+PersonDoesNotExist::PersonDoesNotExist(std::string name) {
+
 }
 

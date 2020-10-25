@@ -12,7 +12,6 @@ public:
     explicit StoreDoesNotExist(const std::string& name);
 private:
     std::string message;
-
 };
 
 class StoreAlreadyExists : std::logic_error {
