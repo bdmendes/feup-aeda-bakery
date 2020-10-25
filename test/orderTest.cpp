@@ -1,3 +1,4 @@
+/*
 //
 // Created by bdmendes on 19/10/20.
 //
@@ -11,10 +12,12 @@
 
 using testing::Eq;
 
+*/
 /*TEST(order, order_default_test){
     Person p("Alfredo",123,{"alfredo", "martins"});
     EXPECT_EQ(p.getCredential().password, "martins");
-}*/
+}*//*
+
 
 TEST(Client, create_client){
     Client c("Manel", 256789324, true);
@@ -35,12 +38,15 @@ TEST(Boss, create_boss){
     EXPECT_EQ(b.getTributaryNumber(), 294839201);
 }
 
+*/
 /*TEST(Products, creat_products){
     Product meatCake("Bolo com molho de carne", 1.20);
     EXPECT_EQ(meatCake.getName(), "Bolo com molho de carne");
     EXPECT_EQ(meatCake.getPrice(), 1.20);
-}*/
+}*//*
 
+
+*/
 /*TEST(Order, create_order){
     Client c("Manel", 256789324, true);
     Worker w("Joao", 203574345, 600);
@@ -54,5 +60,7 @@ TEST(Boss, create_boss){
     EXPECT_EQ(o.getWorker(), w);
     EXPECT_EQ(o.getTotalPrice(), 2.85);
 
-}*/
+}*//*
 
+
+*/
