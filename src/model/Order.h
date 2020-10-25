@@ -23,7 +23,6 @@ public:
     float getClientEvaluation() const ;
     float getTotalPrice() const;
     float calculateFinalPrice();
-    void deliverOrder(float clientEvaluation);
     void obtainClientEvaluation(float evaluation);
 private:
     std::map<Product, unsigned int> _products;
