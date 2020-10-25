@@ -2,7 +2,7 @@
 // Created by laimi on 15/10/2020.
 //
 
-#include "Person.h"
+#include "person.h"
 #include "../exceptions/store_exceptions.h"
 
 #include <utility>
@@ -34,7 +34,7 @@ void Person::changeCredential(const Credential &credential) {
 }
 
 Client::Client(std::string name, int tributaryNumber, bool premium, Credential credential):
-    Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}, _premium(premium){
+        Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}, _premium(premium){
 }
 
 bool Client::isPremium() const {
@@ -80,7 +80,7 @@ void Worker::setSalary(float salary) {
 }
 
 Worker::Worker(std::string name, int tributaryNumber, float salary, Credential credential):
-    Person(std::move(name),tributaryNumber, std::move(credential)), _salary{salary}, _orders(0){
+        Person(std::move(name), tributaryNumber, std::move(credential)), _salary{salary}, _orders(0){
 }
 
 Boss::Boss(std::string name, int tributaryNumber, float salary, Credential credential) :

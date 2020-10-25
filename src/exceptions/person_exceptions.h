@@ -8,7 +8,7 @@
 #include <utility>
 #include <stdexcept>
 
-#include "../model/Person.h"
+#include "../model/person.h"
 
 class PersonDoesNotExist{
 public:

@@ -2,7 +2,7 @@
 // Created by laimi on 15/10/2020.
 //
 
-#include "Order.h"
+#include "order.h"
 
 Order::Order(const std::map<Product, unsigned int> &products, Client &client, Worker &worker) :
         _products{std::map<Product, unsigned int>()},
@@ -12,7 +12,7 @@ Order::Order(const std::map<Product, unsigned int> &products, Client &client, Wo
 }
 
 void Order::calculateDiscount(){
-    if((_client.isPremium() && _client.getPoints() >= 100) || (!_client.isPremium() && _client.getPoints() >=200)) {
+    if((_client.isPremium() && _client.getPoints() >= 100) || (!_client.isPremium() && _client.getPoints() >= 200)) {
         _discount = true;
         _client.resetPoints();
     }
@@ -30,11 +30,11 @@ const Client* Order::getClient() const{
     return &_client;
 }
 
-float Order::getClientEvaluation() const {
+double Order::getClientEvaluation() const {
     return _clientEvaluation;
 }
 
-float Order::getTotalPrice() const {
+double Order::getTotalPrice() const {
     return _totalPrice;
 }
 
@@ -56,5 +56,4 @@ void Order::deliver(float clientEvaluation) {
     _clientEvaluation = clientEvaluation;
     _delivered = true;
 }
-
 

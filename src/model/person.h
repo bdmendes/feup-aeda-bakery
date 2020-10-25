@@ -5,7 +5,7 @@
 #ifndef SRC_PERSON_H
 #define SRC_PERSON_H
 
-#include "Store.h"
+#include "store.h"
 
 #include <string>
 #include <vector>
@@ -21,7 +21,7 @@ struct Credential {
 class Person {
 public:
     Person(std::string name, int tributaryNumber,
-    Credential credential = {"person", "person"});
+           Credential credential = {"Person", "Person"});
     std::string getName() const;
     int getTributaryNumber() const;
     Credential getCredential() const;

@@ -11,8 +11,8 @@
 #include <iostream>
 #include <map>
 
-#include "Person.h"
-#include "Product.h"
+#include "person.h"
+#include "product.h"
 
 class Person;
 class Client;
@@ -24,8 +24,8 @@ public:
     bool hasDiscount() const;
     Worker* getWorker() const;
     const Client* getClient() const;
-    float getClientEvaluation() const;
-    float getTotalPrice() const;
+    double getClientEvaluation() const;
+    double getTotalPrice() const;
     void deliver(float clientEvaluation);
 private:
     void calculateFinalPrice();
@@ -34,7 +34,7 @@ private:
     double _totalPrice;
     Client& _client;
     Worker& _worker;
-    float _clientEvaluation;
+    double _clientEvaluation;
     bool _discount;
     bool _delivered;
 };

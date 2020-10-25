@@ -10,9 +10,9 @@
 #include <algorithm>
 #include <map>
 
-#include "Person.h"
-#include "Order.h"
-#include "Product.h"
+#include "person.h"
+#include "order.h"
+#include "product.h"
 
 class Person;
 class Client;

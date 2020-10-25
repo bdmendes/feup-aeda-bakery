@@ -11,10 +11,10 @@ if (WIN32)
     SET(CMAKE_CXX_FLAGS -Wcpp)
 endif (WIN32)
 
-add_library(feup-aeda-project main.cpp model/Product.cpp model/Product.h model/Store.cpp model/Store.h model/Person.cpp model/Person.h model/Order.cpp model/Order.h exceptions/store_exceptions.cpp exceptions/store_exceptions.h exceptions/person_exceptions.cpp exceptions/person_exceptions.h)
+add_library(feup-aeda-project main.cpp model/product.cpp model/product.h model/store.cpp model/store.h model/person.cpp model/person.h model/order.cpp model/order.h exceptions/store_exceptions.cpp exceptions/store_exceptions.h exceptions/person_exceptions.cpp exceptions/person_exceptions.h)
 
 add_executable(application
-        main.cpp model/Product.cpp model/Product.h model/Store.cpp model/Store.h model/Person.cpp model/Person.h model/Order.cpp model/Order.h model/date.cpp model/date.h exceptions/store_exceptions.cpp exceptions/store_exceptions.h exceptions/person_exceptions.cpp exceptions/person_exceptions.h)
+        main.cpp model/product.cpp model/product.h model/store.cpp model/store.h model/person.cpp model/person.h model/order.cpp model/order.h model/date.cpp model/date.h exceptions/store_exceptions.cpp exceptions/store_exceptions.h exceptions/person_exceptions.cpp exceptions/person_exceptions.h)
 
 target_include_directories(feup-aeda-project PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
