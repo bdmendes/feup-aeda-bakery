@@ -10,13 +10,14 @@
 #include <algorithm>
 #include <map>
 
-#include "Person.h"
-#include "Order.h"
+#include "person.h"
+#include "order.h"
+#include "product.h"
 
+class Person;
 class Client;
 class Worker;
-class Boss;
-
+class Order;
 
 class Store {
 public:
@@ -31,35 +32,16 @@ public:
 
     Worker* getAvailableWorker();
     void changeWorkerSalary(Worker *worker, float salary);
+
+    bool operator== (const std::string& name){
+        return getName() == name;
+    }
 private:
     const std::string _name;
     std::vector<const Client*> _clients;
     std::vector<Worker*> _workers; //Workers are not const because the number of orders is going to change
     std::vector<Order> _orders;
     std::vector<float> _clientEvaluations;
-};
-
-class ClientDoesNotExist{
-public:
-    std::string _name;
-    int _tributaryNumber;
-    ClientDoesNotExist(std::string name, int tributaryNumber) :
-            _name(name), _tributaryNumber(tributaryNumber){
-    }
-    std::ostream & operator<<(std::ostream &out)
-    { out << "Client does not exist: " << _name << ", " << _tributaryNumber << std::endl; return out;}
-
-};
-
-class WorkerDoesNotExist{
-public:
-    std::string _name;
-    int _tributaryNumber;
-    WorkerDoesNotExist(std::string name, int tributaryNumber):
-            _name(name), _tributaryNumber(tributaryNumber){
-    }
-    std::ostream & operator<<(std::ostream &out)
-    { out << "Client does not exist: " << _name << ", " << _tributaryNumber << std::endl; return out;}
 };
 
 #endif //SRC_STORE_H
