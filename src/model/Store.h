@@ -12,6 +12,12 @@
 
 #include "Person.h"
 #include "Order.h"
+#include "Product.h"
+
+class Person;
+class Client;
+class Worker;
+class Order;
 
 class Store {
 public:
@@ -36,12 +42,6 @@ private:
     std::vector<Worker*> _workers; //Workers are not const because the number of orders is going to change
     std::vector<Order> _orders;
     std::vector<float> _clientEvaluations;
-};
-
-struct StoreComp {
-    bool operator() (const Store* s1, const Store* s2) const {
-        return s1->getName() < s2->getName();
-    }
 };
 
 #endif //SRC_STORE_H

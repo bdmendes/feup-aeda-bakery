@@ -7,13 +7,11 @@
 
 #include "Store.h"
 
-class Store;
-class StoreComp;
-
 #include <string>
 #include <vector>
 #include <map>
-#include <set>
+
+class Store;
 
 struct Credential {
     std::string username;
@@ -71,7 +69,7 @@ public:
          Credential credential = {"boss", "boss"});
     Store* getStore(const std::string& name);
 private:
-    std::set<Store*,StoreComp> _stores;
+    std::vector<Store*> _stores;
 };
 
 #endif //SRC_PERSON_H

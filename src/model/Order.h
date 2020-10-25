@@ -14,20 +14,24 @@
 #include "Person.h"
 #include "Product.h"
 
+class Person;
+class Client;
+class Worker;
+
 class Order {
 public:
     Order(const std::map<Product, unsigned int> &products, Client& client, Worker& worker);
     bool hasDiscount() const;
     Worker* getWorker() const;
     const Client* getClient() const;
-    float getClientEvaluation() const ;
+    float getClientEvaluation() const;
     float getTotalPrice() const;
-    float calculateFinalPrice();
-    void deliverOrder(float clientEvaluation);
-    void obtainClientEvaluation(float evaluation);
+    void deliver(float clientEvaluation);
 private:
+    void calculateFinalPrice();
+    void calculateDiscount();
     std::map<Product, unsigned int> _products;
-    float _totalPrice;
+    double _totalPrice;
     Client& _client;
     Worker& _worker;
     float _clientEvaluation;
