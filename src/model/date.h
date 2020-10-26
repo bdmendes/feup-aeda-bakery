@@ -7,11 +7,15 @@
 
 #include <iostream>
 
+#include "../exception/date_exception.h"
+
 class Date{
 public:
     Date();
-    std::ostream & operator<<(std::ostream & out) const;
+    Date(unsigned hour, unsigned minute, unsigned day, unsigned month, unsigned year);
+    std::ostream& operator<<(std::ostream & out) const;
 private:
+    bool isLeapYear() const;
     unsigned _minute, _hour, _day, _month, _year;
 };
 

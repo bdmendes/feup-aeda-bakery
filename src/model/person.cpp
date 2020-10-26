@@ -3,7 +3,7 @@
 //
 
 #include "person.h"
-#include "../exceptions/store_exceptions.h"
+#include "../exception/store_exception.h"
 
 #include <utility>
 #include <algorithm>

@@ -2,7 +2,7 @@
 // Created by up201906166 on 23/10/2020.
 //
 
-#include "store_exceptions.h"
+#include "store_exception.h"
 
 StoreDoesNotExist::StoreDoesNotExist(const std::string& name) :
     std::invalid_argument(name + " Store does not exist!"){

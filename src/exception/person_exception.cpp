@@ -2,7 +2,7 @@
 // Created by up201906166 on 23/10/2020.
 //
 
-#include "person_exceptions.h"
+#include "person_exception.h"
 
 PersonDoesNotExist::PersonDoesNotExist(std::string name, int tributaryNumber) :
     _message(name + " does not exist!\n"){

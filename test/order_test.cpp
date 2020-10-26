@@ -3,6 +3,7 @@
 //
 
 #include <gtest/gtest.h>
+
 #include <model/person.h>
 #include <model/store.h>
 #include <model/order.h>
