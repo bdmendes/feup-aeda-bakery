@@ -21,9 +21,6 @@ class Person;
 class Client;
 class Worker;
 
-class Boss;
-class ClientDoesNotExist;
-class WorkerDoesNotExist;
 class StoreHasNoWorkers;
 class Order;
 
@@ -32,16 +29,21 @@ public:
     Store(std::string name);
     std::string getName() const;
     float getMeanEvaluation() const;
-    std::vector<Order> getClientHistory(const Client* client);
-    std::vector<Order> getWorkerHistory(const Worker* worker);
-    int searchWorkerByName(std::string name);
-    int searchWorkerByTributaryNumber(int tributaryNumber);
-    int findWorker(const Worker* worker);
+
+    std::vector<Order*> getClientOrders(const Client* client);
+    std::vector<Order*> getWorkerOrders(const Worker* worker);
+
+    bool hasWorker(std::string name) const;
+    bool hasWorker(int tributaryNumber) const;
+    bool hasWorker(const Worker* worker) const;
+
     void hireWorker(Worker* worker);
     void fireWorker(const Worker* worker);
+
     void addOrder(const std::map<Product, unsigned>& _products, Client& client);
+
     Worker* getAvailableWorker();
-    void changeWorkerSalary(Worker *worker, float salary);
+    void changeWorkerSalary(Worker *worker, float salary) const;
 
     bool operator== (const std::string& name){
         return getName() == name;

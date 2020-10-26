@@ -5,7 +5,6 @@
 #ifndef FEUP_AEDA_PROJECT_PRODUCTEXCEPTIONS_H
 #define FEUP_AEDA_PROJECT_PRODUCTEXCEPTIONS_H
 
-
 #include <string>
 #include <iostream>
 
@@ -33,6 +32,5 @@ public:
     BreadDoesNotExist(std::string name, float price);
     std::ostream & operator<<(std::ostream &out);
 };
-
 
 #endif //FEUP_AEDA_PROJECT_PRODUCTEXCEPTIONS_H

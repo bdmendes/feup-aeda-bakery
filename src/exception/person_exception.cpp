@@ -4,16 +4,26 @@
 
 #include "person_exception.h"
 
-PersonDoesNotExist::PersonDoesNotExist(std::string name, int tributaryNumber) :
-    _message(name + " does not exist!\n"){
+PersonDoesNotExist::PersonDoesNotExist(const std::string& name, int tributaryNumber) :
+    std::logic_error(name + ", with number " + std::to_string(tributaryNumber) + ", does not exist!\n"){
 }
 
-std::ostream &PersonDoesNotExist::operator<<(std::ostream &out) {
-    out << _message;
-    return out;
+PersonDoesNotExist::PersonDoesNotExist(const std::string& name):
+    std::logic_error(name + " does not exist!\n"){
 }
 
-PersonDoesNotExist::PersonDoesNotExist(std::string name) {
-
+PersonDoesNotExist::PersonDoesNotExist(int tributaryNumber) :
+    std::logic_error("Person with number " + std::to_string(tributaryNumber) + ", does not exist!\n"){
 }
 
+PersonAlreadyExists::PersonAlreadyExists(const std::string& name, int tributaryNumber) :
+    std::logic_error(name + ", with number " + std::to_string(tributaryNumber) + ", does not exist!\n"){
+}
+
+PersonAlreadyExists::PersonAlreadyExists(const std::string& name):
+        std::logic_error(name + " already exists!\n"){
+}
+
+PersonAlreadyExists::PersonAlreadyExists(int tributaryNumber):
+    std::logic_error("Person with number " + std::to_string(tributaryNumber) + " already exists!\n"){
+}

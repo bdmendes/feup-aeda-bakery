@@ -28,6 +28,10 @@ public:
     void changeCredential(const Credential& credential);
     void changeName(const std::string& name);
 
+    bool operator==(const Person& p2){
+        return _name == p2.getName() && _tributaryNumber == p2.getTributaryNumber();
+    }
+
 private:
     std::string _name;
     int _tributaryNumber;

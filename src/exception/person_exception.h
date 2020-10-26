@@ -10,13 +10,17 @@
 
 #include "../model/person.h"
 
-class PersonDoesNotExist{
+class PersonDoesNotExist: std::logic_error{
 public:
-    PersonDoesNotExist(std::string name, int tributaryNumber);
-    explicit PersonDoesNotExist(std::string name);
-    std::ostream & operator<<(std::ostream &out);
-private:
-    std::string _message;
+    PersonDoesNotExist(const std::string& name, int tributaryNumber);
+    explicit PersonDoesNotExist(const std::string& name);
+    explicit PersonDoesNotExist(int tributaryNumber);
+};
+
+class PersonAlreadyExists : std::logic_error{
+    PersonAlreadyExists(const std::string& name, int tributaryNumber);
+    explicit PersonAlreadyExists(const std::string& name);
+    PersonAlreadyExists(int tributaryNumber);
 };
 
 #endif //FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H

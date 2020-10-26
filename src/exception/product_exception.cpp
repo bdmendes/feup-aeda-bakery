@@ -36,4 +36,3 @@ std::ostream &BreadDoesNotExist::operator<<(std::ostream &out) {
 }
 
 
-

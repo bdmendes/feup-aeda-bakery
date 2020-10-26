@@ -22,18 +22,9 @@ private:
     std::string message;
 };
 
-class StoreExceptions {
+class StoreHasNoWorkers : std::logic_error{
 public:
-    StoreExceptions(std::string name);
-
-protected:
-    std::string _name;
-};
-
-class StoreHasNoWorkers : StoreExceptions{
-public:
-    StoreHasNoWorkers(std::string name);
-    std::ostream & operator<<(std::ostream& out);
+    explicit StoreHasNoWorkers(const std::string& name);
 };
 
 #endif //FEUP_AEDA_PROJECT_STORE_EXCEPTIONS_H
