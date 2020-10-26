@@ -15,10 +15,51 @@ std::string Store::getName() const {
 }
 
 float Store::getMeanEvaluation() const {
-    float sum = 0;
+    double sum = 0;
     for(const auto& order : _orders)
         sum += order.getClientEvaluation();
     return sum/_clients.size();
+}
+
+std::vector<Order> Store::getClientHistory(const Client* client) {
+    std::vector<Order> clientOrders;
+    for(const auto& order : _orders){
+        const Client* clientTemp = order.getClient();
+        if(clientTemp->getTributaryNumber() == client->getTributaryNumber())
+            clientOrders.push_back(order);
+    }
+    return clientOrders;
+}
+
+std::vector<Order> Store::getWorkerHistory(const Worker *worker) {
+    std::vector<Order> workerOrders;
+    for(const auto& order : _orders){
+        Worker* workerTemp = order.getWorker();
+        if(workerTemp->getTributaryNumber() == worker->getTributaryNumber())
+            workerOrders.push_back(order);
+    }
+    return workerOrders;
+}
+
+int Store::searchWorkerByName(std::string name) {
+    for(unsigned int i = 0; i < _workers.size(); i++)
+        if (_workers[i]->getName() == name) return i;
+    return -1;
+}
+
+int Store::searchWorkerByTributaryNumber(int tributaryNumber) {
+    for(unsigned int i = 0; i < _workers.size(); i++)
+        if (_workers[i]->getTributaryNumber() == tributaryNumber) return i;
+    return -1;
+}
+
+
+
+int Store::findWorker(const Worker *worker) {
+    int index1 = searchWorkerByName(worker->getName());
+    int index2 = searchWorkerByTributaryNumber(worker->getTributaryNumber());
+    if((index1 != -1) && (index2 != -1) && (index1 == index2)) return index1;
+    return -1;
 }
 
 void Store::hireWorker(Worker *worker) {
@@ -26,6 +67,10 @@ void Store::hireWorker(Worker *worker) {
 }
 
 void Store::fireWorker(const Worker *worker) {
+    if(_workers.empty())
+        throw StoreHasNoWorkers(_name);
+    if(findWorker(worker) == -1)
+        throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
     for(unsigned i=0; i<_workers.size();i++){
         if(_workers[i] == worker) _workers.erase(_workers.begin()+i);
     }
@@ -33,9 +78,8 @@ void Store::fireWorker(const Worker *worker) {
 
 Worker* Store::getAvailableWorker() {
     if (_workers.empty()){
-        // throw empty
+        throw StoreHasNoWorkers(_name);
     }
-
     auto orderComp = [](const Worker *worker1, const Worker *worker2) {
         return ((worker1->getOrders()) < (worker2->getOrders()));
     };
@@ -43,6 +87,8 @@ Worker* Store::getAvailableWorker() {
 }
 
 void Store::changeWorkerSalary(Worker *worker, float salary) {
+    if(findWorker(worker) == -1)
+        throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
     worker->setSalary(salary);
 }
 

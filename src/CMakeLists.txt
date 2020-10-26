@@ -11,6 +11,8 @@ if (WIN32)
     SET(CMAKE_CXX_FLAGS -Wcpp)
 endif (WIN32)
 
+include_directories(../src/)
+
 add_library(feup-aeda-project main.cpp model/product.cpp model/product.h model/store.cpp model/store.h model/person.cpp model/person.h model/order.cpp model/order.h model/date.cpp model/date.h exception/store_exception.cpp exception/store_exception.h exception/person_exception.cpp exception/person_exception.h
         exception/date_exception.cpp exception/date_exception.h exception/product_exception.cpp exception/product_exception.h)
 

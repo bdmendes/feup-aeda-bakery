@@ -12,11 +12,19 @@
 
 #include "person.h"
 #include "order.h"
+#include <exception/person_exception.h>
+#include <exception/store_exception.h>
+
 #include "product.h"
 
 class Person;
 class Client;
 class Worker;
+
+class Boss;
+class ClientDoesNotExist;
+class WorkerDoesNotExist;
+class StoreHasNoWorkers;
 class Order;
 
 class Store {
@@ -24,12 +32,14 @@ public:
     Store(std::string name);
     std::string getName() const;
     float getMeanEvaluation() const;
-
+    std::vector<Order> getClientHistory(const Client* client);
+    std::vector<Order> getWorkerHistory(const Worker* worker);
+    int searchWorkerByName(std::string name);
+    int searchWorkerByTributaryNumber(int tributaryNumber);
+    int findWorker(const Worker* worker);
     void hireWorker(Worker* worker);
     void fireWorker(const Worker* worker);
-
     void addOrder(const std::map<Product, unsigned>& _products, Client& client);
-
     Worker* getAvailableWorker();
     void changeWorkerSalary(Worker *worker, float salary);
 

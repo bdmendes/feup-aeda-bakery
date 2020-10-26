@@ -6,6 +6,7 @@
 #define FEUP_AEDA_PROJECT_STORE_EXCEPTIONS_H
 
 #include <stdexcept>
+#include <iostream>
 
 class StoreDoesNotExist : std::invalid_argument {
 public:
@@ -21,5 +22,18 @@ private:
     std::string message;
 };
 
+class StoreExceptions {
+public:
+    StoreExceptions(std::string name);
+
+protected:
+    std::string _name;
+};
+
+class StoreHasNoWorkers : StoreExceptions{
+public:
+    StoreHasNoWorkers(std::string name);
+    std::ostream & operator<<(std::ostream& out);
+};
 
 #endif //FEUP_AEDA_PROJECT_STORE_EXCEPTIONS_H
