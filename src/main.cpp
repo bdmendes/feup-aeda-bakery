@@ -1,9 +1,9 @@
 #include <iostream>
 
-#include "model/Order.h"
-#include "model/Store.h"
-#include "model/Person.h"
-#include "model/Product.h"
+#include "model/order.h"
+#include "model/store.h"
+#include "model/person.h"
+#include "model/product.h"
 
 #include <iostream>
 
@@ -16,9 +16,10 @@ int main() {
     std::map<Product,unsigned> products;
     //products[meatCake] = 2;
     //products[hugeBread] = 3;
-    //Order order(products);
+    //Order Order(products);
 
     std::cout << "ta a tchober tchouricas";
+
 
     return 0;
 }

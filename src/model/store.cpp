@@ -2,7 +2,7 @@
 // Created by laimi on 15/10/2020.
 //
 
-#include "Store.h"
+#include "store.h"
 
 #include <algorithm>
 
@@ -15,7 +15,7 @@ std::string Store::getName() const {
 }
 
 float Store::getMeanEvaluation() const {
-    float sum = 0;
+    double sum = 0;
     for(const auto& order : _orders)
         sum += order.getClientEvaluation();
     return sum/_clients.size();
@@ -70,7 +70,7 @@ void Store::fireWorker(const Worker *worker) {
     if(_workers.empty())
         throw StoreHasNoWorkers(_name);
     if(findWorker(worker) == -1)
-        throw WorkerDoesNotExist(worker->getName(), worker->getTributaryNumber());
+        throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
     for(unsigned i=0; i<_workers.size();i++){
         if(_workers[i] == worker) _workers.erase(_workers.begin()+i);
     }
@@ -88,7 +88,7 @@ Worker* Store::getAvailableWorker() {
 
 void Store::changeWorkerSalary(Worker *worker, float salary) {
     if(findWorker(worker) == -1)
-        throw WorkerDoesNotExist(worker->getName(), worker->getTributaryNumber());
+        throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
     worker->setSalary(salary);
 }
 

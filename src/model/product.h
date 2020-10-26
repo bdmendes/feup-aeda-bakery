@@ -37,7 +37,7 @@ public:
     static void removeCategory(const std::string &category);
     static std::set<std::string> availableCategories;
     bool operator== (const Cake& cake) const;
-
+    //bool isPresent(const std::string &category) const; //for test purposes
 private:
     std::string _category;
 };

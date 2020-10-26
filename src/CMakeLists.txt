@@ -13,10 +13,12 @@ endif (WIN32)
 
 include_directories(../src/)
 
-add_library(feup-aeda-project main.cpp model/Product.cpp model/Product.h model/Store.cpp model/Store.h model/Person.cpp model/Person.h model/Order.cpp model/Order.h exceptions/PersonExceptions.cpp exceptions/PersonExceptions.h exceptions/StoreExceptions.cpp exceptions/StoreExceptions.h ../test/storeTest.cpp)
+add_library(feup-aeda-project main.cpp model/product.cpp model/product.h model/store.cpp model/store.h model/person.cpp model/person.h model/order.cpp model/order.h model/date.cpp model/date.h exception/store_exception.cpp exception/store_exception.h exception/person_exception.cpp exception/person_exception.h
+        exception/date_exception.cpp exception/date_exception.h exception/product_exception.cpp exception/product_exception.h)
 
 add_executable(application
-        main.cpp model/Product.cpp model/Product.h model/Store.cpp model/Store.h model/Person.cpp model/Person.h model/Order.cpp model/Order.h model/date.cpp model/date.h exceptions/PersonExceptions.cpp exceptions/PersonExceptions.h exceptions/StoreExceptions.cpp exceptions/StoreExceptions.h ../test/storeTest.cpp)
+        main.cpp model/product.cpp model/product.h model/store.cpp model/store.h model/person.cpp model/person.h model/order.cpp model/order.h model/date.cpp model/date.h exception/store_exception.cpp exception/store_exception.h exception/person_exception.cpp exception/person_exception.h
+exception/date_exception.cpp exception/date_exception.h)
 
 target_include_directories(feup-aeda-project PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

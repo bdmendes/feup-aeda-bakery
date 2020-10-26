@@ -2,7 +2,8 @@
 // Created by laimi on 15/10/2020.
 //
 
-#include "Person.h"
+#include "person.h"
+#include "../exception/store_exception.h"
 
 #include <utility>
 #include <algorithm>
@@ -33,7 +34,7 @@ void Person::changeCredential(const Credential &credential) {
 }
 
 Client::Client(std::string name, int tributaryNumber, bool premium, Credential credential):
-    Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}, _premium(premium){
+        Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}, _premium(premium){
 }
 
 bool Client::isPremium() const {
@@ -79,9 +80,19 @@ void Worker::setSalary(float salary) {
 }
 
 Worker::Worker(std::string name, int tributaryNumber, float salary, Credential credential):
-    Person(std::move(name),tributaryNumber, std::move(credential)), _salary{salary}, _orders(0){
+        Person(std::move(name), tributaryNumber, std::move(credential)), _salary{salary}, _orders(0){
 }
 
 Boss::Boss(std::string name, int tributaryNumber, float salary, Credential credential) :
-        Worker(std::move(name), tributaryNumber, salary, std::move(credential)) {
+        Worker(std::move(name), tributaryNumber, salary, std::move(credential)),
+        _stores(std::vector<Store*>()){
+}
+
+Store* Boss::getStore(const std::string& name) {
+    auto comp = [name](const Store* store){
+        return store->getName() == name;
+    };
+    auto it = std::find_if(_stores.begin(),_stores.end(),comp);
+    if (it == _stores.end()) throw StoreDoesNotExist(name);
+    return *it;
 }

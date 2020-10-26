@@ -10,18 +10,22 @@
 #include <algorithm>
 #include <map>
 
-#include "Person.h"
-#include "Order.h"
-#include <exceptions/PersonExceptions.h>
-#include <exceptions/StoreExceptions.h>
+#include "person.h"
+#include "order.h"
+#include <exception/person_exception.h>
+#include <exception/store_exception.h>
 
+#include "product.h"
+
+class Person;
 class Client;
 class Worker;
+
 class Boss;
 class ClientDoesNotExist;
 class WorkerDoesNotExist;
 class StoreHasNoWorkers;
-
+class Order;
 
 class Store {
 public:
@@ -38,6 +42,10 @@ public:
     void addOrder(const std::map<Product, unsigned>& _products, Client& client);
     Worker* getAvailableWorker();
     void changeWorkerSalary(Worker *worker, float salary);
+
+    bool operator== (const std::string& name){
+        return getName() == name;
+    }
 private:
     const std::string _name;
     std::vector<const Client*> _clients;
