@@ -3,16 +3,15 @@
 //
 
 #include <gtest/gtest.h>
-#include "../src/model/Person.h"
-#include "../src/model/Store.h"
-#include "../src/model/Order.h"
-#include "../src/model/Product.h"
 
-
+#include <model/person.h>
+#include <model/store.h>
+#include <model/order.h>
+#include <model/product.h>
 
 using testing::Eq;
 
-/*TEST(order, order_default_test){
+/*TEST(Order, order_default_test){
     Person p("Alfredo",123,{"alfredo", "martins"});
     EXPECT_EQ(p.getCredential().password, "martins");
 }*/

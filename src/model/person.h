@@ -5,9 +5,13 @@
 #ifndef SRC_PERSON_H
 #define SRC_PERSON_H
 
+#include "store.h"
+
 #include <string>
 #include <vector>
 #include <map>
+
+class Store;
 
 struct Credential {
     std::string username;
@@ -17,7 +21,7 @@ struct Credential {
 class Person {
 public:
     Person(std::string name, int tributaryNumber,
-    Credential credential = {"person", "person"});
+           Credential credential = {"Person", "Person"});
     std::string getName() const;
     int getTributaryNumber() const;
     Credential getCredential() const;
@@ -63,6 +67,9 @@ class Boss : public Worker {
 public:
     Boss(std::string name, int tributaryNumber, float salary,
          Credential credential = {"boss", "boss"});
+    Store* getStore(const std::string& name);
+private:
+    std::vector<Store*> _stores;
 };
 
 #endif //SRC_PERSON_H

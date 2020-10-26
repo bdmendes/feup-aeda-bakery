@@ -7,11 +7,7 @@
 
 using testing::Eq;
 
-bool validDate(Date d1){
-    return(d1.testDate());
-}
-
 TEST(Date, valid_date){
-    Date d1=Date();
-    EXPECT_EQ(validDate(d1), true);
+    //Date d1(23,53,29,02,2019);
+    EXPECT_THROW(Date d1(23,53,29,02,2019),InvalidDate);
 }
