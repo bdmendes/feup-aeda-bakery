@@ -10,8 +10,8 @@
 
 class InvalidDate : std::logic_error{
 public:
-    explicit InvalidDate(const std::string &message="This date is invalid");
-    std::ostream & operator<<(std::ostream &out);
+    InvalidDate(const std::string& completeDate);
+    virtual const char* what() const noexcept;
 private:
     std::string _message;
 };

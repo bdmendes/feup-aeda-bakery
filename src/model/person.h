@@ -6,6 +6,7 @@
 #define SRC_PERSON_H
 
 #include "store.h"
+#include "product.h"
 
 #include <string>
 #include <vector>
@@ -16,22 +17,24 @@ class Store;
 struct Credential {
     std::string username;
     std::string password;
+    bool operator==(const Credential& c2) const{
+        return username == c2.username && password == c2.password;
+    }
 };
 
 class Person {
 public:
-    Person(std::string name, int tributaryNumber,
-           Credential credential = {"Person", "Person"});
     std::string getName() const;
     int getTributaryNumber() const;
     Credential getCredential() const;
     void changeCredential(const Credential& credential);
     void changeName(const std::string& name);
 
-    bool operator==(const Person& p2){
+    bool operator==(const Person& p2) const{
         return _name == p2.getName() && _tributaryNumber == p2.getTributaryNumber();
     }
-
+protected:
+    Person(std::string name, int tributaryNumber, Credential credential);
 private:
     std::string _name;
     int _tributaryNumber;
@@ -40,14 +43,16 @@ private:
 
 class Client : public Person {
 public:
-    Client(std::string name, int tributaryNumber, bool premium,
+    Client(std::string name, bool premium = false, int tributaryNumber = 999999999,
            Credential credential = {"client", "client"});
     bool isPremium() const;
     unsigned getPoints() const;
     void addPoints(unsigned points);
+    void removePoints(unsigned points);
     void resetPoints();
     float getMeanEvaluation() const;
-    std::vector<float> getEvaluations() const;
+    void addEvaluation(float evaluation);
+    void setPremium(bool premium);
 private:
     bool _premium;
     unsigned _points;
@@ -56,12 +61,13 @@ private:
 
 class Worker : public Person{
 public:
-    Worker(std::string name, int tributaryNumber, float salary,
+    Worker(std::string name, float salary, int tributaryNumber = 999999999,
            Credential credential = {"worker", "worker"});
     unsigned getOrders() const;
     void addOrder();
     void removeOrder();
     void setSalary(float salary);
+    float getSalary() const;
 private:
     float _salary;
     unsigned _orders;
@@ -69,7 +75,7 @@ private:
 
 class Boss : public Worker {
 public:
-    Boss(std::string name, int tributaryNumber, float salary,
+    Boss(std::string name, float salary, int tributaryNumber = 999999999,
          Credential credential = {"boss", "boss"});
     Store* getStore(const std::string& name);
 private:

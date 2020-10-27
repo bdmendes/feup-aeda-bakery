@@ -3,7 +3,6 @@
 //
 
 #include "person.h"
-#include "../exception/store_exception.h"
 
 #include <utility>
 #include <algorithm>
@@ -33,8 +32,9 @@ void Person::changeCredential(const Credential &credential) {
     _credential = credential;
 }
 
-Client::Client(std::string name, int tributaryNumber, bool premium, Credential credential):
-        Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}, _premium(premium){
+Client::Client(std::string name, bool premium, int tributaryNumber, Credential credential):
+        Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}, _premium(premium),
+        _evaluations(std::vector<float>()){
 }
 
 bool Client::isPremium() const {
@@ -51,16 +51,24 @@ float Client::getMeanEvaluation() const {
     return sum / _evaluations.size();
 }
 
-std::vector<float> Client::getEvaluations() const {
-    return _evaluations;
+void Client::resetPoints() {
+    _points = 0;
 }
 
-void Client::addPoints(unsigned int points) {
+void Client::addPoints(unsigned points) {
     _points += points;
 }
 
-void Client::resetPoints() {
-    _points = 0;
+void Client::removePoints(unsigned int points) {
+    _points -= points;
+}
+
+void Client::setPremium(bool premium) {
+    _premium = premium;
+}
+
+void Client::addEvaluation(float evaluation) {
+    _evaluations.push_back(evaluation);
 }
 
 unsigned Worker::getOrders() const {
@@ -79,12 +87,16 @@ void Worker::setSalary(float salary) {
     _salary = salary;
 }
 
-Worker::Worker(std::string name, int tributaryNumber, float salary, Credential credential):
+Worker::Worker(std::string name, float salary, int tributaryNumber, Credential credential):
         Person(std::move(name), tributaryNumber, std::move(credential)), _salary{salary}, _orders(0){
 }
 
-Boss::Boss(std::string name, int tributaryNumber, float salary, Credential credential) :
-        Worker(std::move(name), tributaryNumber, salary, std::move(credential)),
+float Worker::getSalary() const{
+    return _salary;
+}
+
+Boss::Boss(std::string name, float salary, int tributaryNumber, Credential credential) :
+        Worker(std::move(name), salary, tributaryNumber, std::move(credential)),
         _stores(std::vector<Store*>()){
 }
 
@@ -96,3 +108,4 @@ Store* Boss::getStore(const std::string& name) {
     if (it == _stores.end()) throw StoreDoesNotExist(name);
     return *it;
 }
+

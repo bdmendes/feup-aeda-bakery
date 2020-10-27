@@ -9,11 +9,16 @@
 #include <map>
 #include <set>
 
+enum class CakeCategory {
+    GENERAL, PIE, SPONGE, PUFF_PASTRY, CRUNCHY
+};
+
 class Product {
 public:
     std::string getName() const;
     float getPrice() const;
     virtual bool operator== (const Product& p) const;
+    bool operator<(const Product& p) const;
 protected:
     Product(std::string name, float price);
     std::string _name;
@@ -22,7 +27,7 @@ protected:
 
 class Bread : public Product{
 public:
-    Bread(std::string name, float price, bool small);
+    Bread(std::string name, float price, bool small = true);
     bool isSmall() const;
     virtual bool operator== (const Bread& bread) const;
 private:
@@ -31,14 +36,11 @@ private:
 
 class Cake : public Product{
 public:
-    Cake(std::string name, float price, std::string category);
-    std::string getCategory() const;
-    static void addCategory(const std::string &newCategory);
-    static void removeCategory(const std::string &category);
-    static std::set<std::string> availableCategories;
+    Cake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
+    CakeCategory getCategory() const;
     virtual bool operator== (const Cake& cake) const;
 private:
-    std::string _category;
+    CakeCategory _category;
 };
 
 #endif //SRC_PRODUCT_H

@@ -15,27 +15,27 @@ std::string Store::getName() const {
 }
 
 float Store::getMeanEvaluation() const {
-    double sum = 0;
+    float sum = 0;
     for(const auto& order : _orders)
         sum += order.getClientEvaluation();
     return sum/_clients.size();
 }
 
-std::vector<Order*> Store::getClientOrders(const Client* client) {
+std::vector<Order*> Store::getClientOrders(const Client& client){
     std::vector<Order*> clientOrders;
     for(auto& order : _orders)
         if (order.getClient() == client) clientOrders.push_back(&order);
     return clientOrders;
 }
 
-std::vector<Order*> Store::getWorkerOrders(const Worker *worker) {
+std::vector<Order*> Store::getWorkerOrders(const Worker& worker){
     std::vector<Order*> workerOrders;
     for(auto& order : _orders)
         if (order.getWorker() == worker) workerOrders.push_back(&order);
     return workerOrders;
 }
 
-bool Store::hasWorker(std::string name) const{
+bool Store::hasWorker(const std::string& name) const{
     auto comp = [name](const Worker* worker){
         return name == worker->getName();
     };
@@ -83,5 +83,27 @@ void Store::changeWorkerSalary(Worker *worker, float salary) const {
 }
 
 void Store::addOrder(const std::map<Product*, unsigned int>& products, Client& client) {
-    _orders.emplace_back(products,client,*getAvailableWorker());
+    _orders.emplace_back(client,*getAvailableWorker(),products);
+}
+
+bool Store::operator==(const std::string &name) const {
+    return name == getName();
+}
+
+bool Store::hasClient(const std::string& name) const {
+    auto comp = [name](const Client* client){
+        return name == client->getName();
+    };
+    return std::find_if(_clients.begin(),_clients.end(),comp) != _clients.end();
+}
+
+bool Store::hasClient(int tributaryNumber) const {
+    auto comp = [tributaryNumber](const Client* client){
+        return tributaryNumber == client->getTributaryNumber();
+    };
+    return std::find_if(_clients.begin(),_clients.end(),comp) != _clients.end();
+}
+
+bool Store::hasClient(const Client *client) const {
+    return std::find(_clients.begin(),_clients.end(),client) != _clients.end();
 }
