@@ -20,7 +20,7 @@ class Worker;
 
 class Order {
 public:
-    Order(const std::map<Product, unsigned int> &products, Client& client, Worker& worker);
+    Order(const std::map<Product*, unsigned int> &products, Client& client, Worker& worker);
     bool hasDiscount() const;
     Worker* getWorker() const;
     const Client* getClient() const;
@@ -30,7 +30,7 @@ public:
 private:
     void calculateFinalPrice();
     void calculateDiscount();
-    std::map<Product, unsigned int> _products;
+    std::map<Product*, unsigned int> _products;
     double _totalPrice;
     Client& _client;
     Worker& _worker;
