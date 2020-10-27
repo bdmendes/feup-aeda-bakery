@@ -40,7 +40,7 @@ public:
     void hireWorker(Worker* worker);
     void fireWorker(const Worker* worker);
 
-    void addOrder(const std::map<Product, unsigned>& _products, Client& client);
+    void addOrder(const std::map<Product*, unsigned>& _products, Client& client);
 
     Worker* getAvailableWorker();
     void changeWorkerSalary(Worker *worker, float salary) const;

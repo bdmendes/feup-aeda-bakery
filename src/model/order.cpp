@@ -4,8 +4,8 @@
 
 #include "order.h"
 
-Order::Order(const std::map<Product, unsigned int> &products, Client &client, Worker &worker) :
-        _products{std::map<Product, unsigned int>()},
+Order::Order(const std::map<Product*, unsigned int> &products, Client &client, Worker &worker) :
+        _products{std::map<Product*, unsigned int>()},
         _client{client}, _worker(worker), _clientEvaluation(0), _delivered(false){
     calculateDiscount();
     calculateFinalPrice();
@@ -41,7 +41,7 @@ double Order::getTotalPrice() const {
 void Order::calculateFinalPrice() {
     _totalPrice = 0;
     for(const auto &product : _products){
-        _totalPrice += (product.first.getPrice() * product.second);
+        _totalPrice += (product.first->getPrice() * product.second);
     }
 
     _client.addPoints(10*_totalPrice); //For each euro adds 10 points

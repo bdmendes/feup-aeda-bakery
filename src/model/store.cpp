@@ -82,6 +82,6 @@ void Store::changeWorkerSalary(Worker *worker, float salary) const {
     worker->setSalary(salary);
 }
 
-void Store::addOrder(const std::map<Product, unsigned int>& products, Client& client) {
+void Store::addOrder(const std::map<Product*, unsigned int>& products, Client& client) {
     _orders.emplace_back(products,client,*getAvailableWorker());
 }
