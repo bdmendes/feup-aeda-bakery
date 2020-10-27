@@ -9,6 +9,5 @@ InvalidDate::InvalidDate(const std::string &completeDate) : _message(completeDat
 }
 
 const char *InvalidDate::what() const noexcept{
-    //return _message.c_str(); //- throws bad alloc (sometimes...?)
-    return "Invalid Date!";
+    return _message.c_str();
 }
