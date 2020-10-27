@@ -8,6 +8,7 @@ InvalidDate::InvalidDate(const std::string &completeDate) : _message(completeDat
     std::logic_error(_message){
 }
 
-const char *InvalidDate::what() const noexcept {
-    return _message.c_str();
+const char *InvalidDate::what() const noexcept{
+    //return _message.c_str(); //- throws bad alloc (sometimes...?)
+    return "Invalid Date!";
 }

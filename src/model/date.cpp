@@ -18,11 +18,6 @@ Date::Date(){
     _year = currentTime.tm_year + 1900;
 }
 
-std::ostream& Date::operator<<(std::ostream& out) const{
-    out << _hour << ":" << _minute << " " << _day << "/" << _month << "/" << _year << std::endl;
-    return out;
-}
-
 bool Date::isLeapYear(unsigned year) {
     return ((year%4==0 && year%100!=0) || (year%400==0));
 }

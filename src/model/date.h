@@ -14,7 +14,6 @@ class Date{
 public:
     Date();
     Date(unsigned day, unsigned month, unsigned year, unsigned hour = 0, unsigned minute = 0);
-    std::ostream& operator<<(std::ostream & out) const;
     bool operator==(const Date& d2) const;
     std::string getCompleteDate() const;
     std::string getCalendarDay() const;
