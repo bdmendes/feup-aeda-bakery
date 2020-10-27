@@ -24,18 +24,8 @@ bool Date::isLeapYear(unsigned year) {
 
 Date::Date(unsigned day, unsigned month, unsigned year, unsigned hour, unsigned minute) :
     _hour(hour), _minute(minute), _day(day), _month(month), _year(year){
-
-    if(_hour>=24 || _minute>=60 || _day>31 || _month > 12) throw InvalidDate(getCompleteDate());
-
-    switch(_month){
-        case 4: case 6: case 9: case 11:
-            if(_day>30) throw InvalidDate(getCompleteDate());
-            break;
-        case 2:
-            if((isLeapYear(_year)&&_day>29) || (!isLeapYear(_year)&&_day>28))
-                throw InvalidDate(getCompleteDate());
-            break;
-    }
+    _str = getCompleteDate();
+    if (!isValid()) throw InvalidDate(_str);
 }
 
 bool Date::operator==(const Date &d2) const {
@@ -59,6 +49,17 @@ std::string Date::getClockTime() const {
 
 std::string Date::getCompleteDate() const {
     return getCalendarDay() + " " + getClockTime();
+}
+
+bool Date::isValid() const {
+    if (_hour>=24 || _minute>=60 || _day>31 || _month > 12) return false;
+    switch(_month){
+        case 4: case 6: case 9: case 11:
+            return _day<=30;
+        case 2:
+            return isLeapYear(_year) ? _day<=29 : _day<=28;
+    }
+    return true;
 }
 
 

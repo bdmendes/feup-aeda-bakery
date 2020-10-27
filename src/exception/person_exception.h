@@ -10,7 +10,7 @@
 
 #include "../model/person.h"
 
-class PersonDoesNotExist: std::logic_error{
+class PersonDoesNotExist: public std::logic_error{
 public:
     PersonDoesNotExist(const std::string& name, int tributaryNumber);
     explicit PersonDoesNotExist(const std::string& name);
@@ -19,11 +19,11 @@ private:
     std::string _message;
 };
 
-class PersonAlreadyExists : std::logic_error{
+class PersonAlreadyExists : public std::logic_error{
 public:
     PersonAlreadyExists(const std::string& name, int tributaryNumber);
     explicit PersonAlreadyExists(const std::string& name);
-    PersonAlreadyExists(int tributaryNumber);
+    explicit PersonAlreadyExists(int tributaryNumber);
 private:
     std::string _message;
 };

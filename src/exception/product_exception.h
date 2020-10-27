@@ -8,7 +8,7 @@
 #include <string>
 #include <iostream>
 
-class ProductDoesNotExist : std::invalid_argument{
+class ProductDoesNotExist : public std::invalid_argument{
 public:
     ProductDoesNotExist(const std::string& name, float price);
 private:
