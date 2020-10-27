@@ -2,6 +2,9 @@
 // Created by bdmendes on 27/10/20.
 //
 
+#ifndef FEUP_AEDA_PROJECT_ORDER_EXCEPTION_H
+#define FEUP_AEDA_PROJECT_ORDER_EXCEPTION_H
+
 #include <stdexcept>
 
 #include "../model/person.h"
@@ -10,20 +13,18 @@
 class Client;
 class Worker;
 
-#ifndef FEUP_AEDA_PROJECT_ORDER_EXCEPTION_H
-#define FEUP_AEDA_PROJECT_ORDER_EXCEPTION_H
 
-class OrderWasAlreadyDelivered : std::logic_error{
+class OrderWasAlreadyDelivered : public std::logic_error{
 public:
     OrderWasAlreadyDelivered(const Client& client, const Worker& worker, const Date& date);
 };
 
-class OrderWasNotDeliveredYet: std::logic_error{
+class OrderWasNotDeliveredYet: public std::logic_error{
 public:
     OrderWasNotDeliveredYet(const Client& client, const Worker& worker, const Date& date);
 };
 
-class InvalidOrderEvaluation : std::invalid_argument{
+class InvalidOrderEvaluation : public std::invalid_argument{
 public:
     InvalidOrderEvaluation(float evaluation, const Client& client);
 };

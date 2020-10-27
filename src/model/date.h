@@ -20,6 +20,8 @@ public:
     std::string getClockTime() const;
     static bool isLeapYear(unsigned year);
 private:
+    bool isValid() const;
+    std::string _str;
     unsigned _minute, _hour, _day, _month, _year;
 };
 
