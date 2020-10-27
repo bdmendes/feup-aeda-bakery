@@ -9,16 +9,16 @@
 using testing::Eq;
 
 TEST(Product, creat_product){
-    Cake meatCake("Bolo com molho de carne", 1.20, "beleza");
+    Cake meatCake("Bolo com molho de carne", 1.20, CakeCategory::PUFF_PASTRY);
     EXPECT_EQ(meatCake.getName(), "Bolo com molho de carne");
     EXPECT_FLOAT_EQ(meatCake.getPrice(), 1.20);
 }
 
 TEST(Cake, creat_cake){
-    Cake cake("bolinho fofinho", 22.30, "Pie");
+    Cake cake("bolinho fofinho", 22.30, CakeCategory::PIE);
     EXPECT_EQ(cake.getName(), "bolinho fofinho");
     EXPECT_FLOAT_EQ(cake.getPrice(), 22.30);
-    EXPECT_EQ(cake.getCategory(), "Pie");
+    EXPECT_EQ(cake.getCategory(), CakeCategory::PIE);
 }
 
 TEST(Bread, creat_bread){
@@ -28,26 +28,15 @@ TEST(Bread, creat_bread){
     EXPECT_EQ(bread.isSmall(), true);
 }
 
-TEST(Cake, changeCategories){
-    auto isPresent = [](const std::string &category) {
-        return std::find_if(Cake::availableCategories.begin(), Cake::availableCategories.end(), [&category](const std::string& c){return (c==category);}) != Cake::availableCategories.end();
-    };
-
-    Cake::addCategory("Bolo de pedra");
-    EXPECT_EQ(isPresent("Bolo de pedra"), true);
-    Cake::removeCategory("Bolo de pedra");
-    EXPECT_EQ(isPresent("Bolo de pedra"), false);
-}
-
 TEST(Product, equalProducts){
-    Cake meatCake("Bolo com molho de carne", 1.20, "gostoso");
-    Cake chocolateCake("Bolo de chocolate", 1.20, "gostoso");
+    Cake meatCake("Bolo com molho de carne", 1.20, CakeCategory::PUFF_PASTRY);
+    Cake chocolateCake("Bolo de chocolate", 1.20, CakeCategory::PUFF_PASTRY);
     EXPECT_FALSE(chocolateCake == meatCake);
 }
 
 TEST(Cake, equalProducts){
-    Cake c1("Bolo da avo", 1.20, "Pie");
-    Cake c2("Bolo da avo", 1.20, "Pie");
+    Cake c1("Bolo da avo", 1.20, CakeCategory::PIE);
+    Cake c2("Bolo da avo", 1.20, CakeCategory::PIE);
     EXPECT_TRUE(c1 == c2);
 }
 

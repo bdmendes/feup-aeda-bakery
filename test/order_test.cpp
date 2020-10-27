@@ -1,4 +1,3 @@
-/*
 //
 // Created by bdmendes on 19/10/20.
 //
@@ -6,65 +5,147 @@
 #include <gtest/gtest.h>
 
 #include <model/person.h>
-#include <model/store.h>
 #include <model/order.h>
 #include <model/product.h>
 
 using testing::Eq;
 
-<<<<<<< HEAD:test/orderTest.cpp
-*/
-/*TEST(order, order_default_test){
-=======
-/*TEST(Order, order_default_test){
->>>>>>> main:test/order_test.cpp
-    Person p("Alfredo",123,{"alfredo", "martins"});
-    EXPECT_EQ(p.getCredential().password, "martins");
-}*//*
+TEST(Order, create_order){
+    Client client("Alfredo");
+    Worker worker("Beatriz",950);
 
+    Cake meatCake("Bolo com molho de carne", 1.20, CakeCategory::CRUNCHY);
+    Bread hugeBread("Pao grande de cementes",0.2,false);
+    std::map<Product*,unsigned> elements;
+    elements[&meatCake] = 2;
+    elements[&hugeBread] = 3;
 
-TEST(Client, create_client){
-    Client c("Manel", 256789324, true);
-    EXPECT_EQ(c.getName(), "Manel");
-    EXPECT_EQ(c.getTributaryNumber(), 256789324);
-    EXPECT_EQ(c.isPremium(), true);
+    Order order(client,worker,elements);
+    EXPECT_FLOAT_EQ(order.getFinalPrice(),2*1.20+3*0.2);
+    EXPECT_EQ(order.getProducts(),elements);
+    EXPECT_EQ(order.getClient(),client);
+    EXPECT_EQ(order.getWorker(),worker);
 }
 
-TEST(Worker, create_worker){
-    Worker w("Joao", 203574345, 600);
-    EXPECT_EQ(w.getName(), "Joao");
-    EXPECT_EQ(w.getTributaryNumber(), 203574345);
+TEST(Order,create_order_premium_discount){
+    Client client("Alfredo",true);
+    client.addPoints(100);
+    Worker worker("Beatriz",950);
+
+    Cake meatCake("Bolo com molho de carne", 1.20);
+    Bread hugeBread("Pao grande de cementes",0.2);
+    std::map<Product*,unsigned> elements;
+    elements[&meatCake] = 2;
+    elements[&hugeBread] = 3;
+
+    Order order(client,worker,elements);
+    EXPECT_TRUE(order.hasDiscount());
+    EXPECT_FLOAT_EQ(order.getFinalPrice(),0.95*(2*1.20+3*0.2));
+    client.setPremium(false);
+    EXPECT_FLOAT_EQ(order.getFinalPrice(),1*(2*1.20+3*0.2));
+    client.addPoints(100);
+    EXPECT_FLOAT_EQ(order.getFinalPrice(),0.98*(2*1.20+3*0.2));
+    client.setPremium(true);
+    EXPECT_FLOAT_EQ(order.getFinalPrice(),0.95*(2*1.20+3*0.2));
+    EXPECT_FALSE(client.getPoints() == 0); // only after delivering!
 }
 
-TEST(Boss, create_boss){
-    Boss b("Marcelo Rebelo de Sousa", 294839201, 10000);
-    EXPECT_EQ(b.getName(),"Marcelo Rebelo de Sousa");
-    EXPECT_EQ(b.getTributaryNumber(), 294839201);
+TEST(Order,add_products){
+
+    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
+    Bread hugeBread("Pao grande de cementes",0.2,false);
+
+    Client client("Alfredo",true);
+    Worker worker("Beatriz",950);
+
+    Order order(client,worker);
+    order.addProduct(&meatCake,5);
+    order.addProduct(&hugeBread, 3);
+
+    std::map<Product*,unsigned> elements;
+    elements[&meatCake] = 5;
+    elements[&hugeBread] = 3;
+
+    EXPECT_EQ(order.getProducts(),elements);
+    EXPECT_FLOAT_EQ(order.getTotal(),5.6);
+    order.addProduct(&meatCake);
+    EXPECT_FLOAT_EQ(order.getTotal(),6.6);
+    EXPECT_EQ(order.getProducts()[&meatCake],6);
 }
 
-*/
-/*TEST(Products, creat_products){
-    Product meatCake("Bolo com molho de carne", 1.20);
-    EXPECT_EQ(meatCake.getName(), "Bolo com molho de carne");
-    EXPECT_EQ(meatCake.getPrice(), 1.20);
-}*//*
+TEST(Order,remove_products){
 
+    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
+    Bread hugeBread("Pao grande de cementes",0.2,false);
+    Bread hugeBread2("Pao grande de centeio",0.2,false);
 
-*/
-/*TEST(Order, create_order){
-    Client c("Manel", 256789324, true);
-    Worker w("Joao", 203574345, 600);
-    Product meatCake("Bolo com molho de carne", 1.20);
-    Product hugeBread("aquele pão gostoso", 0.15);
-    std::map<Product, unsigned int> products;
-    products.insert(std::pair<Product, unsigned int>(meatCake,2));
-    products.insert(std::pair<Product, unsigned int>(hugeBread,3));
-    Order o(products, c, w);
-    EXPECT_EQ(o.getClient(), c);
-    EXPECT_EQ(o.getWorker(), w);
-    EXPECT_EQ(o.getTotalPrice(), 2.85);
+    Client client("Alfredo",true);
+    Worker worker("Beatriz",950);
 
-}*//*
+    Order order(client,worker);
+    order.addProduct(&meatCake,5);
+    order.addProduct(&hugeBread, 3);
+    EXPECT_FLOAT_EQ(order.getTotal(),5.6);
+    order.removeProduct(&hugeBread,1);
+    EXPECT_FLOAT_EQ(order.getTotal(),5.4);
 
+    EXPECT_EQ(order.getProducts()[&hugeBread],2);
+    order.removeProduct(&hugeBread);
+    EXPECT_FALSE(order.hasProduct((&hugeBread)));
+    EXPECT_THROW(order.removeProduct(&hugeBread2),ProductDoesNotExist);
+}
 
-*/
+TEST(Order,deliver_noreset){
+    Cake meatCake("Bolo com molho de carne", 1);
+    Bread hugeBread("Pao grande de cementes",0.1);
+    Client client("Alfredo",true);
+    Worker worker("Beatriz",950);
+
+    Order order(client,worker);
+    EXPECT_EQ(client.getPoints(),0);
+
+    order.addProduct(&meatCake,8);
+    order.addProduct(&hugeBread, 10);
+    EXPECT_EQ(client.getPoints(),0);
+
+    EXPECT_THROW(order.deliver(7),InvalidOrderEvaluation);
+    order.deliver(4);
+    EXPECT_EQ(client.getPoints(),90);
+    EXPECT_THROW(order.deliver(3),OrderWasAlreadyDelivered);
+    EXPECT_THROW(order.addProduct(&meatCake),OrderWasAlreadyDelivered);
+    EXPECT_THROW(order.removeProduct(&meatCake),OrderWasAlreadyDelivered);
+}
+
+TEST(Order,deliver_reset){
+    Cake meatCake("Bolo com molho de carne", 1);
+    Bread hugeBread("Pao grande de cementes",0.1);
+    Client client("Alfredo",true);
+    Worker worker("Beatriz",950);
+
+    Order order(client,worker);
+    EXPECT_EQ(client.getPoints(),0);
+    order.addProduct(&meatCake,10);
+    EXPECT_EQ(client.getPoints(),0);
+    EXPECT_FALSE(order.hasDiscount());
+    order.deliver(4);
+    EXPECT_EQ(client.getPoints(),100); // points accumulate after deliver; will reset next order
+
+    Order order2(client,worker);
+    order2.addProduct(&meatCake,1);
+    EXPECT_TRUE(order.hasDiscount());
+    order2.deliver(2);
+    EXPECT_EQ(client.getPoints(),10);
+}
+
+TEST(Order,evaluations){
+    Client client("Alfredo",true);
+    Worker worker("Beatriz",950);
+
+    Order order1(client,worker);
+    Order order2(client,worker);
+    EXPECT_THROW(order1.getClientEvaluation(),OrderWasNotDeliveredYet);
+    order1.deliver(2);
+    order2.deliver(4);
+    EXPECT_FLOAT_EQ(order1.getClientEvaluation(),2);
+    EXPECT_FLOAT_EQ(client.getMeanEvaluation(),3);
+}

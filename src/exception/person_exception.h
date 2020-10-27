@@ -15,12 +15,17 @@ public:
     PersonDoesNotExist(const std::string& name, int tributaryNumber);
     explicit PersonDoesNotExist(const std::string& name);
     explicit PersonDoesNotExist(int tributaryNumber);
+private:
+    std::string _message;
 };
 
 class PersonAlreadyExists : std::logic_error{
+public:
     PersonAlreadyExists(const std::string& name, int tributaryNumber);
     explicit PersonAlreadyExists(const std::string& name);
     PersonAlreadyExists(int tributaryNumber);
+private:
+    std::string _message;
 };
 
 #endif //FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H

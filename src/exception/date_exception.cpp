@@ -4,9 +4,10 @@
 
 #include "date_exception.h"
 
-InvalidDate::InvalidDate(const std::string &message) : std::logic_error(message), _message(message){}
+InvalidDate::InvalidDate(const std::string &completeDate) : _message(completeDate + " is not a valid date"),
+    std::logic_error(_message){
+}
 
-std::ostream &InvalidDate::operator<<(std::ostream &out) {
-    out<<_message<<'\n';
-    return out;
+const char *InvalidDate::what() const noexcept {
+    return _message.c_str();
 }

@@ -15,3 +15,7 @@ StoreAlreadyExists::StoreAlreadyExists(const std::string &name) :
 StoreHasNoWorkers::StoreHasNoWorkers(const std::string& name) :
     std::logic_error(name + " store has no workers!"){
 }
+
+const char *StoreHasNoWorkers::what() const noexcept {
+    return _message.c_str();
+}

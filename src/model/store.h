@@ -30,28 +30,30 @@ public:
     std::string getName() const;
     float getMeanEvaluation() const;
 
-    std::vector<Order*> getClientOrders(const Client* client);
-    std::vector<Order*> getWorkerOrders(const Worker* worker);
+    std::vector<Order*> getClientOrders(const Client& client);
+    std::vector<Order*> getWorkerOrders(const Worker& worker);
 
-    bool hasWorker(std::string name) const;
+    bool hasWorker(const std::string& name) const;
     bool hasWorker(int tributaryNumber) const;
     bool hasWorker(const Worker* worker) const;
+
+    bool hasClient(const std::string& name) const;
+    bool hasClient(int tributaryNumber) const;
+    bool hasClient(const Client* client) const;
 
     void hireWorker(Worker* worker);
     void fireWorker(const Worker* worker);
 
     void addOrder(const std::map<Product*, unsigned>& _products, Client& client);
 
-    Worker* getAvailableWorker();
-    void changeWorkerSalary(Worker *worker, float salary) const;
+    void changeWorkerSalary(Worker* worker, float salary) const;
 
-    bool operator== (const std::string& name){
-        return getName() == name;
-    }
+    bool operator== (const std::string& name) const;
 private:
+    Worker* getAvailableWorker();
     const std::string _name;
     std::vector<const Client*> _clients;
-    std::vector<Worker*> _workers; //Workers are not const because the number of orders is going to change
+    std::vector<Worker*> _workers;
     std::vector<Order> _orders;
     std::vector<float> _clientEvaluations;
 };
