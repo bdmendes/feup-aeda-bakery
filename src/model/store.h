@@ -21,43 +21,93 @@
 class Person;
 class Client;
 class Worker;
-
-class StoreHasNoWorkers;
 class Order;
+
+class ClientManager {
+public:
+    ClientManager();
+    bool has(Client* client) const;
+    Client* get(unsigned position);
+    std::vector<Client*> getAll();
+    void add(Client* client);
+    void remove(Client* client);
+    void remove(unsigned position);
+    void read(std::ifstream& file);
+    void write(std::ofstream& file);
+private:
+    std::vector<Client*> _clients;
+};
+
+class WorkerManager {
+public:
+    WorkerManager();
+    bool has(Worker* client) const;
+    Worker* get(unsigned position);
+    Worker* getAvailable();
+    std::vector<Worker*> getAll();
+    void changeSalary(unsigned position, float salary);
+    void add(Worker* worker);
+    void remove(Worker* worker);
+    void remove(unsigned position);
+    void read(std::ifstream& file);
+    void write(std::ofstream& file);
+private:
+    std::vector<Worker*> _workers;
+};
+
+class ProductManager {
+public:
+    ProductManager();
+    bool has(Product* product) const;
+    Product* get(unsigned position);
+    void add(Product* product);
+    void remove(Product* product);
+    void read(std::ifstream& file);
+    void write(std::ofstream& file) const;
+private:
+    std::vector<Product*> _stock;
+};
+
+class OrderManager {
+public:
+    OrderManager(ProductManager& pm, ClientManager& cm, WorkerManager& wm);
+    bool has(Order* order) const;
+    Order* add(Client* client);
+    Order* get(unsigned position);
+    std::vector<Order*> getAll() const;
+    std::vector<Order*> get(Client* client);
+    std::vector<Order*> get(Worker* worker);
+    void remove(Order* order);
+
+    void addProduct(Order* order, Product* product, unsigned quantity = 1);
+    void removeProduct(Order* order, Product* product, unsigned quantity);
+    void removeProduct(Order* order, Product* product);
+    void removeProduct(Order* order, unsigned position, unsigned quantity);
+    void removeProduct(Order* order, unsigned position);
+    void deliver(Order* order, float clientEvaluation);
+
+    void read(std::ifstream& file);
+    void write(std::ofstream& file) const;
+private:
+    ProductManager& _productManager;
+    ClientManager& _clientManager;
+    WorkerManager& _workerManager;
+    std::vector<Order*> _orders;
+};
 
 class Store {
 public:
     explicit Store(std::string name);
     std::string getName() const;
-    float getMeanEvaluation() const;
-    std::vector<Order> getOrders() const;
-    std::vector<Order*> getClientOrders(const Client& client);
-    std::vector<Order*> getWorkerOrders(const Worker& worker);
-    bool hasWorker(const std::string& name) const;
-    bool hasWorker(int tributaryNumber) const;
-    bool hasWorker(const Worker* worker) const;
-    bool hasClient(const std::string& name) const;
-    bool hasClient(int tributaryNumber) const;
-    bool hasClient(const Client* client) const;
-    void addClient(const Client* client);
-    void removeClient(const Client* client);
-    bool hasProduct(const Product* product) const;
-    void hireWorker(Worker* worker);
-    void fireWorker(const Worker* worker);
-    void addOrder(const std::map<Product*, unsigned>& _products, Client& client);
-    void changeWorkerSalary(Worker* worker, float salary) const;
-    bool operator== (const std::string& name) const;
-    void addProduct(const Product* product);
-    void removeProduct(const Product* product);
+    std::string setName(std::string name);
+    float getEvaluation() const;
 
+    ProductManager productManager;
+    ClientManager clientManager;
+    WorkerManager workerManager;
+    OrderManager orderManager;
 private:
-    Worker* getAvailableWorker();
-    const std::string _name;
-    std::vector<const Client*> _clients;
-    std::vector<Worker*> _workers;
-    std::vector<Order> _orders;
-    std::vector<float> _clientEvaluations;
-    std::vector<const Product*> _allProducts;
+    std::string _name;
 };
 
 #endif //SRC_STORE_H

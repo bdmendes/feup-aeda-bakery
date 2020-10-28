@@ -5,7 +5,6 @@
 #include "person.h"
 
 #include <utility>
-#include <algorithm>
 
 Person::Person(std::string name, int tributaryNumber, Credential credential) :
     _name{std::move(name)}, _tributaryNumber{tributaryNumber}, _credential{ std::move(credential) } {
@@ -28,7 +27,7 @@ Credential Person::getCredential() const {
 }
 
 void Person::changeCredential(const Credential &credential) {
-    // if no change, throw
+    if (_credential == credential) throw std::invalid_argument("Credentials are the same");
     _credential = credential;
 }
 
@@ -94,18 +93,3 @@ Worker::Worker(std::string name, float salary, int tributaryNumber, Credential c
 float Worker::getSalary() const{
     return _salary;
 }
-
-Boss::Boss(std::string name, float salary, int tributaryNumber, Credential credential) :
-        Worker(std::move(name), salary, tributaryNumber, std::move(credential)),
-        _stores(std::vector<Store*>()){
-}
-
-Store* Boss::getStore(const std::string& name) {
-    auto comp = [name](const Store* store){
-        return store->getName() == name;
-    };
-    auto it = std::find_if(_stores.begin(),_stores.end(),comp);
-    if (it == _stores.end()) throw StoreDoesNotExist(name);
-    return *it;
-}
-

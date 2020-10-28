@@ -7,79 +7,72 @@
 #include <algorithm>
 #include <numeric>
 
-Store::Store(std::string name) :
-        _name(std::move(name)), _orders(std::vector<Order>()), _clientEvaluations(std::vector<float>()){
+ClientManager::ClientManager() : _clients() {
 }
 
-std::string Store::getName() const {
-    return _name;
+bool ClientManager::has(Client *client) const {
+    return std::find(_clients.begin(),_clients.end(), client) != _clients.end();
 }
 
-float Store::getMeanEvaluation() const {
-    std::vector<float> evaluations;
-    for(const auto& order : _orders)
-        if(order.wasDelivered()) evaluations.push_back(order.getClientEvaluation());
-    return std::accumulate(evaluations.begin(),evaluations.end(),0.0f) / evaluations.size();
+Client *ClientManager::get(unsigned int position) {
+    if (position >= _clients.size()) throw std::invalid_argument("Out of bounds client position");
+    return _clients.at(position);
 }
 
-std::vector<Order> Store::getOrders() const {
-    return _orders;
+std::vector<Client *> ClientManager::getAll() {
+    return _clients;
 }
 
-std::vector<Order*> Store::getClientOrders(const Client& client){
-    std::vector<Order*> clientOrders;
-    for(auto& order : _orders)
-        if (order.getClient() == client) clientOrders.push_back(&order);
-    return clientOrders;
+void ClientManager::add(Client *client) {
+    if(std::find(_clients.begin(),_clients.end(),client) != _clients.end())
+        throw PersonAlreadyExists(client->getName(), client->getTributaryNumber());
+    _clients.push_back(client);
 }
 
-std::vector<Order*> Store::getWorkerOrders(const Worker& worker){
-    std::vector<Order*> workerOrders;
-    for(auto& order : _orders)
-        if (order.getWorker() == worker) workerOrders.push_back(&order);
-    return workerOrders;
+void ClientManager::remove(Client *client) {
+    auto position = std::find(_clients.begin(), _clients.end(),client);
+    if(position == _clients.end())
+        throw PersonDoesNotExist(client->getName(), client->getTributaryNumber());
+    _clients.erase(position);
 }
 
-bool Store::hasWorker(const std::string& name) const{
-    auto comp = [name](const Worker* worker){
-        return name == worker->getName();
-    };
-    return std::find_if(_workers.begin(),_workers.end(),comp) != _workers.end();
+void ClientManager::remove(unsigned int position) {
+    if(position >= _clients.size()) throw std::invalid_argument("Out of bounds client position");
+    _clients.erase(_clients.begin() + position);
 }
 
-bool Store::hasWorker(int tributaryNumber) const {
-    auto comp = [tributaryNumber](const Worker* worker){
-        return tributaryNumber == worker->getTributaryNumber();
-    };
-    return std::find_if(_workers.begin(),_workers.end(),comp) != _workers.end();
+WorkerManager::WorkerManager() : _workers(){
 }
 
-bool Store::hasWorker(const Worker *worker) const{
-    return std::find(_workers.begin(),_workers.end(),worker) != _workers.end();
+bool WorkerManager::has(Worker *client) const {
+    return std::find(_workers.begin(),_workers.end(), client) != _workers.end();
 }
 
-bool Store::hasProduct(const Product *product) const {
-    return std::find(_allProducts.begin(),_allProducts.end(),product) != _allProducts.end();
+Worker *WorkerManager::get(unsigned int position) {
+    if (position >= _workers.size()) throw std::invalid_argument("Out of bounds worker position");
+    return _workers.at(position);
 }
 
-void Store::hireWorker(Worker *worker) {
-    if(std::find(_workers.begin(),_workers.end(),worker) == _workers.end())
-        _workers.push_back(worker);
-    else throw PersonAlreadyExists(worker->getName(), worker->getTributaryNumber());
+std::vector<Worker *> WorkerManager::getAll() {
+    return _workers;
 }
 
-void Store::fireWorker(const Worker *worker) {
-    if(_workers.empty())
-        throw StoreHasNoWorkers(_name);
-    if(!hasWorker(worker))
+void WorkerManager::add(Worker *worker) {
+    if(std::find(_workers.begin(),_workers.end(),worker) != _workers.end())
+        throw PersonAlreadyExists(worker->getName(), worker->getTributaryNumber());
+    _workers.push_back(worker);
+}
+
+void WorkerManager::remove(Worker *worker) {
+    if (_workers.empty()) throw StoreHasNoWorkers("Bakery Store"); // to change! no access to store name anymore
+    auto position = std::find(_workers.begin(), _workers.end(),worker);
+    if(position == _workers.end())
         throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
-    _workers.erase(std::find(_workers.begin(),_workers.end(),worker));
+    _workers.erase(position);
 }
 
-Worker* Store::getAvailableWorker() {
-    if (_workers.empty()){
-        throw StoreHasNoWorkers(_name);
-    }
+Worker *WorkerManager::getAvailable() {
+    if (_workers.empty()) throw StoreHasNoWorkers("Bakery Store"); // to change! no access to store name anymore
 
     auto orderComp = [](const Worker *worker1, const Worker *worker2) {
         return ((worker1->getOrders()) < (worker2->getOrders()));
@@ -87,60 +80,138 @@ Worker* Store::getAvailableWorker() {
     return *std::min_element(_workers.begin(), _workers.end(), orderComp);
 }
 
-void Store::changeWorkerSalary(Worker *worker, float salary) const {
-    if(!hasWorker(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
-    worker->setSalary(salary);
+void WorkerManager::remove(unsigned int position) {
+    if(position >= _workers.size()) throw std::invalid_argument("Out of bounds worker position");
+    _workers.erase(_workers.begin() + position);
 }
 
-void Store::addOrder(const std::map<Product*, unsigned int>& products, Client& client) {
-    if(!hasClient(&client)) throw PersonDoesNotExist(client.getName(),client.getTributaryNumber());
-    _orders.emplace_back(client,*getAvailableWorker(),products);
+void WorkerManager::changeSalary(unsigned position, float salary) {
+    if(position >= _workers.size()) throw std::invalid_argument("Out of bounds worker position");
+    _workers.at(position)->setSalary(salary);
 }
 
-bool Store::operator==(const std::string &name) const {
-    return name == getName();
+ProductManager::ProductManager(): _stock(){
 }
 
-bool Store::hasClient(const std::string& name) const {
-    auto comp = [name](const Client* client){
-        return name == client->getName();
+bool ProductManager::has(Product *product) const {
+    return std::find(_stock.begin(), _stock.end(), product) != _stock.end();
+}
+
+void ProductManager::add(Product *product) {
+    if(std::find(_stock.begin(),_stock.end(),product) != _stock.end()) _stock.push_back(product);
+    else throw ProductAlreadyExists(product->getName(),product->getPrice());
+}
+
+void ProductManager::remove(Product *product) {
+    auto position = std::find(_stock.begin(),_stock.end(),product);
+    if (position == _stock.end())
+        throw ProductDoesNotExist(product->getName(),product->getPrice());
+    _stock.erase(position);
+}
+
+Product *ProductManager::get(unsigned int position) {
+    if (position >= _stock.size()) throw std::invalid_argument("Out of bounds product position");
+    return _stock.at(position);
+}
+
+bool OrderManager::has(Order *order) const {
+    auto comp = [order](const Order* o2){
+        return *order == *o2;
     };
-    return std::find_if(_clients.begin(),_clients.end(),comp) != _clients.end();
+    return std::find_if(_orders.begin(),_orders.end(),comp) != _orders.begin();
 }
 
-bool Store::hasClient(int tributaryNumber) const {
-    auto comp = [tributaryNumber](const Client* client){
-        return tributaryNumber == client->getTributaryNumber();
-    };
-    return std::find_if(_clients.begin(),_clients.end(),comp) != _clients.end();
+OrderManager::OrderManager(ProductManager &pm, ClientManager &cm, WorkerManager &wm) :
+    _productManager(pm), _clientManager(cm), _workerManager(wm), _orders(){
 }
 
-bool Store::hasClient(const Client *client) const {
-    return std::find(_clients.begin(),_clients.end(),client) != _clients.end();
+Order* OrderManager::add(Client *client) {
+    if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(),client->getTributaryNumber());
+    _orders.push_back(new Order(*client,*_workerManager.getAvailable()));
+    return _orders.back();
 }
 
-void Store::addProduct(const Product *product) {
-    if(std::find(_allProducts.begin(),_allProducts.end(),product) != _allProducts.end())
-        throw ProductAlreadyExists(product->getName(), product->getPrice());
-    _allProducts.push_back(product);
+Order* OrderManager::get(unsigned int position) {
+    if (position >= _orders.size()) throw std::invalid_argument("Out of bounds order position");
+    return _orders.at(position);
 }
 
-void Store::removeProduct(const Product *product) {
-    auto position=std::find(_allProducts.begin(), _allProducts.end(),product);
-    if(position == _allProducts.end())
-        throw ProductDoesNotExist(product->getName(), product->getPrice());
-    _allProducts.erase(position);
+std::vector<Order *> OrderManager::getAll() const {
+    return _orders;
 }
 
-void Store::addClient(const Client *client) {
-    if(std::find(_clients.begin(),_clients.end(),client) != _clients.end())
-        throw PersonAlreadyExists(client->getName(), client->getTributaryNumber());
-    _clients.push_back(client);
+std::vector<Order*> OrderManager::get(Client *client) {
+    if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(),client->getTributaryNumber());
+    std::vector<Order*> filtered;
+    for (const auto& o: _orders){
+        if (o->getClient() == *client) filtered.push_back(o);
+    }
+    return filtered;
 }
 
-void Store::removeClient(const Client *client) {
-    auto position=std::find(_clients.begin(), _clients.end(),client);
-    if(position == _clients.end())
-        throw ProductDoesNotExist(client->getName(), client->getTributaryNumber());
-    _clients.erase(position);
+std::vector<Order *> OrderManager::get(Worker *worker) {
+    if (!_workerManager.has(worker)) throw PersonDoesNotExist(worker->getName(),worker->getTributaryNumber());
+    std::vector<Order*> filtered;
+    for (const auto& o: _orders){
+        if (o->getWorker() == *worker) filtered.push_back(o);
+    }
+    return filtered;
+}
+
+void OrderManager::remove(Order *order) {
+    auto position = std::find(_orders.begin(),_orders.end(),order);
+    if (position == _orders.end())
+        throw std::invalid_argument("Order does not exist");
+   _orders.erase(position);
+}
+
+
+void OrderManager::addProduct(Order* order, Product *product, unsigned int quantity) {
+    if (!has(order)) throw std::invalid_argument("Order does not exist!");
+    if (_productManager.has(product)) throw ProductAlreadyExists(product->getName(),product->getPrice());
+    order->addProduct(product,quantity);
+}
+
+void OrderManager::removeProduct(Order *order, Product *product, unsigned int quantity) {
+    if (!has(order)) throw std::invalid_argument("Order does not exist!");
+    if (!_productManager.has(product)) throw ProductDoesNotExist(product->getName(),product->getPrice());
+    order->removeProduct(product,quantity);
+}
+
+void OrderManager::removeProduct(Order *order, Product *product) {
+    if (!has(order)) throw std::invalid_argument("Order does not exist!");
+    if (!_productManager.has(product)) throw ProductDoesNotExist(product->getName(),product->getPrice());
+    order->removeProduct(product);
+}
+
+void OrderManager::removeProduct(Order *order, unsigned int position, unsigned int quantity) {
+    get(position); // throws if out of bounds
+    order->removeProduct(position,quantity);
+}
+
+void OrderManager::removeProduct(Order *order, unsigned int position) {
+    get(position); // throws if out of bounds
+    order->removeProduct(position);
+}
+
+void OrderManager::deliver(Order *order, float clientEvaluation) {
+    if (!has(order)) throw std::invalid_argument("Order does not exist!");
+    order->deliver(clientEvaluation);
+}
+
+Store::Store(std::string name) :
+        _name(std::move(name)),
+        productManager(),clientManager(),workerManager(),
+        orderManager(productManager,clientManager,workerManager){
+}
+
+std::string Store::getName() const {
+    return _name;
+}
+
+float Store::getEvaluation() const {
+    std::vector<float> evaluations;
+    for(const auto& order : orderManager.getAll())
+        if(order->wasDelivered()) evaluations.push_back(order->getClientEvaluation());
+    return std::accumulate(evaluations.begin(),evaluations.end(),0.0f) / evaluations.size();
 }

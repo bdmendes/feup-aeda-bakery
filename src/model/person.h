@@ -73,13 +73,4 @@ private:
     unsigned _orders;
 };
 
-class Boss : public Worker {
-public:
-    Boss(std::string name, float salary, int tributaryNumber = 999999999,
-         Credential credential = {"boss", "boss"});
-    Store* getStore(const std::string& name);
-private:
-    std::vector<Store*> _stores;
-};
-
 #endif //SRC_PERSON_H

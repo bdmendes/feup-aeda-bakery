@@ -20,7 +20,9 @@ TEST(Order, create_order){
     elements[&meatCake] = 2;
     elements[&hugeBread] = 3;
 
-    Order order(client,worker,elements);
+    Order order(client,worker);
+    order.addProduct(&meatCake,2);
+    order.addProduct(&hugeBread,3);
     EXPECT_FLOAT_EQ(order.getFinalPrice(),2*1.20+3*0.2);
     EXPECT_EQ(order.getProducts(),elements);
     EXPECT_EQ(order.getClient(),client);
@@ -34,11 +36,10 @@ TEST(Order,create_order_premium_discount){
 
     Cake meatCake("Bolo com molho de carne", 1.20);
     Bread hugeBread("Pao grande de cementes",0.2);
-    std::map<Product*,unsigned> elements;
-    elements[&meatCake] = 2;
-    elements[&hugeBread] = 3;
 
-    Order order(client,worker,elements);
+    Order order(client,worker);
+    order.addProduct(&meatCake,2);
+    order.addProduct(&hugeBread,3);
     EXPECT_TRUE(order.hasDiscount());
     EXPECT_FLOAT_EQ(order.getFinalPrice(),0.95*(2*1.20+3*0.2));
     client.setPremium(false);
