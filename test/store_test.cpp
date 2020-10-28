@@ -73,35 +73,6 @@ TEST(Store, has_worker){
     EXPECT_FALSE(store.hasWorker(&worker4));
 }
 
-/*
-TEST(Store, add_order){
-    Store store("Padaria Pão Quente");
-
-    Client client1("João Martins");
-    Client client2("Madalena Lopes", true, 289456094);
-    Client client3("Luís Ferreira", 289345874);
-
-    Worker worker1("Margarida Azevedo",  830);
-    store.hireWorker(&worker1);
-
-    Bread cerealBread("Pão de cereais", 0.80, false);
-    Cake chocolateCake("Bolo de Chocolate", 1.20, CakeCategory::CRUNCHY);
-
-    std::map<Product*, unsigned int> products;
-    products[&cerealBread] = 3;
-    products[&chocolateCake] = 2;
-
-    store.addOrder(products, client1);
-    store.addOrder(products, client2);
-    store.addOrder(products, client3);
-
-    EXPECT_THROW(store.addOrder(products, client1), PersonAlreadyExists);
-    EXPECT_THROW(store.addOrder(products, client2), PersonAlreadyExists);
-    EXPECT_THROW(store.addOrder(products, client3), PersonAlreadyExists);
-}
-*/
-
-
 TEST(Store, has_client){
     Store store("Padaria Pão Quente");
     Client client1("João Martins");
