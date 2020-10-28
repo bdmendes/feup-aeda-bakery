@@ -120,14 +120,27 @@ bool Store::hasClient(const Client *client) const {
 }
 
 void Store::addProduct(const Product *product) {
-    if(std::find(_allProducts.begin(),_allProducts.end(),product) == _allProducts.end())
-        _allProducts.push_back(product);
-    else throw ProductAlreadyExists(product->getName(), product->getPrice());
+    if(std::find(_allProducts.begin(),_allProducts.end(),product) != _allProducts.end())
+        throw ProductAlreadyExists(product->getName(), product->getPrice());
+    _allProducts.push_back(product);
 }
 
 void Store::removeProduct(const Product *product) {
     auto position=std::find(_allProducts.begin(), _allProducts.end(),product);
     if(position == _allProducts.end())
         throw ProductDoesNotExist(product->getName(), product->getPrice());
-    else _allProducts.erase(position);
+    _allProducts.erase(position);
+}
+
+void Store::addClient(const Client *client) {
+    if(std::find(_clients.begin(),_clients.end(),client) != _clients.end())
+        throw PersonAlreadyExists(client->getName(), client->getTributaryNumber());
+    _clients.push_back(client);
+}
+
+void Store::removeClient(const Client *client) {
+    auto position=std::find(_clients.begin(), _clients.end(),client);
+    if(position == _clients.end())
+        throw ProductDoesNotExist(client->getName(), client->getTributaryNumber());
+    _clients.erase(position);
 }

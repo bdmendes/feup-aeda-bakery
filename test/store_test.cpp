@@ -75,9 +75,11 @@ TEST(Store, has_worker){
 
 TEST(Store, has_client){
     Store store("Padaria Pão Quente");
+
     Client client1("João Martins");
     Client client2("Madalena Lopes", true, 289456094);
-    Client client3("Luís Ferreira", 289345874);
+    Client client3("Luís Ferreira", false,289345874);
+
     Worker worker1("Margarida Azevedo",  830);
     Worker worker2("João Gomes", 990, 278917902);
 
@@ -89,6 +91,10 @@ TEST(Store, has_client){
 
     std::map<Product*, unsigned int> breadProducts;
     breadProducts[&cerealBread] = 3;
+
+    EXPECT_THROW(store.addOrder(breadProducts, client1),PersonDoesNotExist);
+    store.addClient(&client1);
+    store.addClient(&client2);
     store.addOrder(breadProducts, client1);
 
     std::map<Product*, unsigned int> cakeProducts;
@@ -152,7 +158,7 @@ TEST(Store, get_mean_evaluation){
 
     Client client1("João Martins");
     Client client2("Madalena Lopes", true, 289456094);
-    Client client3("Luís Ferreira", 289345874);
+    Client client3("Luís Ferreira", false,289345874);
 
     Worker worker1("Margarida Azevedo",  830);
     store.hireWorker(&worker1);
@@ -164,6 +170,9 @@ TEST(Store, get_mean_evaluation){
     products[&cerealBread] = 3;
     products[&chocolateCake] = 2;
 
+    store.addClient(&client1);
+    store.addClient(&client2);
+    store.addClient(&client3);
     store.addOrder(products, client1);
     store.addOrder(products, client2);
     store.addOrder(products, client3);
@@ -174,7 +183,6 @@ TEST(Store, get_mean_evaluation){
     EXPECT_FLOAT_EQ((3.6+4.8)/2, store.getMeanEvaluation());
     (store.getClientOrders(client3))[0]->deliver(4.2);
     EXPECT_FLOAT_EQ((3.6+4.8+4.2)/3, store.getMeanEvaluation());
-
 }
 
 

@@ -39,6 +39,8 @@ public:
     bool hasClient(const std::string& name) const;
     bool hasClient(int tributaryNumber) const;
     bool hasClient(const Client* client) const;
+    void addClient(const Client* client);
+    void removeClient(const Client* client);
     bool hasProduct(const Product* product) const;
     void hireWorker(Worker* worker);
     void fireWorker(const Worker* worker);
