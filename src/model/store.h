@@ -14,6 +14,7 @@
 #include "order.h"
 #include <exception/person_exception.h>
 #include <exception/store_exception.h>
+#include <exception/product_exception.h>
 
 #include "product.h"
 
@@ -49,6 +50,10 @@ public:
     void changeWorkerSalary(Worker* worker, float salary) const;
 
     bool operator== (const std::string& name) const;
+
+    void addProduct(const Product* product);
+    void removeProduct(const Product* product);
+
 private:
     Worker* getAvailableWorker();
     const std::string _name;
@@ -56,6 +61,7 @@ private:
     std::vector<Worker*> _workers;
     std::vector<Order> _orders;
     std::vector<float> _clientEvaluations;
+    std::vector<const Product*> _allProducts;
 };
 
 #endif //SRC_STORE_H

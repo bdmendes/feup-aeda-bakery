@@ -107,3 +107,16 @@ bool Store::hasClient(int tributaryNumber) const {
 bool Store::hasClient(const Client *client) const {
     return std::find(_clients.begin(),_clients.end(),client) != _clients.end();
 }
+
+void Store::addProduct(const Product *product) {
+    if(std::find(_allProducts.begin(),_allProducts.end(),product) == _allProducts.end())
+        _allProducts.push_back(product);
+    else throw ProductAlreadyExists(product->getName(), product->getPrice());
+}
+
+void Store::removeProduct(const Product *product) {
+    auto position=std::find(_allProducts.begin(), _allProducts.end(),product);
+    if(position == _allProducts.end())
+        throw ProductDoesNotExist(product->getName(), product->getPrice());
+    else _allProducts.erase(position);
+}
