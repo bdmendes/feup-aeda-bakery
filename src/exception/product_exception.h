@@ -26,4 +26,5 @@ private:
     std::string _message;
 };
 
+
 #endif //FEUP_AEDA_PROJECT_PRODUCTEXCEPTIONS_H

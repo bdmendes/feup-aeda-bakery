@@ -16,9 +16,18 @@ std::string Store::getName() const {
 
 float Store::getMeanEvaluation() const {
     float sum = 0;
-    for(const auto& order : _orders)
-        sum += order.getClientEvaluation();
-    return sum/_clients.size();
+    float numberClients = 0;
+    for(const auto& order : _orders) {
+        if(order.wasDelivered()) {
+            sum += order.getClientEvaluation();
+            numberClients++;
+        }
+    }
+    return sum/numberClients;
+}
+
+std::vector<Order> Store::getOrders() const {
+    return _orders;
 }
 
 std::vector<Order*> Store::getClientOrders(const Client& client){
@@ -49,12 +58,18 @@ bool Store::hasWorker(int tributaryNumber) const {
     return std::find_if(_workers.begin(),_workers.end(),comp) != _workers.end();
 }
 
-bool Store::hasWorker(const Worker* worker) const{
+bool Store::hasWorker(const Worker *worker) const{
     return std::find(_workers.begin(),_workers.end(),worker) != _workers.end();
 }
 
+bool Store::hasProduct(const Product *product) const {
+    return std::find(_allProducts.begin(),_allProducts.end(),product) != _allProducts.end();
+}
+
 void Store::hireWorker(Worker *worker) {
-    _workers.push_back(worker);
+    if(std::find(_workers.begin(),_workers.end(),worker) == _workers.end())
+        _workers.push_back(worker);
+    else throw PersonAlreadyExists(worker->getName(), worker->getTributaryNumber());
 }
 
 void Store::fireWorker(const Worker *worker) {
@@ -83,6 +98,9 @@ void Store::changeWorkerSalary(Worker *worker, float salary) const {
 }
 
 void Store::addOrder(const std::map<Product*, unsigned int>& products, Client& client) {
+    //Verifies if the client is already registered in order to not repeat it
+    if(!hasClient(&client))
+        _clients.push_back(&client);
     _orders.emplace_back(client,*getAvailableWorker(),products);
 }
 
