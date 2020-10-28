@@ -5,6 +5,7 @@
 #include "store.h"
 
 #include <algorithm>
+#include <numeric>
 
 Store::Store(std::string name) :
         _name(std::move(name)), _orders(std::vector<Order>()), _clientEvaluations(std::vector<float>()){
@@ -15,10 +16,14 @@ std::string Store::getName() const {
 }
 
 float Store::getMeanEvaluation() const {
-    float sum = 0;
+    std::vector<float> evaluations;
     for(const auto& order : _orders)
-        sum += order.getClientEvaluation();
-    return sum/_clients.size();
+        if(order.wasDelivered()) evaluations.push_back(order.getClientEvaluation());
+    return std::accumulate(evaluations.begin(),evaluations.end(),0.0f) / evaluations.size();
+}
+
+std::vector<Order> Store::getOrders() const {
+    return _orders;
 }
 
 std::vector<Order*> Store::getClientOrders(const Client& client){
@@ -49,12 +54,18 @@ bool Store::hasWorker(int tributaryNumber) const {
     return std::find_if(_workers.begin(),_workers.end(),comp) != _workers.end();
 }
 
-bool Store::hasWorker(const Worker* worker) const{
+bool Store::hasWorker(const Worker *worker) const{
     return std::find(_workers.begin(),_workers.end(),worker) != _workers.end();
 }
 
+bool Store::hasProduct(const Product *product) const {
+    return std::find(_allProducts.begin(),_allProducts.end(),product) != _allProducts.end();
+}
+
 void Store::hireWorker(Worker *worker) {
-    _workers.push_back(worker);
+    if(std::find(_workers.begin(),_workers.end(),worker) == _workers.end())
+        _workers.push_back(worker);
+    else throw PersonAlreadyExists(worker->getName(), worker->getTributaryNumber());
 }
 
 void Store::fireWorker(const Worker *worker) {
@@ -77,12 +88,12 @@ Worker* Store::getAvailableWorker() {
 }
 
 void Store::changeWorkerSalary(Worker *worker, float salary) const {
-    if(!hasWorker(worker))
-        throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
+    if(!hasWorker(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
     worker->setSalary(salary);
 }
 
 void Store::addOrder(const std::map<Product*, unsigned int>& products, Client& client) {
+    if(!hasClient(&client)) throw PersonDoesNotExist(client.getName(),client.getTributaryNumber());
     _orders.emplace_back(client,*getAvailableWorker(),products);
 }
 
@@ -106,4 +117,30 @@ bool Store::hasClient(int tributaryNumber) const {
 
 bool Store::hasClient(const Client *client) const {
     return std::find(_clients.begin(),_clients.end(),client) != _clients.end();
+}
+
+void Store::addProduct(const Product *product) {
+    if(std::find(_allProducts.begin(),_allProducts.end(),product) != _allProducts.end())
+        throw ProductAlreadyExists(product->getName(), product->getPrice());
+    _allProducts.push_back(product);
+}
+
+void Store::removeProduct(const Product *product) {
+    auto position=std::find(_allProducts.begin(), _allProducts.end(),product);
+    if(position == _allProducts.end())
+        throw ProductDoesNotExist(product->getName(), product->getPrice());
+    _allProducts.erase(position);
+}
+
+void Store::addClient(const Client *client) {
+    if(std::find(_clients.begin(),_clients.end(),client) != _clients.end())
+        throw PersonAlreadyExists(client->getName(), client->getTributaryNumber());
+    _clients.push_back(client);
+}
+
+void Store::removeClient(const Client *client) {
+    auto position=std::find(_clients.begin(), _clients.end(),client);
+    if(position == _clients.end())
+        throw ProductDoesNotExist(client->getName(), client->getTributaryNumber());
+    _clients.erase(position);
 }

@@ -17,7 +17,7 @@ PersonDoesNotExist::PersonDoesNotExist(int tributaryNumber) :
 }
 
 PersonAlreadyExists::PersonAlreadyExists(const std::string& name, int tributaryNumber) :
-    std::logic_error(name + ", with number " + std::to_string(tributaryNumber) + ", does not exist!\n"){
+    std::logic_error(name + ", with number " + std::to_string(tributaryNumber) + ", already exists!\n"){
 }
 
 PersonAlreadyExists::PersonAlreadyExists(const std::string& name):
