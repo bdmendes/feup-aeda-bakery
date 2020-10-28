@@ -27,7 +27,7 @@ class Order;
 
 class Store {
 public:
-    Store(std::string name);
+    explicit Store(std::string name);
     std::string getName() const;
     float getMeanEvaluation() const;
     std::vector<Order> getOrders() const;

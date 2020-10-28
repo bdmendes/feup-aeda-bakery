@@ -8,7 +8,7 @@
 
 Order::Order(Client &client, Worker &worker, std::map<Product*, unsigned int>  products, Date date) :
         _products{std::move(products)}, _client{client}, _worker(worker), _clientEvaluation(0), _delivered(false),
-        _totalPrice(0.0f), _date(date){
+        _totalPrice(0.0f), _date(std::move(date)){
     updateTotalPrice();
     _client.addPoints(10* static_cast<int>(_totalPrice)); //For each euro adds 10 points
 }

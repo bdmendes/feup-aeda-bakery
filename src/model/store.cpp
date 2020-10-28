@@ -5,6 +5,7 @@
 #include "store.h"
 
 #include <algorithm>
+#include <numeric>
 
 Store::Store(std::string name) :
         _name(std::move(name)), _orders(std::vector<Order>()), _clientEvaluations(std::vector<float>()){
@@ -15,15 +16,10 @@ std::string Store::getName() const {
 }
 
 float Store::getMeanEvaluation() const {
-    float sum = 0;
-    float numberClients = 0;
-    for(const auto& order : _orders) {
-        if(order.wasDelivered()) {
-            sum += order.getClientEvaluation();
-            numberClients++;
-        }
-    }
-    return sum/numberClients;
+    std::vector<float> evaluations;
+    for(const auto& order : _orders)
+        if(order.wasDelivered()) evaluations.push_back(order.getClientEvaluation());
+    return std::accumulate(evaluations.begin(),evaluations.end(),0.0f) / evaluations.size();
 }
 
 std::vector<Order> Store::getOrders() const {
@@ -92,15 +88,12 @@ Worker* Store::getAvailableWorker() {
 }
 
 void Store::changeWorkerSalary(Worker *worker, float salary) const {
-    if(!hasWorker(worker))
-        throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
+    if(!hasWorker(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
     worker->setSalary(salary);
 }
 
 void Store::addOrder(const std::map<Product*, unsigned int>& products, Client& client) {
-    //Verifies if the client is already registered in order to not repeat it
-    if(!hasClient(&client))
-        _clients.push_back(&client);
+    if(!hasClient(&client)) throw PersonDoesNotExist(client.getName(),client.getTributaryNumber());
     _orders.emplace_back(client,*getAvailableWorker(),products);
 }
 
