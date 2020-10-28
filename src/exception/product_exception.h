@@ -11,6 +11,17 @@
 class ProductDoesNotExist : public std::invalid_argument{
 public:
     ProductDoesNotExist(const std::string& name, float price);
+    explicit ProductDoesNotExist(const std::string& name);
+    explicit ProductDoesNotExist(float price);
+
+private:
+    std::string _message;
+};
+
+class ProductAlreadyExists : public std::invalid_argument{
+public:
+    ProductAlreadyExists(const std::string& name, float price);
+    explicit ProductAlreadyExists(const std::string& name);
 private:
     std::string _message;
 };
