@@ -6,22 +6,33 @@
 #define FEUP_AEDA_PROJECT_PRODUCT_MANAGER_H
 
 #include "product.h"
-#include <vector>
+#include <set>
+
+struct ProductSmaller{
+    bool operator()(const Product* p1, const Product* p2) const{
+        return p1 < p2;
+    }
+};
 
 class ProductManager {
 public:
     ProductManager();
-    ProductManager(std::vector<Product*> stock);
+    ProductManager(std::set<Product*, ProductSmaller> stock);
+
     bool has(Product* product) const;
+
     Product* get(unsigned position);
-    std::vector<Product*> getAll();
-    void addBread(std::string name, float price, bool small = true);
-    void addCake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
-    void remove(Product* product);
+    std::set<Product*, ProductSmaller> getAll();
+
+    Bread* addBread(std::string name, float price, bool small = true);
+    Cake* addCake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
+    Product* remove(Product* product);
+
     void read(std::ifstream& file);
     void write(std::ofstream& file) const;
 private:
-    std::vector<Product*> _products;
+    std::set<Product*, ProductSmaller> _products;
 };
+
 
 #endif //FEUP_AEDA_PROJECT_PRODUCT_MANAGER_H

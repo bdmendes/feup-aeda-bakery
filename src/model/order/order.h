@@ -17,30 +17,34 @@
 class Order {
 public:
     Order(Client& client, Worker& worker, Date date = {});
-    bool operator==(const Order& rhs) const;
     // friend OrderManager; - to consider...
 
     bool hasDiscount() const;
+    bool hasProduct(Product* product);
     bool wasDelivered() const;
 
     const Worker& getWorker() const;
     const Client& getClient() const;
 
     std::map<Product*, unsigned int> getProducts() const;
-    bool hasProduct(Product* product);
-
-    void addProduct(Product* product, unsigned quantity = 1);
-    void removeProduct(Product* product, unsigned quantity);
-    void removeProduct(Product* product);
-    void removeProduct(unsigned position, unsigned quantity);
-    void removeProduct(unsigned position);
-    void deliver(float clientEvaluation);
 
     float getClientEvaluation() const;
     float getFinalPrice() const;
     float getTotal() const;
 
     Date getDate() const;
+
+    Product* addProduct(Product* product, unsigned quantity = 1);
+    Product* removeProduct(Product* product, unsigned quantity);
+    Product* removeProduct(Product* product);
+    Product* removeProduct(unsigned position, unsigned quantity);
+    Product* removeProduct(unsigned position);
+
+    void deliver(float clientEvaluation);
+
+    bool operator==(const Order& rhs) const;
+
+
 private:
     std::map<Product*, unsigned int> _products;
     void updateTotalPrice();

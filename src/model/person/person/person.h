@@ -7,6 +7,7 @@
 
 #include <string>
 #include <stdexcept>
+#include <set>
 
 struct Credential {
     std::string username;
@@ -33,6 +34,12 @@ private:
     std::string _name;
     int _tributaryNumber;
     Credential _credential;
+};
+
+struct Smaller{
+    bool operator()(const Person* p1, const Person* p2) const{
+        return p1 < p2;
+    }
 };
 
 #endif //FEUP_AEDA_PROJECT_PERSON_H

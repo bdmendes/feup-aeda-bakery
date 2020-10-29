@@ -12,15 +12,15 @@ public:
     ClientManager();
     bool has(Client* client) const;
     Client* get(unsigned position);
-    std::vector<Client*> getAll();
-    void add(std::string name, bool premium = false, int tributaryNumber = 999999999,
+    std::set<Client *, Smaller> getAll();
+    Client* add(std::string name, bool premium = false, int tributaryNumber = 999999999,
              Credential credential = {"client", "client"});
-    void remove(Client* client);
-    void remove(unsigned position);
+    Client* remove(Client* client);
+    Client* remove(unsigned position);
     void read(std::ifstream& file);
     void write(std::ofstream& file);
 private:
-    std::vector<Client*> _clients;
+    std::set<Client*, Smaller> _clients;
 };
 
 
