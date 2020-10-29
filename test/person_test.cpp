@@ -3,7 +3,9 @@
 //
 
 #include <gtest/gtest.h>
-#include "../src/model/person.h"
+#include "model/person/person/person.h"
+#include "model/person/client/client.h"
+#include "model/person/worker/worker.h"
 
 using testing::Eq;
 

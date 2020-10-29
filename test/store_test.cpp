@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "../src/model/store.h"
+#include "model/store/store.h"
 #include <algorithm>
 #include <map>
 
@@ -18,18 +18,12 @@ TEST(Store, create_store){
 }
 
 TEST(Store, hire_worker){
-    Store store("Padaria Diamante");
+    Store store;
+    store.workerManager.add("Maria João", 970, 253579503);
+    store.workerManager.add("Rodrigo Soares", 890);
 
-    Worker worker1("Maria João", 970, 253579503);
-    Worker worker2("Rodrigo Soares", 890);
-    Worker worker3("Manuel Faria", 900);
-
-    store.workerManager.add(&worker1);
-    store.workerManager.add(&worker2);
-    store.workerManager.add(&worker3);
-
-    EXPECT_THROW(store.workerManager.add(&worker1), PersonAlreadyExists);
-    EXPECT_THROW(store.workerManager.add(&worker2), PersonAlreadyExists);
+    EXPECT_THROW(    store.workerManager.add("Maria João", 970, 253579503), PersonAlreadyExists);
+    EXPECT_THROW(    store.workerManager.add("Rodrigo Soares", 890), PersonAlreadyExists);
 }
 
 TEST(Store, fire_worker){
@@ -42,13 +36,14 @@ TEST(Store, fire_worker){
 
     EXPECT_THROW(store.workerManager.remove(&worker1), StoreHasNoWorkers);
 
-    store.workerManager.add(&worker1);
-    store.workerManager.add(&worker2);
+    store.workerManager.add("Maria João", 970, 253579503);
+    store.workerManager.add("Rodrigo Soares", 890);
 
     EXPECT_THROW(store.workerManager.remove(&worker3), PersonDoesNotExist);
     EXPECT_THROW(store.workerManager.remove(&worker4), PersonDoesNotExist);
 }
 
+/*
 TEST(Store, has_worker){
     Store store("Padaria Pão Quente");
 
@@ -86,7 +81,7 @@ TEST(Store, has_client){
     store.clientManager.add(&client1);
     store.clientManager.add(&client2);
     Order* order = store.orderManager.add(&client1);
-    EXPECT_THROW(order->addProduct(&cerealBread,3),ProductDoesNotExist);
+    order->addProduct(&cerealBread,3);
 
     Order* order2 = store.orderManager.add(&client2);
     //store.orderManager.addProduct(order2,&chocolateCake,2);
@@ -97,7 +92,7 @@ TEST(Store, has_client){
 }
 
 // TO DO
-/*
+
 TEST(Store, change_worker_salary){
     Store store("Pão Quente");
     Worker worker1("João Miguel", 950, 267892019);

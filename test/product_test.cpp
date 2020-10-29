@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "../src/model/product.h"
+#include "model/product/product.h"
 #include <algorithm>
 
 using testing::Eq;

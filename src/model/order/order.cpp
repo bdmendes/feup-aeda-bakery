@@ -6,10 +6,9 @@
 
 #include <utility>
 
-Order::Order(Client &client, Worker &worker, ProductManager* pm, Date date) :
+Order::Order(Client &client, Worker &worker, Date date) :
         _client{client}, _worker(worker), _clientEvaluation(0), _delivered(false),
-        _totalPrice(0.0f), _date(std::move(date)), _products(),
-        _productManager(pm){
+        _totalPrice(0.0f), _date(std::move(date)), _products(){
     updateTotalPrice();
     _client.addPoints(10* static_cast<int>(_totalPrice)); //For each euro adds 10 points
 }
@@ -56,10 +55,6 @@ bool Order::hasProduct(Product* product){
 }
 
 void Order::addProduct(Product* product, unsigned quantity) {
-    std::vector<Product*> stock = _productManager->getAll();
-    if (std::find(stock.begin(),stock.end(),product) == stock.end())
-        throw ProductDoesNotExist(product->getName(),product->getPrice());
-
     if (_delivered) throw OrderWasAlreadyDelivered(_client,_worker,_date);
     if (hasProduct(product)) _products[product] += quantity;
     else _products[product] = quantity;

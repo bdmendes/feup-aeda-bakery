@@ -1,8 +1,11 @@
 #include <iostream>
 
-#include "model/person.h"
+#include "model/person/person/person.h"
+#include "model/person/worker/worker.h"
+#include "model/store/store.h"
 #include <stdexcept>
 #include <algorithm>
+#include <vector>
 
 int main() {
     //Date d1(29,02,2019,23,53);

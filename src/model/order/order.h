@@ -5,32 +5,18 @@
 #ifndef SRC_ORDER_H
 #define SRC_ORDER_H
 
-#include <utility>
-#include <vector>
-#include <ctime>
-#include <iostream>
 #include <map>
+#include "exception/product_exception.h"
+#include "exception/order_exception.h"
 
-#include "../exception/product_exception.h"
-#include "../exception/order_exception.h"
-
-#include "person.h"
-#include "product.h"
-#include "date.h"
-#include "store.h"
-
+#include "model/person/person/person.h"
+#include "model/product/product.h"
+#include "model/date/date.h"
 #include <fstream>
-
-class Person;
-class Client;
-class Worker;
-class Order;
-class OrderManager;
-class ProductManager;
 
 class Order {
 public:
-    Order(Client& client, Worker& worker, ProductManager* pm, Date date = {});
+    Order(Client& client, Worker& worker, Date date = {});
     bool operator==(const Order& rhs) const;
     // friend OrderManager; - to consider...
 
@@ -57,7 +43,6 @@ public:
     Date getDate() const;
 private:
     std::map<Product*, unsigned int> _products;
-    ProductManager* _productManager;
     void updateTotalPrice();
     float _totalPrice;
     Client& _client;

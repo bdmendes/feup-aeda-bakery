@@ -4,9 +4,11 @@
 
 #include <gtest/gtest.h>
 
-#include <model/person.h>
-#include <model/order.h>
-#include <model/product.h>
+#include "model/person/person/person.h"
+#include "model/order/order.h"
+#include "model/product/product.h"
+#include "model/person/client/client.h"
+#include "model/person/worker/worker.h"
 
 using testing::Eq;
 
@@ -19,9 +21,8 @@ TEST(Order, create_order){
     std::vector<Product*> elements;
     elements.push_back(&meatCake);
     elements.push_back(&hugeBread);
-    ProductManager pm(elements);
 
-    Order order(client,worker,&pm);
+    Order order(client,worker);
     order.addProduct(&meatCake,2);
     order.addProduct(&hugeBread,3);
     EXPECT_FLOAT_EQ(order.getFinalPrice(),2*1.20+3*0.2);
@@ -40,9 +41,8 @@ TEST(Order,create_order_premium_discount){
     std::vector<Product*> elements;
     elements.push_back(&meatCake);
     elements.push_back(&hugeBread);
-    ProductManager pm(elements);
 
-    Order order(client,worker,&pm);
+    Order order(client,worker);
     order.addProduct(&meatCake,2);
     order.addProduct(&hugeBread,3);
     EXPECT_TRUE(order.hasDiscount());
@@ -67,9 +67,8 @@ TEST(Order,add_products){
     std::vector<Product*> elements;
     elements.push_back(&meatCake);
     elements.push_back(&hugeBread);
-    ProductManager pm(elements);
 
-    Order order(client,worker,&pm);
+    Order order(client,worker);
     order.addProduct(&meatCake,5);
     order.addProduct(&hugeBread, 3);
 

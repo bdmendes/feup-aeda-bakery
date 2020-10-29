@@ -6,7 +6,7 @@
 #define FEUP_AEDA_PROJECT_DATEEXCEPTIONS_H
 
 #include <stdexcept>
-#include "../model/date.h"
+#include "model/date/date.h"
 
 class InvalidDate : public std::logic_error{
 public:

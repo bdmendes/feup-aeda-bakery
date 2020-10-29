@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "../src/model/date.h"
+#include "model/date/date.h"
 
 using testing::Eq;
 
