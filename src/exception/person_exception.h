@@ -8,7 +8,7 @@
 #include <utility>
 #include <stdexcept>
 
-#include "../model/person.h"
+#include "model/person/person/person.h"
 
 class PersonDoesNotExist: public std::logic_error{
 public:

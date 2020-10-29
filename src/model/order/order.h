@@ -5,26 +5,20 @@
 #ifndef SRC_ORDER_H
 #define SRC_ORDER_H
 
-#include <utility>
-#include <vector>
-#include <ctime>
-#include <iostream>
 #include <map>
+#include "exception/product_exception.h"
+#include "exception/order_exception.h"
 
-#include "../exception/product_exception.h"
-#include "../exception/order_exception.h"
-
-#include "person.h"
-#include "product.h"
-#include "date.h"
-
-class Person;
-class Client;
-class Worker;
+#include "model/person/person/person.h"
+#include "model/product/product.h"
+#include "model/date/date.h"
+#include <fstream>
 
 class Order {
 public:
-    Order(Client& client, Worker& worker, std::map<Product*, unsigned int>  products = {}, Date date = {});
+    Order(Client& client, Worker& worker, Date date = {});
+    bool operator==(const Order& rhs) const;
+    // friend OrderManager; - to consider...
 
     bool hasDiscount() const;
     bool wasDelivered() const;
@@ -38,17 +32,18 @@ public:
     void addProduct(Product* product, unsigned quantity = 1);
     void removeProduct(Product* product, unsigned quantity);
     void removeProduct(Product* product);
+    void removeProduct(unsigned position, unsigned quantity);
+    void removeProduct(unsigned position);
+    void deliver(float clientEvaluation);
 
     float getClientEvaluation() const;
     float getFinalPrice() const;
     float getTotal() const;
 
     Date getDate() const;
-
-    void deliver(float clientEvaluation);
 private:
-    void updateTotalPrice();
     std::map<Product*, unsigned int> _products;
+    void updateTotalPrice();
     float _totalPrice;
     Client& _client;
     Worker& _worker;

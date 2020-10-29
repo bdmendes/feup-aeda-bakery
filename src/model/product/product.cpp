@@ -47,3 +47,4 @@ bool Bread::operator==(const Bread &bread) const{
     return getName() == bread.getName() && isSmall() == bread.isSmall();
 }
 
+

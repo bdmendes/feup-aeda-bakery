@@ -9,6 +9,8 @@
 #include <map>
 #include <set>
 
+#include "exception/product_exception.h"
+
 enum class CakeCategory {
     GENERAL, PIE, SPONGE, PUFF_PASTRY, CRUNCHY
 };

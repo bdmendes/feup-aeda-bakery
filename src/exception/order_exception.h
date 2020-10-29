@@ -7,12 +7,10 @@
 
 #include <stdexcept>
 
-#include "../model/person.h"
-#include "../model/date.h"
-
-class Client;
-class Worker;
-
+#include "model/person/person/person.h"
+#include "model/date/date.h"
+#include "model/person/client/client.h"
+#include "model/person/worker/worker.h"
 
 class OrderWasAlreadyDelivered : public std::logic_error{
 public:

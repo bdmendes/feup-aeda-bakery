@@ -3,7 +3,9 @@
 //
 
 #include <gtest/gtest.h>
-#include "../src/model/person.h"
+#include "model/person/person/person.h"
+#include "model/person/client/client.h"
+#include "model/person/worker/worker.h"
 
 using testing::Eq;
 
@@ -23,12 +25,12 @@ TEST(Client, change_points){
 }
 
 TEST(Person, change_credential){
-    Boss b("Emídio",2930);
-    Credential bossCredential = {"boss","boss"};
-    EXPECT_EQ(b.getCredential(), bossCredential);
-    bossCredential.password = "thealmighty";
-    b.changeCredential(bossCredential);
-    EXPECT_EQ(b.getCredential().password, "thealmighty");
+    Worker w("Emídio", 2930);
+    Credential credential = {"worker", "worker"};
+    EXPECT_EQ(w.getCredential(), credential);
+    credential.password = "thealmighty";
+    w.changeCredential(credential);
+    EXPECT_EQ(w.getCredential().password, "thealmighty");
 }
 
 TEST(Worker, change_salary){

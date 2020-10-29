@@ -13,14 +13,15 @@ endif (WIN32)
 
 include_directories(../src/)
 
-add_library(feup-aeda-project main.cpp model/product.h model/store.h model/person.h model/order.h model/date.h exception/store_exception.h exception/person_exception.h
-        exception/date_exception.h exception/product_exception.h exception/store_exception.h model/product.cpp model/store.cpp model/person.cpp model/order.cpp model/date.cpp exception/store_exception.cpp exception/person_exception.cpp
-        exception/date_exception.cpp exception/product_exception.cpp exception/store_exception.cpp exception/order_exception.h exception/order_exception.cpp)
+add_library(feup-aeda-project main.cpp model/product/product.h model/store/store.h model/order/order.h model/date/date.h exception/store_exception.h exception/person_exception.h
+        exception/date_exception.h exception/product_exception.h exception/store_exception.h model/product/product.cpp model/store/store.cpp model/order/order.cpp model/date/date.cpp exception/store_exception.cpp exception/person_exception.cpp
+        exception/date_exception.cpp exception/product_exception.cpp exception/store_exception.cpp exception/order_exception.h exception/order_exception.cpp model/person/client/client.cpp model/person/client/client.h
+        model/person/worker/worker_manager.cpp model/person/worker/worker_manager.h model/person/worker/worker.cpp model/person/worker/worker.h model/order/order_manager.cpp model/order/order_manager.h model/product/product_manager.cpp model/product/product_manager.h)
 
 add_executable(application
-        main.cpp model/product.h model/store.h model/person.h model/order.h model/date.h exception/store_exception.h exception/person_exception.h
-        exception/date_exception.h exception/product_exception.h exception/store_exception.h model/product.cpp model/store.cpp model/person.cpp model/order.cpp model/date.cpp exception/store_exception.cpp exception/person_exception.cpp
-        exception/date_exception.cpp exception/product_exception.cpp exception/store_exception.cpp exception/order_exception.h exception/order_exception.cpp)
+        main.cpp model/product/product.h model/store/store.h model/order/order.h model/date/date.h exception/store_exception.h exception/person_exception.h
+        exception/date_exception.h exception/product_exception.h exception/store_exception.h model/product/product.cpp model/store/store.cpp model/order/order.cpp model/date/date.cpp exception/store_exception.cpp exception/person_exception.cpp
+        exception/date_exception.cpp exception/product_exception.cpp exception/store_exception.cpp exception/order_exception.h exception/order_exception.cpp model/order/order_manager.cpp model/order/order_manager.h model/product/product_manager.cpp model/product/product_manager.h model/person/worker/worker_manager.cpp model/person/worker/worker_manager.h model/person/worker/worker.cpp model/person/worker/worker.h model/person/client/client.cpp model/person/client/client.h model/person/person/person.cpp model/person/person/person.h model/person/client/client_manager.cpp model/person/client/client_manager.h)
 
 target_include_directories(feup-aeda-project PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
