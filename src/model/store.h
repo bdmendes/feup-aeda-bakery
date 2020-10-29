@@ -58,8 +58,10 @@ private:
 class ProductManager {
 public:
     ProductManager();
+    ProductManager(std::vector<Product*> stock);
     bool has(Product* product) const;
     Product* get(unsigned position);
+    std::vector<Product*> getAll();
     void add(Product* product);
     void remove(Product* product);
     void read(std::ifstream& file);
@@ -79,13 +81,6 @@ public:
     std::vector<Order*> get(Worker* worker);
     void remove(Order* order);
 
-    void addProduct(Order* order, Product* product, unsigned quantity = 1);
-    void removeProduct(Order* order, Product* product, unsigned quantity);
-    void removeProduct(Order* order, Product* product);
-    void removeProduct(Order* order, unsigned position, unsigned quantity);
-    void removeProduct(Order* order, unsigned position);
-    void deliver(Order* order, float clientEvaluation);
-
     void read(std::ifstream& file);
     void write(std::ofstream& file) const;
 private:
@@ -99,7 +94,7 @@ class Store {
 public:
     explicit Store(std::string name);
     std::string getName() const;
-    std::string setName(std::string name);
+    void setName(std::string name);
     float getEvaluation() const;
 
     ProductManager productManager;

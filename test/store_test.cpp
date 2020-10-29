@@ -86,7 +86,7 @@ TEST(Store, has_client){
     store.clientManager.add(&client1);
     store.clientManager.add(&client2);
     Order* order = store.orderManager.add(&client1);
-    store.orderManager.addProduct(order,&cerealBread,3);
+    EXPECT_THROW(order->addProduct(&cerealBread,3),ProductDoesNotExist);
 
     Order* order2 = store.orderManager.add(&client2);
     //store.orderManager.addProduct(order2,&chocolateCake,2);

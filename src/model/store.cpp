@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <numeric>
+#include <utility>
 
 ClientManager::ClientManager() : _clients() {
 }
@@ -114,6 +115,13 @@ Product *ProductManager::get(unsigned int position) {
     return _stock.at(position);
 }
 
+std::vector<Product *> ProductManager::getAll() {
+    return _stock;
+}
+
+ProductManager::ProductManager(std::vector<Product *> stock) : _stock(std::move(stock)){
+}
+
 bool OrderManager::has(Order *order) const {
     auto comp = [order](const Order* o2){
         return *order == *o2;
@@ -127,7 +135,7 @@ OrderManager::OrderManager(ProductManager &pm, ClientManager &cm, WorkerManager 
 
 Order* OrderManager::add(Client *client) {
     if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(),client->getTributaryNumber());
-    _orders.push_back(new Order(*client,*_workerManager.getAvailable()));
+    _orders.push_back(new Order(*client,*_workerManager.getAvailable(),&_productManager));
     return _orders.back();
 }
 
@@ -165,40 +173,6 @@ void OrderManager::remove(Order *order) {
    _orders.erase(position);
 }
 
-
-void OrderManager::addProduct(Order* order, Product *product, unsigned int quantity) {
-    if (!has(order)) throw std::invalid_argument("Order does not exist!");
-    if (_productManager.has(product)) throw ProductAlreadyExists(product->getName(),product->getPrice());
-    order->addProduct(product,quantity);
-}
-
-void OrderManager::removeProduct(Order *order, Product *product, unsigned int quantity) {
-    if (!has(order)) throw std::invalid_argument("Order does not exist!");
-    if (!_productManager.has(product)) throw ProductDoesNotExist(product->getName(),product->getPrice());
-    order->removeProduct(product,quantity);
-}
-
-void OrderManager::removeProduct(Order *order, Product *product) {
-    if (!has(order)) throw std::invalid_argument("Order does not exist!");
-    if (!_productManager.has(product)) throw ProductDoesNotExist(product->getName(),product->getPrice());
-    order->removeProduct(product);
-}
-
-void OrderManager::removeProduct(Order *order, unsigned int position, unsigned int quantity) {
-    get(position); // throws if out of bounds
-    order->removeProduct(position,quantity);
-}
-
-void OrderManager::removeProduct(Order *order, unsigned int position) {
-    get(position); // throws if out of bounds
-    order->removeProduct(position);
-}
-
-void OrderManager::deliver(Order *order, float clientEvaluation) {
-    if (!has(order)) throw std::invalid_argument("Order does not exist!");
-    order->deliver(clientEvaluation);
-}
-
 Store::Store(std::string name) :
         _name(std::move(name)),
         productManager(),clientManager(),workerManager(),
@@ -214,4 +188,8 @@ float Store::getEvaluation() const {
     for(const auto& order : orderManager.getAll())
         if(order->wasDelivered()) evaluations.push_back(order->getClientEvaluation());
     return std::accumulate(evaluations.begin(),evaluations.end(),0.0f) / evaluations.size();
+}
+
+void Store::setName(std::string name) {
+    _name = std::move(name);
 }

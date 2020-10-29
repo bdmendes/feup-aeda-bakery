@@ -26,10 +26,11 @@ class Client;
 class Worker;
 class Order;
 class OrderManager;
+class ProductManager;
 
 class Order {
 public:
-    Order(Client& client, Worker& worker, Date date = {});
+    Order(Client& client, Worker& worker, ProductManager* pm, Date date = {});
     bool operator==(const Order& rhs) const;
     // friend OrderManager; - to consider...
 
@@ -56,6 +57,7 @@ public:
     Date getDate() const;
 private:
     std::map<Product*, unsigned int> _products;
+    ProductManager* _productManager;
     void updateTotalPrice();
     float _totalPrice;
     Client& _client;
