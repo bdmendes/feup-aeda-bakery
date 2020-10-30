@@ -15,8 +15,6 @@ public:
     PersonDoesNotExist(const std::string& name, int tributaryNumber);
     explicit PersonDoesNotExist(const std::string& name);
     explicit PersonDoesNotExist(int tributaryNumber);
-private:
-    std::string _message;
 };
 
 class PersonAlreadyExists : public std::logic_error{
@@ -24,8 +22,16 @@ public:
     PersonAlreadyExists(const std::string& name, int tributaryNumber);
     explicit PersonAlreadyExists(const std::string& name);
     explicit PersonAlreadyExists(int tributaryNumber);
-private:
-    std::string _message;
+};
+
+class InvalidPersonPosition : public std::invalid_argument{
+public:
+    InvalidPersonPosition(unsigned position, unsigned size);
+};
+
+class InvalidPersonCredentialChange : public std::invalid_argument{
+public:
+    InvalidPersonCredentialChange();
 };
 
 #endif //FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H

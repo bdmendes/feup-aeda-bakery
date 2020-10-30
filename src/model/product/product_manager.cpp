@@ -18,7 +18,7 @@ bool ProductManager::has(Product *product) const {
 }
 
 Product* ProductManager::get(unsigned int position) {
-    if (position >= _products.size()) throw std::invalid_argument("Out of bounds product position");
+    if (position >= _products.size()) throw InvalidProductPosition(position, _products.size());
     auto it = _products.begin(); std::advance(it, position);
     return *it;
 }

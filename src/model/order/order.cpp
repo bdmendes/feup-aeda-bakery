@@ -104,7 +104,7 @@ Product * Order::removeProduct(unsigned int position, unsigned int quantity) {
         _products.erase(it);
         updateTotalPrice();
     }
-    else throw std::invalid_argument("Out of bounds order");
+    else throw InvalidProductPosition(position, _products.size());
     return it->first;
 }
 
@@ -119,7 +119,7 @@ Product * Order::removeProduct(unsigned int position) {
         _products.erase(it);
         updateTotalPrice();
     }
-    else throw std::invalid_argument("Out of bounds order");
+    else throw InvalidProductPosition(position, _products.size());
     return it->first;
 }
 

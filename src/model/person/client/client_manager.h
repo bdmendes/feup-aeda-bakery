@@ -10,13 +10,17 @@
 class ClientManager {
 public:
     ClientManager();
+
     bool has(Client* client) const;
+
     Client* get(unsigned position);
     std::set<Client *, Smaller> getAll();
+
     Client* add(std::string name, bool premium = false, int tributaryNumber = 999999999,
              Credential credential = {"client", "client"});
     Client* remove(Client* client);
     Client* remove(unsigned position);
+
     void read(std::ifstream& file);
     void write(std::ofstream& file);
 private:

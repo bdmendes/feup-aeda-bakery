@@ -3,8 +3,6 @@
 //
 
 #include "order_manager.h"
-#include <algorithm>
-#include <exception/person_exception.h>
 
 OrderManager::OrderManager(ProductManager &pm, ClientManager &cm, WorkerManager &wm) :
         _productManager(pm), _clientManager(cm), _workerManager(wm), _orders(std::set<Order*, OrderSmaller>()){
@@ -18,7 +16,7 @@ bool OrderManager::has(Order *order) const {
 }
 
 Order* OrderManager::get(unsigned int position) {
-    if (position >= _orders.size()) throw std::invalid_argument("Out of bounds order position");
+    if (position >= _orders.size()) throw InvalidOrderPosition(position, _orders.size());
     auto it = _orders.begin(); std::advance(it, position);
     return *it;
 }
@@ -54,6 +52,6 @@ Order* OrderManager::add(Client *client) {
 Order * OrderManager::remove(Order *order) {
     auto position = std::find(_orders.begin(),_orders.end(),order);
     if (position == _orders.end())
-        throw std::invalid_argument("Order does not exist");
+        throw OrderDoesNotExist();
     _orders.erase(position);
 }

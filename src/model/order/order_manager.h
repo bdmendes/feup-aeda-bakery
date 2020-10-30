@@ -5,10 +5,15 @@
 #ifndef FEUP_AEDA_PROJECT_ORDER_MANAGER_H
 #define FEUP_AEDA_PROJECT_ORDER_MANAGER_H
 
+#include "order.h"
+
 #include <model/product/product_manager.h>
 #include <model/person/client/client_manager.h>
 #include <model/person/worker/worker_manager.h>
-#include "order.h"
+
+#include <exception/person_exception.h>
+
+#include <algorithm>
 
 struct OrderSmaller{
     bool operator()(const Order* o1, const Order* o2) const{

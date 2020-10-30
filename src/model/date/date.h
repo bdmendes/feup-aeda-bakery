@@ -14,11 +14,14 @@ class Date{
 public:
     Date();
     Date(unsigned day, unsigned month, unsigned year, unsigned hour = 0, unsigned minute = 0);
-    bool operator==(const Date& d2) const;
+
+    static bool isLeapYear(unsigned year);
+
     std::string getCompleteDate() const;
     std::string getCalendarDay() const;
     std::string getClockTime() const;
-    static bool isLeapYear(unsigned year);
+
+    bool operator==(const Date& d2) const;
 private:
     bool isValid() const;
     std::string _str;

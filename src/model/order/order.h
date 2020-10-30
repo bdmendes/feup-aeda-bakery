@@ -5,14 +5,16 @@
 #ifndef SRC_ORDER_H
 #define SRC_ORDER_H
 
-#include <map>
 #include "exception/product_exception.h"
 #include "exception/order_exception.h"
 
 #include "model/person/person/person.h"
 #include "model/product/product.h"
 #include "model/date/date.h"
+
 #include <fstream>
+#include <map>
+
 
 class Order {
 public:

@@ -3,9 +3,6 @@
 //
 
 #include "worker_manager.h"
-#include <algorithm>
-#include <exception/person_exception.h>
-#include <exception/store_exception.h>
 
 WorkerManager::WorkerManager() : _workers(std::set<Worker*, Smaller>()){
 }
@@ -18,13 +15,13 @@ bool WorkerManager::has(Worker *worker) const {
 }
 
 Worker* WorkerManager::get(unsigned int position) {
-    if (position >= _workers.size()) throw std::invalid_argument("Out of bounds worker position");
+    if (position >= _workers.size()) throw PersonPositionOutOfBound(position);
     auto it = _workers.begin(); std::advance(it, position);
     return *it;
 }
 
 Worker* WorkerManager::getAvailable() {
-    if (_workers.empty()) throw StoreHasNoWorkers("Bakery Store"); // to change! no access to store name anymore
+    if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
 
     auto orderComp = [](const Worker *worker1, const Worker *worker2) {
         return ((worker1->getOrders()) < (worker2->getOrders()));
@@ -37,7 +34,7 @@ std::set<Worker *, Smaller> WorkerManager::getAll() {
 }
 
 Worker* WorkerManager::changeSalary(unsigned position, float salary) {
-    if(position >= _workers.size()) throw std::invalid_argument("Out of bounds worker position");
+    if(position >= _workers.size()) throw PersonPositionOutOfBound(position);
     auto it = _workers.begin(); std::advance(it, position);
     (*it)->setSalary(salary);
     return *it;
@@ -51,7 +48,7 @@ Worker* WorkerManager::add(std::string name, float salary, int tributaryNumber, 
 }
 
 Worker* WorkerManager::remove(Worker *worker) {
-    if (_workers.empty()) throw StoreHasNoWorkers("Bakery Store"); // to change! no access to store name anymore
+    if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
     auto position = std::find(_workers.begin(), _workers.end(),worker);
     if(position == _workers.end())
         throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
@@ -59,7 +56,7 @@ Worker* WorkerManager::remove(Worker *worker) {
 }
 
 Worker* WorkerManager::remove(unsigned position) {
-    if(position >= _workers.size()) throw std::invalid_argument("Out of bounds worker position");
+    if(position >= _workers.size()) throw PersonPositionOutOfBound(position);
     auto it = _workers.begin(); std::advance(it, position);
     _workers.erase(it);
     return *it;
