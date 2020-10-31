@@ -51,6 +51,11 @@ bool Date::operator==(const Date &d2) const {
     return getCalendarDay() == d2.getCalendarDay();
 }
 
+bool Date::operator<(const Date &d2) const {
+    return getCompleteDate() < d2.getCompleteDate();
+}
+
+
 bool Date::isValid() const {
     if (_hour>=24 || _minute>=60 || _day>31 || _month > 12) return false;
     switch(_month){
@@ -61,3 +66,4 @@ bool Date::isValid() const {
     }
     return true;
 }
+

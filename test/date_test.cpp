@@ -9,7 +9,7 @@ using testing::Eq;
 
 TEST(Date, create_date){
     EXPECT_THROW(Date d1(29,02,2019,23,53),InvalidDate);
-    Date d1(29,02,2020,23,53);
+    EXPECT_THROW(Date d2(29,05,2020,23,60), InvalidDate);
 }
 
 TEST(Date, is_leap_year){
@@ -50,6 +50,7 @@ TEST(Date, operator_equal){
     Date d3(9, 10, 2001, 10, 51);
 
     EXPECT_EQ(true, d1==d2);
+    EXPECT_EQ(true, d2==d1);
 
     EXPECT_EQ(false, d1==d3);
     EXPECT_EQ(false, d2==d3);

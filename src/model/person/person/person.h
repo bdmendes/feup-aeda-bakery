@@ -27,9 +27,8 @@ public:
     void changeCredential(const Credential& credential);
     void changeName(const std::string& name);
 
-    bool operator==(const Person& p2) const{
-        return _name == p2.getName() && _tributaryNumber == p2.getTributaryNumber();
-    }
+    bool operator<(const Person& p2) const;
+    bool operator==(const Person& p2) const;
 protected:
     Person(std::string name, int tributaryNumber, Credential credential);
 private:
@@ -39,8 +38,8 @@ private:
 };
 
 struct Smaller{
-    bool operator()(const Person* p1, const Person* p2) const{
-        return p1 < p2;
+    bool operator()(const Person* p1, const Person* p2) {
+        return *p1 < *p2;
     }
 };
 

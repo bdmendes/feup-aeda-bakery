@@ -17,7 +17,7 @@
 
 struct OrderSmaller{
     bool operator()(const Order* o1, const Order* o2) const{
-        return o1 < o2;
+        return *o1 < *o2;
     }
 };
 

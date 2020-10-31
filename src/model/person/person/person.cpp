@@ -30,3 +30,11 @@ void Person::changeCredential(const Credential &credential) {
     if (_credential == credential) throw InvalidPersonCredentialChange();
     _credential = credential;
 }
+
+bool Person::operator<(const Person &p2) const {
+    return _name < p2.getName();
+}
+
+bool Person::operator==(const Person &p2) const {
+    return _name == p2.getName() && _tributaryNumber == p2.getTributaryNumber();
+}

@@ -9,8 +9,8 @@
 #include <set>
 
 struct ProductSmaller{
-    bool operator()(const Product* p1, const Product* p2) const{
-        return p1 < p2;
+    bool operator()(const Product* p1, const Product* p2) {
+        return *p1 < *p2;
     }
 };
 

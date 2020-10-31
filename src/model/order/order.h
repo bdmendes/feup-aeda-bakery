@@ -45,7 +45,7 @@ public:
     void deliver(float clientEvaluation);
 
     bool operator==(const Order& rhs) const;
-
+    bool operator<(const Order& o2) const;
 
 private:
     std::map<Product*, unsigned int> _products;
