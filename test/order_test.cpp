@@ -12,6 +12,21 @@
 
 using testing::Eq;
 
+TEST(Order, create_order){
+
+}
+
+TEST(Order, add_product){
+
+}
+
+TEST(Order, remove_product){
+
+}
+
+TEST(Order, equal_order){
+
+}
 
 /*TEST(Order, create_order){
     Client client("Alfredo");

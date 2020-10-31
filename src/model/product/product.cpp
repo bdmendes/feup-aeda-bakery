@@ -32,19 +32,19 @@ CakeCategory Cake::getCategory() const { return _category;}
 //OPERATORS OVERLOADING
 
 bool Product::operator==(const Product &p) const{
-    return getName() == p.getName();
+    return _name == p.getName() && _price == p.getPrice();
 }
 
 bool Product::operator<(const Product &p) const {
-    return getName() < p.getName();
+    return _name < p.getName();
 }
 
 bool Cake::operator==(const Cake &cake) const{
-    return getName() == cake.getName() && getCategory() ==cake.getCategory();
+    return _name == cake.getName() && _price == cake.getPrice() && _category == cake.getCategory();
 }
 
 bool Bread::operator==(const Bread &bread) const{
-    return getName() == bread.getName() && isSmall() == bread.isSmall();
+    return _name == bread.getName() && _price == bread.getPrice() && _small == bread.isSmall();
 }
 
 

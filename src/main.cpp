@@ -30,6 +30,6 @@ int main() {
         std::cout << "Found" << std::endl;
     std::cout << worker1.operator==(worker) << std::endl;
 
-
     return 0;
+
 }

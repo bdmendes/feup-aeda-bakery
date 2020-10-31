@@ -19,13 +19,16 @@ public:
 
     float getMeanEvaluation() const;
     unsigned getPoints() const;
+    std::vector<float> getEvaluations() const;
+
+    void setPremium(bool premium);
 
     void addPoints(unsigned points);
     void removePoints(unsigned points);
     void resetPoints();
     void addEvaluation(float evaluation);
 
-    void setPremium(bool premium);
+
 private:
     bool _premium;
     unsigned _points;

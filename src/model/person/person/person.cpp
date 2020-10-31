@@ -23,6 +23,7 @@ Credential Person::getCredential() const {
 }
 
 void Person::changeName(const std::string& name){
+    if(_name == name) throw InvalidPersonNameChange();
     _name = name;
 }
 
@@ -36,5 +37,6 @@ bool Person::operator<(const Person &p2) const {
 }
 
 bool Person::operator==(const Person &p2) const {
-    return _name == p2.getName() && _tributaryNumber == p2.getTributaryNumber();
+    return _name == p2.getName() && _tributaryNumber == p2.getTributaryNumber() &&
+    _credential == p2.getCredential();
 }
