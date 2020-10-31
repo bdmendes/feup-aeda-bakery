@@ -18,12 +18,12 @@ int Person::getTributaryNumber() const {
     return _tributaryNumber;
 }
 
-void Person::changeName(const std::string& name){
-    _name = name;
-}
-
 Credential Person::getCredential() const {
     return _credential;
+}
+
+void Person::changeName(const std::string& name){
+    _name = name;
 }
 
 void Person::changeCredential(const Credential &credential) {

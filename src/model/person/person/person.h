@@ -25,8 +25,8 @@ public:
     int getTributaryNumber() const;
     Credential getCredential() const;
 
-    void changeCredential(const Credential& credential);
     void changeName(const std::string& name);
+    void changeCredential(const Credential& credential);
 
     bool operator<(const Person& p2) const;
     bool operator==(const Person& p2) const;
