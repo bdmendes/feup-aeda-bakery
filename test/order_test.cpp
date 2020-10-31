@@ -12,7 +12,8 @@
 
 using testing::Eq;
 
-TEST(Order, create_order){
+
+/*TEST(Order, create_order){
     Client client("Alfredo");
     Worker worker("Beatriz",950);
 
@@ -81,7 +82,7 @@ TEST(Order,add_products){
     order.addProduct(&meatCake);
     EXPECT_FLOAT_EQ(order.getTotal(),6.6);
     EXPECT_EQ(order.getProducts()[&meatCake],6);
-}
+}*/
 
 /*
 

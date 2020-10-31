@@ -13,11 +13,14 @@ class Worker : public Person{
 public:
     Worker(std::string name, float salary, int tributaryNumber = 999999999,
            Credential credential = {"worker", "worker"});
+
+    float getSalary() const;
     unsigned getOrders() const;
+
+    void setSalary(float salary);
+
     void addOrder();
     void removeOrder();
-    void setSalary(float salary);
-    float getSalary() const;
 private:
     float _salary;
     unsigned _orders;

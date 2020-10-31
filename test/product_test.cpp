@@ -8,6 +8,7 @@
 
 using testing::Eq;
 
+/*
 TEST(Product, creat_product){
     Cake meatCake("Bolo com molho de carne", 1.20, CakeCategory::PUFF_PASTRY);
     EXPECT_EQ(meatCake.getName(), "Bolo com molho de carne");
@@ -44,4 +45,4 @@ TEST(Bread, equalProducts){
     Bread b1("Pao da avo", 1.20, true);
     Bread b2("Cacete da avo", 1.20, true);
     EXPECT_FALSE(b1 == b2);
-}
+}*/

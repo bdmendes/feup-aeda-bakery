@@ -12,6 +12,6 @@ StoreAlreadyExists::StoreAlreadyExists(const std::string &name) :
     std::logic_error(name + " Store already exists!") {
 }
 
-StoreHasNoWorkers::StoreHasNoWorkers(const std::string& name) :
-    std::logic_error(name + " store has no workers!"){
+StoreHasNoWorkers::StoreHasNoWorkers() :
+    std::logic_error("This store has no workers!"){
 }

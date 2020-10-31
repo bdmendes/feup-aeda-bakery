@@ -18,18 +18,14 @@ Date::Date(){
     _year = currentTime.tm_year + 1900;
 }
 
-bool Date::isLeapYear(unsigned year) {
-    return ((year%4==0 && year%100!=0) || (year%400==0));
-}
-
 Date::Date(unsigned day, unsigned month, unsigned year, unsigned hour, unsigned minute) :
     _hour(hour), _minute(minute), _day(day), _month(month), _year(year){
     _str = getCompleteDate();
     if (!isValid()) throw InvalidDate(_str);
 }
 
-bool Date::operator==(const Date &d2) const {
-    return getCalendarDay() == d2.getCalendarDay();
+bool Date::isLeapYear(unsigned year) {
+    return ((year%4==0 && year%100!=0) || (year%400==0));
 }
 
 std::string Date::getCalendarDay() const {
@@ -51,6 +47,15 @@ std::string Date::getCompleteDate() const {
     return getCalendarDay() + " " + getClockTime();
 }
 
+bool Date::operator==(const Date &d2) const {
+    return getCalendarDay() == d2.getCalendarDay();
+}
+
+bool Date::operator<(const Date &d2) const {
+    return getCompleteDate() < d2.getCompleteDate();
+}
+
+
 bool Date::isValid() const {
     if (_hour>=24 || _minute>=60 || _day>31 || _month > 12) return false;
     switch(_month){
@@ -61,5 +66,4 @@ bool Date::isValid() const {
     }
     return true;
 }
-
 

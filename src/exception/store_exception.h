@@ -20,7 +20,7 @@ public:
 
 class StoreHasNoWorkers : public std::logic_error{
 public:
-    explicit StoreHasNoWorkers(const std::string& name);
+    explicit StoreHasNoWorkers();
 };
 
 #endif //FEUP_AEDA_PROJECT_STORE_EXCEPTIONS_H
