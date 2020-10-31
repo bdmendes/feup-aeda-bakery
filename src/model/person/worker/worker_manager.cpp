@@ -4,7 +4,7 @@
 
 #include "worker_manager.h"
 
-WorkerManager::WorkerManager() : _workers(std::set<Worker*, Smaller>()){
+WorkerManager::WorkerManager() : _workers(std::set<Worker*, SmallerClient>()){
 }
 
 bool WorkerManager::has(Worker *worker) const {
@@ -29,7 +29,7 @@ Worker* WorkerManager::getAvailable() {
     return *std::min_element(_workers.begin(), _workers.end(), orderComp);
 }
 
-std::set<Worker *, Smaller> WorkerManager::getAll() {
+std::set<Worker *, SmallerClient> WorkerManager::getAll() {
     return _workers;
 }
 

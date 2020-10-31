@@ -3,6 +3,7 @@
 //
 
 #include <algorithm>
+#include <sstream>
 #include "util.h"
 
 bool util::isdigit(const std::string &str) {
@@ -36,9 +37,16 @@ void util::normalize(std::string &str, bool isName) {
 }
 
 void util::stripSpecialChars(std::string& str){
-    str.erase(std::remove(str.begin(),str.end(),[](const char c){return !std::isalnum(c) && c != SPACE;}), str.end());
+    str.erase(std::remove_if(str.begin(),str.end(),[](const char c){return !std::isalnum(c) && c != SPACE;}), str.end());
 }
 
 void util::lowercase(std::string &str) {
     std::transform(str.begin(),str.end(),str.begin(),[](unsigned char c){return std::tolower(c);});
+}
+
+std::string util::colGenerate(std::string str, int colSize) {
+    if (str.size() > colSize) str = str.substr(0,colSize - 3) + "...";
+    std::ostringstream ss;
+    ss << std::setw(colSize) << std::setfill(SPACE) << std::left << str << SPACE;
+    return ss.str();
 }

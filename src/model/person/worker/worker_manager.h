@@ -21,7 +21,7 @@ public:
 
     Worker* get(unsigned position);
     Worker* getAvailable();
-    std::set<Worker*, Smaller> getAll();
+    std::set<Worker*, SmallerClient> getAll();
 
     Worker * changeSalary(unsigned position, float salary);
 
@@ -33,7 +33,7 @@ public:
     void read(std::ifstream& file);
     void write(std::ofstream& file);
 private:
-    std::set<Worker*, Smaller> _workers;
+    std::set<Worker*, SmallerClient> _workers;
 };
 
 
