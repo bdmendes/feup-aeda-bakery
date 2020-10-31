@@ -17,7 +17,7 @@ public:
     bool has(Client* client) const;
 
     Client* get(unsigned position);
-    std::set<Client *, SmallerClient> getAll();
+    std::set<Client *, PersonSmaller> getAll();
 
     Client* add(std::string name, bool premium = false, int tributaryNumber = 999999999,
              Credential credential = {"client", "client"});
@@ -27,7 +27,7 @@ public:
     void read(std::ifstream& file);
     void write(std::ostream& os);
 private:
-    std::set<Client*, SmallerClient> _clients;
+    std::set<Client*, PersonSmaller> _clients;
 };
 
 

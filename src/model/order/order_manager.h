@@ -35,7 +35,7 @@ public:
     void remove(Order* order);
 
     void read(std::ifstream& file);
-    void write(std::ofstream& file) const;
+    void write(std::ostream& os) const;
 
 private:
     ProductManager& _productManager;

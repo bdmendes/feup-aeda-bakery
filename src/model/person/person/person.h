@@ -23,7 +23,7 @@ class Person {
 public:
     Person(std::string name, int tributaryNumber, Credential credential);
     std::string getName() const;
-    int getTributaryNumber() const;
+    int getTaxId() const;
     Credential getCredential() const;
 
     void changeName(const std::string& name);
@@ -33,11 +33,11 @@ public:
     bool operator==(const Person& p2) const;
 private:
     std::string _name;
-    int _tributaryNumber;
+    int _taxId;
     Credential _credential;
 };
 
-struct SmallerClient{
+struct PersonSmaller{
     bool operator()(const Person* p1, const Person* p2) {
         return *p1 < *p2;
     }

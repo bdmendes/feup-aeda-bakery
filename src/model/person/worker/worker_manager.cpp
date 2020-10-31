@@ -4,7 +4,7 @@
 
 #include "worker_manager.h"
 
-WorkerManager::WorkerManager() : _workers(std::set<Worker*, SmallerClient>()){
+WorkerManager::WorkerManager() : _workers(std::set<Worker*, PersonSmaller>()){
 }
 
 bool WorkerManager::has(Worker *worker) const {
@@ -29,7 +29,7 @@ Worker* WorkerManager::getAvailable() {
     return *std::min_element(_workers.begin(), _workers.end(), orderComp);
 }
 
-std::set<Worker *, SmallerClient> WorkerManager::getAll() {
+std::set<Worker *, PersonSmaller> WorkerManager::getAll() {
     return _workers;
 }
 
@@ -42,7 +42,7 @@ Worker* WorkerManager::changeSalary(unsigned position, float salary) {
 
 Worker* WorkerManager::add(std::string name, float salary, int tributaryNumber, Credential credential) {
     auto* worker = new Worker(std::move(name),salary,tributaryNumber,std::move(credential));
-    if (has(worker)) throw PersonAlreadyExists(worker->getName(),worker->getTributaryNumber());
+    if (has(worker)) throw PersonAlreadyExists(worker->getName(), worker->getTaxId());
     else _workers.insert(worker);
     return worker;
 }
@@ -51,14 +51,30 @@ void WorkerManager::remove(Worker *worker) {
     if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
     auto position = std::find(_workers.begin(), _workers.end(),worker);
     if(position == _workers.end())
-        throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
+        throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
     _workers.erase(position);
 }
 
 void WorkerManager::remove(unsigned position) {
     if(position >= _workers.size()) throw InvalidPersonPosition(position, _workers.size());
-    auto it = _workers.begin(); std::advance(it, position);
+    auto it = _workers.begin();
+    std::advance(it, position);
     _workers.erase(it);
+}
+
+void WorkerManager::write(std::ostream &os) {
+    os << util::column("Name", true)
+    << util::column("Tax ID")
+    << util::column("Salary")
+    << util::column("Delivered")
+    << std::endl;
+    for (const auto& w: _workers){
+        os << util::column(w->getName(), true)
+        << util::column(std::to_string(w->getTaxId()))
+        << util::column(util::to_string(w->getSalary()) + "€")
+        << util::column(std::to_string(w->getOrders()) + " orders")
+        << std::endl;
+    }
 }
 
 

@@ -93,7 +93,7 @@ void Order::removeProduct(unsigned int position, unsigned int quantity) {
     auto it = _products.begin();
     if (position < _products.size()){
         if (_delivered) throw OrderWasAlreadyDelivered(_client,_worker,_date);
-        while (position--) it++;
+        std::advance(it,position);
         if (it->second < quantity) quantity = it->second;
         it->second -= quantity;
         if (it->second == 0) _products.erase(it);

@@ -4,6 +4,8 @@
 
 #include "client.h"
 
+#include <utility>
+
 Client::Client(std::string name, bool premium, int tributaryNumber, Credential credential):
         Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}, _premium(premium),
         _evaluations(std::vector<float>()){

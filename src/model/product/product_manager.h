@@ -29,7 +29,7 @@ public:
     void remove(Product* product);
 
     void read(std::ifstream& file);
-    void write(std::ofstream& file) const;
+    void write(std::ostream& os) const;
 private:
     std::set<Product*, ProductSmaller> _products;
 };
