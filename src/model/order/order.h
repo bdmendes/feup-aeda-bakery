@@ -10,6 +10,7 @@
 
 #include "model/person/person/person.h"
 #include "model/product/product.h"
+#include "model/product/product_manager.h"
 #include "model/date/date.h"
 
 #include <fstream>
@@ -28,7 +29,7 @@ public:
     const Worker& getWorker() const;
     const Client& getClient() const;
 
-    std::map<Product*, unsigned int> getProducts() const;
+    std::map<Product*, unsigned int, ProductSmaller> getProducts() const;
 
     float getClientEvaluation() const;
     float getFinalPrice() const;
@@ -48,7 +49,7 @@ public:
     bool operator<(const Order& o2) const;
 
 private:
-    std::map<Product*, unsigned int> _products;
+    std::map<Product*, unsigned int, ProductSmaller> _products;
     void updateTotalPrice();
     float _totalPrice;
     Client& _client;

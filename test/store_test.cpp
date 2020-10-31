@@ -9,7 +9,7 @@
 
 using testing::Eq;
 
-TEST(Store, create_store){
+/*TEST(Store, create_store){
     Store store1("Padaria Diamante");
     Store store2("Padaria Pão Quente");
 
@@ -41,7 +41,7 @@ TEST(Store, fire_worker){
 
     EXPECT_THROW(store.workerManager.remove(&worker3), PersonDoesNotExist);
     EXPECT_THROW(store.workerManager.remove(&worker4), PersonDoesNotExist);
-}
+}*/
 
 /*
 TEST(Store, has_worker){
