@@ -47,7 +47,7 @@ Worker* WorkerManager::add(std::string name, float salary, int tributaryNumber, 
     return worker;
 }
 
-Worker* WorkerManager::remove(Worker *worker) {
+void WorkerManager::remove(Worker *worker) {
     if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
     auto position = std::find(_workers.begin(), _workers.end(),worker);
     if(position == _workers.end())
@@ -55,11 +55,10 @@ Worker* WorkerManager::remove(Worker *worker) {
     _workers.erase(position);
 }
 
-Worker* WorkerManager::remove(unsigned position) {
+void WorkerManager::remove(unsigned position) {
     if(position >= _workers.size()) throw InvalidPersonPosition(position, _workers.size());
     auto it = _workers.begin(); std::advance(it, position);
     _workers.erase(it);
-    return *it;
 }
 
 

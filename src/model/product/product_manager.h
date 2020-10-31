@@ -26,7 +26,7 @@ public:
 
     Bread* addBread(std::string name, float price, bool small = true);
     Cake* addCake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
-    Product* remove(Product* product);
+    void remove(Product* product);
 
     void read(std::ifstream& file);
     void write(std::ofstream& file) const;

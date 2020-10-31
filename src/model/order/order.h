@@ -38,10 +38,10 @@ public:
     Date getDate() const;
 
     Product* addProduct(Product* product, unsigned quantity = 1);
-    Product* removeProduct(Product* product, unsigned quantity);
-    Product* removeProduct(Product* product);
-    Product* removeProduct(unsigned position, unsigned quantity);
-    Product* removeProduct(unsigned position);
+    void removeProduct(Product* product, unsigned quantity);
+    void removeProduct(Product* product);
+    void removeProduct(unsigned position, unsigned quantity);
+    void removeProduct(unsigned position);
 
     void deliver(float clientEvaluation);
 

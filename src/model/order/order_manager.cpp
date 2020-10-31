@@ -49,7 +49,7 @@ Order* OrderManager::add(Client *client) {
     return *_orders.rbegin();
 }
 
-Order * OrderManager::remove(Order *order) {
+void OrderManager::remove(Order *order) {
     auto position = std::find(_orders.begin(),_orders.end(),order);
     if (position == _orders.end())
         throw OrderDoesNotExist();

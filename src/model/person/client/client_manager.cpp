@@ -30,18 +30,16 @@ Client* ClientManager::add(std::string name, bool premium, int tributaryNumber, 
     return client;
 }
 
-Client* ClientManager::remove(Client *client) {
+void ClientManager::remove(Client *client) {
     auto position = std::find(_clients.begin(), _clients.end(),client);
     if(position == _clients.end())
         throw PersonDoesNotExist(client->getName(), client->getTributaryNumber());
     _clients.erase(position);
-    return client;
 }
 
-Client* ClientManager::remove(unsigned position) {
+void ClientManager::remove(unsigned position) {
     if(position >= _clients.size()) throw InvalidPersonPosition(position, _clients.size());
     auto it = _clients.begin(); std::advance(it, position);
     _clients.erase(it);
-    return *it;
 }
 

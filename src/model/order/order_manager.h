@@ -32,7 +32,7 @@ public:
     std::set<Order*, OrderSmaller> get(Worker* worker);
 
     Order* add(Client* client);
-    Order* remove(Order* order);
+    void remove(Order* order);
 
     void read(std::ifstream& file);
     void write(std::ofstream& file) const;

@@ -39,12 +39,11 @@ Cake* ProductManager::addCake(std::string name, float price, CakeCategory catego
     return it;
 }
 
-Product* ProductManager::remove(Product *product) {
+void ProductManager::remove(Product *product) {
     auto position = std::find(_products.begin(), _products.end(), product);
     if (position == _products.end())
         throw ProductDoesNotExist(product->getName(),product->getPrice());
     _products.erase(position);
-    return product;
 }
 
 

@@ -69,7 +69,7 @@ Product * Order::addProduct(Product* product, unsigned quantity) {
     return product;
 }
 
-Product * Order::removeProduct(Product* product, unsigned quantity) {
+void Order::removeProduct(Product* product, unsigned quantity) {
     if (_delivered) throw OrderWasAlreadyDelivered(_client,_worker,_date);
     if (hasProduct(product)){
         if (_products[product] < quantity) quantity = _products[product];
@@ -78,20 +78,18 @@ Product * Order::removeProduct(Product* product, unsigned quantity) {
         updateTotalPrice();
     }
     else throw ProductDoesNotExist(product->getName(),product->getPrice());
-    return product;
 }
 
-Product * Order::removeProduct(Product *product) {
+void Order::removeProduct(Product *product) {
     if (_delivered) throw OrderWasAlreadyDelivered(_client,_worker,_date);
     if (hasProduct(product)){
         _products.erase(product);
         updateTotalPrice();
     }
     else throw ProductDoesNotExist(product->getName(),product->getPrice());
-    return product;
 }
 
-Product * Order::removeProduct(unsigned int position, unsigned int quantity) {
+void Order::removeProduct(unsigned int position, unsigned int quantity) {
     auto it = _products.begin();
     if (position < _products.size()){
         if (_delivered) throw OrderWasAlreadyDelivered(_client,_worker,_date);
@@ -105,10 +103,9 @@ Product * Order::removeProduct(unsigned int position, unsigned int quantity) {
         updateTotalPrice();
     }
     else throw InvalidProductPosition(position, _products.size());
-    return it->first;
 }
 
-Product * Order::removeProduct(unsigned int position) {
+void Order::removeProduct(unsigned int position) {
     auto it = _products.begin();
     if (position < _products.size()){
         if (_delivered) throw OrderWasAlreadyDelivered(_client,_worker,_date);
@@ -120,7 +117,6 @@ Product * Order::removeProduct(unsigned int position) {
         updateTotalPrice();
     }
     else throw InvalidProductPosition(position, _products.size());
-    return it->first;
 }
 
 void Order::deliver(float clientEvaluation) {

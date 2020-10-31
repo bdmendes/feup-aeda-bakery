@@ -27,8 +27,8 @@ public:
 
     Worker* add(std::string name, float salary, int tributaryNumber = 999999999,
              Credential credential = {"worker", "worker"});
-    Worker* remove(Worker* worker);
-    Worker* remove(unsigned position);
+    void remove(Worker* worker);
+    void remove(unsigned position);
 
     void read(std::ifstream& file);
     void write(std::ofstream& file);

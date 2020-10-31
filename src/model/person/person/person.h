@@ -24,6 +24,7 @@ public:
     std::string getName() const;
     int getTributaryNumber() const;
     Credential getCredential() const;
+
     void changeCredential(const Credential& credential);
     void changeName(const std::string& name);
 
