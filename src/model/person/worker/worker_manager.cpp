@@ -15,7 +15,7 @@ bool WorkerManager::has(Worker *worker) const {
 }
 
 Worker* WorkerManager::get(unsigned int position) {
-    if (position >= _workers.size()) throw PersonPositionOutOfBound(position);
+    if (position >= _workers.size()) throw InvalidPersonPosition(position, _workers.size());
     auto it = _workers.begin(); std::advance(it, position);
     return *it;
 }
@@ -34,7 +34,7 @@ std::set<Worker *, Smaller> WorkerManager::getAll() {
 }
 
 Worker* WorkerManager::changeSalary(unsigned position, float salary) {
-    if(position >= _workers.size()) throw PersonPositionOutOfBound(position);
+    if(position >= _workers.size()) throw InvalidPersonPosition(position, _workers.size());
     auto it = _workers.begin(); std::advance(it, position);
     (*it)->setSalary(salary);
     return *it;
@@ -56,7 +56,7 @@ Worker* WorkerManager::remove(Worker *worker) {
 }
 
 Worker* WorkerManager::remove(unsigned position) {
-    if(position >= _workers.size()) throw PersonPositionOutOfBound(position);
+    if(position >= _workers.size()) throw InvalidPersonPosition(position, _workers.size());
     auto it = _workers.begin(); std::advance(it, position);
     _workers.erase(it);
     return *it;

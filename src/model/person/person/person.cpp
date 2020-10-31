@@ -27,6 +27,6 @@ Credential Person::getCredential() const {
 }
 
 void Person::changeCredential(const Credential &credential) {
-    if (_credential == credential) throw PersonSameCredentials();
+    if (_credential == credential) throw InvalidPersonCredentialChange();
     _credential = credential;
 }

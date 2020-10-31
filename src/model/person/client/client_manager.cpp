@@ -14,7 +14,7 @@ bool ClientManager::has(Client *client) const {
 }
 
 Client *ClientManager::get(unsigned position) {
-    if (position >= _clients.size()) throw PersonPositionOutOfBound(position);
+    if (position >= _clients.size()) throw InvalidPersonPosition(position, _clients.size());
     auto it = _clients.begin(); std::advance(it, position);
     return *it;
 }
@@ -39,7 +39,7 @@ Client* ClientManager::remove(Client *client) {
 }
 
 Client* ClientManager::remove(unsigned position) {
-    if(position >= _clients.size()) throw PersonPositionOutOfBound(position);
+    if(position >= _clients.size()) throw InvalidPersonPosition(position, _clients.size());
     auto it = _clients.begin(); std::advance(it, position);
     _clients.erase(it);
     return *it;

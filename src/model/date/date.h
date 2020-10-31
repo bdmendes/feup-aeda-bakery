@@ -17,9 +17,9 @@ public:
 
     static bool isLeapYear(unsigned year);
 
-    std::string getCompleteDate() const;
     std::string getCalendarDay() const;
     std::string getClockTime() const;
+    std::string getCompleteDate() const;
 
     bool operator==(const Date& d2) const;
 private:
