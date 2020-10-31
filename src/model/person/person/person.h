@@ -21,6 +21,7 @@ struct Credential {
 
 class Person {
 public:
+    Person(std::string name, int tributaryNumber, Credential credential);
     std::string getName() const;
     int getTributaryNumber() const;
     Credential getCredential() const;
@@ -30,15 +31,13 @@ public:
 
     bool operator<(const Person& p2) const;
     bool operator==(const Person& p2) const;
-protected:
-    Person(std::string name, int tributaryNumber, Credential credential);
 private:
     std::string _name;
     int _tributaryNumber;
     Credential _credential;
 };
 
-struct Smaller{
+struct SmallerClient{
     bool operator()(const Person* p1, const Person* p2) {
         return *p1 < *p2;
     }
