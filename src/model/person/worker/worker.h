@@ -11,7 +11,7 @@
 
 class Worker : public Person{
 public:
-    Worker(std::string name, float salary, int tributaryNumber = 999999999,
+    Worker(std::string name, float salary, int tributaryNumber = DEFAULT_TAXID,
            Credential credential = {"worker", "worker"});
 
     float getSalary() const;
@@ -21,6 +21,8 @@ public:
 
     void addOrder();
     void removeOrder();
+
+    void write(std::ostream& os);
 private:
     float _salary;
     unsigned _orders;

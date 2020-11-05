@@ -9,10 +9,7 @@ OrderManager::OrderManager(ProductManager &pm, ClientManager &cm, WorkerManager 
 }
 
 bool OrderManager::has(Order *order) const {
-    auto comp = [order](const Order* o2){
-        return *order == *o2;
-    };
-    return std::find_if(_orders.begin(),_orders.end(),comp) != _orders.begin();
+    return std::find(_orders.begin(),_orders.end(),order) != _orders.begin();
 }
 
 Order* OrderManager::get(unsigned int position) {
@@ -57,15 +54,20 @@ void OrderManager::remove(Order *order) {
 }
 
 void OrderManager::write(std::ostream &os) const {
-    os << util::column("CLIENT",true)
+    int numSpaces = static_cast<int>(std::to_string(_orders.size()).size() + 2);
+    os << std::string(numSpaces,util::SPACE) << util::column("CLIENT",true)
     << util::column("WORKER",true)
-    << util::column("REQUEST DATE",true)
+    << util::column("REQUESTED",true)
     << util::column("DELIVERED",true) << "\n";
 
+    int count = 1;
     for (const auto& o: _orders){
-        os << util::column(o->getClient().getName(),true)
+        os << std::setw(numSpaces) << std::left << std::to_string(count) + ". "
+        << util::column(o->getClient().getName(),true)
         << util::column(o->getWorker().getName(),true)
-        << util::column(o->getDate().getCompleteDate(),true)
-        << util::column(o->wasDelivered() ? "Yes" : "No") << "\n";
+        << util::column(o->getRequestDate().getCompleteDate(), true)
+        << util::column(o->wasDelivered() ? o->getDeliverDate().getClockTime() + " (" +
+        util::to_string(o->getClientEvaluation()) + " points)" : "Not Yet",true) << "\n";
+        count++;
     }
 }

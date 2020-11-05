@@ -5,10 +5,7 @@
 #include "product.h"
 
 #include <utility>
-#include <algorithm>
 #include <util/util.h>
-
-//CONSTRUCTORS
 
 Product::Product(std::string name, float price) : _name(std::move(name)), _price(price) {}
 
@@ -18,9 +15,6 @@ Cake::Cake(std::string name, float price, enum CakeCategory category):
         Product(std::move(name), price), _category(category){
 }
 
-
-//GET METHODS
-
 std::string Product::getName() const { return _name;}
 
 float Product::getPrice() const { return _price;}
@@ -28,9 +22,6 @@ float Product::getPrice() const { return _price;}
 bool Bread::isSmall() const { return _small;}
 
 CakeCategory Cake::getCategory() const { return _category;}
-
-
-//OPERATORS OVERLOADING
 
 bool Product::operator==(const Product &p) const{
     return getName() == p.getName();
@@ -41,7 +32,7 @@ bool Product::operator<(const Product &p) const {
 }
 
 bool Cake::operator==(const Cake &cake) const{
-    return getName() == cake.getName() && getCategory() ==cake.getCategory();
+    return getName() == cake.getName() && getCategory() == cake.getCategory();
 }
 
 void Cake::write(std::ostream& os) const {
@@ -52,7 +43,7 @@ void Cake::write(std::ostream& os) const {
 
     os << util::column(_name,true)
     << util::column(category)
-    << util::column(util::to_string(_price));
+    << util::column(util::to_string(_price) + " euros");
 }
 
 bool Bread::operator==(const Bread &bread) const{
@@ -62,7 +53,7 @@ bool Bread::operator==(const Bread &bread) const{
 void Bread::write(std::ostream& os) const {
     os << util::column(_name,true)
        << util::column(_small ? "Small bread" : "Big bread")
-       << util::column(util::to_string(_price));
+       << util::column(util::to_string(_price) + " euros");
 }
 
 

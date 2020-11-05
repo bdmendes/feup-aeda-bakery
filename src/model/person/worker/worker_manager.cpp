@@ -8,10 +8,7 @@ WorkerManager::WorkerManager() : _workers(std::set<Worker*, PersonSmaller>()){
 }
 
 bool WorkerManager::has(Worker *worker) const {
-    auto isEqual = [worker](const Worker* w2){
-        return *worker == *w2;
-    };
-    return std::find_if(_workers.begin(),_workers.end(), isEqual) != _workers.end();
+    return std::find(_workers.begin(),_workers.end(), worker) != _workers.end();
 }
 
 Worker* WorkerManager::get(unsigned int position) {
@@ -63,17 +60,18 @@ void WorkerManager::remove(unsigned position) {
 }
 
 void WorkerManager::write(std::ostream &os) {
-    os << util::column("Name", true)
-    << util::column("Tax ID")
-    << util::column("Salary")
-    << util::column("Delivered")
-    << std::endl;
+    int numSpaces = static_cast<int>(std::to_string(_workers.size()).size() + 2);
+    os << std::string(numSpaces,util::SPACE)
+    << util::column("NAME", true)
+    << util::column("TAX ID")
+    << util::column("SALARY")
+    << util::column("DELIVERED") << "\n";
+
+    int count = 1;
     for (const auto& w: _workers){
-        os << util::column(w->getName(), true)
-        << util::column(std::to_string(w->getTaxId()))
-        << util::column(util::to_string(w->getSalary()) + "€")
-        << util::column(std::to_string(w->getOrders()) + " orders")
-        << std::endl;
+        os << std::setw(numSpaces) << std::left << std::to_string(count++) + ". ";
+        w->write(os);
+        os << "\n";
     }
 }
 

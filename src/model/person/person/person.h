@@ -11,6 +11,8 @@
 #include <stdexcept>
 #include <set>
 
+const int DEFAULT_TAXID = 999999999;
+
 struct Credential {
     std::string username;
     std::string password;

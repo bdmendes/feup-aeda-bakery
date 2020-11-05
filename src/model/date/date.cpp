@@ -90,3 +90,9 @@ unsigned Date::getMinute() const {
     return _time.tm_min;
 }
 
+void Date::addMinutes(int minutes) {
+    _time.tm_min += minutes;
+    std::time_t ntime = mktime(&_time);
+    _time = *localtime(&ntime);
+}
+

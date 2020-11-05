@@ -45,17 +45,18 @@ void ClientManager::remove(unsigned position) {
 }
 
 void ClientManager::write(std::ostream &os) {
-    os << util::column("Name", true)
-    << util::column("Tax ID")
-    << util::column("Is premium?")
-    << util::column("Accumulated")
-    << std::endl;
+    int numSpaces = static_cast<int>(std::to_string(_clients.size()).size() + 2);
+    os << std::string(numSpaces,util::SPACE)
+    << util::column("NAME", true)
+    << util::column("TAX ID")
+    << util::column("TYPE")
+    << util::column("ACCUMULATED") << "\n";
+
+    int count = 1;
     for (const auto& c: _clients){
-        std::string premiumState = c->isPremium() ? "Yes" : "No";
-        os << util::column(c->getName(), true)
-        << util::column(std::to_string(c->getTaxId()))
-        << util::column(premiumState)
-        << util::column(std::to_string(c->getPoints()) + " points") << std::endl;
+        os << std::setw(numSpaces) << std::left << std::to_string(count++) + ". ";
+        c->write(os);
+        os << "\n";
     }
 }
 

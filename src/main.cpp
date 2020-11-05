@@ -29,12 +29,20 @@ int main() {
     Product* p4 = s.productManager.addCake("Aquele pao de lo",0.7,CakeCategory::PUFF_PASTRY);
     s.workerManager.add("Bandida",2000);
     Client* broccoli = s.clientManager.add("Brocolo");
+    s.clientManager.add("Semi linda uwu");
+    s.workerManager.add("Gona",800);
     Order* order = s.orderManager.add(broccoli);
     order->addProduct(p1,4);
     order->addProduct(p2);
     order->addProduct(p3,2);
     order->addProduct(p4);
-    //order->getDate().addDays(1);
-    order->deliver(2);
+    //order->deliver(2);
     s.orderManager.write(std::cout);
+    std::cout << "\n\n";
+    s.productManager.write(std::cout);
+    std::cout << "\n\n";
+    s.clientManager.write(std::cout);
+    std::cout << "\n\n";
+    s.workerManager.write(std::cout);
+
 }

@@ -27,7 +27,7 @@ public:
 
     Worker * changeSalary(unsigned position, float salary);
 
-    Worker* add(std::string name, float salary, int tributaryNumber = 999999999,
+    Worker* add(std::string name, float salary, int tributaryNumber = DEFAULT_TAXID,
              Credential credential = {"worker", "worker"});
     void remove(Worker* worker);
     void remove(unsigned position);
