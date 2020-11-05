@@ -21,6 +21,8 @@ public:
     float getPrice() const;
     virtual bool operator== (const Product& p) const;
     bool operator<(const Product& p) const;
+
+    virtual void write(std::ostream& os) const = 0;
 protected:
     Product(std::string name, float price);
     std::string _name;
@@ -32,6 +34,7 @@ public:
     Bread(std::string name, float price, bool small = true);
     bool isSmall() const;
     virtual bool operator== (const Bread& bread) const;
+    void write(std::ostream& os) const override;
 private:
     bool _small;
 };
@@ -41,11 +44,9 @@ public:
     Cake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
     CakeCategory getCategory() const;
     virtual bool operator== (const Cake& cake) const;
+    void write(std::ostream& os) const override;
 private:
     CakeCategory _category;
 };
-
-
-
 
 #endif //SRC_PRODUCT_H

@@ -13,8 +13,10 @@ namespace util {
 
     static const char SPACE = ' ';
     static const char DELIM = ',';
-    static const int LARGE_COL_WIDTH = 30;
+    static const int LARGE_COL_WIDTH = 20;
     static const int SMALL_COL_WIDTH = 15;
+    static const char* SEPARATOR =
+            "---------------------------------------------------------------------\n";
 
     bool isdigit(const std::string& str);
     bool contains(const std::string& str, const std::string& expected);

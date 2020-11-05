@@ -57,51 +57,15 @@ void OrderManager::remove(Order *order) {
 }
 
 void OrderManager::write(std::ostream &os) const {
-    //needs to be modularized...
-    std::array<std::string,5> cakeCategories = {
-            "General", "Pie", "Sponge", "Puff Pastry", "Crunchy Cake"
-    };
+    os << util::column("CLIENT",true)
+    << util::column("WORKER",true)
+    << util::column("REQUEST DATE",true)
+    << util::column("DELIVERED",true) << "\n";
 
     for (const auto& o: _orders){
-        // order details
-        os << "Requested by " << o->getClient().getName()
-        << " on " << o->getDate().getCompleteDate() << std::endl;
-        if (!o->wasDelivered()){
-            os << "To be delivered by " << o->getWorker().getName() << std::endl;
-        }
-        else {
-            os << "Delivered by " << o->getWorker().getName() //increment date and include it here later...
-            << " (evaluated with " << o->getClientEvaluation() << " points)" << std::endl;
-        }
-
-        os << std::endl;
-
-        //products
-        os << util::column("Product description",true)
-        << util::column("Category")
-        << util::column("Unit price")
-        << util::column("Quantity") << std::endl;
-
-        for (const auto& p: o->getProducts()){
-            std::string category;
-            auto* bread = dynamic_cast<Bread*>(p.first);
-            auto* cake = dynamic_cast<Cake*>(p.first);
-            if (bread != nullptr){
-                category = bread->isSmall() ? "Small bread" : "Big bread";
-            }
-            else{
-                category = cakeCategories.at(static_cast<unsigned long>(cake->getCategory()));
-            }
-
-            os << util::column(p.first->getName(),true)
-            << util::column(category)
-            << util::column(util::to_string(p.first->getPrice()))
-            << util::column(std::to_string(p.second)) << std::endl;
-        }
-
-        //total price
-        std::string discount = o->hasDiscount() ? "With discount" : "No discount";
-        os << std::endl << util::to_string(o->getFinalPrice()) + "€ (" + discount + ")"
-        << std::endl;
+        os << util::column(o->getClient().getName(),true)
+        << util::column(o->getWorker().getName(),true)
+        << util::column(o->getDate().getCompleteDate(),true)
+        << util::column(o->wasDelivered() ? "Yes" : "No") << "\n";
     }
 }
