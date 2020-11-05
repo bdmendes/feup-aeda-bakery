@@ -1,7 +1,7 @@
 project(feup-aeda-project)
 cmake_minimum_required(VERSION 3.10.2)
 
-SET(CMAKE_CXX_STANDARD 14)
+SET(CMAKE_CXX_STANDARD 20)
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)

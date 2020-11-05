@@ -4,6 +4,8 @@
 
 #include "worker_manager.h"
 #include <algorithm>
+#include <fstream>
+#include <sstream>
 #include <exception/person_exception.h>
 #include <exception/store_exception.h>
 
@@ -57,4 +59,45 @@ void WorkerManager::add(std::string name, float salary, int tributaryNumber, Cre
     auto* worker = new Worker(std::move(name),salary,tributaryNumber,std::move(credential));
     if (has(worker)) throw PersonAlreadyExists(worker->getName(),worker->getTributaryNumber());
     else _workers.push_back(worker);
+}
+
+void WorkerManager::read(std::ifstream &file) {
+    //file.open("../model/data/workers.txt");
+    if(!file.is_open()){
+        //TODO throw FileNotFound
+    }
+    else{
+        std::string line;
+        std::string name;
+        float salary ;
+        int tributaryNumber;
+        Credential credential;
+
+        while(getline(file, line)){
+            std::stringstream worker(line);
+            worker>>name>>salary>>tributaryNumber>>credential.username>>credential.password;
+
+            std::replace(name.begin(), name.end(), '-', ' ');
+            add(name, salary, tributaryNumber, credential);
+        }
+        file.close();
+    }
+}
+
+void WorkerManager::write(std::ofstream &file) {
+    //file.open("../model/data/clients.txt");
+    if(!file.is_open()){
+        //TODO throw FileNotFound
+    }
+    else{
+
+        std::string nameToSave;
+
+        for(const auto & worker: _workers){
+            nameToSave = worker->getName();
+            std::replace(nameToSave.begin(), nameToSave.end(), ' ', '-');
+            file<<nameToSave<<'\t'<<worker->getSalary()<<'\t'<<worker->getTributaryNumber()<<worker->getCredential().username<<worker->getCredential().password<<'\n';
+        }
+        file.close();
+    }
 }

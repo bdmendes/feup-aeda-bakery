@@ -40,3 +40,7 @@ void ProductManager::addBread(std::string name, float price, bool small) {
 void ProductManager::addCake(std::string name, float price, CakeCategory category) {
     _products.push_back(new Cake(std::move(name),price,category));
 }
+
+void ProductManager::read(std::ifstream &file) {
+
+}
