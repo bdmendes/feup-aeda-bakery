@@ -59,7 +59,7 @@ void WorkerManager::remove(unsigned position) {
     _workers.erase(it);
 }
 
-void WorkerManager::write(std::ostream &os) {
+void WorkerManager::print(std::ostream &os) {
     int numSpaces = static_cast<int>(std::to_string(_workers.size()).size() + 2);
     os << std::string(numSpaces,util::SPACE)
     << util::column("NAME", true)

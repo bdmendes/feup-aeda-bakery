@@ -25,7 +25,7 @@ public:
     void remove(unsigned position);
 
     void read(std::ifstream& file);
-    void write(std::ostream& os);
+    void print(std::ostream& os);
 private:
     std::set<Client*, PersonSmaller> _clients;
 };

@@ -53,7 +53,7 @@ void OrderManager::remove(Order *order) {
     _orders.erase(position);
 }
 
-void OrderManager::write(std::ostream &os) const {
+void OrderManager::print(std::ostream &os) const {
     int numSpaces = static_cast<int>(std::to_string(_orders.size()).size() + 2);
     os << std::string(numSpaces,util::SPACE) << util::column("CLIENT",true)
     << util::column("WORKER",true)

@@ -44,7 +44,7 @@ void ClientManager::remove(unsigned position) {
     _clients.erase(it);
 }
 
-void ClientManager::write(std::ostream &os) {
+void ClientManager::print(std::ostream &os) {
     int numSpaces = static_cast<int>(std::to_string(_clients.size()).size() + 2);
     os << std::string(numSpaces,util::SPACE)
     << util::column("NAME", true)
@@ -55,7 +55,7 @@ void ClientManager::write(std::ostream &os) {
     int count = 1;
     for (const auto& c: _clients){
         os << std::setw(numSpaces) << std::left << std::to_string(count++) + ". ";
-        c->write(os);
+        c->print(os);
         os << "\n";
     }
 }

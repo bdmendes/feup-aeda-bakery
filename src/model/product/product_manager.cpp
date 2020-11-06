@@ -47,7 +47,7 @@ void ProductManager::remove(Product *product) {
     _products.erase(position);
 }
 
-void ProductManager::write(std::ostream &os) const {
+void ProductManager::print(std::ostream &os) const {
     int numSpaces = static_cast<int>(std::to_string(_products.size()).size() + 2);
     os << std::string(numSpaces,util::SPACE)
     << util::column("NAME", true)
@@ -57,7 +57,7 @@ void ProductManager::write(std::ostream &os) const {
     int count = 1;
     for (const auto& p: _products){
         os << std::setw(numSpaces) << std::left << std::to_string(count++) + ". ";
-        p->write(os);
+        p->print(os);
         os << "\n";
     }
 }

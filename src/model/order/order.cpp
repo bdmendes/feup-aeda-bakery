@@ -138,7 +138,7 @@ bool Order::operator<(const Order &o2) const {
     return _requestDate < o2.getRequestDate();
 }
 
-void Order::write(std::ostream &os) const {
+void Order::print(std::ostream &os) const {
     os << "Requested by " << getClient().getName()
        << " on " << getRequestDate().getCompleteDate() << std::endl;
 
@@ -156,7 +156,7 @@ void Order::write(std::ostream &os) const {
        << util::column("Unit price")
        << util::column("Quantity") << std::endl;
     for (const auto& p: getProducts()){
-        p.first->write(os);
+        p.first->print(os);
         os << util::column(std::to_string(p.second)) << std::endl;
     }
 

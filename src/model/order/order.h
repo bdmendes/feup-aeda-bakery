@@ -49,7 +49,7 @@ public:
     bool operator==(const Order& rhs) const;
     bool operator<(const Order& o2) const;
 
-    void write(std::ostream& os) const;
+    void print(std::ostream& os) const;
 
 private:
     std::map<Product*, unsigned int, ProductSmaller> _products;

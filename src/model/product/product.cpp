@@ -35,7 +35,7 @@ bool Cake::operator==(const Cake &cake) const{
     return getName() == cake.getName() && getCategory() == cake.getCategory();
 }
 
-void Cake::write(std::ostream& os) const {
+void Cake::print(std::ostream& os) const {
     const std::array<std::string,5> cakeCategories = {
             "General", "Pie", "Sponge", "Puff Pastry", "Crunchy Cake"
     };
@@ -50,7 +50,7 @@ bool Bread::operator==(const Bread &bread) const{
     return getName() == bread.getName() && isSmall() == bread.isSmall();
 }
 
-void Bread::write(std::ostream& os) const {
+void Bread::print(std::ostream& os) const {
     os << util::column(_name,true)
        << util::column(_small ? "Small bread" : "Big bread")
        << util::column(util::to_string(_price) + " euros");

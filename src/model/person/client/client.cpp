@@ -46,7 +46,7 @@ void Client::addEvaluation(float evaluation) {
     _evaluations.push_back(evaluation);
 }
 
-void Client::write(std::ostream &os) {
+void Client::print(std::ostream &os) {
     os << util::column(getName(), true)
     << util::column(getTaxId() == DEFAULT_TAXID ? "Not provided" : std::to_string(getTaxId()))
     << util::column(isPremium() ? "Premium" : "Basic")

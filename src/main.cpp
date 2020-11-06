@@ -37,12 +37,14 @@ int main() {
     order->addProduct(p3,2);
     order->addProduct(p4);
     //order->deliver(2);
-    s.orderManager.write(std::cout);
+    s.orderManager.print(std::cout);
     std::cout << "\n\n";
-    s.productManager.write(std::cout);
+    order->print(std::cout);
+    std::cout << "\n";
+    s.productManager.print(std::cout);
     std::cout << "\n\n";
-    s.clientManager.write(std::cout);
+    s.clientManager.print(std::cout);
     std::cout << "\n\n";
-    s.workerManager.write(std::cout);
+    s.workerManager.print(std::cout);
 
 }

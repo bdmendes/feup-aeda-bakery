@@ -27,7 +27,7 @@ public:
 
     void setPremium(bool premium);
 
-    void write(std::ostream& os);
+    void print(std::ostream& os);
 private:
     bool _premium;
     unsigned _points;
