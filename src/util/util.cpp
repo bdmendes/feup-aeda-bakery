@@ -44,9 +44,17 @@ void util::lowercase(std::string &str) {
     std::transform(str.begin(),str.end(),str.begin(),[](unsigned char c){return std::tolower(c);});
 }
 
-std::string util::colGenerate(std::string str, int colSize) {
+std::string util::column(std::string str, bool large) {
+    int colSize = large ? LARGE_COL_WIDTH : SMALL_COL_WIDTH;
     if (str.size() > colSize) str = str.substr(0,colSize - 3) + "...";
     std::ostringstream ss;
-    ss << std::setw(colSize) << std::setfill(SPACE) << std::left << str << SPACE;
+    ss << std::setw(colSize) << std::left << str << SPACE;
+    return ss.str();
+}
+
+std::string util::to_string(float n) {
+    std::ostringstream ss;
+    ss.precision(2);
+    ss << std::fixed << n;
     return ss.str();
 }

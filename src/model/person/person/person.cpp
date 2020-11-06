@@ -7,15 +7,15 @@
 #include <utility>
 
 Person::Person(std::string name, int tributaryNumber, Credential credential) :
-        _name{std::move(name)}, _tributaryNumber{tributaryNumber}, _credential{ std::move(credential) } {
+        _name(std::move(name)), _taxId{tributaryNumber}, _credential{std::move(credential) } {
 }
 
 std::string Person::getName() const {
     return _name;
 }
 
-int Person::getTributaryNumber() const {
-    return _tributaryNumber;
+int Person::getTaxId() const {
+    return _taxId;
 }
 
 Credential Person::getCredential() const {
@@ -36,5 +36,5 @@ bool Person::operator<(const Person &p2) const {
 }
 
 bool Person::operator==(const Person &p2) const {
-    return _name == p2.getName() && _tributaryNumber == p2.getTributaryNumber();
+    return _name == p2.getName() && _taxId == p2.getTaxId();
 }

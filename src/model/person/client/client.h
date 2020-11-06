@@ -26,6 +26,8 @@ public:
     void addEvaluation(float evaluation);
 
     void setPremium(bool premium);
+
+    void print(std::ostream& os);
 private:
     bool _premium;
     unsigned _points;

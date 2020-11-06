@@ -13,6 +13,8 @@
 #include <vector>
 #include <fstream>
 
+#include "util/util.h"
+
 class WorkerManager {
 public:
     WorkerManager();
@@ -21,19 +23,19 @@ public:
 
     Worker* get(unsigned position);
     Worker* getAvailable();
-    std::set<Worker*, SmallerClient> getAll();
+    std::set<Worker*, PersonSmaller> getAll();
 
     Worker * changeSalary(unsigned position, float salary);
 
-    Worker* add(std::string name, float salary, int tributaryNumber = 999999999,
+    Worker* add(std::string name, float salary, int tributaryNumber = DEFAULT_TAXID,
              Credential credential = {"worker", "worker"});
     void remove(Worker* worker);
     void remove(unsigned position);
 
     void read(std::ifstream& file);
-    void write(std::ofstream& file);
+    void print(std::ostream& os);
 private:
-    std::set<Worker*, SmallerClient> _workers;
+    std::set<Worker*, PersonSmaller> _workers;
 };
 
 

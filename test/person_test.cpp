@@ -13,7 +13,7 @@ TEST(Client, create_client){
     Client c1("Manuel Martins");
 
     EXPECT_EQ("Manuel Martins", c1.getName());
-    EXPECT_EQ(999999999, c1.getTributaryNumber());
+    EXPECT_EQ(999999999, c1.getTaxId());
     EXPECT_EQ("client", c1.getCredential().username);
     EXPECT_EQ("client", c1.getCredential().password);
     EXPECT_FLOAT_EQ(0, c1.getPoints());
@@ -25,7 +25,7 @@ TEST(Client, create_client){
     Client c2("Angelica Vieira", true, 287389139, credential);
 
     EXPECT_EQ("Angelica Vieira", c2.getName());
-    EXPECT_EQ(287389139, c2.getTributaryNumber());
+    EXPECT_EQ(287389139, c2.getTaxId());
     EXPECT_EQ("AngelicaVieira", c2.getCredential().username);
     EXPECT_EQ("Angelica_8293", c2.getCredential().password);
     EXPECT_FLOAT_EQ(0, c2.getPoints());
@@ -37,7 +37,7 @@ TEST(Worker, create_worker){
 
     EXPECT_EQ("Joao Filipe", w1.getName());
     EXPECT_FLOAT_EQ(950, w1.getSalary());
-    EXPECT_EQ(999999999, w1.getTributaryNumber());
+    EXPECT_EQ(999999999, w1.getTaxId());
     EXPECT_EQ("worker", w1.getCredential().username);
     EXPECT_EQ("worker", w1.getCredential().password);
     EXPECT_EQ(0, w1.getOrders());
@@ -49,7 +49,7 @@ TEST(Worker, create_worker){
 
     EXPECT_EQ("Filipa Ribeiro", w2.getName());
     EXPECT_FLOAT_EQ(893,w2.getSalary());
-    EXPECT_EQ(293013289, w2.getTributaryNumber());
+    EXPECT_EQ(293013289, w2.getTaxId());
     EXPECT_EQ("FilipaRibeiro", w2.getCredential().username);
     EXPECT_EQ("filipaRibeiro_9201", w2.getCredential().password);
     EXPECT_EQ(0, w2.getOrders());
@@ -143,7 +143,7 @@ TEST(Client, reset_poinst){
 TEST(Client, create_client){
     Client c("Manel", true, 256789324);
     EXPECT_EQ(c.getName(), "Manel");
-    EXPECT_EQ(c.getTributaryNumber(), 256789324);
+    EXPECT_EQ(c.getTaxId(), 256789324);
     EXPECT_EQ(c.isPremium(), true);
 }
 

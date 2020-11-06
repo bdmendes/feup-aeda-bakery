@@ -1,6 +1,6 @@
 ### C ###
 # Prerequisites
-*.d
+*._taxId
 
 # Object files
 *.o

@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <utility>
+#include <util/util.h>
 
 ProductManager::ProductManager(): _products(std::set<Product*, ProductSmaller>()){
 }
@@ -44,6 +45,21 @@ void ProductManager::remove(Product *product) {
     if (position == _products.end())
         throw ProductDoesNotExist(product->getName(),product->getPrice());
     _products.erase(position);
+}
+
+void ProductManager::print(std::ostream &os) const {
+    int numSpaces = static_cast<int>(std::to_string(_products.size()).size() + 2);
+    os << std::string(numSpaces,util::SPACE)
+    << util::column("NAME", true)
+    << util::column("CATEGORY")
+    << util::column("UNIT PRICE") << "\n";
+
+    int count = 1;
+    for (const auto& p: _products){
+        os << std::setw(numSpaces) << std::left << std::to_string(count++) + ". ";
+        p->print(os);
+        os << "\n";
+    }
 }
 
 

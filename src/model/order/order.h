@@ -35,7 +35,8 @@ public:
     float getFinalPrice() const;
     float getTotal() const;
 
-    Date getDate() const;
+    Date getRequestDate() const;
+    Date getDeliverDate() const;
 
     Product* addProduct(Product* product, unsigned quantity = 1);
     void removeProduct(Product* product, unsigned quantity);
@@ -43,10 +44,12 @@ public:
     void removeProduct(unsigned position, unsigned quantity);
     void removeProduct(unsigned position);
 
-    void deliver(float clientEvaluation);
+    void deliver(float clientEvaluation, int deliverDuration = 30);
 
     bool operator==(const Order& rhs) const;
     bool operator<(const Order& o2) const;
+
+    void print(std::ostream& os) const;
 
 private:
     std::map<Product*, unsigned int, ProductSmaller> _products;
@@ -56,7 +59,8 @@ private:
     Worker& _worker;
     float _clientEvaluation;
     bool _delivered;
-    Date _date;
+    Date _requestDate;
+    Date _deliverDate;
 };
 
 #endif //SRC_ORDER_H
