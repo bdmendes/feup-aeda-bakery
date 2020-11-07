@@ -58,3 +58,11 @@ std::string util::to_string(float n) {
     ss << std::fixed << n;
     return ss.str();
 }
+
+void util::clearScreen(){
+    std::cout << ANSI_CLEAR_SCREEN;
+}
+
+void util::print(const std::string& s, const int color){
+    std::cout << ANSI_ANNOUNCE_COLOR << color << "m" << s << ANSI_RESET_CONSOLE;
+}

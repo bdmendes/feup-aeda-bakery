@@ -27,7 +27,7 @@ class Order;
 
 class Store {
 public:
-    explicit Store(std::string name = "Bakery Store");
+    Store(std::string name = "Bakery Store");
 
     std::string getName() const;
     float getEvaluation() const;
