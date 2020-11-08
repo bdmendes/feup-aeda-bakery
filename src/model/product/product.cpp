@@ -32,7 +32,8 @@ bool Product::operator<(const Product &p) const {
 }
 
 bool Cake::operator==(const Cake &cake) const{
-    return getName() == cake.getName() && getCategory() == cake.getCategory();
+    return getName() == cake.getName() && getCategory() == cake.getCategory()
+    && getPrice() == cake.getPrice();
 }
 
 void Cake::print(std::ostream& os) const {

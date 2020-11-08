@@ -201,13 +201,6 @@ TEST(Client, get_mean_evaluation){
     EXPECT_FLOAT_EQ((3.5+2.7+4.73+3.3)/4, client.getMeanEvaluation());
 }
 
-TEST(Client, create_client){
-    Client c("Manel", true, 256789324);
-    EXPECT_EQ(c.getName(), "Manel");
-    EXPECT_EQ(c.getTaxId(), 256789324);
-    EXPECT_EQ(c.isPremium(), true);
-}
-
 TEST(Worker, set_salary){
     Worker worker("Miguel Filipe", 830);
     worker.setSalary(920);
