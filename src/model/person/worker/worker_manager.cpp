@@ -4,14 +4,11 @@
 
 #include "worker_manager.h"
 
-WorkerManager::WorkerManager() : _workers(std::set<Worker*, Smaller>()){
+WorkerManager::WorkerManager() : _workers(std::set<Worker*, PersonSmaller>()){
 }
 
 bool WorkerManager::has(Worker *worker) const {
-    auto isEqual = [worker](const Worker* w2){
-        return *worker == *w2;
-    };
-    return std::find_if(_workers.begin(),_workers.end(), isEqual) != _workers.end();
+    return std::find(_workers.begin(),_workers.end(), worker) != _workers.end();
 }
 
 Worker* WorkerManager::get(unsigned int position) {
@@ -29,7 +26,7 @@ Worker* WorkerManager::getAvailable() {
     return *std::min_element(_workers.begin(), _workers.end(), orderComp);
 }
 
-std::set<Worker *, Smaller> WorkerManager::getAll() {
+std::set<Worker *, PersonSmaller> WorkerManager::getAll() {
     return _workers;
 }
 
@@ -42,7 +39,7 @@ Worker* WorkerManager::changeSalary(unsigned position, float salary) {
 
 Worker* WorkerManager::add(std::string name, float salary, int tributaryNumber, Credential credential) {
     auto* worker = new Worker(std::move(name),salary,tributaryNumber,std::move(credential));
-    if (has(worker)) throw PersonAlreadyExists(worker->getName(),worker->getTributaryNumber());
+    if (has(worker)) throw PersonAlreadyExists(worker->getName(), worker->getTaxId());
     else _workers.insert(worker);
     return worker;
 }
@@ -51,14 +48,31 @@ void WorkerManager::remove(Worker *worker) {
     if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
     auto position = std::find(_workers.begin(), _workers.end(),worker);
     if(position == _workers.end())
-        throw PersonDoesNotExist(worker->getName(), worker->getTributaryNumber());
+        throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
     _workers.erase(position);
 }
 
 void WorkerManager::remove(unsigned position) {
     if(position >= _workers.size()) throw InvalidPersonPosition(position, _workers.size());
-    auto it = _workers.begin(); std::advance(it, position);
+    auto it = _workers.begin();
+    std::advance(it, position);
     _workers.erase(it);
+}
+
+void WorkerManager::print(std::ostream &os) {
+    int numSpaces = static_cast<int>(std::to_string(_workers.size()).size() + 2);
+    os << std::string(numSpaces,util::SPACE)
+    << util::column("NAME", true)
+    << util::column("TAX ID")
+    << util::column("SALARY")
+    << util::column("DELIVERED") << "\n";
+
+    int count = 1;
+    for (const auto& w: _workers){
+        os << std::setw(numSpaces) << std::left << std::to_string(count++) + ". ";
+        w->write(os);
+        os << "\n";
+    }
 }
 
 

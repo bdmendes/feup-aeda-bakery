@@ -49,9 +49,9 @@ TEST(Date, operator_equal){
     Date d2(9, 6, 2001, 10, 51);
     Date d3(9, 10, 2001, 10, 51);
 
-    EXPECT_EQ(true, d1==d2);
-    EXPECT_EQ(true, d2==d1);
+    EXPECT_TRUE(d1==d2);
+    EXPECT_TRUE(d2==d1);
 
-    EXPECT_EQ(false, d1==d3);
-    EXPECT_EQ(false, d2==d3);
+    EXPECT_FALSE(d1==d3);
+    EXPECT_FALSE(d2==d3);
 }

@@ -14,8 +14,10 @@ TEST(Client, create_client){
     Credential credential = {"client", "client"};
 
     EXPECT_EQ("Manuel Martins", c1.getName());
-    EXPECT_EQ(999999999, c1.getTributaryNumber());
-    EXPECT_TRUE(c1.getCredential() == credential);
+    EXPECT_EQ(999999999, c1.getTaxId());
+    EXPECT_EQ("client", c1.getCredential().username);
+    EXPECT_EQ("client", c1.getCredential().password);
+    EXPECT_FLOAT_EQ(0, c1.getPoints());
     EXPECT_FALSE(c1.isPremium());
     EXPECT_FLOAT_EQ(0, c1.getPoints());
 
@@ -23,8 +25,10 @@ TEST(Client, create_client){
     credential = {"AngelicaVieira", "Angelica_8293"};
 
     EXPECT_EQ("Angelica Vieira", c2.getName());
-    EXPECT_EQ(287389139, c2.getTributaryNumber());
-    EXPECT_TRUE(c2.getCredential() == credential);
+    EXPECT_EQ(287389139, c2.getTaxId());
+    EXPECT_EQ("AngelicaVieira", c2.getCredential().username);
+    EXPECT_EQ("Angelica_8293", c2.getCredential().password);
+    EXPECT_FLOAT_EQ(0, c2.getPoints());
     EXPECT_TRUE(c2.isPremium());
     EXPECT_FLOAT_EQ(0, c2.getPoints());
 }
@@ -34,7 +38,10 @@ TEST(Worker, create_worker){
     Credential credential = {"worker", "worker"};
 
     EXPECT_EQ("Joao Filipe", w1.getName());
-    EXPECT_EQ(999999999, w1.getTributaryNumber());
+    EXPECT_FLOAT_EQ(950, w1.getSalary());
+    EXPECT_EQ(999999999, w1.getTaxId());
+    EXPECT_EQ("worker", w1.getCredential().username);
+    EXPECT_EQ("worker", w1.getCredential().password);
     EXPECT_EQ(0, w1.getOrders());
     EXPECT_TRUE(w1.getCredential() == credential);
     EXPECT_FLOAT_EQ(950, w1.getSalary());
@@ -43,7 +50,10 @@ TEST(Worker, create_worker){
     credential = {"FilipaRibeiro", "filipaRibeiro_9201"};
 
     EXPECT_EQ("Filipa Ribeiro", w2.getName());
-    EXPECT_EQ(293013289, w2.getTributaryNumber());
+    EXPECT_FLOAT_EQ(893,w2.getSalary());
+    EXPECT_EQ(293013289, w2.getTaxId());
+    EXPECT_EQ("FilipaRibeiro", w2.getCredential().username);
+    EXPECT_EQ("filipaRibeiro_9201", w2.getCredential().password);
     EXPECT_EQ(0, w2.getOrders());
     EXPECT_TRUE(w2.getCredential() == credential);
     EXPECT_FLOAT_EQ(893,w2.getSalary());
@@ -189,6 +199,13 @@ TEST(Client, get_mean_evaluation){
     client.addEvaluation(3.3);
 
     EXPECT_FLOAT_EQ((3.5+2.7+4.73+3.3)/4, client.getMeanEvaluation());
+}
+
+TEST(Client, create_client){
+    Client c("Manel", true, 256789324);
+    EXPECT_EQ(c.getName(), "Manel");
+    EXPECT_EQ(c.getTaxId(), 256789324);
+    EXPECT_EQ(c.isPremium(), true);
 }
 
 TEST(Worker, set_salary){
