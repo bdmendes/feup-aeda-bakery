@@ -33,6 +33,7 @@ public:
 
     bool operator==(const Date& d2) const;
     bool operator<(const Date& d2) const;
+
 private:
     bool isValid() const;
     std::tm _time;
