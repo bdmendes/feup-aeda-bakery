@@ -67,7 +67,7 @@ bool Date::isValid() const {
 void Date::addDays(int days) {
     _time.tm_mday += days;
     std::time_t ntime = mktime(&_time);
-    _time = *localtime(&ntime);
+    localtime_r(&ntime,&_time);
 }
 
 unsigned Date::getMonth() const {
@@ -93,6 +93,6 @@ unsigned Date::getMinute() const {
 void Date::addMinutes(int minutes) {
     _time.tm_min += minutes;
     std::time_t ntime = mktime(&_time);
-    _time = *localtime(&ntime);
+    localtime_r(&ntime,&_time);
 }
 

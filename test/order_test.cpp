@@ -15,23 +15,22 @@ using testing::Eq;
 TEST(Order, create_order){
     Client client("Joao Manuel");
     Worker worker("Ricardo Faria", 980);
-
 }
 
 TEST(Order, add_product){
-
+    // to do
 }
 
 TEST(Order, remove_product){
-
+    // to do
 }
 
 TEST(Order, deliver){
-
+    // to do
 }
 
 TEST(Order, equal_order){
-
+    // to do
 }
 
 /*TEST(Order, create_order){
@@ -183,5 +182,4 @@ TEST(Order,evaluations){
     EXPECT_FLOAT_EQ(order1.getClientEvaluation(),2);
     EXPECT_FLOAT_EQ(client.getMeanEvaluation(),3);
 }
-
  */
