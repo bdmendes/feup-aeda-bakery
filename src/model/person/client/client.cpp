@@ -26,6 +26,14 @@ float Client::getMeanEvaluation() const {
     return sum / _evaluations.size();
 }
 
+std::vector<float> Client::getEvaluations() const {
+    return _evaluations;
+}
+
+void Client::setPremium(bool premium) {
+    _premium = premium;
+}
+
 void Client::resetPoints() {
     _points = 0;
 }
@@ -36,10 +44,6 @@ void Client::addPoints(unsigned points) {
 
 void Client::removePoints(unsigned int points) {
     _points -= points;
-}
-
-void Client::setPremium(bool premium) {
-    _premium = premium;
 }
 
 void Client::addEvaluation(float evaluation) {

@@ -24,11 +24,11 @@ bool Bread::isSmall() const { return _small;}
 CakeCategory Cake::getCategory() const { return _category;}
 
 bool Product::operator==(const Product &p) const{
-    return getName() == p.getName();
+    return _name == p.getName() && _price == p.getPrice();
 }
 
 bool Product::operator<(const Product &p) const {
-    return getName() < p.getName();
+    return _name < p.getName();
 }
 
 bool Cake::operator==(const Cake &cake) const{
@@ -47,7 +47,7 @@ void Cake::print(std::ostream& os) const {
 }
 
 bool Bread::operator==(const Bread &bread) const{
-    return getName() == bread.getName() && isSmall() == bread.isSmall();
+    return _name == bread.getName() && _price == bread.getPrice() && _small == bread.isSmall();
 }
 
 void Bread::print(std::ostream& os) const {

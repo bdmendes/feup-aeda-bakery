@@ -36,3 +36,7 @@ InvalidPersonCredentialChange::InvalidPersonCredentialChange() :
     std::invalid_argument("New credentials must be different from the previous ones!"){
 }
 
+InvalidPersonNameChange::InvalidPersonNameChange() :
+    std::invalid_argument("New name must be different from the previous one!"){
+}
+

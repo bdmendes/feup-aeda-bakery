@@ -23,6 +23,7 @@ Credential Person::getCredential() const {
 }
 
 void Person::changeName(const std::string& name){
+    if(_name == name) throw InvalidPersonNameChange();
     _name = name;
 }
 

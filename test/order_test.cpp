@@ -12,6 +12,27 @@
 
 using testing::Eq;
 
+TEST(Order, create_order){
+    Client client("Joao Manuel");
+    Worker worker("Ricardo Faria", 980);
+
+}
+
+TEST(Order, add_product){
+
+}
+
+TEST(Order, remove_product){
+
+}
+
+TEST(Order, deliver){
+
+}
+
+TEST(Order, equal_order){
+
+}
 
 /*TEST(Order, create_order){
     Client client("Alfredo");
