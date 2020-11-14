@@ -6,8 +6,10 @@
 
 #include <utility>
 
-Person::Person(std::string name, int tributaryNumber, Credential credential) :
-        _name(std::move(name)), _taxId{tributaryNumber}, _credential{std::move(credential) } {
+const int Person::DEFAULT_TAX_ID = 999999999;
+
+Person::Person(std::string name, int taxID, Credential credential) :
+        _name(std::move(name)), _taxId{taxID}, _credential{std::move(credential) } {
 }
 
 std::string Person::getName() const {
@@ -22,12 +24,12 @@ Credential Person::getCredential() const {
     return _credential;
 }
 
-void Person::changeName(const std::string& name){
+void Person::setName(const std::string& name){
     if(_name == name) throw InvalidPersonNameChange();
     _name = name;
 }
 
-void Person::changeCredential(const Credential &credential) {
+void Person::setCredential(const Credential &credential) {
     if (_credential == credential) throw InvalidPersonCredentialChange();
     _credential = credential;
 }

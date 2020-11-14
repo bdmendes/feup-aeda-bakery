@@ -1,5 +1,11 @@
 #include <iostream>
+#include <ui/menu/intro_menu.h>
+
+#include "model/store/store.h"
+#include "ui/ui.h"
 
 int main() {
-  return 0;
+    Store s;
+    IntroMenu menu(s);
+    menu.show();
 }

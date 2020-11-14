@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-#include "model/person/person/person.h"
+#include "model/person/person.h"
 #include "model/order/order.h"
 #include "model/product/product.h"
 #include "model/person/client/client.h"

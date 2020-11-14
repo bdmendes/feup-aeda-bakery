@@ -11,8 +11,6 @@
 #include <stdexcept>
 #include <set>
 
-const int DEFAULT_TAXID = 999999999;
-
 struct Credential {
     std::string username;
     std::string password;
@@ -23,16 +21,18 @@ struct Credential {
 
 class Person {
 public:
-    Person(std::string name, int tributaryNumber, Credential credential);
+    Person(std::string name, int taxID, Credential credential);
     std::string getName() const;
     int getTaxId() const;
     Credential getCredential() const;
 
-    void changeName(const std::string& name);
-    void changeCredential(const Credential& credential);
+    void setName(const std::string& name);
+    void setCredential(const Credential& credential);
 
     bool operator<(const Person& p2) const;
     bool operator==(const Person& p2) const;
+
+    static const int DEFAULT_TAX_ID;
 private:
     std::string _name;
     int _taxId;

@@ -7,8 +7,8 @@
 #include <utility>
 #include <util/util.h>
 
-Client::Client(std::string name, bool premium, int tributaryNumber, Credential credential):
-        Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}, _premium(premium),
+Client::Client(std::string name, bool premium, int taxID, Credential credential):
+        Person(std::move(name), taxID, std::move(credential)), _points{0}, _premium(premium),
         _evaluations(std::vector<float>()){
 }
 
@@ -52,7 +52,7 @@ void Client::addEvaluation(float evaluation) {
 
 void Client::print(std::ostream &os) {
     os << util::column(getName(), true)
-    << util::column(getTaxId() == DEFAULT_TAXID ? "Not provided" : std::to_string(getTaxId()))
+    << util::column(getTaxId() == Person::DEFAULT_TAX_ID ? "Not provided" : std::to_string(getTaxId()))
     << util::column(isPremium() ? "Premium" : "Basic")
     << util::column(std::to_string(getPoints()) + " points");
 }

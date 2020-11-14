@@ -5,14 +5,14 @@
 #ifndef FEUP_AEDA_PROJECT_CLIENT_H
 #define FEUP_AEDA_PROJECT_CLIENT_H
 
-#include "../person/person.h"
+#include "model/person/person.h"
 
 #include <vector>
 #include <string>
 
 class Client : public Person {
 public:
-    explicit Client(std::string name, bool premium = false, int tributaryNumber = 999999999,
+    explicit Client(std::string name, bool premium = false, int taxID = Person::DEFAULT_TAX_ID,
            Credential credential = {"client", "client"});
 
     bool isPremium() const;

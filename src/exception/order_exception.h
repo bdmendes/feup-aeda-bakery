@@ -7,7 +7,7 @@
 
 #include <stdexcept>
 
-#include "model/person/person/person.h"
+#include "model/person/person.h"
 #include "model/date/date.h"
 #include "model/person/client/client.h"
 #include "model/person/worker/worker.h"

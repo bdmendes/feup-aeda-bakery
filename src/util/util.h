@@ -16,6 +16,7 @@ namespace util {
     static const char SPACE = ' ';
     static const char DELIM = ',';
     static const char TOPIC = '|';
+    static const char* SEPARATOR = "------------------------------------------------";
     static const int LARGE_COL_WIDTH = 20;
     static const int SMALL_COL_WIDTH = 15;
 
@@ -26,6 +27,7 @@ namespace util {
     void lowercase(std::string& str);
     std::string to_string (float n);
     std::string column(std::string str, bool large = false);
+    std::vector<std::string> to_words(const std::string& input);
 
     static const char* ANSI_ANNOUNCE_COLOR = "\033[38;5;";
     static const char* ANSI_RESET_CONSOLE = "\033[0m";
