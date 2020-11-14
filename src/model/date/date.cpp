@@ -92,7 +92,13 @@ unsigned Date::getMinute() const {
 
 void Date::addMinutes(int minutes) {
     _time.tm_min += minutes;
+    int previousDay = _time.tm_mday;
     std::time_t ntime = mktime(&_time);
+    int currentDay = _time.tm_mday;
+    if(previousDay != currentDay) {
+        _time.tm_hour--;
+        ntime = mktime(&_time);
+    }
     _time = *localtime(&ntime);
 }
 
