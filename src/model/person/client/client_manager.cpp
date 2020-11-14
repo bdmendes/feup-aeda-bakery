@@ -11,7 +11,7 @@ ClientManager::ClientManager() : _clients(std::set<Client*, PersonSmaller>()) {
 }
 
 bool ClientManager::has(Client *client) const {
-    return std::find(_clients.begin(),_clients.end(), client) != _clients.end();
+    return _clients.find(client) != _clients.end();
 }
 
 Client *ClientManager::get(unsigned position) {
@@ -32,7 +32,9 @@ Client* ClientManager::add(std::string name, bool premium, int tributaryNumber, 
 }
 
 void ClientManager::remove(Client *client) {
-    auto position = std::find(_clients.begin(), _clients.end(),client);
+    auto position = std::find_if(_clients.begin(), _clients.end(), [client](Client* c){
+        return *client == *c;
+    });
     if(position == _clients.end())
         throw PersonDoesNotExist(client->getName(), client->getTaxId());
     _clients.erase(position);

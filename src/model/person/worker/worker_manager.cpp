@@ -8,7 +8,7 @@ WorkerManager::WorkerManager() : _workers(std::set<Worker*, PersonSmaller>()){
 }
 
 bool WorkerManager::has(Worker *worker) const {
-    return std::find(_workers.begin(),_workers.end(), worker) != _workers.end();
+    return _workers.find(worker) != _workers.end();
 }
 
 Worker* WorkerManager::get(unsigned int position) {

@@ -26,7 +26,8 @@ public:
     void addEvaluation(float evaluation);
   
     void print(std::ostream& os);
-  
+
+    //bool operator==(const Client& c2) const;
 private:
     bool _premium;
     unsigned _points;

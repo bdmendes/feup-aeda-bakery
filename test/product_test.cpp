@@ -39,9 +39,9 @@ TEST(Bread, equal_breads){
 }
 
 TEST(Bread, sort_breads) {
-    Bread b1("Pão de alfarroba", 0.6);
-    Bread b2("Pão de água", 0.45);
-    Bread b3("Pão normal", 0.1);
+    Bread b1("Pao de alfarroba", 0.6);
+    Bread b2("Pao de água", 0.45);
+    Bread b3("Pao normal", 0.1);
 
     EXPECT_TRUE(b1 < b2);
     EXPECT_TRUE(b1 < b3);
@@ -86,106 +86,14 @@ TEST(Cake, sort_cakes){
 }
 
 TEST(Product, sort_products){
-    Bread b1("Pão de alfarroba", 0.6);
-    Bread b2("Pão de água", 0.45);
+    Bread b1("Pao de alfarroba", 0.6);
+    Bread b2("Pao de agua", 0.45);
 
-    Cake c1("Bolo de amêndoa", 1.2);
+    Cake c1("Bolo de amendoa", 1.2);
     Cake c2("Bolo de arroz", 1);
 
     EXPECT_TRUE(c1 < b1);
     EXPECT_TRUE(c1 < b2);
     EXPECT_TRUE(c2 < b1);
     EXPECT_TRUE(c2 < b2);
-}
-
-TEST(ProductManager, create_product_manager){
-    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    Bread hugeBread("Pao de sementes",0.2,false);
-    std::set<Product*, ProductSmaller> stock;
-    stock.insert(&meatCake);
-    stock.insert(&hugeBread);
-    ProductManager pm(stock);
-
-    EXPECT_EQ(stock, pm.getAll());
-}
-
-TEST(ProductManager, has_product){
-    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    Bread hugeBread("Pao de sementes",0.2,false);
-    std::set<Product*, ProductSmaller> stock;
-    stock.insert(&meatCake);
-    ProductManager pm(stock);
-
-    EXPECT_TRUE(pm.has(&meatCake));
-    EXPECT_FALSE(pm.has(&hugeBread));
-}
-
-TEST(ProductManager, get_product_by_position){
-    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    Bread hugeBread("Pao de sementes",0.2,false);
-
-    std::set<Product*, ProductSmaller> stock;
-    stock.insert(&meatCake);
-    stock.insert(&hugeBread);
-    ProductManager pm(stock);
-
-    unsigned position = 0;
-    EXPECT_EQ(&meatCake, pm.get(position));
-    EXPECT_EQ(&hugeBread, pm.get(++position));
-
-    EXPECT_THROW(pm.get(++position), InvalidProductPosition);
-    try{ pm.get(++position); }
-    catch (InvalidProductPosition &e) { std::cout << e.what(); }
-}
-
-TEST(ProductManager, add_bread) {
-    ProductManager pm;
-
-    EXPECT_EQ(0, pm.getAll().size());
-
-    Bread hugeBread("Pao de sementes", 0.2, false);
-    pm.addBread("Pao de sementes", 0.2, false);
-
-    EXPECT_EQ(1, pm.getAll().size());
-    EXPECT_EQ("Pao de sementes", (*pm.getAll().begin())->getName());
-    EXPECT_FLOAT_EQ(0.2, (*pm.getAll().begin())->getPrice());
-}
-
-TEST(ProductManager, add_cake){
-    ProductManager pm;
-
-    EXPECT_EQ(0, pm.getAll().size());
-
-    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    pm.addCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-
-    EXPECT_EQ(1, pm.getAll().size());
-    EXPECT_EQ("Bolo com molho de carne", (*pm.getAll().begin())->getName());
-    EXPECT_FLOAT_EQ(1, (*pm.getAll().begin())->getPrice());
-}
-
-TEST(ProductManager, remove_product){
-    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    Bread hugeBread("Pao de sementes",0.2,false);
-
-    std::set<Product*, ProductSmaller> stock;
-    stock.insert(&meatCake);
-    stock.insert(&hugeBread);
-    ProductManager pm(stock);
-
-    EXPECT_EQ(2, pm.getAll().size());
-
-    pm.remove(&hugeBread);
-
-    EXPECT_EQ(1, pm.getAll().size());
-    EXPECT_EQ("Bolo com molho de carne", (*pm.getAll().begin())->getName());
-    EXPECT_FLOAT_EQ(1, (*pm.getAll().begin())->getPrice());
-
-    pm.remove(&meatCake);
-
-    EXPECT_EQ(0, pm.getAll().size());
-
-    EXPECT_THROW(pm.remove(&meatCake), ProductDoesNotExist);
-    try{ pm.remove(&meatCake); }
-    catch (ProductDoesNotExist &e) { std::cout << e.what(); }
 }

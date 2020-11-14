@@ -136,7 +136,7 @@ TEST(Person, change_credential){
 }
 
 TEST(Person, sort_people){
-    Person p1("João Ricardo", 285742345, {"joao", "1234"});
+    Person p1("Joao Ricardo", 285742345, {"joao", "1234"});
     Person p2("Ana Maria", 294306748, {"anaMaria", "ana_123"});
     Person p3("Agostinho Lima", 213854059, {"gusto", "gusto1948"});
 
@@ -146,7 +146,7 @@ TEST(Person, sort_people){
 
     Client c1("Beatriz Duarte");
     Client c2("Joana Fernandes");
-    Client c3("João Martins");
+    Client c3("Joao Martins");
 
     EXPECT_TRUE(c1 < c2);
     EXPECT_TRUE(c2 < c3);
@@ -169,37 +169,35 @@ TEST(Person, sort_people){
 }
 
 TEST(Person, equal_person){
-    Person p1("João Manuel", 284917316, {"jonasManel", "joao123"});
-    Person p2("João Manuel", 284917316, {"joaoMan", "joao_m123"});
-    Person p3("João Macedo", 183746173, {"joaom", "jonas_38"});
+    Person p1("Joao Manuel", 284917316, {"jonasManel", "joao123"});
+    Person p2("Joao Manuel", 284917316, {"joaoMan", "joao_m123"});
+    Person p3("Joao Macedo", 183746173, {"joaom", "jonas_38"});
 
     EXPECT_TRUE(p1 == p2);
     EXPECT_FALSE(p1 == p3);
     EXPECT_FALSE(p2 == p3);
+}
 
+TEST(Client, equal_clients){
     Client c1("Cristina Lopes");
     Client c2("Cristina Lopes", false, 999999999, {"client", "client"});
     Client c3("Cristina Figueiredo");
-    Client c4("João Manuel", false, 284917316, {"jonasManel", "joao123"});
+    Client c4("Joao Manuel", false, 284917316, {"jonasManel", "joao123"});
 
     EXPECT_TRUE(c1==c2);
     EXPECT_FALSE(c1==c3);
     EXPECT_FALSE(c2==c3);
+}
 
+TEST(Worker, equal_workers){
     Worker w1("Luis Miguel", 950);
     Worker w2("Luis Miguel", 950, 999999999, {"worker", "worker"});
     Worker w3("Luis Filipe", 890);
-    Worker w4("João Manuel", 950, 284917316, {"jonasManel", "joao123"});
+    Worker w4("Joao Manuel", 950, 284917316, {"jonasManel", "joao123"});
 
     EXPECT_TRUE(w1==w2);
     EXPECT_FALSE(w1==w3);
     EXPECT_FALSE(w2==w3);
-
-    EXPECT_TRUE(p1 == c4);
-    EXPECT_TRUE(p1 == w4);
-    EXPECT_TRUE(c4 == w4);
-    EXPECT_FALSE(p1 == c1);
-    EXPECT_FALSE(p1 == w1);
 }
 
 TEST(Client, set_premium){
@@ -303,32 +301,4 @@ TEST(Worker, remove_order){
     worker.removeOrder();
 
     EXPECT_EQ(1, worker.getOrders());
-}
-
-TEST(ClientManager, add_client){
-
-}
-
-TEST(ClientManager, remove_client_by_pointer){
-
-}
-
-TEST(ClientManager, remove_client_by_position){
-
-}
-
-TEST(WorkerManager, change_salary){
-
-}
-
-TEST(WorkerManager, add_worker){
-
-}
-
-TEST(WorkerManager, remove_worker_by_pointer){
-
-}
-
-TEST(WorkerManager, remove_worker_by_position){
-
 }
