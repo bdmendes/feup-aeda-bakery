@@ -43,13 +43,11 @@ void ClientManager::add(std::string name, bool premium, int tributaryNumber, Cre
 }
 
 void ClientManager::read(std::ifstream &file) {
-    //file.open("../model/data/clients.txt");
-    if(!file.is_open()){
+    if(!file){
         //TODO throw FileNotFound
     }
     else{
-        std::string line;
-        std::string name;
+        std::string line, name;
         std::string premium;
         int tributaryNumber;
         Credential credential;
@@ -59,16 +57,14 @@ void ClientManager::read(std::ifstream &file) {
             client>>name>>premium>>tributaryNumber>>credential.username>>credential.password;
 
             std::replace(name.begin(), name.end(), '-', ' ');
-            bool isPremium = (premium == "premium");
-            add(name, isPremium, tributaryNumber, credential);
+            add(name, premium == "premium",  tributaryNumber, credential);
         }
-        file.close();
+        //file.close();
     }
 }
 
 void ClientManager::write(std::ofstream &file) {
-    //file.open("../model/data/clients.txt");
-    if(!file.is_open()){
+    if(!file){
         //TODO throw FileNotFound
     }
     else{

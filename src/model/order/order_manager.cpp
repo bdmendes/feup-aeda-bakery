@@ -56,3 +56,7 @@ void OrderManager::remove(Order *order) {
         throw std::invalid_argument("Order does not exist");
     _orders.erase(position);
 }
+
+void OrderManager::read() {
+
+}

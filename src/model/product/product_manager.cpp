@@ -6,6 +6,8 @@
 
 #include <algorithm>
 #include <utility>
+#include <sstream>
+#include <fstream>
 
 ProductManager::ProductManager(): _products(){
 }
@@ -41,6 +43,38 @@ void ProductManager::addCake(std::string name, float price, CakeCategory categor
     _products.push_back(new Cake(std::move(name),price,category));
 }
 
-void ProductManager::read(std::ifstream &file) {
+void ProductManager::readCakes(std::ifstream &file) {
+    //file.open("../feup-aeda-project/data/clients.txt");
+    if(!file.is_open()){
+        //TODO throw FileNotFound
+    }
+    else{
+        std::string line;
+        std::string name;
+        float price;
+        int cakeCategory;
+
+        while(getline(file, line)){
+            std::stringstream cake(line);
+            cake>>name>>price>>cakeCategory;
+            switch(cakeCategory){
+                case
+            }
+            std::replace(name.begin(), name.end(), '-', ' ');
+            addCake(name, price, cakeCategory);
+        }
+        file.close();
+    }
+}
+
+void ProductManager::readBreads(std::ifstream &file) {
+
+}
+
+void ProductManager::writeBreads(std::ofstream &file) const {
+
+}
+
+void ProductManager::write(std::ofstream &file) const {
 
 }

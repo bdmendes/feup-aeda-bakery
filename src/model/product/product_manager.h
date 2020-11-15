@@ -18,8 +18,10 @@ public:
     void addBread(std::string name, float price, bool small = true);
     void addCake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
     void remove(Product* product);
-    void read(std::ifstream& file);
-    void write(std::ofstream& file) const;
+    void readCakes(std::ifstream& file);
+    void readBreads(std::ifstream& file);
+    void writeCakes(std::ofstream& file) const;
+    void writeBreads(std::ofstream& file) const;
 private:
     std::vector<Product*> _products;
 };

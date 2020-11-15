@@ -62,8 +62,8 @@ void WorkerManager::add(std::string name, float salary, int tributaryNumber, Cre
 }
 
 void WorkerManager::read(std::ifstream &file) {
-    //file.open("../model/data/workers.txt");
-    if(!file.is_open()){
+
+    if(!file){
         //TODO throw FileNotFound
     }
     else{
@@ -85,8 +85,7 @@ void WorkerManager::read(std::ifstream &file) {
 }
 
 void WorkerManager::write(std::ofstream &file) {
-    //file.open("../model/data/clients.txt");
-    if(!file.is_open()){
+    if(!file){
         //TODO throw FileNotFound
     }
     else{

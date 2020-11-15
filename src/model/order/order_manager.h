@@ -21,7 +21,7 @@ public:
     std::vector<Order*> get(Worker* worker);
     void remove(Order* order);
 
-    void read(std::ifstream& file);
+    void read();
     void write(std::ofstream& file) const;
 
 private:
