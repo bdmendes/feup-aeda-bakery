@@ -19,19 +19,19 @@ void LoginMenu::show() {
     for (;;) {
         std::string input = readCommand();
         if (input == BACK) return;
-        if (validInput1Cmd(input, "worker")){
+        else if (validInput1Cmd(input, "worker")){
             showPersons(PersonToShow::WORKER);
             break;
         }
-        if (validInput1Cmd(input, "client")){
+        else if (validInput1Cmd(input, "client")){
             showPersons(PersonToShow::CLIENT);
             break;
         }
-        if (validInput1Cmd(input, "boss")){
+        else if (validInput1Cmd(input, "boss")){
             login(&_store.boss);
             break;
         }
-        printError();
+        else printError();
     }
 }
 
@@ -79,6 +79,7 @@ void LoginMenu::showPersons(PersonToShow person) {
                 continue;
             }
         }
+        else printError(true);
     }
 }
 
