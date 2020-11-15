@@ -16,7 +16,8 @@ namespace util {
     static const char SPACE = ' ';
     static const char DELIM = ',';
     static const char TOPIC = '|';
-    static const char* SEPARATOR = "------------------------------------------------";
+    static const char* SEPARATOR =
+            "-----------------------------------------------------------------------------------------\n";
     static const int LARGE_COL_WIDTH = 20;
     static const int SMALL_COL_WIDTH = 15;
 

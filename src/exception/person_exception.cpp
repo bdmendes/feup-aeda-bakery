@@ -5,7 +5,7 @@
 #include "person_exception.h"
 
 PersonDoesNotExist::PersonDoesNotExist(const std::string& name, int tributaryNumber) :
-    std::logic_error(name + ", with number " + std::to_string(tributaryNumber) + ", does not exist!\n"){
+    std::logic_error(name + ", with number " + std::to_string(tributaryNumber) + ", does not exist!"){
 }
 
 PersonDoesNotExist::PersonDoesNotExist(const std::string& name):
@@ -13,11 +13,11 @@ PersonDoesNotExist::PersonDoesNotExist(const std::string& name):
 }
 
 PersonDoesNotExist::PersonDoesNotExist(int tributaryNumber) :
-    std::logic_error("Person with number " + std::to_string(tributaryNumber) + ", does not exist!\n"){
+    std::logic_error("Person with number " + std::to_string(tributaryNumber) + ", does not exist!"){
 }
 
 PersonAlreadyExists::PersonAlreadyExists(const std::string& name, int tributaryNumber) :
-    std::logic_error(name + ", with number " + std::to_string(tributaryNumber) + ", already exists!\n"){
+    std::logic_error(name + ", with number " + std::to_string(tributaryNumber) + ", already exists!"){
 }
 
 PersonAlreadyExists::PersonAlreadyExists(const std::string& name):
@@ -25,11 +25,11 @@ PersonAlreadyExists::PersonAlreadyExists(const std::string& name):
 }
 
 PersonAlreadyExists::PersonAlreadyExists(int tributaryNumber):
-    std::logic_error("Person with number " + std::to_string(tributaryNumber) + " already exists!\n"){
+    std::logic_error("Person with number " + std::to_string(tributaryNumber) + " already exists!"){
 }
 
 InvalidPersonPosition::InvalidPersonPosition(unsigned int position, unsigned int size) :
-    std::invalid_argument(std::to_string(position) + " is an invalid position; should be between 0 and " + std::to_string(size-1) + "!\n"){
+    std::invalid_argument(std::to_string(++position) + " is an invalid position; should be between 1 and " + std::to_string(size) + "!"){
 }
 
 InvalidPersonCredentialChange::InvalidPersonCredentialChange() :
@@ -40,3 +40,6 @@ InvalidPersonNameChange::InvalidPersonNameChange() :
     std::invalid_argument("New name must be different from the previous one!"){
 }
 
+InvalidCredential::InvalidCredential(const std::string &arg) :
+    invalid_argument("You cannot use '" + arg + "' in your credential since it's a reserved word!") {
+}

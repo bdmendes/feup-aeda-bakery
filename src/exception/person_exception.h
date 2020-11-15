@@ -39,5 +39,10 @@ public:
     InvalidPersonNameChange();
 };
 
+class InvalidCredential : public std::invalid_argument {
+public:
+    InvalidCredential(const std::string &offending);
+};
+
 
 #endif //FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H

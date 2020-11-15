@@ -8,23 +8,37 @@
 void IntroMenu::show() {
     for (;;) {
         printLogo();
-        std::cout << SEPARATOR << std::endl
+        std::cout << SEPARATOR
                   << "Welcome to the Bakery Store management app.\n"
-                  << "At any screen, type 'back' to go back, or 'exit' to exit.\n"
-                  << SEPARATOR << std::endl << std::endl;
+                  << "At any screen, type 'back' to go back.\n"
+                  << SEPARATOR << std::endl;
         const std::vector<std::string> content = {
                 "import <name> - import data from folder called name",
                 "export <name> - export data to folder called name",
                 "manage - enter store management"
         };
-        printOptions(content,false);
+        printOptions(content);
 
         for (;;) {
             std::string input = readCommand();
             if (input == EXIT) return;
-            if (isValid(input, "manage")) {
+            if (validInput1Cmd(input, "manage")) {
                 LoginMenu loginMenu(_store);
                 loginMenu.show();
+                break;
+            }
+            if (validInput1Cmd1Arg(input,"import",false)){
+                printLogo();
+                std::cout << "waiting for file handling to be implemented. press enter to exit\n";
+                std::string input;
+                std::getline(std::cin,input);
+                break;
+            }
+            if (validInput1Cmd1Arg(input,"export",false)){
+                printLogo();
+                std::cout << "waiting for file handling to be implemented. press enter to exit\n";
+                std::string input;
+                std::getline(std::cin,input);
                 break;
             }
             printError(false);

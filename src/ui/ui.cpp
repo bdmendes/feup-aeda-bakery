@@ -19,26 +19,44 @@ std::string UI::readCommand(bool lowCase) {
     return input;
 }
 
-bool UI::isValid(std::string input, const std::vector<std::string> &args, const std::string &cmd) {
+bool UI::validInput1Word(const std::string &input, bool digit) {
     std::vector<std::string> words = to_words(input);
-
-    if (words.size() != !cmd.empty() + 1) return false;
-    if (args.empty()) return words.at(0) == cmd;
-
-    return cmd.empty() ?
-        std::find(args.begin(),args.end(),words.at(0)) != args.end()
-        : (words.at(0) == cmd && std::find(args.begin(),args.end(),words.at(1)) != args.end());
+    return words.size() == 1 && (!digit || isdigit(words.at(0)));
 }
 
-bool UI::isValid(std::string input, const std::string &arg, const std::string &cmd) {
+bool UI::validInput1Cmd(std::string input, const std::string &cmd) {
     std::vector<std::string> words = to_words(input);
-
-    if (words.size() != !cmd.empty() + 1) return false;
-    if (arg.empty()) return words.at(0) == cmd;
-    return cmd.empty() ? words.at(0) == arg : (words.at(0) == cmd && words.at(1) == arg);
+    return words.size() == 1 && words.at(0) == cmd;
 }
 
-void UI::printOptions(const std::vector<std::string> &options, bool index, std::string message) {
+bool UI::validInput1Cmd1Arg(std::string input, const std::string &cmd, bool digitArg) {
+    std::vector<std::string> words = to_words(input);
+    if (words.size() != 2 || words.at(0) != cmd) return false;
+    return !digitArg || isdigit(words.at(1));
+}
+
+bool UI::validInput1Cmd1Arg(std::string input, const std::string &cmd, const std::vector<std::string> &args) {
+    std::vector<std::string> words = to_words(input);
+    if (words.size() != 2 || words.at(0) != cmd) return false;
+    return std::find(args.begin(),args.end(),words.at(1)) != args.end();
+}
+
+bool UI::validInput1Cmd1Arg(const std::string& input, const std::string &cmd, const std::string &arg) {
+    std::vector<std::string> words = to_words(input);
+    if (words.size() != 2 || words.at(0) != cmd) return false;
+    return words.at(1) == arg;
+}
+
+bool UI::validInput1Cmd2Args(const std::string& input, const std::string &cmd, const std::vector<std::string> &args1,
+                             const std::vector<std::string> &args2) {
+    std::vector<std::string> words = to_words(input);
+    if (words.size() != 3 || words.at(0) != cmd) return false;
+    return std::find(args1.begin(),args1.end(),words.at(1)) != args1.end()
+    && std::find(args2.begin(),args2.end(),words.at(2)) != args1.end();
+}
+
+
+void UI::printOptions(const std::vector<std::string> &options, std::string message, bool index) {
     if (message.empty()) message = index ?
             "Choose 1-" + std::to_string(options.size()) : "Available commands:";
     std::cout << message << '\n';

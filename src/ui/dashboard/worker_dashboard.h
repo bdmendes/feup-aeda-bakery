@@ -6,8 +6,14 @@
 #define FEUP_AEDA_PROJECT_WORKER_DASHBOARD_H
 
 
-class WorkerDashboard {
+#include <ui/ui.h>
 
+class WorkerDashboard : public UI {
+public:
+    WorkerDashboard(Store& store, Worker* worker);
+    void show() override;
+private:
+    Worker* _worker;
 };
 
 

@@ -60,7 +60,7 @@ std::string util::to_string(float n) {
 }
 
 void util::clearScreen(){
-    std::cout << ANSI_CLEAR_SCREEN;
+    std::cout << '\n' << ANSI_CLEAR_SCREEN;
 }
 
 void util::print(const std::string& s, const int color){

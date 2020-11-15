@@ -59,18 +59,22 @@ void WorkerManager::remove(unsigned position) {
     _workers.erase(it);
 }
 
-void WorkerManager::print(std::ostream &os) {
-    int numSpaces = static_cast<int>(std::to_string(_workers.size()).size() + 2);
-    os << std::string(numSpaces,util::SPACE)
+void WorkerManager::print(std::ostream &os, bool showData) {
+    int idxPadding = static_cast<int>(std::to_string(_workers.size()).size() + 2);
+
+    os << std::string(idxPadding, util::SPACE)
     << util::column("NAME", true)
-    << util::column("TAX ID")
-    << util::column("SALARY")
-    << util::column("DELIVERED") << "\n";
+    << util::column("TAX ID");
+    if (showData){
+        os << util::column("SALARY")
+                << util::column("DELIVERED");
+    }
+    os << "\n";
 
     int count = 1;
     for (const auto& w: _workers){
-        os << std::setw(numSpaces) << std::left << std::to_string(count++) + ". ";
-        w->write(os);
+        os << std::setw(idxPadding) << std::left << std::to_string(count++) + ". ";
+        w->write(os,showData);
         os << "\n";
     }
 }

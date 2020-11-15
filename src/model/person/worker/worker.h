@@ -22,7 +22,7 @@ public:
     void addOrder();
     void removeOrder();
 
-    void write(std::ostream& os);
+    void write(std::ostream& os, bool showData = true);
 private:
     float _salary;
     unsigned _orders;

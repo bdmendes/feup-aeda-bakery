@@ -29,9 +29,11 @@ void Worker::setSalary(float salary) {
     _salary = salary;
 }
 
-void Worker::write(std::ostream &os) {
+void Worker::write(std::ostream &os, bool showData) {
     os << util::column(getName(), true)
-    << util::column(getTaxId() == Person::DEFAULT_TAX_ID ? "Not provided" : std::to_string(getTaxId()))
-    << util::column(util::to_string(getSalary()) + " euros")
-    << util::column(std::to_string(getOrders()) + " orders");
+    << util::column(getTaxId() == Person::DEFAULT_TAX_ID ? "Not provided" : std::to_string(getTaxId()));
+    if (showData){
+        os << util::column(util::to_string(getSalary()) + " euros")
+        << util::column(std::to_string(getOrders()) + " orders");
+    }
 }

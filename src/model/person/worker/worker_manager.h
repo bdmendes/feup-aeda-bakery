@@ -33,7 +33,7 @@ public:
     void remove(unsigned position);
 
     void read(std::ifstream& file);
-    void print(std::ostream& os);
+    void print(std::ostream& os, bool showData = true);
 private:
     std::set<Worker*, PersonSmaller> _workers;
 };

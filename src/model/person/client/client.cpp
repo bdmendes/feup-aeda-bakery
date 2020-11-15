@@ -50,9 +50,11 @@ void Client::addEvaluation(float evaluation) {
     _evaluations.push_back(evaluation);
 }
 
-void Client::print(std::ostream &os) {
+void Client::print(std::ostream &os, bool showData) {
     os << util::column(getName(), true)
-    << util::column(getTaxId() == Person::DEFAULT_TAX_ID ? "Not provided" : std::to_string(getTaxId()))
-    << util::column(isPremium() ? "Premium" : "Basic")
-    << util::column(std::to_string(getPoints()) + " points");
+    << util::column(getTaxId() == Person::DEFAULT_TAX_ID ? "Not provided" : std::to_string(getTaxId()));
+    if (showData){
+        os << util::column(isPremium() ? "Premium" : "Basic")
+                << util::column(std::to_string(getPoints()) + " points");
+    }
 }

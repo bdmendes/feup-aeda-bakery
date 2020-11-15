@@ -25,7 +25,7 @@ public:
     void resetPoints();
     void addEvaluation(float evaluation);
   
-    void print(std::ostream& os);
+    void print(std::ostream& os, bool showData = true);
   
 private:
     bool _premium;

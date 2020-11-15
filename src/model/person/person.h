@@ -22,6 +22,7 @@ struct Credential {
 class Person {
 public:
     Person(std::string name, int taxID, Credential credential);
+    virtual ~Person() = default;
     std::string getName() const;
     int getTaxId() const;
     Credential getCredential() const;

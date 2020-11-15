@@ -6,8 +6,12 @@
 #define FEUP_AEDA_PROJECT_BOSS_DASHBOARD_H
 
 
-class BossDashboard {
+#include <ui/ui.h>
 
+class BossDashboard : public UI {
+public:
+    explicit BossDashboard(Store& store);
+    void show() override;
 };
 
 

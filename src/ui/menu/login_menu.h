@@ -7,13 +7,21 @@
 
 #include "ui/ui.h"
 
+class BossDashboard;
+class ClientDashboard;
+class WorkerDashboard;
+
+enum class PersonToShow {
+    WORKER,
+    CLIENT
+};
+
 class LoginMenu: public UI{
 public:
     LoginMenu(Store& store);
     void show() override;
-    void showClients();
-    void showWorkers();
-    void login(unsigned person);
+    void showPersons(PersonToShow person);
+    void login(Person* person);
     Person* getLogged() const;
 private:
     std::vector<Person*> _persons;
