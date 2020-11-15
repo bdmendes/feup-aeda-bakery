@@ -29,7 +29,7 @@ void Worker::setSalary(float salary) {
     _salary = salary;
 }
 
-void Worker::write(std::ostream &os, bool showData) {
+void Worker::print(std::ostream &os, bool showData) {
     os << util::column(getName(), true)
     << util::column(getTaxId() == Person::DEFAULT_TAX_ID ? "Not provided" : std::to_string(getTaxId()));
     if (showData){
@@ -37,3 +37,7 @@ void Worker::write(std::ostream &os, bool showData) {
         << util::column(std::to_string(getOrders()) + " orders");
     }
 }
+
+/*bool Worker::operator==(const Worker &w2) const {
+    return (getName() == w2.getName()) && (getTaxId() == w2.getTaxId()) && (_salary == w2.getSalary());
+}*/

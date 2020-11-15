@@ -24,9 +24,8 @@ public:
     void removePoints(unsigned points);
     void resetPoints();
     void addEvaluation(float evaluation);
-  
+
     void print(std::ostream& os, bool showData = true);
-  
 private:
     bool _premium;
     unsigned _points;

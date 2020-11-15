@@ -33,11 +33,11 @@ InvalidPersonPosition::InvalidPersonPosition(unsigned int position, unsigned int
 }
 
 InvalidPersonCredentialChange::InvalidPersonCredentialChange() :
-    std::invalid_argument("New credentials must be different from the previous ones!"){
+    std::invalid_argument("New credentials must be different from the previous ones!\n"){
 }
 
 InvalidPersonNameChange::InvalidPersonNameChange() :
-    std::invalid_argument("New name must be different from the previous one!"){
+    std::invalid_argument("New name must be different from the previous one!\n"){
 }
 
 InvalidCredential::InvalidCredential(const std::string &arg) :
