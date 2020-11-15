@@ -8,12 +8,38 @@
 #include <utility>
 #include <sstream>
 #include <fstream>
+#include <util/util.h>
 
-ProductManager::ProductManager(): _products(){
+ProductManager::ProductManager(): _products(std::set<Product*, ProductSmaller>()){
+}
+
+ProductManager::ProductManager(std::set<Product*, ProductSmaller> stock) : _products(std::move(stock)){
 }
 
 bool ProductManager::has(Product *product) const {
     return std::find(_products.begin(), _products.end(), product) != _products.end();
+}
+
+Product* ProductManager::get(unsigned int position) {
+    if (position >= _products.size()) throw InvalidProductPosition(position, _products.size());
+    auto it = _products.begin(); std::advance(it, position);
+    return *it;
+}
+
+std::set<Product*, ProductSmaller> ProductManager::getAll() {
+    return _products;
+}
+
+Bread* ProductManager::addBread(std::string name, float price, bool small) {
+    auto it = new Bread(std::move(name),price,small);
+    _products.insert(it);
+    return it;
+}
+
+Cake* ProductManager::addCake(std::string name, float price, CakeCategory category) {
+    auto it = new Cake(std::move(name),price,category);
+    _products.insert(it);
+    return it;
 }
 
 void ProductManager::remove(Product *product) {
@@ -23,24 +49,19 @@ void ProductManager::remove(Product *product) {
     _products.erase(position);
 }
 
-Product *ProductManager::get(unsigned int position) {
-    if (position >= _products.size()) throw std::invalid_argument("Out of bounds product position");
-    return _products.at(position);
-}
+void ProductManager::print(std::ostream &os) const {
+    int numSpaces = static_cast<int>(std::to_string(_products.size()).size() + 2);
+    os << std::string(numSpaces,util::SPACE)
+    << util::column("NAME", true)
+    << util::column("CATEGORY")
+    << util::column("UNIT PRICE") << "\n";
 
-std::vector<Product *> ProductManager::getAll() {
-    return _products;
-}
-
-ProductManager::ProductManager(std::vector<Product *> stock) : _products(std::move(stock)){
-}
-
-void ProductManager::addBread(std::string name, float price, bool small) {
-    _products.push_back(new Bread(std::move(name),price,small));
-}
-
-void ProductManager::addCake(std::string name, float price, CakeCategory category) {
-    _products.push_back(new Cake(std::move(name),price,category));
+    int count = 1;
+    for (const auto& p: _products){
+        os << std::setw(numSpaces) << std::left << std::to_string(count++) + ". ";
+        p->print(os);
+        os << "\n";
+    }
 }
 
 void ProductManager::readCakes(std::ifstream &file) {
@@ -57,9 +78,6 @@ void ProductManager::readCakes(std::ifstream &file) {
         while(getline(file, line)){
             std::stringstream cake(line);
             cake>>name>>price>>cakeCategory;
-            switch(cakeCategory){
-                case
-            }
             std::replace(name.begin(), name.end(), '-', ' ');
             addCake(name, price, cakeCategory);
         }

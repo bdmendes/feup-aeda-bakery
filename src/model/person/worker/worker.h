@@ -11,13 +11,20 @@
 
 class Worker : public Person{
 public:
-    Worker(std::string name, float salary, int tributaryNumber = 999999999,
+    Worker(std::string name, float salary, int tributaryNumber = DEFAULT_TAXID,
            Credential credential = {"worker", "worker"});
+
+    float getSalary() const;
     unsigned getOrders() const;
+
+    void setSalary(float salary);
+
     void addOrder();
     void removeOrder();
-    void setSalary(float salary);
-    float getSalary() const;
+
+    void write(std::ostream& os);
+
+    //bool operator==(const Worker& w2) const;
 private:
     float _salary;
     unsigned _orders;

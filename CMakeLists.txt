@@ -3,6 +3,7 @@ project(feup-aeda-project)
 
 # Use C++20
 set(CMAKE_CXX_STANDARD 20)
+
 # Require (at least) it
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Don't use e.g. GNU extension (like -std=gnu++11) for portability
