@@ -4,7 +4,6 @@
 
 #include <gtest/gtest.h>
 
-#include "model/person/person/person.h"
 #include "model/order/order.h"
 #include "model/product/product.h"
 #include "model/person/client/client.h"
@@ -327,16 +326,3 @@ TEST(Order, sort_orders){
 
 }
 
-
-TEST(OrderManager, create_order_manager){
-
-
-}
-
-TEST(OrderManager, find_order){
-
-}
-
-TEST(OrderManager, add_client){
-
-}

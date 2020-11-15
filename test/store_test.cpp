@@ -8,8 +8,8 @@
 #include "model/person/worker/worker_manager.h"
 #include "model/product/product_manager.h"
 #include "model/order/order_manager.h"
+
 #include <algorithm>
-#include <map>
 
 using testing::Eq;
 
@@ -138,6 +138,41 @@ TEST(WorkerManager, has_worker){
 
     EXPECT_TRUE(wm.has(&w1));
     EXPECT_TRUE(wm.has(&w2));
+}
+
+TEST(WorkerManager, get_available){
+/*    Store store("Aeda");
+    Bread hugeBread("Pao de sementes", 0.2, false);
+    ProductManager productM;
+    productM.addCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
+    productM.addBread("Pao de sementes",0.2,false);
+
+    Client client("Ricardo Macedo");
+    ClientManager clientM;
+    clientM.add("Ricardo Macedo");
+
+    Worker worker1("Jose Figueiras", 890);
+    Worker worker2("Madalena Faria", 980);
+    WorkerManager workerM;
+    workerM.add("Jose Figueiras", 890);
+    workerM.add("Madalena Faria", 980);
+
+    EXPECT_EQ(0, worker1.getOrders());
+    EXPECT_EQ(0, worker2.getOrders());
+    EXPECT_TRUE(worker1 == *(workerM.getAvailable()));
+
+    OrderManager orderM(productM, clientM, workerM);
+    orderM.add(&client);
+
+    EXPECT_TRUE(worker1.getOrders() ==1);
+    EXPECT_EQ(0, worker2.getOrders());
+    EXPECT_TRUE(worker2 == *(workerM.getAvailable()));
+
+    orderM.add(&client);
+
+    EXPECT_EQ(1, worker1.getOrders());
+    EXPECT_EQ(1, worker2.getOrders());
+    EXPECT_TRUE(worker1 == *(workerM.getAvailable()));*/
 }
 
 TEST(WorkerManager, change_salary){
@@ -350,10 +385,75 @@ TEST(ProductManager, remove_product){
     pm.remove(&meatCake);
 
     EXPECT_EQ(0, pm.getAll().size());
-
     EXPECT_THROW(pm.remove(&meatCake), ProductDoesNotExist);
 }
 
+TEST(OrderManager, add_order){
+    Client client("Fernando Castro");
+    Worker worker("Josue Tome", 928);
+    Order order(client, worker);
 
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM;
+    clientM.add("Fernando Castro");
+    workerM.add("Josue Tome", 928);
+
+    OrderManager orderM(productM, clientM, workerM);
+
+    EXPECT_TRUE(orderM.getAll().empty());
+
+    orderM.add(&client);
+    unsigned position = 0;
+
+    EXPECT_EQ(1, orderM.getAll().size());
+    EXPECT_TRUE(order == *orderM.get(position));
+}
+
+
+TEST(OrderManager, get_order_by_position){
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM;
+
+    Worker worker("Madalena Faria", 980);
+
+    Client client1("Ricardo Macedo");
+    Order order1(client1, worker);
+
+    Client client2("Rosalia Martins");
+    Order order2(client2, worker);
+
+    clientM.add("Ricardo Macedo");
+    clientM.add("Rosalia Martins");
+    workerM.add("Madalena Faria", 980);
+    OrderManager orderM(productM, clientM, workerM);
+
+    EXPECT_TRUE(orderM.getAll().empty());
+    orderM.add(&client1);
+    unsigned position = 0;
+
+    EXPECT_EQ(1, orderM.getAll().size());
+    EXPECT_TRUE(order1 == *orderM.get(position));
+
+    orderM.add(&client2);
+
+    EXPECT_EQ(2, orderM.getAll().size());
+    EXPECT_TRUE(order1 == *orderM.get(position));
+    EXPECT_TRUE(order2 == *orderM.get(++position));
+    EXPECT_THROW(orderM.get(++position), InvalidOrderPosition);
+}
+
+TEST(OrderManager, get_client_orders){
+
+}
+
+TEST(OrderManager, get_worker_orders){
+
+}
+
+TEST(OrderManager, remove_order){
+
+}
 
 

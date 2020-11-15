@@ -24,7 +24,6 @@ public:
 
     void write(std::ostream& os);
 
-    //bool operator==(const Worker& w2) const;
 private:
     float _salary;
     unsigned _orders;
