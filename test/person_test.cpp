@@ -216,9 +216,7 @@ TEST(Client, add_points){
     client.addPoints(50);
 
     EXPECT_EQ(50, client.getPoints());
-
     client.addPoints(18);
-
     EXPECT_EQ(68, client.getPoints());
 }
 

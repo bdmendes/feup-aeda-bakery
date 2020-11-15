@@ -37,8 +37,6 @@ namespace util {
 
     void clearScreen();
     void print(const std::string& s, int color);
-    void readCommand(const std::string& message);
-    bool equalsCommand(const std::unordered_set<std::string>& possibleArgs, const std::string& cmd = "");
 }
 
 #endif //FEUP_AEDA_PROJECT_UTIL_H

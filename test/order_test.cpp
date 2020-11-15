@@ -281,7 +281,7 @@ TEST(Order, get_final_price){
 }
 
 TEST(Order, equal_orders){
-/*    Client client1("Alfredo Simões");
+    Client client1("Alfredo Simões");
     Client client2("Anotónio Pedroso");
     Worker worker("Beatriz Silva",950);
 
@@ -303,7 +303,7 @@ TEST(Order, equal_orders){
 
     order2.deliver(4.3);
 
-    EXPECT_FALSE(order1 == order2);*/
+    EXPECT_FALSE(order1 == order2);
 }
 
 TEST(Order, sort_orders){
@@ -336,6 +336,15 @@ TEST(OrderManager, add_client){
 
 }
 
-TEST(OrderManager, remove_order){
+TEST(Order,evaluations){
+    Client client("Alfredo",true);
+    Worker worker("Beatriz",950);
 
+    Order order1(client,worker);
+    Order order2(client,worker);
+    EXPECT_THROW(order1.getClientEvaluation(),OrderWasNotDeliveredYet);
+    order1.deliver(2);
+    order2.deliver(4);
+    EXPECT_FLOAT_EQ(order1.getClientEvaluation(),2);
+    EXPECT_FLOAT_EQ(client.getMeanEvaluation(),3);
 }
