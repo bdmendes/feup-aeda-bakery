@@ -45,8 +45,8 @@ Worker* WorkerManager::add(std::string name, float salary, int tributaryNumber, 
 }
 
 void WorkerManager::remove(Worker *worker) {
-    if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
-    auto position = std::find(_workers.begin(), _workers.end(),worker);
+    //if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
+    auto position = _workers.find(worker);
     if(position == _workers.end())
         throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
     _workers.erase(position);

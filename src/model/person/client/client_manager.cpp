@@ -32,9 +32,7 @@ Client* ClientManager::add(std::string name, bool premium, int tributaryNumber, 
 }
 
 void ClientManager::remove(Client *client) {
-    auto position = std::find_if(_clients.begin(), _clients.end(), [client](Client* c){
-        return *client == *c;
-    });
+    auto position = _clients.find(client);
     if(position == _clients.end())
         throw PersonDoesNotExist(client->getName(), client->getTaxId());
     _clients.erase(position);

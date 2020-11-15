@@ -82,13 +82,14 @@ TEST(ClientManager, remove_client_by_pointer){
     ClientManager cm;
     cm.add("Henrique Vaz");
     cm.add("Sofia Rebelo");
+    unsigned position = 0;
 
     EXPECT_EQ(2, cm.getAll().size());
 
     cm.remove(&c1);
 
     EXPECT_EQ(1, cm.getAll().size());
-    EXPECT_TRUE(c2 == *(*cm.getAll().begin()));
+    EXPECT_TRUE(c2 == *cm.get(position));
 
     cm.remove(&c2);
 
@@ -135,22 +136,134 @@ TEST(WorkerManager, has_worker){
 
     wm.add("Margarida Ferraz", 849);
 
+    EXPECT_TRUE(wm.has(&w1));
+    EXPECT_TRUE(wm.has(&w2));
 }
 
 TEST(WorkerManager, change_salary){
+    WorkerManager wm;
+    wm.add("Francisco Ferreira", 948);
+    wm.add("Margarida Ferraz", 849);
+    unsigned position = 0;
 
+    EXPECT_FLOAT_EQ(948, wm.get(position)->getSalary());
+    EXPECT_FLOAT_EQ(849, wm.get(++position)->getSalary());
+
+    position = 0;
+    wm.changeSalary(position, 900);
+    wm.changeSalary(++position, 950);
+    EXPECT_THROW(wm.changeSalary(++position, 950), InvalidPersonPosition);
+
+    position = 0;
+    EXPECT_FLOAT_EQ(900, wm.get(position)->getSalary());
+    EXPECT_FLOAT_EQ(950, wm.get(++position)->getSalary());
 }
 
 TEST(WorkerManager, add_worker){
+    Worker w1("Francisco Ferreira", 948);
+    Worker w2("Joana Teixeira", 892);
+    Worker w3("Margarida Ferraz", 849);
+    WorkerManager wm;
+    unsigned position = 0;
 
+    EXPECT_TRUE(wm.getAll().empty());
+
+    wm.add("Francisco Ferreira", 948);
+
+    EXPECT_EQ(1, wm.getAll().size());
+    EXPECT_TRUE(w1 == *wm.get(position));
+
+    wm.add("Joana Teixeira", 892);
+
+    position = 0;
+    EXPECT_EQ(2, wm.getAll().size());
+    EXPECT_TRUE(w1 == *wm.get(position));
+    EXPECT_TRUE(w2 == *wm.get(++position));
+
+    wm.add("Margarida Ferraz", 849);
+
+    position = 0;
+    EXPECT_EQ(3, wm.getAll().size());
+    EXPECT_TRUE(w1 == *wm.get(position));
+    EXPECT_TRUE(w2 == *wm.get(++position));
+    EXPECT_TRUE(w3 == *wm.get(++position));
+
+    EXPECT_THROW(wm.add("Francisco Ferreira", 948), PersonAlreadyExists);
+    EXPECT_THROW(wm.add("Joana Teixeira", 892), PersonAlreadyExists);
+    EXPECT_THROW(wm.add("Margarida Ferraz", 849), PersonAlreadyExists);
 }
 
 TEST(WorkerManager, remove_worker_by_pointer){
+    Worker w1("Francisco Ferreira", 948);
+    Worker w2("Joana Teixeira", 892);
+    Worker w3("Margarida Ferraz", 849);
+    WorkerManager wm;
+    wm.add("Francisco Ferreira", 948);
+    wm.add("Joana Teixeira", 892);
+    wm.add("Margarida Ferraz", 849);
+    unsigned position = 0;
 
+    EXPECT_EQ(3, wm.getAll().size());
+    EXPECT_TRUE(w1 == *wm.get(position));
+    EXPECT_TRUE(w2 == *wm.get(++position));
+    EXPECT_TRUE(w3 == *wm.get(++position));
+
+    wm.remove(&w1);
+
+    position = 0;
+    EXPECT_EQ(2, wm.getAll().size());
+    EXPECT_TRUE(w2 == *wm.get(position));
+    EXPECT_TRUE(w3 == *wm.get(++position));
+
+    wm.remove(&w2);
+
+    position = 0;
+    EXPECT_EQ(1, wm.getAll().size());
+    EXPECT_TRUE(w3 == *wm.get(position));
+
+    wm.remove(&w3);
+
+    EXPECT_TRUE(wm.getAll().empty());
+    EXPECT_THROW(wm.remove(&w1), PersonDoesNotExist);
+    EXPECT_THROW(wm.remove(&w2), PersonDoesNotExist);
+    EXPECT_THROW(wm.remove(&w3), PersonDoesNotExist);
 }
 
 TEST(WorkerManager, remove_worker_by_position){
+    Worker w1("Francisco Ferreira", 948);
+    Worker w2("Joana Teixeira", 892);
+    Worker w3("Margarida Ferraz", 849);
+    WorkerManager wm;
+    wm.add("Francisco Ferreira", 948);
+    wm.add("Joana Teixeira", 892);
+    wm.add("Margarida Ferraz", 849);
+    unsigned position = 0, positionToRemove = 0;
 
+    EXPECT_EQ(3, wm.getAll().size());
+    EXPECT_THROW(wm.remove(3), InvalidPersonPosition);
+    EXPECT_TRUE(w1 == *wm.get(position));
+    EXPECT_TRUE(w2 == *wm.get(++position));
+    EXPECT_TRUE(w3 == *wm.get(++position));
+
+    wm.remove(positionToRemove);
+
+    position = 0;
+    EXPECT_EQ(2, wm.getAll().size());
+    EXPECT_THROW(wm.remove(2), InvalidPersonPosition);
+    EXPECT_TRUE(w2 == *wm.get(position));
+    EXPECT_TRUE(w3 == *wm.get(++position));
+
+
+    wm.remove(positionToRemove);
+
+    position = 0;
+    EXPECT_EQ(1, wm.getAll().size());
+    EXPECT_THROW(wm.remove(1), InvalidPersonPosition);
+    EXPECT_TRUE(w3 == *wm.get(position));
+
+    wm.remove(positionToRemove);
+
+    EXPECT_TRUE(wm.getAll().empty());
 }
 
 TEST(ProductManager, create_product_manager){
@@ -189,8 +302,6 @@ TEST(ProductManager, get_product_by_position){
     EXPECT_EQ(&hugeBread, pm.get(++position));
 
     EXPECT_THROW(pm.get(++position), InvalidProductPosition);
-    try{ pm.get(++position); }
-    catch (InvalidProductPosition &e) { std::cout << e.what(); }
 }
 
 TEST(ProductManager, add_bread) {
@@ -241,8 +352,6 @@ TEST(ProductManager, remove_product){
     EXPECT_EQ(0, pm.getAll().size());
 
     EXPECT_THROW(pm.remove(&meatCake), ProductDoesNotExist);
-    try{ pm.remove(&meatCake); }
-    catch (ProductDoesNotExist &e) { std::cout << e.what(); }
 }
 
 

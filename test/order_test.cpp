@@ -62,8 +62,6 @@ TEST(Order, add_product){
     order.deliver(4.3);
 
     EXPECT_THROW(order.addProduct(&barleyBread), OrderWasAlreadyDelivered);
-    try{ order.addProduct(&barleyBread); }
-    catch (OrderWasAlreadyDelivered &e) { std::cout << e.what(); }
 }
 
 TEST(Order, remove_product_quantity_by_pointer){
@@ -97,8 +95,6 @@ TEST(Order, remove_product_quantity_by_pointer){
     EXPECT_FLOAT_EQ(2.6, order.getTotal());
 
     EXPECT_THROW(order.removeProduct(&barleyBread), ProductDoesNotExist);
-    try{ order.removeProduct(&barleyBread); }
-    catch (ProductDoesNotExist &e){ std::cout << e.what(); }
 }
 
 TEST(Order, remove_product_by_pointer){
@@ -122,8 +118,6 @@ TEST(Order, remove_product_by_pointer){
     EXPECT_FLOAT_EQ(0.6, order.getTotal());
 
     EXPECT_THROW(order.removeProduct(&chocolateCake), ProductDoesNotExist);
-    try{ order.removeProduct(&chocolateCake); }
-    catch (ProductDoesNotExist &e){ std::cout << e.what(); }
 }
 
 TEST(Order, remove_product_quantity_by_position){
@@ -157,8 +151,6 @@ TEST(Order, remove_product_quantity_by_position){
     EXPECT_FLOAT_EQ(8.2, order.getTotal());
 
     EXPECT_THROW(order.removeProduct(2), InvalidProductPosition);
-    try{ order.removeProduct(2); }
-    catch (InvalidProductPosition &e) { std::cout << e.what(); }
 }
 
 TEST(Order, remove_product_by_position){
@@ -193,8 +185,6 @@ TEST(Order, remove_product_by_position){
     EXPECT_FLOAT_EQ(5.6, order.getTotal());
 
     EXPECT_THROW(order.removeProduct(1), InvalidProductPosition);
-    try{ order.removeProduct(2); }
-    catch (InvalidProductPosition &e) { std::cout << e.what(); }
 }
 
 TEST(Order, deliver){
@@ -233,14 +223,10 @@ TEST(Order, deliver){
     EXPECT_FLOAT_EQ(4.1, order2.getClientEvaluation());
 
     EXPECT_THROW(order2.deliver(2.3), OrderWasAlreadyDelivered);
-    try{ order2.deliver(2.3); }
-    catch (OrderWasAlreadyDelivered &e) { std::cout << e.what(); }
 
     Order order3(client, worker);
 
     EXPECT_THROW(order3.deliver(5.3), InvalidOrderEvaluation);
-    try{ order3.deliver(5.3); }
-    catch (InvalidOrderEvaluation &e) { std::cout << e.what(); }
 }
 
 TEST(Order,evaluations){
@@ -251,8 +237,6 @@ TEST(Order,evaluations){
     Order order2(client,worker);
 
     EXPECT_THROW(order1.getClientEvaluation(),OrderWasNotDeliveredYet);
-    try{ order1.getClientEvaluation(); }
-    catch (OrderWasNotDeliveredYet &e) { std::cout << e.what(); }
 
     order1.deliver(2);
     order2.deliver(4);
@@ -296,8 +280,8 @@ TEST(Order, get_final_price){
     EXPECT_FALSE(client.getPoints() == 0); // only after delivering!
 }
 
-/*TEST(Order, equal_orders){
-    Client client1("Alfredo Simões");
+TEST(Order, equal_orders){
+/*    Client client1("Alfredo Simões");
     Client client2("Anotónio Pedroso");
     Worker worker("Beatriz Silva",950);
 
@@ -319,8 +303,8 @@ TEST(Order, get_final_price){
 
     order2.deliver(4.3);
 
-    EXPECT_FALSE(order1 == order2);
-}*/
+    EXPECT_FALSE(order1 == order2);*/
+}
 
 TEST(Order, sort_orders){
     Client client("Alfredo Simões");

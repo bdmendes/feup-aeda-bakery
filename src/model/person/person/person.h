@@ -40,7 +40,7 @@ private:
 };
 
 struct PersonSmaller{
-    bool operator()(const Person* p1, const Person* p2) {
+    bool operator()(const Person* p1, const Person* p2) const{
         return *p1 < *p2;
     }
 };
