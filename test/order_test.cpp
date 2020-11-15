@@ -290,8 +290,13 @@ TEST(Order, equal_orders){
     Order order3(client1, worker);
     Order order4(client2, worker);
 
+    EXPECT_TRUE(order1 == order2);
+
     Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
     order1.addProduct(&meatCake, 5);
+
+    EXPECT_FALSE(order1 == order2);
+
     order2.addProduct(&meatCake, 5);
 
     EXPECT_TRUE(order1 == order2);
@@ -334,17 +339,4 @@ TEST(OrderManager, find_order){
 
 TEST(OrderManager, add_client){
 
-}
-
-TEST(Order,evaluations){
-    Client client("Alfredo",true);
-    Worker worker("Beatriz",950);
-
-    Order order1(client,worker);
-    Order order2(client,worker);
-    EXPECT_THROW(order1.getClientEvaluation(),OrderWasNotDeliveredYet);
-    order1.deliver(2);
-    order2.deliver(4);
-    EXPECT_FLOAT_EQ(order1.getClientEvaluation(),2);
-    EXPECT_FLOAT_EQ(client.getMeanEvaluation(),3);
 }
