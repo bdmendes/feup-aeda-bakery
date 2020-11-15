@@ -35,3 +35,7 @@ void Worker::write(std::ostream &os) {
     << util::column(util::to_string(getSalary()) + " euros")
     << util::column(std::to_string(getOrders()) + " orders");
 }
+
+/*bool Worker::operator==(const Worker &w2) const {
+    return (getName() == w2.getName()) && (getTaxId() == w2.getTaxId()) && (_salary == w2.getSalary());
+}*/

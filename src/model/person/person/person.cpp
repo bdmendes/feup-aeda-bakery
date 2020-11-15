@@ -36,6 +36,6 @@ bool Person::operator<(const Person &p2) const {
     return _name < p2.getName();
 }
 
-bool Person::operator==(const Person &p2) const {
+bool Person::operator==(const Person& p2) const {
     return _name == p2.getName() && _taxId == p2.getTaxId();
 }

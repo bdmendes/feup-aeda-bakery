@@ -18,6 +18,7 @@ Date::Date(int day, int month, int year, int hour, int minute) :
     _time.tm_year = year - 1900;
     _time.tm_mon = month - 1;
     _time.tm_mday = day;
+    _time.tm_isdst = -1; // determine daylight saving flag
     if (!isValid()) throw InvalidDate(getCompleteDate());
 }
 

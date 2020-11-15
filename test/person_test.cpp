@@ -9,6 +9,21 @@
 
 using testing::Eq;
 
+TEST(Person, create_person){
+    Person p1("Joel Lopes", 184932019, {"joel_lopes123", "Lopes_123"});
+    Credential credential = {"joel_lopes123", "Lopes_123"};
+    EXPECT_EQ("Joel Lopes", p1.getName());
+    EXPECT_EQ(184932019, p1.getTaxId());
+    EXPECT_EQ(credential, p1.getCredential());
+
+    Person p2("Manuela Rodrigues", 285931384, {"manuelaRodrigues", "9281manuela"});
+    credential = {"manuelaRodrigues", "9281manuela"};
+
+    EXPECT_EQ("Manuela Rodrigues", p2.getName());
+    EXPECT_EQ(285931384, p2.getTaxId());
+    EXPECT_EQ(credential, p2.getCredential());
+}
+
 TEST(Client, create_client){
     Client c1("Manuel Martins");
     Credential credential = {"client", "client"};
@@ -60,6 +75,12 @@ TEST(Worker, create_worker){
 }
 
 TEST(Person, change_name){
+    Person person("Miguel Oliveira", 184932981, {"miguelO", "mig123_1"});
+    person.changeName("Miguel Ribeiro");
+
+    EXPECT_EQ("Miguel Ribeiro", person.getName());
+    EXPECT_THROW(person.changeName("Miguel Ribeiro"), InvalidPersonNameChange);
+
     Client client("Ricardo Silva");
     client.changeName("Ricardo Gomes");
 
@@ -82,6 +103,13 @@ TEST(Person, change_name){
 }
 
 TEST(Person, change_credential){
+    Person person("Olga Machado", 284913847, {"machado_olga", "olga123"});
+    Credential personCredential = {"machado_olga", "OlgaMachado_341"};
+    person.changeCredential(personCredential);
+
+    EXPECT_TRUE(person.getCredential() == personCredential);
+    EXPECT_THROW(person.changeCredential(personCredential), InvalidPersonCredentialChange);
+
     Client client("Rui Macedo");
     Credential clientCredential = {"Ruimacedo", "macedo@123"};
     client.changeCredential(clientCredential);
@@ -107,20 +135,65 @@ TEST(Person, change_credential){
     EXPECT_TRUE(worker.getCredential() == workerCredential);
 }
 
+TEST(Person, sort_people){
+    Person p1("Joao Ricardo", 285742345, {"joao", "1234"});
+    Person p2("Ana Maria", 294306748, {"anaMaria", "ana_123"});
+    Person p3("Agostinho Lima", 213854059, {"gusto", "gusto1948"});
+
+    EXPECT_TRUE(p2 < p1);
+    EXPECT_TRUE(p3 < p1);
+    EXPECT_FALSE( p2 < p3);
+
+    Client c1("Beatriz Duarte");
+    Client c2("Joana Fernandes");
+    Client c3("Joao Martins");
+
+    EXPECT_TRUE(c1 < c2);
+    EXPECT_TRUE(c2 < c3);
+    EXPECT_FALSE(c3 < c1);
+
+    Worker w1("Cristina Martins", 938);
+    Worker w2("Sara Ribeiro", 839);
+    Worker w3("Sara Couto", 940);
+
+    EXPECT_TRUE(w1 < w2);
+    EXPECT_TRUE(w3 < w2);
+    EXPECT_FALSE(w3 < w1);
+
+    EXPECT_TRUE(c1 < p1);
+    EXPECT_TRUE(w1 < p1);
+    EXPECT_TRUE(p2 < c2);
+    EXPECT_TRUE(p2 < w2);
+    EXPECT_TRUE(p3 < c3);
+    EXPECT_TRUE(p3 < w3);
+}
+
 TEST(Person, equal_person){
-    Credential credential={"client", "client"};
+    Person p1("Joao Manuel", 284917316, {"jonasManel", "joao123"});
+    Person p2("Joao Manuel", 284917316, {"joaoMan", "joao_m123"});
+    Person p3("Joao Macedo", 183746173, {"joaom", "jonas_38"});
+
+    EXPECT_TRUE(p1 == p2);
+    EXPECT_FALSE(p1 == p3);
+    EXPECT_FALSE(p2 == p3);
+}
+
+TEST(Client, equal_clients){
     Client c1("Cristina Lopes");
-    Client c2("Cristina Lopes", false, 999999999, credential);
+    Client c2("Cristina Lopes", false, 999999999, {"client", "client"});
     Client c3("Cristina Figueiredo");
+    Client c4("Joao Manuel", false, 284917316, {"jonasManel", "joao123"});
 
     EXPECT_TRUE(c1==c2);
     EXPECT_FALSE(c1==c3);
     EXPECT_FALSE(c2==c3);
+}
 
-    credential = {"worker", "worker"};
+TEST(Worker, equal_workers){
     Worker w1("Luis Miguel", 950);
-    Worker w2("Luis Miguel", 950, 999999999, credential);
+    Worker w2("Luis Miguel", 950, 999999999, {"worker", "worker"});
     Worker w3("Luis Filipe", 890);
+    Worker w4("Joao Manuel", 950, 284917316, {"jonasManel", "joao123"});
 
     EXPECT_TRUE(w1==w2);
     EXPECT_FALSE(w1==w3);
@@ -227,4 +300,3 @@ TEST(Worker, remove_order){
 
     EXPECT_EQ(1, worker.getOrders());
 }
-
