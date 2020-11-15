@@ -22,9 +22,19 @@ public:
     OrderWasNotDeliveredYet(const Client& client, const Worker& worker, const Date& date);
 };
 
+class OrderDoesNotExist : public std::invalid_argument{
+public:
+    OrderDoesNotExist();
+};
+
 class InvalidOrderEvaluation : public std::invalid_argument{
 public:
     InvalidOrderEvaluation(float evaluation, const Client& client);
+};
+
+class InvalidOrderPosition : public std::invalid_argument{
+public:
+    InvalidOrderPosition(unsigned position, unsigned size);
 };
 
 #endif //FEUP_AEDA_PROJECT_ORDER_EXCEPTION_H

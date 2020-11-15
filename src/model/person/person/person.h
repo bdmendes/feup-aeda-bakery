@@ -5,8 +5,13 @@
 #ifndef FEUP_AEDA_PROJECT_PERSON_H
 #define FEUP_AEDA_PROJECT_PERSON_H
 
+#include <exception/person_exception.h>
+
 #include <string>
 #include <stdexcept>
+#include <set>
+
+const int DEFAULT_TAXID = 999999999;
 
 struct Credential {
     std::string username;
@@ -18,21 +23,26 @@ struct Credential {
 
 class Person {
 public:
-    std::string getName() const;
-    int getTributaryNumber() const;
-    Credential getCredential() const;
-    void changeCredential(const Credential& credential);
-    void changeName(const std::string& name);
-
-    bool operator==(const Person& p2) const{
-        return _name == p2.getName() && _tributaryNumber == p2.getTributaryNumber();
-    }
-protected:
     Person(std::string name, int tributaryNumber, Credential credential);
+    std::string getName() const;
+    int getTaxId() const;
+    Credential getCredential() const;
+
+    void changeName(const std::string& name);
+    void changeCredential(const Credential& credential);
+
+    bool operator<(const Person& p2) const;
+    bool operator==(const Person& p2) const;
 private:
     std::string _name;
-    int _tributaryNumber;
+    int _taxId;
     Credential _credential;
+};
+
+struct PersonSmaller{
+    bool operator()(const Person* p1, const Person* p2) const{
+        return *p1 < *p2;
+    }
 };
 
 #endif //FEUP_AEDA_PROJECT_PERSON_H

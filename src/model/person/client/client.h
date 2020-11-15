@@ -14,14 +14,20 @@ class Client : public Person {
 public:
     explicit Client(std::string name, bool premium = false, int tributaryNumber = 999999999,
            Credential credential = {"client", "client"});
+
     bool isPremium() const;
+    float getMeanEvaluation() const;
     unsigned getPoints() const;
+    std::vector<float> getEvaluations() const;
+    void setPremium(bool premium);
     void addPoints(unsigned points);
     void removePoints(unsigned points);
     void resetPoints();
-    float getMeanEvaluation() const;
     void addEvaluation(float evaluation);
-    void setPremium(bool premium);
+  
+    void print(std::ostream& os);
+
+    //bool operator==(const Client& c2) const;
 private:
     bool _premium;
     unsigned _points;

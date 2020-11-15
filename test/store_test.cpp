@@ -4,168 +4,355 @@
 
 #include <gtest/gtest.h>
 #include "model/store/store.h"
+#include "model/person/client/client_manager.h"
+#include "model/person/worker/worker_manager.h"
+#include "model/product/product_manager.h"
+#include "model/order/order_manager.h"
 #include <algorithm>
 #include <map>
 
 using testing::Eq;
 
 TEST(Store, create_store){
-    Store store1("Padaria Diamante");
-    Store store2("Padaria Pão Quente");
+    Store s1;
 
-    EXPECT_EQ(store1.getName(), "Padaria Diamante");
-    EXPECT_EQ(store2.getName(), "Padaria Pão Quente");
+    EXPECT_EQ("Bakery Store", s1.getName());
+
+    Store s2("Padaria Pao Quente");
+
+    EXPECT_EQ("Padaria Pao Quente", s2.getName());
 }
 
-TEST(Store, hire_worker){
+TEST(Store, set_name){
     Store store;
-    store.workerManager.add("Maria João", 970, 253579503);
-    store.workerManager.add("Rodrigo Soares", 890);
+    store.setName("Padaria Doce Cereal");
 
-    EXPECT_THROW(    store.workerManager.add("Maria João", 970, 253579503), PersonAlreadyExists);
-    EXPECT_THROW(    store.workerManager.add("Rodrigo Soares", 890), PersonAlreadyExists);
+    EXPECT_EQ("Padaria Doce Cereal", store.getName());
+
+    store.setName("Padaria Diamante");
+
+    EXPECT_EQ("Padaria Diamante", store.getName());
 }
 
-TEST(Store, fire_worker){
-    Store store("Padaria Pão Quente");
+TEST(ClientManager, has_client){
+    Client c1("Cristina Lopes");
+    Client c2("Joao Manuel", false, 284917316, {"jonasManel", "joao123"});
+    ClientManager cm;
 
-    Worker worker1("Maria João", 970, 253579503);
-    Worker worker2("Rodrigo Soares", 890);
-    Worker worker3("Manuel Faria", 900);
-    Worker worker4("Juliana Fernandes", 960, 567432890);
+    EXPECT_FALSE(cm.has(&c1));
+    EXPECT_FALSE(cm.has(&c2));
 
-    EXPECT_THROW(store.workerManager.remove(&worker1), StoreHasNoWorkers);
+    cm.add("Cristina Lopes");
 
-    store.workerManager.add("Maria João", 970, 253579503);
-    store.workerManager.add("Rodrigo Soares", 890);
+    EXPECT_TRUE(cm.has(&c1));
+    EXPECT_FALSE(cm.has(&c2));
 
-    EXPECT_THROW(store.workerManager.remove(&worker3), PersonDoesNotExist);
-    EXPECT_THROW(store.workerManager.remove(&worker4), PersonDoesNotExist);
+    cm.add("Joao Manuel", false, 284917316, {"jonasManel", "joao123"});
+
+    EXPECT_TRUE(cm.has(&c1));
+    EXPECT_TRUE(cm.has(&c2));
 }
 
-/*
-TEST(Store, has_worker){
-    Store store("Padaria Pão Quente");
+TEST(ClientManager, add_client){
+    unsigned position = 0;
+    Client client1("Rodrigo Pereira");
+    std::set<Client*, PersonSmaller> clients;
+    ClientManager cm;
 
-    Worker worker1("Mariana Simões", 970, 253579503);
-    Worker worker2("Joana Faria", 890);
-    Worker worker3("Miguel Gomes", 900, 289304093);
-    Worker worker4("Júlio Domingos", 960);
+    EXPECT_EQ(0, cm.getAll().size());
 
-    store.workerManager.add(&worker1);
-    store.workerManager.add(&worker2);
+    cm.add("Rodrigo Pereira");
+    Client* getClient = cm.get(position);
 
-    EXPECT_TRUE(store.workerManager.has(&worker1));
-    EXPECT_TRUE(store.workerManager.has(&worker2));
-    EXPECT_FALSE(store.workerManager.has(&worker3));
-    EXPECT_FALSE(store.workerManager.has(&worker4));
+    EXPECT_EQ(1, cm.getAll().size());
+    EXPECT_TRUE(client1 == *getClient);
+
+    Client client2("Maria Joao", true, 174829123, {"mariaj", "123"});
+    cm.add("Maria Joao", true, 174829123, {"mariaj", "123"});
+    getClient = cm.get(position++);
+
+    EXPECT_EQ(2, cm.getAll().size());
+    EXPECT_TRUE(client2 == *getClient);
+    EXPECT_THROW(cm.add("Maria Joao", true, 174829123, {"mariaj", "123"}), PersonAlreadyExists);
 }
 
-TEST(Store, has_client){
-    Store store("Padaria Pão Quente");
+TEST(ClientManager, remove_client_by_pointer){
+    Client c1("Henrique Vaz");
+    Client c2("Sofia Rebelo");
+    ClientManager cm;
+    cm.add("Henrique Vaz");
+    cm.add("Sofia Rebelo");
+    unsigned position = 0;
 
-    Client client1("João Martins");
-    Client client2("Madalena Lopes", true, 289456094);
-    Client client3("Luís Ferreira", false,289345874);
+    EXPECT_EQ(2, cm.getAll().size());
 
-    Worker worker1("Margarida Azevedo",  830);
-    Worker worker2("João Gomes", 990, 278917902);
+    cm.remove(&c1);
 
-    store.workerManager.add(&worker1);
-    store.workerManager.add(&worker2);
+    EXPECT_EQ(1, cm.getAll().size());
+    EXPECT_TRUE(c2 == *cm.get(position));
 
-    Bread cerealBread("Pão de cereais", 0.80, false);
-    Cake chocolateCake("Bolo de Chocolate", 1.20, CakeCategory::CRUNCHY);
+    cm.remove(&c2);
 
-    EXPECT_THROW(store.orderManager.add(&client1),PersonDoesNotExist);
-    store.clientManager.add(&client1);
-    store.clientManager.add(&client2);
-    Order* order = store.orderManager.add(&client1);
-    order->addProduct(&cerealBread,3);
-
-    Order* order2 = store.orderManager.add(&client2);
-    //store.orderManager.addProduct(order2,&chocolateCake,2);
-
-    EXPECT_TRUE(store.clientManager.has(&client1));
-    EXPECT_TRUE(store.clientManager.has(&client2));
-    EXPECT_FALSE(store.clientManager.has(&client3));
+    EXPECT_TRUE(cm.getAll().empty());
+    EXPECT_THROW(cm.remove(&c1), PersonDoesNotExist);
+    EXPECT_THROW(cm.remove(&c2), PersonDoesNotExist);
 }
 
-// TO DO
+TEST(ClientManager, remove_client_by_position){
+    unsigned position = 1;
+    Client c1("Henrique Vaz");
+    Client c2("Sofia Rebelo");
+    ClientManager cm;
+    cm.add("Henrique Vaz");
+    cm.add("Sofia Rebelo");
 
-TEST(Store, change_worker_salary){
-    Store store("Pão Quente");
-    Worker worker1("João Miguel", 950, 267892019);
-    store.hireWorker(&worker1);
+    EXPECT_EQ(2, cm.getAll().size());
 
-    store.changeWorkerSalary(&worker1, 900);
-    EXPECT_FLOAT_EQ(worker1.getSalary(), 900);
+    cm.remove(position);
 
-    store.changeWorkerSalary(&worker1, 970);
-    EXPECT_FLOAT_EQ(worker1.getSalary(), 970);
+    EXPECT_EQ(1, cm.getAll().size());
+    EXPECT_TRUE(c1 == *(*cm.getAll().begin()));
+    EXPECT_THROW(cm.remove(position++), InvalidPersonPosition);
+
+    position = 0;
+    cm.remove(position);
+
+    EXPECT_TRUE(cm.getAll().empty());
+    EXPECT_THROW(cm.remove(position), InvalidPersonPosition);
 }
 
-TEST(Store, add_product){
-    Store store("Pão Quente");
+TEST(WorkerManager, has_worker){
+    Worker w1("Francisco Ferreira", 948);
+    Worker w2("Margarida Ferraz", 849);
+    WorkerManager wm;
 
-    Bread cerealBread("Pão de cereais", 0.80, false);
-    Cake chocolateCake("Bolo de Chocolate", 1.20, CakeCategory::CRUNCHY);
+    EXPECT_FALSE(wm.has(&w1));
+    EXPECT_FALSE(wm.has(&w2));
 
-    store.addProduct(&cerealBread);
-    store.addProduct(&chocolateCake);
+    wm.add("Francisco Ferreira", 948);
 
-    EXPECT_THROW(store.addProduct(&cerealBread), ProductAlreadyExists);
-    EXPECT_THROW(store.addProduct(&chocolateCake), ProductAlreadyExists);
+    EXPECT_TRUE(wm.has(&w1));
+    EXPECT_FALSE(wm.has(&w2));
+
+    wm.add("Margarida Ferraz", 849);
+
+    EXPECT_TRUE(wm.has(&w1));
+    EXPECT_TRUE(wm.has(&w2));
 }
 
-TEST(Store, remove_product){
-    Store store("Pão Quente");
+TEST(WorkerManager, change_salary){
+    WorkerManager wm;
+    wm.add("Francisco Ferreira", 948);
+    wm.add("Margarida Ferraz", 849);
+    unsigned position = 0;
 
-    Bread cerealBread("Pão de cereais", 0.80, false);
-    Cake chocolateCake("Bolo de Chocolate", 1.20, CakeCategory::CRUNCHY);
-    Cake nutCake("Tarte de noz", 1.50, CakeCategory::PIE);
+    EXPECT_FLOAT_EQ(948, wm.get(position)->getSalary());
+    EXPECT_FLOAT_EQ(849, wm.get(++position)->getSalary());
 
-    store.addProduct(&cerealBread);
-    store.addProduct(&chocolateCake);
-    EXPECT_THROW(store.removeProduct(&nutCake), ProductDoesNotExist);
-    store.removeProduct(&cerealBread);
-    EXPECT_THROW(store.removeProduct(&cerealBread), ProductDoesNotExist);
-    store.removeProduct(&chocolateCake);
-    EXPECT_THROW(store.removeProduct(&nutCake), ProductDoesNotExist);
+    position = 0;
+    wm.changeSalary(position, 900);
+    wm.changeSalary(++position, 950);
+    EXPECT_THROW(wm.changeSalary(++position, 950), InvalidPersonPosition);
+
+    position = 0;
+    EXPECT_FLOAT_EQ(900, wm.get(position)->getSalary());
+    EXPECT_FLOAT_EQ(950, wm.get(++position)->getSalary());
 }
 
-TEST(Store, get_mean_evaluation){
-    Store store("Padaria Pão Quente");
+TEST(WorkerManager, add_worker){
+    Worker w1("Francisco Ferreira", 948);
+    Worker w2("Joana Teixeira", 892);
+    Worker w3("Margarida Ferraz", 849);
+    WorkerManager wm;
+    unsigned position = 0;
 
-    Client client1("João Martins");
-    Client client2("Madalena Lopes", true, 289456094);
-    Client client3("Luís Ferreira", false,289345874);
+    EXPECT_TRUE(wm.getAll().empty());
 
-    Worker worker1("Margarida Azevedo",  830);
-    store.hireWorker(&worker1);
+    wm.add("Francisco Ferreira", 948);
 
-    Bread cerealBread("Pão de cereais", 0.80, false);
-    Cake chocolateCake("Bolo de Chocolate", 1.20, CakeCategory::CRUNCHY);
+    EXPECT_EQ(1, wm.getAll().size());
+    EXPECT_TRUE(w1 == *wm.get(position));
 
-    std::map<Product*, unsigned int> products;
-    products[&cerealBread] = 3;
-    products[&chocolateCake] = 2;
+    wm.add("Joana Teixeira", 892);
 
-    store.addClient(&client1);
-    store.addClient(&client2);
-    store.addClient(&client3);
-    store.addOrder(products, client1);
-    store.addOrder(products, client2);
-    store.addOrder(products, client3);
+    position = 0;
+    EXPECT_EQ(2, wm.getAll().size());
+    EXPECT_TRUE(w1 == *wm.get(position));
+    EXPECT_TRUE(w2 == *wm.get(++position));
 
-    (store.getClientOrders(client1))[0]->deliver(3.6);
-    EXPECT_FLOAT_EQ(3.6, store.getMeanEvaluation());
-    (store.getClientOrders(client2))[0]->deliver(4.8);
-    EXPECT_FLOAT_EQ((3.6+4.8)/2, store.getMeanEvaluation());
-    (store.getClientOrders(client3))[0]->deliver(4.2);
-    EXPECT_FLOAT_EQ((3.6+4.8+4.2)/3, store.getMeanEvaluation());
+    wm.add("Margarida Ferraz", 849);
+
+    position = 0;
+    EXPECT_EQ(3, wm.getAll().size());
+    EXPECT_TRUE(w1 == *wm.get(position));
+    EXPECT_TRUE(w2 == *wm.get(++position));
+    EXPECT_TRUE(w3 == *wm.get(++position));
+
+    EXPECT_THROW(wm.add("Francisco Ferreira", 948), PersonAlreadyExists);
+    EXPECT_THROW(wm.add("Joana Teixeira", 892), PersonAlreadyExists);
+    EXPECT_THROW(wm.add("Margarida Ferraz", 849), PersonAlreadyExists);
 }
-*/
+
+TEST(WorkerManager, remove_worker_by_pointer){
+    Worker w1("Francisco Ferreira", 948);
+    Worker w2("Joana Teixeira", 892);
+    Worker w3("Margarida Ferraz", 849);
+    WorkerManager wm;
+    wm.add("Francisco Ferreira", 948);
+    wm.add("Joana Teixeira", 892);
+    wm.add("Margarida Ferraz", 849);
+    unsigned position = 0;
+
+    EXPECT_EQ(3, wm.getAll().size());
+    EXPECT_TRUE(w1 == *wm.get(position));
+    EXPECT_TRUE(w2 == *wm.get(++position));
+    EXPECT_TRUE(w3 == *wm.get(++position));
+
+    wm.remove(&w1);
+
+    position = 0;
+    EXPECT_EQ(2, wm.getAll().size());
+    EXPECT_TRUE(w2 == *wm.get(position));
+    EXPECT_TRUE(w3 == *wm.get(++position));
+
+    wm.remove(&w2);
+
+    position = 0;
+    EXPECT_EQ(1, wm.getAll().size());
+    EXPECT_TRUE(w3 == *wm.get(position));
+
+    wm.remove(&w3);
+
+    EXPECT_TRUE(wm.getAll().empty());
+    EXPECT_THROW(wm.remove(&w1), PersonDoesNotExist);
+    EXPECT_THROW(wm.remove(&w2), PersonDoesNotExist);
+    EXPECT_THROW(wm.remove(&w3), PersonDoesNotExist);
+}
+
+TEST(WorkerManager, remove_worker_by_position){
+    Worker w1("Francisco Ferreira", 948);
+    Worker w2("Joana Teixeira", 892);
+    Worker w3("Margarida Ferraz", 849);
+    WorkerManager wm;
+    wm.add("Francisco Ferreira", 948);
+    wm.add("Joana Teixeira", 892);
+    wm.add("Margarida Ferraz", 849);
+    unsigned position = 0, positionToRemove = 0;
+
+    EXPECT_EQ(3, wm.getAll().size());
+    EXPECT_THROW(wm.remove(3), InvalidPersonPosition);
+    EXPECT_TRUE(w1 == *wm.get(position));
+    EXPECT_TRUE(w2 == *wm.get(++position));
+    EXPECT_TRUE(w3 == *wm.get(++position));
+
+    wm.remove(positionToRemove);
+
+    position = 0;
+    EXPECT_EQ(2, wm.getAll().size());
+    EXPECT_THROW(wm.remove(2), InvalidPersonPosition);
+    EXPECT_TRUE(w2 == *wm.get(position));
+    EXPECT_TRUE(w3 == *wm.get(++position));
+
+
+    wm.remove(positionToRemove);
+
+    position = 0;
+    EXPECT_EQ(1, wm.getAll().size());
+    EXPECT_THROW(wm.remove(1), InvalidPersonPosition);
+    EXPECT_TRUE(w3 == *wm.get(position));
+
+    wm.remove(positionToRemove);
+
+    EXPECT_TRUE(wm.getAll().empty());
+}
+
+TEST(ProductManager, create_product_manager){
+    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
+    Bread hugeBread("Pao de sementes",0.2,false);
+    std::set<Product*, ProductSmaller> stock;
+    stock.insert(&meatCake);
+    stock.insert(&hugeBread);
+    ProductManager pm(stock);
+
+    EXPECT_EQ(stock, pm.getAll());
+}
+
+TEST(ProductManager, has_product){
+    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
+    Bread hugeBread("Pao de sementes",0.2,false);
+    std::set<Product*, ProductSmaller> stock;
+    stock.insert(&meatCake);
+    ProductManager pm(stock);
+
+    EXPECT_TRUE(pm.has(&meatCake));
+    EXPECT_FALSE(pm.has(&hugeBread));
+}
+
+TEST(ProductManager, get_product_by_position){
+    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
+    Bread hugeBread("Pao de sementes",0.2,false);
+
+    std::set<Product*, ProductSmaller> stock;
+    stock.insert(&meatCake);
+    stock.insert(&hugeBread);
+    ProductManager pm(stock);
+
+    unsigned position = 0;
+    EXPECT_EQ(&meatCake, pm.get(position));
+    EXPECT_EQ(&hugeBread, pm.get(++position));
+
+    EXPECT_THROW(pm.get(++position), InvalidProductPosition);
+}
+
+TEST(ProductManager, add_bread) {
+    ProductManager pm;
+
+    EXPECT_EQ(0, pm.getAll().size());
+
+    Bread hugeBread("Pao de sementes", 0.2, false);
+    pm.addBread("Pao de sementes", 0.2, false);
+
+    EXPECT_EQ(1, pm.getAll().size());
+    EXPECT_EQ("Pao de sementes", (*pm.getAll().begin())->getName());
+    EXPECT_FLOAT_EQ(0.2, (*pm.getAll().begin())->getPrice());
+}
+
+TEST(ProductManager, add_cake){
+    ProductManager pm;
+
+    EXPECT_EQ(0, pm.getAll().size());
+
+    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
+    pm.addCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
+
+    EXPECT_EQ(1, pm.getAll().size());
+    EXPECT_EQ("Bolo com molho de carne", (*pm.getAll().begin())->getName());
+    EXPECT_FLOAT_EQ(1, (*pm.getAll().begin())->getPrice());
+}
+
+TEST(ProductManager, remove_product){
+    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
+    Bread hugeBread("Pao de sementes",0.2,false);
+
+    std::set<Product*, ProductSmaller> stock;
+    stock.insert(&meatCake);
+    stock.insert(&hugeBread);
+    ProductManager pm(stock);
+
+    EXPECT_EQ(2, pm.getAll().size());
+
+    pm.remove(&hugeBread);
+
+    EXPECT_EQ(1, pm.getAll().size());
+    EXPECT_EQ("Bolo com molho de carne", (*pm.getAll().begin())->getName());
+    EXPECT_FLOAT_EQ(1, (*pm.getAll().begin())->getPrice());
+
+    pm.remove(&meatCake);
+
+    EXPECT_EQ(0, pm.getAll().size());
+
+    EXPECT_THROW(pm.remove(&meatCake), ProductDoesNotExist);
+}
 
 
 

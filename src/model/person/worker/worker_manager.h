@@ -7,25 +7,35 @@
 
 #include "worker.h"
 
+#include <exception/store_exception.h>
+
+#include <algorithm>
 #include <vector>
 #include <fstream>
+
+#include "util/util.h"
 
 class WorkerManager {
 public:
     WorkerManager();
+
     bool has(Worker* worker) const;
+
     Worker* get(unsigned position);
     Worker* getAvailable();
-    std::vector<Worker*> getAll();
-    void changeSalary(unsigned position, float salary);
-    void add(std::string name, float salary, int tributaryNumber = 999999999,
+    std::set<Worker*, PersonSmaller> getAll();
+
+    Worker * changeSalary(unsigned position, float salary);
+
+    Worker* add(std::string name, float salary, int tributaryNumber = DEFAULT_TAXID,
              Credential credential = {"worker", "worker"});
     void remove(Worker* worker);
     void remove(unsigned position);
+
     void read(std::ifstream& file);
-    void write(std::ofstream& file);
+    void print(std::ostream& os);
 private:
-    std::vector<Worker*> _workers;
+    std::set<Worker*, PersonSmaller> _workers;
 };
 
 

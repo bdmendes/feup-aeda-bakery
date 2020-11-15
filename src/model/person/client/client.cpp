@@ -4,6 +4,9 @@
 
 #include "client.h"
 
+#include <utility>
+#include <util/util.h>
+
 Client::Client(std::string name, bool premium, int tributaryNumber, Credential credential):
         Person(std::move(name), tributaryNumber, std::move(credential)), _points{0}, _premium(premium),
         _evaluations(std::vector<float>()){
@@ -23,6 +26,14 @@ float Client::getMeanEvaluation() const {
     return sum / _evaluations.size();
 }
 
+std::vector<float> Client::getEvaluations() const {
+    return _evaluations;
+}
+
+void Client::setPremium(bool premium) {
+    _premium = premium;
+}
+
 void Client::resetPoints() {
     _points = 0;
 }
@@ -35,10 +46,21 @@ void Client::removePoints(unsigned int points) {
     _points -= points;
 }
 
-void Client::setPremium(bool premium) {
-    _premium = premium;
-}
-
 void Client::addEvaluation(float evaluation) {
     _evaluations.push_back(evaluation);
 }
+
+void Client::print(std::ostream &os) {
+    os << util::column(getName(), true)
+    << util::column(getTaxId() == DEFAULT_TAXID ? "Not provided" : std::to_string(getTaxId()))
+    << util::column(isPremium() ? "Premium" : "Basic")
+    << util::column(std::to_string(getPoints()) + " points");
+}
+
+/*
+bool Client::operator==(const Client& c2) const {
+    return (getName() == c2.getName()) && (getTaxId() == c2.getTaxId())
+            && (_premium == c2.isPremium()) && (_points == c2.getPoints());
+}
+*/
+

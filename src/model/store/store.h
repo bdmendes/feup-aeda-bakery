@@ -27,10 +27,12 @@ class Order;
 
 class Store {
 public:
-    explicit Store(std::string name = "Bakery Store");
+    Store(std::string name = "Bakery Store");
+
     std::string getName() const;
-    void setName(std::string name);
     float getEvaluation() const;
+
+    void setName(std::string name);
 
     ProductManager productManager;
     ClientManager clientManager;
