@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "model/person/person/person.h"
+#include "model/person/person.h"
 #include "model/person/client/client.h"
 #include "model/person/worker/worker.h"
 
@@ -76,28 +76,28 @@ TEST(Worker, create_worker){
 
 TEST(Person, change_name){
     Person person("Miguel Oliveira", 184932981, {"miguelO", "mig123_1"});
-    person.changeName("Miguel Ribeiro");
+    person.setName("Miguel Ribeiro");
 
     EXPECT_EQ("Miguel Ribeiro", person.getName());
-    EXPECT_THROW(person.changeName("Miguel Ribeiro"), InvalidPersonNameChange);
+    EXPECT_THROW(person.setName("Miguel Ribeiro"), InvalidPersonNameChange);
 
     Client client("Ricardo Silva");
-    client.changeName("Ricardo Gomes");
+    client.setName("Ricardo Gomes");
 
     EXPECT_EQ("Ricardo Gomes", client.getName());
-    EXPECT_THROW(client.changeName("Ricardo Gomes"), InvalidPersonNameChange);
+    EXPECT_THROW(client.setName("Ricardo Gomes"), InvalidPersonNameChange);
 
-    client.changeName("Filipe Gomes");
+    client.setName("Filipe Gomes");
 
     EXPECT_EQ("Filipe Gomes", client.getName());
 
     Worker worker("Maria Rodrigues", 790);
-    worker.changeName("Sandra Rodrigues");
+    worker.setName("Sandra Rodrigues");
 
     EXPECT_EQ("Sandra Rodrigues", worker.getName());
-    EXPECT_THROW(worker.changeName("Sandra Rodrigues"), InvalidPersonNameChange);
+    EXPECT_THROW(worker.setName("Sandra Rodrigues"), InvalidPersonNameChange);
 
-    worker.changeName("Sandra Silva");
+    worker.setName("Sandra Silva");
 
     EXPECT_EQ("Sandra Silva", worker.getName());
 }
@@ -105,32 +105,32 @@ TEST(Person, change_name){
 TEST(Person, change_credential){
     Person person("Olga Machado", 284913847, {"machado_olga", "olga123"});
     Credential personCredential = {"machado_olga", "OlgaMachado_341"};
-    person.changeCredential(personCredential);
+    person.setCredential(personCredential);
 
     EXPECT_TRUE(person.getCredential() == personCredential);
-    EXPECT_THROW(person.changeCredential(personCredential), InvalidPersonCredentialChange);
+    EXPECT_THROW(person.setCredential(personCredential), InvalidPersonCredentialChange);
 
     Client client("Rui Macedo");
     Credential clientCredential = {"Ruimacedo", "macedo@123"};
-    client.changeCredential(clientCredential);
+    client.setCredential(clientCredential);
 
     EXPECT_TRUE(client.getCredential() == clientCredential);
-    EXPECT_THROW(client.changeCredential(clientCredential), InvalidPersonCredentialChange);
+    EXPECT_THROW(client.setCredential(clientCredential), InvalidPersonCredentialChange);
 
     clientCredential.username = "ruimacedo";
-    client.changeCredential(clientCredential);
+    client.setCredential(clientCredential);
 
     EXPECT_TRUE(client.getCredential() == clientCredential);
 
     Worker worker("Luis Figo", 920);
     Credential workerCredential = {"figoLuis13", "921-figo"};
-    worker.changeCredential(workerCredential);
+    worker.setCredential(workerCredential);
 
     EXPECT_TRUE(worker.getCredential() == workerCredential);
-    EXPECT_THROW(worker.changeCredential(workerCredential), InvalidPersonCredentialChange);
+    EXPECT_THROW(worker.setCredential(workerCredential), InvalidPersonCredentialChange);
 
     workerCredential.password = "senha321";
-    worker.changeCredential(workerCredential);
+    worker.setCredential(workerCredential);
 
     EXPECT_TRUE(worker.getCredential() == workerCredential);
 }

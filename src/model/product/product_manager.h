@@ -17,7 +17,7 @@ struct ProductSmaller{
 class ProductManager {
 public:
     ProductManager();
-    ProductManager(std::set<Product*, ProductSmaller> stock);
+    explicit ProductManager(std::set<Product*, ProductSmaller> stock);
 
     bool has(Product* product) const;
 

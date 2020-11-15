@@ -10,7 +10,8 @@
 #include <algorithm>
 #include <map>
 
-#include "model/person/person/person.h"
+#include "model/person/person.h"
+#include "model/person/boss/boss.h"
 #include "model/order/order.h"
 #include <exception/person_exception.h>
 #include <exception/store_exception.h>
@@ -38,6 +39,7 @@ public:
     ClientManager clientManager;
     WorkerManager workerManager;
     OrderManager orderManager;
+    Boss boss;
 private:
     std::string _name;
 };

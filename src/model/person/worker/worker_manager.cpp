@@ -30,15 +30,15 @@ std::set<Worker *, PersonSmaller> WorkerManager::getAll() {
     return _workers;
 }
 
-Worker* WorkerManager::changeSalary(unsigned position, float salary) {
+Worker* WorkerManager::setSalary(unsigned position, float salary) {
     if(position >= _workers.size()) throw InvalidPersonPosition(position, _workers.size());
     auto it = _workers.begin(); std::advance(it, position);
     (*it)->setSalary(salary);
     return *it;
 }
 
-Worker* WorkerManager::add(std::string name, float salary, int tributaryNumber, Credential credential) {
-    auto* worker = new Worker(std::move(name),salary,tributaryNumber,std::move(credential));
+Worker* WorkerManager::add(std::string name, float salary, int taxID, Credential credential) {
+    auto* worker = new Worker(std::move(name), salary, taxID, std::move(credential));
     if (has(worker)) throw PersonAlreadyExists(worker->getName(), worker->getTaxId());
     else _workers.insert(worker);
     return worker;
@@ -59,18 +59,22 @@ void WorkerManager::remove(unsigned position) {
     _workers.erase(it);
 }
 
-void WorkerManager::print(std::ostream &os) {
-    int numSpaces = static_cast<int>(std::to_string(_workers.size()).size() + 2);
-    os << std::string(numSpaces,util::SPACE)
+void WorkerManager::print(std::ostream &os, bool showData) {
+    int idxPadding = static_cast<int>(std::to_string(_workers.size()).size() + 2);
+
+    os << std::string(idxPadding, util::SPACE)
     << util::column("NAME", true)
-    << util::column("TAX ID")
-    << util::column("SALARY")
-    << util::column("DELIVERED") << "\n";
+    << util::column("TAX ID");
+    if (showData){
+        os << util::column("SALARY")
+                << util::column("DELIVERED");
+    }
+    os << "\n";
 
     int count = 1;
     for (const auto& w: _workers){
-        os << std::setw(numSpaces) << std::left << std::to_string(count++) + ". ";
-        w->write(os);
+        os << std::setw(idxPadding) << std::left << std::to_string(count++) + ". ";
+        w->print(os, showData);
         os << "\n";
     }
 }

@@ -37,7 +37,7 @@ include_directories(../src/)
 
 # Link against gtest or gtest_main as needed
 
-add_executable(testing order_test.cpp date_test.cpp product_test.cpp person_test.cpp store_test.cpp ../src/model/order/order.cpp ../src/model/order/order.h ../src/model/person/worker/worker.cpp ../src/model/person/worker/worker.h ../src/model/person/person/person.cpp ../src/model/person/person/person.h ../src/model/person/client/client_manager.cpp ../src/model/person/client/client_manager.h ../src/util/util.cpp ../src/util/util.h ../src/ui/menu.cpp ../src/ui/menu.h)
+add_executable(testing order_test.cpp date_test.cpp product_test.cpp person_test.cpp store_test.cpp ../src/model/order/order.cpp ../src/model/order/order.h ../src/model/person/worker/worker.cpp ../src/model/person/worker/worker.h ../src/model/person/person.cpp ../src/model/person/person.h ../src/model/person/client/client_manager.cpp ../src/model/person/client/client_manager.h ../src/util/util.cpp ../src/util/util.h ../src/ui/ui.cpp ../src/ui/ui.h ../src/model/person/boss/boss.cpp ../src/model/person/boss/boss.h)
 
 target_link_libraries(testing PRIVATE gtest_main feup-aeda-project)
 

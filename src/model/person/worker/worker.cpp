@@ -5,8 +5,8 @@
 #include <util/util.h>
 #include "worker.h"
 
-Worker::Worker(std::string name, float salary, int tributaryNumber, Credential credential):
-        Person(std::move(name), tributaryNumber, std::move(credential)), _salary{salary}, _orders(0){
+Worker::Worker(std::string name, float salary, int taxID, Credential credential):
+        Person(std::move(name), taxID, std::move(credential)), _salary{salary}, _orders(0){
 }
 
 float Worker::getSalary() const{
@@ -29,11 +29,13 @@ void Worker::setSalary(float salary) {
     _salary = salary;
 }
 
-void Worker::write(std::ostream &os) {
+void Worker::print(std::ostream &os, bool showData) {
     os << util::column(getName(), true)
-    << util::column(getTaxId() == DEFAULT_TAXID ? "Not provided" : std::to_string(getTaxId()))
-    << util::column(util::to_string(getSalary()) + " euros")
-    << util::column(std::to_string(getOrders()) + " orders");
+    << util::column(getTaxId() == Person::DEFAULT_TAX_ID ? "Not provided" : std::to_string(getTaxId()));
+    if (showData){
+        os << util::column(util::to_string(getSalary()) + " euros")
+        << util::column(std::to_string(getOrders()) + " orders");
+    }
 }
 
 /*bool Worker::operator==(const Worker &w2) const {
