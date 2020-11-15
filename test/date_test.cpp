@@ -69,7 +69,7 @@ TEST(Date, add_minutes){
     d2.addMinutes(77);
 
     // to investigate!!
-    //EXPECT_EQ("25/07/1989 01:00", d2.getCompleteDate());
+    EXPECT_EQ("25/07/1989 01:00", d2.getCompleteDate());
 }
 
 TEST(Date, equal_dates){
