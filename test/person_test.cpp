@@ -76,10 +76,10 @@ TEST(Worker, create_worker){
 
 TEST(Person, change_name){
     Person person("Miguel Oliveira", 184932981, {"miguelO", "mig123_1"});
-    person.changeName("Miguel Ribeiro");
+    person.setName("Miguel Ribeiro");
 
     EXPECT_EQ("Miguel Ribeiro", person.getName());
-    EXPECT_THROW(person.changeName("Miguel Ribeiro"), InvalidPersonNameChange);
+    EXPECT_THROW(person.setName("Miguel Ribeiro"), InvalidPersonNameChange);
 
     Client client("Ricardo Silva");
     client.setName("Ricardo Gomes");
@@ -105,10 +105,10 @@ TEST(Person, change_name){
 TEST(Person, change_credential){
     Person person("Olga Machado", 284913847, {"machado_olga", "olga123"});
     Credential personCredential = {"machado_olga", "OlgaMachado_341"};
-    person.changeCredential(personCredential);
+    person.setCredential(personCredential);
 
     EXPECT_TRUE(person.getCredential() == personCredential);
-    EXPECT_THROW(person.changeCredential(personCredential), InvalidPersonCredentialChange);
+    EXPECT_THROW(person.setCredential(personCredential), InvalidPersonCredentialChange);
 
     Client client("Rui Macedo");
     Credential clientCredential = {"Ruimacedo", "macedo@123"};
