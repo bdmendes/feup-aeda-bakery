@@ -6,7 +6,6 @@
 
 int main() {
     Store s;
-    std::cout << "here";
 
     // some filling to debug
     s.workerManager.add("Alfredo",2000,923747);
@@ -18,7 +17,6 @@ int main() {
     Order* pedidoDoOsvaldo = s.orderManager.add(osvaldo);
     pedidoDoOsvaldo->addProduct(bolo,2);
     pedidoDoOsvaldo->addProduct(pao);
-
 
     IntroMenu menu(s);
     menu.show();

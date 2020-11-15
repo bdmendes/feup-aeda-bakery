@@ -20,7 +20,6 @@
 class Order {
 public:
     Order(Client& client, Worker& worker, Date date = {});
-    // friend OrderManager; - to consider...
 
     bool hasDiscount() const;
     bool hasProduct(Product* product);

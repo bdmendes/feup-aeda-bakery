@@ -58,3 +58,11 @@ void Client::print(std::ostream &os, bool showData) {
                 << util::column(std::to_string(getPoints()) + " points");
     }
 }
+
+/*
+bool Client::operator==(const Client& c2) const {
+    return (getName() == c2.getName()) && (getTaxId() == c2.getTaxId())
+            && (_premium == c2.isPremium()) && (_points == c2.getPoints());
+}
+*/
+

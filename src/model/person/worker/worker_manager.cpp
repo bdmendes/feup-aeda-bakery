@@ -8,7 +8,7 @@ WorkerManager::WorkerManager() : _workers(std::set<Worker*, PersonSmaller>()){
 }
 
 bool WorkerManager::has(Worker *worker) const {
-    return std::find(_workers.begin(),_workers.end(), worker) != _workers.end();
+    return _workers.find(worker) != _workers.end();
 }
 
 Worker* WorkerManager::get(unsigned int position) {
@@ -45,8 +45,8 @@ Worker* WorkerManager::add(std::string name, float salary, int taxID, Credential
 }
 
 void WorkerManager::remove(Worker *worker) {
-    if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
-    auto position = std::find(_workers.begin(), _workers.end(),worker);
+    //if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
+    auto position = _workers.find(worker);
     if(position == _workers.end())
         throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
     _workers.erase(position);
@@ -74,7 +74,7 @@ void WorkerManager::print(std::ostream &os, bool showData) {
     int count = 1;
     for (const auto& w: _workers){
         os << std::setw(idxPadding) << std::left << std::to_string(count++) + ". ";
-        w->write(os,showData);
+        w->print(os, showData);
         os << "\n";
     }
 }

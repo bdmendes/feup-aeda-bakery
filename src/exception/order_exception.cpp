@@ -16,7 +16,7 @@ OrderDoesNotExist::OrderDoesNotExist() :
     std::invalid_argument("Order does not exist!\n"){}
 
 InvalidOrderEvaluation::InvalidOrderEvaluation(float evaluation, const Client &client):
-        std::invalid_argument(client.getName() + "gave an invalid evaluation of " + std::to_string(evaluation) + "to this order; should be between 0 and 5!\n"){
+        std::invalid_argument(client.getName() + " gave an invalid evaluation of " + std::to_string(evaluation) + " to this order; should be between 0 and 5!\n"){
 }
 
 InvalidOrderPosition::InvalidOrderPosition(unsigned int position, unsigned size) :
