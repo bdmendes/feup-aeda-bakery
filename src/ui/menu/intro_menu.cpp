@@ -6,28 +6,29 @@
 #include "login_menu.h"
 
 void IntroMenu::show() {
-    printLogo();
-    std::cout << SEPARATOR << std::endl
-                << "Welcome to the Bakery Store management app.\n"
-                << "At any screen, type 'back' to go back.\n"
-                << SEPARATOR << std::endl << std::endl;
-    const std::vector<std::string> content = {
-            "Import from file",
-            "Export to file",
-            "Manage store"
-    };
-    printOptions(content);
     for (;;) {
-        std::string input = readCommand();
-        if (input == BACK) return;
-        if (isValid(input, content.size())){
-            if (input == "3"){
+        printLogo();
+        std::cout << SEPARATOR << std::endl
+                  << "Welcome to the Bakery Store management app.\n"
+                  << "At any screen, type 'back' to go back, or 'exit' to exit.\n"
+                  << SEPARATOR << std::endl << std::endl;
+        const std::vector<std::string> content = {
+                "import <name> - import data from folder called name",
+                "export <name> - export data to folder called name",
+                "manage - enter store management"
+        };
+        printOptions(content,false);
+
+        for (;;) {
+            std::string input = readCommand();
+            if (input == EXIT) return;
+            if (isValid(input, "manage")) {
                 LoginMenu loginMenu(_store);
                 loginMenu.show();
+                break;
             }
-            break;
+            printError(false);
         }
-        printError();
     }
 }
 

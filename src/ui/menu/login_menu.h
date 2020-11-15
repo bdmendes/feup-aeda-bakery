@@ -11,6 +11,8 @@ class LoginMenu: public UI{
 public:
     LoginMenu(Store& store);
     void show() override;
+    void showClients();
+    void showWorkers();
     void login(unsigned person);
     Person* getLogged() const;
 private:

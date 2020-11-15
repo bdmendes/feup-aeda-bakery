@@ -30,7 +30,7 @@ std::set<Worker *, PersonSmaller> WorkerManager::getAll() {
     return _workers;
 }
 
-Worker* WorkerManager::changeSalary(unsigned position, float salary) {
+Worker* WorkerManager::setSalary(unsigned position, float salary) {
     if(position >= _workers.size()) throw InvalidPersonPosition(position, _workers.size());
     auto it = _workers.begin(); std::advance(it, position);
     (*it)->setSalary(salary);

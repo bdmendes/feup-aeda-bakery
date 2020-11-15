@@ -25,7 +25,7 @@ public:
     Worker* getAvailable();
     std::set<Worker*, PersonSmaller> getAll();
 
-    Worker * changeSalary(unsigned position, float salary);
+    Worker * setSalary(unsigned position, float salary);
 
     Worker* add(std::string name, float salary, int taxID = Person::DEFAULT_TAX_ID,
              Credential credential = {"worker", "worker"});

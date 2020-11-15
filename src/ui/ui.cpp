@@ -6,14 +6,16 @@
 #include "ui/menu/intro_menu.h"
 
 const char* UI::BACK = "back";
+const char* UI::EXIT = "exit";
 
-UI::UI(Store &store) : _store(store){
+UI::UI(Store &store) : _store(store) {
 }
 
-std::string UI::readCommand() {
+std::string UI::readCommand(bool lowCase) {
     std::string input;
     std::getline(std::cin,input);
     normalize(input);
+    if (lowCase) util::lowercase(input);
     return input;
 }
 
@@ -21,6 +23,8 @@ bool UI::isValid(std::string input, const std::vector<std::string> &args, const 
     std::vector<std::string> words = to_words(input);
 
     if (words.size() != !cmd.empty() + 1) return false;
+    if (args.empty()) return words.at(0) == cmd;
+
     return cmd.empty() ?
         std::find(args.begin(),args.end(),words.at(0)) != args.end()
         : (words.at(0) == cmd && std::find(args.begin(),args.end(),words.at(1)) != args.end());
@@ -30,29 +34,19 @@ bool UI::isValid(std::string input, const std::string &arg, const std::string &c
     std::vector<std::string> words = to_words(input);
 
     if (words.size() != !cmd.empty() + 1) return false;
+    if (arg.empty()) return words.at(0) == cmd;
     return cmd.empty() ? words.at(0) == arg : (words.at(0) == cmd && words.at(1) == arg);
 }
 
-bool UI::isValid(std::string input, const int maxIdxArg, const std::string &cmd) {
-    std::vector<std::string> words = to_words(input);
-
-    if (words.size() != !cmd.empty() + 1) return false;
-    if (!cmd.empty() && words.at(0) != cmd) return false;
-
-    int argPos = cmd.empty()? 0 : 1;
-    for (const auto& argChar: words.at(argPos)) if (!std::isdigit(argChar)) return false;
-    int arg = std::stoi(words.at(argPos));
-    return arg >= 1 && arg <= maxIdxArg;
-}
-
-void UI::printOptions(const std::vector<std::string> &options, bool index) {
+void UI::printOptions(const std::vector<std::string> &options, bool index, std::string message) {
+    if (message.empty()) message = index ?
+            "Choose 1-" + std::to_string(options.size()) : "Available commands:";
+    std::cout << message << '\n';
     if (index){
         int counter = 1;
-        std::cout << "Choose 1-" << std::to_string(options.size()) << ":\n";
         for (const auto& o: options) std::cout << std::to_string(counter++) << ". " << o << '\n';
     }
     else {
-        std::cout << "Available commands:\n";
         for (const auto& o: options) std::cout << "-> " << o << "\n";
     }
     std::cout << '\n';
