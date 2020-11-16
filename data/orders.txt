@@ -1,13 +1,12 @@
-Bruno-Mendes 98765 premium Julia-Mendes 72828 12/12/2020 14:45
-
+98765 72828 12/12/2020 14:45
 Pao-de-sementes 0.8 small 6
 Meat-Cake 30 SPONGE 1
 Pao-da-avo 1.0 big 5
 ----------
-Adelaide-Miranda-Santos 123456 not-premium Maria-Gil 1364892 23/11/2020 12:32
+123456 1364892 23/11/2020 12:32
 Strawberry-Pie 25 PIE 1
 Regueifa 3.0 big 2
 ----------
-Angela-Coelho 45678 premium Osvaldo-Texeira 76373 12/06/2020 18:34
+45678 76373 12/06/2020 18:34
 Wafer-Cake 15 CRUNCHY
 Pao-de-cereais 0.5 small 8

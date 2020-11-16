@@ -23,6 +23,14 @@ Client *ClientManager::get(unsigned position) {
     return *it;
 }
 
+Client *ClientManager::get(int taxId) {
+    for(auto it=_clients.begin(); it!= _clients.end(); ++it){
+        if((*it)->getTaxId()==taxId)
+            return (*it);
+    }
+    throw PersonDoesNotExist(taxId);
+}
+
 std::set<Client *, PersonSmaller> ClientManager::getAll() {
     return _clients;
 }
@@ -71,14 +79,15 @@ void ClientManager::read(std::ifstream &file) {
         std::string line, name;
         std::string premium;
         int taxID;
+        unsigned points;
         Credential credential;
 
         while(getline(file, line)){
             std::stringstream client(line);
-            client>>name>>taxID>>premium>>credential.username>>credential.password;
+            client>>name>>taxID>>premium>>points>>credential.username>>credential.password;
 
             std::replace(name.begin(), name.end(), '-', ' ');
-            add(name, premium == "premium", taxID, credential);
+            (add(name, premium == "premium", taxID, credential))->setPoints(points);
         }
     }
 }
@@ -96,8 +105,9 @@ void ClientManager::write(std::ofstream &file) const{
             nameToSave = client->getName();
             std::replace(nameToSave.begin(), nameToSave.end(), ' ', '-');
             premiumToSave=(client->isPremium())? "premium" : "not-premium";
-            file<<nameToSave<<'\t'<<premiumToSave<<'\t'<<client->getTaxId()<<client->getCredential().username<<client->getCredential().password<<'\n';
+            file<<nameToSave<<'\t'<<premiumToSave<<'\t'<<client->getTaxId()<<client->getPoints()<<client->getCredential().username<<client->getCredential().password<<'\n';
         }
     }
 }
+
 

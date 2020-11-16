@@ -46,6 +46,10 @@ Order* OrderManager::add(Client *client) {
     return *_orders.rbegin();
 }
 
+/*Order *OrderManager::add(Client *client, Worker *worker, Date &date) {
+
+}*/
+
 void OrderManager::remove(Order *order) {
     auto position = std::find(_orders.begin(),_orders.end(),order);
     if (position == _orders.end())
@@ -58,40 +62,39 @@ void OrderManager::read(std::ifstream& file) {
         throw FileNotFound();
     }
     else{
-        std::string line, clientName, workerName, clientCategory, date, time;
+        std::string line, date, time;
         int clientTaxID, workerTaxID, day, month, year, hour, minute;
-        Credential credential;
         bool orderEnd=false;
 
         while(getline(file, line)){
 
+            Order *newOrder;
+
             if(!orderEnd) {
                 std::stringstream order(line);
-                order >> clientName >> clientTaxID >> workerName >> workerTaxID >> date >> hour;
+                order >> clientTaxID >> workerTaxID >> date >> hour;
 
-                std::replace(clientName.begin(), clientName.end(), '-', ' ');
-                Client *client = new Client(clientName, clientTaxID);
-                if (!_clientManager.has(client))
-                    throw PersonDoesNotExist(clientName, clientTaxID);
+                if (!_clientManager.has(_clientManager.get(clientTaxID)))
+                    throw PersonDoesNotExist (clientTaxID);
 
-                std::replace(workerName.begin(), workerName.end(), '-', ' ');
-                Worker *worker = new Worker(workerName, workerTaxID);
-                if (!_workerManager.has(worker))
-                    throw PersonDoesNotExist(workerName, workerTaxID);
+                if (!_workerManager.has(_workerManager.get(workerTaxID)))
+                    throw PersonDoesNotExist (workerTaxID);
 
+                std::replace(date.begin(), date.end(), '/', ' ');
                 std::stringstream tempDate(date);
-                tempDate << day << '/' << month << '/' << year;
+                tempDate >> day >> month >> year;
+                std::replace(date.begin(), date.end(), ':', ' ');
                 std::stringstream tempHour(time);
                 tempHour << hour << ':' << minute;
                 Date date(day, month, year, hour, minute);
 
-                Order *newOrder = add(client, worker, date);
+                newOrder = add(_clientManager.get(clientTaxID), _workerManager.get(workerTaxID), date);
 
                 orderEnd = true;
             }
-            /*else{
+            else{
 
-            }*/
+            }
         }
     }
 }
@@ -114,3 +117,4 @@ void OrderManager::print(std::ostream &os) const {
         count++;
     }
 }
+

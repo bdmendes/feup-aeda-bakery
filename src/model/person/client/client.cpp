@@ -30,6 +30,10 @@ std::vector<float> Client::getEvaluations() const {
     return _evaluations;
 }
 
+void Client::setPoints(unsigned int points) {
+    _points=points;
+}
+
 void Client::setPremium(bool premium) {
     _premium = premium;
 }

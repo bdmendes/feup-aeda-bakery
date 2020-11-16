@@ -18,6 +18,7 @@ public:
     bool isPremium() const;
     float getMeanEvaluation() const;
     unsigned getPoints() const;
+    void setPoints(unsigned  points);
     std::vector<float> getEvaluations() const;
     void setPremium(bool premium);
     void addPoints(unsigned points);
