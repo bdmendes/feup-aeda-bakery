@@ -18,13 +18,22 @@ std::string Store::getName() const {
     return _name;
 }
 
-float Store::getEvaluation() const {
-    std::vector<float> evaluations;
+int Store::getEvaluation() const {
+    std::vector<int> evaluations;
     for(const auto& order : orderManager.getAll())
         if(order->wasDelivered()) evaluations.push_back(order->getClientEvaluation());
-    return std::accumulate(evaluations.begin(),evaluations.end(),0.0f) / evaluations.size();
+    return std::accumulate(evaluations.begin(),evaluations.end(),0) / static_cast<int>(evaluations.size());
 }
 
-void Store::setName(std::string name) {
-    _name = std::move(name);
+void Store::setName(const std::string& name) {
+    _name = name;
 }
+
+float Store::getProfit() const {
+    float profit = 0.0f;
+    for (const auto& o: orderManager.getAll()){
+        if (o->wasDelivered()) profit += o->getFinalPrice();
+    }
+    return profit;
+}
+

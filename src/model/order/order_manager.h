@@ -15,33 +15,27 @@
 
 #include <algorithm>
 
-struct OrderSmaller{
-    bool operator()(const Order* o1, const Order* o2) const{
-        return *o1 < *o2;
-    }
-};
-
 class OrderManager {
 public:
     OrderManager(ProductManager& pm, ClientManager& cm, WorkerManager& wm);
     bool has(Order* order) const;
 
-    Order* get(unsigned position);
-    std::set<Order*, OrderSmaller> getAll() const;
-    std::set<Order*, OrderSmaller> get(Client* client);
-    std::set<Order*, OrderSmaller> get(Worker* worker);
+    Order* get(unsigned position, Client* client = nullptr, Worker* worker = nullptr);
+    std::vector<Order*> getAll() const;
+    std::vector<Order*> get(Client* client) const;
+    std::vector<Order*> get(Worker* worker) const;
 
     Order* add(Client* client);
     void remove(Order* order);
 
     void read(std::ifstream& file);
-    void print(std::ostream& os) const;
+    bool print(std::ostream& os, Client* client = nullptr, Worker* worker = nullptr) const;
 
 private:
     ProductManager& _productManager;
     ClientManager& _clientManager;
     WorkerManager& _workerManager;
-    std::set<Order*, OrderSmaller> _orders;
+    std::vector<Order*> _orders;
 };
 
 #endif //FEUP_AEDA_PROJECT_ORDER_MANAGER_H

@@ -30,7 +30,7 @@ public:
 
     std::map<Product*, unsigned int, ProductSmaller> getProducts() const;
 
-    float getClientEvaluation() const;
+    int getClientEvaluation() const;
     float getFinalPrice() const;
     float getTotal() const;
 
@@ -43,7 +43,7 @@ public:
     void removeProduct(unsigned position, unsigned quantity);
     void removeProduct(unsigned position);
 
-    void deliver(float clientEvaluation, int deliverDuration = 30);
+    void deliver(int clientEvaluation, int deliverDuration = 30);
 
     bool operator==(const Order& rhs) const;
     bool operator<(const Order& o2) const;
@@ -56,7 +56,7 @@ private:
     float _totalPrice;
     Client& _client;
     Worker& _worker;
-    float _clientEvaluation;
+    int _clientEvaluation;
     bool _delivered;
     Date _requestDate;
     Date _deliverDate;

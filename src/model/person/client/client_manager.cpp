@@ -44,23 +44,26 @@ void ClientManager::remove(unsigned position) {
     _clients.erase(it);
 }
 
-void ClientManager::print(std::ostream &os, bool showData) {
-    int idxPadding = static_cast<int>(std::to_string(_clients.size()).size() + 2);
+bool ClientManager::print(std::ostream &os, bool showData) {
+    if (_clients.empty()){
+        os << "No clients yet. Go back and login as a worker to register some.\n";
+        return false;
+    }
 
-    os << std::string(idxPadding, util::SPACE)
+    os << std::string(_clients.size()/10 + 3, util::SPACE)
     << util::column("NAME", true)
     << util::column("TAX ID");
     if (showData){
         os << util::column("TYPE")
-                << util::column("ACCUMULATED");
+        << util::column("ACCUMULATED");
     }
     std::cout << "\n";
 
     int count = 1;
     for (const auto& c: _clients){
-        os << std::setw(idxPadding) << std::left << std::to_string(count++) + ". ";
-        c->print(os,showData);
-        os << "\n";
+        os << std::to_string(count++) + ". ";
+        c->print(os,showData); os << "\n";
     }
+    return true;
 }
 

@@ -3,7 +3,7 @@
 //
 
 #include "intro_menu.h"
-#include "login_menu.h"
+#include "ui/menu/login/login_menu.h"
 
 void IntroMenu::show() {
     for (;;) {
@@ -27,21 +27,21 @@ void IntroMenu::show() {
                 loginMenu.show();
                 break;
             }
-            if (validInput1Cmd1Arg(input,"import",false)){
-                printLogo();
+            if (validInput1Cmd1ArgFree(input,"import")){
+                printLogo("Import data");
                 std::cout << "waiting for file handling to be implemented. press enter to exit\n";
-                std::string input;
-                std::getline(std::cin,input);
+                std::string i;
+                std::getline(std::cin,i);
                 break;
             }
-            if (validInput1Cmd1Arg(input,"export",false)){
-                printLogo();
+            if (validInput1Cmd1ArgFree(input,"export")){
+                printLogo("Export data");
                 std::cout << "waiting for file handling to be implemented. press enter to exit\n";
-                std::string input;
-                std::getline(std::cin,input);
+                std::string i;
+                std::getline(std::cin,i);
                 break;
             }
-            printError(false);
+            printError();
         }
     }
 }

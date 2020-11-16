@@ -26,6 +26,7 @@ namespace util {
     void normalize(std::string& str, bool isName = false);
     void stripSpecialChars(std::string& str);
     void lowercase(std::string& str);
+    void uppercase(std::string& str);
     std::string to_string (float n);
     std::string column(std::string str, bool large = false);
     std::vector<std::string> to_words(const std::string& input);

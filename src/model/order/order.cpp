@@ -38,7 +38,7 @@ std::map<Product *, unsigned int, ProductSmaller> Order::getProducts() const {
     return _products;
 }
 
-float Order::getClientEvaluation() const {
+int Order::getClientEvaluation() const {
     if (!_delivered) throw OrderWasNotDeliveredYet(_client, _worker, _requestDate);
     return _clientEvaluation;
 }
@@ -116,7 +116,7 @@ void Order::removeProduct(unsigned int position) {
     else throw InvalidProductPosition(position, _products.size());
 }
 
-void Order::deliver(float clientEvaluation, int deliverDuration) {
+void Order::deliver(int clientEvaluation, int deliverDuration) {
     if (_delivered) throw OrderWasAlreadyDelivered(_client, _worker, _requestDate);
     if (clientEvaluation < 0 || clientEvaluation > 5) throw InvalidOrderEvaluation(clientEvaluation,_client);
 

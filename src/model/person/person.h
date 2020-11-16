@@ -26,6 +26,8 @@ public:
     std::string getName() const;
     int getTaxId() const;
     Credential getCredential() const;
+    bool isLogged() const;
+    void setLogged(bool logged);
 
     void setName(const std::string& name);
     void setCredential(const Credential& credential);
@@ -38,6 +40,7 @@ private:
     std::string _name;
     int _taxId;
     Credential _credential;
+    bool _logged;
 };
 
 struct PersonSmaller{

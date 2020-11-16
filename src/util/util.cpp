@@ -73,3 +73,7 @@ std::vector<std::string> util::to_words(const std::string& input) {
     for (std::string current; ss >> current;) words.push_back(current);
     return words;
 }
+
+void util::uppercase(std::string &str) {
+    std::transform(str.begin(),str.end(),str.begin(),[](unsigned char c){return std::toupper(c);});
+}

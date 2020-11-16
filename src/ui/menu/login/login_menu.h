@@ -22,10 +22,8 @@ public:
     void show() override;
     void showPersons(PersonToShow person);
     void login(Person* person);
-    Person* getLogged() const;
 private:
     std::vector<Person*> _persons;
-    Person* _logged;
 };
 
 

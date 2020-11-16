@@ -29,7 +29,7 @@ public:
 
 class InvalidOrderEvaluation : public std::invalid_argument{
 public:
-    InvalidOrderEvaluation(float evaluation, const Client& client);
+    InvalidOrderEvaluation(int evaluation, const Client& client);
 };
 
 class InvalidOrderPosition : public std::invalid_argument{

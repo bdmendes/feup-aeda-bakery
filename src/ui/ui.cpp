@@ -3,7 +3,7 @@
 //
 
 #include "ui.h"
-#include "ui/menu/intro_menu.h"
+#include "ui/menu/intro/intro_menu.h"
 
 const char* UI::BACK = "back";
 const char* UI::EXIT = "exit";
@@ -19,7 +19,7 @@ std::string UI::readCommand(bool lowCase) {
     return input;
 }
 
-bool UI::validInput1Word(const std::string &input, bool digit) {
+bool UI::validInput1CmdFree(const std::string &input, bool digit) {
     std::vector<std::string> words = to_words(input);
     return words.size() == 1 && (!digit || isdigit(words.at(0)));
 }
@@ -29,30 +29,39 @@ bool UI::validInput1Cmd(std::string input, const std::string &cmd) {
     return words.size() == 1 && words.at(0) == cmd;
 }
 
-bool UI::validInput1Cmd1Arg(std::string input, const std::string &cmd, bool digitArg) {
+bool UI::validInput1Cmd1ArgDigit(std::string input, const std::string &cmd) {
     std::vector<std::string> words = to_words(input);
-    if (words.size() != 2 || words.at(0) != cmd) return false;
-    return !digitArg || isdigit(words.at(1));
+    return words.size() == 2 && words.at(0) == cmd && isdigit(words.at(1));
 }
 
 bool UI::validInput1Cmd1Arg(std::string input, const std::string &cmd, const std::vector<std::string> &args) {
     std::vector<std::string> words = to_words(input);
-    if (words.size() != 2 || words.at(0) != cmd) return false;
-    return std::find(args.begin(),args.end(),words.at(1)) != args.end();
+    return words.size() == 2 && words.at(0) == cmd
+    && std::find(args.begin(),args.end(),words.at(1)) != args.end();
 }
 
 bool UI::validInput1Cmd1Arg(const std::string& input, const std::string &cmd, const std::string &arg) {
     std::vector<std::string> words = to_words(input);
-    if (words.size() != 2 || words.at(0) != cmd) return false;
-    return words.at(1) == arg;
+    return words.size() == 2 && words.at(0) == cmd && words.at(1) == arg;
 }
 
 bool UI::validInput1Cmd2Args(const std::string& input, const std::string &cmd, const std::vector<std::string> &args1,
                              const std::vector<std::string> &args2) {
     std::vector<std::string> words = to_words(input);
-    if (words.size() != 3 || words.at(0) != cmd) return false;
-    return std::find(args1.begin(),args1.end(),words.at(1)) != args1.end()
+    return words.size() == 3 && words.at(0) == cmd
+    && std::find(args1.begin(),args1.end(),words.at(1)) != args1.end()
     && std::find(args2.begin(),args2.end(),words.at(2)) != args1.end();
+}
+
+bool UI::validInput1Cmd1ArgFree(const std::string& input, const std::string &cmd) {
+    std::vector<std::string> words = to_words(input);
+    return words.size() == 2 && words.at(0) == cmd;
+}
+
+bool UI::validInput1Cmd2ArgsDigit(const std::string &input, const std::string &cmd) {
+    std::vector<std::string> words = to_words(input);
+    return words.size() == 3 && words.at(0) == cmd
+           && isdigit(words.at(1)) && isdigit(words.at(2));
 }
 
 
@@ -71,11 +80,15 @@ void UI::printOptions(const std::vector<std::string> &options, std::string messa
 }
 
 void UI::printError(bool index) {
-    if (index) std::cout << "Please enter a number as requested! ";
-    else std::cout << "Please enter a command as requested! ";
+    if (index) std::cout << "Unrecognized index. Try again: ";
+    else std::cout << "Unrecognized command. Try again: ";
 }
 
-void UI::printLogo() {
+void UI::printLogo(const std::string& detail) const{
     util::clearScreen();
-    util::print("BAKERY STORE\n\n",util::BLUE);
+    std::string title = _store.getName();
+    if (!detail.empty()) title += " - " + detail;
+    uppercase(title);
+    util::print(title + "\n\n",util::BLUE);
 }
+

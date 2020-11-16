@@ -59,7 +59,12 @@ void WorkerManager::remove(unsigned position) {
     _workers.erase(it);
 }
 
-void WorkerManager::print(std::ostream &os, bool showData) {
+bool WorkerManager::print(std::ostream &os, bool showData) {
+    if (_workers.empty()){
+        os << "No workers yet.\n Login as the boss to add some.\n";
+        return false;
+    }
+
     int idxPadding = static_cast<int>(std::to_string(_workers.size()).size() + 2);
 
     os << std::string(idxPadding, util::SPACE)
@@ -77,6 +82,7 @@ void WorkerManager::print(std::ostream &os, bool showData) {
         w->print(os, showData);
         os << "\n";
     }
+    return true;
 }
 
 

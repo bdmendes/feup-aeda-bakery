@@ -45,8 +45,11 @@ public:
     CakeCategory getCategory() const;
     virtual bool operator==(const Cake& cake) const;
     void print(std::ostream& os) const override;
+
+    static const char* categoryStr[5];
 private:
     CakeCategory _category;
+    const char* _categoryStr;
 };
 
 #endif //SRC_PRODUCT_H
