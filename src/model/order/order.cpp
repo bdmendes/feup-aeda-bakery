@@ -12,6 +12,7 @@ Order::Order(Client &client, Worker &worker, Date date) :
         _totalPrice(0.0f), _requestDate(date), _deliverDate(date), _products(){
     updateTotalPrice();
     _client.addPoints(10* static_cast<int>(_totalPrice)); //For each euro adds 10 points
+    _worker.addOrder();
 }
 
 bool Order::hasDiscount() const {

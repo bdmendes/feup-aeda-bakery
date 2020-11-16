@@ -46,7 +46,7 @@ std::string Date::getCompleteDate() const {
 }
 
 bool Date::operator==(const Date &d2) const {
-    return getCalendarDay() == d2.getCalendarDay();
+    return getCompleteDate() == d2.getCompleteDate();
 }
 
 bool Date::operator<(const Date &d2) const {

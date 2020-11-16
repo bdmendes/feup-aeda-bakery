@@ -14,12 +14,7 @@
 #include <exception/person_exception.h>
 
 #include <algorithm>
-
-struct OrderSmaller{
-    bool operator()(const Order* o1, const Order* o2) const{
-        return *o1 < *o2;
-    }
-};
+#include <vector>
 
 class OrderManager {
 public:
@@ -27,11 +22,13 @@ public:
     bool has(Order* order) const;
 
     Order* get(unsigned position);
-    std::set<Order*, OrderSmaller> getAll() const;
-    std::set<Order*, OrderSmaller> get(Client* client);
-    std::set<Order*, OrderSmaller> get(Worker* worker);
+    std::vector<Order*> getAll() const;
+    std::vector<Order*> get(Client* client);
+    std::vector<Order*> get(Worker* worker);
 
+    void sort();
     Order* add(Client* client);
+    Order* add(Client* client, Date date);
     void remove(Order* order);
 
     void read(std::ifstream& file);
@@ -41,7 +38,7 @@ private:
     ProductManager& _productManager;
     ClientManager& _clientManager;
     WorkerManager& _workerManager;
-    std::set<Order*, OrderSmaller> _orders;
+    std::vector<Order*> _orders;
 };
 
 #endif //FEUP_AEDA_PROJECT_ORDER_MANAGER_H

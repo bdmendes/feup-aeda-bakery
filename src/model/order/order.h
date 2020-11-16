@@ -46,7 +46,7 @@ public:
     void deliver(float clientEvaluation, int deliverDuration = 30);
 
     bool operator==(const Order& rhs) const;
-    bool operator<(const Order& o2) const;
+    bool operator<(const Order& rhs) const;
 
     void print(std::ostream& os) const;
 

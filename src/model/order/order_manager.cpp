@@ -5,11 +5,14 @@
 #include "order_manager.h"
 
 OrderManager::OrderManager(ProductManager &pm, ClientManager &cm, WorkerManager &wm) :
-        _productManager(pm), _clientManager(cm), _workerManager(wm), _orders(std::set<Order*, OrderSmaller>()){
+        _productManager(pm), _clientManager(cm), _workerManager(wm), _orders(std::vector<Order*>()){
 }
 
 bool OrderManager::has(Order *order) const {
-    return std::find(_orders.begin(),_orders.end(),order) != _orders.begin();
+    auto it = std::find_if(_orders.begin(), _orders.end(), [order](const Order* o){
+        return *o == *order;
+    });
+    return it != _orders.end();
 }
 
 Order* OrderManager::get(unsigned int position) {
@@ -18,31 +21,41 @@ Order* OrderManager::get(unsigned int position) {
     return *it;
 }
 
-std::set<Order *, OrderSmaller> OrderManager::getAll() const {
+std::vector<Order *> OrderManager::getAll() const {
     return _orders;
 }
 
-std::set<Order *, OrderSmaller> OrderManager::get(Client *client) {
+std::vector<Order *> OrderManager::get(Client *client) {
     if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
-    std::set<Order*, OrderSmaller> filtered;
+    std::vector<Order*> filtered;
     for (const auto& order: _orders){
-        if (order->getClient() == *client) filtered.insert(order);
+        if (order->getClient() == *client) filtered.push_back(order);
     }
     return filtered;
 }
 
-std::set<Order *, OrderSmaller> OrderManager::get(Worker *worker) {
+std::vector<Order *> OrderManager::get(Worker *worker) {
     if (!_workerManager.has(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
-    std::set<Order*, OrderSmaller> filtered;
+    std::vector<Order*> filtered;
     for (const auto& order: _orders){
-        if (order->getWorker() == *worker) filtered.insert(order);
+        if (order->getWorker() == *worker) filtered.push_back(order);
     }
     return filtered;
+}
+
+void OrderManager::sort() {
+    std::sort(_orders.begin(), _orders.end());
 }
 
 Order* OrderManager::add(Client *client) {
     if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
-    _orders.insert(new Order(*client,*_workerManager.getAvailable()));
+    _orders.push_back(new Order(*client,*_workerManager.getAvailable()));
+    return *_orders.rbegin();
+}
+
+Order* OrderManager::add(Client *client, Date date) {
+    if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
+    _orders.push_back(new Order(*client,*_workerManager.getAvailable(), date));
     return *_orders.rbegin();
 }
 
