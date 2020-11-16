@@ -60,9 +60,16 @@ std::string util::to_string(float n) {
 }
 
 void util::clearScreen(){
-    std::cout << ANSI_CLEAR_SCREEN;
+    std::cout << '\n' << ANSI_CLEAR_SCREEN;
 }
 
 void util::print(const std::string& s, const int color){
     std::cout << ANSI_ANNOUNCE_COLOR << color << "m" << s << ANSI_RESET_CONSOLE;
+}
+
+std::vector<std::string> util::to_words(const std::string& input) {
+    std::vector<std::string> words;
+    std::stringstream ss(input);
+    for (std::string current; ss >> current;) words.push_back(current);
+    return words;
 }

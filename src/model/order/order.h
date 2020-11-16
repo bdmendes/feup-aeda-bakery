@@ -8,7 +8,7 @@
 #include "exception/product_exception.h"
 #include "exception/order_exception.h"
 
-#include "model/person/person/person.h"
+#include "model/person/person.h"
 #include "model/product/product.h"
 #include "model/product/product_manager.h"
 #include "model/date/date.h"

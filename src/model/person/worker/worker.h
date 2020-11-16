@@ -5,13 +5,13 @@
 #ifndef FEUP_AEDA_PROJECT_WORKER_H
 #define FEUP_AEDA_PROJECT_WORKER_H
 
-#include "../person/person.h"
+#include "model/person/person.h"
 
 #include <string>
 
 class Worker : public Person{
 public:
-    Worker(std::string name, float salary, int tributaryNumber = DEFAULT_TAXID,
+    Worker(std::string name, float salary, int taxID = Person::DEFAULT_TAX_ID,
            Credential credential = {"worker", "worker"});
 
     float getSalary() const;
@@ -22,8 +22,7 @@ public:
     void addOrder();
     void removeOrder();
 
-    void write(std::ostream& os);
-
+    void print(std::ostream& os, bool showData = true);
 private:
     float _salary;
     unsigned _orders;

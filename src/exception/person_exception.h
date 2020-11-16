@@ -8,7 +8,7 @@
 #include <utility>
 #include <stdexcept>
 
-#include "model/person/person/person.h"
+#include "model/person/person.h"
 
 class PersonDoesNotExist: public std::logic_error{
 public:
@@ -37,6 +37,11 @@ public:
 class InvalidPersonNameChange : public std::invalid_argument{
 public:
     InvalidPersonNameChange();
+};
+
+class InvalidCredential : public std::invalid_argument {
+public:
+    InvalidCredential(const std::string &offending);
 };
 
 

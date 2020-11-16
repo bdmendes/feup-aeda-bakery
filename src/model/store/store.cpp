@@ -10,7 +10,8 @@
 Store::Store(std::string name) :
         _name(std::move(name)),
         productManager(),clientManager(),workerManager(),
-        orderManager(productManager,clientManager,workerManager){
+        orderManager(productManager,clientManager,workerManager),
+        boss("Boss", 999999999, {"boss","boss"}){
 }
 
 std::string Store::getName() const {

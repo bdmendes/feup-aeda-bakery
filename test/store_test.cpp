@@ -171,10 +171,11 @@ TEST(WorkerManager, change_salary){
     EXPECT_FLOAT_EQ(849, workerM.get(++position)->getSalary());
 
     position = 0;
-    workerM.changeSalary(position, 900);
-    workerM.changeSalary(++position, 950);
+    workerM.setSalary(position, 900);
+    workerM.setSalary(++position, 950);
 
-    EXPECT_THROW(workerM.changeSalary(++position, 950), InvalidPersonPosition);
+    EXPECT_THROW(workerM.setSalary(++position, 950), InvalidPersonPosition);
+    EXPECT_THROW(workerM.setSalary(++position, 950), InvalidPersonPosition);
     EXPECT_FLOAT_EQ(900, worker1->getSalary());
     EXPECT_FLOAT_EQ(950, worker2->getSalary());
 }
