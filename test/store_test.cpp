@@ -133,38 +133,32 @@ TEST(WorkerManager, has_worker){
 }
 
 TEST(WorkerManager, get_available){
-/*    Store store("Aeda");
-    Bread hugeBread("Pao de sementes", 0.2, false);
+    Store store("Aeda");
     ProductManager productM;
-    productM.addCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    productM.addBread("Pao de sementes",0.2,false);
-
-    Client client("Ricardo Macedo");
     ClientManager clientM;
-    clientM.add("Ricardo Macedo");
-
-    Worker worker1("Jose Figueiras", 890);
-    Worker worker2("Madalena Faria", 980);
     WorkerManager workerM;
-    workerM.add("Jose Figueiras", 890);
-    workerM.add("Madalena Faria", 980);
-
-    EXPECT_EQ(0, worker1.getOrders());
-    EXPECT_EQ(0, worker2.getOrders());
-    EXPECT_TRUE(worker1 == *(workerM.getAvailable()));
-
     OrderManager orderM(productM, clientM, workerM);
-    orderM.add(&client);
 
-    EXPECT_TRUE(worker1.getOrders() ==1);
-    EXPECT_EQ(0, worker2.getOrders());
-    EXPECT_TRUE(worker2 == *(workerM.getAvailable()));
+    Client* client1 = clientM.add("Ricardo Macedo");
+    Client* client2 = clientM.add("Joana Moreira");
+    Worker* worker1 = workerM.add("Jose Figueiras", 890);
+    Worker* worker2 = workerM.add("Madalena Faria", 980);
 
-    orderM.add(&client);
+    EXPECT_EQ(0, worker1->getOrders());
+    EXPECT_EQ(0, worker2->getOrders());
+    EXPECT_TRUE(*worker1 == *(workerM.getAvailable()));
 
-    EXPECT_EQ(1, worker1.getOrders());
-    EXPECT_EQ(1, worker2.getOrders());
-    EXPECT_TRUE(worker1 == *(workerM.getAvailable()));*/
+    Order* order1 = orderM.add(client1);
+
+    EXPECT_EQ(1,worker1->getOrders());
+    EXPECT_EQ(0, worker2->getOrders());
+    EXPECT_TRUE(*worker2 == *(workerM.getAvailable()));
+
+    Order* order2 = orderM.add(client2);
+
+    EXPECT_EQ(1, worker1->getOrders());
+    EXPECT_EQ(1, worker2->getOrders());
+    EXPECT_TRUE(*worker1 == *(workerM.getAvailable()));
 }
 
 TEST(WorkerManager, change_salary){
@@ -386,11 +380,89 @@ TEST(OrderManager, add_order){
 
     EXPECT_TRUE(orderM.getAll().empty());
 
-    orderM.add(client);
-    unsigned position = 0;
+    Order* order1 = orderM.add(client);
 
     EXPECT_EQ(1, orderM.getAll().size());
-    EXPECT_TRUE(order == *orderM.get(position));
+    EXPECT_TRUE(order == *order1);
+}
+
+TEST(OrderManager, add_order_with_date){
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM;
+    OrderManager orderM(productM, clientM, workerM);
+    Date date(16, 11, 2020, 2, 30);
+    Client* client = clientM.add("Fernando Castro");
+    Worker* worker = workerM.add("Josue Tome", 928);
+    Order order(*client, *worker, date);
+
+    EXPECT_TRUE(orderM.getAll().empty());
+
+    Order* order1 = orderM.add(client, date);
+
+    EXPECT_EQ(1, orderM.getAll().size());
+    EXPECT_TRUE(order == *order1);
+}
+
+TEST(OrderManager, remove_order){
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM;
+    OrderManager orderM(productM, clientM, workerM);
+
+    Client* client1 = clientM.add("Adelaide Santos");
+    Client* client2 = clientM.add("Bruno Mendes");
+    Client* client3 = clientM.add("Ricardo Macedo");
+    Client* client4 = clientM.add("Ze Manel");
+    Worker* worker = workerM.add("Madalena Faria", 980);
+    Order order(*client1, *worker);
+
+    EXPECT_THROW(orderM.remove(&order), OrderDoesNotExist);
+
+    Order* order1 = orderM.add(client1);
+    Order* order2 = orderM.add(client2);
+    Order* order3 = orderM.add(client3);
+    orderM.remove(order1);
+    unsigned position = 0;
+
+    EXPECT_EQ(2, orderM.getAll().size());
+    EXPECT_TRUE(*order2 == *orderM.get(position));
+    EXPECT_TRUE(*order3 == *orderM.get(++position));
+
+    orderM.remove(order2);
+    position = 0;
+
+    EXPECT_EQ(1, orderM.getAll().size());
+    EXPECT_TRUE(*order3 == *orderM.get(position));
+
+    orderM.remove(order3);
+    position = 0;
+
+    EXPECT_TRUE(orderM.getAll().empty());//Throw exception  for empty orders
+}
+
+TEST(OrderManager, sort_orders){
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM;
+    OrderManager orderM(productM, clientM, workerM);
+
+    Date date2(25, 11, 2019, 3, 40);
+    Date date1(16, 11, 2020, 2, 30);
+    Client* client1 = clientM.add("Fernando Castro");
+    Client* client2 = clientM.add("Catia Fernandes");
+    Worker* worker = workerM.add("Josue Tome", 928);
+    Order order1(*client1, *worker, date1);
+    Order order2(*client2, *worker, date2);
+
+    Order* order3 = orderM.add(client1, date1);
+    Order* order4 = orderM.add(client2, date2);
+    unsigned position = 0;
+
+    EXPECT_TRUE(order1 == *order3);
+    EXPECT_TRUE(*order3 == *orderM.get(position));
+    EXPECT_TRUE(order2 == *order4);
+    EXPECT_TRUE(*order4 == *orderM.get(++position));
 }
 
 TEST(OrderManager, get_order_by_position){
@@ -470,41 +542,6 @@ TEST(OrderManager, get_worker_orders){
     EXPECT_TRUE(order == *order2);
 }
 
-TEST(OrderManager, remove_order){
-    ProductManager productM;
-    ClientManager clientM;
-    WorkerManager workerM;
-    OrderManager orderM(productM, clientM, workerM);
 
-    Client* client1 = clientM.add("Adelaide Santos");
-    Client* client2 = clientM.add("Bruno Mendes");
-    Client* client3 = clientM.add("Ricardo Macedo");
-    Client* client4 = clientM.add("Ze Manel");
-    Worker* worker = workerM.add("Madalena Faria", 980);
-    Order order(*client1, *worker);
-
-    EXPECT_THROW(orderM.remove(&order), OrderDoesNotExist);
-
-    Order* order1 = orderM.add(client1);
-    Order* order2 = orderM.add(client2);
-    Order* order3 = orderM.add(client3);
-    orderM.remove(order1);
-    unsigned position = 0;
-
-    EXPECT_EQ(2, orderM.getAll().size());
-    EXPECT_TRUE(*order2 == *orderM.get(position));
-    EXPECT_TRUE(*order3 == *orderM.get(++position));
-
-    orderM.remove(order2);
-    position = 0;
-
-    EXPECT_EQ(1, orderM.getAll().size());
-    EXPECT_TRUE(*order3 == *orderM.get(position));
-
-    orderM.remove(order3);
-    position = 0;
-
-    EXPECT_TRUE(orderM.getAll().empty());//Throw exception  for empty orders
-}
 
 
