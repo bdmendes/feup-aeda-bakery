@@ -7,6 +7,12 @@
 
 #include "product.h"
 #include <set>
+#include <algorithm>
+#include <utility>
+#include <sstream>
+#include <fstream>
+
+#include <exception/file_exception.h>
 
 struct ProductSmaller{
     bool operator()(const Product* p1, const Product* p2) {
@@ -27,13 +33,8 @@ public:
     Bread* addBread(std::string name, float price, bool small = true);
     Cake* addCake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
     void remove(Product* product);
-
-    void readCakes(std::ifstream& file);
-    void readBreads(std::ifstream& file);
-    void writeCakes(std::ofstream& file) const;
-
-
     void read(std::ifstream& file);
+    void write(std::ofstream& file) const;
     void print(std::ostream& os) const;
 
 private:

@@ -4,10 +4,6 @@
 
 #include "product_manager.h"
 
-#include <algorithm>
-#include <utility>
-#include <sstream>
-#include <fstream>
 #include <util/util.h>
 
 ProductManager::ProductManager(): _products(std::set<Product*, ProductSmaller>()){
@@ -64,35 +60,61 @@ void ProductManager::print(std::ostream &os) const {
     }
 }
 
-void ProductManager::readCakes(std::ifstream &file) {
-    //file.open("../feup-aeda-project/data/clients.txt");
-    if(!file.is_open()){
-        //TODO throw FileNotFound
+void ProductManager::read(std::ifstream &file) {
+    if(!file){
+        throw FileNotFound();
     }
     else{
-        std::string line;
-        std::string name;
+        std::vector<std::string> cakeCategories={"GENERAL", "PIE", "SPONGE", "PUFF_PASTRY", "CRUNCHY"};
+        bool readingCakes=true;
         float price;
-        int cakeCategory;
+        std::string line, name, cakeCategory, breadCategory;
 
         while(getline(file, line)){
-            std::stringstream cake(line);
-            cake>>name>>price>>cakeCategory;
-            std::replace(name.begin(), name.end(), '-', ' ');
-            addCake(name, price, cakeCategory);
+            if(line=="CAKES")
+                readingCakes=true;
+            else if(line=="BREADS"){
+                readingCakes=false;
+            }
+            else if(readingCakes) {
+                std::stringstream cake(line);
+                cake >> name >> price >> cakeCategory;
+                auto itr=std::find(cakeCategories.begin(), cakeCategories.end(), cakeCategory);
+                int index=std::distance(cakeCategories.begin(), itr);
+                enum CakeCategory categoryToSave= static_cast<CakeCategory>(index);
+                std::replace(name.begin(), name.end(), '-', ' ');
+                addCake(name, price, categoryToSave);
+            }
+            else{
+                std::stringstream bread(line);
+                bread>>name>>price>>breadCategory;
+                std::replace(name.begin(), name.end(), '-', ' ');
+                addBread(name, price, cakeCategory=="small");
+            }
         }
-        file.close();
     }
-}
-
-void ProductManager::readBreads(std::ifstream &file) {
-
-}
-
-void ProductManager::writeBreads(std::ofstream &file) const {
-
 }
 
 void ProductManager::write(std::ofstream &file) const {
+    if(!file){
+        throw FileNotFound();
+    }
+    else{
+        std::vector<std::string> cakeCategories={"GENERAL", "PIE", "SPONGE", "PUFF_PASTRY", "CRUNCHY"};
+        std::string nameToSave;
+        std::string categoryToSave;
 
+        for(const auto & product: _products){
+            nameToSave = product->getName();
+            std::replace(nameToSave.begin(), nameToSave.end(), ' ', '-');
+            if (dynamic_cast<Cake *>(product) != nullptr){
+
+                file<<nameToSave<<product->getPrice()<<cakeCategories.at(product->getCategory());
+            }
+            else if (dynamic_cast<Bread *>(product) != nullptr) {
+                categoryToSave=(product->isSmall())? "small" : "big";
+                file<<nameToSave<<product->getPrice()<<categoryToSave;
+            }
+        }
+    }
 }

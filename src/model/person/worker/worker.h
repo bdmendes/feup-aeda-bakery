@@ -11,7 +11,7 @@
 
 class Worker : public Person{
 public:
-    Worker(std::string name, float salary, int tributaryNumber = DEFAULT_TAXID,
+    Worker(std::string name, int tributaryNumber = DEFAULT_TAXID, float salary=0,
            Credential credential = {"worker", "worker"});
 
     float getSalary() const;

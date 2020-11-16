@@ -84,7 +84,7 @@ void WorkerManager::print(std::ostream &os) {
 void WorkerManager::read(std::ifstream &file) {
 
     if(!file){
-        //TODO throw FileNotFound
+        throw FileNotFound();
     }
     else{
         std::string line;
@@ -95,18 +95,17 @@ void WorkerManager::read(std::ifstream &file) {
 
         while(getline(file, line)){
             std::stringstream worker(line);
-            worker>>name>>salary>>tributaryNumber>>credential.username>>credential.password;
+            worker>>name>>tributaryNumber>>salary>>credential.username>>credential.password;
 
             std::replace(name.begin(), name.end(), '-', ' ');
             add(name, salary, tributaryNumber, credential);
         }
-        file.close();
     }
 }
 
-void WorkerManager::write(std::ofstream &file) {
+void WorkerManager::write(std::ofstream &file) const {
     if(!file){
-        //TODO throw FileNotFound
+        throw FileNotFound();
     }
     else{
 
@@ -115,9 +114,8 @@ void WorkerManager::write(std::ofstream &file) {
         for(const auto & worker: _workers){
             nameToSave = worker->getName();
             std::replace(nameToSave.begin(), nameToSave.end(), ' ', '-');
-            file<<nameToSave<<'\t'<<worker->getSalary()<<'\t'<<worker->getTributaryNumber()<<worker->getCredential().username<<worker->getCredential().password<<'\n';
+            file<<nameToSave<<'\t'<<worker->getSalary()<<'\t'<<worker->getTaxId()<<worker->getCredential().username<<worker->getCredential().password<<'\n';
         }
-        file.close();
     }
 }
 

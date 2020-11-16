@@ -53,8 +53,47 @@ void OrderManager::remove(Order *order) {
     _orders.erase(position);
 }
 
-void OrderManager::read() {
+void OrderManager::read(std::ifstream& file) {
+    if(!file){
+        throw FileNotFound();
+    }
+    else{
+        std::string line, clientName, workerName, clientCategory, date, time;
+        int clientTaxID, workerTaxID, day, month, year, hour, minute;
+        Credential credential;
+        bool orderEnd=false;
 
+        while(getline(file, line)){
+
+            if(!orderEnd) {
+                std::stringstream order(line);
+                order >> clientName >> clientTaxID >> workerName >> workerTaxID >> date >> hour;
+
+                std::replace(clientName.begin(), clientName.end(), '-', ' ');
+                Client *client = new Client(clientName, clientTaxID);
+                if (!_clientManager.has(client))
+                    throw PersonDoesNotExist(clientName, clientTaxID);
+
+                std::replace(workerName.begin(), workerName.end(), '-', ' ');
+                Worker *worker = new Worker(workerName, workerTaxID);
+                if (!_workerManager.has(worker))
+                    throw PersonDoesNotExist(workerName, workerTaxID);
+
+                std::stringstream tempDate(date);
+                tempDate << day << '/' << month << '/' << year;
+                std::stringstream tempHour(time);
+                tempHour << hour << ':' << minute;
+                Date date(day, month, year, hour, minute);
+
+                Order *newOrder = add(client, worker, date);
+
+                orderEnd = true;
+            }
+            /*else{
+
+            }*/
+        }
+    }
 }
 
 void OrderManager::print(std::ostream &os) const {

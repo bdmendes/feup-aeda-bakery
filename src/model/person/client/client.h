@@ -12,7 +12,7 @@
 
 class Client : public Person {
 public:
-    explicit Client(std::string name, bool premium = false, int tributaryNumber = 999999999,
+    explicit Client(std::string name, int tributaryNumber = 999999999, bool premium = false,
            Credential credential = {"client", "client"});
 
     bool isPremium() const;

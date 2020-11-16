@@ -5,7 +5,7 @@
 #include <util/util.h>
 #include "worker.h"
 
-Worker::Worker(std::string name, float salary, int tributaryNumber, Credential credential):
+Worker::Worker(std::string name,int tributaryNumber, float salary, Credential credential):
         Person(std::move(name), tributaryNumber, std::move(credential)), _salary{salary}, _orders(0){
 }
 

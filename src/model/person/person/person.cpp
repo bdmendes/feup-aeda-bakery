@@ -33,7 +33,7 @@ void Person::changeCredential(const Credential &credential) {
 }
 
 bool Person::operator<(const Person &p2) const {
-    return _name < p2.getName();
+    return _taxId<p2.getTaxId();
 }
 
 bool Person::operator==(const Person& p2) const {

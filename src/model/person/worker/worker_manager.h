@@ -8,6 +8,7 @@
 #include "worker.h"
 
 #include <exception/store_exception.h>
+#include <exception/file_exception.h>
 
 #include <algorithm>
 #include <vector>
@@ -33,6 +34,7 @@ public:
     void remove(unsigned position);
 
     void read(std::ifstream& file);
+    void write(std::ofstream &file) const;
     void print(std::ostream& os);
 private:
     std::set<Worker*, PersonSmaller> _workers;

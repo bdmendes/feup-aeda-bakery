@@ -18,13 +18,13 @@ public:
 
     Client* get(unsigned position);
     std::set<Client *, PersonSmaller> getAll();
-
-    Client* add(std::string name, bool premium = false, int tributaryNumber = 999999999,
+    Client* add(std::string name, int tributaryNumber = 999999999, bool premium = false,
              Credential credential = {"client", "client"});
     void remove(Client* client);
     void remove(unsigned position);
 
     void read(std::ifstream& file);
+    void write(std::ofstream& file) const;
     void print(std::ostream& os);
 private:
     std::set<Client*, PersonSmaller> _clients;

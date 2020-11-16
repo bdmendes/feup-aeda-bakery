@@ -5,6 +5,7 @@
 #include "client_manager.h"
 #include <algorithm>
 #include <exception/person_exception.h>
+#include <exception/file_exception.h>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
@@ -26,7 +27,7 @@ std::set<Client *, PersonSmaller> ClientManager::getAll() {
     return _clients;
 }
 
-Client* ClientManager::add(std::string name, bool premium, int tributaryNumber, Credential credential) {
+Client* ClientManager::add(std::string name, int tributaryNumber, bool premium, Credential credential) {
     auto* client = new Client(std::move(name), premium, tributaryNumber, std::move(credential));
     if(has(client)) throw PersonAlreadyExists(client->getName(), client->getTaxId());
     _clients.insert(client);
@@ -64,28 +65,27 @@ void ClientManager::print(std::ostream &os) {
 
 void ClientManager::read(std::ifstream &file) {
     if(!file){
-        //TODO throw FileNotFound
+        throw FileNotFound();
     }
     else{
         std::string line, name;
         std::string premium;
-        int tributaryNumber;
+        int taxID;
         Credential credential;
 
         while(getline(file, line)){
             std::stringstream client(line);
-            client>>name>>premium>>tributaryNumber>>credential.username>>credential.password;
+            client>>name>>taxID>>premium>>credential.username>>credential.password;
 
             std::replace(name.begin(), name.end(), '-', ' ');
-            add(name, premium == "premium",  tributaryNumber, credential);
+            add(name, premium == "premium", taxID, credential);
         }
-        //file.close();
     }
 }
 
-void ClientManager::write(std::ofstream &file) {
+void ClientManager::write(std::ofstream &file) const{
     if(!file){
-        //TODO throw FileNotFound
+        throw FileNotFound();
     }
     else{
 
@@ -96,9 +96,8 @@ void ClientManager::write(std::ofstream &file) {
             nameToSave = client->getName();
             std::replace(nameToSave.begin(), nameToSave.end(), ' ', '-');
             premiumToSave=(client->isPremium())? "premium" : "not-premium";
-            file<<nameToSave<<'\t'<<premiumToSave<<'\t'<<client->getTributaryNumber()<<client->getCredential().username<<client->getCredential().password<<'\n';
+            file<<nameToSave<<'\t'<<premiumToSave<<'\t'<<client->getTaxId()<<client->getCredential().username<<client->getCredential().password<<'\n';
         }
-        file.close();
     }
 }
 
