@@ -89,8 +89,9 @@ void WorkerManager::print(std::ostream &os) {
     }
 }
 
-void WorkerManager::read(std::ifstream &file) {
+void WorkerManager::read(std:: string &pathFile) {
 
+    std::ifstream file(pathFile);
     if(!file){
         throw FileNotFound();
     }

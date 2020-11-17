@@ -27,3 +27,15 @@ float Store::getEvaluation() const {
 void Store::setName(std::string name) {
     _name = std::move(name);
 }
+
+void Store::read() {
+    try{
+        workerManager.read("../feup-aeda-project/data/products.txt");
+        productManager.read("../feup-aeda-project/data/products.txt");
+        productManager.write("../feup-aeda-project/data/products.txt");
+        std::ifstream clients("../feup-aeda-project/data/clients.txt");
+        clientManager.read(clients);
+
+    }
+
+}

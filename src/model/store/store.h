@@ -31,6 +31,7 @@ public:
 
     std::string getName() const;
     float getEvaluation() const;
+    void read();
 
     void setName(std::string name);
 

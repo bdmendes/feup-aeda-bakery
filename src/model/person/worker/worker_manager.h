@@ -34,7 +34,7 @@ public:
     void remove(Worker* worker);
     void remove(unsigned position);
 
-    void read(std::ifstream& file);
+    void read(std::string &file);
     void write(std::ofstream &file) const;
     void print(std::ostream& os);
 private:
