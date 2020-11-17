@@ -183,7 +183,7 @@ TEST(Order, remove_product_by_position){
     EXPECT_THROW(order.removeProduct(1), InvalidProductPosition);
 }
 
-/*TEST(Order, deliver){
+TEST(Order, deliver){
     Date date(14, 11, 2020, 16, 30);
     Client client("Alfredo Simões");
     client.addPoints(200);
@@ -197,13 +197,13 @@ TEST(Order, remove_product_by_position){
 
     EXPECT_FALSE(order1.wasDelivered());
 
-    order1.deliver(3.4, 20);
+    order1.deliver(3, 20);
     date.addMinutes(20);
 
     EXPECT_TRUE(order1.wasDelivered());
     EXPECT_EQ(date, order1.getDeliverDate());
     EXPECT_EQ(50, client.getPoints()); // Resets points after delivering and adds 10 for each euro
-    EXPECT_FLOAT_EQ(3.4, order1.getClientEvaluation());
+    EXPECT_EQ(3, order1.getClientEvaluation());
 
     client.setPremium(true);
     client.resetPoints();
@@ -212,17 +212,17 @@ TEST(Order, remove_product_by_position){
 
     EXPECT_FALSE(order2.wasDelivered());
 
-    order2.deliver(4.1);
+    order2.deliver(4);
 
     EXPECT_TRUE(order2.wasDelivered());
     EXPECT_EQ(0, client.getPoints());
-    EXPECT_FLOAT_EQ(4.1, order2.getClientEvaluation());
-    EXPECT_THROW(order2.deliver(2.3), OrderWasAlreadyDelivered);
+    EXPECT_EQ(4, order2.getClientEvaluation());
+    EXPECT_THROW(order2.deliver(2), OrderWasAlreadyDelivered);
 
     Order order3(client, worker);
 
-    EXPECT_THROW(order3.deliver(5.3), InvalidOrderEvaluation);
-}*/
+    EXPECT_THROW(order3.deliver(6), InvalidOrderEvaluation);
+}
 
 TEST(Order,evaluations){
     Client client("Alfredo Simoes",true);
