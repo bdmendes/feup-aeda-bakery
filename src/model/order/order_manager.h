@@ -21,20 +21,21 @@ public:
     OrderManager(ProductManager& pm, ClientManager& cm, WorkerManager& wm);
     bool has(Order* order) const;
 
-    Order* get(unsigned position);
+    Order* get(unsigned position, Client* client = nullptr, Worker* worker = nullptr);
     std::vector<Order*> getAll() const;
-    std::vector<Order*> get(Client* client);
-    std::vector<Order*> get(Worker* worker);
+    std::vector<Order*> get(Client* client) const;
+    std::vector<Order*> get(Worker* worker) const;
 
     void sort();
-    Order* add(Client* client);
-    Order* add(Client* client, Date date);
+    Order* add(Client* client, Date date = {});
     void remove(Order* order);
+    void remove(unsigned position);
 
     void read(std::ifstream& file);
-    void print(std::ostream& os) const;
+    bool print(std::ostream& os, Client* client = nullptr, Worker* worker = nullptr) const;
 
 private:
+
     ProductManager& _productManager;
     ClientManager& _clientManager;
     WorkerManager& _workerManager;

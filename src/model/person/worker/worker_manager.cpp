@@ -17,15 +17,6 @@ Worker* WorkerManager::get(unsigned int position) {
     return *it;
 }
 
-Worker* WorkerManager::getAvailable() {
-    if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
-
-    auto orderComp = [](const Worker *worker1, const Worker *worker2) {
-        return ((worker1->getOrders()) < (worker2->getOrders()));
-    };
-    return *std::min_element(_workers.begin(), _workers.end(), orderComp);
-}
-
 std::set<Worker *, PersonSmaller> WorkerManager::getAll() {
     return _workers;
 }
@@ -45,10 +36,8 @@ Worker* WorkerManager::add(std::string name, float salary, int taxID, Credential
 }
 
 void WorkerManager::remove(Worker *worker) {
-    //if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
     auto position = _workers.find(worker);
-    if(position == _workers.end())
-        throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
+    if(position == _workers.end()) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
     _workers.erase(position);
 }
 
@@ -59,24 +48,40 @@ void WorkerManager::remove(unsigned position) {
     _workers.erase(it);
 }
 
-void WorkerManager::print(std::ostream &os, bool showData) {
-    int idxPadding = static_cast<int>(std::to_string(_workers.size()).size() + 2);
+bool WorkerManager::print(std::ostream &os, bool showData) {
+    if (_workers.empty()){
+        os << "No workers yet.\nLogin as the boss to add some.\n";
+        return false;
+    }
 
-    os << std::string(idxPadding, util::SPACE)
+    os << std::string(static_cast<int>(_workers.size()) / 10 + 3, util::SPACE)
     << util::column("NAME", true)
     << util::column("TAX ID");
     if (showData){
-        os << util::column("SALARY")
-                << util::column("DELIVERED");
+        os << util::column("SALARY");
+        os << util::column("TO DELIVER");
+    }
+    else {
+        os << util::column("LOGGED IN");
     }
     os << "\n";
 
     int count = 1;
     for (const auto& w: _workers){
-        os << std::setw(idxPadding) << std::left << std::to_string(count++) + ". ";
+        os << std::to_string(count++) + ". ";
         w->print(os, showData);
         os << "\n";
     }
+    return true;
+}
+
+Worker* WorkerManager::getLessBusyWorker() {
+    if (_workers.empty()) throw StoreHasNoWorkers();
+
+    auto orderComp = [](const Worker *worker1, const Worker *worker2) {
+        return ((worker1->getUndeliveredOrders()) < (worker2->getUndeliveredOrders()));
+    };
+    return *std::min_element(_workers.begin(), _workers.end(), orderComp);
 }
 
 

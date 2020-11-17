@@ -7,12 +7,16 @@
 #include <utility>
 #include <util/util.h>
 
+const char* Cake::categoryStr[5] = {
+        "General", "Pie", "Sponge", "Puff Pastry", "Crunchy Cake"
+};
+
 Product::Product(std::string name, float price) : _name(std::move(name)), _price(price) {}
 
 Bread::Bread(std::string name, float price, bool small) : Product(std::move(name), price), _small(small) {}
 
 Cake::Cake(std::string name, float price, enum CakeCategory category):
-        Product(std::move(name), price), _category(category){
+        Product(std::move(name), price), _category(category), _categoryStr(categoryStr[static_cast<int>(_category)]){
 }
 
 std::string Product::getName() const { return _name;}
@@ -37,13 +41,8 @@ bool Cake::operator==(const Cake &cake) const{
 }
 
 void Cake::print(std::ostream& os) const {
-    const std::array<std::string,5> cakeCategories = {
-            "General", "Pie", "Sponge", "Puff Pastry", "Crunchy Cake"
-    };
-    const std::string category = cakeCategories.at(static_cast<unsigned long>(_category));
-
     os << util::column(_name,true)
-    << util::column(category)
+    << util::column(_categoryStr)
     << util::column(util::to_string(_price) + " euros");
 }
 

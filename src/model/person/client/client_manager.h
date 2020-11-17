@@ -20,12 +20,12 @@ public:
     std::set<Client *, PersonSmaller> getAll();
 
     Client* add(std::string name, bool premium = false, int taxID = Person::DEFAULT_TAX_ID,
-             Credential credential = {"client", "client"});
+             Credential credential = {Client::DEFAULT_USERNAME, Client::DEFAULT_PASSWORD});
     void remove(Client* client);
     void remove(unsigned position);
 
     void read(std::ifstream& file);
-    void print(std::ostream& os, bool showData = true);
+    bool print(std::ostream& os, bool showData = true);
 private:
     std::set<Client*, PersonSmaller> _clients;
 };

@@ -11,21 +11,14 @@ class BossDashboard;
 class ClientDashboard;
 class WorkerDashboard;
 
-enum class PersonToShow {
-    WORKER,
-    CLIENT
-};
-
 class LoginMenu: public UI{
 public:
     LoginMenu(Store& store);
     void show() override;
-    void showPersons(PersonToShow person);
+    void selectPerson(bool client);
     void login(Person* person);
-    Person* getLogged() const;
 private:
     std::vector<Person*> _persons;
-    Person* _logged;
 };
 
 

@@ -8,15 +8,15 @@
 #include <util/util.h>
 
 Order::Order(Client &client, Worker &worker, Date date) :
-        _client{client}, _worker(worker), _clientEvaluation(0), _delivered(false),
+        _client(&client), _worker(&worker), _clientEvaluation(0), _delivered(false),
         _totalPrice(0.0f), _requestDate(date), _deliverDate(date), _products(){
     updateTotalPrice();
-    _client.addPoints(10* static_cast<int>(_totalPrice)); //For each euro adds 10 points
-    _worker.addOrder();
+    _client->addPoints(10* static_cast<int>(_totalPrice)); //For each euro adds 10 points
+    _worker->addOrderToDeliver();
 }
 
 bool Order::hasDiscount() const {
-    return _client.getPoints() >= 100*_client.isPremium() + 200*!_client.isPremium();
+    return _client->getPoints() >= 100*_client->isPremium() + 200*!_client->isPremium();
 }
 
 bool Order::hasProduct(Product* product){
@@ -27,11 +27,11 @@ bool Order::wasDelivered() const {
     return _delivered;
 }
 
-const Worker& Order::getWorker() const {
+Worker* const Order::getWorker() const {
     return _worker;
 }
 
-const Client& Order::getClient() const{
+Client* const Order::getClient() const{
     return _client;
 }
 
@@ -39,13 +39,13 @@ std::map<Product *, unsigned int, ProductSmaller> Order::getProducts() const {
     return _products;
 }
 
-float Order::getClientEvaluation() const {
-    if (!_delivered) throw OrderWasNotDeliveredYet(_client, _worker, _requestDate);
+int Order::getClientEvaluation() const {
+    if (!_delivered) throw OrderWasNotDeliveredYet(*_client, *_worker, _requestDate);
     return _clientEvaluation;
 }
 
 float Order::getFinalPrice() const {
-    return hasDiscount() ? (_client.isPremium() ? 0.95f*_totalPrice : 0.98f*_totalPrice) : _totalPrice;
+    return hasDiscount() ? (_client->isPremium() ? 0.95f*_totalPrice : 0.98f*_totalPrice) : _totalPrice;
 }
 
 float Order::getTotal() const {
@@ -64,7 +64,8 @@ void Order::updateTotalPrice() {
 }
 
 Product * Order::addProduct(Product* product, unsigned quantity) {
-    if (_delivered) throw OrderWasAlreadyDelivered(_client, _worker, _requestDate);
+    if (quantity == 0) throw std::invalid_argument("Quantity cannot be 0!");
+    if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
     if (hasProduct(product)) _products[product] += quantity;
     else _products[product] = quantity;
     updateTotalPrice();
@@ -72,7 +73,7 @@ Product * Order::addProduct(Product* product, unsigned quantity) {
 }
 
 void Order::removeProduct(Product* product, unsigned quantity) {
-    if (_delivered) throw OrderWasAlreadyDelivered(_client, _worker, _requestDate);
+    if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
     if (hasProduct(product)){
         if (_products[product] < quantity) quantity = _products[product];
         _products[product] -= quantity;
@@ -83,7 +84,7 @@ void Order::removeProduct(Product* product, unsigned quantity) {
 }
 
 void Order::removeProduct(Product *product) {
-    if (_delivered) throw OrderWasAlreadyDelivered(_client, _worker, _requestDate);
+    if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
     if (hasProduct(product)){
         _products.erase(product);
         updateTotalPrice();
@@ -92,7 +93,7 @@ void Order::removeProduct(Product *product) {
 }
 
 void Order::removeProduct(unsigned int position, unsigned int quantity) {
-    if (_delivered) throw OrderWasAlreadyDelivered(_client, _worker, _requestDate);
+    if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
     auto it = _products.begin();
     if (position < _products.size()){
         std::advance(it,position);
@@ -107,7 +108,7 @@ void Order::removeProduct(unsigned int position, unsigned int quantity) {
 }
 
 void Order::removeProduct(unsigned int position) {
-    if (_delivered) throw OrderWasAlreadyDelivered(_client, _worker, _requestDate);
+    if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
     auto it = _products.begin();
     if (position < _products.size()){
         std::advance(it,position);
@@ -117,17 +118,20 @@ void Order::removeProduct(unsigned int position) {
     else throw InvalidProductPosition(position, _products.size());
 }
 
-void Order::deliver(float clientEvaluation, int deliverDuration) {
-    if (_delivered) throw OrderWasAlreadyDelivered(_client, _worker, _requestDate);
-    if (clientEvaluation < 0 || clientEvaluation > 5) throw InvalidOrderEvaluation(clientEvaluation,_client);
+void Order::deliver(int clientEvaluation, int deliverDuration) {
+    if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
+    if (clientEvaluation < 0 || clientEvaluation > 5) throw InvalidOrderEvaluation(clientEvaluation,*_client);
 
     _clientEvaluation = clientEvaluation;
     _delivered = true;
-    _client.addEvaluation(clientEvaluation);
-    _deliverDate.addMinutes(deliverDuration);
+    _client->addEvaluation(clientEvaluation);
+    _worker->removeOrderToDeliver();
 
-    if (hasDiscount()) _client.resetPoints();
-    _client.addPoints(10* static_cast<int>(_totalPrice)); //For each euro adds 10 points
+    if (deliverDuration != 0) _deliverDate.addMinutes(deliverDuration);
+    else _deliverDate = Date();
+
+    if (hasDiscount()) _client->resetPoints();
+    _client->addPoints(10* static_cast<int>(_totalPrice)); //For each euro adds 10 points
 }
 
 bool Order::operator==(const Order &rhs) const {
@@ -140,26 +144,32 @@ bool Order::operator<(const Order &o2) const {
 }
 
 void Order::print(std::ostream &os) const {
-    os << "Requested by " << getClient().getName()
+    os << "Requested by " << getClient()->getName()
        << " on " << getRequestDate().getCompleteDate() << std::endl;
 
     if (!wasDelivered()){
-        os << "To be delivered by " << getWorker().getName() << "\n\n";
+        os << "To be delivered by " << getWorker()->getName() << "\n\n";
     }
     else {
-        os << "Delivered by " << getWorker().getName() << " on " << getDeliverDate().getCompleteDate()
+        os << "Delivered by " << getWorker()->getName() << " on " << getDeliverDate().getCompleteDate()
            << "\n Client evaluation: " << getClientEvaluation() << " points)" << "\n\n";
     }
 
     //products
-    os << util::column("Product description",true)
-       << util::column("Category")
-       << util::column("Unit price")
-       << util::column("Quantity") << std::endl;
-    for (const auto& p: getProducts()){
-        p.first->print(os);
-        os << util::column(std::to_string(p.second)) << std::endl;
+    if (!_products.empty()) {
+        os << std::string(static_cast<int>(_products.size()) / 10 + 3, util::SPACE)
+           << util::column("Product description", true)
+           << util::column("Category")
+           << util::column("Unit price")
+           << util::column("Quantity") << "\n";
+        int count = 1;
+        for (const auto &p: getProducts()) {
+            os << std::to_string(count++) + ". ";
+            p.first->print(os);
+            os << util::column(std::to_string(p.second)) << std::endl;
+        }
     }
+    else std::cout << "No products added\n";
 
     //total price
     const std::string discount = hasDiscount() ? "With discount" : "No discount";
@@ -167,6 +177,6 @@ void Order::print(std::ostream &os) const {
 }
 
 Date Order::getDeliverDate() const {
-    if (!_delivered) throw OrderWasNotDeliveredYet(_client, _worker, _requestDate);
+    if (!_delivered) throw OrderWasNotDeliveredYet(*_client, *_worker, _requestDate);
     return _deliverDate;
 }

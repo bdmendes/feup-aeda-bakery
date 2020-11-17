@@ -22,18 +22,18 @@ public:
     bool has(Worker* worker) const;
 
     Worker* get(unsigned position);
-    Worker* getAvailable();
     std::set<Worker*, PersonSmaller> getAll();
+    Worker* getLessBusyWorker();
 
     Worker * setSalary(unsigned position, float salary);
 
     Worker* add(std::string name, float salary, int taxID = Person::DEFAULT_TAX_ID,
-             Credential credential = {"worker", "worker"});
+             Credential credential = {Worker::DEFAULT_USERNAME,Worker::DEFAULT_PASSWORD});
     void remove(Worker* worker);
     void remove(unsigned position);
 
     void read(std::ifstream& file);
-    void print(std::ostream& os, bool showData = true);
+    bool print(std::ostream& os, bool showData = true);
 private:
     std::set<Worker*, PersonSmaller> _workers;
 };

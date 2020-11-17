@@ -7,9 +7,12 @@
 #include <utility>
 #include <util/util.h>
 
+const char* Client::DEFAULT_USERNAME = "client";
+const char* Client::DEFAULT_PASSWORD = "client";
+
 Client::Client(std::string name, bool premium, int taxID, Credential credential):
         Person(std::move(name), taxID, std::move(credential)), _points{0}, _premium(premium),
-        _evaluations(std::vector<float>()){
+        _evaluations{}{
 }
 
 bool Client::isPremium() const {
@@ -26,11 +29,13 @@ float Client::getMeanEvaluation() const {
     return sum / _evaluations.size();
 }
 
-std::vector<float> Client::getEvaluations() const {
+std::vector<int> Client::getEvaluations() const {
     return _evaluations;
 }
 
 void Client::setPremium(bool premium) {
+    if (_premium && premium) throw std::invalid_argument("Already a premium client!");
+    else if (!_premium && !premium) throw std::invalid_argument("Already a regular client!");
     _premium = premium;
 }
 
@@ -46,7 +51,7 @@ void Client::removePoints(unsigned int points) {
     _points -= points;
 }
 
-void Client::addEvaluation(float evaluation) {
+void Client::addEvaluation(int evaluation) {
     _evaluations.push_back(evaluation);
 }
 
@@ -55,14 +60,13 @@ void Client::print(std::ostream &os, bool showData) {
     << util::column(getTaxId() == Person::DEFAULT_TAX_ID ? "Not provided" : std::to_string(getTaxId()));
     if (showData){
         os << util::column(isPremium() ? "Premium" : "Basic")
-                << util::column(std::to_string(getPoints()) + " points");
+        << util::column(std::to_string(getPoints()) + " points");
     }
+    else os << util::column(isLogged() ? "Yes" : "No");
 }
 
-/*
-bool Client::operator==(const Client& c2) const {
-    return (getName() == c2.getName()) && (getTaxId() == c2.getTaxId())
-            && (_premium == c2.isPremium()) && (_points == c2.getPoints());
+Credential Client::getDefaultCredential() {
+    return {DEFAULT_USERNAME, DEFAULT_PASSWORD};
 }
-*/
+
 

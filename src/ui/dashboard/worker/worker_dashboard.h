@@ -7,8 +7,9 @@
 
 
 #include <ui/ui.h>
+#include <ui/dashboard/dashboard.h>
 
-class WorkerDashboard : public UI {
+class WorkerDashboard : public Dashboard {
 public:
     WorkerDashboard(Store& store, Worker* worker);
     void show() override;

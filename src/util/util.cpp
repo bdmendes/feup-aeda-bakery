@@ -6,8 +6,12 @@
 #include <sstream>
 #include "util.h"
 
-bool util::isdigit(const std::string &str) {
-    return std::all_of(str.begin(),str.end(), [](const char c){return std::isdigit(c);});
+bool util::isdigit(const std::string &str, bool acceptFloat) {
+    int pointCount = 0;
+    return std::all_of(str.begin(),str.end(), [&pointCount, acceptFloat](const char c){
+        if (c == '.' && acceptFloat) return ++pointCount <= 1;
+        return (bool) std::isdigit(c);
+    });
 }
 
 bool util::contains(const std::string &str, const std::string &expected) {
@@ -15,7 +19,10 @@ bool util::contains(const std::string &str, const std::string &expected) {
 }
 
 void util::normalize(std::string &str, bool isName) {
+    bool forceLower = false;
     for (int i = 0; i < str.size(); ++i){
+        if (str.at(i) == SPACE) forceLower = false;
+
         //strip unneeded spaces
         if (str.at(i) == SPACE && (i == 0 || (i < str.size() - 1 && str.at(i+1) == SPACE))){
             str.erase(str.begin() + i);
@@ -24,8 +31,9 @@ void util::normalize(std::string &str, bool isName) {
         }
 
         //ensure only first word char is uppercase
-        if (std::isupper(str.at(i)) && i > 0 && std::isupper(str.at(i-1))){
+        if (forceLower || (std::isupper(str.at(i)) && i > 0 && std::isupper(str.at(i-1)))){
             str.at(i) = std::tolower(str.at(i));
+            forceLower = true;
             continue;
         }
 
@@ -34,10 +42,6 @@ void util::normalize(std::string &str, bool isName) {
             str.at(i) = std::toupper(str.at(i));
         }
     }
-}
-
-void util::stripSpecialChars(std::string& str){
-    str.erase(std::remove_if(str.begin(),str.end(),[](const char c){return !std::isalnum(c) && c != SPACE;}), str.end());
 }
 
 void util::lowercase(std::string &str) {
@@ -72,4 +76,8 @@ std::vector<std::string> util::to_words(const std::string& input) {
     std::stringstream ss(input);
     for (std::string current; ss >> current;) words.push_back(current);
     return words;
+}
+
+void util::uppercase(std::string &str) {
+    std::transform(str.begin(),str.end(),str.begin(),[](unsigned char c){return std::toupper(c);});
 }

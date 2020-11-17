@@ -9,7 +9,7 @@
 const int Person::DEFAULT_TAX_ID = 999999999;
 
 Person::Person(std::string name, int taxID, Credential credential) :
-        _name(std::move(name)), _taxId{taxID}, _credential{std::move(credential) } {
+        _name(std::move(name)), _taxID{taxID}, _credential{std::move(credential) }, _logged(false) {
     if (_credential.username == "back" || _credential.username == "exit") throw InvalidCredential(_credential.username);
     if (_credential.password == "back" || _credential.password == "exit") throw InvalidCredential(_credential.password);
 }
@@ -19,7 +19,7 @@ std::string Person::getName() const {
 }
 
 int Person::getTaxId() const {
-    return _taxId;
+    return _taxID;
 }
 
 Credential Person::getCredential() const {
@@ -43,5 +43,19 @@ bool Person::operator<(const Person &p2) const {
 }
 
 bool Person::operator==(const Person &p2) const {
-    return _name == p2.getName() && _taxId == p2.getTaxId();
+    return _name == p2.getName() && _taxID == p2.getTaxId();
+}
+
+bool Person::isLogged() const {
+    return _logged;
+}
+
+void Person::setLogged(bool logged) {
+    if (logged && _logged) throw std::invalid_argument("Person is already logged in!");
+    if (!logged && !_logged) throw std::invalid_argument("Person is already logged out!");
+    _logged = logged;
+}
+
+void Person::setTaxID(int taxID) {
+    _taxID = taxID;
 }

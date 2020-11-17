@@ -7,11 +7,17 @@
 
 
 #include <ui/ui.h>
+#include "ui/dashboard/dashboard.h"
 
-class BossDashboard : public UI {
+class BossDashboard : public Dashboard {
 public:
     explicit BossDashboard(Store& store);
     void show() override;
+private:
+    void manageStaff();
+    void addWorker();
+    void showStats();
+    Boss* _boss;
 };
 
 

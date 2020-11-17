@@ -132,7 +132,7 @@ TEST(WorkerManager, has_worker){
     EXPECT_TRUE(wm.has(&worker2));
 }
 
-TEST(WorkerManager, get_available){
+/*TEST(WorkerManager, get_available){
     Store store("Aeda");
     ProductManager productM;
     ClientManager clientM;
@@ -159,7 +159,7 @@ TEST(WorkerManager, get_available){
     EXPECT_EQ(1, worker1->getOrders());
     EXPECT_EQ(1, worker2->getOrders());
     EXPECT_TRUE(*worker1 == *(workerM.getAvailable()));
-}
+}*/
 
 TEST(WorkerManager, change_salary){
     WorkerManager workerM;

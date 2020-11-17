@@ -30,10 +30,10 @@ class Store {
 public:
     Store(std::string name = "Bakery Store");
 
+    void setName(const std::string& name);
     std::string getName() const;
-    float getEvaluation() const;
-
-    void setName(std::string name);
+    int getEvaluation() const;
+    float getProfit() const;
 
     ProductManager productManager;
     ClientManager clientManager;
