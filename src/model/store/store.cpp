@@ -20,9 +20,12 @@ std::string Store::getName() const {
 
 int Store::getEvaluation() const {
     std::vector<int> evaluations;
-    for(const auto& order : orderManager.getAll())
-        if(order->wasDelivered()) evaluations.push_back(order->getClientEvaluation());
-    return std::accumulate(evaluations.begin(),evaluations.end(),0) / static_cast<int>(evaluations.size());
+    int count = 0;
+    for(const auto& order : orderManager.getAll()) {
+        if (order->wasDelivered()) evaluations.push_back(order->getClientEvaluation());
+        count++;
+    }
+    return std::accumulate(evaluations.begin(),evaluations.end(),0) / count;
 }
 
 void Store::setName(const std::string& name) {

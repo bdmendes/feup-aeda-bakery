@@ -46,7 +46,7 @@ void ClientManager::remove(unsigned position) {
 
 bool ClientManager::print(std::ostream &os, bool showData) {
     if (_clients.empty()){
-        os << "No clients yet. Go back and login as a worker to register some.\n";
+        os << "No clients yet.\nGo back and login as a worker or the boss to register some.\n";
         return false;
     }
 

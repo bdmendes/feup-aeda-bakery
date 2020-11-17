@@ -55,3 +55,7 @@ void Person::setLogged(bool logged) {
     if (!logged && !_logged) throw std::invalid_argument("Person is already logged out!");
     _logged = logged;
 }
+
+void Person::setTaxID(int taxID) {
+    _taxId = taxID;
+}

@@ -32,6 +32,7 @@ public:
     void setLogged(bool logged);
 
     void setName(const std::string& name);
+    void setTaxID(int taxID);
     void setCredential(const Credential& credential);
 
     bool operator<(const Person& p2) const;

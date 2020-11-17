@@ -50,7 +50,7 @@ void WorkerManager::remove(unsigned position) {
 
 bool WorkerManager::print(std::ostream &os, bool showData) {
     if (_workers.empty()){
-        os << "No workers yet.\n Login as the boss to add some.\n";
+        os << "No workers yet.\nLogin as the boss to add some.\n";
         return false;
     }
 

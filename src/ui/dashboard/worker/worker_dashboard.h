@@ -13,8 +13,6 @@ class WorkerDashboard : public Dashboard {
 public:
     WorkerDashboard(Store& store, Worker* worker);
     void show() override;
-
-    void addClient();
 private:
     Worker* _worker;
 };

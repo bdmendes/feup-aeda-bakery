@@ -13,9 +13,10 @@ class BossDashboard : public Dashboard {
 public:
     explicit BossDashboard(Store& store);
     void show() override;
-
-    void addWorker();
 private:
+    void manageStaff();
+    void addWorker();
+    void showStats();
     Boss* _boss;
 };
 

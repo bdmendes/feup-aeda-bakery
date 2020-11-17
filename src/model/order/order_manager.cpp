@@ -78,16 +78,16 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
     }
 
     os << std::string(toPrint.size() / 10 + 3,util::SPACE);
-    if (worker != nullptr) os << util::column("CLIENT",true);
-    if (client != nullptr) os << util::column("WORKER",true);
+    if (client == nullptr) os << util::column("CLIENT",true);
+    if (worker == nullptr) os << util::column("WORKER",true);
     os << util::column("REQUESTED",true)
     << util::column("DELIVERED",true) << "\n";
 
     int count = 1;
     for (const auto& o: toPrint){
         os << std::to_string(count++) + ". ";
-        if (worker != nullptr) os << util::column(o->getClient()->getName(),true);
-        if (client != nullptr) os << util::column(o->getWorker()->getName(),true);
+        if (client == nullptr) os << util::column(o->getClient()->getName(),true);
+        if (worker == nullptr) os << util::column(o->getWorker()->getName(),true);
         os << util::column(o->getRequestDate().getCompleteDate(), true)
         << util::column(o->wasDelivered() ? o->getDeliverDate().getClockTime() + " (" +
         std::to_string(o->getClientEvaluation()) + " points)" : "Not Yet",true) << "\n";

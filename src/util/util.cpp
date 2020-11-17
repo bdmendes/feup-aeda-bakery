@@ -19,7 +19,10 @@ bool util::contains(const std::string &str, const std::string &expected) {
 }
 
 void util::normalize(std::string &str, bool isName) {
+    bool forceLower = false;
     for (int i = 0; i < str.size(); ++i){
+        if (str.at(i) == SPACE) forceLower = false;
+
         //strip unneeded spaces
         if (str.at(i) == SPACE && (i == 0 || (i < str.size() - 1 && str.at(i+1) == SPACE))){
             str.erase(str.begin() + i);
@@ -28,8 +31,9 @@ void util::normalize(std::string &str, bool isName) {
         }
 
         //ensure only first word char is uppercase
-        if (std::isupper(str.at(i)) && i > 0 && std::isupper(str.at(i-1))){
+        if (forceLower || (std::isupper(str.at(i)) && i > 0 && std::isupper(str.at(i-1)))){
             str.at(i) = std::tolower(str.at(i));
+            forceLower = true;
             continue;
         }
 

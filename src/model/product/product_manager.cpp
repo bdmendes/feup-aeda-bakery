@@ -68,8 +68,5 @@ void ProductManager::print(std::ostream &os) const {
             os << "\n";
         }
     }
-    else os << "Nothing in the stock yet.\nGo ahead and add some products!\n";
+    else os << "Nothing in the stock yet.\n";
 }
-
-
-

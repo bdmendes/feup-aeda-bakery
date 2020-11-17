@@ -10,7 +10,7 @@ ClientDashboard::ClientDashboard(Store &store, Client *client) : Dashboard(store
 
 void ClientDashboard::show() {
     Dashboard::show();
-    std::cout << "\nStatus: " << (_client->isPremium() ? "Premium" : "Regular")
+    std::cout << "\nStatus: " << (_client->isPremium() ? "Premium" : "Basic")
             << "\nAccumulated: " << _client->getPoints() << " points\n" << SEPARATOR << "\n";
 
     const std::vector<std::string> options = {

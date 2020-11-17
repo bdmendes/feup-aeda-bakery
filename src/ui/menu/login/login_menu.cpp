@@ -65,9 +65,9 @@ void LoginMenu::selectPerson(bool client) {
 void LoginMenu::login(Person *person) {
     if (!person->isLogged()) {
         printLogo("Authentication");
-        std::cout << "Dear " << person->getName() << ", please enter your credentials.\n"
+        std::cout << SEPARATOR << "Dear " << person->getName() << ", please enter your credentials.\n"
         << "Default is '" << person->getDefaultCredential().username
-        << "', '" << person->getDefaultCredential().password << "'\n";
+        << "', '" << person->getDefaultCredential().password << "'.\n" << SEPARATOR;
 
         std::cout << "\nUsername: ";
         for (;;) {

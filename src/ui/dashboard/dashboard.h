@@ -21,6 +21,7 @@ public:
     void managePersonalData(Person* person);
 
     void manageStock();
+    void manageClients();
 
     void printLogo(const std::string& detail) override;
 protected:
@@ -28,8 +29,10 @@ protected:
 private:
     static void changeCredential(Person* person);
     static void changeName(Person* person);
+    static void changeTaxID(Person* person);
     void addBread();
     void addCake();
+    void addClient();
 };
 
 

@@ -113,6 +113,7 @@ void Dashboard::managePersonalData(Person *person) {
     std::vector<std::string> options = {
             "change credential - set new username or password",
             "change name - change your name",
+            "change taxid - change tributary number"
     };
     if (isClient){
         options.emplace_back("set premium - make myself a premium client");
@@ -138,6 +139,10 @@ void Dashboard::managePersonalData(Person *person) {
                 dynamic_cast<Client *>(person)->setPremium(true);
                 break;
             }
+            else if (validInput1Cmd1Arg(input,"change","taxid")){
+                changeTaxID(person);
+                break;
+            }
             else printError();
         }
         catch (std::exception& e){
@@ -151,9 +156,9 @@ void Dashboard::changeName(Person *person) {
     for(;;){
         try {
             std::cout << "New name: ";
-            std::string input1 = readCommand();
+            std::string input1 = readCommand(false);
             std::cout << "Confirm new name: ";
-            std::string input2 = readCommand();
+            std::string input2 = readCommand(false);
             if (input2 != input1) std::cout << "\nNames did not match! Try again.\n";
             else {
                 person->setName(input1);
@@ -237,10 +242,10 @@ void Dashboard::manageStock() {
                 std::string input = readCommand();
                 if (input == BACK) return;
                 else if (validInput1Cmd1Arg(input, "add", "cake")) {
-                    //
+                    addCake();
                     break;
                 } else if (validInput1Cmd1Arg(input, "add", "bread")) {
-                    //
+                    addBread();
                     break;
                 } else if (validInput1Cmd1ArgDigit(input, "remove")){
                     int idx = std::stoi(to_words(input).at(1)) - 1;
@@ -255,3 +260,166 @@ void Dashboard::manageStock() {
     }
 }
 
+void Dashboard::addBread() {
+    std::cout << "\n" << SEPARATOR;
+    std::string name, input;
+    float price;
+    bool small;
+
+    std::cout << "Bread name: ";
+    name = readCommand(false);
+
+    for(;;){
+        std::cout << "Unit price: ";
+        input = readCommand();
+        if (isdigit(input,true)) break;
+        else std::cout << "The price must be a float. Do not include the coin symbol.\n";
+    }
+    price = std::stof(input);
+
+    for (;;){
+        std::cout << "Size (small/big): ";
+        input = readCommand();
+        if (input == "small"){
+            small = true;
+            break;
+        }
+        else if (input == "big"){
+            small = false;
+            break;
+        }
+        else std::cout << "big/small are the only accepted inputs.\n";
+    }
+    _store.productManager.addBread(name,price,small);
+}
+
+void Dashboard::addCake() {
+    std::cout << "\n" << SEPARATOR;
+    std::string name, input;
+    float price;
+    CakeCategory category;
+
+    std::cout << "Cake name: ";
+    name = readCommand(false);
+
+    for(;;){
+        std::cout << "Unit price: ";
+        input = readCommand();
+        if (isdigit(input,true)) break;
+        else std::cout << "The price must be a float. Do not include the coin symbol.\n";
+    }
+    price = std::stof(input);
+
+    const std::vector<const char*> categories{Cake::categoryStr, Cake::categoryStr + 5};
+    for (;;){
+        std::cout << "Category (";
+        for (int i = 0; i < categories.size(); ++i){
+            std::cout << categories.at(i);
+            if (i != categories.size() - 1) std::cout << ", ";
+        }
+        std::cout << "): ";
+
+        input = readCommand();
+        bool found = false;
+        for (int i = 0; i < categories.size(); ++i) {
+            std::string catName = categories.at(i);
+            lowercase(catName);
+            if (input == catName) {
+                category = static_cast<CakeCategory>(i);
+                found = true;
+                break;
+            }
+        }
+        if (!found) std::cout << "Unrecognized category. Read carefully!\n";
+        else break;
+    }
+    _store.productManager.addCake(name,price,category);
+}
+
+void Dashboard::changeTaxID(Person *person) {
+    std::cout << "\n" << SEPARATOR;
+    for(;;){
+        try {
+            std::cout << "New tax ID: ";
+            std::string input1 = readCommand(false);
+            std::cout << "Confirm new tax ID: ";
+            std::string input2 = readCommand(false);
+            if (input2 != input1) std::cout << "IDs did not match! Try again.\n";
+            else if (isdigit(input1)){
+                person->setTaxID(std::stoi(input1));
+                break;
+            }
+            else std::cout << "Please enter an integer number!\n";
+        }
+        catch (std::exception& e){
+            std::cout << e.what() << "\n\n";
+        }
+    }
+}
+
+void Dashboard::manageClients() {
+    for (;;){
+        printLogo("Manage clients");
+        std::cout << SEPARATOR;
+        _store.clientManager.print(std::cout);
+        std::cout << SEPARATOR << "\n";
+
+        const std::vector<std::string> options = {
+                "kick <index> - if he's behaved not too well",
+                "add client - register account"
+        };
+        printOptions(options);
+
+        for (;;){
+            try {
+                std::string input = readCommand();
+                if (input == BACK) return;
+                else if (validInput1Cmd1ArgDigit(input, "kick")) {
+                    int idx = std::stoi(to_words(input).at(1)) - 1;
+                    _store.clientManager.remove(idx);
+                    break;
+                } else if (validInput1Cmd1Arg(input, "add", "client")) {
+                    addClient();
+                    break;
+                } else printError();
+            }
+            catch (std::exception& e){
+                std::cout << e.what() << "\n";
+            }
+        }
+    }
+}
+
+void Dashboard::addClient() {
+    std::cout << "\n" << SEPARATOR;
+    std::string name, input;
+    int taxID;
+    bool premium;
+
+    std::cout << "Client name: ";
+    name = readCommand(false);
+
+    for(;;){
+        std::cout << "Tax ID: ";
+        input = readCommand();
+        if (isdigit(input)) break;
+        else std::cout << "The ID must be an integer!\n";
+    }
+    taxID = std::stoi(input);
+
+    for (;;){
+        std::cout << "Status (basic/premium): ";
+        input = readCommand();
+        if (input == "basic"){
+            premium = false;
+            break;
+        }
+        else if (input == "premium"){
+            premium = true;
+            break;
+        }
+        else std::cout << "regular/premium are the only accepted inputs.\n";
+    }
+
+    _store.clientManager.add(name,premium,taxID);
+}
