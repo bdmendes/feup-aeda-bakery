@@ -42,7 +42,7 @@ TEST(Worker, create_worker){
     EXPECT_EQ(999999999, worker1.getTaxId());
     EXPECT_EQ("worker", worker1.getCredential().username);
     EXPECT_EQ("worker", worker1.getCredential().password);
-    //EXPECT_EQ(0, worker1.getOrders());
+    EXPECT_EQ(0, worker1.getUndeliveredOrders());
     EXPECT_TRUE(worker1.getCredential() == credential);
     EXPECT_FLOAT_EQ(950, worker1.getSalary());
 
@@ -54,18 +54,12 @@ TEST(Worker, create_worker){
     EXPECT_EQ(293013289, worker2.getTaxId());
     EXPECT_EQ("FilipaRibeiro", worker2.getCredential().username);
     EXPECT_EQ("filipaRibeiro_9201", worker2.getCredential().password);
-    //EXPECT_EQ(0, worker2.getOrders());
+    EXPECT_EQ(0, worker2.getUndeliveredOrders());
     EXPECT_TRUE(worker2.getCredential() == credential);
     EXPECT_FLOAT_EQ(893,worker2.getSalary());
 }
 
-/*TEST(Person, change_name){
-    Person person("Miguel Oliveira", 184932981, {"miguelO", "mig123_1"});
-    person.setName("Miguel Ribeiro");
-
-    EXPECT_EQ("Miguel Ribeiro", person.getName());
-    EXPECT_THROW(person.setName("Miguel Ribeiro"), InvalidPersonNameChange);
-
+TEST(Client, set_name){
     Client client("Ricardo Silva");
     client.setName("Ricardo Gomes");
 
@@ -76,6 +70,9 @@ TEST(Worker, create_worker){
 
     EXPECT_EQ("Filipe Gomes", client.getName());
 
+}
+
+TEST(Worker, set_name){
     Worker worker("Maria Rodrigues", 790);
     worker.setName("Sandra Rodrigues");
 
@@ -85,16 +82,9 @@ TEST(Worker, create_worker){
     worker.setName("Sandra Silva");
 
     EXPECT_EQ("Sandra Silva", worker.getName());
-}*/
+}
 
-/*TEST(Person, change_credential){
-    Person person("Olga Machado", 284913847, {"machado_olga", "olga123"});
-    Credential personCredential = {"machado_olga", "OlgaMachado_341"};
-    person.setCredential(personCredential);
-
-    EXPECT_TRUE(person.getCredential() == personCredential);
-    EXPECT_THROW(person.setCredential(personCredential), InvalidPersonCredentialChange);
-
+TEST(Client, set_credential){
     Client client("Rui Macedo");
     Credential clientCredential = {"Ruimacedo", "macedo@123"};
     client.setCredential(clientCredential);
@@ -106,7 +96,9 @@ TEST(Worker, create_worker){
     client.setCredential(clientCredential);
 
     EXPECT_TRUE(client.getCredential() == clientCredential);
+}
 
+TEST(Worker, set_credential){
     Worker worker("Luis Figo", 920);
     Credential workerCredential = {"figoLuis13", "921-figo"};
     worker.setCredential(workerCredential);
@@ -120,15 +112,7 @@ TEST(Worker, create_worker){
     EXPECT_TRUE(worker.getCredential() == workerCredential);
 }
 
-TEST(Person, sort_people){
-    Person person1("Joao Ricardo", 285742345, {"joao", "1234"});
-    Person person2("Ana Maria", 294306748, {"anaMaria", "ana_123"});
-    Person person3("Agostinho Lima", 213854059, {"gusto", "gusto1948"});
-
-    EXPECT_TRUE(person2 < person1);
-    EXPECT_TRUE(person3 < person1);
-    EXPECT_FALSE( person2 < person3);
-
+TEST(Client, sort_clients){
     Client client1("Beatriz Duarte");
     Client client2("Joana Fernandes");
     Client client3("Joao Martins");
@@ -136,7 +120,9 @@ TEST(Person, sort_people){
     EXPECT_TRUE(client1 < client2);
     EXPECT_TRUE(client2 < client3);
     EXPECT_FALSE(client3 < client1);
+}
 
+TEST(Worker, sort_workers){
     Worker worker1("Cristina Martins", 938);
     Worker worker2("Sara Ribeiro", 839);
     Worker worker3("Sara Couto", 940);
@@ -144,24 +130,8 @@ TEST(Person, sort_people){
     EXPECT_TRUE(worker1 < worker2);
     EXPECT_TRUE(worker3 < worker2);
     EXPECT_FALSE(worker3 < worker1);
-
-    EXPECT_TRUE(client1 < person1);
-    EXPECT_TRUE(worker1 < person1);
-    EXPECT_TRUE(person2 < client2);
-    EXPECT_TRUE(person2 < worker2);
-    EXPECT_TRUE(person3 < client3);
-    EXPECT_TRUE(person3 < worker3);
 }
 
-TEST(Person, equal_person){
-    Person person1("Joao Manuel", 284917316, {"jonasManel", "joao123"});
-    Person person2("Joao Manuel", 284917316, {"joaoMan", "joao_m123"});
-    Person person3("Joao Macedo", 183746173, {"joaom", "jonas_38"});
-
-    EXPECT_TRUE(person1 == person2);
-    EXPECT_FALSE(person1 == person3);
-    EXPECT_FALSE(person2 == person3);
-}*/
 
 TEST(Client, equal_clients){
     Client client1("Cristina Lopes");
@@ -230,33 +200,37 @@ TEST(Client, reset_poinst){
 }
 
 //Note that evaluations are going to be validated in class Order
-/*TEST(Client, add_evaluation){
+TEST(Client, add_evaluation){
     Client client("Jose Manuel");
-    client.addEvaluation(3.7);
-    client.addEvaluation(2.9);
 
-    std::vector<float> evaluations = {3.7, 2.9};
+    EXPECT_TRUE(client.getEvaluations().empty());
 
+    client.addEvaluation(3);
+    client.addEvaluation(2);
+    std::vector<int> evaluations = {3, 2};
+
+    EXPECT_EQ(2, client.getEvaluations().size());
     EXPECT_EQ(evaluations, client.getEvaluations());
 
-    client.addEvaluation(4.5);
-    evaluations.push_back(4.5);
+    client.addEvaluation(4);
+    evaluations.push_back(4);
 
+    EXPECT_EQ(3, client.getEvaluations().size());
     EXPECT_EQ(evaluations, client.getEvaluations());
-}*/
+}
 
-/*TEST(Client, get_mean_evaluation){
+TEST(Client, get_mean_evaluation){
     Client client("Joao Lima");
-    client.addEvaluation(3.5);
-    client.addEvaluation(2.7);
+    client.addEvaluation(3);
+    client.addEvaluation(2);
 
-    EXPECT_FLOAT_EQ((3.5+2.7)/2, client.getMeanEvaluation());
+    EXPECT_FLOAT_EQ((float)(3+2)/2, client.getMeanEvaluation());
 
-    client.addEvaluation(4.73);
-    client.addEvaluation(3.3);
+    client.addEvaluation(4);
+    client.addEvaluation(3);
 
-    EXPECT_FLOAT_EQ((3.5+2.7+4.73+3.3)/4, client.getMeanEvaluation());
-}*/
+    EXPECT_FLOAT_EQ((float)(3+2+4.+3)/4, client.getMeanEvaluation());
+}
 
 TEST(Worker, set_salary){
     Worker worker("Miguel Filipe", 830);

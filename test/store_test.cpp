@@ -132,7 +132,7 @@ TEST(WorkerManager, has_worker){
     EXPECT_TRUE(wm.has(&worker2));
 }
 
-/*TEST(WorkerManager, get_available){
+TEST(WorkerManager, get_less_busy_worker){
     Store store("Aeda");
     ProductManager productM;
     ClientManager clientM;
@@ -144,22 +144,22 @@ TEST(WorkerManager, has_worker){
     Worker* worker1 = workerM.add("Jose Figueiras", 890);
     Worker* worker2 = workerM.add("Madalena Faria", 980);
 
-    EXPECT_EQ(0, worker1->getOrders());
-    EXPECT_EQ(0, worker2->getOrders());
-    EXPECT_TRUE(*worker1 == *(workerM.getAvailable()));
+    EXPECT_EQ(0, worker1->getUndeliveredOrders());
+    EXPECT_EQ(0, worker2->getUndeliveredOrders());
+    EXPECT_TRUE(*worker1 == *(workerM.getLessBusyWorker()));
 
     Order* order1 = orderM.add(client1);
 
-    EXPECT_EQ(1,worker1->getOrders());
-    EXPECT_EQ(0, worker2->getOrders());
-    EXPECT_TRUE(*worker2 == *(workerM.getAvailable()));
+    EXPECT_EQ(1,worker1->getUndeliveredOrders());
+    EXPECT_EQ(0, worker2->getUndeliveredOrders());
+    EXPECT_TRUE(*worker2 == *(workerM.getLessBusyWorker()));
 
     Order* order2 = orderM.add(client2);
 
-    EXPECT_EQ(1, worker1->getOrders());
-    EXPECT_EQ(1, worker2->getOrders());
-    EXPECT_TRUE(*worker1 == *(workerM.getAvailable()));
-}*/
+    EXPECT_EQ(1, worker1->getUndeliveredOrders());
+    EXPECT_EQ(1, worker2->getUndeliveredOrders());
+    EXPECT_TRUE(*worker1 == *(workerM.getLessBusyWorker()));
+}
 
 TEST(WorkerManager, change_salary){
     WorkerManager workerM;
