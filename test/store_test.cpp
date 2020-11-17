@@ -163,8 +163,8 @@ TEST(WorkerManager, get_less_busy_worker){
 
 TEST(WorkerManager, change_salary){
     WorkerManager workerM;
-    Worker* worker1 = workerM.add("Francisco Ferreira", 948);
-    Worker* worker2 = workerM.add("Margarida Ferraz", 849);
+    Worker* worker1 = workerM.add("Francisco Ferreira", 47383, 948);
+    Worker* worker2 = workerM.add("Margarida Ferraz", 48493, 849);
     unsigned position = 0;
 
     EXPECT_FLOAT_EQ(948, workerM.get(position)->getSalary());

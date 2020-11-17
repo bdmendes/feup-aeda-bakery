@@ -12,7 +12,7 @@
 
 class Client : public Person {
 public:
-    explicit Client(std::string name, bool premium = false, int taxID = Person::DEFAULT_TAX_ID,
+    explicit Client(std::string name, int taxID = Person::DEFAULT_TAX_ID, bool premium = false,
            Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     bool isPremium() const;

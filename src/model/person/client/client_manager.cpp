@@ -24,8 +24,8 @@ std::set<Client *, PersonSmaller> ClientManager::getAll() {
     return _clients;
 }
 
-Client* ClientManager::add(std::string name, bool premium, int taxID, Credential credential) {
-    auto* client = new Client(std::move(name), premium, taxID, std::move(credential));
+Client* ClientManager::add(std::string name, int taxID, bool premium, Credential credential) {
+    auto* client = new Client(std::move(name), taxID, premium, std::move(credential));
     if(has(client)) throw PersonAlreadyExists(client->getName(), client->getTaxId());
     _clients.insert(client);
     return client;

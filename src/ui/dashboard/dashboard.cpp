@@ -422,5 +422,5 @@ void Dashboard::addClient() {
         else std::cout << "Basic/premium are the only accepted inputs.\n";
     }
 
-    _store.clientManager.add(name,premium,taxID);
+    _store.clientManager.add(name,taxID,premium);
 }

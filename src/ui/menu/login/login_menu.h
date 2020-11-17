@@ -13,7 +13,7 @@ class WorkerDashboard;
 
 class LoginMenu: public UI{
 public:
-    LoginMenu(Store& store);
+    explicit LoginMenu(Store& store);
     void show() override;
     void selectPerson(bool client);
     void login(Person* person);

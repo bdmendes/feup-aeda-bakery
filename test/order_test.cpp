@@ -240,9 +240,9 @@ TEST(Order,evaluations){
 }
 
 TEST(Order, get_final_price){
-    Client client("Alfredo Simoes", true);
+    Client client("Alfredo Simoes", 292948,true);
     client.addPoints(100);
-    Worker worker("Beatriz Silva",950);
+    Worker worker("Beatriz Silva");
     Order order(client,worker);
 
     Cake meatCake("Bolo com molho de carne", 1.20);
