@@ -1,12 +1,12 @@
-98765 72828 12/12/2020 14:45
-Pao-de-sementes 0.8 small 6
-Meat-Cake 30 SPONGE 1
-Pao-da-avo 1.0 big 5
-----------
-123456 1364892 23/11/2020 12:32
-Strawberry-Pie 25 PIE 1
-Regueifa 3.0 big 2
-----------
-45678 76373 12/06/2020 18:34
-Wafer-Cake 15 CRUNCHY
-Pao-de-cereais 0.5 small 8
+98765 72828 12/12/2020 14:45 2
+Pao-de-sementes 0.8 6
+Meat-Cake 30 1
+Pao-da-avo 1.0 5
+
+123456 1364892 23/11/2020 12:32 3
+Strawberry-Pie 25 1
+Regueifa 3.0 2
+
+45678 76373 12/06/2020 18:34 5
+Wafer-Cake 15 1
+Pao-de-cereais 0.5 8

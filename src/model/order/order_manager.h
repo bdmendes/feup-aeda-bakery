@@ -27,16 +27,17 @@ public:
     bool has(Order* order) const;
 
     Order* get(unsigned position);
-    std::set<Order*, OrderSmaller> getAll() const;
-    std::set<Order*, OrderSmaller> get(Client* client);
-    std::set<Order*, OrderSmaller> get(Worker* worker);
+    std::vector<Order*> getAll() const;
+    std::vector<Order*> get(Client* client);
+    std::vector<Order*> get(Worker* worker);
+
 
     Order* add(Client* client);
     Order* add(Client* client, Worker* worker, Date &date);
     void remove(Order* order);
 
-    void write(std::ofstream& file) const;
     void read(std::ifstream& file);
+    void write(std::ofstream& file) const;
 
     void print(std::ostream& os) const;
 
@@ -45,7 +46,7 @@ private:
     ProductManager& _productManager;
     ClientManager& _clientManager;
     WorkerManager& _workerManager;
-    std::set<Order*, OrderSmaller> _orders;
+    std::vector<Order *> _orders;
 };
 
 #endif //FEUP_AEDA_PROJECT_ORDER_MANAGER_H

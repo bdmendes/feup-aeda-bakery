@@ -22,6 +22,14 @@ Product* ProductManager::get(unsigned int position) {
     return *it;
 }
 
+Product *ProductManager::getProduct(std::string &name, float &price) {
+    for(auto it=_products.begin(); it!=_products.end(); ++it){
+        if((*it)->getname()==name && (*it)->getPrice()==price)
+            return (*it);
+    }
+    throw ProductDoesNotExist(name, price);
+}
+
 std::set<Product*, ProductSmaller> ProductManager::getAll() {
     return _products;
 }

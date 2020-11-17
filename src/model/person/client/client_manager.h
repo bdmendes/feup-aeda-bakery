@@ -17,7 +17,7 @@ public:
     bool has(Client* client) const;
 
     Client* get(unsigned position);
-    Client* get(int taxId);
+    Client* getClient(int taxId);
     std::set<Client *, PersonSmaller> getAll();
     Client* add(std::string name, int tributaryNumber = 999999999, bool premium = false,
              Credential credential = {"client", "client"});

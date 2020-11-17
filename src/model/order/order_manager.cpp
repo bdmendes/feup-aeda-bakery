@@ -18,37 +18,43 @@ Order* OrderManager::get(unsigned int position) {
     return *it;
 }
 
-std::set<Order *, OrderSmaller> OrderManager::getAll() const {
+std::vector<Order *> OrderManager::getAll() const {
     return _orders;
 }
 
-std::set<Order *, OrderSmaller> OrderManager::get(Client *client) {
+std::vector<Order *> OrderManager::get(Client *client) {
     if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
-    std::set<Order*, OrderSmaller> filtered;
+    std::vector<Order*> filtered;
     for (const auto& order: _orders){
-        if (order->getClient() == *client) filtered.insert(order);
+        if (order->getClient() == *client) filtered.push_back(order);
     }
     return filtered;
 }
 
-std::set<Order *, OrderSmaller> OrderManager::get(Worker *worker) {
+std::vector<Order *> OrderManager::get(Worker *worker) {
     if (!_workerManager.has(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
-    std::set<Order*, OrderSmaller> filtered;
+    std::vector<Order*> filtered;
     for (const auto& order: _orders){
-        if (order->getWorker() == *worker) filtered.insert(order);
+        if (order->getWorker() == *worker) filtered.push_back(order);
     }
     return filtered;
 }
 
 Order* OrderManager::add(Client *client) {
     if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
-    _orders.insert(new Order(*client,*_workerManager.getAvailable()));
+    _orders.push_back(new Order(*client,*_workerManager.getAvailable()));
     return *_orders.rbegin();
 }
 
-/*Order *OrderManager::add(Client *client, Worker *worker, Date &date) {
+Order* OrderManager::add(Client *client, Worker *worker, Date &date) {
 
-}*/
+    if(!_clientManager.has(client)) throw PersonDoesNotExist(client->getTaxId());
+    if(!_workerManager.has(worker)) throw PersonDoesNotExist(worker->getTaxId());
+    if(!date.isValid()) throw InvalidDate(date.getCompleteDate());
+
+    _orders.push_back(new Order(*client,*worker, date));
+    return *_orders.rbegin();
+}
 
 void OrderManager::remove(Order *order) {
     auto position = std::find(_orders.begin(),_orders.end(),order);
@@ -62,8 +68,9 @@ void OrderManager::read(std::ifstream& file) {
         throw FileNotFound();
     }
     else{
-        std::string line, date, time;
-        int clientTaxID, workerTaxID, day, month, year, hour, minute;
+        std::string line, date, time, productName;
+        int clientTaxID, workerTaxID, day, month, year, hour, minute, quantity;
+        float price, clientEvaluation;
         bool orderEnd=false;
 
         while(getline(file, line)){
@@ -72,12 +79,12 @@ void OrderManager::read(std::ifstream& file) {
 
             if(!orderEnd) {
                 std::stringstream order(line);
-                order >> clientTaxID >> workerTaxID >> date >> hour;
+                order >> clientTaxID >> workerTaxID >> date >> hour >> clientEvaluation;
 
-                if (!_clientManager.has(_clientManager.get(clientTaxID)))
+                if (!_clientManager.has(_clientManager.getClient(clientTaxID)))
                     throw PersonDoesNotExist (clientTaxID);
 
-                if (!_workerManager.has(_workerManager.get(workerTaxID)))
+                if (!_workerManager.has(_workerManager.getWorker(workerTaxID)))
                     throw PersonDoesNotExist (workerTaxID);
 
                 std::replace(date.begin(), date.end(), '/', ' ');
@@ -85,16 +92,53 @@ void OrderManager::read(std::ifstream& file) {
                 tempDate >> day >> month >> year;
                 std::replace(date.begin(), date.end(), ':', ' ');
                 std::stringstream tempHour(time);
-                tempHour << hour << ':' << minute;
-                Date date(day, month, year, hour, minute);
+                tempHour >> hour >> minute;
+                Date newDate(day, month, year, hour, minute);
 
-                newOrder = add(_clientManager.get(clientTaxID), _workerManager.get(workerTaxID), date);
-
+                newOrder = add(_clientManager.getClient(clientTaxID), _workerManager.getWorker(workerTaxID), newDate);
+                newOrder->deliver(clientEvaluation);
                 orderEnd = true;
             }
             else{
+                //reading products of the order
+                if(line==""){
+                    orderEnd=false;
+                    continue;
+                }
+                std::stringstream product(line);
+                product>>productName>>price>>quantity;
+                if(!_productManager.has(_productManager.getProduct(productName, price))){
+                    throw ProductDoesNotExist(productName, price);
+                }
+                else
+                    newOrder->addProduct(_productManager.getProduct(productName, price), quantity);
+            }
+        }
+    }
+}
+
+void OrderManager::write(std::ofstream &file) const {
+    if(!file){
+        throw FileNotFound();
+    }
+    else{
+
+        std::string nameToSave;
+        std::map<Product*, unsigned int, ProductSmaller> products;
+
+        for(const auto &order: _orders){
+            file<<order->getClient().getTaxId()<<'\t'<<order->getWorker().getTaxId()<<'\t'
+                <<order->getRequestDate().getCompleteDate()<<order->getClientEvaluation()<<'\n';
+            //std::map<Product *, unsigned int>::iterator it=order->getProducts().begin();
+            products=order->getProducts();
+            for(const auto product : products){
 
             }
+            /*for(auto it=order->getProducts().begin(); it!=order->getProducts().end(); ++it){
+                nameToSave=(*it).first->getName();
+                std::replace(nameToSave.begin(), nameToSave.end(), ' ', '-');
+                file<<it->first->getName()<<it->second;
+            }*/
         }
     }
 }
@@ -117,4 +161,5 @@ void OrderManager::print(std::ostream &os) const {
         count++;
     }
 }
+
 

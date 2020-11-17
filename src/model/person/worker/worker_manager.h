@@ -23,6 +23,7 @@ public:
     bool has(Worker* worker) const;
 
     Worker* get(unsigned position);
+    Worker* getWorker(int taxID);
     Worker* getAvailable();
     std::set<Worker*, PersonSmaller> getAll();
 

@@ -23,12 +23,12 @@ Client *ClientManager::get(unsigned position) {
     return *it;
 }
 
-Client *ClientManager::get(int taxId) {
+Client *ClientManager::getClient(int taxID) {
     for(auto it=_clients.begin(); it!= _clients.end(); ++it){
-        if((*it)->getTaxId()==taxId)
+        if((*it)->getTaxId()==taxID)
             return (*it);
     }
-    throw PersonDoesNotExist(taxId);
+    throw PersonDoesNotExist(taxID);
 }
 
 std::set<Client *, PersonSmaller> ClientManager::getAll() {

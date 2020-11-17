@@ -33,8 +33,6 @@ public:
     float getClientEvaluation() const;
     float getFinalPrice() const;
     float getTotal() const;
-    //setFinalPrice();
-    //setEvaluation();
     Date getRequestDate() const;
     Date getDeliverDate() const;
 

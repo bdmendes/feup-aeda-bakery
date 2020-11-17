@@ -28,6 +28,7 @@ public:
     bool has(Product* product) const;
 
     Product* get(unsigned position);
+    Product* getProduct(std::string &name, float &price);
     std::set<Product*, ProductSmaller> getAll();
 
     Bread* addBread(std::string name, float price, bool small = true);

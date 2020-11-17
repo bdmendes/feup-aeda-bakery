@@ -23,6 +23,14 @@ Worker* WorkerManager::get(unsigned int position) {
     return *it;
 }
 
+Worker *WorkerManager::getWorker(int taxID) {
+    for(auto it=_workers.begin(); it!= _workers.end(); ++it){
+        if((*it)->getTaxId()==taxID)
+            return (*it);
+    }
+    throw PersonDoesNotExist(taxID);
+}
+
 Worker* WorkerManager::getAvailable() {
     if (_workers.empty()) throw StoreHasNoWorkers(); // to change! no access to store name anymore
 
@@ -118,4 +126,5 @@ void WorkerManager::write(std::ofstream &file) const {
         }
     }
 }
+
 
