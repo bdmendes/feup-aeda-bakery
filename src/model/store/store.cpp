@@ -11,7 +11,7 @@ Store::Store(std::string name) :
         _name(std::move(name)),
         productManager(),clientManager(),workerManager(),
         orderManager(productManager,clientManager,workerManager),
-        boss("Boss", 999999999, {"boss","boss"}){
+        boss("Boss", Person::DEFAULT_TAX_ID, {Boss::DEFAULT_USERNAME, Boss::DEFAULT_PASSWORD}){
 }
 
 std::string Store::getName() const {

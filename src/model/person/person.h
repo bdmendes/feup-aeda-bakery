@@ -11,11 +11,17 @@
 #include <stdexcept>
 #include <set>
 
+#include <iostream>
+
 struct Credential {
     std::string username;
     std::string password;
     bool operator==(const Credential& c2) const{
         return username == c2.username && password == c2.password;
+    }
+    bool isReserved() const {
+        return username == "back" || username == "exit"
+        || password == "back" || password == "exit";
     }
 };
 

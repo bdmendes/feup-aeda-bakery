@@ -55,7 +55,8 @@ bool ClientManager::print(std::ostream &os, bool showData) {
     << util::column("TAX ID");
     if (showData){
         os << util::column("TYPE")
-        << util::column("ACCUMULATED");
+        << util::column("ACCUMULATED")
+        << util::column("FEEDBACK");
     }
     else os << util::column("LOGGED IN");
     std::cout << "\n";

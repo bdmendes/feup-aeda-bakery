@@ -11,7 +11,11 @@ ClientDashboard::ClientDashboard(Store &store, Client *client) : Dashboard(store
 void ClientDashboard::show() {
     Dashboard::show();
     std::cout << "\nStatus: " << (_client->isPremium() ? "Premium" : "Basic")
-            << "\nAccumulated: " << _client->getPoints() << " points\n" << SEPARATOR << "\n";
+            << "\nAccumulated: " << _client->getPoints() << " points\n"
+            << "\nFeedback: ";
+    if (_client->getMeanEvaluation() != 0) std::cout << util::to_string(_client->getMeanEvaluation()) << " points\n";
+    else std::cout << "None yet\n";
+    std::cout << SEPARATOR << "\n";
 
     const std::vector<std::string> options = {
             "edit account - change personal details",

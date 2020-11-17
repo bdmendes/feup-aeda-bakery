@@ -10,8 +10,7 @@ const int Person::DEFAULT_TAX_ID = 999999999;
 
 Person::Person(std::string name, int taxID, Credential credential) :
         _name(std::move(name)), _taxID{taxID}, _credential{std::move(credential) }, _logged(false) {
-    if (_credential.username == "back" || _credential.username == "exit") throw InvalidCredential(_credential.username);
-    if (_credential.password == "back" || _credential.password == "exit") throw InvalidCredential(_credential.password);
+    if (credential.isReserved()) throw InvalidCredential(_credential.username);
 }
 
 std::string Person::getName() const {
@@ -33,8 +32,7 @@ void Person::setName(const std::string& name){
 
 void Person::setCredential(const Credential &credential) {
     if (_credential == credential) throw InvalidPersonCredentialChange();
-    if (_credential.username == "back" || _credential.username == "exit") throw InvalidCredential(_credential.username);
-    if (_credential.password == "back" || _credential.password == "exit") throw InvalidCredential(_credential.password);
+    if (_credential.isReserved()) throw InvalidCredential(_credential.username);
     _credential = credential;
 }
 

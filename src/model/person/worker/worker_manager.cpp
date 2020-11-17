@@ -58,8 +58,9 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
     << util::column("NAME", true)
     << util::column("TAX ID");
     if (showData){
-        os << util::column("SALARY");
-        os << util::column("TO DELIVER");
+        os << util::column("SALARY")
+        << util::column("TO DELIVER")
+        << util::column("RATING");
     }
     else {
         os << util::column("LOGGED IN");

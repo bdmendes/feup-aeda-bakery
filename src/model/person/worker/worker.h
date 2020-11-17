@@ -8,6 +8,7 @@
 #include "model/person/person.h"
 
 #include <string>
+#include <vector>
 
 class Worker : public Person{
 public:
@@ -22,6 +23,9 @@ public:
     void addOrderToDeliver();
     void removeOrderToDeliver();
 
+    float getMeanEvaluation() const;
+    void addEvaluation (int evaluation);
+
     void print(std::ostream& os, bool showData = true);
 
     Credential getDefaultCredential() override;
@@ -31,6 +35,7 @@ public:
 private:
     unsigned _undeliveredOrders;
     float _salary;
+    std::vector<int> _evaluations;
 };
 
 

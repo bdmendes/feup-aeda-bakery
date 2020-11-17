@@ -125,6 +125,8 @@ void Order::deliver(int clientEvaluation, int deliverDuration) {
     _clientEvaluation = clientEvaluation;
     _delivered = true;
     _worker->removeOrderToDeliver();
+    _worker->addEvaluation(clientEvaluation);
+    _client->addEvaluation(clientEvaluation);
 
     if (deliverDuration != 0) _deliverDate.addMinutes(deliverDuration);
     else _deliverDate = Date();

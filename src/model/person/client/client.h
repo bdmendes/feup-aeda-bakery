@@ -22,6 +22,8 @@ public:
     void removePoints(unsigned points);
     void resetPoints();
     void setPoints(unsigned points);
+    float getMeanEvaluation() const;
+    void addEvaluation(int evaluation);
 
     void print(std::ostream& os, bool showData = true);
 
@@ -31,6 +33,7 @@ public:
 private:
     bool _premium;
     unsigned _points;
+    std::vector<int> _evaluations;
 };
 
 
