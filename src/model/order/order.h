@@ -25,8 +25,8 @@ public:
     bool hasProduct(Product* product);
     bool wasDelivered() const;
 
-    Worker* const getWorker() const;
-    Client* const getClient() const;
+    Worker* getWorker() const;
+    Client* getClient() const;
 
     std::map<Product*, unsigned int, ProductSmaller> getProducts() const;
 

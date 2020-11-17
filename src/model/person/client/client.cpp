@@ -11,8 +11,7 @@ const char* Client::DEFAULT_USERNAME = "client";
 const char* Client::DEFAULT_PASSWORD = "client";
 
 Client::Client(std::string name, bool premium, int taxID, Credential credential):
-        Person(std::move(name), taxID, std::move(credential)), _points{0}, _premium(premium),
-        _evaluations{}{
+        Person(std::move(name), taxID, std::move(credential)), _points{0}, _premium(premium){
 }
 
 bool Client::isPremium() const {
@@ -21,16 +20,6 @@ bool Client::isPremium() const {
 
 unsigned Client::getPoints() const {
     return _points;
-}
-
-float Client::getMeanEvaluation() const {
-    float sum = 0;
-    for (float ev: _evaluations) sum += ev;
-    return sum / _evaluations.size();
-}
-
-std::vector<int> Client::getEvaluations() const {
-    return _evaluations;
 }
 
 void Client::setPremium(bool premium) {
@@ -51,10 +40,6 @@ void Client::removePoints(unsigned int points) {
     _points -= points;
 }
 
-void Client::addEvaluation(int evaluation) {
-    _evaluations.push_back(evaluation);
-}
-
 void Client::print(std::ostream &os, bool showData) {
     os << util::column(getName(), true)
     << util::column(getTaxId() == Person::DEFAULT_TAX_ID ? "Not provided" : std::to_string(getTaxId()));
@@ -67,6 +52,10 @@ void Client::print(std::ostream &os, bool showData) {
 
 Credential Client::getDefaultCredential() {
     return {DEFAULT_USERNAME, DEFAULT_PASSWORD};
+}
+
+void Client::setPoints(unsigned int points) {
+    _points = points;
 }
 
 

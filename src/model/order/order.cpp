@@ -27,11 +27,11 @@ bool Order::wasDelivered() const {
     return _delivered;
 }
 
-Worker* const Order::getWorker() const {
+Worker* Order::getWorker() const {
     return _worker;
 }
 
-Client* const Order::getClient() const{
+Client* Order::getClient() const {
     return _client;
 }
 
@@ -124,7 +124,6 @@ void Order::deliver(int clientEvaluation, int deliverDuration) {
 
     _clientEvaluation = clientEvaluation;
     _delivered = true;
-    _client->addEvaluation(clientEvaluation);
     _worker->removeOrderToDeliver();
 
     if (deliverDuration != 0) _deliverDate.addMinutes(deliverDuration);
