@@ -100,3 +100,27 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
     return true;
 }
 
+float OrderManager::getMeanEvaluation(Client *client) const {
+    int count = 0;
+    int sum = 0;
+    for (const auto& o: _orders){
+        if (o->getClient() == client && o->wasDelivered()){
+            sum += o->getClientEvaluation();
+            count++;
+        }
+    }
+    return count ? static_cast<float>(sum)/static_cast<float>(count) : 0;
+}
+
+float OrderManager::getMeanEvaluation(Worker *worker) const {
+    int count = 0;
+    int sum = 0;
+    for (const auto& o: _orders){
+        if (o->getWorker() == worker && o->wasDelivered()){
+            sum += o->getClientEvaluation();
+            count++;
+        }
+    }
+    return count ? static_cast<float>(sum)/static_cast<float>(count) : 0;
+}
+
