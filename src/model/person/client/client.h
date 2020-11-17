@@ -13,7 +13,7 @@
 class Client : public Person {
 public:
     explicit Client(std::string name, bool premium = false, int taxID = Person::DEFAULT_TAX_ID,
-           Credential credential = {"client", "client"});
+           Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     bool isPremium() const;
     float getMeanEvaluation() const;
@@ -26,6 +26,10 @@ public:
     void addEvaluation(int evaluation);
 
     void print(std::ostream& os, bool showData = true);
+
+    Credential getDefaultCredential() override;
+    static const char* DEFAULT_USERNAME;
+    static const char* DEFAULT_PASSWORD;
 private:
     bool _premium;
     unsigned _points;

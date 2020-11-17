@@ -41,27 +41,35 @@ Cake* ProductManager::addCake(std::string name, float price, CakeCategory catego
 }
 
 void ProductManager::remove(Product *product) {
-    auto position = std::find(_products.begin(), _products.end(), product);
-    if (position == _products.end())
-        throw ProductDoesNotExist(product->getName(),product->getPrice());
+    auto position = _products.find(product);
+    if (position == _products.end()) throw ProductDoesNotExist(product->getName(),product->getPrice());
     _products.erase(position);
 }
 
-void ProductManager::print(std::ostream &os) const {
-    int numSpaces = static_cast<int>(std::to_string(_products.size()).size() + 2);
-    os << std::string(numSpaces,util::SPACE)
-    << util::column("NAME", true)
-    << util::column("CATEGORY")
-    << util::column("UNIT PRICE") << "\n";
-
-    int count = 1;
-    for (const auto& p: _products){
-        os << std::setw(numSpaces) << std::left << std::to_string(count++) + ". ";
-        p->print(os);
-        os << "\n";
-    }
+void ProductManager::remove(unsigned int position) {
+    if (position >= _products.size()) throw std::invalid_argument("Product does not exist");
+    auto it = _products.begin();
+    advance(it,position);
+    _products.erase(it);
 }
 
+
+void ProductManager::print(std::ostream &os) const {
+    if (!_products.empty()) {
+        os << std::string(static_cast<int>(_products.size()) / 10 + 3, util::SPACE)
+           << util::column("NAME", true)
+           << util::column("CATEGORY")
+           << util::column("UNIT PRICE") << "\n";
+
+        int count = 1;
+        for (const auto &p: _products) {
+            os << std::to_string(count++) + ". ";
+            p->print(os);
+            os << "\n";
+        }
+    }
+    else os << "Nothing in the stock yet.\nGo ahead and add some products!\n";
+}
 
 
 

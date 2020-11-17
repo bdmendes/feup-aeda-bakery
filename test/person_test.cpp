@@ -57,7 +57,7 @@ TEST(Worker, create_worker){
     EXPECT_EQ(999999999, w1.getTaxId());
     EXPECT_EQ("worker", w1.getCredential().username);
     EXPECT_EQ("worker", w1.getCredential().password);
-    EXPECT_EQ(0, w1.getOrders());
+    EXPECT_EQ(0, w1.getUndeliveredOrders());
     EXPECT_TRUE(w1.getCredential() == credential);
     EXPECT_FLOAT_EQ(950, w1.getSalary());
 
@@ -69,7 +69,7 @@ TEST(Worker, create_worker){
     EXPECT_EQ(293013289, w2.getTaxId());
     EXPECT_EQ("FilipaRibeiro", w2.getCredential().username);
     EXPECT_EQ("filipaRibeiro_9201", w2.getCredential().password);
-    EXPECT_EQ(0, w2.getOrders());
+    EXPECT_EQ(0, w2.getUndeliveredOrders());
     EXPECT_TRUE(w2.getCredential() == credential);
     EXPECT_FLOAT_EQ(893,w2.getSalary());
 }
@@ -284,19 +284,19 @@ TEST(Worker, set_salary){
 
 TEST(Worker, add_order){
     Worker worker("Afonso Duarte", 923);
-    worker.addOrder();
-    worker.addOrder();
+    worker.addOrderToDeliver();
+    worker.addOrderToDeliver();
 
-    EXPECT_EQ(2, worker.getOrders());
+    EXPECT_EQ(2, worker.getUndeliveredOrders());
 }
 
 TEST(Worker, remove_order){
     Worker worker("Rafael Simao", 872);
-    worker.addOrder();
-    worker.addOrder();
-    worker.addOrder();
-    worker.removeOrder();
-    worker.removeOrder();
+    worker.addOrderToDeliver();
+    worker.addOrderToDeliver();
+    worker.addOrderToDeliver();
+    worker.removeOrderToDeliver();
+    worker.removeOrderToDeliver();
 
-    EXPECT_EQ(1, worker.getOrders());
+    EXPECT_EQ(1, worker.getUndeliveredOrders());
 }

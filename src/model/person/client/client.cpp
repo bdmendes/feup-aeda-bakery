@@ -7,6 +7,9 @@
 #include <utility>
 #include <util/util.h>
 
+const char* Client::DEFAULT_USERNAME = "client";
+const char* Client::DEFAULT_PASSWORD = "client";
+
 Client::Client(std::string name, bool premium, int taxID, Credential credential):
         Person(std::move(name), taxID, std::move(credential)), _points{0}, _premium(premium),
         _evaluations{}{
@@ -57,8 +60,13 @@ void Client::print(std::ostream &os, bool showData) {
     << util::column(getTaxId() == Person::DEFAULT_TAX_ID ? "Not provided" : std::to_string(getTaxId()));
     if (showData){
         os << util::column(isPremium() ? "Premium" : "Basic")
-                << util::column(std::to_string(getPoints()) + " points");
+        << util::column(std::to_string(getPoints()) + " points");
     }
+    else os << util::column(isLogged() ? "Yes" : "No");
+}
+
+Credential Client::getDefaultCredential() {
+    return {DEFAULT_USERNAME, DEFAULT_PASSWORD};
 }
 
 

@@ -14,96 +14,80 @@ void LoginMenu::show() {
             "Client",
             "Boss"
     };
-    printOptions(content,"What are you?");
+    printOptions(content,"What is your role on the company?");
 
     for (;;) {
         std::string input = readCommand();
         if (input == BACK) return;
-        else if (validInput1Cmd(input, "worker")){
-            showPersons(PersonToShow::WORKER);
-            break;
-        }
-        else if (validInput1Cmd(input, "client")){
-            showPersons(PersonToShow::CLIENT);
-            break;
-        }
-        else if (validInput1Cmd(input, "boss")){
-            login(&_store.boss);
-            break;
-        }
-        else printError();
+        else if (validInput1Cmd(input, "worker")) selectPerson(false);
+        else if (validInput1Cmd(input, "client")) selectPerson(true);
+        else if (validInput1Cmd(input, "boss")) login(&_store.boss);
+        else { printError(); continue; }
+        break;
     }
+
+    show();
 }
 
 LoginMenu::LoginMenu(Store &store) : UI(store) {
 }
 
-void LoginMenu::showPersons(PersonToShow person) {
-    for(;;) {
-        printLogo("Login");
+void LoginMenu::selectPerson(bool client) {
+    bool hasPersons;
+    printLogo("Login");
 
-        bool hasPersons;
-        std::cout << SEPARATOR;
-        if (person == PersonToShow::WORKER) hasPersons = _store.workerManager.print(std::cout, false);
-        else hasPersons = _store.clientManager.print(std::cout, false);
-        std::cout << SEPARATOR << std::endl;
+    std::cout << SEPARATOR;
+    if (!client) hasPersons = _store.workerManager.print(std::cout, false);
+    else hasPersons = _store.clientManager.print(std::cout, false);
+    std::cout << SEPARATOR << "\n";
 
-        if (hasPersons) std::cout << "Choose an index: ";
+    if (hasPersons) std::cout << "Choose an index: ";
 
-        for (;;) {
+    for (;;) {
+        try {
             std::string input = readCommand();
             if (input == BACK) return;
             if (hasPersons && validInput1CmdFree(input)) {
-                try {
-                    unsigned arg = std::stoi(to_words(input).at(0)) - 1;
-                    if (person == PersonToShow::WORKER) {
-                        login(_store.workerManager.get(arg));
-                    }
-                    if (person == PersonToShow::CLIENT) {
-                        login(_store.clientManager.get(arg));
-                    }
-                    break;
-                }
-                catch (std::exception &e) {
-                    std::cout << e.what() << SPACE;
-                    continue;
-                }
-            } else printError(true);
+                unsigned personPosition = std::stoi(to_words(input).at(0)) - 1;
+                if (!client) login(_store.workerManager.get(personPosition));
+                else login(_store.clientManager.get(personPosition));
+            }
+            else {printError(true); continue; }
+            break;
+        }
+        catch (std::exception& e){
+            std::cout << e.what() << SPACE;
+            continue;
         }
     }
 }
 
 void LoginMenu::login(Person *person) {
     if (!person->isLogged()) {
-        printLogo();
-        std::cout << "Dear " << person->getName() << ", please enter your credentials.\n";
-        if (dynamic_cast<Worker *>(person) != nullptr) std::cout << "Default is 'worker', 'worker'.\n";
-        if (dynamic_cast<Client *>(person) != nullptr) std::cout << "Default is 'client', 'client'.\n";
-        if (dynamic_cast<Boss *>(person) != nullptr) std::cout << "Default is 'boss', 'boss'.\n";
+        printLogo("Authentication");
+        std::cout << "Dear " << person->getName() << ", please enter your credentials.\n"
+        << "Default is '" << person->getDefaultCredential().username
+        << "', '" << person->getDefaultCredential().password << "'\n";
 
-        std::cout << "\nusername: ";
+        std::cout << "\nUsername: ";
         for (;;) {
             std::string input = readCommand(false);
             if (input == BACK) return;
-            if (validInput1Cmd(input, person->getCredential().username)) {
-                break;
-            }
+            else if (validInput1Cmd(input, person->getCredential().username)) break;
             std::cout << "Wrong username. Try again: ";
         }
 
-        std::cout << "password: ";
+        std::cout << "Password: ";
         for (;;) {
             std::string input = readCommand(false);
             if (input == BACK) return;
-            if (validInput1Cmd(input, person->getCredential().password)) {
-                break;
-            }
+            else if (validInput1Cmd(input, person->getCredential().password)) break;
             std::cout << "Wrong password. Try again: ";
         }
 
         person->setLogged(true);
     }
-    if (dynamic_cast<Worker *>(person) != nullptr) WorkerDashboard(_store, dynamic_cast<Worker *>(person)).show();
-    else if (dynamic_cast<Client *>(person) != nullptr) ClientDashboard(_store,dynamic_cast<Client *>(person)).show();
-    else if (dynamic_cast<Boss *>(person) != nullptr) BossDashboard(_store).show();
+    if (dynamic_cast<Worker *>(person)) WorkerDashboard(_store, dynamic_cast<Worker *>(person)).show();
+    else if (dynamic_cast<Client *>(person)) ClientDashboard(_store,dynamic_cast<Client *>(person)).show();
+    else if (dynamic_cast<Boss *>(person)) BossDashboard(_store).show();
 }

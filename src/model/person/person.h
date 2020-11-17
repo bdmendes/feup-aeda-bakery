@@ -23,9 +23,11 @@ class Person {
 public:
     Person(std::string name, int taxID, Credential credential);
     virtual ~Person() = default;
+
     std::string getName() const;
     int getTaxId() const;
     Credential getCredential() const;
+
     bool isLogged() const;
     void setLogged(bool logged);
 
@@ -35,6 +37,7 @@ public:
     bool operator<(const Person& p2) const;
     bool operator==(const Person& p2) const;
 
+    virtual Credential getDefaultCredential() = 0;
     static const int DEFAULT_TAX_ID;
 private:
     std::string _name;

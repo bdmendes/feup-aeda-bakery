@@ -9,6 +9,7 @@ int main() {
 
     // some filling to debug
     s.workerManager.add("Alfredo",2000,923747);
+    s.workerManager.add("Joana",2934,1239383);
     Worker* retiros = s.workerManager.add("Retiros",8950,394858);
     s.clientManager.add("Alface",true);
     Client* osvaldo = s.clientManager.add("Osvaldo",false,2389474);

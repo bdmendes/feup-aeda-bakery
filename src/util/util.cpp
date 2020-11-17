@@ -6,8 +6,12 @@
 #include <sstream>
 #include "util.h"
 
-bool util::isdigit(const std::string &str) {
-    return std::all_of(str.begin(),str.end(), [](const char c){return std::isdigit(c);});
+bool util::isdigit(const std::string &str, bool acceptFloat) {
+    int pointCount = 0;
+    return std::all_of(str.begin(),str.end(), [&pointCount, acceptFloat](const char c){
+        if (c == '.' && acceptFloat) return ++pointCount <= 1;
+        return (bool) std::isdigit(c);
+    });
 }
 
 bool util::contains(const std::string &str, const std::string &expected) {
@@ -34,10 +38,6 @@ void util::normalize(std::string &str, bool isName) {
             str.at(i) = std::toupper(str.at(i));
         }
     }
-}
-
-void util::stripSpecialChars(std::string& str){
-    str.erase(std::remove_if(str.begin(),str.end(),[](const char c){return !std::isalnum(c) && c != SPACE;}), str.end());
 }
 
 void util::lowercase(std::string &str) {

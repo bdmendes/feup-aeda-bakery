@@ -14,15 +14,22 @@ public:
     virtual ~Dashboard() = default;
     void show() override;
 
-    void viewOrders(Client* client = nullptr);
-    void expandOrder(Order* order) const;
+    void viewOrders(Client* client = nullptr, Worker* worker = nullptr);
+    void expandOrder(Order* order);
+    void editOrder(Order* order);
+
     void managePersonalData(Person* person);
 
-    static void changeCredential(Person* person);
-    static void changeName(Person* person);
-    static void changeTaxID(Person* person);
+    void manageStock();
+
+    void printLogo(const std::string& detail) override;
 protected:
     Person* _person;
+private:
+    static void changeCredential(Person* person);
+    static void changeName(Person* person);
+    void addBread();
+    void addCake();
 };
 
 

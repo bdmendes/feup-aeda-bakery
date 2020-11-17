@@ -26,5 +26,5 @@ ProductAlreadyExists::ProductAlreadyExists(const std::string &name) :
 }
 
 InvalidProductPosition::InvalidProductPosition(unsigned int position, unsigned int size) :
-    std::invalid_argument(std::to_string(++position) + " is an invalid position; should be between 0 and " + std::to_string(size) + "!"){
+    std::invalid_argument(std::to_string(++position) + " is an invalid position; should be between 1 and " + std::to_string(size) + "!"){
 }

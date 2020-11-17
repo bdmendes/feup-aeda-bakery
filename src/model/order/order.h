@@ -25,8 +25,8 @@ public:
     bool hasProduct(Product* product);
     bool wasDelivered() const;
 
-    const Worker& getWorker() const;
-    const Client& getClient() const;
+    Worker* const getWorker() const;
+    Client* const getClient() const;
 
     std::map<Product*, unsigned int, ProductSmaller> getProducts() const;
 
@@ -54,8 +54,8 @@ private:
     std::map<Product*, unsigned int, ProductSmaller> _products;
     void updateTotalPrice();
     float _totalPrice;
-    Client& _client;
-    Worker& _worker;
+    Client* _client;
+    Worker* _worker;
     int _clientEvaluation;
     bool _delivered;
     Date _requestDate;

@@ -9,7 +9,7 @@ OrderManager::OrderManager(ProductManager &pm, ClientManager &cm, WorkerManager 
 }
 
 bool OrderManager::has(Order *order) const {
-    return std::find(_orders.begin(),_orders.end(),order) != _orders.begin();
+    return std::find(_orders.begin(),_orders.end(),order) != _orders.end();
 }
 
 Order* OrderManager::get(unsigned int position, Client* client, Worker* worker) {
@@ -31,7 +31,7 @@ std::vector<Order *> OrderManager::get(Client *client) const {
     if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
     std::vector<Order*> filtered;
     for (const auto& order: _orders){
-        if (order->getClient() == *client) filtered.push_back(order);
+        if (order->getClient() == client) filtered.push_back(order);
     }
     return filtered;
 }
@@ -40,22 +40,30 @@ std::vector<Order *> OrderManager::get(Worker *worker) const {
     if (!_workerManager.has(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
     std::vector<Order*> filtered;
     for (const auto& order: _orders){
-        if (order->getWorker() == *worker) filtered.push_back(order);
+        if (order->getWorker() == worker) filtered.push_back(order);
     }
     return filtered;
 }
 
 Order* OrderManager::add(Client *client) {
     if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
-    _orders.push_back(new Order(*client,*_workerManager.getAvailable()));
+    _orders.push_back(new Order(*client,*_workerManager.getLessBusyWorker()));
     return *_orders.rbegin();
 }
 
 void OrderManager::remove(Order *order) {
     auto position = std::find(_orders.begin(),_orders.end(),order);
-    if (position == _orders.end())
-        throw OrderDoesNotExist();
+    if (position == _orders.end()) throw OrderDoesNotExist();
+    if (order->wasDelivered()) throw std::invalid_argument("It's not possible to delete a delivered order");
+    order->getWorker()->removeOrderToDeliver();
     _orders.erase(position);
+}
+
+void OrderManager::remove(unsigned position) {
+    if (position >= _orders.size()) throw OrderDoesNotExist();
+    if (_orders.at(position)->wasDelivered()) throw std::invalid_argument("It's not possible to delete a delivered order");
+    _orders.at(position)->getWorker()->removeOrderToDeliver();
+    _orders.erase(_orders.begin() + position);
 }
 
 bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const {
@@ -78,11 +86,12 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
     int count = 1;
     for (const auto& o: toPrint){
         os << std::to_string(count++) + ". ";
-        if (worker != nullptr) os << util::column(o->getClient().getName(),true);
-        if (client != nullptr) os << util::column(o->getWorker().getName(),true);
+        if (worker != nullptr) os << util::column(o->getClient()->getName(),true);
+        if (client != nullptr) os << util::column(o->getWorker()->getName(),true);
         os << util::column(o->getRequestDate().getCompleteDate(), true)
         << util::column(o->wasDelivered() ? o->getDeliverDate().getClockTime() + " (" +
         std::to_string(o->getClientEvaluation()) + " points)" : "Not Yet",true) << "\n";
     }
     return true;
 }
+

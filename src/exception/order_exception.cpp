@@ -13,7 +13,8 @@ OrderWasNotDeliveredYet::OrderWasNotDeliveredYet(const Client &client, const Wor
 }
 
 OrderDoesNotExist::OrderDoesNotExist() :
-    std::invalid_argument("Order does not exist!\n"){}
+    std::invalid_argument("Order does not exist!"){
+}
 
 InvalidOrderEvaluation::InvalidOrderEvaluation(int evaluation, const Client &client):
         std::invalid_argument(client.getName() + " gave an invalid evaluation of " + std::to_string(evaluation) + " to this order; should be between 0 and 5!"){

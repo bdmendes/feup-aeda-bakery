@@ -27,11 +27,13 @@ public:
 
     Order* add(Client* client);
     void remove(Order* order);
+    void remove(unsigned position);
 
     void read(std::ifstream& file);
     bool print(std::ostream& os, Client* client = nullptr, Worker* worker = nullptr) const;
 
 private:
+
     ProductManager& _productManager;
     ClientManager& _clientManager;
     WorkerManager& _workerManager;

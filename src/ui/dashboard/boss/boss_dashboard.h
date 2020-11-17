@@ -14,8 +14,7 @@ public:
     explicit BossDashboard(Store& store);
     void show() override;
 
-    void manageProducts();
-    void addProduct();
+    void addWorker();
 private:
     Boss* _boss;
 };

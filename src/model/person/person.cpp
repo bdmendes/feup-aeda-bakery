@@ -8,8 +8,6 @@
 
 const int Person::DEFAULT_TAX_ID = 999999999;
 
-
-// PERSON IS LOGGED TO SPEED UP DEBUG ONLY!!!!
 Person::Person(std::string name, int taxID, Credential credential) :
         _name(std::move(name)), _taxId{taxID}, _credential{std::move(credential) }, _logged(false) {
     if (_credential.username == "back" || _credential.username == "exit") throw InvalidCredential(_credential.username);

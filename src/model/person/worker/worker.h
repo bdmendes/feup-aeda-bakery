@@ -12,20 +12,24 @@
 class Worker : public Person{
 public:
     Worker(std::string name, float salary, int taxID = Person::DEFAULT_TAX_ID,
-           Credential credential = {"worker", "worker"});
+           Credential credential = {DEFAULT_USERNAME,DEFAULT_PASSWORD});
 
     float getSalary() const;
-    unsigned getOrders() const;
+    unsigned getUndeliveredOrders() const;
 
     void setSalary(float salary);
 
-    void addOrder();
-    void removeOrder();
+    void addOrderToDeliver();
+    void removeOrderToDeliver();
 
     void print(std::ostream& os, bool showData = true);
+
+    Credential getDefaultCredential() override;
+    static const char* DEFAULT_USERNAME;
+    static const char* DEFAULT_PASSWORD;
 private:
+    unsigned _undeliveredOrders;
     float _salary;
-    unsigned _orders;
 };
 
 

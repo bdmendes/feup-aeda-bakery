@@ -57,6 +57,7 @@ bool ClientManager::print(std::ostream &os, bool showData) {
         os << util::column("TYPE")
         << util::column("ACCUMULATED");
     }
+    else os << util::column("LOGGED IN");
     std::cout << "\n";
 
     int count = 1;
