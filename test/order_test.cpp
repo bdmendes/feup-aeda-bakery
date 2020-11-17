@@ -237,7 +237,6 @@ TEST(Order,evaluations){
     order2.deliver(4);
 
     EXPECT_FLOAT_EQ(order1.getClientEvaluation(),2);
-    EXPECT_FLOAT_EQ(client.getMeanEvaluation(),3);
 }
 
 TEST(Order, get_final_price){

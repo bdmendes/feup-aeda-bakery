@@ -199,39 +199,6 @@ TEST(Client, reset_poinst){
     EXPECT_EQ(0, client.getPoints());
 }
 
-//Note that evaluations are going to be validated in class Order
-TEST(Client, add_evaluation){
-    Client client("Jose Manuel");
-
-    EXPECT_TRUE(client.getEvaluations().empty());
-
-    client.addEvaluation(3);
-    client.addEvaluation(2);
-    std::vector<int> evaluations = {3, 2};
-
-    EXPECT_EQ(2, client.getEvaluations().size());
-    EXPECT_EQ(evaluations, client.getEvaluations());
-
-    client.addEvaluation(4);
-    evaluations.push_back(4);
-
-    EXPECT_EQ(3, client.getEvaluations().size());
-    EXPECT_EQ(evaluations, client.getEvaluations());
-}
-
-TEST(Client, get_mean_evaluation){
-    Client client("Joao Lima");
-    client.addEvaluation(3);
-    client.addEvaluation(2);
-
-    EXPECT_FLOAT_EQ((float)(3+2)/2, client.getMeanEvaluation());
-
-    client.addEvaluation(4);
-    client.addEvaluation(3);
-
-    EXPECT_FLOAT_EQ((float)(3+2+4.+3)/4, client.getMeanEvaluation());
-}
-
 TEST(Worker, set_salary){
     Worker worker("Miguel Filipe", 830);
     worker.setSalary(920);
