@@ -45,10 +45,15 @@ std::vector<Order *> OrderManager::get(Worker *worker) const {
     return filtered;
 }
 
-Order* OrderManager::add(Client *client) {
+void OrderManager::sort() {
+    std::sort(_orders.begin(), _orders.end());
+}
+
+Order* OrderManager::add(Client *client, Date date) {
     if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
-    _orders.push_back(new Order(*client,*_workerManager.getLessBusyWorker()));
-    return *_orders.rbegin();
+    Order* order = new Order(*client,*_workerManager.getLessBusyWorker(),date);
+    _orders.push_back(order);
+    return order;
 }
 
 void OrderManager::remove(Order *order) {

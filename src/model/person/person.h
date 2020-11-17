@@ -42,7 +42,7 @@ public:
     static const int DEFAULT_TAX_ID;
 private:
     std::string _name;
-    int _taxId;
+    int _taxID;
     Credential _credential;
     bool _logged;
 };

@@ -14,6 +14,7 @@
 #include <exception/person_exception.h>
 
 #include <algorithm>
+#include <vector>
 
 class OrderManager {
 public:
@@ -25,7 +26,8 @@ public:
     std::vector<Order*> get(Client* client) const;
     std::vector<Order*> get(Worker* worker) const;
 
-    Order* add(Client* client);
+    void sort();
+    Order* add(Client* client, Date date = {});
     void remove(Order* order);
     void remove(unsigned position);
 

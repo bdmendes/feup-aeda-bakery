@@ -3,8 +3,6 @@
 //
 
 #include <gtest/gtest.h>
-
-#include "model/person/person.h"
 #include "model/order/order.h"
 #include "model/product/product.h"
 #include "model/person/client/client.h"
@@ -13,20 +11,20 @@
 using testing::Eq;
 
 TEST(Order, create_order){
-    Client client("Alfredo Simões");
+    Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
     Date date(14, 11, 2020, 16, 30);
     Order order(client,worker, date);
 
-    EXPECT_EQ(client, order.getClient());
-    EXPECT_EQ(worker, order.getWorker());
+    EXPECT_EQ(client, *order.getClient());
+    EXPECT_EQ(worker, *order.getWorker());
     EXPECT_EQ(date, order.getRequestDate());
     EXPECT_FALSE(order.hasDiscount());
     EXPECT_FALSE(order.wasDelivered());
 }
 
 TEST(Order, add_product){
-    Client client("Alfredo Simões");
+    Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
     Order order(client,worker);
 
@@ -65,7 +63,7 @@ TEST(Order, add_product){
 }
 
 TEST(Order, remove_product_quantity_by_pointer){
-    Client client("Alfredo Simões");
+    Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
     Order order(client,worker);
 
@@ -98,7 +96,7 @@ TEST(Order, remove_product_quantity_by_pointer){
 }
 
 TEST(Order, remove_product_by_pointer){
-    Client client("Alfredo Simões");
+    Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
     Order order(client,worker);
 
@@ -121,7 +119,7 @@ TEST(Order, remove_product_by_pointer){
 }
 
 TEST(Order, remove_product_quantity_by_position){
-    Client client("Alfredo Simões");
+    Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
     Order order(client,worker);
 
@@ -149,7 +147,6 @@ TEST(Order, remove_product_quantity_by_position){
     EXPECT_EQ(2, order.getProducts().size());
     EXPECT_EQ(orderProducts, order.getProducts());
     EXPECT_FLOAT_EQ(8.2, order.getTotal());
-
     EXPECT_THROW(order.removeProduct(2), InvalidProductPosition);
 }
 
@@ -183,11 +180,10 @@ TEST(Order, remove_product_by_position){
     EXPECT_EQ(1, order.getProducts().size());
     EXPECT_EQ(orderProducts, order.getProducts());
     EXPECT_FLOAT_EQ(5.6, order.getTotal());
-
     EXPECT_THROW(order.removeProduct(1), InvalidProductPosition);
 }
 
-TEST(Order, deliver){
+/*TEST(Order, deliver){
     Date date(14, 11, 2020, 16, 30);
     Client client("Alfredo Simões");
     client.addPoints(200);
@@ -221,16 +217,15 @@ TEST(Order, deliver){
     EXPECT_TRUE(order2.wasDelivered());
     EXPECT_EQ(0, client.getPoints());
     EXPECT_FLOAT_EQ(4.1, order2.getClientEvaluation());
-
     EXPECT_THROW(order2.deliver(2.3), OrderWasAlreadyDelivered);
 
     Order order3(client, worker);
 
     EXPECT_THROW(order3.deliver(5.3), InvalidOrderEvaluation);
-}
+}*/
 
 TEST(Order,evaluations){
-    Client client("Alfredo Simões",true);
+    Client client("Alfredo Simoes",true);
     Worker worker("Beatriz Silva",950);
 
     Order order1(client,worker);
@@ -246,7 +241,7 @@ TEST(Order,evaluations){
 }
 
 TEST(Order, get_final_price){
-    Client client("Alfredo Simões", true);
+    Client client("Alfredo Simoes", true);
     client.addPoints(100);
     Worker worker("Beatriz Silva",950);
     Order order(client,worker);
@@ -281,7 +276,7 @@ TEST(Order, get_final_price){
 }
 
 TEST(Order, equal_orders){
-    Client client1("Alfredo Simões");
+    Client client1("Alfredo Simoes");
     Client client2("Anotónio Pedroso");
     Worker worker("Beatriz Silva",950);
 
@@ -312,7 +307,7 @@ TEST(Order, equal_orders){
 }
 
 TEST(Order, sort_orders){
-    Client client("Alfredo Simões");
+    Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
     Date date1(13, 11, 2020, 16, 30);
     Date date2(14, 11, 2020, 16, 30);
@@ -327,16 +322,3 @@ TEST(Order, sort_orders){
 
 }
 
-
-TEST(OrderManager, create_order_manager){
-
-
-}
-
-TEST(OrderManager, find_order){
-
-}
-
-TEST(OrderManager, add_client){
-
-}
