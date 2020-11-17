@@ -9,22 +9,6 @@
 
 using testing::Eq;
 
-/*TEST(Person, create_person){
-    Person person1("Joel Lopes", 184932019, {"joel_lopes123", "Lopes_123"});
-    Credential credential = {"joel_lopes123", "Lopes_123"};
-
-    EXPECT_EQ("Joel Lopes", person1.getName());
-    EXPECT_EQ(184932019, person1.getTaxId());
-    EXPECT_EQ(credential, person1.getCredential());
-
-    Person person2("Manuela Rodrigues", 285931384, {"manuelaRodrigues", "9281manuela"});
-    credential = {"manuelaRodrigues", "9281manuela"};
-
-    EXPECT_EQ("Manuela Rodrigues", person2.getName());
-    EXPECT_EQ(285931384, person2.getTaxId());
-    EXPECT_EQ(credential, person2.getCredential());
-}*/
-
 TEST(Client, create_client){
     Client client1("Manuel Martins");
     Credential credential = {"client", "client"};
