@@ -12,14 +12,14 @@ void Dashboard::show() {
     std::cout << SEPARATOR;
     print(_person->getName(),util::BLUE);
 
-    std::cout << "\nusername: " << _person->getCredential().username
-    << "\npassword: " << std::string(_person->getCredential().password.size(),'*')
+    std::cout << "\nUsername: " << _person->getCredential().username
+    << "\nPassword: " << std::string(_person->getCredential().password.size(),'*')
     << "\n\nTax ID: " << ((_person->getTaxId() == Person::DEFAULT_TAX_ID) ?
     "Not provided" : std::to_string(_person->getTaxId()));
 }
 
-void Dashboard::viewOrders(Client *client, Worker* worker) {
-    printLogo("Order view");
+void Dashboard::manageOrders(Client *client, Worker* worker) {
+    printLogo("Manage orders");
     std::cout << SEPARATOR;
     bool hasOrders = _store.orderManager.print(std::cout,client,worker);
     std::cout << SEPARATOR << "\n";
@@ -62,18 +62,19 @@ void Dashboard::viewOrders(Client *client, Worker* worker) {
         }
     }
 
-    viewOrders(client);
+    manageOrders(client);
 }
 
 void Dashboard::changeCredential(Person *person){
     std::cout << "\n" << SEPARATOR;
     std::string username, password;
+
     for(;;){
-        std::cout << "new username: ";
+        std::cout << "New username: ";
         std::string input1 = readCommand();
-        std::cout << "confirm new username: ";
+        std::cout << "Confirm new username: ";
         std::string input2 = readCommand();
-        if (input2 != input1) std::cout << "\nUsernames did not match! Try again.\n";
+        if (input2 != input1) std::cout << "Usernames do not match! Try again.\n";
         else{
             username = input1;
             break;
@@ -82,9 +83,9 @@ void Dashboard::changeCredential(Person *person){
     for(;;){
         std::cout << "\nNew password: ";
         std::string input1 = readCommand();
-        std::cout << "Confirm new username: ";
+        std::cout << "Confirm new password: ";
         std::string input2 = readCommand();
-        if (input2 != input1) std::cout << "\nUsernames did not match! Try again.\n";
+        if (input2 != input1) std::cout << "Passwords do not match! Try again.\n";
         else{
             password = input1;
             break;
@@ -159,7 +160,7 @@ void Dashboard::changeName(Person *person) {
             std::string input1 = readCommand(false);
             std::cout << "Confirm new name: ";
             std::string input2 = readCommand(false);
-            if (input2 != input1) std::cout << "\nNames did not match! Try again.\n";
+            if (input2 != input1) std::cout << "Names do not match! Try again.\n";
             else {
                 person->setName(input1);
                 break;
@@ -288,7 +289,7 @@ void Dashboard::addBread() {
             small = false;
             break;
         }
-        else std::cout << "big/small are the only accepted inputs.\n";
+        else std::cout << "Small/big are the only accepted inputs.\n";
     }
     _store.productManager.addBread(name,price,small);
 }
@@ -361,20 +362,20 @@ void Dashboard::manageClients() {
     for (;;){
         printLogo("Manage clients");
         std::cout << SEPARATOR;
-        _store.clientManager.print(std::cout);
+        bool hasClients = _store.clientManager.print(std::cout);
         std::cout << SEPARATOR << "\n";
 
-        const std::vector<std::string> options = {
-                "kick <index> - if he's behaved not too well",
+        std::vector<std::string> options = {
                 "add client - register account"
         };
+        if (hasClients) options.emplace_back("kick <index> - remove client account");
         printOptions(options);
 
         for (;;){
             try {
                 std::string input = readCommand();
                 if (input == BACK) return;
-                else if (validInput1Cmd1ArgDigit(input, "kick")) {
+                else if (hasClients && validInput1Cmd1ArgDigit(input, "kick")) {
                     int idx = std::stoi(to_words(input).at(1)) - 1;
                     _store.clientManager.remove(idx);
                     break;
@@ -418,7 +419,7 @@ void Dashboard::addClient() {
             premium = true;
             break;
         }
-        else std::cout << "regular/premium are the only accepted inputs.\n";
+        else std::cout << "Basic/premium are the only accepted inputs.\n";
     }
 
     _store.clientManager.add(name,premium,taxID);

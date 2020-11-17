@@ -16,14 +16,12 @@ public:
            Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     bool isPremium() const;
-    float getMeanEvaluation() const;
     unsigned getPoints() const;
-    std::vector<int> getEvaluations() const;
     void setPremium(bool premium);
     void addPoints(unsigned points);
     void removePoints(unsigned points);
     void resetPoints();
-    void addEvaluation(int evaluation);
+    void setPoints(unsigned points);
 
     void print(std::ostream& os, bool showData = true);
 
@@ -33,7 +31,6 @@ public:
 private:
     bool _premium;
     unsigned _points;
-    std::vector<int> _evaluations;
 };
 
 

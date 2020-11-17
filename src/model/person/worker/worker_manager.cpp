@@ -50,7 +50,7 @@ void WorkerManager::remove(unsigned position) {
 
 bool WorkerManager::print(std::ostream &os, bool showData) {
     if (_workers.empty()){
-        os << "No workers yet.\nLogin as the boss to add some.\n";
+        os << "No workers yet.\n";
         return false;
     }
 
@@ -79,7 +79,7 @@ Worker* WorkerManager::getLessBusyWorker() {
     if (_workers.empty()) throw StoreHasNoWorkers();
 
     auto orderComp = [](const Worker *worker1, const Worker *worker2) {
-        return ((worker1->getUndeliveredOrders()) < (worker2->getUndeliveredOrders()));
+        return worker1->getUndeliveredOrders() < worker2->getUndeliveredOrders();
     };
     return *std::min_element(_workers.begin(), _workers.end(), orderComp);
 }
