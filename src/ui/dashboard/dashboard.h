@@ -14,7 +14,7 @@ public:
     virtual ~Dashboard() = default;
     void show() override;
 
-    void viewOrders(Client* client = nullptr, Worker* worker = nullptr);
+    void manageOrders(Client* client = nullptr, Worker* worker = nullptr);
     void expandOrder(Order* order);
     void editOrder(Order* order);
 

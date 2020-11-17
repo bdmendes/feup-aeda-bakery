@@ -25,7 +25,7 @@ int Store::getEvaluation() const {
         if (order->wasDelivered()) evaluations.push_back(order->getClientEvaluation());
         count++;
     }
-    return std::accumulate(evaluations.begin(),evaluations.end(),0) / count;
+    return count ? std::accumulate(evaluations.begin(),evaluations.end(),0) / count : 0;
 }
 
 void Store::setName(const std::string& name) {

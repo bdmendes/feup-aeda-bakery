@@ -14,14 +14,14 @@ void IntroMenu::show() {
     const std::vector<std::string> content = {
             "import <name> - import data from folder called name",
             "export <name> - export data to folder called name",
-            "manage - enter store management"
+            "manage store - enter store management"
     };
     printOptions(content);
 
     for (;;) {
         std::string input = readCommand();
         if (input == EXIT) return;
-        if (validInput1Cmd(input, "manage")) {
+        if (validInput1Cmd1Arg(input, "manage","store")) {
             LoginMenu(_store).show();
             break;
         }

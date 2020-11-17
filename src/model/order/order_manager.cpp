@@ -78,7 +78,7 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
     else toPrint = getAll();
 
     if (toPrint.empty()) {
-        os << "No orders here yet.\nHow about you go back and add some?\n";
+        os << "No orders here yet.\n";
         return false;
     }
 

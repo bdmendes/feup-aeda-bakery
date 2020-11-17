@@ -43,7 +43,8 @@ bool Person::operator<(const Person &p2) const {
 }
 
 bool Person::operator==(const Person &p2) const {
-    return _name == p2.getName() && _taxID == p2.getTaxId();
+    if (p2.getTaxId() != DEFAULT_TAX_ID) return _taxID == p2.getTaxId();
+    else return _taxID == p2.getTaxId() && _name == p2.getName();
 }
 
 bool Person::isLogged() const {

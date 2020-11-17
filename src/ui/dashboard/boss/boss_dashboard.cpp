@@ -7,8 +7,6 @@
 BossDashboard::BossDashboard(Store &store) : Dashboard(store, &store.boss), _boss(&store.boss) {
 }
 
-
-
 void BossDashboard::show() {
     Dashboard::show();
     std::cout << "\n" << SEPARATOR << "\n";
@@ -16,7 +14,7 @@ void BossDashboard::show() {
     const std::vector<std::string> options = {
             "edit account - change personal details",
             "manage stock - review and modify store stock",
-            "view orders - review store orders",
+            "manage orders - review store orders",
             "manage staff - have a look at your workers",
             "manage clients - quickly peek and shout at them",
             "check stats - some math to keep you happy, boss",
@@ -33,7 +31,7 @@ void BossDashboard::show() {
         }
         else if (validInput1Cmd1Arg(input,"edit","account")) managePersonalData(_boss);
         else if (validInput1Cmd1Arg(input,"manage","stock")) manageStock();
-        else if (validInput1Cmd1Arg(input,"view","orders")) viewOrders(nullptr,nullptr);
+        else if (validInput1Cmd1Arg(input,"manage","orders")) manageOrders(nullptr, nullptr);
         else if (validInput1Cmd1Arg(input,"manage","staff")) manageStaff();
         else if (validInput1Cmd1Arg(input,"manage","clients")) manageClients();
         else if (validInput1Cmd1Arg(input,"check","stats")) showStats();
@@ -75,26 +73,28 @@ void BossDashboard::addWorker() {
 void BossDashboard::manageStaff() {
     printLogo("The Staff");
     std::cout << SEPARATOR;
-    _store.workerManager.print(std::cout);
+    bool hasStaff = _store.workerManager.print(std::cout);
     std::cout << SEPARATOR << "\n";
 
-    const std::vector<std::string> options = {
-            "fire <index> - keep your profit high by firing someone",
-            "set_salary <index> <salary> - gift someone... or not",
-            "add worker - hire a guy and make him happy"
+    std::vector<std::string> options = {
+            "add worker - hire someone to join your team"
     };
+    if (hasStaff){
+        options.emplace_back("fire <index> - remove worker's account");
+        options.emplace_back("set_salary <index> <salary> - change worker's salary");
+    }
     printOptions(options);
 
     for(;;){
         try {
             std::string input = readCommand();
             if (input == BACK) return;
-            else if (validInput1Cmd1ArgDigit(input,"fire")){
+            else if (hasStaff && validInput1Cmd1ArgDigit(input,"fire")){
                 int idx = std::stoi(to_words(input).at(1)) - 1;
                 _store.workerManager.remove(idx);
                 break;
             }
-            else if (validInput1Cmd2ArgsDigit(input,"set_salary",true)){
+            else if (hasStaff && validInput1Cmd2ArgsDigit(input,"set_salary",true)){
                 int idx = std::stoi(to_words(input).at(1)) - 1;
                 float salary = std::stof(to_words(input).at(2));
                 _store.workerManager.get(idx)->setSalary(salary);
