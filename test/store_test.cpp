@@ -280,44 +280,6 @@ TEST(WorkerManager, remove_worker_by_position){
     EXPECT_TRUE(workerM.getAll().empty());
 }
 
-TEST(ProductManager, create_product_manager){
-    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    Bread hugeBread("Pao de sementes",0.2,false);
-    std::set<Product*, ProductSmaller> stock;
-    stock.insert(&meatCake);
-    stock.insert(&hugeBread);
-    ProductManager productM(stock);
-
-    EXPECT_EQ(2, productM.getAll().size());
-    EXPECT_EQ(stock, productM.getAll());
-}
-
-TEST(ProductManager, has_product){
-    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    Bread hugeBread("Pao de sementes",0.2,false);
-    std::set<Product*, ProductSmaller> stock;
-    stock.insert(&meatCake);
-    ProductManager productM(stock);
-
-    EXPECT_TRUE(productM.has(&meatCake));
-    EXPECT_FALSE(productM.has(&hugeBread));
-}
-
-TEST(ProductManager, get_product_by_position){
-    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    Bread hugeBread("Pao de sementes",0.2,false);
-
-    std::set<Product*, ProductSmaller> stock;
-    stock.insert(&meatCake);
-    stock.insert(&hugeBread);
-    ProductManager productM(stock);
-    unsigned position = 0;
-
-    EXPECT_EQ(&meatCake, productM.get(position));
-    EXPECT_EQ(&hugeBread, productM.get(++position));
-    EXPECT_THROW(productM.get(++position), InvalidProductPosition);
-}
-
 TEST(ProductManager, add_bread) {
     ProductManager productM;
 
@@ -345,29 +307,6 @@ TEST(ProductManager, add_cake){
     EXPECT_TRUE(meatCake == *addedCake);
     EXPECT_EQ("Bolo com molho de carne", productM.get(position)->getName());
     EXPECT_FLOAT_EQ(1, productM.get(position)->getPrice());
-}
-
-TEST(ProductManager, remove_product){
-    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    Bread hugeBread("Pao de sementes",0.2,false);
-
-    std::set<Product*, ProductSmaller> stock;
-    stock.insert(&meatCake);
-    stock.insert(&hugeBread);
-    ProductManager productM(stock);
-
-    EXPECT_EQ(2, productM.getAll().size());
-
-    productM.remove(&hugeBread);
-
-    EXPECT_EQ(1, productM.getAll().size());
-    EXPECT_EQ("Bolo com molho de carne", (*productM.getAll().begin())->getName());
-    EXPECT_FLOAT_EQ(1, (*productM.getAll().begin())->getPrice());
-
-    productM.remove(&meatCake);
-
-    EXPECT_EQ(0, productM.getAll().size());
-    EXPECT_THROW(productM.remove(&meatCake), ProductDoesNotExist);
 }
 
 TEST(OrderManager, add_order){

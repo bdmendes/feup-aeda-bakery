@@ -21,6 +21,8 @@ public:
      */
     ClientManager();
 
+    ~ClientManager();
+
     /**
      * Checks if the client is on the clients list of the client manager.
      *

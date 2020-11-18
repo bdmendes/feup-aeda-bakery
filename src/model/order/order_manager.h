@@ -19,6 +19,8 @@
 class OrderManager {
 public:
     OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm);
+    ~OrderManager();
+
     bool has(Order* order) const;
 
     Order* get(unsigned position, Client* client = nullptr, Worker* worker = nullptr) const;

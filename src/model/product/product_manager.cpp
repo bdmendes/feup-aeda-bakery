@@ -10,10 +10,7 @@
 #include <fstream>
 #include <exception/file_exception.h>
 
-ProductManager::ProductManager(): _products(std::set<Product*, ProductSmaller>()){
-}
-
-ProductManager::ProductManager(std::set<Product*, ProductSmaller> stock) : _products(std::move(stock)){
+ProductManager::ProductManager(): _products(){
 }
 
 bool ProductManager::has(Product *product) const {
@@ -162,4 +159,8 @@ void ProductManager::write(const std::string &path) const{
         std::replace(nameToSave.begin(),nameToSave.end(),' ','-');
         file << nameToSave << " " << b->getPrice() << " " << ( (b->isSmall())? "small" : "big") << "\n";
     }
+}
+
+ProductManager::~ProductManager() {
+    for (auto& p : _products) delete p;
 }

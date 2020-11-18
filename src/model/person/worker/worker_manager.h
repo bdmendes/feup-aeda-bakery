@@ -18,6 +18,7 @@
 class WorkerManager {
 public:
     WorkerManager();
+    ~WorkerManager();
 
     bool has(Worker* worker) const;
 

@@ -212,3 +212,7 @@ void OrderManager::write(const std::string &path) {
         file << "\n";
     }
 }
+
+OrderManager::~OrderManager() {
+    for (auto& o : _orders) delete o;
+}

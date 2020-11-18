@@ -110,3 +110,7 @@ Client *ClientManager::getClient(int taxID) const{
     }
     throw PersonDoesNotExist(taxID);
 }
+
+ClientManager::~ClientManager() {
+    for (auto& c: _clients) delete c;
+}

@@ -18,6 +18,8 @@ enum class CakeCategory {
 
 class Product {
 public:
+    Product(std::string name, float price);
+    virtual ~Product() = default;
     std::string getName() const;
     float getPrice() const;
     virtual bool operator== (const Product& p) const;
@@ -25,7 +27,6 @@ public:
 
     virtual void print(std::ostream& os) const = 0;
 protected:
-    Product(std::string name, float price);
     std::string _name;
     float _price;
 };

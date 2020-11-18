@@ -123,6 +123,10 @@ Worker* WorkerManager::getWorker(int taxID) const {
     throw PersonDoesNotExist(taxID);
 }
 
+WorkerManager::~WorkerManager() {
+    for (auto& w: _workers) delete w;
+}
+
 
 
 
