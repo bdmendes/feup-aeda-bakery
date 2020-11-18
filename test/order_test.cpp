@@ -237,13 +237,12 @@ TEST(Order,evaluations){
     order2.deliver(4);
 
     EXPECT_FLOAT_EQ(order1.getClientEvaluation(),2);
-    EXPECT_FLOAT_EQ(client.getMeanEvaluation(),3);
 }
 
 TEST(Order, get_final_price){
-    Client client("Alfredo Simoes", true);
+    Client client("Alfredo Simoes", 5959,true);
     client.addPoints(100);
-    Worker worker("Beatriz Silva",950);
+    Worker worker("Beatriz Silva",69696,950);
     Order order(client,worker);
 
     Cake meatCake("Bolo com molho de carne", 1.20);

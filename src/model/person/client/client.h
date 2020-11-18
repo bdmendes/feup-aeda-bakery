@@ -12,7 +12,6 @@
 
 class Client : public Person {
 public:
-
     /**
      * Creates a new client.
      *
@@ -21,7 +20,7 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the credentials
      */
-    explicit Client(std::string name, bool premium = false, int taxID = Person::DEFAULT_TAX_ID,
+    explicit Client(std::string name, int taxID = Person::DEFAULT_TAX_ID, bool premium = false,
            Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     /**
@@ -57,6 +56,8 @@ public:
      *
      * @param premium
      */
+    unsigned getPoints() const;
+
     void setPremium(bool premium);
 
     /**
@@ -77,13 +78,15 @@ public:
      * Resets the client's points.
      */
     void resetPoints();
-
+  
     /**
      * Adds an order evaluation given by the client.
      *
      * @param evaluation the order evaluation
      */
     void addEvaluation(int evaluation);
+  
+    void setPoints(unsigned points);
 
     /**
      * Prints

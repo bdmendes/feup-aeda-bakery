@@ -15,32 +15,29 @@ void ClientDashboard::show() {
 
     const std::vector<std::string> options = {
             "edit account - change personal details",
-            "add order - request something new",
-            "view orders - review and evaluate past requested orders",
+            "new order - request something new",
+            "manage orders - review and evaluate past requested orders",
             "logout - exit and request credential next time"
     };
     printOptions(options);
 
     for (;;) {
-        std::string input = readCommand();
-        if (input == BACK) return;
-        else if (validInput1Cmd(input,"logout")){
-            _client->setLogged(false);
-            return;
-        }
-        else if (validInput1Cmd1Arg(input,"edit","account")){
-            managePersonalData(_client);
+        try {
+            std::string input = readCommand();
+            if (input == BACK) return;
+            else if (validInput1Cmd(input, "logout")){
+                _client->setLogged(false);
+                return;
+            }
+            else if (validInput1Cmd1Arg(input, "edit", "account")) managePersonalData(_client);
+            else if (validInput1Cmd1Arg(input, "new", "order")) editOrder(_store.orderManager.add(_client));
+            else if (validInput1Cmd1Arg(input, "manage", "orders")) manageOrders(_client);
+            else { printError(); continue; }
             break;
         }
-        else if (validInput1Cmd1Arg(input, "add", "order")) {
-            editOrder(_store.orderManager.add(_client));
-            break;
+        catch(std::exception&e){
+            std::cout << e.what() << "\n";
         }
-        else if (validInput1Cmd1Arg(input,"view","orders")){
-            viewOrders(_client);
-            break;
-        }
-        printError();
     }
 
     show();

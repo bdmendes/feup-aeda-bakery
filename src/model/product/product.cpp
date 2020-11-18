@@ -46,6 +46,10 @@ void Cake::print(std::ostream& os) const {
     << util::column(util::to_string(_price) + " euros");
 }
 
+std::vector<std::string> Cake::getCategories() {
+    return std::vector<std::string>(categoryStr,categoryStr + 5);
+}
+
 bool Bread::operator==(const Bread &bread) const{
     return _name == bread.getName() && _price == bread.getPrice() && _small == bread.isSmall();
 }

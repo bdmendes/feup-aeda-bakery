@@ -14,6 +14,7 @@
  */
 class Worker : public Person{
 public:
+  
     /**
      * Creates a new worker.
      *
@@ -22,7 +23,7 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the access credentials
      */
-    Worker(std::string name, float salary, int taxID = Person::DEFAULT_TAX_ID,
+    Worker(std::string name, int taxID = DEFAULT_TAX_ID, float salary = DEFAULT_SALARY,
            Credential credential = {DEFAULT_USERNAME,DEFAULT_PASSWORD});
 
     /**
@@ -77,6 +78,7 @@ public:
      */
     static const char* DEFAULT_USERNAME;
     static const char* DEFAULT_PASSWORD;
+    static const float DEFAULT_SALARY;
 private:
     unsigned _undeliveredOrders;
     float _salary;

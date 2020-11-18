@@ -41,18 +41,23 @@ void LoginMenu::selectPerson(bool client) {
     else hasPersons = _store.clientManager.print(std::cout, false);
     std::cout << SEPARATOR << "\n";
 
-    if (hasPersons) std::cout << "Choose an index: ";
+    if (hasPersons){
+        const std::vector<std::string> options = {
+                "login <index> - login in person's account"
+        };
+        printOptions(options);
+    }
 
     for (;;) {
         try {
             std::string input = readCommand();
             if (input == BACK) return;
-            if (hasPersons && validInput1CmdFree(input)) {
-                unsigned personPosition = std::stoi(to_words(input).at(0)) - 1;
+            if (hasPersons && validInput1Cmd1ArgDigit(input,"login")) {
+                unsigned personPosition = std::stoi(to_words(input).at(1)) - 1;
                 if (!client) login(_store.workerManager.get(personPosition));
                 else login(_store.clientManager.get(personPosition));
             }
-            else {printError(true); continue; }
+            else {printError(); continue; }
             break;
         }
         catch (std::exception& e){

@@ -2,9 +2,10 @@
 // Created by bdmendes on 29/10/20.
 //
 
+#include <exception/file_exception.h>
 #include "order_manager.h"
 
-OrderManager::OrderManager(ProductManager &pm, ClientManager &cm, WorkerManager &wm) :
+OrderManager::OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm) :
         _productManager(pm), _clientManager(cm), _workerManager(wm), _orders{}{
 }
 
@@ -12,7 +13,7 @@ bool OrderManager::has(Order *order) const {
     return std::find(_orders.begin(),_orders.end(),order) != _orders.end();
 }
 
-Order* OrderManager::get(unsigned int position, Client* client, Worker* worker) {
+Order* OrderManager::get(unsigned int position, Client* client, Worker* worker) const {
     std::vector<Order*> filtered;
     if (client != nullptr && worker != nullptr) throw std::invalid_argument("Can't choose both worker and client");
     else if (client != nullptr) filtered = get(client);
@@ -28,7 +29,7 @@ std::vector<Order *> OrderManager::getAll() const {
 }
 
 std::vector<Order *> OrderManager::get(Client *client) const {
-    if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
+    if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
     std::vector<Order*> filtered;
     for (const auto& order: _orders){
         if (order->getClient() == client) filtered.push_back(order);
@@ -37,7 +38,7 @@ std::vector<Order *> OrderManager::get(Client *client) const {
 }
 
 std::vector<Order *> OrderManager::get(Worker *worker) const {
-    if (!_workerManager.has(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
+    if (!_workerManager->has(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
     std::vector<Order*> filtered;
     for (const auto& order: _orders){
         if (order->getWorker() == worker) filtered.push_back(order);
@@ -50,8 +51,16 @@ void OrderManager::sort() {
 }
 
 Order* OrderManager::add(Client *client, Date date) {
-    if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
-    Order* order = new Order(*client,*_workerManager.getLessBusyWorker(),date);
+    if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
+    auto* order = new Order(*client,*_workerManager->getLessBusyWorker(),date);
+    _orders.push_back(order);
+    return order;
+}
+
+Order* OrderManager::add(Client* client, Worker* worker, const Date& date){
+    if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
+    if (!_workerManager->has(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
+    auto* order = new Order(*client,*worker,date);
     _orders.push_back(order);
     return order;
 }
@@ -78,7 +87,7 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
     else toPrint = getAll();
 
     if (toPrint.empty()) {
-        os << "No orders here yet.\nHow about you go back and add some?\n";
+        os << "No orders here yet.\n";
         return false;
     }
 
@@ -100,3 +109,106 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
     return true;
 }
 
+float OrderManager::getMeanEvaluation(Client *client) const {
+    int count = 0;
+    int sum = 0;
+    for (const auto& o: _orders){
+        if (o->getClient() == client && o->wasDelivered()){
+            sum += o->getClientEvaluation();
+            count++;
+        }
+    }
+    return count ? static_cast<float>(sum)/static_cast<float>(count) : 0;
+}
+
+float OrderManager::getMeanEvaluation(Worker *worker) const {
+    int count = 0;
+    int sum = 0;
+    for (const auto& o: _orders){
+        if (o->getWorker() == worker && o->wasDelivered()){
+            sum += o->getClientEvaluation();
+            count++;
+        }
+    }
+    return count ? static_cast<float>(sum)/static_cast<float>(count) : 0;
+}
+
+void OrderManager::read(const std::string &path) {
+    std::ifstream file(path);
+    if (!file) throw FileNotFound(path);
+
+    auto getDate = [](std::string dateStr, std::string timeStr) {
+        int day, month, year, hour, minute;
+        std::replace(dateStr.begin(), dateStr.end(), '/', ' ');
+        std::stringstream ssDate(dateStr);
+        ssDate >> day >> month >> year;
+
+        std::replace(timeStr.begin(), timeStr.end(), ':', ' ');
+        std::stringstream ssTime(timeStr);
+        ssTime >> hour >> minute;
+        return Date(day, month, year, hour, minute);
+    };
+
+    auto getProduct = [&](const std::string &productLine) {
+        std::string productName;
+        float price;
+        int quantity;
+
+        std::stringstream ss(productLine);
+        ss >> productName >> price >> quantity;
+        std::replace(productName.begin(),productName.end(),'-',' ');
+        Product *product = _productManager->get(productName, price);
+        if (!_productManager->has(product)) throw ProductDoesNotExist(productName, price);
+        return product;
+    };
+
+    bool readDetails = true;
+    Order *order = nullptr;
+    int clientEvaluation;
+    for (std::string line; getline(file, line);) {
+        if (readDetails) {
+            clientEvaluation = -1;
+            std::string date, time;
+            int clientTaxID, workerTaxID;
+
+            std::stringstream ss(line);
+            ss >> clientTaxID >> workerTaxID >> date >> time >> clientEvaluation;
+
+            Client* client = _clientManager->getClient(clientTaxID);
+            Worker* worker = _workerManager->getWorker(workerTaxID);
+
+            order = add(client, worker, getDate(date, time));
+            readDetails = false;
+
+        } else if (line.empty()) {
+            if (clientEvaluation != -1 && order) order->deliver(clientEvaluation);
+            readDetails = true;
+            order = nullptr;
+            continue;
+        }
+        else{
+            Product *product = getProduct(line);
+            if (!order) throw OrderDoesNotExist();
+            order->addProduct(product);
+        }
+    }
+}
+
+void OrderManager::write(const std::string &path) {
+    std::ofstream file(path);
+    if (!file) throw FileNotFound(path);
+
+    for (const auto &order: _orders) {
+        file << order->getClient()->getTaxId() << " " << order->getWorker()->getTaxId() << " "
+             << order->getRequestDate().getCompleteDate();
+        if (order->wasDelivered()) file << " " << order->getClientEvaluation();
+        file << "\n";
+
+        for (const auto& p : order->getProducts()) {
+            std::string nameToSave = p.first->getName();
+            std::replace(nameToSave.begin(),nameToSave.end(),' ','-');
+            file << nameToSave << " " << p.first->getPrice() << " " << p.second << "\n";
+        }
+        file << "\n";
+    }
+}

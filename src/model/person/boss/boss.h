@@ -7,6 +7,7 @@
 
 #include <model/person/person.h>
 #include <string>
+#include <fstream>
 
 /**
  *
@@ -21,7 +22,9 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the access credentials
      */
-    Boss(std::string name, int taxID, Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
+    explicit Boss(std::string name = "Boss", int taxID = Person::DEFAULT_TAX_ID, Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
+
+    void read(const std::string& path);
 
     /**
      * Gets the default boss' access credentials.
