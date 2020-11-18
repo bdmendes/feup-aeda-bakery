@@ -27,13 +27,17 @@ public:
 
     Worker * setSalary(unsigned position, float salary);
 
-    Worker* add(std::string name, float salary, int taxID = Person::DEFAULT_TAX_ID,
+    Worker* add(std::string name, int taxID = Person::DEFAULT_TAX_ID, float salary = Worker::DEFAULT_SALARY,
              Credential credential = {Worker::DEFAULT_USERNAME,Worker::DEFAULT_PASSWORD});
     void remove(Worker* worker);
     void remove(unsigned position);
 
-    void read(std::ifstream& file);
+    void read(const std::string& path);
+    void write(const std::string& path);
     bool print(std::ostream& os, bool showData = true);
+
+    Worker* getWorker(int taxID) const;
+
 private:
     std::set<Worker*, PersonSmaller> _workers;
 };

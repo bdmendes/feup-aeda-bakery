@@ -10,7 +10,7 @@
 const char* Client::DEFAULT_USERNAME = "client";
 const char* Client::DEFAULT_PASSWORD = "client";
 
-Client::Client(std::string name, bool premium, int taxID, Credential credential):
+Client::Client(std::string name, int taxID, bool premium, Credential credential):
         Person(std::move(name), taxID, std::move(credential)), _points{0}, _premium(premium){
 }
 

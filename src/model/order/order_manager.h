@@ -18,10 +18,10 @@
 
 class OrderManager {
 public:
-    OrderManager(ProductManager& pm, ClientManager& cm, WorkerManager& wm);
+    OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm);
     bool has(Order* order) const;
 
-    Order* get(unsigned position, Client* client = nullptr, Worker* worker = nullptr);
+    Order* get(unsigned position, Client* client = nullptr, Worker* worker = nullptr) const;
     std::vector<Order*> getAll() const;
     std::vector<Order*> get(Client* client) const;
     std::vector<Order*> get(Worker* worker) const;
@@ -30,17 +30,19 @@ public:
 
     void sort();
     Order* add(Client* client, Date date = {});
+    Order* add(Client* client, Worker* worker, const Date& date);
     void remove(Order* order);
     void remove(unsigned position);
-
-    void read(std::ifstream& file);
+    
+    void read(const std::string& path);
+    void write(const std::string& path);
     bool print(std::ostream& os, Client* client = nullptr, Worker* worker = nullptr) const;
 
 private:
 
-    ProductManager& _productManager;
-    ClientManager& _clientManager;
-    WorkerManager& _workerManager;
+    ProductManager* _productManager;
+    ClientManager* _clientManager;
+    WorkerManager* _workerManager;
     std::vector<Order*> _orders;
 };
 

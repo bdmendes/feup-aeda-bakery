@@ -21,7 +21,7 @@ TEST(Client, create_client){
     EXPECT_FALSE(client1.isPremium());
     EXPECT_FLOAT_EQ(0, client1.getPoints());
 
-    Client client2("Angelica Vieira", true, 287389139, {"AngelicaVieira", "Angelica_8293"});
+    Client client2("Angelica Vieira", 287389139, true,{"AngelicaVieira", "Angelica_8293"});
     credential = {"AngelicaVieira", "Angelica_8293"};
 
     EXPECT_EQ("Angelica Vieira", client2.getName());
@@ -34,7 +34,7 @@ TEST(Client, create_client){
 }
 
 TEST(Worker, create_worker){
-    Worker worker1("Joao Filipe", 950);
+    Worker worker1("Joao Filipe", 999999999,950);
     Credential credential = {"worker", "worker"};
 
     EXPECT_EQ("Joao Filipe", worker1.getName());
@@ -46,7 +46,7 @@ TEST(Worker, create_worker){
     EXPECT_TRUE(worker1.getCredential() == credential);
     EXPECT_FLOAT_EQ(950, worker1.getSalary());
 
-    Worker worker2("Filipa Ribeiro", 893, 293013289, {"FilipaRibeiro","filipaRibeiro_9201"});
+    Worker worker2("Filipa Ribeiro",  293013289, 893,{"FilipaRibeiro","filipaRibeiro_9201"});
     credential = {"FilipaRibeiro", "filipaRibeiro_9201"};
 
     EXPECT_EQ("Filipa Ribeiro", worker2.getName());
@@ -135,9 +135,9 @@ TEST(Worker, sort_workers){
 
 TEST(Client, equal_clients){
     Client client1("Cristina Lopes");
-    Client client2("Cristina Lopes", false, 999999999, {"client", "client"});
+    Client client2("Cristina Lopes", 999999999, false, {"client", "client"});
     Client client3("Cristina Figueiredo");
-    Client client4("Joao Manuel", false, 284917316, {"jonasManel", "joao123"});
+    Client client4("Joao Manuel", 284917316,false, {"jonasManel", "joao123"});
 
     EXPECT_TRUE(client1==client2);
     EXPECT_FALSE(client1==client3);
@@ -145,10 +145,10 @@ TEST(Client, equal_clients){
 }
 
 TEST(Worker, equal_workers){
-    Worker worker1("Luis Miguel", 950);
-    Worker worker2("Luis Miguel", 950, 999999999, {"worker", "worker"});
+    Worker worker1("Luis Miguel", 999999999,950);
+    Worker worker2("Luis Miguel",  999999999,950, {"worker", "worker"});
     Worker worker3("Luis Filipe", 890);
-    Worker worker4("Joao Manuel", 950, 284917316, {"jonasManel", "joao123"});
+    Worker worker4("Joao Manuel", 284917316,950, {"jonasManel", "joao123"});
 
     EXPECT_TRUE(worker1==worker2);
     EXPECT_FALSE(worker1==worker3);
@@ -156,7 +156,7 @@ TEST(Worker, equal_workers){
 }
 
 TEST(Client, set_premium){
-    Client client("Joel Lopes", true);
+    Client client("Joel Lopes", 599596,true);
     client.setPremium(false);
 
     EXPECT_FALSE(client.isPremium());
