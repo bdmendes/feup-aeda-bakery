@@ -1,11 +1,7 @@
-//
-// Created by bdmendes on 29/10/20.
-//
 
 #include "product_manager.h"
 
 #include <algorithm>
-#include <utility>
 #include <util/util.h>
 #include <fstream>
 #include <exception/file_exception.h>

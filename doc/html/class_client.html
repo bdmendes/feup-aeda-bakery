@@ -33,7 +33,6 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AEDA Project
    </div>
-   <div id="projectbrief">Bakery project for AEDA, FEUP, MIEIC. Work in progress.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -102,6 +101,9 @@ $(document).ready(function(){initNavTree('class_client.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 
+<p>Class relative to a store client.  
+ <a href="class_client.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="client_8h_source.html">client.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Client:</div>
@@ -109,81 +111,83 @@ Inheritance diagram for Client:</div>
  <div class="center">
   <img src="class_client.png" usemap="#Client_map" alt=""/>
   <map id="Client_map" name="Client_map">
-<area href="class_person.html" alt="Person" shape="rect" coords="0,0,52,24"/>
+<area href="class_person.html" title="Class relative to a store user." alt="Person" shape="rect" coords="0,0,52,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a140c1207e590024a6438e3e42346f2ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#a140c1207e590024a6438e3e42346f2ac">Client</a> (std::string name, bool premium=false, int taxID=<a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a>, <a class="el" href="struct_credential.html">Credential</a> credential={<a class="el" href="class_client.html#aa8701753a7ee4d53d87e609381219168">DEFAULT_USERNAME</a>, <a class="el" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">DEFAULT_PASSWORD</a>})</td></tr>
-<tr class="memdesc:a140c1207e590024a6438e3e42346f2ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new client.  <a href="class_client.html#a140c1207e590024a6438e3e42346f2ac">More...</a><br /></td></tr>
-<tr class="separator:a140c1207e590024a6438e3e42346f2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af37da725688f8efea2cdd6eb3b17ce97"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#af37da725688f8efea2cdd6eb3b17ce97">Client</a> (std::string name, int taxID=<a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a>, bool premium=false, <a class="el" href="struct_credential.html">Credential</a> credential={<a class="el" href="class_client.html#aa8701753a7ee4d53d87e609381219168">DEFAULT_USERNAME</a>, <a class="el" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">DEFAULT_PASSWORD</a>})</td></tr>
+<tr class="memdesc:af37da725688f8efea2cdd6eb3b17ce97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new client object.  <a href="class_client.html#af37da725688f8efea2cdd6eb3b17ce97">More...</a><br /></td></tr>
+<tr class="separator:af37da725688f8efea2cdd6eb3b17ce97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af77c74a396a63b45707e692c691e7b47"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#af77c74a396a63b45707e692c691e7b47">isPremium</a> () const</td></tr>
-<tr class="memdesc:af77c74a396a63b45707e692c691e7b47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cheks if the client's subscription type is premium.  <a href="class_client.html#af77c74a396a63b45707e692c691e7b47">More...</a><br /></td></tr>
+<tr class="memdesc:af77c74a396a63b45707e692c691e7b47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the client's subscription type is premium.  <a href="class_client.html#af77c74a396a63b45707e692c691e7b47">More...</a><br /></td></tr>
 <tr class="separator:af77c74a396a63b45707e692c691e7b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3ab1b4256e583e0917bdc4f7348c115"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#af3ab1b4256e583e0917bdc4f7348c115">getMeanEvaluation</a> () const</td></tr>
 <tr class="memdesc:af3ab1b4256e583e0917bdc4f7348c115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the order's mean evaluation given by the client.  <a href="class_client.html#af3ab1b4256e583e0917bdc4f7348c115">More...</a><br /></td></tr>
 <tr class="separator:af3ab1b4256e583e0917bdc4f7348c115"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51940a2154ba5b40ad5d7e47a02d8aa0"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#a51940a2154ba5b40ad5d7e47a02d8aa0">getPoints</a> () const</td></tr>
-<tr class="memdesc:a51940a2154ba5b40ad5d7e47a02d8aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the client points.  <a href="class_client.html#a51940a2154ba5b40ad5d7e47a02d8aa0">More...</a><br /></td></tr>
+<tr class="memdesc:a51940a2154ba5b40ad5d7e47a02d8aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the client's points.  <a href="class_client.html#a51940a2154ba5b40ad5d7e47a02d8aa0">More...</a><br /></td></tr>
 <tr class="separator:a51940a2154ba5b40ad5d7e47a02d8aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03bd446a3cb137c2a0047e3634ce3695"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#a03bd446a3cb137c2a0047e3634ce3695">getEvaluations</a> () const</td></tr>
-<tr class="memdesc:a03bd446a3cb137c2a0047e3634ce3695"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of all order's evaluation given by the client.  <a href="class_client.html#a03bd446a3cb137c2a0047e3634ce3695">More...</a><br /></td></tr>
-<tr class="separator:a03bd446a3cb137c2a0047e3634ce3695"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5883dbdff0d68ad876fb538599a32fdc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#a5883dbdff0d68ad876fb538599a32fdc">setPremium</a> (bool premium)</td></tr>
-<tr class="memdesc:a5883dbdff0d68ad876fb538599a32fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the client's subscription type.  <a href="class_client.html#a5883dbdff0d68ad876fb538599a32fdc">More...</a><br /></td></tr>
+<tr class="memdesc:a5883dbdff0d68ad876fb538599a32fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of all order's evaluation given by the client.  <a href="class_client.html#a5883dbdff0d68ad876fb538599a32fdc">More...</a><br /></td></tr>
 <tr class="separator:a5883dbdff0d68ad876fb538599a32fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a494af631b56e51b8e266f085fbacbfe7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#a494af631b56e51b8e266f085fbacbfe7">setPoints</a> (unsigned points)</td></tr>
+<tr class="memdesc:a494af631b56e51b8e266f085fbacbfe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the client's points.  <a href="class_client.html#a494af631b56e51b8e266f085fbacbfe7">More...</a><br /></td></tr>
+<tr class="separator:a494af631b56e51b8e266f085fbacbfe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ef10217c8462686b743a0400fad8611"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#a4ef10217c8462686b743a0400fad8611">addPoints</a> (unsigned points)</td></tr>
 <tr class="memdesc:a4ef10217c8462686b743a0400fad8611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds certain points to the client's.  <a href="class_client.html#a4ef10217c8462686b743a0400fad8611">More...</a><br /></td></tr>
 <tr class="separator:a4ef10217c8462686b743a0400fad8611"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cae42bc309c1d13a899fdf6f4d3beec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#a8cae42bc309c1d13a899fdf6f4d3beec">removePoints</a> (unsigned points)</td></tr>
 <tr class="memdesc:a8cae42bc309c1d13a899fdf6f4d3beec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes certain points of the client's points.  <a href="class_client.html#a8cae42bc309c1d13a899fdf6f4d3beec">More...</a><br /></td></tr>
 <tr class="separator:a8cae42bc309c1d13a899fdf6f4d3beec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fd0ba574db21b942bca23819c2f0698"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#a0fd0ba574db21b942bca23819c2f0698">resetPoints</a> ()</td></tr>
-<tr class="memdesc:a0fd0ba574db21b942bca23819c2f0698"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the client's points.  <a href="class_client.html#a0fd0ba574db21b942bca23819c2f0698">More...</a><br /></td></tr>
+<tr class="memitem:a0fd0ba574db21b942bca23819c2f0698"><td class="memItemLeft" align="right" valign="top"><a id="a0fd0ba574db21b942bca23819c2f0698"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#a0fd0ba574db21b942bca23819c2f0698">resetPoints</a> ()</td></tr>
+<tr class="memdesc:a0fd0ba574db21b942bca23819c2f0698"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the client's points. <br /></td></tr>
 <tr class="separator:a0fd0ba574db21b942bca23819c2f0698"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e3da717642e5f5022af53ac28c50146"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#a6e3da717642e5f5022af53ac28c50146">addEvaluation</a> (int evaluation)</td></tr>
 <tr class="memdesc:a6e3da717642e5f5022af53ac28c50146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an order evaluation given by the client.  <a href="class_client.html#a6e3da717642e5f5022af53ac28c50146">More...</a><br /></td></tr>
 <tr class="separator:a6e3da717642e5f5022af53ac28c50146"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcfef89f979fe27bca39030a52882c07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#adcfef89f979fe27bca39030a52882c07">print</a> (std::ostream &amp;os, bool showData=true)</td></tr>
-<tr class="memdesc:adcfef89f979fe27bca39030a52882c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints.  <a href="class_client.html#adcfef89f979fe27bca39030a52882c07">More...</a><br /></td></tr>
+<tr class="memdesc:adcfef89f979fe27bca39030a52882c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the client's data.  <a href="class_client.html#adcfef89f979fe27bca39030a52882c07">More...</a><br /></td></tr>
 <tr class="separator:adcfef89f979fe27bca39030a52882c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa513a730ab2bbafe68144eb7f524a5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_credential.html">Credential</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#afa513a730ab2bbafe68144eb7f524a5e">getDefaultCredential</a> () override</td></tr>
-<tr class="memdesc:afa513a730ab2bbafe68144eb7f524a5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the default access credentials.  <a href="class_client.html#afa513a730ab2bbafe68144eb7f524a5e">More...</a><br /></td></tr>
+<tr class="memdesc:afa513a730ab2bbafe68144eb7f524a5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the client's default login credentials.  <a href="class_client.html#afa513a730ab2bbafe68144eb7f524a5e">More...</a><br /></td></tr>
 <tr class="separator:afa513a730ab2bbafe68144eb7f524a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_person"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_person')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_person.html">Person</a></td></tr>
 <tr class="memitem:a940ece7b9e17a6d39087b3eebc49d490 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a940ece7b9e17a6d39087b3eebc49d490">Person</a> (std::string name, int taxID, <a class="el" href="struct_credential.html">Credential</a> credential)</td></tr>
-<tr class="memdesc:a940ece7b9e17a6d39087b3eebc49d490 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new person.  <a href="class_person.html#a940ece7b9e17a6d39087b3eebc49d490">More...</a><br /></td></tr>
+<tr class="memdesc:a940ece7b9e17a6d39087b3eebc49d490 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new person object.  <a href="class_person.html#a940ece7b9e17a6d39087b3eebc49d490">More...</a><br /></td></tr>
 <tr class="separator:a940ece7b9e17a6d39087b3eebc49d490 inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22234d7de3132c581406f040196eef44 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a22234d7de3132c581406f040196eef44">~Person</a> ()=default</td></tr>
-<tr class="memdesc:a22234d7de3132c581406f040196eef44 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the person's object.  <a href="class_person.html#a22234d7de3132c581406f040196eef44">More...</a><br /></td></tr>
+<tr class="memitem:a22234d7de3132c581406f040196eef44 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top"><a id="a22234d7de3132c581406f040196eef44"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a22234d7de3132c581406f040196eef44">~Person</a> ()=default</td></tr>
+<tr class="memdesc:a22234d7de3132c581406f040196eef44 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the person object. <br /></td></tr>
 <tr class="separator:a22234d7de3132c581406f040196eef44 inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab20f096fdfd5201818c45754af4c3e3b inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#ab20f096fdfd5201818c45754af4c3e3b">getName</a> () const</td></tr>
-<tr class="memdesc:ab20f096fdfd5201818c45754af4c3e3b inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the person's name.  <a href="class_person.html#ab20f096fdfd5201818c45754af4c3e3b">More...</a><br /></td></tr>
+<tr class="memdesc:ab20f096fdfd5201818c45754af4c3e3b inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the person name.  <a href="class_person.html#ab20f096fdfd5201818c45754af4c3e3b">More...</a><br /></td></tr>
 <tr class="separator:ab20f096fdfd5201818c45754af4c3e3b inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ffa4497d57aee137d7464b4a16f2a97 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a2ffa4497d57aee137d7464b4a16f2a97">getTaxId</a> () const</td></tr>
-<tr class="memdesc:a2ffa4497d57aee137d7464b4a16f2a97 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the person's taxpayer identification number.  <a href="class_person.html#a2ffa4497d57aee137d7464b4a16f2a97">More...</a><br /></td></tr>
+<tr class="memdesc:a2ffa4497d57aee137d7464b4a16f2a97 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the person taxpayer identification number.  <a href="class_person.html#a2ffa4497d57aee137d7464b4a16f2a97">More...</a><br /></td></tr>
 <tr class="separator:a2ffa4497d57aee137d7464b4a16f2a97 inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3dee2926f183d329fe1b5ef7f20f69df inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_credential.html">Credential</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a3dee2926f183d329fe1b5ef7f20f69df">getCredential</a> () const</td></tr>
-<tr class="memdesc:a3dee2926f183d329fe1b5ef7f20f69df inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the person's access credentials.  <a href="class_person.html#a3dee2926f183d329fe1b5ef7f20f69df">More...</a><br /></td></tr>
+<tr class="memdesc:a3dee2926f183d329fe1b5ef7f20f69df inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the person login credentials.  <a href="class_person.html#a3dee2926f183d329fe1b5ef7f20f69df">More...</a><br /></td></tr>
 <tr class="separator:a3dee2926f183d329fe1b5ef7f20f69df inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acba0343c4a411cc20c80723eccf06a4e inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#acba0343c4a411cc20c80723eccf06a4e">isLogged</a> () const</td></tr>
-<tr class="memdesc:acba0343c4a411cc20c80723eccf06a4e inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cheks if the person is logged.  <a href="class_person.html#acba0343c4a411cc20c80723eccf06a4e">More...</a><br /></td></tr>
+<tr class="memdesc:acba0343c4a411cc20c80723eccf06a4e inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the person is logged in.  <a href="class_person.html#acba0343c4a411cc20c80723eccf06a4e">More...</a><br /></td></tr>
 <tr class="separator:acba0343c4a411cc20c80723eccf06a4e inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a445803d8b6732ba5c54debfb8d5d3c83 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a445803d8b6732ba5c54debfb8d5d3c83">setLogged</a> (bool logged)</td></tr>
-<tr class="memdesc:a445803d8b6732ba5c54debfb8d5d3c83 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the person's log status.  <a href="class_person.html#a445803d8b6732ba5c54debfb8d5d3c83">More...</a><br /></td></tr>
+<tr class="memdesc:a445803d8b6732ba5c54debfb8d5d3c83 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the person log status.  <a href="class_person.html#a445803d8b6732ba5c54debfb8d5d3c83">More...</a><br /></td></tr>
 <tr class="separator:a445803d8b6732ba5c54debfb8d5d3c83 inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5530252bfab905eff3b3e4968206df42 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a5530252bfab905eff3b3e4968206df42">setName</a> (const std::string &amp;name)</td></tr>
-<tr class="memdesc:a5530252bfab905eff3b3e4968206df42 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the person's name.  <a href="class_person.html#a5530252bfab905eff3b3e4968206df42">More...</a><br /></td></tr>
+<tr class="memdesc:a5530252bfab905eff3b3e4968206df42 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the person name.  <a href="class_person.html#a5530252bfab905eff3b3e4968206df42">More...</a><br /></td></tr>
 <tr class="separator:a5530252bfab905eff3b3e4968206df42 inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adae133522000a886adcf963189945a7f inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#adae133522000a886adcf963189945a7f">setTaxID</a> (int taxID)</td></tr>
-<tr class="memdesc:adae133522000a886adcf963189945a7f inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the person's taxpayer identification number.  <a href="class_person.html#adae133522000a886adcf963189945a7f">More...</a><br /></td></tr>
+<tr class="memdesc:adae133522000a886adcf963189945a7f inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the person taxpayer identification number.  <a href="class_person.html#adae133522000a886adcf963189945a7f">More...</a><br /></td></tr>
 <tr class="separator:adae133522000a886adcf963189945a7f inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33aebf821826a709be53af8273db5722 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a33aebf821826a709be53af8273db5722">setCredential</a> (const <a class="el" href="struct_credential.html">Credential</a> &amp;credential)</td></tr>
-<tr class="memdesc:a33aebf821826a709be53af8273db5722 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the person's access credentials.  <a href="class_person.html#a33aebf821826a709be53af8273db5722">More...</a><br /></td></tr>
+<tr class="memdesc:a33aebf821826a709be53af8273db5722 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the person login credentials.  <a href="class_person.html#a33aebf821826a709be53af8273db5722">More...</a><br /></td></tr>
 <tr class="separator:a33aebf821826a709be53af8273db5722 inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d37f59a0e7a2e520ba4ae75561a5160 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a7d37f59a0e7a2e520ba4ae75561a5160">operator&lt;</a> (const <a class="el" href="class_person.html">Person</a> &amp;p2) const</td></tr>
-<tr class="memdesc:a7d37f59a0e7a2e520ba4ae75561a5160 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minor operator.  <a href="class_person.html#a7d37f59a0e7a2e520ba4ae75561a5160">More...</a><br /></td></tr>
+<tr class="memdesc:a7d37f59a0e7a2e520ba4ae75561a5160 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Less than operator.  <a href="class_person.html#a7d37f59a0e7a2e520ba4ae75561a5160">More...</a><br /></td></tr>
 <tr class="separator:a7d37f59a0e7a2e520ba4ae75561a5160 inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac40fe438e2d59c5a8c09e8b650819e9 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#aac40fe438e2d59c5a8c09e8b650819e9">operator==</a> (const <a class="el" href="class_person.html">Person</a> &amp;p2) const</td></tr>
 <tr class="memdesc:aac40fe438e2d59c5a8c09e8b650819e9 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator.  <a href="class_person.html#aac40fe438e2d59c5a8c09e8b650819e9">More...</a><br /></td></tr>
@@ -191,20 +195,25 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:aa8701753a7ee4d53d87e609381219168"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#aa8701753a7ee4d53d87e609381219168">DEFAULT_USERNAME</a> = &quot;client&quot;</td></tr>
-<tr class="memdesc:aa8701753a7ee4d53d87e609381219168"><td class="mdescLeft">&#160;</td><td class="mdescRight">The client's default username.  <a href="class_client.html#aa8701753a7ee4d53d87e609381219168">More...</a><br /></td></tr>
+<tr class="memitem:aa8701753a7ee4d53d87e609381219168"><td class="memItemLeft" align="right" valign="top"><a id="aa8701753a7ee4d53d87e609381219168"></a>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#aa8701753a7ee4d53d87e609381219168">DEFAULT_USERNAME</a> = &quot;client&quot;</td></tr>
+<tr class="memdesc:aa8701753a7ee4d53d87e609381219168"><td class="mdescLeft">&#160;</td><td class="mdescRight">The client's default login username. <br /></td></tr>
 <tr class="separator:aa8701753a7ee4d53d87e609381219168"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad89af79ed76f3224159adbdbe821648a"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">DEFAULT_PASSWORD</a> = &quot;client&quot;</td></tr>
-<tr class="memdesc:ad89af79ed76f3224159adbdbe821648a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The client's default password.  <a href="class_client.html#ad89af79ed76f3224159adbdbe821648a">More...</a><br /></td></tr>
+<tr class="memitem:ad89af79ed76f3224159adbdbe821648a"><td class="memItemLeft" align="right" valign="top"><a id="ad89af79ed76f3224159adbdbe821648a"></a>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">DEFAULT_PASSWORD</a> = &quot;client&quot;</td></tr>
+<tr class="memdesc:ad89af79ed76f3224159adbdbe821648a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The client's default login password. <br /></td></tr>
 <tr class="separator:ad89af79ed76f3224159adbdbe821648a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_class_person"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_class_person')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="class_person.html">Person</a></td></tr>
-<tr class="memitem:a52661d7b661afecd42415d70f20cfe8a inherit pub_static_attribs_class_person"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">DEFAULT_TAX_ID</a> = 999999999</td></tr>
-<tr class="memdesc:a52661d7b661afecd42415d70f20cfe8a inherit pub_static_attribs_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default taxpayer identification number.  <a href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">More...</a><br /></td></tr>
+<tr class="memitem:a52661d7b661afecd42415d70f20cfe8a inherit pub_static_attribs_class_person"><td class="memItemLeft" align="right" valign="top"><a id="a52661d7b661afecd42415d70f20cfe8a"></a>
+static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">DEFAULT_TAX_ID</a> = 999999999</td></tr>
+<tr class="memdesc:a52661d7b661afecd42415d70f20cfe8a inherit pub_static_attribs_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default taxpayer identification number. <br /></td></tr>
 <tr class="separator:a52661d7b661afecd42415d70f20cfe8a inherit pub_static_attribs_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a140c1207e590024a6438e3e42346f2ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a140c1207e590024a6438e3e42346f2ac">&#9670;&nbsp;</a></span>Client()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class relative to a store client. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af37da725688f8efea2cdd6eb3b17ce97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af37da725688f8efea2cdd6eb3b17ce97">&#9670;&nbsp;</a></span>Client()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,14 +230,14 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>premium</em> = <code>false</code>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>taxID</em> = <code><a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>taxID</em> = <code><a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a></code>, </td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>premium</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -248,12 +257,14 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Creates a new client object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>the name </td></tr>
-    <tr><td class="paramname">premium</td><td>the subscription type (basic or premium) </td></tr>
+    <tr><td class="paramname">premium</td><td>the subscription type (true, if it is premium; false, otherwise) </td></tr>
     <tr><td class="paramname">taxID</td><td>the taxpayer identification number </td></tr>
-    <tr><td class="paramname">credential</td><td>the credentials </td></tr>
+    <tr><td class="paramname">credential</td><td>the login credentials </td></tr>
   </table>
   </dd>
 </dl>
@@ -276,9 +287,11 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adds an order evaluation given by the client. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">evaluation</td><td>the order evaluation </td></tr>
+    <tr><td class="paramname">evaluation</td><td>the order evaluation to add </td></tr>
   </table>
   </dd>
 </dl>
@@ -300,9 +313,11 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adds certain points to the client's. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">points</td><td>the points </td></tr>
+    <tr><td class="paramname">points</td><td>the points to add </td></tr>
   </table>
   </dd>
 </dl>
@@ -331,27 +346,11 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>the default credentials </dd></dl>
+
+<p>Gets the client's default login credentials. </p>
+<dl class="section return"><dt>Returns</dt><dd>the login credentials </dd></dl>
 
 <p>Implements <a class="el" href="class_person.html#acab3096af55dd3c1823084eacdb760d2">Person</a>.</p>
-
-</div>
-</div>
-<a id="a03bd446a3cb137c2a0047e3634ce3695"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03bd446a3cb137c2a0047e3634ce3695">&#9670;&nbsp;</a></span>getEvaluations()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; int &gt; Client::getEvaluations </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>the list of order's evaluation </dd></dl>
 
 </div>
 </div>
@@ -369,6 +368,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the order's mean evaluation given by the client. </p>
 <dl class="section return"><dt>Returns</dt><dd>the order's mean evaluation </dd></dl>
 
 </div>
@@ -387,6 +388,8 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the client's points. </p>
 <dl class="section return"><dt>Returns</dt><dd>the client's points </dd></dl>
 
 </div>
@@ -405,7 +408,9 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>true, if the client is premium; false, otherwise </dd></dl>
+
+<p>Checks if the client's subscription type is premium. </p>
+<dl class="section return"><dt>Returns</dt><dd>true, if the client's subscription type is premium; false, otherwise </dd></dl>
 
 </div>
 </div>
@@ -434,10 +439,12 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Prints the client's data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">os</td><td>the output stream </td></tr>
-    <tr><td class="paramname">showData</td><td></td></tr>
+    <tr><td class="paramname">showData</td><td>if true, prints all data: name, taxpayer identification number, subscription type, accumulated points and mean evaluation; otherwise, just prints the name, the taxpayer identification number and the status and log status. </td></tr>
   </table>
   </dd>
 </dl>
@@ -459,29 +466,40 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Removes certain points of the client's points. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">points</td><td>the points </td></tr>
+    <tr><td class="paramname">points</td><td>the points to remove </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a0fd0ba574db21b942bca23819c2f0698"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fd0ba574db21b942bca23819c2f0698">&#9670;&nbsp;</a></span>resetPoints()</h2>
+<a id="a494af631b56e51b8e266f085fbacbfe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a494af631b56e51b8e266f085fbacbfe7">&#9670;&nbsp;</a></span>setPoints()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Client::resetPoints </td>
+          <td class="memname">void Client::setPoints </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>points</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the client's points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">points</td><td>the new points </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -500,60 +518,22 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the list of all order's evaluation given by the client. </p>
+<dl class="section return"><dt>Returns</dt><dd>the list of order's evaluation Sets the client's subscription type.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">premium</td><td></td></tr>
+    <tr><td class="paramname">premium</td><td>true to change client's subscription type to premium; false, otherwise </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="ad89af79ed76f3224159adbdbe821648a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad89af79ed76f3224159adbdbe821648a">&#9670;&nbsp;</a></span>DEFAULT_PASSWORD</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char * Client::DEFAULT_PASSWORD = &quot;client&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa8701753a7ee4d53d87e609381219168"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8701753a7ee4d53d87e609381219168">&#9670;&nbsp;</a></span>DEFAULT_USERNAME</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char * Client::DEFAULT_USERNAME = &quot;client&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>person/client/<a class="el" href="client_8h_source.html">client.h</a></li>
+<li>person/client/client.cpp</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

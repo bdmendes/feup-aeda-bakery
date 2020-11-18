@@ -1,10 +1,6 @@
-//
-// Created by laimi on 15/10/2020.
-//
 
 #include "order.h"
 
-#include <utility>
 #include <util/util.h>
 
 Order::Order(Client &client, Worker &worker, Date date) :

@@ -1,9 +1,5 @@
-//
-// Created by bdmendes on 29/10/20.
-//
 
 #include <exception/file_exception.h>
-#include "order_manager.h"
 
 OrderManager::OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm) :
         _productManager(pm), _clientManager(cm), _workerManager(wm), _orders{}{

@@ -1,14 +1,15 @@
-//
-// Created by bdmendes on 29/10/20.
-//
 
 #include "client_manager.h"
-#include <algorithm>
-#include <exception/person_exception.h>
-#include <iomanip>
 #include <exception/file_exception.h>
 
+#include <algorithm>
+#include <iomanip>
+
 ClientManager::ClientManager() : _clients() {
+}
+
+ClientManager::~ClientManager() {
+    for (auto& c: _clients) delete c;
 }
 
 bool ClientManager::has(Client *client) const {
@@ -111,6 +112,4 @@ Client *ClientManager::getClient(int taxID) const{
     throw PersonDoesNotExist(taxID);
 }
 
-ClientManager::~ClientManager() {
-    for (auto& c: _clients) delete c;
-}
+

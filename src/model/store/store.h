@@ -1,6 +1,3 @@
-//
-// Created by laimi on 15/10/2020.
-//
 
 #ifndef SRC_STORE_H
 #define SRC_STORE_H
@@ -26,26 +23,96 @@
 
 class Order;
 
+/**
+ * Class relative to a store.
+ */
 class Store {
 public:
-    Store(std::string name = "Bakery Store");
+    /**
+     * Creates a new store object.
+     *
+     * @param name the name
+     */
+    explicit Store(std::string name = "Bakery Store");
 
+    /**
+     * Sets the store name.
+     *
+     * @param name the name
+     */
     void setName(const std::string& name);
+
+    /**
+     * Gets the store name.
+     *
+     * @return
+     */
     std::string getName() const;
+
+    /**
+     * Gets the store evaluation given by the clients.
+     */
     int getEvaluation() const;
+
+    /**
+     * Gets the store's profit.
+     *
+     * @return the store's profit
+     */
     float getProfit() const;
 
+    /**
+     * Reads all the store data (boss, worker manager, product manager, client manager and order manager) from a
+     * a file and creates new objects of the respective classes with that data.
+     *
+     * @param dataFolderPath the folder path
+     * @param doReset if true, resets all the store's data
+     * @return "Import succeeded." if the reading was succeeded; "Import failed!", otherwise
+     */
     std::string read(const std::string& dataFolderPath, bool doReset);
+
+    /**
+     * Writes all the store data (boss, worker manager, product manager, client manager and order manager) to a file
+     * and creates new objects of the respective classes with that data.
+     *
+     * @param dataFolderPath  the folder path
+     * @return "Export succeeded." if the writing was succeeded; "Export failed!", otherwise
+     */
     std::string write(const std::string& dataFolderPath);
 
+    /**
+     * Resets all the store data.
+     */
     void reset();
 
+    /**
+     * The product manager associated to the store.
+     */
     ProductManager productManager;
+
+    /**
+     * The client manager associated to the store.
+     */
     ClientManager clientManager;
+
+    /**
+     * The worker manager associated to the store.
+     */
     WorkerManager workerManager;
+
+    /**
+     * The order manager associated to the store.
+     */
     OrderManager orderManager;
+
+    /**
+     * The boss associated to the store.
+     */
     Boss boss;
 private:
+    /**
+     * The store name.
+     */
     std::string _name;
 };
 

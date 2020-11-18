@@ -33,7 +33,6 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AEDA Project
    </div>
-   <div id="projectbrief">Bakery project for AEDA, FEUP, MIEIC. Work in progress.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -97,80 +96,89 @@ $(document).ready(function(){initNavTree('store_8h_source.html',''); initResizab
 <div class="title">store.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="store_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by laimi on 15/10/2020.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef SRC_STORE_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define SRC_STORE_H</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef SRC_STORE_H</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define SRC_STORE_H</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="person_8h.html">model/person/person.h</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="boss_8h.html">model/person/boss/boss.h</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="order_8h.html">model/order/order.h</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;exception/person_exception.h&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;exception/store_exception.h&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;exception/product_exception.h&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="product_8h.html">model/product/product.h</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;../person/client/client_manager.h&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;../product/product_manager.h&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;../person/worker/worker_manager.h&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;../order/order_manager.h&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">class </span><a class="code" href="class_order.html">Order</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;model/person/person.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;model/person/boss/boss.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;model/order/order.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;exception/person_exception.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;exception/store_exception.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;exception/product_exception.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;model/product/product.h&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;../person/client/client_manager.h&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;../product/product_manager.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;../person/worker/worker_manager.h&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;../order/order_manager.h&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">class </span><a class="code" href="class_order.html">Order</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_store.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_store.html">Store</a> {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_store.html#a06964804d6061a499607cb7c012e3593">Store</a>(std::string name = <span class="stringliteral">&quot;Bakery Store&quot;</span>);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_store.html#aba840a18a311ac64bd59cccf5229967d">setName</a>(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::string <a class="code" href="class_store.html#afe9d17750e392f7785065854ef01b94b">getName</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_store.html#a551fca948b04e788af24f39675fb4517">getEvaluation</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_store.html#a94da830bbe9d06f5d1e0bf3d1057a390">getProfit</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_store.html#a06964804d6061a499607cb7c012e3593">Store</a>(std::string name = <span class="stringliteral">&quot;Bakery Store&quot;</span>);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_store.html#aa81b71fb17be0dca5e3cd0350c420543">   38</a></span>&#160;    <a class="code" href="class_product_manager.html">ProductManager</a> <a class="code" href="class_store.html#aa81b71fb17be0dca5e3cd0350c420543">productManager</a>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_store.html#ac8d8260d7fff62926099f1c8e4ecbc37">   39</a></span>&#160;    <a class="code" href="class_client_manager.html">ClientManager</a> <a class="code" href="class_store.html#ac8d8260d7fff62926099f1c8e4ecbc37">clientManager</a>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_store.html#a9d9ee3f83b27fc1f864d2b460d1b63e3">   40</a></span>&#160;    <a class="code" href="class_worker_manager.html">WorkerManager</a> <a class="code" href="class_store.html#a9d9ee3f83b27fc1f864d2b460d1b63e3">workerManager</a>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_store.html#af70cd00a2ab3246d5dbce130383dda38">   41</a></span>&#160;    <a class="code" href="class_order_manager.html">OrderManager</a> <a class="code" href="class_store.html#af70cd00a2ab3246d5dbce130383dda38">orderManager</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_store.html#abe4da3457b804879391e1db02529ed59">   42</a></span>&#160;    <a class="code" href="class_boss.html">Boss</a> <a class="code" href="class_store.html#abe4da3457b804879391e1db02529ed59">boss</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    std::string _name;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif //SRC_STORE_H</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_store.html#aba840a18a311ac64bd59cccf5229967d">setName</a>(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::string <a class="code" href="class_store.html#afe9d17750e392f7785065854ef01b94b">getName</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_store.html#a551fca948b04e788af24f39675fb4517">getEvaluation</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_store.html#a94da830bbe9d06f5d1e0bf3d1057a390">getProfit</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::string <a class="code" href="class_store.html#a63ca141ad50fcdf28c393171124197a3">read</a>(<span class="keyword">const</span> std::string&amp; dataFolderPath, <span class="keywordtype">bool</span> doReset);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    std::string <a class="code" href="class_store.html#a22d0f9f02098e646e3bb699490b58725">write</a>(<span class="keyword">const</span> std::string&amp; dataFolderPath);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_store.html#a379cbd51cea67bacd3b1964b8c2dc397">reset</a>();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="class_store.html#aa81b71fb17be0dca5e3cd0350c420543">   91</a></span>&#160;    <a class="code" href="class_product_manager.html">ProductManager</a> <a class="code" href="class_store.html#aa81b71fb17be0dca5e3cd0350c420543">productManager</a>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="class_store.html#ac8d8260d7fff62926099f1c8e4ecbc37">   96</a></span>&#160;    <a class="code" href="class_client_manager.html">ClientManager</a> <a class="code" href="class_store.html#ac8d8260d7fff62926099f1c8e4ecbc37">clientManager</a>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="class_store.html#a9d9ee3f83b27fc1f864d2b460d1b63e3">  101</a></span>&#160;    <a class="code" href="class_worker_manager.html">WorkerManager</a> <a class="code" href="class_store.html#a9d9ee3f83b27fc1f864d2b460d1b63e3">workerManager</a>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="class_store.html#af70cd00a2ab3246d5dbce130383dda38">  106</a></span>&#160;    <a class="code" href="class_order_manager.html">OrderManager</a> <a class="code" href="class_store.html#af70cd00a2ab3246d5dbce130383dda38">orderManager</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="class_store.html#abe4da3457b804879391e1db02529ed59">  111</a></span>&#160;    <a class="code" href="class_boss.html">Boss</a> <a class="code" href="class_store.html#abe4da3457b804879391e1db02529ed59">boss</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    std::string _name;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;};</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif //SRC_STORE_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_store_html_afe9d17750e392f7785065854ef01b94b"><div class="ttname"><a href="class_store.html#afe9d17750e392f7785065854ef01b94b">Store::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdef"><b>Definition:</b> store.cpp:17</div></div>
-<div class="ttc" id="aclass_store_html_abe4da3457b804879391e1db02529ed59"><div class="ttname"><a href="class_store.html#abe4da3457b804879391e1db02529ed59">Store::boss</a></div><div class="ttdeci">Boss boss</div><div class="ttdef"><b>Definition:</b> store.h:42</div></div>
+<div class="ttc" id="aclass_store_html_afe9d17750e392f7785065854ef01b94b"><div class="ttname"><a href="class_store.html#afe9d17750e392f7785065854ef01b94b">Store::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdoc">Gets the store name.</div><div class="ttdef"><b>Definition:</b> store.cpp:13</div></div>
+<div class="ttc" id="aclass_store_html_abe4da3457b804879391e1db02529ed59"><div class="ttname"><a href="class_store.html#abe4da3457b804879391e1db02529ed59">Store::boss</a></div><div class="ttdeci">Boss boss</div><div class="ttdoc">The boss associated to the store.</div><div class="ttdef"><b>Definition:</b> store.h:111</div></div>
 <div class="ttc" id="aclass_order_manager_html"><div class="ttname"><a href="class_order_manager.html">OrderManager</a></div><div class="ttdef"><b>Definition:</b> order_manager.h:19</div></div>
-<div class="ttc" id="aclass_store_html_a9d9ee3f83b27fc1f864d2b460d1b63e3"><div class="ttname"><a href="class_store.html#a9d9ee3f83b27fc1f864d2b460d1b63e3">Store::workerManager</a></div><div class="ttdeci">WorkerManager workerManager</div><div class="ttdef"><b>Definition:</b> store.h:40</div></div>
-<div class="ttc" id="aclass_store_html"><div class="ttname"><a href="class_store.html">Store</a></div><div class="ttdef"><b>Definition:</b> store.h:29</div></div>
-<div class="ttc" id="aclass_store_html_a551fca948b04e788af24f39675fb4517"><div class="ttname"><a href="class_store.html#a551fca948b04e788af24f39675fb4517">Store::getEvaluation</a></div><div class="ttdeci">int getEvaluation() const</div><div class="ttdef"><b>Definition:</b> store.cpp:21</div></div>
-<div class="ttc" id="aclass_store_html_aa81b71fb17be0dca5e3cd0350c420543"><div class="ttname"><a href="class_store.html#aa81b71fb17be0dca5e3cd0350c420543">Store::productManager</a></div><div class="ttdeci">ProductManager productManager</div><div class="ttdef"><b>Definition:</b> store.h:38</div></div>
-<div class="ttc" id="aclass_worker_manager_html"><div class="ttname"><a href="class_worker_manager.html">WorkerManager</a></div><div class="ttdef"><b>Definition:</b> worker_manager.h:18</div></div>
-<div class="ttc" id="aproduct_8h_html"><div class="ttname"><a href="product_8h.html">product.h</a></div></div>
-<div class="ttc" id="aclass_store_html_a94da830bbe9d06f5d1e0bf3d1057a390"><div class="ttname"><a href="class_store.html#a94da830bbe9d06f5d1e0bf3d1057a390">Store::getProfit</a></div><div class="ttdeci">float getProfit() const</div><div class="ttdef"><b>Definition:</b> store.cpp:35</div></div>
-<div class="ttc" id="aclass_boss_html"><div class="ttname"><a href="class_boss.html">Boss</a></div><div class="ttdef"><b>Definition:</b> boss.h:14</div></div>
-<div class="ttc" id="aboss_8h_html"><div class="ttname"><a href="boss_8h.html">boss.h</a></div></div>
-<div class="ttc" id="aclass_client_manager_html"><div class="ttname"><a href="class_client_manager.html">ClientManager</a></div><div class="ttdef"><b>Definition:</b> client_manager.h:16</div></div>
-<div class="ttc" id="aclass_store_html_a06964804d6061a499607cb7c012e3593"><div class="ttname"><a href="class_store.html#a06964804d6061a499607cb7c012e3593">Store::Store</a></div><div class="ttdeci">Store(std::string name=&quot;Bakery Store&quot;)</div><div class="ttdef"><b>Definition:</b> store.cpp:10</div></div>
-<div class="ttc" id="aorder_8h_html"><div class="ttname"><a href="order_8h.html">order.h</a></div></div>
-<div class="ttc" id="aclass_store_html_af70cd00a2ab3246d5dbce130383dda38"><div class="ttname"><a href="class_store.html#af70cd00a2ab3246d5dbce130383dda38">Store::orderManager</a></div><div class="ttdeci">OrderManager orderManager</div><div class="ttdef"><b>Definition:</b> store.h:41</div></div>
-<div class="ttc" id="aclass_store_html_aba840a18a311ac64bd59cccf5229967d"><div class="ttname"><a href="class_store.html#aba840a18a311ac64bd59cccf5229967d">Store::setName</a></div><div class="ttdeci">void setName(const std::string &amp;name)</div><div class="ttdef"><b>Definition:</b> store.cpp:31</div></div>
-<div class="ttc" id="aclass_store_html_ac8d8260d7fff62926099f1c8e4ecbc37"><div class="ttname"><a href="class_store.html#ac8d8260d7fff62926099f1c8e4ecbc37">Store::clientManager</a></div><div class="ttdeci">ClientManager clientManager</div><div class="ttdef"><b>Definition:</b> store.h:39</div></div>
+<div class="ttc" id="aclass_store_html_a63ca141ad50fcdf28c393171124197a3"><div class="ttname"><a href="class_store.html#a63ca141ad50fcdf28c393171124197a3">Store::read</a></div><div class="ttdeci">std::string read(const std::string &amp;dataFolderPath, bool doReset)</div><div class="ttdoc">Reads all the store data (boss, worker manager, product manager, client manager and order manager) fr...</div><div class="ttdef"><b>Definition:</b> store.cpp:39</div></div>
+<div class="ttc" id="aclass_store_html_a9d9ee3f83b27fc1f864d2b460d1b63e3"><div class="ttname"><a href="class_store.html#a9d9ee3f83b27fc1f864d2b460d1b63e3">Store::workerManager</a></div><div class="ttdeci">WorkerManager workerManager</div><div class="ttdoc">The worker manager associated to the store.</div><div class="ttdef"><b>Definition:</b> store.h:101</div></div>
+<div class="ttc" id="aclass_store_html"><div class="ttname"><a href="class_store.html">Store</a></div><div class="ttdoc">Class relative to a store.</div><div class="ttdef"><b>Definition:</b> store.h:29</div></div>
+<div class="ttc" id="aclass_store_html_a551fca948b04e788af24f39675fb4517"><div class="ttname"><a href="class_store.html#a551fca948b04e788af24f39675fb4517">Store::getEvaluation</a></div><div class="ttdeci">int getEvaluation() const</div><div class="ttdoc">Gets the store evaluation given by the clients.</div><div class="ttdef"><b>Definition:</b> store.cpp:17</div></div>
+<div class="ttc" id="aclass_store_html_aa81b71fb17be0dca5e3cd0350c420543"><div class="ttname"><a href="class_store.html#aa81b71fb17be0dca5e3cd0350c420543">Store::productManager</a></div><div class="ttdeci">ProductManager productManager</div><div class="ttdoc">The product manager associated to the store.</div><div class="ttdef"><b>Definition:</b> store.h:91</div></div>
+<div class="ttc" id="aclass_worker_manager_html"><div class="ttname"><a href="class_worker_manager.html">WorkerManager</a></div><div class="ttdoc">Class that manages the store workers.</div><div class="ttdef"><b>Definition:</b> worker_manager.h:18</div></div>
+<div class="ttc" id="aclass_store_html_a94da830bbe9d06f5d1e0bf3d1057a390"><div class="ttname"><a href="class_store.html#a94da830bbe9d06f5d1e0bf3d1057a390">Store::getProfit</a></div><div class="ttdeci">float getProfit() const</div><div class="ttdoc">Gets the store's profit.</div><div class="ttdef"><b>Definition:</b> store.cpp:31</div></div>
+<div class="ttc" id="aclass_boss_html"><div class="ttname"><a href="class_boss.html">Boss</a></div><div class="ttdoc">Class relative to the store boss.</div><div class="ttdef"><b>Definition:</b> boss.h:12</div></div>
+<div class="ttc" id="aclass_store_html_a379cbd51cea67bacd3b1964b8c2dc397"><div class="ttname"><a href="class_store.html#a379cbd51cea67bacd3b1964b8c2dc397">Store::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets all the store data.</div><div class="ttdef"><b>Definition:</b> store.cpp:54</div></div>
+<div class="ttc" id="aclass_client_manager_html"><div class="ttname"><a href="class_client_manager.html">ClientManager</a></div><div class="ttdoc">Class that manages the store clients.</div><div class="ttdef"><b>Definition:</b> client_manager.h:14</div></div>
+<div class="ttc" id="aclass_store_html_a06964804d6061a499607cb7c012e3593"><div class="ttname"><a href="class_store.html#a06964804d6061a499607cb7c012e3593">Store::Store</a></div><div class="ttdeci">Store(std::string name=&quot;Bakery Store&quot;)</div><div class="ttdoc">Creates a new store object.</div><div class="ttdef"><b>Definition:</b> store.cpp:6</div></div>
+<div class="ttc" id="aclass_store_html_af70cd00a2ab3246d5dbce130383dda38"><div class="ttname"><a href="class_store.html#af70cd00a2ab3246d5dbce130383dda38">Store::orderManager</a></div><div class="ttdeci">OrderManager orderManager</div><div class="ttdoc">The order manager associated to the store.</div><div class="ttdef"><b>Definition:</b> store.h:106</div></div>
+<div class="ttc" id="aclass_store_html_aba840a18a311ac64bd59cccf5229967d"><div class="ttname"><a href="class_store.html#aba840a18a311ac64bd59cccf5229967d">Store::setName</a></div><div class="ttdeci">void setName(const std::string &amp;name)</div><div class="ttdoc">Sets the store name.</div><div class="ttdef"><b>Definition:</b> store.cpp:27</div></div>
+<div class="ttc" id="aclass_store_html_ac8d8260d7fff62926099f1c8e4ecbc37"><div class="ttname"><a href="class_store.html#ac8d8260d7fff62926099f1c8e4ecbc37">Store::clientManager</a></div><div class="ttdeci">ClientManager clientManager</div><div class="ttdoc">The client manager associated to the store.</div><div class="ttdef"><b>Definition:</b> store.h:96</div></div>
 <div class="ttc" id="aclass_order_html"><div class="ttname"><a href="class_order.html">Order</a></div><div class="ttdef"><b>Definition:</b> order.h:20</div></div>
-<div class="ttc" id="aclass_product_manager_html"><div class="ttname"><a href="class_product_manager.html">ProductManager</a></div><div class="ttdef"><b>Definition:</b> product_manager.h:17</div></div>
-<div class="ttc" id="aperson_8h_html"><div class="ttname"><a href="person_8h.html">person.h</a></div></div>
+<div class="ttc" id="aclass_product_manager_html"><div class="ttname"><a href="class_product_manager.html">ProductManager</a></div><div class="ttdoc">Class that manages the store products.</div><div class="ttdef"><b>Definition:</b> product_manager.h:20</div></div>
+<div class="ttc" id="aclass_store_html_a22d0f9f02098e646e3bb699490b58725"><div class="ttname"><a href="class_store.html#a22d0f9f02098e646e3bb699490b58725">Store::write</a></div><div class="ttdeci">std::string write(const std::string &amp;dataFolderPath)</div><div class="ttdoc">Writes all the store data (boss, worker manager, product manager, client manager and order manager) t...</div><div class="ttdef"><b>Definition:</b> store.cpp:62</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_a067212c9d0141ae09f64ef6d125d940.html">store</a></li><li class="navelem"><a class="el" href="store_8h.html">store.h</a></li>
+    <li class="navelem"><a class="el" href="dir_a067212c9d0141ae09f64ef6d125d940.html">store</a></li><li class="navelem"><b>store.h</b></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

@@ -33,7 +33,6 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AEDA Project
    </div>
-   <div id="projectbrief">Bakery project for AEDA, FEUP, MIEIC. Work in progress.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -101,6 +100,9 @@ $(document).ready(function(){initNavTree('class_bread.html',''); initResizable()
 </div><!--header-->
 <div class="contents">
 
+<p>The class relative to a specific type of product: bread.  
+ <a href="class_bread.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="product_8h_source.html">product.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Bread:</div>
@@ -108,42 +110,60 @@ Inheritance diagram for Bread:</div>
  <div class="center">
   <img src="class_bread.png" usemap="#Bread_map" alt=""/>
   <map id="Bread_map" name="Bread_map">
-<area href="class_product.html" alt="Product" shape="rect" coords="0,0,56,24"/>
+<area href="class_product.html" title="Class relative to a store product." alt="Product" shape="rect" coords="0,0,56,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab358f240ce5067b05be9fd270ca86283"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bread.html#ab358f240ce5067b05be9fd270ca86283">Bread</a> (std::string name, float price, bool small=true)</td></tr>
+<tr class="memdesc:ab358f240ce5067b05be9fd270ca86283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new bread object.  <a href="class_bread.html#ab358f240ce5067b05be9fd270ca86283">More...</a><br /></td></tr>
 <tr class="separator:ab358f240ce5067b05be9fd270ca86283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88283927a303adb18a9042613b5398ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bread.html#a88283927a303adb18a9042613b5398ef">isSmall</a> () const</td></tr>
+<tr class="memdesc:a88283927a303adb18a9042613b5398ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the bread is small or not.  <a href="class_bread.html#a88283927a303adb18a9042613b5398ef">More...</a><br /></td></tr>
 <tr class="separator:a88283927a303adb18a9042613b5398ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b6fcc59b28176c53950ded6678ad112"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bread.html#a5b6fcc59b28176c53950ded6678ad112">operator==</a> (const <a class="el" href="class_bread.html">Bread</a> &amp;bread) const</td></tr>
+<tr class="memdesc:a5b6fcc59b28176c53950ded6678ad112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator.  <a href="class_bread.html#a5b6fcc59b28176c53950ded6678ad112">More...</a><br /></td></tr>
 <tr class="separator:a5b6fcc59b28176c53950ded6678ad112"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1882ae57fd904d222c2793b73ba694df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bread.html#a1882ae57fd904d222c2793b73ba694df">print</a> (std::ostream &amp;os) const override</td></tr>
+<tr class="memdesc:a1882ae57fd904d222c2793b73ba694df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all the bread data (name, size and price).  <a href="class_bread.html#a1882ae57fd904d222c2793b73ba694df">More...</a><br /></td></tr>
 <tr class="separator:a1882ae57fd904d222c2793b73ba694df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_product"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_product')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_product.html">Product</a></td></tr>
+<tr class="memitem:a35fd1ce655c8358c95d59cb5e9682b96 inherit pub_methods_class_product"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a35fd1ce655c8358c95d59cb5e9682b96">Product</a> (std::string name, float price)</td></tr>
+<tr class="memdesc:a35fd1ce655c8358c95d59cb5e9682b96 inherit pub_methods_class_product"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new product object.  <a href="class_product.html#a35fd1ce655c8358c95d59cb5e9682b96">More...</a><br /></td></tr>
+<tr class="separator:a35fd1ce655c8358c95d59cb5e9682b96 inherit pub_methods_class_product"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b28088bf44ce0b2a1548fb1d48709ca inherit pub_methods_class_product"><td class="memItemLeft" align="right" valign="top"><a id="a8b28088bf44ce0b2a1548fb1d48709ca"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a8b28088bf44ce0b2a1548fb1d48709ca">~Product</a> ()=default</td></tr>
+<tr class="memdesc:a8b28088bf44ce0b2a1548fb1d48709ca inherit pub_methods_class_product"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the product object. <br /></td></tr>
+<tr class="separator:a8b28088bf44ce0b2a1548fb1d48709ca inherit pub_methods_class_product"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cbd896ca6b2d95088be8ad8c3b11e3b inherit pub_methods_class_product"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a9cbd896ca6b2d95088be8ad8c3b11e3b">getName</a> () const</td></tr>
+<tr class="memdesc:a9cbd896ca6b2d95088be8ad8c3b11e3b inherit pub_methods_class_product"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the product name.  <a href="class_product.html#a9cbd896ca6b2d95088be8ad8c3b11e3b">More...</a><br /></td></tr>
 <tr class="separator:a9cbd896ca6b2d95088be8ad8c3b11e3b inherit pub_methods_class_product"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0aaea95b8d3241b3758246254b8575e2 inherit pub_methods_class_product"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a0aaea95b8d3241b3758246254b8575e2">getPrice</a> () const</td></tr>
+<tr class="memdesc:a0aaea95b8d3241b3758246254b8575e2 inherit pub_methods_class_product"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the product price.  <a href="class_product.html#a0aaea95b8d3241b3758246254b8575e2">More...</a><br /></td></tr>
 <tr class="separator:a0aaea95b8d3241b3758246254b8575e2 inherit pub_methods_class_product"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31e7c281fbf08bf2d3202f15a1342e21 inherit pub_methods_class_product"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a31e7c281fbf08bf2d3202f15a1342e21">operator==</a> (const <a class="el" href="class_product.html">Product</a> &amp;p) const</td></tr>
+<tr class="memdesc:a31e7c281fbf08bf2d3202f15a1342e21 inherit pub_methods_class_product"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator.  <a href="class_product.html#a31e7c281fbf08bf2d3202f15a1342e21">More...</a><br /></td></tr>
 <tr class="separator:a31e7c281fbf08bf2d3202f15a1342e21 inherit pub_methods_class_product"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac45a213fbfe36bf690bf059706c56858 inherit pub_methods_class_product"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#ac45a213fbfe36bf690bf059706c56858">operator&lt;</a> (const <a class="el" href="class_product.html">Product</a> &amp;p) const</td></tr>
+<tr class="memdesc:ac45a213fbfe36bf690bf059706c56858 inherit pub_methods_class_product"><td class="mdescLeft">&#160;</td><td class="mdescRight">Less than operator.  <a href="class_product.html#ac45a213fbfe36bf690bf059706c56858">More...</a><br /></td></tr>
 <tr class="separator:ac45a213fbfe36bf690bf059706c56858 inherit pub_methods_class_product"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_methods_class_product"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_product')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_product.html">Product</a></td></tr>
-<tr class="memitem:a35fd1ce655c8358c95d59cb5e9682b96 inherit pro_methods_class_product"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a35fd1ce655c8358c95d59cb5e9682b96">Product</a> (std::string name, float price)</td></tr>
-<tr class="separator:a35fd1ce655c8358c95d59cb5e9682b96 inherit pro_methods_class_product"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_product"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_product')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_product.html">Product</a></td></tr>
-<tr class="memitem:a8524c26a92b6be2db6b808a3fecd3976 inherit pro_attribs_class_product"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a8524c26a92b6be2db6b808a3fecd3976">_name</a></td></tr>
+<tr class="memitem:a8524c26a92b6be2db6b808a3fecd3976 inherit pro_attribs_class_product"><td class="memItemLeft" align="right" valign="top"><a id="a8524c26a92b6be2db6b808a3fecd3976"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a8524c26a92b6be2db6b808a3fecd3976">_name</a></td></tr>
+<tr class="memdesc:a8524c26a92b6be2db6b808a3fecd3976 inherit pro_attribs_class_product"><td class="mdescLeft">&#160;</td><td class="mdescRight">The product name. <br /></td></tr>
 <tr class="separator:a8524c26a92b6be2db6b808a3fecd3976 inherit pro_attribs_class_product"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e3eb97a1823206ce831b03e4d71454c inherit pro_attribs_class_product"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">_price</a></td></tr>
+<tr class="memitem:a9e3eb97a1823206ce831b03e4d71454c inherit pro_attribs_class_product"><td class="memItemLeft" align="right" valign="top"><a id="a9e3eb97a1823206ce831b03e4d71454c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">_price</a></td></tr>
+<tr class="memdesc:a9e3eb97a1823206ce831b03e4d71454c inherit pro_attribs_class_product"><td class="mdescLeft">&#160;</td><td class="mdescRight">The product price. <br /></td></tr>
 <tr class="separator:a9e3eb97a1823206ce831b03e4d71454c inherit pro_attribs_class_product"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The class relative to a specific type of product: bread. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab358f240ce5067b05be9fd270ca86283"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab358f240ce5067b05be9fd270ca86283">&#9670;&nbsp;</a></span>Bread()</h2>
 
@@ -176,6 +196,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a new bread object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>the name </td></tr>
+    <tr><td class="paramname">price</td><td>the price </td></tr>
+    <tr><td class="paramname">small</td><td>true, if it is small; false, otherwise </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -193,6 +223,9 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks whether the bread is small or not. </p>
+<dl class="section return"><dt>Returns</dt><dd>true, if it is small; false, otherwise </dd></dl>
 
 </div>
 </div>
@@ -220,6 +253,15 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Equality operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bread</td><td>the bread to compare with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
 </div>
 </div>
 <a id="a1882ae57fd904d222c2793b73ba694df"></a>
@@ -246,10 +288,22 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Prints all the bread data (name, size and price). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>the output stream </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="class_product.html#a12f459de60dc268cd46532896f4800e8">Product</a>.</p>
 
 </div>
 </div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>product/<a class="el" href="product_8h_source.html">product.h</a></li>
+<li>product/product.cpp</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

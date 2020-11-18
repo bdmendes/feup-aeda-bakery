@@ -1,11 +1,7 @@
-//
-// Created by laimi on 15/10/2020.
-//
 
 #include "store.h"
 
 #include <numeric>
-#include <utility>
 
 Store::Store(std::string name) :
         _name(std::move(name)),

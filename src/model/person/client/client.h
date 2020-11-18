@@ -1,6 +1,3 @@
-//
-// Created by bdmendes on 29/10/20.
-//
 
 #ifndef FEUP_AEDA_PROJECT_CLIENT_H
 #define FEUP_AEDA_PROJECT_CLIENT_H
@@ -10,120 +7,129 @@
 #include <vector>
 #include <string>
 
+/**
+ * Class relative to a store client.
+ */
 class Client : public Person {
 public:
 
     /**
-     * Creates a new client.
+     * Creates a new client object.
      *
      * @param name the name
-     * @param premium the subscription type (basic or premium)
+     * @param premium the subscription type (true, if it is premium; false, otherwise)
      * @param taxID the taxpayer identification number
-     * @param credential the credentials
+     * @param credential the login credentials
      */
     explicit Client(std::string name, int taxID = Person::DEFAULT_TAX_ID, bool premium = false,
            Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     /**
-     *Cheks if the client's subscription type is premium.
+     * Checks if the client subscription type is premium.
      *
-     * @return true, if the client is premium; false, otherwise
+     * @return true, if the client subscription type is premium; false, otherwise
      */
     bool isPremium() const;
 
     /**
-     *Gets the order's mean evaluation given by the client.
+     * Gets the order mean evaluation given by the client.
      *
-     * @return the order's mean evaluation
+     * @return the order mean evaluation
      */
     float getMeanEvaluation() const;
 
     /**
      * Gets the client points.
      *
-     * @return the client's points
+     * @return the client points
      */
     unsigned getPoints() const;
 
-    /**
-     *Gets the list of all order's evaluation given by the client.
+/*    *//**
+     * Gets the list of all of the orders evaluation given by the client.
      *
-     * @return the list of order's evaluation
-     */
-    std::vector<int> getEvaluations() const;
+     * @return the list of all of the orders evaluation
+     *//*
+    std::vector<int> getEvaluations() const;*/
 
     /**
-     *Sets the client's subscription type.
+     * Sets the client subscription type.
      *
-     * @param premium
+     * @param premium true to change client subscription type to premium; false, otherwise
      */
     void setPremium(bool premium);
 
     /**
-     *Adds certain points to the client's.
+     * Sets the client points.
+     *
+     * @param points the new points
+     */
+    void setPoints(unsigned points);
+
+    /**
+     * Adds a certain number of points to the client's.
      *
      * @param points the points
      */
     void addPoints(unsigned points);
 
     /**
-     * Removes certain points of the client's points.
+     * Removes a certain number of points from the client points.
      *
      * @param points the points
      */
     void removePoints(unsigned points);
 
     /**
-     * Resets the client's points.
+     * Resets the client points.
      */
     void resetPoints();
-  
+
     /**
      * Adds an order evaluation given by the client.
      *
      * @param evaluation the order evaluation
      */
     void addEvaluation(int evaluation);
-  
-    void setPoints(unsigned points);
 
     /**
-     * Prints
+     * Prints the client data.
      *
      * @param os the output stream
-     * @param showData
+     * @param showData if true, prints all data: name, taxpayer identification number, subscription type, accumulated
+     * points and mean evaluation; otherwise, just prints the name, the taxpayer identification number and log status.
      */
     void print(std::ostream& os, bool showData = true);
 
     /**
-     * Gets the default access credentials.
+     * Gets the client default login credentials.
      *
-     * @return the access credentials
+     * @return the login credentials
      */
     Credential getDefaultCredential() override;
 
     /**
-     * The client's default username.
+     * The client default login username.
      */
     static const char* DEFAULT_USERNAME;
 
     /**
-     * The client's default password.
+     * The client default login password.
      */
     static const char* DEFAULT_PASSWORD;
 private:
     /**
-     *
+     *The client subscription type.
      */
     bool _premium;
 
     /**
-     * The client's points.
+     * The client points.
      */
     unsigned _points;
 
     /**
-     * The client's evaluations.
+     * The list of all order evaluations given by the client.
      */
     std::vector<int> _evaluations;
 };

@@ -1,6 +1,3 @@
-//
-// Created by bdmendes on 29/10/20.
-//
 
 #ifndef FEUP_AEDA_PROJECT_PERSON_H
 #define FEUP_AEDA_PROJECT_PERSON_H
@@ -14,14 +11,34 @@
 #include <iostream>
 
 /**
- *
+ * Struct relative to the login credentials.
  */
 struct Credential {
+    /**
+     * The login username.
+     */
     std::string username;
+
+    /**
+     * The login password.
+     */
     std::string password;
+
+    /**
+     * Equality operator.
+     *
+     * @param c2 the credentials to compare with
+     * @return true, if credentials are equal; false, otherwise
+     */
     bool operator==(const Credential& c2) const{
         return username == c2.username && password == c2.password;
     }
+
+    /**
+     * Checks if the login credentials are reserved to the current user.
+     *
+     * @return true, if the login credentials are reserved; false, otherwise
+     */
     bool isReserved() const {
         return username == "back" || username == "exit"
         || password == "back" || password == "exit";
@@ -29,85 +46,85 @@ struct Credential {
 };
 
 /**
- *
+ * Class relative to a store user.
  */
 class Person {
 public:
     /**
-     * Creates a new person.
+     * Creates a new person object.
      *
      * @param name the name
      * @param taxID the taxpayer identification number
-     * @param credential the access credentials (username and password)
+     * @param credential the login credentials (username and password)
      */
     Person(std::string name, int taxID, Credential credential);
 
     /**
-     * Destructs the person's object.
+     * Destructs the person object.
      */
     virtual ~Person() = default;
 
     /**
-     * Gets the person's name.
+     * Gets the person name.
      *
      * @return the name
      */
     std::string getName() const;
 
     /**
-     * Gets the person's taxpayer identification number.
+     * Gets the person taxpayer identification number.
      *
-     * @return the name
+     * @return the taxpayer identification number
      */
     int getTaxId() const;
 
     /**
-     * Gets the person's access credentials.
+     * Gets the person login credentials.
      *
-     * @return the credentials
+     * @return the login credentials
      */
     Credential getCredential() const;
 
     /**
-     * Cheks if the person is logged.
+     * Checks if the person is logged in.
      *
-     * @return true, if the person is logged; false, otherwise
+     * @return true, if the person is logged in; false, otherwise
      */
     bool isLogged() const;
 
     /**
-     * Sets the person's log status.
+     * Sets the person log status.
      *
-     * @param logged the log status
+     * @param logged the log status (true, if it is logged int; false, otherwise)
      */
     void setLogged(bool logged);
 
     /**
-     * Sets the person's name.
+     * Sets the person name.
      *
      * @param name the name
      */
     void setName(const std::string& name);
 
     /**
-     * Sets the person's taxpayer identification number.
+     * Sets the person taxpayer identification number.
      *
      * @param taxID the taxpayer identification number
      */
     void setTaxID(int taxID);
 
     /**
-     * Sets the person's access credentials.
+     * Sets the person login credentials.
      *
-     * @param credential the credentials
+     * @param credential the login credentials
      */
     void setCredential(const Credential& credential);
 
     /**
-     * Minor operator.
+     * Less than operator.
      *
      * @param p2 the person to compare with
-     * @return true, if person is smaller than p2; false, otherwise.
+     * @return true, if person is less than p2, according to alphabetical order ; false, otherwise.
      */
     bool operator<(const Person& p2) const;
 
@@ -120,9 +137,9 @@ public:
     bool operator==(const Person& p2) const;
 
     /**
-     * Gets the default access credentials.
+     * Gets the default login credentials.
      *
-     * @return the default access credentials
+     * @return the default login credentials
      */
     virtual Credential getDefaultCredential() = 0;
 
@@ -133,30 +150,37 @@ public:
 
 private:
     /**
-     * The client's name.
+     * The person name.
      */
     std::string _name;
 
     /**
-     * The client's taxpayer identification number.
+     * The person taxpayer identification number.
      */
     int _taxID;
 
     /**
-     * The client's access credentials.
+     * The person login credentials.
      */
     Credential _credential;
 
     /**
-     * The client's log status.
+     * The person log status.
      */
     bool _logged;
 };
 
 /**
- *
+ * Struct to compare two persons pointers.
  */
 struct PersonSmaller{
+    /**
+     * Checks if a person is smaller than other.
+     *
+     * @param p1 the first person to compare with
+     * @param p2 the second person to compare with
+     * @return true, if p1 is less than p2; false, otherwise
+     */
     bool operator()(const Person* p1, const Person* p2) const{
         return *p1 < *p2;
     }

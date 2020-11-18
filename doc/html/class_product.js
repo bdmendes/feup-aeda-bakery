@@ -1,6 +1,7 @@
 var class_product =
 [
     [ "Product", "class_product.html#a35fd1ce655c8358c95d59cb5e9682b96", null ],
+    [ "~Product", "class_product.html#a8b28088bf44ce0b2a1548fb1d48709ca", null ],
     [ "getName", "class_product.html#a9cbd896ca6b2d95088be8ad8c3b11e3b", null ],
     [ "getPrice", "class_product.html#a0aaea95b8d3241b3758246254b8575e2", null ],
     [ "operator<", "class_product.html#ac45a213fbfe36bf690bf059706c56858", null ],
