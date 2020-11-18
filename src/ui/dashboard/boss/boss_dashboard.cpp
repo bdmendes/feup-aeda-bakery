@@ -56,7 +56,7 @@ void BossDashboard::show() {
         else printError();
     }
 
-    show(); // tidy complains here about endless loop; no clue (input == BACK returns)
+    show();
 }
 
 void BossDashboard::addWorker() {

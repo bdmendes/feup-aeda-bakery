@@ -32,12 +32,23 @@ void WorkerDashboard::show() {
             _worker->setLogged(false);
             return;
         }
-        else if (validInput1Cmd1Arg(input,"edit","account")) managePersonalData(_worker);
-        else if (validInput1Cmd1Arg(input,"manage","stock")) manageStock();
-        else if (validInput1Cmd1Arg(input,"manage","orders")) manageOrders(nullptr, _worker);
-        else if (validInput1Cmd1Arg(input,"manage","clients")) manageClients();
-        else {printError(); continue;}
-        break;
+        else if (validInput1Cmd1Arg(input,"edit","account")){
+            managePersonalData(_worker);
+            break;
+        }
+        else if (validInput1Cmd1Arg(input,"manage","stock")){
+            manageStock();
+            break;
+        }
+        else if (validInput1Cmd1Arg(input,"manage","orders")){
+            manageOrders(nullptr, _worker);
+            break;
+        }
+        else if (validInput1Cmd1Arg(input,"manage","clients")){
+            manageClients();
+            break;
+        }
+        else printError();
     }
 
     show();
