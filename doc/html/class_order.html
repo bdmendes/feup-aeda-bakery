@@ -99,73 +99,616 @@ $(document).ready(function(){initNavTree('class_order.html',''); initResizable()
 <div class="title">Order Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class relative to a store order.  
+ <a href="class_order.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="order_8h_source.html">order.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa51383b6cd7afd001ff028f43452fc7b"><td class="memItemLeft" align="right" valign="top"><a id="aa51383b6cd7afd001ff028f43452fc7b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Order</b> (<a class="el" href="class_client.html">Client</a> &amp;client, <a class="el" href="class_worker.html">Worker</a> &amp;worker, <a class="el" href="class_date.html">Date</a> date={})</td></tr>
+<tr class="memitem:aa51383b6cd7afd001ff028f43452fc7b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#aa51383b6cd7afd001ff028f43452fc7b">Order</a> (<a class="el" href="class_client.html">Client</a> &amp;client, <a class="el" href="class_worker.html">Worker</a> &amp;worker, <a class="el" href="class_date.html">Date</a> date={})</td></tr>
+<tr class="memdesc:aa51383b6cd7afd001ff028f43452fc7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new order object.  <a href="class_order.html#aa51383b6cd7afd001ff028f43452fc7b">More...</a><br /></td></tr>
 <tr class="separator:aa51383b6cd7afd001ff028f43452fc7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab47fa66d2993cb8f50005eaf716cb153"><td class="memItemLeft" align="right" valign="top"><a id="ab47fa66d2993cb8f50005eaf716cb153"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasDiscount</b> () const</td></tr>
+<tr class="memitem:ab47fa66d2993cb8f50005eaf716cb153"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#ab47fa66d2993cb8f50005eaf716cb153">hasDiscount</a> () const</td></tr>
+<tr class="memdesc:ab47fa66d2993cb8f50005eaf716cb153"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the order has discount.  <a href="class_order.html#ab47fa66d2993cb8f50005eaf716cb153">More...</a><br /></td></tr>
 <tr class="separator:ab47fa66d2993cb8f50005eaf716cb153"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2bc77c5f6366786e5ff1ca20958e8c4"><td class="memItemLeft" align="right" valign="top"><a id="aa2bc77c5f6366786e5ff1ca20958e8c4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasProduct</b> (<a class="el" href="class_product.html">Product</a> *product)</td></tr>
+<tr class="memitem:aa2bc77c5f6366786e5ff1ca20958e8c4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#aa2bc77c5f6366786e5ff1ca20958e8c4">hasProduct</a> (<a class="el" href="class_product.html">Product</a> *product)</td></tr>
+<tr class="memdesc:aa2bc77c5f6366786e5ff1ca20958e8c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if there is a certain product on the products list.  <a href="class_order.html#aa2bc77c5f6366786e5ff1ca20958e8c4">More...</a><br /></td></tr>
 <tr class="separator:aa2bc77c5f6366786e5ff1ca20958e8c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f55ff4aac1a7b5e93c25965067adf61"><td class="memItemLeft" align="right" valign="top"><a id="a7f55ff4aac1a7b5e93c25965067adf61"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>wasDelivered</b> () const</td></tr>
+<tr class="memitem:a7f55ff4aac1a7b5e93c25965067adf61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#a7f55ff4aac1a7b5e93c25965067adf61">wasDelivered</a> () const</td></tr>
+<tr class="memdesc:a7f55ff4aac1a7b5e93c25965067adf61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the order was delivered.  <a href="class_order.html#a7f55ff4aac1a7b5e93c25965067adf61">More...</a><br /></td></tr>
 <tr class="separator:a7f55ff4aac1a7b5e93c25965067adf61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8149a6d51225cedd99c3eb561619826"><td class="memItemLeft" align="right" valign="top"><a id="aa8149a6d51225cedd99c3eb561619826"></a>
-<a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getWorker</b> () const</td></tr>
+<tr class="memitem:aa8149a6d51225cedd99c3eb561619826"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#aa8149a6d51225cedd99c3eb561619826">getWorker</a> () const</td></tr>
+<tr class="memdesc:aa8149a6d51225cedd99c3eb561619826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the order worker.  <a href="class_order.html#aa8149a6d51225cedd99c3eb561619826">More...</a><br /></td></tr>
 <tr class="separator:aa8149a6d51225cedd99c3eb561619826"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee6b07c639cb14f0df9253245816e004"><td class="memItemLeft" align="right" valign="top"><a id="aee6b07c639cb14f0df9253245816e004"></a>
-<a class="el" href="class_client.html">Client</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getClient</b> () const</td></tr>
+<tr class="memitem:aee6b07c639cb14f0df9253245816e004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_client.html">Client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#aee6b07c639cb14f0df9253245816e004">getClient</a> () const</td></tr>
+<tr class="memdesc:aee6b07c639cb14f0df9253245816e004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the order client.  <a href="class_order.html#aee6b07c639cb14f0df9253245816e004">More...</a><br /></td></tr>
 <tr class="separator:aee6b07c639cb14f0df9253245816e004"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c299ee1c1a6b5d514a65f80f575d69f"><td class="memItemLeft" align="right" valign="top"><a id="a6c299ee1c1a6b5d514a65f80f575d69f"></a>
-std::map&lt; <a class="el" href="class_product.html">Product</a> *, unsigned int, <a class="el" href="struct_product_smaller.html">ProductSmaller</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getProducts</b> () const</td></tr>
+<tr class="memitem:a6c299ee1c1a6b5d514a65f80f575d69f"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="class_product.html">Product</a> *, unsigned int, <a class="el" href="struct_product_smaller.html">ProductSmaller</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#a6c299ee1c1a6b5d514a65f80f575d69f">getProducts</a> () const</td></tr>
+<tr class="memdesc:a6c299ee1c1a6b5d514a65f80f575d69f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of all products.  <a href="class_order.html#a6c299ee1c1a6b5d514a65f80f575d69f">More...</a><br /></td></tr>
 <tr class="separator:a6c299ee1c1a6b5d514a65f80f575d69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec03a2e8887a697b9bd4fed50702e27e"><td class="memItemLeft" align="right" valign="top"><a id="aec03a2e8887a697b9bd4fed50702e27e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getClientEvaluation</b> () const</td></tr>
+<tr class="memitem:aec03a2e8887a697b9bd4fed50702e27e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#aec03a2e8887a697b9bd4fed50702e27e">getClientEvaluation</a> () const</td></tr>
+<tr class="memdesc:aec03a2e8887a697b9bd4fed50702e27e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the evaluation of the order, given by the client when the order is delivered.  <a href="class_order.html#aec03a2e8887a697b9bd4fed50702e27e">More...</a><br /></td></tr>
 <tr class="separator:aec03a2e8887a697b9bd4fed50702e27e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59c22c2fa3d387e3af1213917e0d6beb"><td class="memItemLeft" align="right" valign="top"><a id="a59c22c2fa3d387e3af1213917e0d6beb"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getFinalPrice</b> () const</td></tr>
+<tr class="memitem:a59c22c2fa3d387e3af1213917e0d6beb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#a59c22c2fa3d387e3af1213917e0d6beb">getFinalPrice</a> () const</td></tr>
+<tr class="memdesc:a59c22c2fa3d387e3af1213917e0d6beb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the order final price (with the discount in case the client has it).  <a href="class_order.html#a59c22c2fa3d387e3af1213917e0d6beb">More...</a><br /></td></tr>
 <tr class="separator:a59c22c2fa3d387e3af1213917e0d6beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e3b6dfacb1fbed1948562f312573923"><td class="memItemLeft" align="right" valign="top"><a id="a8e3b6dfacb1fbed1948562f312573923"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getTotal</b> () const</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#a8e3b6dfacb1fbed1948562f312573923">getTotal</a> () const</td></tr>
+<tr class="memdesc:a8e3b6dfacb1fbed1948562f312573923"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the order total price (without any discount). <br /></td></tr>
 <tr class="separator:a8e3b6dfacb1fbed1948562f312573923"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ae66c9dcb4372e4af58eeb4e6ff7cbd"><td class="memItemLeft" align="right" valign="top"><a id="a2ae66c9dcb4372e4af58eeb4e6ff7cbd"></a>
-<a class="el" href="class_date.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getRequestDate</b> () const</td></tr>
+<tr class="memitem:a2ae66c9dcb4372e4af58eeb4e6ff7cbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_date.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#a2ae66c9dcb4372e4af58eeb4e6ff7cbd">getRequestDate</a> () const</td></tr>
+<tr class="memdesc:a2ae66c9dcb4372e4af58eeb4e6ff7cbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the date when the order was requested.  <a href="class_order.html#a2ae66c9dcb4372e4af58eeb4e6ff7cbd">More...</a><br /></td></tr>
 <tr class="separator:a2ae66c9dcb4372e4af58eeb4e6ff7cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8761add916baeb1a58cfc1b61bf65bd"><td class="memItemLeft" align="right" valign="top"><a id="ad8761add916baeb1a58cfc1b61bf65bd"></a>
-<a class="el" href="class_date.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getDeliverDate</b> () const</td></tr>
+<tr class="memitem:ad8761add916baeb1a58cfc1b61bf65bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_date.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#ad8761add916baeb1a58cfc1b61bf65bd">getDeliverDate</a> () const</td></tr>
+<tr class="memdesc:ad8761add916baeb1a58cfc1b61bf65bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the date when the order was delivered.  <a href="class_order.html#ad8761add916baeb1a58cfc1b61bf65bd">More...</a><br /></td></tr>
 <tr class="separator:ad8761add916baeb1a58cfc1b61bf65bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65ee4b635e4affdf0c2abbf3bf13c95c"><td class="memItemLeft" align="right" valign="top"><a id="a65ee4b635e4affdf0c2abbf3bf13c95c"></a>
-<a class="el" href="class_product.html">Product</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>addProduct</b> (<a class="el" href="class_product.html">Product</a> *product, unsigned quantity=1)</td></tr>
+<tr class="memitem:a65ee4b635e4affdf0c2abbf3bf13c95c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_product.html">Product</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#a65ee4b635e4affdf0c2abbf3bf13c95c">addProduct</a> (<a class="el" href="class_product.html">Product</a> *product, unsigned quantity=1)</td></tr>
+<tr class="memdesc:a65ee4b635e4affdf0c2abbf3bf13c95c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a product with a certain quantity to the products list.  <a href="class_order.html#a65ee4b635e4affdf0c2abbf3bf13c95c">More...</a><br /></td></tr>
 <tr class="separator:a65ee4b635e4affdf0c2abbf3bf13c95c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adda694802de170ef107452d917007d4c"><td class="memItemLeft" align="right" valign="top"><a id="adda694802de170ef107452d917007d4c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeProduct</b> (<a class="el" href="class_product.html">Product</a> *product, unsigned quantity)</td></tr>
+<tr class="memitem:adda694802de170ef107452d917007d4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#adda694802de170ef107452d917007d4c">removeProduct</a> (<a class="el" href="class_product.html">Product</a> *product, unsigned quantity)</td></tr>
+<tr class="memdesc:adda694802de170ef107452d917007d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a certain quantity of a product from the products list.  <a href="class_order.html#adda694802de170ef107452d917007d4c">More...</a><br /></td></tr>
 <tr class="separator:adda694802de170ef107452d917007d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac783913da25dcc47096820e852c44b25"><td class="memItemLeft" align="right" valign="top"><a id="ac783913da25dcc47096820e852c44b25"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeProduct</b> (<a class="el" href="class_product.html">Product</a> *product)</td></tr>
+<tr class="memitem:ac783913da25dcc47096820e852c44b25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#ac783913da25dcc47096820e852c44b25">removeProduct</a> (<a class="el" href="class_product.html">Product</a> *product)</td></tr>
+<tr class="memdesc:ac783913da25dcc47096820e852c44b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a certain product from the products list.  <a href="class_order.html#ac783913da25dcc47096820e852c44b25">More...</a><br /></td></tr>
 <tr class="separator:ac783913da25dcc47096820e852c44b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac19e2ca90d030fe695ff7ecdd41c23c4"><td class="memItemLeft" align="right" valign="top"><a id="ac19e2ca90d030fe695ff7ecdd41c23c4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeProduct</b> (unsigned position, unsigned quantity)</td></tr>
+<tr class="memitem:ac19e2ca90d030fe695ff7ecdd41c23c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#ac19e2ca90d030fe695ff7ecdd41c23c4">removeProduct</a> (unsigned position, unsigned quantity)</td></tr>
+<tr class="memdesc:ac19e2ca90d030fe695ff7ecdd41c23c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a certain quantity of a product, at a certain position, from the products list.  <a href="class_order.html#ac19e2ca90d030fe695ff7ecdd41c23c4">More...</a><br /></td></tr>
 <tr class="separator:ac19e2ca90d030fe695ff7ecdd41c23c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcf8d506c31f8194dc43bf21c1170064"><td class="memItemLeft" align="right" valign="top"><a id="abcf8d506c31f8194dc43bf21c1170064"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeProduct</b> (unsigned position)</td></tr>
+<tr class="memitem:abcf8d506c31f8194dc43bf21c1170064"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">removeProduct</a> (unsigned position)</td></tr>
+<tr class="memdesc:abcf8d506c31f8194dc43bf21c1170064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a certain product, at a certain position, from the products list.  <a href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">More...</a><br /></td></tr>
 <tr class="separator:abcf8d506c31f8194dc43bf21c1170064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66541a0731a2e2fd7269e6469675f2e1"><td class="memItemLeft" align="right" valign="top"><a id="a66541a0731a2e2fd7269e6469675f2e1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>deliver</b> (int clientEvaluation, int deliverDuration=30)</td></tr>
+<tr class="memitem:a66541a0731a2e2fd7269e6469675f2e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#a66541a0731a2e2fd7269e6469675f2e1">deliver</a> (int clientEvaluation, int deliverDuration=30)</td></tr>
+<tr class="memdesc:a66541a0731a2e2fd7269e6469675f2e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delivers the order and gets the client evaluation and deliver duration.  <a href="class_order.html#a66541a0731a2e2fd7269e6469675f2e1">More...</a><br /></td></tr>
 <tr class="separator:a66541a0731a2e2fd7269e6469675f2e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21c518844f3c806a41e6b9fbf9f17ef8"><td class="memItemLeft" align="right" valign="top"><a id="a21c518844f3c806a41e6b9fbf9f17ef8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_order.html">Order</a> &amp;rhs) const</td></tr>
+<tr class="memitem:a21c518844f3c806a41e6b9fbf9f17ef8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#a21c518844f3c806a41e6b9fbf9f17ef8">operator==</a> (const <a class="el" href="class_order.html">Order</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:a21c518844f3c806a41e6b9fbf9f17ef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator.  <a href="class_order.html#a21c518844f3c806a41e6b9fbf9f17ef8">More...</a><br /></td></tr>
 <tr class="separator:a21c518844f3c806a41e6b9fbf9f17ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4e3f4722666009c38b151a0dfec104f"><td class="memItemLeft" align="right" valign="top"><a id="ac4e3f4722666009c38b151a0dfec104f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (const <a class="el" href="class_order.html">Order</a> &amp;rhs) const</td></tr>
+<tr class="memitem:ac4e3f4722666009c38b151a0dfec104f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#ac4e3f4722666009c38b151a0dfec104f">operator&lt;</a> (const <a class="el" href="class_order.html">Order</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:ac4e3f4722666009c38b151a0dfec104f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Less than operator.  <a href="class_order.html#ac4e3f4722666009c38b151a0dfec104f">More...</a><br /></td></tr>
 <tr class="separator:ac4e3f4722666009c38b151a0dfec104f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d1117f03be704453fef2038380439c2"><td class="memItemLeft" align="right" valign="top"><a id="a8d1117f03be704453fef2038380439c2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (std::ostream &amp;os) const</td></tr>
+<tr class="memitem:a8d1117f03be704453fef2038380439c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#a8d1117f03be704453fef2038380439c2">print</a> (std::ostream &amp;os) const</td></tr>
+<tr class="memdesc:a8d1117f03be704453fef2038380439c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all the order data: client name, request date, worker name, deliver date (if it was already delivered), all the products description - category (if it is cake or bread), price per unit and requested quantity - and whether there is a discount or not.  <a href="class_order.html#a8d1117f03be704453fef2038380439c2">More...</a><br /></td></tr>
 <tr class="separator:a8d1117f03be704453fef2038380439c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class relative to a store order. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa51383b6cd7afd001ff028f43452fc7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa51383b6cd7afd001ff028f43452fc7b">&#9670;&nbsp;</a></span>Order()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Order::Order </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_client.html">Client</a> &amp;&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_worker.html">Worker</a> &amp;&#160;</td>
+          <td class="paramname"><em>worker</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_date.html">Date</a>&#160;</td>
+          <td class="paramname"><em>date</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new order object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>the client </td></tr>
+    <tr><td class="paramname">worker</td><td>the worker </td></tr>
+    <tr><td class="paramname">date</td><td>the request date </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a65ee4b635e4affdf0c2abbf3bf13c95c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65ee4b635e4affdf0c2abbf3bf13c95c">&#9670;&nbsp;</a></span>addProduct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_product.html">Product</a> * Order::addProduct </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_product.html">Product</a> *&#160;</td>
+          <td class="paramname"><em>product</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>quantity</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a product with a certain quantity to the products list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">product</td><td>the product </td></tr>
+    <tr><td class="paramname">quantity</td><td>the quantity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the product added to the products list </dd></dl>
+
+</div>
+</div>
+<a id="a66541a0731a2e2fd7269e6469675f2e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66541a0731a2e2fd7269e6469675f2e1">&#9670;&nbsp;</a></span>deliver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Order::deliver </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clientEvaluation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deliverDuration</em> = <code>30</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delivers the order and gets the client evaluation and deliver duration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clientEvaluation</td><td>the client evaluation </td></tr>
+    <tr><td class="paramname">deliverDuration</td><td>the deliver duration </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aee6b07c639cb14f0df9253245816e004"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee6b07c639cb14f0df9253245816e004">&#9670;&nbsp;</a></span>getClient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_client.html">Client</a> * Order::getClient </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the order client. </p>
+<dl class="section return"><dt>Returns</dt><dd>the client </dd></dl>
+
+</div>
+</div>
+<a id="aec03a2e8887a697b9bd4fed50702e27e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec03a2e8887a697b9bd4fed50702e27e">&#9670;&nbsp;</a></span>getClientEvaluation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Order::getClientEvaluation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the evaluation of the order, given by the client when the order is delivered. </p>
+<dl class="section return"><dt>Returns</dt><dd>the client evaluation of the order </dd></dl>
+
+</div>
+</div>
+<a id="ad8761add916baeb1a58cfc1b61bf65bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8761add916baeb1a58cfc1b61bf65bd">&#9670;&nbsp;</a></span>getDeliverDate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_date.html">Date</a> Order::getDeliverDate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the date when the order was delivered. </p>
+<dl class="section return"><dt>Returns</dt><dd>the order deliver date </dd></dl>
+
+</div>
+</div>
+<a id="a59c22c2fa3d387e3af1213917e0d6beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59c22c2fa3d387e3af1213917e0d6beb">&#9670;&nbsp;</a></span>getFinalPrice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Order::getFinalPrice </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the order final price (with the discount in case the client has it). </p>
+<dl class="section return"><dt>Returns</dt><dd>the final price </dd></dl>
+
+</div>
+</div>
+<a id="a6c299ee1c1a6b5d514a65f80f575d69f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c299ee1c1a6b5d514a65f80f575d69f">&#9670;&nbsp;</a></span>getProducts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; <a class="el" href="class_product.html">Product</a> *, unsigned int, <a class="el" href="struct_product_smaller.html">ProductSmaller</a> &gt; Order::getProducts </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the list of all products. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a2ae66c9dcb4372e4af58eeb4e6ff7cbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ae66c9dcb4372e4af58eeb4e6ff7cbd">&#9670;&nbsp;</a></span>getRequestDate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_date.html">Date</a> Order::getRequestDate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the date when the order was requested. </p>
+<dl class="section return"><dt>Returns</dt><dd>the order request date </dd></dl>
+
+</div>
+</div>
+<a id="aa8149a6d51225cedd99c3eb561619826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8149a6d51225cedd99c3eb561619826">&#9670;&nbsp;</a></span>getWorker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_worker.html">Worker</a> * Order::getWorker </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the order worker. </p>
+<dl class="section return"><dt>Returns</dt><dd>the worker </dd></dl>
+
+</div>
+</div>
+<a id="ab47fa66d2993cb8f50005eaf716cb153"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab47fa66d2993cb8f50005eaf716cb153">&#9670;&nbsp;</a></span>hasDiscount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Order::hasDiscount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the order has discount. </p>
+<dl class="section return"><dt>Returns</dt><dd>true, if the client has 100 points and the subscription type is premium (there is a discount of 5%) or if the client has 200 points and the subscription type is basic (there is a discount of 2%); false, otherwise </dd></dl>
+
+</div>
+</div>
+<a id="aa2bc77c5f6366786e5ff1ca20958e8c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2bc77c5f6366786e5ff1ca20958e8c4">&#9670;&nbsp;</a></span>hasProduct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Order::hasProduct </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_product.html">Product</a> *&#160;</td>
+          <td class="paramname"><em>product</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if there is a certain product on the products list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">product</td><td>the product </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if there is the product on the products list; false, otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ac4e3f4722666009c38b151a0dfec104f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4e3f4722666009c38b151a0dfec104f">&#9670;&nbsp;</a></span>operator&lt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Order::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_order.html">Order</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Less than operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td>the order to compare with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if the order was requested first than the rhs; false, otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a21c518844f3c806a41e6b9fbf9f17ef8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21c518844f3c806a41e6b9fbf9f17ef8">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Order::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_order.html">Order</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Equality operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td>the order to compare with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if the orders are equal; false, otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a8d1117f03be704453fef2038380439c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d1117f03be704453fef2038380439c2">&#9670;&nbsp;</a></span>print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Order::print </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints all the order data: client name, request date, worker name, deliver date (if it was already delivered), all the products description - category (if it is cake or bread), price per unit and requested quantity - and whether there is a discount or not. </p>
+<p>If there aren't any requested products, it prints "No products added".</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>the output stream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac783913da25dcc47096820e852c44b25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac783913da25dcc47096820e852c44b25">&#9670;&nbsp;</a></span>removeProduct() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Order::removeProduct </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_product.html">Product</a> *&#160;</td>
+          <td class="paramname"><em>product</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes a certain product from the products list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">product</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adda694802de170ef107452d917007d4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adda694802de170ef107452d917007d4c">&#9670;&nbsp;</a></span>removeProduct() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Order::removeProduct </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_product.html">Product</a> *&#160;</td>
+          <td class="paramname"><em>product</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>quantity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes a certain quantity of a product from the products list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">product</td><td>the product </td></tr>
+    <tr><td class="paramname">quantity</td><td>the quantity </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abcf8d506c31f8194dc43bf21c1170064"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcf8d506c31f8194dc43bf21c1170064">&#9670;&nbsp;</a></span>removeProduct() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Order::removeProduct </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes a certain product, at a certain position, from the products list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac19e2ca90d030fe695ff7ecdd41c23c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac19e2ca90d030fe695ff7ecdd41c23c4">&#9670;&nbsp;</a></span>removeProduct() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Order::removeProduct </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>quantity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes a certain quantity of a product, at a certain position, from the products list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>the position </td></tr>
+    <tr><td class="paramname">quantity</td><td>the quantity </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7f55ff4aac1a7b5e93c25965067adf61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f55ff4aac1a7b5e93c25965067adf61">&#9670;&nbsp;</a></span>wasDelivered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Order::wasDelivered </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the order was delivered. </p>
+<dl class="section return"><dt>Returns</dt><dd>true, if it was already delivered; false, otherwise </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>order/<a class="el" href="order_8h_source.html">order.h</a></li>
 <li>order/order.cpp</li>

@@ -99,58 +99,549 @@ $(document).ready(function(){initNavTree('class_order_manager.html',''); initRes
 <div class="title">OrderManager Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class that manages the store orders.  
+ <a href="class_order_manager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="order__manager_8h_source.html">order_manager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0846991278b9d8e7dc12afa410318a32"><td class="memItemLeft" align="right" valign="top"><a id="a0846991278b9d8e7dc12afa410318a32"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>OrderManager</b> (<a class="el" href="class_product_manager.html">ProductManager</a> *pm, <a class="el" href="class_client_manager.html">ClientManager</a> *cm, <a class="el" href="class_worker_manager.html">WorkerManager</a> *wm)</td></tr>
+<tr class="memitem:a0846991278b9d8e7dc12afa410318a32"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a0846991278b9d8e7dc12afa410318a32">OrderManager</a> (<a class="el" href="class_product_manager.html">ProductManager</a> *pm, <a class="el" href="class_client_manager.html">ClientManager</a> *cm, <a class="el" href="class_worker_manager.html">WorkerManager</a> *wm)</td></tr>
+<tr class="memdesc:a0846991278b9d8e7dc12afa410318a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new order manager object.  <a href="class_order_manager.html#a0846991278b9d8e7dc12afa410318a32">More...</a><br /></td></tr>
 <tr class="separator:a0846991278b9d8e7dc12afa410318a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a156054d638f56237112ee282def884bf"><td class="memItemLeft" align="right" valign="top"><a id="a156054d638f56237112ee282def884bf"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>has</b> (<a class="el" href="class_order.html">Order</a> *order) const</td></tr>
+<tr class="memitem:a279292d3abda9718bbf909d7c85ad055"><td class="memItemLeft" align="right" valign="top"><a id="a279292d3abda9718bbf909d7c85ad055"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a279292d3abda9718bbf909d7c85ad055">~OrderManager</a> ()</td></tr>
+<tr class="memdesc:a279292d3abda9718bbf909d7c85ad055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the order manager object. <br /></td></tr>
+<tr class="separator:a279292d3abda9718bbf909d7c85ad055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a156054d638f56237112ee282def884bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a156054d638f56237112ee282def884bf">has</a> (<a class="el" href="class_order.html">Order</a> *order) const</td></tr>
+<tr class="memdesc:a156054d638f56237112ee282def884bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the order is on the orders list.  <a href="class_order_manager.html#a156054d638f56237112ee282def884bf">More...</a><br /></td></tr>
 <tr class="separator:a156054d638f56237112ee282def884bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0181922f2869e81ff0b33c446bdff2c"><td class="memItemLeft" align="right" valign="top"><a id="ac0181922f2869e81ff0b33c446bdff2c"></a>
-<a class="el" href="class_order.html">Order</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (unsigned position, <a class="el" href="class_client.html">Client</a> *client=nullptr, <a class="el" href="class_worker.html">Worker</a> *worker=nullptr) const</td></tr>
+<tr class="memitem:ac0181922f2869e81ff0b33c446bdff2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_order.html">Order</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#ac0181922f2869e81ff0b33c446bdff2c">get</a> (unsigned position, <a class="el" href="class_client.html">Client</a> *client=nullptr, <a class="el" href="class_worker.html">Worker</a> *worker=nullptr) const</td></tr>
+<tr class="memdesc:ac0181922f2869e81ff0b33c446bdff2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the order, at a certain position, either from the orders list of the client, or from the orders list of the worker, never from both.  <a href="class_order_manager.html#ac0181922f2869e81ff0b33c446bdff2c">More...</a><br /></td></tr>
 <tr class="separator:ac0181922f2869e81ff0b33c446bdff2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a085e8d0a17ecbda0ca8bcdc09a6b648b"><td class="memItemLeft" align="right" valign="top"><a id="a085e8d0a17ecbda0ca8bcdc09a6b648b"></a>
-std::vector&lt; <a class="el" href="class_order.html">Order</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAll</b> () const</td></tr>
+<tr class="memitem:a085e8d0a17ecbda0ca8bcdc09a6b648b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_order.html">Order</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a085e8d0a17ecbda0ca8bcdc09a6b648b">getAll</a> () const</td></tr>
+<tr class="memdesc:a085e8d0a17ecbda0ca8bcdc09a6b648b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of all orders.  <a href="class_order_manager.html#a085e8d0a17ecbda0ca8bcdc09a6b648b">More...</a><br /></td></tr>
 <tr class="separator:a085e8d0a17ecbda0ca8bcdc09a6b648b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8788a0f3e5c0519776afe6be828a3f8f"><td class="memItemLeft" align="right" valign="top"><a id="a8788a0f3e5c0519776afe6be828a3f8f"></a>
-std::vector&lt; <a class="el" href="class_order.html">Order</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (<a class="el" href="class_client.html">Client</a> *client) const</td></tr>
+<tr class="memitem:a8788a0f3e5c0519776afe6be828a3f8f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_order.html">Order</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a8788a0f3e5c0519776afe6be828a3f8f">get</a> (<a class="el" href="class_client.html">Client</a> *client) const</td></tr>
+<tr class="memdesc:a8788a0f3e5c0519776afe6be828a3f8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of all the orders requested by a certain client.  <a href="class_order_manager.html#a8788a0f3e5c0519776afe6be828a3f8f">More...</a><br /></td></tr>
 <tr class="separator:a8788a0f3e5c0519776afe6be828a3f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d3359ce4854d8b7c42c8b99812d903e"><td class="memItemLeft" align="right" valign="top"><a id="a6d3359ce4854d8b7c42c8b99812d903e"></a>
-std::vector&lt; <a class="el" href="class_order.html">Order</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> (<a class="el" href="class_worker.html">Worker</a> *worker) const</td></tr>
+<tr class="memitem:a6d3359ce4854d8b7c42c8b99812d903e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_order.html">Order</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a6d3359ce4854d8b7c42c8b99812d903e">get</a> (<a class="el" href="class_worker.html">Worker</a> *worker) const</td></tr>
+<tr class="memdesc:a6d3359ce4854d8b7c42c8b99812d903e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of all the orders delivered by a certain worker.  <a href="class_order_manager.html#a6d3359ce4854d8b7c42c8b99812d903e">More...</a><br /></td></tr>
 <tr class="separator:a6d3359ce4854d8b7c42c8b99812d903e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a029737b88bbfc9bcbebb54dde8289646"><td class="memItemLeft" align="right" valign="top"><a id="a029737b88bbfc9bcbebb54dde8289646"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getMeanEvaluation</b> (<a class="el" href="class_client.html">Client</a> *client) const</td></tr>
+<tr class="memitem:a029737b88bbfc9bcbebb54dde8289646"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a029737b88bbfc9bcbebb54dde8289646">getMeanEvaluation</a> (<a class="el" href="class_client.html">Client</a> *client) const</td></tr>
+<tr class="memdesc:a029737b88bbfc9bcbebb54dde8289646"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mean evaluation of the orders requested by a certain client.  <a href="class_order_manager.html#a029737b88bbfc9bcbebb54dde8289646">More...</a><br /></td></tr>
 <tr class="separator:a029737b88bbfc9bcbebb54dde8289646"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a470d525c93b7f7c030fe6068113a2503"><td class="memItemLeft" align="right" valign="top"><a id="a470d525c93b7f7c030fe6068113a2503"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getMeanEvaluation</b> (<a class="el" href="class_worker.html">Worker</a> *worker) const</td></tr>
+<tr class="memitem:a470d525c93b7f7c030fe6068113a2503"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a470d525c93b7f7c030fe6068113a2503">getMeanEvaluation</a> (<a class="el" href="class_worker.html">Worker</a> *worker) const</td></tr>
+<tr class="memdesc:a470d525c93b7f7c030fe6068113a2503"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mean evaluation of the orders delivered by a certain worker.  <a href="class_order_manager.html#a470d525c93b7f7c030fe6068113a2503">More...</a><br /></td></tr>
 <tr class="separator:a470d525c93b7f7c030fe6068113a2503"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ed6092892f221bc59e10e3b1baa2d86"><td class="memItemLeft" align="right" valign="top"><a id="a2ed6092892f221bc59e10e3b1baa2d86"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sort</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a2ed6092892f221bc59e10e3b1baa2d86">sort</a> ()</td></tr>
+<tr class="memdesc:a2ed6092892f221bc59e10e3b1baa2d86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts the orders list by the request date. <br /></td></tr>
 <tr class="separator:a2ed6092892f221bc59e10e3b1baa2d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aede095268516489faab48e9c351e958d"><td class="memItemLeft" align="right" valign="top"><a id="aede095268516489faab48e9c351e958d"></a>
-<a class="el" href="class_order.html">Order</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (<a class="el" href="class_client.html">Client</a> *client, <a class="el" href="class_date.html">Date</a> date={})</td></tr>
+<tr class="memitem:aede095268516489faab48e9c351e958d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_order.html">Order</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#aede095268516489faab48e9c351e958d">add</a> (<a class="el" href="class_client.html">Client</a> *client, <a class="el" href="class_date.html">Date</a> date={})</td></tr>
+<tr class="memdesc:aede095268516489faab48e9c351e958d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new order to the orders list with a certain client and request date.  <a href="class_order_manager.html#aede095268516489faab48e9c351e958d">More...</a><br /></td></tr>
 <tr class="separator:aede095268516489faab48e9c351e958d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0923c564b2f4ee83f6546fc5d5ea26e"><td class="memItemLeft" align="right" valign="top"><a id="ae0923c564b2f4ee83f6546fc5d5ea26e"></a>
-<a class="el" href="class_order.html">Order</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>add</b> (<a class="el" href="class_client.html">Client</a> *client, <a class="el" href="class_worker.html">Worker</a> *worker, const <a class="el" href="class_date.html">Date</a> &amp;date)</td></tr>
+<tr class="memitem:ae0923c564b2f4ee83f6546fc5d5ea26e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_order.html">Order</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#ae0923c564b2f4ee83f6546fc5d5ea26e">add</a> (<a class="el" href="class_client.html">Client</a> *client, <a class="el" href="class_worker.html">Worker</a> *worker, const <a class="el" href="class_date.html">Date</a> &amp;date)</td></tr>
+<tr class="memdesc:ae0923c564b2f4ee83f6546fc5d5ea26e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new order to the orders list with a certain client, worker and a request date.  <a href="class_order_manager.html#ae0923c564b2f4ee83f6546fc5d5ea26e">More...</a><br /></td></tr>
 <tr class="separator:ae0923c564b2f4ee83f6546fc5d5ea26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26066645ed82dd06316758f935cc062f"><td class="memItemLeft" align="right" valign="top"><a id="a26066645ed82dd06316758f935cc062f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (<a class="el" href="class_order.html">Order</a> *order)</td></tr>
+<tr class="memitem:a26066645ed82dd06316758f935cc062f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a26066645ed82dd06316758f935cc062f">remove</a> (<a class="el" href="class_order.html">Order</a> *order)</td></tr>
+<tr class="memdesc:a26066645ed82dd06316758f935cc062f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an order from the orders list.  <a href="class_order_manager.html#a26066645ed82dd06316758f935cc062f">More...</a><br /></td></tr>
 <tr class="separator:a26066645ed82dd06316758f935cc062f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af22024880b1c26fcdc38c7a4d8350cb5"><td class="memItemLeft" align="right" valign="top"><a id="af22024880b1c26fcdc38c7a4d8350cb5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>remove</b> (unsigned position)</td></tr>
+<tr class="memitem:af22024880b1c26fcdc38c7a4d8350cb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#af22024880b1c26fcdc38c7a4d8350cb5">remove</a> (unsigned position)</td></tr>
+<tr class="memdesc:af22024880b1c26fcdc38c7a4d8350cb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an order from the orders list at a certain position.  <a href="class_order_manager.html#af22024880b1c26fcdc38c7a4d8350cb5">More...</a><br /></td></tr>
 <tr class="separator:af22024880b1c26fcdc38c7a4d8350cb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf9f583d0a366812a26e30ff84a3a614"><td class="memItemLeft" align="right" valign="top"><a id="adf9f583d0a366812a26e30ff84a3a614"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (const std::string &amp;path)</td></tr>
+<tr class="memitem:adf9f583d0a366812a26e30ff84a3a614"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#adf9f583d0a366812a26e30ff84a3a614">read</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:adf9f583d0a366812a26e30ff84a3a614"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads all the orders on the file and its data: request date, products (name, price and requested quantity), client (taxpayer identification number), worker (taxpayer identification number), delivery date (if the order was already delivered) and order evaluation (also in case the order was already delivered).  <a href="class_order_manager.html#adf9f583d0a366812a26e30ff84a3a614">More...</a><br /></td></tr>
 <tr class="separator:adf9f583d0a366812a26e30ff84a3a614"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a769732160364165388766e9d5b3a48eb"><td class="memItemLeft" align="right" valign="top"><a id="a769732160364165388766e9d5b3a48eb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const std::string &amp;path)</td></tr>
+<tr class="memitem:a769732160364165388766e9d5b3a48eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a769732160364165388766e9d5b3a48eb">write</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:a769732160364165388766e9d5b3a48eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes all the orders data on the orders list: client taxpayer identification number, worker taxpayer identification number, request date, delivery date (if it was already delivered) and all the products data (name, price and requested quantity).  <a href="class_order_manager.html#a769732160364165388766e9d5b3a48eb">More...</a><br /></td></tr>
 <tr class="separator:a769732160364165388766e9d5b3a48eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f700be036dd6edc4dff71ef631192ea"><td class="memItemLeft" align="right" valign="top"><a id="a3f700be036dd6edc4dff71ef631192ea"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (std::ostream &amp;os, <a class="el" href="class_client.html">Client</a> *client=nullptr, <a class="el" href="class_worker.html">Worker</a> *worker=nullptr) const</td></tr>
+<tr class="memitem:a3f700be036dd6edc4dff71ef631192ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a3f700be036dd6edc4dff71ef631192ea">print</a> (std::ostream &amp;os, <a class="el" href="class_client.html">Client</a> *client=nullptr, <a class="el" href="class_worker.html">Worker</a> *worker=nullptr) const</td></tr>
+<tr class="memdesc:a3f700be036dd6edc4dff71ef631192ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">For all the orders on the orders list, prints all its data : client name, worker name, request date, delivery date (if it was already delivered) and the order evaluation given by the client (also just in case the order was already delivered).  <a href="class_order_manager.html#a3f700be036dd6edc4dff71ef631192ea">More...</a><br /></td></tr>
 <tr class="separator:a3f700be036dd6edc4dff71ef631192ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that manages the store orders. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a0846991278b9d8e7dc12afa410318a32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0846991278b9d8e7dc12afa410318a32">&#9670;&nbsp;</a></span>OrderManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OrderManager::OrderManager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_product_manager.html">ProductManager</a> *&#160;</td>
+          <td class="paramname"><em>pm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_client_manager.html">ClientManager</a> *&#160;</td>
+          <td class="paramname"><em>cm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_worker_manager.html">WorkerManager</a> *&#160;</td>
+          <td class="paramname"><em>wm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new order manager object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pm</td><td>the product manager </td></tr>
+    <tr><td class="paramname">cm</td><td>the client manager </td></tr>
+    <tr><td class="paramname">wm</td><td>the worker manager </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aede095268516489faab48e9c351e958d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aede095268516489faab48e9c351e958d">&#9670;&nbsp;</a></span>add() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_order.html">Order</a> * OrderManager::add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_client.html">Client</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_date.html">Date</a>&#160;</td>
+          <td class="paramname"><em>date</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a new order to the orders list with a certain client and request date. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>the client </td></tr>
+    <tr><td class="paramname">date</td><td>the date request </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the order requested by the client </dd></dl>
+
+</div>
+</div>
+<a id="ae0923c564b2f4ee83f6546fc5d5ea26e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0923c564b2f4ee83f6546fc5d5ea26e">&#9670;&nbsp;</a></span>add() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_order.html">Order</a> * OrderManager::add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_client.html">Client</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_worker.html">Worker</a> *&#160;</td>
+          <td class="paramname"><em>worker</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_date.html">Date</a> &amp;&#160;</td>
+          <td class="paramname"><em>date</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a new order to the orders list with a certain client, worker and a request date. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>the client </td></tr>
+    <tr><td class="paramname">worker</td><td>the worker </td></tr>
+    <tr><td class="paramname">date</td><td>the request date </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the order requested by the client </dd></dl>
+
+</div>
+</div>
+<a id="a8788a0f3e5c0519776afe6be828a3f8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8788a0f3e5c0519776afe6be828a3f8f">&#9670;&nbsp;</a></span>get() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="class_order.html">Order</a> * &gt; OrderManager::get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_client.html">Client</a> *&#160;</td>
+          <td class="paramname"><em>client</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the list of all the orders requested by a certain client. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>the client </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the orders list </dd></dl>
+
+</div>
+</div>
+<a id="ac0181922f2869e81ff0b33c446bdff2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0181922f2869e81ff0b33c446bdff2c">&#9670;&nbsp;</a></span>get() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_order.html">Order</a>* OrderManager::get </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_client.html">Client</a> *&#160;</td>
+          <td class="paramname"><em>client</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_worker.html">Worker</a> *&#160;</td>
+          <td class="paramname"><em>worker</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the order, at a certain position, either from the orders list of the client, or from the orders list of the worker, never from both. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>the position </td></tr>
+    <tr><td class="paramname">client</td><td>the client </td></tr>
+    <tr><td class="paramname">worker</td><td>the worker </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the order at that position from the respective orders list (client or worker) </dd></dl>
+
+</div>
+</div>
+<a id="a6d3359ce4854d8b7c42c8b99812d903e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d3359ce4854d8b7c42c8b99812d903e">&#9670;&nbsp;</a></span>get() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="class_order.html">Order</a> * &gt; OrderManager::get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_worker.html">Worker</a> *&#160;</td>
+          <td class="paramname"><em>worker</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the list of all the orders delivered by a certain worker. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worker</td><td>the worker </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the orders list </dd></dl>
+
+</div>
+</div>
+<a id="a085e8d0a17ecbda0ca8bcdc09a6b648b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a085e8d0a17ecbda0ca8bcdc09a6b648b">&#9670;&nbsp;</a></span>getAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="class_order.html">Order</a> * &gt; OrderManager::getAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the list of all orders. </p>
+<dl class="section return"><dt>Returns</dt><dd>the list of all orders </dd></dl>
+
+</div>
+</div>
+<a id="a029737b88bbfc9bcbebb54dde8289646"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a029737b88bbfc9bcbebb54dde8289646">&#9670;&nbsp;</a></span>getMeanEvaluation() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float OrderManager::getMeanEvaluation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_client.html">Client</a> *&#160;</td>
+          <td class="paramname"><em>client</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the mean evaluation of the orders requested by a certain client. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>the client </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the mean evaluation </dd></dl>
+
+</div>
+</div>
+<a id="a470d525c93b7f7c030fe6068113a2503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a470d525c93b7f7c030fe6068113a2503">&#9670;&nbsp;</a></span>getMeanEvaluation() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float OrderManager::getMeanEvaluation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_worker.html">Worker</a> *&#160;</td>
+          <td class="paramname"><em>worker</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the mean evaluation of the orders delivered by a certain worker. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worker</td><td>the worker </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the mean evaluation </dd></dl>
+
+</div>
+</div>
+<a id="a156054d638f56237112ee282def884bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a156054d638f56237112ee282def884bf">&#9670;&nbsp;</a></span>has()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool OrderManager::has </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_order.html">Order</a> *&#160;</td>
+          <td class="paramname"><em>order</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the order is on the orders list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">order</td><td>the order </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if the order is on orders list; false, otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a3f700be036dd6edc4dff71ef631192ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f700be036dd6edc4dff71ef631192ea">&#9670;&nbsp;</a></span>print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool OrderManager::print </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_client.html">Client</a> *&#160;</td>
+          <td class="paramname"><em>client</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_worker.html">Worker</a> *&#160;</td>
+          <td class="paramname"><em>worker</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>For all the orders on the orders list, prints all its data : client name, worker name, request date, delivery date (if it was already delivered) and the order evaluation given by the client (also just in case the order was already delivered). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>the output stream </td></tr>
+    <tr><td class="paramname">client</td><td>the client </td></tr>
+    <tr><td class="paramname">worker</td><td>the worker </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if there are already orders on the orders list; false, otherwise </dd></dl>
+
+</div>
+</div>
+<a id="adf9f583d0a366812a26e30ff84a3a614"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf9f583d0a366812a26e30ff84a3a614">&#9670;&nbsp;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OrderManager::read </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads all the orders on the file and its data: request date, products (name, price and requested quantity), client (taxpayer identification number), worker (taxpayer identification number), delivery date (if the order was already delivered) and order evaluation (also in case the order was already delivered). </p>
+<p>Then it adds each order to the orders list.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>the file path </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a26066645ed82dd06316758f935cc062f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26066645ed82dd06316758f935cc062f">&#9670;&nbsp;</a></span>remove() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OrderManager::remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_order.html">Order</a> *&#160;</td>
+          <td class="paramname"><em>order</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes an order from the orders list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">order</td><td>the order </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af22024880b1c26fcdc38c7a4d8350cb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af22024880b1c26fcdc38c7a4d8350cb5">&#9670;&nbsp;</a></span>remove() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OrderManager::remove </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes an order from the orders list at a certain position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>the position </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a769732160364165388766e9d5b3a48eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a769732160364165388766e9d5b3a48eb">&#9670;&nbsp;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OrderManager::write </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes all the orders data on the orders list: client taxpayer identification number, worker taxpayer identification number, request date, delivery date (if it was already delivered) and all the products data (name, price and requested quantity). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>the file path </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>order/<a class="el" href="order__manager_8h_source.html">order_manager.h</a></li>
 <li>order/order_manager.cpp</li>

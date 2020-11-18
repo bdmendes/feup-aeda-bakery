@@ -137,13 +137,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a90f3f7eba1edb2190efc0666174e0992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a worker from the workers list.  <a href="class_worker_manager.html#a90f3f7eba1edb2190efc0666174e0992">More...</a><br /></td></tr>
 <tr class="separator:a90f3f7eba1edb2190efc0666174e0992"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cb13ecee014680e94037ef154ba1723"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a5cb13ecee014680e94037ef154ba1723">remove</a> (unsigned position)</td></tr>
-<tr class="memdesc:a5cb13ecee014680e94037ef154ba1723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a worker from the workers list, at a certain position.  <a href="class_worker_manager.html#a5cb13ecee014680e94037ef154ba1723">More...</a><br /></td></tr>
+<tr class="memdesc:a5cb13ecee014680e94037ef154ba1723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a worker from the workers list at a certain position.  <a href="class_worker_manager.html#a5cb13ecee014680e94037ef154ba1723">More...</a><br /></td></tr>
 <tr class="separator:a5cb13ecee014680e94037ef154ba1723"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23c6487aa86b939999e2d588e4740f3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a23c6487aa86b939999e2d588e4740f3c">read</a> (const std::string &amp;path)</td></tr>
 <tr class="memdesc:a23c6487aa86b939999e2d588e4740f3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads all the workers data (name, taxpayer identification number, salary and login credentials) from a file and creates news ones with that data.  <a href="class_worker_manager.html#a23c6487aa86b939999e2d588e4740f3c">More...</a><br /></td></tr>
 <tr class="separator:a23c6487aa86b939999e2d588e4740f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa113a74fff56719ab87067d87ba4364f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#aa113a74fff56719ab87067d87ba4364f">write</a> (const std::string &amp;path)</td></tr>
-<tr class="memdesc:aa113a74fff56719ab87067d87ba4364f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the all the workers data that are on the workers list (name, taxpayer identification number, salary and login credentials) to a file.  <a href="class_worker_manager.html#aa113a74fff56719ab87067d87ba4364f">More...</a><br /></td></tr>
+<tr class="memdesc:aa113a74fff56719ab87067d87ba4364f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes all the workers data that are on the workers list (name, taxpayer identification number, salary and login credentials) to a file.  <a href="class_worker_manager.html#aa113a74fff56719ab87067d87ba4364f">More...</a><br /></td></tr>
 <tr class="separator:aa113a74fff56719ab87067d87ba4364f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa381406105c994790cfb783a16ba6f51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#aa381406105c994790cfb783a16ba6f51">print</a> (std::ostream &amp;os, bool showData=true)</td></tr>
 <tr class="memdesc:aa381406105c994790cfb783a16ba6f51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all the workers data.  <a href="class_worker_manager.html#aa381406105c994790cfb783a16ba6f51">More...</a><br /></td></tr>
@@ -250,7 +250,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the workers list. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the wokers list </dd></dl>
 
 </div>
 </div>
@@ -297,7 +297,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the worker </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the worker on the workers list with that taxpayer identification number </dd></dl>
 
 </div>
 </div>
@@ -408,7 +408,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Removes a worker from the workers list, at a certain position. </p>
+<p>Removes a worker from the workers list at a certain position. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">position</td><td>the position on the workers list where the worker to be removed is </td></tr>
@@ -498,7 +498,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Writes the all the workers data that are on the workers list (name, taxpayer identification number, salary and login credentials) to a file. </p>
+<p>Writes all the workers data that are on the workers list (name, taxpayer identification number, salary and login credentials) to a file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>the file path </td></tr>
