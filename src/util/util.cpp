@@ -8,7 +8,7 @@
 
 bool util::isdigit(const std::string &str, bool acceptFloat) {
     int pointCount = 0;
-    return std::all_of(str.begin(),str.end(), [&pointCount, acceptFloat](const char c){
+    return !str.empty() && std::all_of(str.begin(),str.end(), [&pointCount, acceptFloat](const char c){
         if (c == '.' && acceptFloat) return ++pointCount <= 1;
         return (bool) std::isdigit(c);
     });

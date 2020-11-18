@@ -75,7 +75,7 @@ public:
     Credential getCredential() const;
 
     /**
-     * Cheks if the person is logged.
+     * Checks if the person is logged.
      *
      * @return true, if the person is logged; false, otherwise
      */
@@ -110,7 +110,7 @@ public:
     void setCredential(const Credential& credential);
 
     /**
-     * Minor operator.
+     * Less operator.
      *
      * @param p2 the person to compare with
      * @return true, if person is smaller than p2; false, otherwise.

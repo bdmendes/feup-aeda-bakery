@@ -31,7 +31,6 @@ Worker* WorkerManager::setSalary(unsigned position, float salary) {
 
 Worker* WorkerManager::add(std::string name, int taxID, float salary, Credential credential) {
     auto* worker = new Worker(std::move(name), taxID, salary, std::move(credential));
-    //if (has(worker)) throw PersonAlreadyExists(worker->getName(), worker->getTaxId());
     _workers.insert(worker);
     return worker;
 }

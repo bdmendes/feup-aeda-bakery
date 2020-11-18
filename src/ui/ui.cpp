@@ -12,7 +12,7 @@ UI::UI(Store &store) : _store(store) {
 
 std::string UI::readCommand(bool lowCase) {
     std::string input;
-    std::getline(std::cin,input);
+    while (input.empty()) std::getline(std::cin, input);
     normalize(input);
     if (lowCase) util::lowercase(input);
     return input;

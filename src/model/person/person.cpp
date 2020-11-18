@@ -25,23 +25,22 @@ Credential Person::getCredential() const {
 }
 
 void Person::setName(const std::string& name){
-    //if(_name == name) throw InvalidPersonNameChange();
     _name = name;
 }
 
 void Person::setCredential(const Credential &credential) {
-    //if (_credential == credential) throw InvalidPersonCredentialChange();
     if (_credential.isReserved()) throw InvalidCredential(_credential.username);
     _credential = credential;
 }
 
 bool Person::operator<(const Person &p2) const {
-    return _name < p2.getName();
+    if (p2.getTaxId() != DEFAULT_TAX_ID || _taxID != DEFAULT_TAX_ID) return _taxID < p2.getTaxId();
+    else return _name < p2.getName();
 }
 
 bool Person::operator==(const Person &p2) const {
-    if (p2.getTaxId() != DEFAULT_TAX_ID) return _taxID == p2.getTaxId();
-    else return _taxID == p2.getTaxId() && _name == p2.getName();
+    if (p2.getTaxId() != DEFAULT_TAX_ID || _taxID != DEFAULT_TAX_ID) return _taxID == p2.getTaxId();
+    else return _name == p2.getName();
 }
 
 bool Person::isLogged() const {
