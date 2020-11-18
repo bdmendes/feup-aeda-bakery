@@ -7,10 +7,6 @@
 
 #include "ui/ui.h"
 
-class BossDashboard;
-class ClientDashboard;
-class WorkerDashboard;
-
 class LoginMenu: public UI{
 public:
     explicit LoginMenu(Store& store);

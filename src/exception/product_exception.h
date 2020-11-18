@@ -15,12 +15,6 @@ public:
     explicit ProductDoesNotExist(float price);
 };
 
-class ProductAlreadyExists : public std::invalid_argument{
-public:
-    ProductAlreadyExists(const std::string& name, float price);
-    explicit ProductAlreadyExists(const std::string& name);
-};
-
 class InvalidProductPosition : public std::invalid_argument{
 public:
     InvalidProductPosition(unsigned position, unsigned long size);

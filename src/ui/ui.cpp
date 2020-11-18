@@ -39,24 +39,17 @@ bool UI::validInput1Cmd2ArgsDigit(const std::string &input, const std::string &c
            && isdigit(words.at(1)) && isdigit(words.at(2),acceptFloatArg2);
 }
 
-
-void UI::printOptions(const std::vector<std::string> &options, std::string message, bool index) {
-    if (message.empty()) message = index ?
-            "Choose 1-" + std::to_string(options.size()) : "Available commands:";
+void UI::printOptions(const std::vector<std::string> &options, std::string message) {
+    if (message.empty()) message = "Available commands:";
     std::cout << message << '\n';
-    if (index){
-        int counter = 1;
-        for (const auto& o: options) std::cout << std::to_string(counter++) << ". " << o << '\n';
-    }
-    else {
-        for (const auto& o: options) std::cout << "-> " << o << "\n";
-    }
+
+    int counter = 1;
+    for (const auto& o: options) std::cout << std::to_string(counter++) << ". " << o << '\n';
     std::cout << '\n';
 }
 
-void UI::printError(bool index) {
-    if (index) std::cout << "Unrecognized index. Try again.\n";
-    else std::cout << "Unrecognized command. Try again.\n";
+void UI::printError() {
+    std::cout << "Unrecognized command. Try again.\n";
 }
 
 void UI::printLogo(const std::string& detail) {

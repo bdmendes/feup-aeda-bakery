@@ -10,8 +10,6 @@
 
 using namespace util;
 
-class IntroMenu;
-
 class UI {
 public:
     explicit UI(Store& store);
@@ -21,12 +19,11 @@ protected:
 
     static bool validInput1Cmd(const std::string& input, const std::string &cmd);
     static bool validInput1Cmd1ArgDigit(const std::string& input, const std::string &cmd, bool acceptFloat = false);
-
     static bool validInput1Cmd1Arg(const std::string& input, const std::string &cmd, const std::string &arg);
     static bool validInput1Cmd2ArgsDigit(const std::string& input, const std::string &cmd, bool acceptFloatArg2 = false);
 
-    static void printOptions(const std::vector<std::string>& options, std::string message = {}, bool index = false);
-    static void printError(bool index = false);
+    static void printOptions(const std::vector<std::string>& options, std::string message = {});
+    static void printError();
 
     virtual void printLogo(const std::string& detail);
 

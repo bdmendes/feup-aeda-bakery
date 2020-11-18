@@ -8,7 +8,6 @@
 #include "ui/ui.h"
 
 class LoginMenu;
-class FileImportMenu;
 
 class IntroMenu : public UI {
 public:

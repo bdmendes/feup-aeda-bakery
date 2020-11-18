@@ -27,7 +27,6 @@ public:
     std::set<Bread*, ProductSmaller> getBreads() const;
     std::set<Product*, ProductSmaller> getAll();
 
-
     Bread* addBread(std::string name, float price, bool small = true);
     Cake* addCake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
     void remove(Product* product);

@@ -17,26 +17,9 @@ public:
     explicit PersonDoesNotExist(int taxID);
 };
 
-class PersonAlreadyExists : public std::logic_error{
-public:
-    PersonAlreadyExists(const std::string& name, int tributaryNumber);
-    explicit PersonAlreadyExists(const std::string& name);
-    explicit PersonAlreadyExists(int taxID);
-};
-
 class InvalidPersonPosition : public std::invalid_argument{
 public:
     InvalidPersonPosition(unsigned position, unsigned long size);
-};
-
-class InvalidPersonCredentialChange : public std::invalid_argument{
-public:
-    InvalidPersonCredentialChange();
-};
-
-class InvalidPersonNameChange : public std::invalid_argument{
-public:
-    InvalidPersonNameChange();
 };
 
 class InvalidCredential : public std::invalid_argument {
