@@ -67,7 +67,7 @@ void BossDashboard::addWorker() {
     }
     salary = std::stof(input);
 
-    _store.workerManager.add(name,salary,taxID);
+    _store.workerManager.add(name,taxID,salary);
 }
 
 void BossDashboard::manageStaff() {

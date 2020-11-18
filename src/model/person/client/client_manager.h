@@ -53,6 +53,7 @@ public:
      * @param credential the access credentials
      * @return the client added to de clients list of the client manager
      */
+
     Client* add(std::string name, int taxID = Person::DEFAULT_TAX_ID, bool premium = false,
              Credential credential = {Client::DEFAULT_USERNAME, Client::DEFAULT_PASSWORD});
 

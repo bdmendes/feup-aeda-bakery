@@ -12,6 +12,7 @@
 
 class Client : public Person {
 public:
+
     /**
      * Creates a new client.
      *
@@ -87,6 +88,8 @@ public:
     void addEvaluation(int evaluation);
   
     void setPoints(unsigned points);
+    float getMeanEvaluation() const;
+    void addEvaluation(int evaluation);
 
     /**
      * Prints

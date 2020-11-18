@@ -8,6 +8,7 @@
 #include "model/person/person.h"
 
 #include <string>
+#include <vector>
 
 /**
  *
@@ -57,6 +58,9 @@ public:
      */
     void removeOrderToDeliver();
 
+    float getMeanEvaluation() const;
+    void addEvaluation (int evaluation);
+
     /**
      *Prints worker data.
      *
@@ -64,6 +68,7 @@ public:
      * @param showData if true, prints all data: name, taxpayer identification number, subscription type and accumulated
      * points; otherwise, just prints the name and the taxpayer identification number.
      */
+
     void print(std::ostream& os, bool showData = true);
 
     /**
@@ -82,6 +87,7 @@ public:
 private:
     unsigned _undeliveredOrders;
     float _salary;
+    std::vector<int> _evaluations;
 };
 
 
