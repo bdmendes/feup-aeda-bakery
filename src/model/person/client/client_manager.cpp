@@ -6,8 +6,9 @@
 #include <algorithm>
 #include <exception/person_exception.h>
 #include <iomanip>
+#include <exception/file_exception.h>
 
-ClientManager::ClientManager() : _clients(std::set<Client*, PersonSmaller>()) {
+ClientManager::ClientManager() : _clients() {
 }
 
 bool ClientManager::has(Client *client) const {
@@ -69,3 +70,43 @@ bool ClientManager::print(std::ostream &os, bool showData) {
     return true;
 }
 
+void ClientManager::read(const std::string &path) {
+    std::ifstream file(path);
+    if(!file) throw FileNotFound(path);
+
+    std::string name, premium;
+    int taxID;
+    unsigned points;
+    Credential credential;
+
+    for(std::string line; getline(file, line); ){
+        std::stringstream ss(line);
+        ss>>name>>taxID>>premium>>points>>credential.username>>credential.password;
+
+        std::replace(name.begin(), name.end(), '-', ' ');
+        Client* client = add(name, premium == "premium", taxID, credential);
+        client ->setPoints(points);
+    }
+}
+
+void ClientManager::write(const std::string &path) {
+    std::ofstream file(path);
+    if(!file) throw FileNotFound(path);
+
+    std::string nameToSave, premiumToSave;
+    for(const auto & client: _clients){
+        nameToSave = client->getName();
+        std::replace(nameToSave.begin(), nameToSave.end(), ' ', '-');
+        premiumToSave=(client->isPremium())? "premium" : "basic";
+        file << nameToSave << " " << client->getTaxId() << " " << premiumToSave << " "
+        << client->getPoints() << " " << client->getCredential().username << " "
+        << client->getCredential().password<<'\n';
+    }
+}
+
+Client *ClientManager::getClient(int taxID) const{
+    for(const auto& _client : _clients){
+        if (_client->getTaxId() == taxID) return _client;
+    }
+    throw PersonDoesNotExist(taxID);
+}

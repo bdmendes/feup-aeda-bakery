@@ -153,7 +153,7 @@ void Order::print(std::ostream &os) const {
     }
     else {
         os << "Delivered by " << getWorker()->getName() << " on " << getDeliverDate().getCompleteDate()
-           << "\n Client evaluation: " << getClientEvaluation() << " points)" << "\n\n";
+           << "\nClient evaluation: " << getClientEvaluation() << " points" << "\n\n";
     }
 
     //products

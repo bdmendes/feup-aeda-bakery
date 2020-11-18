@@ -32,8 +32,12 @@ public:
     void remove(Worker* worker);
     void remove(unsigned position);
 
-    void read(std::ifstream& file);
+    void read(const std::string& path);
+    void write(const std::string& path);
     bool print(std::ostream& os, bool showData = true);
+
+    Worker* getWorker(int taxID) const;
+
 private:
     std::set<Worker*, PersonSmaller> _workers;
 };

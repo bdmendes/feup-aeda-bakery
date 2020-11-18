@@ -29,7 +29,10 @@ void ClientDashboard::show() {
         try {
             std::string input = readCommand();
             if (input == BACK) return;
-            else if (validInput1Cmd(input, "logout")) _client->setLogged(false);
+            else if (validInput1Cmd(input, "logout")){
+                _client->setLogged(false);
+                return;
+            }
             else if (validInput1Cmd1Arg(input, "edit", "account")) managePersonalData(_client);
             else if (validInput1Cmd1Arg(input, "new", "order")) editOrder(_store.orderManager.add(_client));
             else if (validInput1Cmd1Arg(input, "manage", "orders")) manageOrders(_client);

@@ -137,7 +137,7 @@ TEST(WorkerManager, get_less_busy_worker){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(productM, clientM, workerM);
+    OrderManager orderM(&productM, &clientM, &workerM);
 
     Client* client1 = clientM.add("Ricardo Macedo");
     Client* client2 = clientM.add("Joana Moreira");
@@ -163,8 +163,8 @@ TEST(WorkerManager, get_less_busy_worker){
 
 TEST(WorkerManager, change_salary){
     WorkerManager workerM;
-    Worker* worker1 = workerM.add("Francisco Ferreira", 47383, 948);
-    Worker* worker2 = workerM.add("Margarida Ferraz", 48493, 849);
+    Worker* worker1 = workerM.add("Francisco Ferreira", 9665679,948);
+    Worker* worker2 = workerM.add("Margarida Ferraz", 54498698,849);
     unsigned position = 0;
 
     EXPECT_FLOAT_EQ(948, workerM.get(position)->getSalary());
@@ -374,7 +374,7 @@ TEST(OrderManager, add_order){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(productM, clientM, workerM);
+    OrderManager orderM(&productM, &clientM, &workerM);
     Client* client = clientM.add("Fernando Castro");
     Worker* worker = workerM.add("Josue Tome", 928);
     Order order(*client, *worker);
@@ -391,7 +391,7 @@ TEST(OrderManager, add_order_with_date){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(productM, clientM, workerM);
+    OrderManager orderM(&productM, &clientM, &workerM);
     Date date(16, 11, 2020, 2, 30);
     Client* client = clientM.add("Fernando Castro");
     Worker* worker = workerM.add("Josue Tome", 928);
@@ -409,7 +409,7 @@ TEST(OrderManager, remove_order){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(productM, clientM, workerM);
+    OrderManager orderM(&productM, &clientM, &workerM);
 
     Client* client1 = clientM.add("Adelaide Santos");
     Client* client2 = clientM.add("Bruno Mendes");
@@ -446,7 +446,7 @@ TEST(OrderManager, sort_orders){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(productM, clientM, workerM);
+    OrderManager orderM(&productM, &clientM, &workerM);
 
     Date date2(25, 11, 2019, 3, 40);
     Date date1(16, 11, 2020, 2, 30);
@@ -470,7 +470,7 @@ TEST(OrderManager, get_order_by_position){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(productM, clientM, workerM);
+    OrderManager orderM(&productM, &clientM, &workerM);
 
     Client* client1 = clientM.add("Ricardo Macedo");
     Client* client2 = clientM.add("Rosalia Martins");
@@ -497,7 +497,7 @@ TEST(OrderManager, get_client_orders){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(productM, clientM, workerM);
+    OrderManager orderM(&productM, &clientM, &workerM);
 
     Client* client1 = clientM.add("Ricardo Macedo");
     Client client2("Bruno Mendes");
@@ -522,7 +522,7 @@ TEST(OrderManager, get_worker_orders){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(productM, clientM, workerM);
+    OrderManager orderM(&productM, &clientM, &workerM);
 
     Client* client = clientM.add("Ricardo Macedo");
     Worker* worker1 = workerM.add("Madalena Faria", 980);

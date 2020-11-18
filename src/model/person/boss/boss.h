@@ -7,14 +7,40 @@
 
 #include <model/person/person.h>
 #include <string>
+#include <fstream>
 
-
+/**
+ *
+ */
 class Boss : public Person {
 public:
-    Boss(std::string name, int taxID, Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
+    /**
+     * Creates a new boss.
+     *
+     * @param name the name
+     * @param taxID the taxpayer identification number
+     * @param credential the access credentials
+     */
+    explicit Boss(std::string name = "Boss", int taxID = Person::DEFAULT_TAX_ID, Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
+
+    void read(const std::string& path);
+
+    /**
+     * Gets the default boss' access credentials.
+     *
+     * @return the default access credentials
+     */
     Credential getDefaultCredential() override;
+
+    /**
+     * The default boss' access username.
+     */
     static const char* DEFAULT_USERNAME;
+
+    /**
+     *The default boss' access password.
+     */
     static const char* DEFAULT_PASSWORD;
 
 };

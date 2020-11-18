@@ -2,9 +2,10 @@
 // Created by bdmendes on 29/10/20.
 //
 
+#include <exception/file_exception.h>
 #include "worker_manager.h"
 
-WorkerManager::WorkerManager() : _workers(std::set<Worker*, PersonSmaller>()){
+WorkerManager::WorkerManager() : _workers(){
 }
 
 bool WorkerManager::has(Worker *worker) const {
@@ -83,6 +84,43 @@ Worker* WorkerManager::getLessBusyWorker() {
         return worker1->getUndeliveredOrders() < worker2->getUndeliveredOrders();
     };
     return *std::min_element(_workers.begin(), _workers.end(), orderComp);
+}
+
+void WorkerManager::read(const std::string& path) {
+    std::ifstream file(path);
+    if(!file) throw FileNotFound(path);
+
+    std::string name;
+    float salary;
+    int taxID;
+    Credential credential;
+
+    for(std::string line; getline(file, line); ){
+        std::stringstream ss(line);
+        ss >> name >> taxID >> salary >> credential.username >> credential.password;
+        std::replace(name.begin(), name.end(), '-', ' ');
+        add(name, taxID, salary, credential);
+    }
+}
+
+void WorkerManager::write(const std::string &path) {
+    std::ofstream file(path);
+    if(!file) throw FileNotFound(path);
+
+    std::string nameToSave;
+    for(const auto & worker: _workers){
+        nameToSave = worker->getName();
+        std::replace(nameToSave.begin(), nameToSave.end(), ' ', '-');
+        file << nameToSave << " " << worker->getTaxId() << " " << worker->getSalary()
+        << " " << worker->getCredential().username << " " << worker->getCredential().password<<'\n';
+    }
+}
+
+Worker* WorkerManager::getWorker(int taxID) const {
+    for(const auto& _worker : _workers){
+        if (_worker->getTaxId() == taxID) return _worker;
+    }
+    throw PersonDoesNotExist(taxID);
 }
 
 

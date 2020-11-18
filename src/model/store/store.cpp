@@ -10,8 +10,8 @@
 Store::Store(std::string name) :
         _name(std::move(name)),
         productManager(),clientManager(),workerManager(),
-        orderManager(productManager,clientManager,workerManager),
-        boss("Boss", Person::DEFAULT_TAX_ID, {Boss::DEFAULT_USERNAME, Boss::DEFAULT_PASSWORD}){
+        orderManager(&productManager,&clientManager,&workerManager),
+        boss("Boss", Person::DEFAULT_TAX_ID, {Boss::DEFAULT_USERNAME,Boss::DEFAULT_PASSWORD}){
 }
 
 std::string Store::getName() const {
@@ -38,5 +38,42 @@ float Store::getProfit() const {
         if (o->wasDelivered()) profit += o->getFinalPrice();
     }
     return profit;
+}
+
+std::string Store::read(const std::string &dataFolderPath, bool doReset) {
+    try {
+        if (doReset) reset();
+        boss.read(dataFolderPath + "/boss.txt");
+        productManager.read(dataFolderPath + "/products.txt");
+        clientManager.read(dataFolderPath + "/clients.txt");
+        workerManager.read(dataFolderPath + "/workers.txt");
+        orderManager.read(dataFolderPath + "/orders.txt");
+    }
+    catch (std::exception& e){
+        return "Import failed!\n" + std::string(e.what());
+    }
+    return "Import succeeded.";
+}
+
+void Store::reset() {
+    boss = Boss();
+    productManager = {};
+    clientManager = {};
+    workerManager = {};
+    orderManager = OrderManager(&productManager,&clientManager,&workerManager);
+}
+
+std::string Store::write(const std::string& dataFolderPath) {
+    try {
+        boss.write(dataFolderPath + "/boss.txt");
+        productManager.write(dataFolderPath + "/products.txt");
+        clientManager.write(dataFolderPath + "/clients.txt");
+        workerManager.write(dataFolderPath + "/workers.txt");
+        orderManager.write(dataFolderPath + "/orders.txt");
+    }
+    catch (std::exception& e){
+        return "Export failed!\n" + std::string(e.what());
+    }
+    return "Export succeeded.";
 }
 

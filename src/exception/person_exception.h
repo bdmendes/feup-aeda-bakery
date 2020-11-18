@@ -14,14 +14,14 @@ class PersonDoesNotExist: public std::logic_error{
 public:
     PersonDoesNotExist(const std::string& name, int tributaryNumber);
     explicit PersonDoesNotExist(const std::string& name);
-    explicit PersonDoesNotExist(int tributaryNumber);
+    explicit PersonDoesNotExist(int taxID);
 };
 
 class PersonAlreadyExists : public std::logic_error{
 public:
     PersonAlreadyExists(const std::string& name, int tributaryNumber);
     explicit PersonAlreadyExists(const std::string& name);
-    explicit PersonAlreadyExists(int tributaryNumber);
+    explicit PersonAlreadyExists(int taxID);
 };
 
 class InvalidPersonPosition : public std::invalid_argument{
