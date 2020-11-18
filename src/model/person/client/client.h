@@ -57,8 +57,6 @@ public:
      *
      * @param premium
      */
-    unsigned getPoints() const;
-
     void setPremium(bool premium);
 
     /**
@@ -88,8 +86,6 @@ public:
     void addEvaluation(int evaluation);
   
     void setPoints(unsigned points);
-    float getMeanEvaluation() const;
-    void addEvaluation(int evaluation);
 
     /**
      * Prints

@@ -12,8 +12,8 @@ void IntroMenu::show() {
               << "At any screen, type 'back' to go back.\n"
               << SEPARATOR << std::endl;
     const std::vector<std::string> content = {
-            "import reset - import data from files; clear current store",
             "import update - import data from files; add new data to the current",
+            "import reset - import data from files; clear current store",
             "export data - export current store data to files",
             "manage store - enter store management"
     };
