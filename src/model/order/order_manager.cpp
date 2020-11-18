@@ -2,6 +2,7 @@
 // Created by bdmendes on 29/10/20.
 //
 
+#include <exception/file_exception.h>
 #include "order_manager.h"
 
 OrderManager::OrderManager(ProductManager &pm, ClientManager &cm, WorkerManager &wm) :
@@ -51,7 +52,15 @@ void OrderManager::sort() {
 
 Order* OrderManager::add(Client *client, Date date) {
     if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
-    Order* order = new Order(*client,*_workerManager.getLessBusyWorker(),date);
+    auto* order = new Order(*client,*_workerManager.getLessBusyWorker(),date);
+    _orders.push_back(order);
+    return order;
+}
+
+Order* OrderManager::add(Client* client, Worker* worker, const Date& date){
+    if (!_clientManager.has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
+    if (!_workerManager.has(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
+    auto* order = new Order(*client,*worker,date);
     _orders.push_back(order);
     return order;
 }
@@ -124,3 +133,82 @@ float OrderManager::getMeanEvaluation(Worker *worker) const {
     return count ? static_cast<float>(sum)/static_cast<float>(count) : 0;
 }
 
+void OrderManager::read(const std::string &path) {
+    std::ifstream file(path);
+    if (!file) throw FileNotFound();
+
+    auto getDate = [](std::string dateStr, std::string timeStr) {
+        int day, month, year, hour, minute;
+        std::replace(dateStr.begin(), dateStr.end(), '/', ' ');
+        std::stringstream ssDate(dateStr);
+        ssDate >> day >> month >> year;
+
+        std::replace(timeStr.begin(), timeStr.end(), ':', ' ');
+        std::stringstream ssTime(timeStr);
+        ssTime >> hour >> minute;
+        return Date(day, month, year, hour, minute);
+    };
+
+    auto getProduct = [&](const std::string &productLine) {
+        std::string productName;
+        float price;
+        int quantity;
+
+        std::stringstream ss(productLine);
+        ss >> productName >> price >> quantity;
+        std::replace(productName.begin(),productName.end(),'-',' ');
+        Product *product = _productManager.get(productName, price);
+        if (!_productManager.has(product)) throw ProductDoesNotExist(productName, price);
+        return product;
+    };
+
+    bool readDetails = true;
+    Order *order = nullptr;
+    int clientEvaluation;
+    for (std::string line; getline(file, line);) {
+        if (readDetails) {
+            clientEvaluation = -1;
+            std::string date, time;
+            int clientTaxID, workerTaxID;
+
+            std::stringstream ss(line);
+            ss >> clientTaxID >> workerTaxID >> date >> time >> clientEvaluation;
+
+            Client* client = _clientManager.getClient(clientTaxID);
+            Worker* worker = _workerManager.getWorker(workerTaxID);
+
+            order = add(client, worker, getDate(date, time));
+            readDetails = false;
+
+        } else if (line.empty()) {
+            if (clientEvaluation != -1 && order) order->deliver(clientEvaluation);
+            readDetails = true;
+            order = nullptr;
+            continue;
+        }
+        else{
+            Product *product = getProduct(line);
+            if (!order) throw OrderDoesNotExist();
+            order->addProduct(product);
+        }
+    }
+}
+
+void OrderManager::write(const std::string &path) {
+    std::ofstream file(path);
+    if (!file) throw FileNotFound();
+
+    for (const auto &order: _orders) {
+        file << order->getClient()->getTaxId() << " " << order->getWorker()->getTaxId() << " "
+             << order->getRequestDate().getCompleteDate();
+        if (order->wasDelivered()) file << " " << order->getClientEvaluation();
+        file << "\n";
+
+        for (const auto& p : order->getProducts()) {
+            std::string nameToSave = p.first->getName();
+            std::replace(nameToSave.begin(),nameToSave.end(),' ','-');
+            file << nameToSave << " " << p.first->getPrice() << " " << p.second << "\n";
+        }
+        file << "\n";
+    }
+}

@@ -9,6 +9,7 @@
 
 #include "util/util.h"
 #include <iostream>
+#include <fstream>
 
 class ClientManager {
 public:
@@ -24,8 +25,12 @@ public:
     void remove(Client* client);
     void remove(unsigned position);
 
-    void read(std::ifstream& file);
+    void read(const std::string& path);
+    void write(const std::string& path);
     bool print(std::ostream& os, bool showData = true);
+
+    Client* getClient(int taxID) const;
+
 private:
     std::set<Client*, PersonSmaller> _clients;
 };

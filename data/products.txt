@@ -1,0 +1,9 @@
+CAKES
+Meat-Cake 30 Sponge
+Strawberry-Pie 25 Pie
+Wafer-Cake 15 Crunchy-Cake
+BREADS
+Pao-de-sementes 0.8 small
+Pao-da-avo 1.0 big
+Regueifa 3.0 big
+Pao-de-cereais 0.5 small 

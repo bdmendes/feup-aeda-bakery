@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <utility>
 #include <util/util.h>
+#include <fstream>
+#include <exception/file_exception.h>
 
 ProductManager::ProductManager(): _products(std::set<Product*, ProductSmaller>()){
 }
@@ -69,4 +71,95 @@ void ProductManager::print(std::ostream &os) const {
         }
     }
     else os << "Nothing in the stock yet.\n";
+}
+
+Product *ProductManager::get(const std::string &name, float price) {
+    for(const auto& p : _products){
+        if(p->getName()==name && p->getPrice()==price)
+            return p;
+    }
+    throw ProductDoesNotExist(name, price);
+}
+
+void ProductManager::read(const std::string &path) {
+    std::ifstream file(path);
+    if(!file) throw FileNotFound();
+    bool readingCakes = true;
+
+    for (std::string line; getline(file, line); ){
+        std::vector<std::string> cakeCategories = Cake::getCategories();
+        if(line=="CAKES") readingCakes = true;
+        else if(line=="BREADS") readingCakes = false;
+        else if(readingCakes) {
+            std::stringstream ss(line);
+            std::string name, cakeCategory;
+            float price;
+
+            ss >> name >> price >> cakeCategory;
+            CakeCategory categoryToSave = CakeCategory::GENERAL;
+            for (int i = 0; i < cakeCategories.size(); ++i){
+                std::string styledCat = cakeCategories.at(i);
+                std::replace(styledCat.begin(),styledCat.end(),' ','-');
+                if (styledCat == cakeCategory) {
+                    categoryToSave = static_cast<CakeCategory>(i);
+                }
+            }
+            std::replace(name.begin(), name.end(), '-', ' ');
+            addCake(name, price, categoryToSave);
+        }
+        else{
+            std::stringstream ss(line);
+            std::string name, small;
+            float price;
+
+            ss>>name>>price>>small;
+            std::replace(name.begin(), name.end(), '-', ' ');
+            addBread(name, price, small=="small");
+        }
+    }
+}
+
+std::set<Cake *, ProductSmaller> ProductManager::getCakes() const {
+    std::set<Cake *, ProductSmaller> s;
+    for (const auto& p: _products){
+        auto cake = dynamic_cast<Cake*>(p);
+        if (cake) s.insert(cake);
+    }
+    return s;
+}
+
+std::set<Bread *, ProductSmaller> ProductManager::getBreads() const {
+    std::set<Bread *, ProductSmaller> s;
+    for (const auto& p: _products){
+        auto bread = dynamic_cast<Bread*>(p);
+        if (bread) s.insert(bread);
+    }
+    return s;
+}
+
+void ProductManager::write(const std::string &path) const{
+    std::ofstream file(path);
+    if(!file) throw FileNotFound();
+
+    std::vector<std::string> cakeCategories=Cake::getCategories();
+    std::set<Cake*,ProductSmaller> cakes = getCakes();
+    std::set<Bread*,ProductSmaller> breads = getBreads();
+
+    file << "CAKES\n";
+    for (const auto& c: cakes){
+        std::string nameToSave = c->getName();
+        std::replace(nameToSave.begin(),nameToSave.end(),' ','-');
+
+        std::string styledCat = cakeCategories.at(static_cast<unsigned long>(c->getCategory()));
+        std::replace(styledCat.begin(),styledCat.end(),' ','-');
+
+        file << nameToSave << " " << c->getPrice() << " " << styledCat << "\n";
+    }
+
+    file << "BREADS\n";
+    for (const auto& b: breads){
+        std::string nameToSave = b->getName();
+        std::replace(nameToSave.begin(),nameToSave.end(),' ','-');
+        file << nameToSave << " " << b->getPrice() << " " << ( (b->isSmall())? "small" : "big") << "\n";
+    }
 }

@@ -30,10 +30,12 @@ public:
 
     void sort();
     Order* add(Client* client, Date date = {});
+    Order* add(Client* client, Worker* worker, const Date& date);
     void remove(Order* order);
     void remove(unsigned position);
 
-    void read(std::ifstream& file);
+    void read(const std::string& path);
+    void write(const std::string& path);
     bool print(std::ostream& os, Client* client = nullptr, Worker* worker = nullptr) const;
 
 private:

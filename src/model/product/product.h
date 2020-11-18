@@ -10,6 +10,7 @@
 #include <set>
 
 #include "exception/product_exception.h"
+#include <vector>
 
 enum class CakeCategory {
     GENERAL, PIE, SPONGE, PUFF_PASTRY, CRUNCHY
@@ -47,6 +48,7 @@ public:
     void print(std::ostream& os) const override;
 
     static const char* categoryStr[5];
+    static std::vector<std::string> getCategories();
 private:
     CakeCategory _category;
     const char* _categoryStr;
