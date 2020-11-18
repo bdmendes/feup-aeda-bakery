@@ -11,6 +11,9 @@
 #include <stdexcept>
 #include <set>
 
+/**
+ *
+ */
 struct Credential {
     std::string username;
     std::string password;
@@ -19,10 +22,13 @@ struct Credential {
     }
 };
 
+/**
+ *
+ */
 class Person {
 public:
     /**
-     * Creates a new person's object.
+     * Creates a new person.
      *
      * @param name the name
      * @param taxID the taxpayer identification number
@@ -59,7 +65,7 @@ public:
     /**
      * Cheks if the person is logged.
      *
-     * @return true, if the person is logged. false, otherwise
+     * @return true, if the person is logged; false, otherwise
      */
     bool isLogged() const;
 
@@ -95,7 +101,7 @@ public:
      * Minor operator.
      *
      * @param p2 the person to compare with
-     * @return true, if person is smaller than p2. false, otherwise.
+     * @return true, if person is smaller than p2; false, otherwise.
      */
     bool operator<(const Person& p2) const;
 
@@ -103,7 +109,7 @@ public:
      * Equality operator.
      *
      * @param p2 the person to compare with
-     * @return true, if persons are equal. false, otherwise.
+     * @return true, if persons are equal; false, otherwise.
      */
     bool operator==(const Person& p2) const;
 
@@ -120,12 +126,30 @@ public:
     static const int DEFAULT_TAX_ID;
 
 private:
+    /**
+     * The client's name.
+     */
     std::string _name;
+
+    /**
+     * The client's taxpayer identification number.
+     */
     int _taxID;
+
+    /**
+     * The client's access credentials.
+     */
     Credential _credential;
+
+    /**
+     * The client's log status.
+     */
     bool _logged;
 };
 
+/**
+ *
+ */
 struct PersonSmaller{
     bool operator()(const Person* p1, const Person* p2) const{
         return *p1 < *p2;

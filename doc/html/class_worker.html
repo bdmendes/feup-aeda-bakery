@@ -29,6 +29,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="scratch.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AEDA Project
    </div>
@@ -115,14 +116,19 @@ Inheritance diagram for Worker:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:acd1766f6c8bebe35b45b50afb4040bcc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker.html#acd1766f6c8bebe35b45b50afb4040bcc">Worker</a> (std::string name, float salary, int taxID=<a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a>, <a class="el" href="struct_credential.html">Credential</a> credential={<a class="el" href="class_worker.html#ac5537121162d206509b2b2e9b49984c7">DEFAULT_USERNAME</a>, <a class="el" href="class_worker.html#a48d9914b4f039fcaa71b054b103237fa">DEFAULT_PASSWORD</a>})</td></tr>
+<tr class="memdesc:acd1766f6c8bebe35b45b50afb4040bcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new worker.  <a href="class_worker.html#acd1766f6c8bebe35b45b50afb4040bcc">More...</a><br /></td></tr>
 <tr class="separator:acd1766f6c8bebe35b45b50afb4040bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a703a68ad53c9b89528ff4aa5e6bd2b3d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker.html#a703a68ad53c9b89528ff4aa5e6bd2b3d">getSalary</a> () const</td></tr>
+<tr class="memdesc:a703a68ad53c9b89528ff4aa5e6bd2b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the worker's salary.  <a href="class_worker.html#a703a68ad53c9b89528ff4aa5e6bd2b3d">More...</a><br /></td></tr>
 <tr class="separator:a703a68ad53c9b89528ff4aa5e6bd2b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e2f9ae273acd7ce0baedfc47b7e729a"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker.html#a2e2f9ae273acd7ce0baedfc47b7e729a">getUndeliveredOrders</a> () const</td></tr>
+<tr class="memdesc:a2e2f9ae273acd7ce0baedfc47b7e729a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of undelivered orders.  <a href="class_worker.html#a2e2f9ae273acd7ce0baedfc47b7e729a">More...</a><br /></td></tr>
 <tr class="separator:a2e2f9ae273acd7ce0baedfc47b7e729a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9679bba6f256cd6dfc62e067012e5ffb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker.html#a9679bba6f256cd6dfc62e067012e5ffb">setSalary</a> (float salary)</td></tr>
+<tr class="memdesc:a9679bba6f256cd6dfc62e067012e5ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the worker salary.  <a href="class_worker.html#a9679bba6f256cd6dfc62e067012e5ffb">More...</a><br /></td></tr>
 <tr class="separator:a9679bba6f256cd6dfc62e067012e5ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e818e16495d92c9fc70852d746007b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker.html#a7e818e16495d92c9fc70852d746007b8">addOrderToDeliver</a> ()</td></tr>
+<tr class="memdesc:a7e818e16495d92c9fc70852d746007b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds.  <a href="class_worker.html#a7e818e16495d92c9fc70852d746007b8">More...</a><br /></td></tr>
 <tr class="separator:a7e818e16495d92c9fc70852d746007b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0add467763c4e5191c4eddc37484b3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker.html#aa0add467763c4e5191c4eddc37484b3f">removeOrderToDeliver</a> ()</td></tr>
 <tr class="separator:aa0add467763c4e5191c4eddc37484b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7a3d23328b5f245965b6553995a10282"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_person"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_person')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_person.html">Person</a></td></tr>
 <tr class="memitem:a940ece7b9e17a6d39087b3eebc49d490 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a940ece7b9e17a6d39087b3eebc49d490">Person</a> (std::string name, int taxID, <a class="el" href="struct_credential.html">Credential</a> credential)</td></tr>
-<tr class="memdesc:a940ece7b9e17a6d39087b3eebc49d490 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new person's object.  <a href="class_person.html#a940ece7b9e17a6d39087b3eebc49d490">More...</a><br /></td></tr>
+<tr class="memdesc:a940ece7b9e17a6d39087b3eebc49d490 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new person.  <a href="class_person.html#a940ece7b9e17a6d39087b3eebc49d490">More...</a><br /></td></tr>
 <tr class="separator:a940ece7b9e17a6d39087b3eebc49d490 inherit pub_methods_class_person"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22234d7de3132c581406f040196eef44 inherit pub_methods_class_person"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a22234d7de3132c581406f040196eef44">~Person</a> ()=default</td></tr>
 <tr class="memdesc:a22234d7de3132c581406f040196eef44 inherit pub_methods_class_person"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the person's object.  <a href="class_person.html#a22234d7de3132c581406f040196eef44">More...</a><br /></td></tr>
@@ -218,6 +224,15 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>the name </td></tr>
+    <tr><td class="paramname">salary</td><td>the salary </td></tr>
+    <tr><td class="paramname">taxID</td><td>the taxpayer identification number </td></tr>
+    <tr><td class="paramname">credential</td><td>the access credentials </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -261,8 +276,6 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Gets the default access credentials. </p>
 <dl class="section return"><dt>Returns</dt><dd>the default access credentials </dd></dl>
 
 <p>Implements <a class="el" href="class_person.html#acab3096af55dd3c1823084eacdb760d2">Person</a>.</p>
@@ -283,6 +296,7 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>the salary </dd></dl>
 
 </div>
 </div>
@@ -300,6 +314,7 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>the list of undelivered orders </dd></dl>
 
 </div>
 </div>
@@ -328,6 +343,13 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>the output stream </td></tr>
+    <tr><td class="paramname">showData</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -363,6 +385,12 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">salary</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
