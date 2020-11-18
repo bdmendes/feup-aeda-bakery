@@ -14,7 +14,7 @@ class IntroMenu : public UI {
 public:
     explicit IntroMenu(Store& s);
     void show() override;
-    void importData(bool doReset);
+    void importData();
     void exportData();
 };
 

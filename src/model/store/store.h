@@ -28,17 +28,15 @@ class Order;
 
 class Store {
 public:
-    Store(std::string name = "Bakery Store");
+    explicit Store(std::string name = "Bakery Store");
 
     void setName(const std::string& name);
     std::string getName() const;
     int getEvaluation() const;
     float getProfit() const;
 
-    std::string read(const std::string& dataFolderPath, bool doReset);
+    std::string read(const std::string& dataFolderPath);
     std::string write(const std::string& dataFolderPath);
-
-    void reset();
 
     ProductManager productManager;
     ClientManager clientManager;

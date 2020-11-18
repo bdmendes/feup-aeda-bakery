@@ -26,12 +26,12 @@ Credential Person::getCredential() const {
 }
 
 void Person::setName(const std::string& name){
-    if(_name == name) throw InvalidPersonNameChange();
+    //if(_name == name) throw InvalidPersonNameChange();
     _name = name;
 }
 
 void Person::setCredential(const Credential &credential) {
-    if (_credential == credential) throw InvalidPersonCredentialChange();
+    //if (_credential == credential) throw InvalidPersonCredentialChange();
     if (_credential.isReserved()) throw InvalidCredential(_credential.username);
     _credential = credential;
 }
@@ -50,8 +50,6 @@ bool Person::isLogged() const {
 }
 
 void Person::setLogged(bool logged) {
-    if (logged && _logged) throw std::invalid_argument("Person is already logged in!");
-    if (!logged && !_logged) throw std::invalid_argument("Person is already logged out!");
     _logged = logged;
 }
 
