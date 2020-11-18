@@ -4,11 +4,11 @@
 
 #include "product_manager.h"
 
-#include <algorithm>
-#include <utility>
-#include <util/util.h>
 #include <fstream>
-#include <exception/file_exception.h>
+#include <algorithm>
+
+#include "util/util.h"
+#include "exception/file_exception.h"
 
 ProductManager::ProductManager(): _products(){
 }
@@ -55,7 +55,7 @@ void ProductManager::remove(unsigned int position) {
 
 void ProductManager::print(std::ostream &os) const {
     if (!_products.empty()) {
-        os << std::string(static_cast<int>(_products.size()) / 10 + 3, util::SPACE)
+        os << std::string(static_cast<unsigned long>(_products.size()) / 10 + 3, util::SPACE)
            << util::column("NAME", true)
            << util::column("CATEGORY")
            << util::column("UNIT PRICE") << "\n";
@@ -94,7 +94,7 @@ void ProductManager::read(const std::string &path) {
 
             ss >> name >> price >> cakeCategory;
             CakeCategory categoryToSave = CakeCategory::GENERAL;
-            for (int i = 0; i < cakeCategories.size(); ++i){
+            for (unsigned long i = 0; i < cakeCategories.size(); ++i){
                 std::string styledCat = cakeCategories.at(i);
                 std::replace(styledCat.begin(),styledCat.end(),' ','-');
                 if (styledCat == cakeCategory) {

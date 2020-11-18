@@ -2,8 +2,8 @@
 // Created by bdmendes on 29/10/20.
 //
 
-#include <exception/file_exception.h>
 #include "worker_manager.h"
+#include "exception/file_exception.h"
 
 WorkerManager::WorkerManager() : _workers(){
 }
@@ -55,7 +55,7 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
         return false;
     }
 
-    os << std::string(static_cast<int>(_workers.size()) / 10 + 3, util::SPACE)
+    os << std::string(static_cast<unsigned long>(_workers.size()) / 10 + 3, util::SPACE)
     << util::column("NAME", true)
     << util::column("TAX ID");
     if (showData){
@@ -126,7 +126,6 @@ Worker* WorkerManager::getWorker(int taxID) const {
 WorkerManager::~WorkerManager() {
     for (auto& w: _workers) delete w;
 }
-
 
 
 

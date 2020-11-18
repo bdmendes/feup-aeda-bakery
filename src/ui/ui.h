@@ -19,10 +19,9 @@ public:
 protected:
     static std::string readCommand(bool lowCase = true);
 
-    static bool validInput1CmdFree(const std::string& input, bool digit = true);
     static bool validInput1Cmd(const std::string& input, const std::string &cmd);
     static bool validInput1Cmd1ArgDigit(const std::string& input, const std::string &cmd, bool acceptFloat = false);
-    static bool validInput1Cmd1ArgFree(const std::string& input, const std::string &cmd);
+
     static bool validInput1Cmd1Arg(const std::string& input, const std::string &cmd, const std::string &arg);
     static bool validInput1Cmd2ArgsDigit(const std::string& input, const std::string &cmd, bool acceptFloatArg2 = false);
 

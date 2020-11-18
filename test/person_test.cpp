@@ -64,10 +64,7 @@ TEST(Client, set_name){
     client.setName("Ricardo Gomes");
 
     EXPECT_EQ("Ricardo Gomes", client.getName());
-    EXPECT_THROW(client.setName("Ricardo Gomes"), InvalidPersonNameChange);
-
     client.setName("Filipe Gomes");
-
     EXPECT_EQ("Filipe Gomes", client.getName());
 
 }
@@ -77,10 +74,7 @@ TEST(Worker, set_name){
     worker.setName("Sandra Rodrigues");
 
     EXPECT_EQ("Sandra Rodrigues", worker.getName());
-    EXPECT_THROW(worker.setName("Sandra Rodrigues"), InvalidPersonNameChange);
-
     worker.setName("Sandra Silva");
-
     EXPECT_EQ("Sandra Silva", worker.getName());
 }
 
@@ -90,8 +84,6 @@ TEST(Client, set_credential){
     client.setCredential(clientCredential);
 
     EXPECT_TRUE(client.getCredential() == clientCredential);
-    EXPECT_THROW(client.setCredential(clientCredential), InvalidPersonCredentialChange);
-
     clientCredential.username = "ruimacedo";
     client.setCredential(clientCredential);
 
@@ -104,8 +96,6 @@ TEST(Worker, set_credential){
     worker.setCredential(workerCredential);
 
     EXPECT_TRUE(worker.getCredential() == workerCredential);
-    EXPECT_THROW(worker.setCredential(workerCredential), InvalidPersonCredentialChange);
-
     workerCredential.password = "senha321";
     worker.setCredential(workerCredential);
 

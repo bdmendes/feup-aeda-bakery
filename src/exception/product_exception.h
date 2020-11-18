@@ -23,7 +23,7 @@ public:
 
 class InvalidProductPosition : public std::invalid_argument{
 public:
-    InvalidProductPosition(unsigned position, unsigned size);
+    InvalidProductPosition(unsigned position, unsigned long size);
 };
 
 

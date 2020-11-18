@@ -26,7 +26,7 @@ public:
 
 class InvalidPersonPosition : public std::invalid_argument{
 public:
-    InvalidPersonPosition(unsigned position, unsigned size);
+    InvalidPersonPosition(unsigned position, unsigned long size);
 };
 
 class InvalidPersonCredentialChange : public std::invalid_argument{

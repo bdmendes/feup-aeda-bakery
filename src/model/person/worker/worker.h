@@ -24,7 +24,7 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the access credentials
      */
-    Worker(std::string name, int taxID = DEFAULT_TAX_ID, float salary = DEFAULT_SALARY,
+    explicit Worker(std::string name, int taxID = DEFAULT_TAX_ID, float salary = DEFAULT_SALARY,
            Credential credential = {DEFAULT_USERNAME,DEFAULT_PASSWORD});
 
     /**

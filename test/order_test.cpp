@@ -62,7 +62,7 @@ TEST(Order, add_product){
     EXPECT_THROW(order.addProduct(&barleyBread), OrderWasAlreadyDelivered);
 }
 
-TEST(Order, remove_product_quantity_by_pointer){
+/*TEST(Order, remove_product_quantity_by_pointer){
     Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
     Order order(client,worker);
@@ -93,7 +93,7 @@ TEST(Order, remove_product_quantity_by_pointer){
     EXPECT_FLOAT_EQ(2.6, order.getTotal());
 
     EXPECT_THROW(order.removeProduct(&barleyBread), ProductDoesNotExist);
-}
+}*/
 
 TEST(Order, remove_product_by_pointer){
     Client client("Alfredo Simoes");
@@ -118,7 +118,7 @@ TEST(Order, remove_product_by_pointer){
     EXPECT_THROW(order.removeProduct(&chocolateCake), ProductDoesNotExist);
 }
 
-TEST(Order, remove_product_quantity_by_position){
+/*TEST(Order, remove_product_quantity_by_position){
     Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
     Order order(client,worker);
@@ -148,7 +148,7 @@ TEST(Order, remove_product_quantity_by_position){
     EXPECT_EQ(orderProducts, order.getProducts());
     EXPECT_FLOAT_EQ(8.2, order.getTotal());
     EXPECT_THROW(order.removeProduct(2), InvalidProductPosition);
-}
+}*/
 
 TEST(Order, remove_product_by_position){
     Client client("Alfredo Simões");

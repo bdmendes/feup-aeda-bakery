@@ -2,11 +2,11 @@
 // Created by bdmendes on 29/10/20.
 //
 
-#include "client_manager.h"
 #include <algorithm>
-#include <exception/person_exception.h>
-#include <iomanip>
-#include <exception/file_exception.h>
+
+#include "client_manager.h"
+#include "exception/person_exception.h"
+#include "exception/file_exception.h"
 
 ClientManager::ClientManager() : _clients() {
 }

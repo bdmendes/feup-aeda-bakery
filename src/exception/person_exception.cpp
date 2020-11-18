@@ -28,7 +28,7 @@ PersonAlreadyExists::PersonAlreadyExists(int taxID):
     std::logic_error("Person with number " + std::to_string(taxID) + " already exists!"){
 }
 
-InvalidPersonPosition::InvalidPersonPosition(unsigned int position, unsigned int size) :
+InvalidPersonPosition::InvalidPersonPosition(unsigned int position, unsigned long size) :
     std::invalid_argument(std::to_string(++position) + " is an invalid position; should be between 1 and " + std::to_string(size) + "!"){
 }
 

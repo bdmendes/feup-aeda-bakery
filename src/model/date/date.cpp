@@ -6,8 +6,8 @@
 #include <iomanip>
 #include <sstream>
 
-Date::Date() : _time(){
-    std::time_t t = std::time(nullptr);
+Date::Date() {
+    time_t t = std::time(nullptr);
     localtime_r(&t, &_time);
 }
 
@@ -61,8 +61,9 @@ bool Date::isValid() const {
             return getDay()<=30;
         case 2:
             return isLeapYear(getYear()) ? getDay()<=29 : getDay()<=28;
+        default:
+            return true;
     }
-    return true;
 }
 
 void Date::addDays(int days) {

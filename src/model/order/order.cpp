@@ -4,14 +4,13 @@
 
 #include "order.h"
 
-#include <utility>
-#include <util/util.h>
+#include "util/util.h"
 
 Order::Order(Client &client, Worker &worker, Date date) :
         _client(&client), _worker(&worker), _clientEvaluation(0), _delivered(false),
         _totalPrice(0.0f), _requestDate(date), _deliverDate(date), _products(){
     updateTotalPrice();
-    _client->addPoints(10* static_cast<int>(_totalPrice)); //For each euro adds 10 points
+    _client->addPoints(10* static_cast<unsigned int>(_totalPrice)); //For each euro adds 10 points
     _worker->addOrderToDeliver();
 }
 
@@ -72,17 +71,6 @@ Product * Order::addProduct(Product* product, unsigned quantity) {
     return product;
 }
 
-void Order::removeProduct(Product* product, unsigned quantity) {
-    if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
-    if (hasProduct(product)){
-        if (_products[product] < quantity) quantity = _products[product];
-        _products[product] -= quantity;
-        if (_products[product] == 0) _products.erase(product);
-        updateTotalPrice();
-    }
-    else throw ProductDoesNotExist(product->getName(),product->getPrice());
-}
-
 void Order::removeProduct(Product *product) {
     if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
     if (hasProduct(product)){
@@ -90,21 +78,6 @@ void Order::removeProduct(Product *product) {
         updateTotalPrice();
     }
     else throw ProductDoesNotExist(product->getName(),product->getPrice());
-}
-
-void Order::removeProduct(unsigned int position, unsigned int quantity) {
-    if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
-    auto it = _products.begin();
-    if (position < _products.size()){
-        std::advance(it,position);
-
-        if (it->second < quantity) quantity = it->second;
-        it->second -= quantity;
-
-        if (it->second == 0) _products.erase(it);
-        updateTotalPrice();
-    }
-    else throw InvalidProductPosition(position, _products.size());
 }
 
 void Order::removeProduct(unsigned int position) {
@@ -132,7 +105,7 @@ void Order::deliver(int clientEvaluation, int deliverDuration) {
     else _deliverDate = Date();
 
     if (hasDiscount()) _client->resetPoints();
-    _client->addPoints(10* static_cast<int>(_totalPrice)); //For each euro adds 10 points
+    _client->addPoints(10* static_cast<unsigned int>(_totalPrice)); //For each euro adds 10 points
 }
 
 bool Order::operator==(const Order &rhs) const {
@@ -158,7 +131,7 @@ void Order::print(std::ostream &os) const {
 
     //products
     if (!_products.empty()) {
-        os << std::string(static_cast<int>(_products.size()) / 10 + 3, util::SPACE)
+        os << std::string(static_cast<unsigned int>(_products.size()) / 10 + 3, util::SPACE)
            << util::column("Product description", true)
            << util::column("Category")
            << util::column("Unit price")

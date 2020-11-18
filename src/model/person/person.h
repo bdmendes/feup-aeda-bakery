@@ -13,6 +13,12 @@
 
 #include <iostream>
 
+enum class PersonRole {
+    WORKER,
+    CLIENT,
+    BOSS
+};
+
 /**
  *
  */
@@ -40,7 +46,7 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the access credentials (username and password)
      */
-    Person(std::string name, int taxID, Credential credential);
+    Person(std::string name, int taxID, Credential credential, PersonRole role);
 
     /**
      * Destructs the person's object.
@@ -129,6 +135,9 @@ public:
     /**
      * The default taxpayer identification number.
      */
+
+    PersonRole getRole();
+
     static const int DEFAULT_TAX_ID;
 
 private:
@@ -151,6 +160,9 @@ private:
      * The client's log status.
      */
     bool _logged;
+
+protected:
+    PersonRole _role;
 };
 
 /**

@@ -9,11 +9,12 @@ void IntroMenu::show() {
     printLogo({});
     std::cout << SEPARATOR
               << "Welcome to the Bakery Store management app.\n"
+              << "You start with a blank store. Import data or start fresh.\n"
               << "At any screen, type 'back' to go back.\n"
               << SEPARATOR << std::endl;
     const std::vector<std::string> content = {
             "import data - import data from files",
-            "export data - export current store data to files",
+            "export data - export data to files",
             "manage store - enter store management"
     };
     printOptions(content);
@@ -21,22 +22,22 @@ void IntroMenu::show() {
     for (;;) {
         std::string input = readCommand();
         if (input == EXIT) return;
-        if (validInput1Cmd1Arg(input, "manage","store")) {
+        else if (validInput1Cmd1Arg(input, "manage","store")) {
             LoginMenu(_store).show();
             break;
         }
-        if (validInput1Cmd1Arg(input,"import","data")){
+        else if (validInput1Cmd1Arg(input,"import","data")){
             importData();
             break;
         }
-        if (validInput1Cmd1Arg(input,"export","data")){
+        else if (validInput1Cmd1Arg(input,"export","data")){
             exportData();
             break;
         }
-        printError();
+        else printError();
     }
 
-    show();
+    show(); // allow back
 }
 
 IntroMenu::IntroMenu(Store &s) : UI(s) {

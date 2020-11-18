@@ -23,6 +23,7 @@ public:
     bool has(Worker* worker) const;
 
     Worker* get(unsigned position);
+    Worker* getWorker(int taxID) const;
     std::set<Worker*, PersonSmaller> getAll();
     Worker* getLessBusyWorker();
 
@@ -36,8 +37,6 @@ public:
     void read(const std::string& path);
     void write(const std::string& path);
     bool print(std::ostream& os, bool showData = true);
-
-    Worker* getWorker(int taxID) const;
 
 private:
     std::set<Worker*, PersonSmaller> _workers;

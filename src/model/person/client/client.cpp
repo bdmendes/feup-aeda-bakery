@@ -4,15 +4,14 @@
 
 #include "client.h"
 
-#include <utility>
-#include <util/util.h>
+#include "util/util.h"
 #include <numeric>
 
 const char* Client::DEFAULT_USERNAME = "client";
 const char* Client::DEFAULT_PASSWORD = "client";
 
 Client::Client(std::string name, int taxID, bool premium, Credential credential):
-        Person(std::move(name), taxID, std::move(credential)), _points{0}, _premium(premium), _evaluations(){
+        Person(std::move(name), taxID, std::move(credential), PersonRole::CLIENT), _points{0}, _premium(premium), _evaluations(){
 }
 
 bool Client::isPremium() const {

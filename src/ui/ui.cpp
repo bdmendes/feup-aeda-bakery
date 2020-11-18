@@ -18,11 +18,6 @@ std::string UI::readCommand(bool lowCase) {
     return input;
 }
 
-bool UI::validInput1CmdFree(const std::string &input, bool digit) {
-    std::vector<std::string> words = to_words(input);
-    return words.size() == 1 && (!digit || isdigit(words.at(0)));
-}
-
 bool UI::validInput1Cmd(const std::string& input, const std::string &cmd) {
     std::vector<std::string> words = to_words(input);
     return words.size() == 1 && words.at(0) == cmd;
@@ -36,11 +31,6 @@ bool UI::validInput1Cmd1ArgDigit(const std::string& input, const std::string &cm
 bool UI::validInput1Cmd1Arg(const std::string& input, const std::string &cmd, const std::string &arg) {
     std::vector<std::string> words = to_words(input);
     return words.size() == 2 && words.at(0) == cmd && words.at(1) == arg;
-}
-
-bool UI::validInput1Cmd1ArgFree(const std::string& input, const std::string &cmd) {
-    std::vector<std::string> words = to_words(input);
-    return words.size() == 2 && words.at(0) == cmd;
 }
 
 bool UI::validInput1Cmd2ArgsDigit(const std::string &input, const std::string &cmd, bool acceptFloatArg2) {

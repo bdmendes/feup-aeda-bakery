@@ -39,6 +39,8 @@ public:
      */
     Client* get(unsigned position);
 
+    Client* getClient(int taxID) const;
+
     /**
      * Gets the clients list of the client manager.
      *
@@ -85,8 +87,6 @@ public:
   
     void read(const std::string& path);
     void write(const std::string& path);
-
-    Client* getClient(int taxID) const;
 
 private:
     /**

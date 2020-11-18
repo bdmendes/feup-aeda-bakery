@@ -46,13 +46,6 @@ public:
     unsigned getPoints() const;
 
     /**
-     *Gets the list of all order's evaluation given by the client.
-     *
-     * @return the list of order's evaluation
-     */
-    std::vector<int> getEvaluations() const;
-
-    /**
      *Sets the client's subscription type.
      *
      * @param premium

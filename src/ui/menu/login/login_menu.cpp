@@ -19,11 +19,19 @@ void LoginMenu::show() {
     for (;;) {
         std::string input = readCommand();
         if (input == BACK) return;
-        else if (validInput1Cmd(input, "worker")) selectPerson(false);
-        else if (validInput1Cmd(input, "client")) selectPerson(true);
-        else if (validInput1Cmd(input, "boss")) login(&_store.boss);
-        else { printError(); continue; }
-        break;
+        else if (validInput1Cmd(input, "worker")){
+            selectPerson(false);
+            break;
+        }
+        else if (validInput1Cmd(input, "client")){
+            selectPerson(true);
+            break;
+        }
+        else if (validInput1Cmd(input, "boss")){
+            login(&_store.boss);
+            break;
+        }
+        else printError();
     }
 
     show();
@@ -52,13 +60,13 @@ void LoginMenu::selectPerson(bool client) {
         try {
             std::string input = readCommand();
             if (input == BACK) return;
-            if (hasPersons && validInput1Cmd1ArgDigit(input,"login")) {
+            else if (hasPersons && validInput1Cmd1ArgDigit(input,"login")) {
                 unsigned personPosition = std::stoi(to_words(input).at(1)) - 1;
                 if (!client) login(_store.workerManager.get(personPosition));
                 else login(_store.clientManager.get(personPosition));
+                break;
             }
-            else {printError(); continue; }
-            break;
+            else printError();
         }
         catch (std::exception& e){
             std::cout << e.what() << SPACE;
@@ -82,7 +90,7 @@ void LoginMenu::login(Person *person) {
             std::cout << "Wrong username. Try again: ";
         }
 
-        std::cout << "Password: ";
+        std::cout << "\nPassword: ";
         for (;;) {
             std::string input = readCommand(false);
             if (input == BACK) return;
@@ -92,7 +100,16 @@ void LoginMenu::login(Person *person) {
 
         person->setLogged(true);
     }
-    if (dynamic_cast<Worker *>(person)) WorkerDashboard(_store, dynamic_cast<Worker *>(person)).show();
-    else if (dynamic_cast<Client *>(person)) ClientDashboard(_store,dynamic_cast<Client *>(person)).show();
-    else if (dynamic_cast<Boss *>(person)) BossDashboard(_store).show();
+
+    switch (person->getRole()){
+        case PersonRole::WORKER:
+            WorkerDashboard(_store,_store.workerManager.getWorker(person->getTaxId())).show();
+            break;
+        case PersonRole::CLIENT:
+            ClientDashboard(_store, _store.clientManager.getClient(person->getTaxId())).show();
+            break;
+        case PersonRole::BOSS:
+            BossDashboard(_store).show();
+            break;
+    }
 }

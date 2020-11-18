@@ -38,9 +38,7 @@ public:
     Date getDeliverDate() const;
 
     Product* addProduct(Product* product, unsigned quantity = 1);
-    void removeProduct(Product* product, unsigned quantity);
     void removeProduct(Product* product);
-    void removeProduct(unsigned position, unsigned quantity);
     void removeProduct(unsigned position);
 
     void deliver(int clientEvaluation, int deliverDuration = 30);
@@ -51,8 +49,8 @@ public:
     void print(std::ostream& os) const;
 
 private:
-    std::map<Product*, unsigned int, ProductSmaller> _products;
     void updateTotalPrice();
+    std::map<Product*, unsigned int, ProductSmaller> _products;
     float _totalPrice;
     Client* _client;
     Worker* _worker;

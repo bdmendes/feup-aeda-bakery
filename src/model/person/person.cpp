@@ -4,12 +4,11 @@
 
 #include "person.h"
 
-#include <utility>
-
 const int Person::DEFAULT_TAX_ID = 999999999;
 
-Person::Person(std::string name, int taxID, Credential credential) :
-        _name(std::move(name)), _taxID{taxID}, _credential{std::move(credential) }, _logged(false) {
+Person::Person(std::string name, int taxID, Credential credential, PersonRole role) :
+        _name(std::move(name)), _taxID{taxID}, _credential{std::move(credential) }, _logged(false),
+        _role(role) {
     if (credential.isReserved()) throw InvalidCredential(_credential.username);
 }
 
@@ -55,4 +54,8 @@ void Person::setLogged(bool logged) {
 
 void Person::setTaxID(int taxID) {
     _taxID = taxID;
+}
+
+PersonRole Person::getRole() {
+    return _role;
 }

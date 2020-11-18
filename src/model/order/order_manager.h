@@ -27,8 +27,6 @@ public:
     std::vector<Order*> getAll() const;
     std::vector<Order*> get(Client* client) const;
     std::vector<Order*> get(Worker* worker) const;
-    float getMeanEvaluation(Client* client) const;
-    float getMeanEvaluation(Worker *worker) const;
 
     void sort();
     Order* add(Client* client, Date date = {});

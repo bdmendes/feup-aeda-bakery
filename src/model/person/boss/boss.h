@@ -22,7 +22,8 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the access credentials
      */
-    explicit Boss(std::string name = "Boss", int taxID = Person::DEFAULT_TAX_ID, Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
+    explicit Boss(std::string name = "Boss", int taxID = Person::DEFAULT_TAX_ID,
+                  Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     void read(const std::string& path);
     void write(const std::string& path);
