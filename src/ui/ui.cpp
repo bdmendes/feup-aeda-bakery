@@ -43,8 +43,7 @@ void UI::printOptions(const std::vector<std::string> &options, std::string messa
     if (message.empty()) message = "Available commands:";
     std::cout << message << '\n';
 
-    int counter = 1;
-    for (const auto& o: options) std::cout << std::to_string(counter++) << ". " << o << '\n';
+    for (const auto& o: options) std::cout << "-> " << o << '\n';
     std::cout << '\n';
 }
 

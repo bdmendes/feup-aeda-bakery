@@ -24,7 +24,7 @@ void BossDashboard::show() {
 
     for (;;) {
         std::string input = readCommand();
-        if (input == BACK) break;
+        if (input == BACK) return;
         else if (validInput1Cmd(input,"logout")){
             _boss->setLogged(false);
             return;
