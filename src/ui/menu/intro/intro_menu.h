@@ -12,8 +12,10 @@ class FileImportMenu;
 
 class IntroMenu : public UI {
 public:
-    IntroMenu(Store& s);
+    explicit IntroMenu(Store& s);
     void show() override;
+    void importData(bool doReset);
+    void exportData();
 };
 
 

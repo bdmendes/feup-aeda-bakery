@@ -27,7 +27,7 @@ public:
 
     Worker * setSalary(unsigned position, float salary);
 
-    Worker* add(std::string name, float salary, int taxID = Person::DEFAULT_TAX_ID,
+    Worker* add(std::string name, int taxID = Person::DEFAULT_TAX_ID, float salary = Worker::DEFAULT_SALARY,
              Credential credential = {Worker::DEFAULT_USERNAME,Worker::DEFAULT_PASSWORD});
     void remove(Worker* worker);
     void remove(unsigned position);

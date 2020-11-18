@@ -91,6 +91,9 @@ void BossDashboard::manageStaff() {
             if (input == BACK) return;
             else if (hasStaff && validInput1Cmd1ArgDigit(input,"fire")){
                 int idx = std::stoi(to_words(input).at(1)) - 1;
+                if (!_store.orderManager.get(_store.workerManager.get(idx)).empty()){
+                    throw std::logic_error("You can't fire a worker who has been involved in orders.");
+                }
                 _store.workerManager.remove(idx);
                 break;
             }
@@ -114,14 +117,14 @@ void BossDashboard::manageStaff() {
 }
 
 void BossDashboard::showStats() {
-    for(;;) {
-        printLogo("Some quick maths");
-        std::cout << SEPARATOR;
-        util::print(_store.getName(), util::BLUE);
-        std::cout << "\nMean evaluation: " << _store.getEvaluation()
-                  << "\nRevenue: " << _store.getProfit() << " euros\n"
-                  << "\nIt's a nice day out there.\n" << SEPARATOR << "\n";
+    printLogo("Some quick maths");
+    std::cout << SEPARATOR;
+    util::print(_store.getName(), util::BLUE);
+    std::cout << "\nMean evaluation: " << _store.getEvaluation()
+              << "\nRevenue: " << util::to_string(_store.getProfit()) << " euros\n"
+              << "\nIt's a nice day out there.\n" << SEPARATOR << "\n";
 
+    for(;;) {
         std::string input = readCommand();
         if (input == BACK) break;
         else printError();

@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <exception/file_exception.h>
 
-ClientManager::ClientManager() : _clients(std::set<Client*, PersonSmaller>()) {
+ClientManager::ClientManager() : _clients() {
 }
 
 bool ClientManager::has(Client *client) const {
@@ -25,8 +25,8 @@ std::set<Client *, PersonSmaller> ClientManager::getAll() {
     return _clients;
 }
 
-Client* ClientManager::add(std::string name, bool premium, int taxID, Credential credential) {
-    auto* client = new Client(std::move(name), premium, taxID, std::move(credential));
+Client* ClientManager::add(std::string name, int taxID, bool premium, Credential credential) {
+    auto* client = new Client(std::move(name), taxID, premium, std::move(credential));
     if(has(client)) throw PersonAlreadyExists(client->getName(), client->getTaxId());
     _clients.insert(client);
     return client;
@@ -71,7 +71,7 @@ bool ClientManager::print(std::ostream &os, bool showData) {
 
 void ClientManager::read(const std::string &path) {
     std::ifstream file(path);
-    if(!file) throw FileNotFound();
+    if(!file) throw FileNotFound(path);
 
     std::string name, premium;
     int taxID;
@@ -90,7 +90,7 @@ void ClientManager::read(const std::string &path) {
 
 void ClientManager::write(const std::string &path) {
     std::ofstream file(path);
-    if(!file) throw FileNotFound();
+    if(!file) throw FileNotFound(path);
 
     std::string nameToSave, premiumToSave;
     for(const auto & client: _clients){

@@ -4,5 +4,5 @@
 
 #include "file_exception.h"
 
-FileNotFound::FileNotFound() : std::logic_error("File not found.")
-{}
+FileNotFound::FileNotFound(const std::string &path) : logic_error(path + " not found.") {
+}

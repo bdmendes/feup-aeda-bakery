@@ -12,8 +12,8 @@ PersonDoesNotExist::PersonDoesNotExist(const std::string& name):
     std::logic_error(name + " does not exist!\n"){
 }
 
-PersonDoesNotExist::PersonDoesNotExist(int tributaryNumber) :
-    std::logic_error("Person with number " + std::to_string(tributaryNumber) + ", does not exist!"){
+PersonDoesNotExist::PersonDoesNotExist(int taxID) :
+    std::logic_error("Person with number " + std::to_string(taxID) + " does not exist!"){
 }
 
 PersonAlreadyExists::PersonAlreadyExists(const std::string& name, int tributaryNumber) :
@@ -24,8 +24,8 @@ PersonAlreadyExists::PersonAlreadyExists(const std::string& name):
     std::logic_error(name + " already exists!\n"){
 }
 
-PersonAlreadyExists::PersonAlreadyExists(int tributaryNumber):
-    std::logic_error("Person with number " + std::to_string(tributaryNumber) + " already exists!"){
+PersonAlreadyExists::PersonAlreadyExists(int taxID):
+    std::logic_error("Person with number " + std::to_string(taxID) + " already exists!"){
 }
 
 InvalidPersonPosition::InvalidPersonPosition(unsigned int position, unsigned int size) :

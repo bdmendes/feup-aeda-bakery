@@ -16,7 +16,7 @@
 
 class FileNotFound : public std::logic_error{
 public:
-    explicit FileNotFound();
+    explicit FileNotFound(const std::string& path);
 };
 
 

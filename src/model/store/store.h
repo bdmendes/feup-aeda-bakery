@@ -35,6 +35,11 @@ public:
     int getEvaluation() const;
     float getProfit() const;
 
+    std::string read(const std::string& dataFolderPath, bool doReset);
+    std::string write(const std::string& dataFolderPath);
+
+    void reset();
+
     ProductManager productManager;
     ClientManager clientManager;
     WorkerManager workerManager;

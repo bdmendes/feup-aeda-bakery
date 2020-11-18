@@ -11,7 +11,7 @@
 
 class Worker : public Person{
 public:
-    Worker(std::string name, float salary, int taxID = Person::DEFAULT_TAX_ID,
+    Worker(std::string name, int taxID = DEFAULT_TAX_ID, float salary = DEFAULT_SALARY,
            Credential credential = {DEFAULT_USERNAME,DEFAULT_PASSWORD});
 
     float getSalary() const;
@@ -27,6 +27,7 @@ public:
     Credential getDefaultCredential() override;
     static const char* DEFAULT_USERNAME;
     static const char* DEFAULT_PASSWORD;
+    static const float DEFAULT_SALARY;
 private:
     unsigned _undeliveredOrders;
     float _salary;

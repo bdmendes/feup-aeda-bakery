@@ -12,8 +12,9 @@ void IntroMenu::show() {
               << "At any screen, type 'back' to go back.\n"
               << SEPARATOR << std::endl;
     const std::vector<std::string> content = {
-            "import <name> - import data from folder called name",
-            "export <name> - export data to folder called name",
+            "import reset - import data from files; clear current store",
+            "import update - import data from files; add new data to the current",
+            "export data - export current store data to files",
             "manage store - enter store management"
     };
     printOptions(content);
@@ -25,12 +26,16 @@ void IntroMenu::show() {
             LoginMenu(_store).show();
             break;
         }
-        if (validInput1Cmd1ArgFree(input,"import")){
-            printLogo("Import data");
+        if (validInput1Cmd1Arg(input,"import","reset")){
+            importData(true);
             break;
         }
-        if (validInput1Cmd1ArgFree(input,"export")){
-            printLogo("Export data");
+        if (validInput1Cmd1Arg(input,"import","update")){
+            importData(false);
+            break;
+        }
+        if (validInput1Cmd1Arg(input,"export","data")){
+            exportData();
             break;
         }
         printError();
@@ -40,4 +45,24 @@ void IntroMenu::show() {
 }
 
 IntroMenu::IntroMenu(Store &s) : UI(s) {
+}
+
+void IntroMenu::importData(bool doReset) {
+    std::cout << "\nIMPORT DATA" << ((doReset)? " - RESET\n" : " - UPDATE\n")
+    << SEPARATOR << "'data' folder path: ";
+    std::string input = readCommand();
+    if (input == BACK) return;
+    std::cout << "\n" << _store.read(input, doReset)
+    << "\nPress enter to go back. ";
+    std::getline(std::cin,input);
+}
+
+void IntroMenu::exportData() {
+    std::cout << "\nEXPORT DATA\n" << SEPARATOR
+              << "'data' folder path: ";
+    std::string input = readCommand();
+    if (input == BACK) return;
+    std::cout << "\n" << _store.write(input)
+              << "\nPress enter to go back. ";
+    std::getline(std::cin,input);
 }

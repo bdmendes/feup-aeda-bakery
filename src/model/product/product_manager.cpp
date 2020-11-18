@@ -83,7 +83,7 @@ Product *ProductManager::get(const std::string &name, float price) {
 
 void ProductManager::read(const std::string &path) {
     std::ifstream file(path);
-    if(!file) throw FileNotFound();
+    if(!file) throw FileNotFound(path);
     bool readingCakes = true;
 
     for (std::string line; getline(file, line); ){
@@ -139,7 +139,7 @@ std::set<Bread *, ProductSmaller> ProductManager::getBreads() const {
 
 void ProductManager::write(const std::string &path) const{
     std::ofstream file(path);
-    if(!file) throw FileNotFound();
+    if(!file) throw FileNotFound(path);
 
     std::vector<std::string> cakeCategories=Cake::getCategories();
     std::set<Cake*,ProductSmaller> cakes = getCakes();
