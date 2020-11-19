@@ -9,6 +9,13 @@
  * Struct to compare two product pointers.
  */
 struct ProductSmaller{
+    /**
+     * Compares two product pointers.
+     *
+     * @param p1 the first product to compare with
+     * @param p2 the second product to compare with
+     * @return true, if the first product is less than the second one, according to alphabetical order; false, otherwise
+     */
     bool operator()(const Product* p1, const Product* p2) {
         return *p1 < *p2;
     }
