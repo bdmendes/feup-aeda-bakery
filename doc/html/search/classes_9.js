@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['ui_159',['UI',['../class_u_i.html',1,'']]]
+  ['worker_252',['Worker',['../class_worker.html',1,'']]],
+  ['workerdashboard_253',['WorkerDashboard',['../class_worker_dashboard.html',1,'']]],
+  ['workermanager_254',['WorkerManager',['../class_worker_manager.html',1,'']]]
 ];

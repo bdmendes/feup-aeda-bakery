@@ -29,10 +29,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="scratch.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AEDA Project
    </div>
+   <div id="projectbrief">Bakery project for AEDA, FEUP, MIEIC. Work in progress.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('dashboard_8h_source.html',''); initRes
 <div class="title">dashboard.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<a href="dashboard_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by bdmendes on 16/11/20.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
@@ -104,49 +104,62 @@ $(document).ready(function(){initNavTree('dashboard_8h_source.html',''); initRes
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_DASHBOARD_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;ui/ui.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="ui_8h.html">ui/ui.h</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_dashboard.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_dashboard.html">Dashboard</a> : <span class="keyword">public</span> <a class="code" href="class_u_i.html">UI</a>{</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_dashboard.html">Dashboard</a>(<a class="code" href="class_store.html">Store</a>&amp; store, <a class="code" href="class_person.html">Person</a>* person);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_dashboard.html">Dashboard</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> show() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_dashboard.html#a5c92ce0bfe438340400c16ceb00065c1">Dashboard</a>(<a class="code" href="class_store.html">Store</a>&amp; store, <a class="code" href="class_person.html">Person</a>* person);</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_dashboard.html#a0729aee93f377b78d5855b1be0b60ac3">   14</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_dashboard.html#a0729aee93f377b78d5855b1be0b60ac3">~Dashboard</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_dashboard.html#aebac6dd4aa0ea55ab93f13384fb26451">show</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> manageOrders(<a class="code" href="class_client.html">Client</a>* client = <span class="keyword">nullptr</span>, <a class="code" href="class_worker.html">Worker</a>* worker = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">void</span> expandOrder(<a class="code" href="class_order.html">Order</a>* order);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> editOrder(<a class="code" href="class_order.html">Order</a>* order);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_dashboard.html#abbc3c66c158d9dc901b3538023b71baf">viewOrders</a>(<a class="code" href="class_client.html">Client</a>* client = <span class="keyword">nullptr</span>, <a class="code" href="class_worker.html">Worker</a>* worker = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_dashboard.html#a8d72ebd15bb12ab192831dab2eac799a">expandOrder</a>(<a class="code" href="class_order.html">Order</a>* order);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_dashboard.html#ab4085c85640dd61294e24f20d0911d08">editOrder</a>(<a class="code" href="class_order.html">Order</a>* order);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> managePersonalData(<a class="code" href="class_person.html">Person</a>* person);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> manageStock();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> manageClients();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> printLogo(<span class="keyword">const</span> std::string&amp; detail) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_person.html">Person</a>* _person;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> changeCredential(<a class="code" href="class_person.html">Person</a>* person);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> changeName(<a class="code" href="class_person.html">Person</a>* person);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> changeTaxID(<a class="code" href="class_person.html">Person</a>* person);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> addBread();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> addCake();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> addClient();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;};</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_dashboard.html#af783817ebcdbe49a6351d154fdcaaa87">managePersonalData</a>(<a class="code" href="class_person.html">Person</a>* person);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_dashboard.html#ad4c2c4e6615bfbf6a0a662d020eae20f">manageStock</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_dashboard.html#a4e3767d37fcf47e6ed4b3ff5dc255e09">manageClients</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_dashboard.html#a1868d206b990dcb4910ac99079acbda7">printLogo</a>(<span class="keyword">const</span> std::string&amp; detail) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_dashboard.html#a3f5a2320a78db636701a515f1bacf970">   28</a></span>&#160;    <a class="code" href="class_person.html">Person</a>* <a class="code" href="class_dashboard.html#a3f5a2320a78db636701a515f1bacf970">_person</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> changeCredential(<a class="code" href="class_person.html">Person</a>* person);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> changeName(<a class="code" href="class_person.html">Person</a>* person);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> changeTaxID(<a class="code" href="class_person.html">Person</a>* person);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> addBread();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> addCake();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> addClient();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_DASHBOARD_H</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_DASHBOARD_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_person_html"><div class="ttname"><a href="class_person.html">Person</a></div><div class="ttdoc">Class relative to a store user.</div><div class="ttdef"><b>Definition:</b> person.h:60</div></div>
-<div class="ttc" id="aclass_worker_html"><div class="ttname"><a href="class_worker.html">Worker</a></div><div class="ttdoc">Class relative to a store worker.</div><div class="ttdef"><b>Definition:</b> worker.h:13</div></div>
-<div class="ttc" id="aclass_store_html"><div class="ttname"><a href="class_store.html">Store</a></div><div class="ttdoc">Class relative to a store.</div><div class="ttdef"><b>Definition:</b> store.h:29</div></div>
-<div class="ttc" id="aclass_u_i_html"><div class="ttname"><a href="class_u_i.html">UI</a></div><div class="ttdef"><b>Definition:</b> ui.h:13</div></div>
-<div class="ttc" id="aclass_order_html"><div class="ttname"><a href="class_order.html">Order</a></div><div class="ttdoc">Class relative to a store order.</div><div class="ttdef"><b>Definition:</b> order.h:19</div></div>
-<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdoc">Class relative to a store client.</div><div class="ttdef"><b>Definition:</b> client.h:13</div></div>
+<div class="ttc" id="aui_8h_html"><div class="ttname"><a href="ui_8h.html">ui.h</a></div></div>
+<div class="ttc" id="aclass_dashboard_html_abbc3c66c158d9dc901b3538023b71baf"><div class="ttname"><a href="class_dashboard.html#abbc3c66c158d9dc901b3538023b71baf">Dashboard::viewOrders</a></div><div class="ttdeci">void viewOrders(Client *client=nullptr, Worker *worker=nullptr)</div><div class="ttdef"><b>Definition:</b> dashboard.cpp:21</div></div>
+<div class="ttc" id="aclass_person_html"><div class="ttname"><a href="class_person.html">Person</a></div><div class="ttdef"><b>Definition:</b> person.h:22</div></div>
+<div class="ttc" id="aclass_dashboard_html_a8d72ebd15bb12ab192831dab2eac799a"><div class="ttname"><a href="class_dashboard.html#a8d72ebd15bb12ab192831dab2eac799a">Dashboard::expandOrder</a></div><div class="ttdeci">void expandOrder(Order *order)</div><div class="ttdef"><b>Definition:</b> dashboard.cpp:96</div></div>
+<div class="ttc" id="aclass_worker_html"><div class="ttname"><a href="class_worker.html">Worker</a></div><div class="ttdef"><b>Definition:</b> worker.h:12</div></div>
+<div class="ttc" id="aclass_dashboard_html_a1868d206b990dcb4910ac99079acbda7"><div class="ttname"><a href="class_dashboard.html#a1868d206b990dcb4910ac99079acbda7">Dashboard::printLogo</a></div><div class="ttdeci">void printLogo(const std::string &amp;detail) override</div><div class="ttdef"><b>Definition:</b> dashboard.cpp:174</div></div>
+<div class="ttc" id="aclass_dashboard_html_a3f5a2320a78db636701a515f1bacf970"><div class="ttname"><a href="class_dashboard.html#a3f5a2320a78db636701a515f1bacf970">Dashboard::_person</a></div><div class="ttdeci">Person * _person</div><div class="ttdef"><b>Definition:</b> dashboard.h:28</div></div>
+<div class="ttc" id="aclass_store_html"><div class="ttname"><a href="class_store.html">Store</a></div><div class="ttdef"><b>Definition:</b> store.h:29</div></div>
+<div class="ttc" id="aclass_dashboard_html_a0729aee93f377b78d5855b1be0b60ac3"><div class="ttname"><a href="class_dashboard.html#a0729aee93f377b78d5855b1be0b60ac3">Dashboard::~Dashboard</a></div><div class="ttdeci">virtual ~Dashboard()=default</div></div>
+<div class="ttc" id="aclass_dashboard_html_aebac6dd4aa0ea55ab93f13384fb26451"><div class="ttname"><a href="class_dashboard.html#aebac6dd4aa0ea55ab93f13384fb26451">Dashboard::show</a></div><div class="ttdeci">void show() override</div><div class="ttdef"><b>Definition:</b> dashboard.cpp:10</div></div>
+<div class="ttc" id="aclass_dashboard_html_a5c92ce0bfe438340400c16ceb00065c1"><div class="ttname"><a href="class_dashboard.html#a5c92ce0bfe438340400c16ceb00065c1">Dashboard::Dashboard</a></div><div class="ttdeci">Dashboard(Store &amp;store, Person *person)</div><div class="ttdef"><b>Definition:</b> dashboard.cpp:7</div></div>
+<div class="ttc" id="aclass_dashboard_html_a4e3767d37fcf47e6ed4b3ff5dc255e09"><div class="ttname"><a href="class_dashboard.html#a4e3767d37fcf47e6ed4b3ff5dc255e09">Dashboard::manageClients</a></div><div class="ttdeci">void manageClients()</div><div class="ttdef"><b>Definition:</b> dashboard.cpp:360</div></div>
+<div class="ttc" id="aclass_dashboard_html_af783817ebcdbe49a6351d154fdcaaa87"><div class="ttname"><a href="class_dashboard.html#af783817ebcdbe49a6351d154fdcaaa87">Dashboard::managePersonalData</a></div><div class="ttdeci">void managePersonalData(Person *person)</div><div class="ttdef"><b>Definition:</b> dashboard.cpp:109</div></div>
+<div class="ttc" id="aclass_u_i_html"><div class="ttname"><a href="class_u_i.html">UI</a></div><div class="ttdef"><b>Definition:</b> ui.h:15</div></div>
+<div class="ttc" id="aclass_order_html"><div class="ttname"><a href="class_order.html">Order</a></div><div class="ttdef"><b>Definition:</b> order.h:20</div></div>
+<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdef"><b>Definition:</b> client.h:13</div></div>
 <div class="ttc" id="aclass_dashboard_html"><div class="ttname"><a href="class_dashboard.html">Dashboard</a></div><div class="ttdef"><b>Definition:</b> dashboard.h:11</div></div>
+<div class="ttc" id="aclass_dashboard_html_ab4085c85640dd61294e24f20d0911d08"><div class="ttname"><a href="class_dashboard.html#ab4085c85640dd61294e24f20d0911d08">Dashboard::editOrder</a></div><div class="ttdeci">void editOrder(Order *order)</div><div class="ttdef"><b>Definition:</b> dashboard.cpp:182</div></div>
+<div class="ttc" id="aclass_dashboard_html_ad4c2c4e6615bfbf6a0a662d020eae20f"><div class="ttname"><a href="class_dashboard.html#ad4c2c4e6615bfbf6a0a662d020eae20f">Dashboard::manageStock</a></div><div class="ttdeci">void manageStock()</div><div class="ttdef"><b>Definition:</b> dashboard.cpp:226</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1788f8309b1a812dcb800a185471cf6c.html">ui</a></li><li class="navelem"><a class="el" href="dir_ff41f2b8bef96e2057f1e87571ca86af.html">dashboard</a></li><li class="navelem"><b>dashboard.h</b></li>
+    <li class="navelem"><a class="el" href="dir_1788f8309b1a812dcb800a185471cf6c.html">ui</a></li><li class="navelem"><a class="el" href="dir_ff41f2b8bef96e2057f1e87571ca86af.html">dashboard</a></li><li class="navelem"><a class="el" href="dashboard_8h.html">dashboard.h</a></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

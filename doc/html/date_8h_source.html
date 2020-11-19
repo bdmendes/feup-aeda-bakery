@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: date/date.h Source File</title>
+<title>AEDA Project: date/date.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,9 +29,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="scratch.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">AEDA Project
    </div>
+   <div id="projectbrief">Bakery project for AEDA, FEUP, MIEIC. Work in progress.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -95,75 +97,69 @@ $(document).ready(function(){initNavTree('date_8h_source.html',''); initResizabl
 <div class="title">date.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef FEUP_AEDA_PROJECT_DATE_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_DATE_H</span></div>
+<a href="date_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by bdmendes on 21/10/20.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;ctime&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef FEUP_AEDA_PROJECT_DATE_H</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_DATE_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;exception/date_exception.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_date.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_date.html">Date</a>{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_date.html#a4e59ed4ba66eec61c27460c5d09fa1bd">Date</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_date.html#a4e59ed4ba66eec61c27460c5d09fa1bd">Date</a>(<span class="keywordtype">int</span> day, <span class="keywordtype">int</span> month, <span class="keywordtype">int</span> year, <span class="keywordtype">int</span> hour = 0, <span class="keywordtype">int</span> minute = 0);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;ctime&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;exception/date_exception.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_date.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_date.html">Date</a>{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_date.html#a4e59ed4ba66eec61c27460c5d09fa1bd">Date</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_date.html#a4e59ed4ba66eec61c27460c5d09fa1bd">Date</a>(<span class="keywordtype">int</span> day, <span class="keywordtype">int</span> month, <span class="keywordtype">int</span> year, <span class="keywordtype">int</span> hour = 0, <span class="keywordtype">int</span> minute = 0);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_date.html#a5d2fbece5259d88f0723e777d9069741">isLeapYear</a>(<span class="keywordtype">unsigned</span> year);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_date.html#a4dedf1cbd19ff221fc1f70895ba560e7">getDay</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_date.html#ab337ee138bda0f304b6646bd15fba90a">getMonth</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_date.html#aa1e4066bffc24af79f604dabce27e3cc">getYear</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_date.html#af5f574ac77197487ae6a9a5b12f12df0">getHour</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_date.html#a35509f66a6448fc92bff03b323c9993b">getMinute</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    std::string <a class="code" href="class_date.html#ab5e1ae65845c10c8e304e6aa2ea5caf1">getCalendarDay</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::string <a class="code" href="class_date.html#aa6717c78ca787262b2f4ab91d23b0280">getClockTime</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::string <a class="code" href="class_date.html#a87f266cb690d7e0211be00e7f3d2f365">getCompleteDate</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_date.html#a5d2fbece5259d88f0723e777d9069741">isLeapYear</a>(<span class="keywordtype">unsigned</span> year);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_date.html#a4dedf1cbd19ff221fc1f70895ba560e7">getDay</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_date.html#ab337ee138bda0f304b6646bd15fba90a">getMonth</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_date.html#aa1e4066bffc24af79f604dabce27e3cc">getYear</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_date.html#af5f574ac77197487ae6a9a5b12f12df0">getHour</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_date.html#a35509f66a6448fc92bff03b323c9993b">getMinute</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::string <a class="code" href="class_date.html#ab5e1ae65845c10c8e304e6aa2ea5caf1">getCalendarDay</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    std::string <a class="code" href="class_date.html#aa6717c78ca787262b2f4ab91d23b0280">getClockTime</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    std::string <a class="code" href="class_date.html#a87f266cb690d7e0211be00e7f3d2f365">getCompleteDate</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_date.html#abdf48aa7cf29418330153fce4167e792">addDays</a>(<span class="keywordtype">int</span> days);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_date.html#aa65ba1cadf193e7dd69e3fcc6dacf023">addMinutes</a>(<span class="keywordtype">int</span> minutes);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_date.html#ab33fabb71e001e3bb98aa3aff846ea65">operator==</a>(<span class="keyword">const</span> <a class="code" href="class_date.html">Date</a>&amp; d2) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_date.html#a09704874041e417655bf7be43596da80">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="class_date.html">Date</a>&amp; d2) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    tm _time;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;};</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_DATE_H</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_date.html#abdf48aa7cf29418330153fce4167e792">addDays</a>(<span class="keywordtype">int</span> days);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_date.html#aa65ba1cadf193e7dd69e3fcc6dacf023">addMinutes</a>(<span class="keywordtype">int</span> minutes);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_date.html#ab33fabb71e001e3bb98aa3aff846ea65">operator==</a>(<span class="keyword">const</span> <a class="code" href="class_date.html">Date</a>&amp; d2) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_date.html#a09704874041e417655bf7be43596da80">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="class_date.html">Date</a>&amp; d2) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    std::tm _time;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_DATE_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_date_html_a09704874041e417655bf7be43596da80"><div class="ttname"><a href="class_date.html#a09704874041e417655bf7be43596da80">Date::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Date &amp;d2) const</div><div class="ttdoc">Less than operator.</div><div class="ttdef"><b>Definition:</b> date.cpp:49</div></div>
-<div class="ttc" id="aclass_date_html_af5f574ac77197487ae6a9a5b12f12df0"><div class="ttname"><a href="class_date.html#af5f574ac77197487ae6a9a5b12f12df0">Date::getHour</a></div><div class="ttdeci">unsigned getHour() const</div><div class="ttdoc">Gets the hour.</div><div class="ttdef"><b>Definition:</b> date.cpp:84</div></div>
-<div class="ttc" id="aclass_date_html_a4e59ed4ba66eec61c27460c5d09fa1bd"><div class="ttname"><a href="class_date.html#a4e59ed4ba66eec61c27460c5d09fa1bd">Date::Date</a></div><div class="ttdeci">Date()</div><div class="ttdoc">Creates a new date object which is the current calendar time.</div><div class="ttdef"><b>Definition:</b> date.cpp:6</div></div>
-<div class="ttc" id="aclass_date_html_aa1e4066bffc24af79f604dabce27e3cc"><div class="ttname"><a href="class_date.html#aa1e4066bffc24af79f604dabce27e3cc">Date::getYear</a></div><div class="ttdeci">unsigned getYear() const</div><div class="ttdoc">Gets the year.</div><div class="ttdef"><b>Definition:</b> date.cpp:80</div></div>
-<div class="ttc" id="aclass_date_html_aa65ba1cadf193e7dd69e3fcc6dacf023"><div class="ttname"><a href="class_date.html#aa65ba1cadf193e7dd69e3fcc6dacf023">Date::addMinutes</a></div><div class="ttdeci">void addMinutes(int minutes)</div><div class="ttdoc">Adds minutes to the date.</div><div class="ttdef"><b>Definition:</b> date.cpp:92</div></div>
-<div class="ttc" id="aclass_date_html_ab33fabb71e001e3bb98aa3aff846ea65"><div class="ttname"><a href="class_date.html#ab33fabb71e001e3bb98aa3aff846ea65">Date::operator==</a></div><div class="ttdeci">bool operator==(const Date &amp;d2) const</div><div class="ttdoc">Equality operator.</div><div class="ttdef"><b>Definition:</b> date.cpp:45</div></div>
-<div class="ttc" id="aclass_date_html_abdf48aa7cf29418330153fce4167e792"><div class="ttname"><a href="class_date.html#abdf48aa7cf29418330153fce4167e792">Date::addDays</a></div><div class="ttdeci">void addDays(int days)</div><div class="ttdoc">Adds days to the date.</div><div class="ttdef"><b>Definition:</b> date.cpp:66</div></div>
-<div class="ttc" id="aclass_date_html_ab5e1ae65845c10c8e304e6aa2ea5caf1"><div class="ttname"><a href="class_date.html#ab5e1ae65845c10c8e304e6aa2ea5caf1">Date::getCalendarDay</a></div><div class="ttdeci">std::string getCalendarDay() const</div><div class="ttdoc">Gets the calender day in DD/MM/YYYY format.</div><div class="ttdef"><b>Definition:</b> date.cpp:26</div></div>
-<div class="ttc" id="aclass_date_html_ab337ee138bda0f304b6646bd15fba90a"><div class="ttname"><a href="class_date.html#ab337ee138bda0f304b6646bd15fba90a">Date::getMonth</a></div><div class="ttdeci">unsigned getMonth() const</div><div class="ttdoc">Gets the month.</div><div class="ttdef"><b>Definition:</b> date.cpp:72</div></div>
-<div class="ttc" id="aclass_date_html_a5d2fbece5259d88f0723e777d9069741"><div class="ttname"><a href="class_date.html#a5d2fbece5259d88f0723e777d9069741">Date::isLeapYear</a></div><div class="ttdeci">static bool isLeapYear(unsigned year)</div><div class="ttdoc">Checks if a year is leap.</div><div class="ttdef"><b>Definition:</b> date.cpp:22</div></div>
-<div class="ttc" id="aclass_date_html_a4dedf1cbd19ff221fc1f70895ba560e7"><div class="ttname"><a href="class_date.html#a4dedf1cbd19ff221fc1f70895ba560e7">Date::getDay</a></div><div class="ttdeci">unsigned getDay() const</div><div class="ttdoc">Gets the day.</div><div class="ttdef"><b>Definition:</b> date.cpp:76</div></div>
-<div class="ttc" id="aclass_date_html_a35509f66a6448fc92bff03b323c9993b"><div class="ttname"><a href="class_date.html#a35509f66a6448fc92bff03b323c9993b">Date::getMinute</a></div><div class="ttdeci">unsigned getMinute() const</div><div class="ttdoc">Gets the minute.</div><div class="ttdef"><b>Definition:</b> date.cpp:88</div></div>
-<div class="ttc" id="aclass_date_html_aa6717c78ca787262b2f4ab91d23b0280"><div class="ttname"><a href="class_date.html#aa6717c78ca787262b2f4ab91d23b0280">Date::getClockTime</a></div><div class="ttdeci">std::string getClockTime() const</div><div class="ttdoc">Gets the clock time in HH:MM format.</div><div class="ttdef"><b>Definition:</b> date.cpp:34</div></div>
-<div class="ttc" id="aclass_date_html_a87f266cb690d7e0211be00e7f3d2f365"><div class="ttname"><a href="class_date.html#a87f266cb690d7e0211be00e7f3d2f365">Date::getCompleteDate</a></div><div class="ttdeci">std::string getCompleteDate() const</div><div class="ttdoc">Gets the complete date in DD/MM/YYYY HH:MM format.</div><div class="ttdef"><b>Definition:</b> date.cpp:41</div></div>
-<div class="ttc" id="aclass_date_html"><div class="ttname"><a href="class_date.html">Date</a></div><div class="ttdoc">Class that provides the date to order request and its delivery.</div><div class="ttdef"><b>Definition:</b> date.h:13</div></div>
+<div class="ttc" id="aclass_date_html_a09704874041e417655bf7be43596da80"><div class="ttname"><a href="class_date.html#a09704874041e417655bf7be43596da80">Date::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Date &amp;d2) const</div><div class="ttdef"><b>Definition:</b> date.cpp:52</div></div>
+<div class="ttc" id="aclass_date_html_af5f574ac77197487ae6a9a5b12f12df0"><div class="ttname"><a href="class_date.html#af5f574ac77197487ae6a9a5b12f12df0">Date::getHour</a></div><div class="ttdeci">unsigned getHour() const</div><div class="ttdef"><b>Definition:</b> date.cpp:86</div></div>
+<div class="ttc" id="aclass_date_html_a4e59ed4ba66eec61c27460c5d09fa1bd"><div class="ttname"><a href="class_date.html#a4e59ed4ba66eec61c27460c5d09fa1bd">Date::Date</a></div><div class="ttdeci">Date()</div><div class="ttdef"><b>Definition:</b> date.cpp:9</div></div>
+<div class="ttc" id="aclass_date_html_aa1e4066bffc24af79f604dabce27e3cc"><div class="ttname"><a href="class_date.html#aa1e4066bffc24af79f604dabce27e3cc">Date::getYear</a></div><div class="ttdeci">unsigned getYear() const</div><div class="ttdef"><b>Definition:</b> date.cpp:82</div></div>
+<div class="ttc" id="aclass_date_html_aa65ba1cadf193e7dd69e3fcc6dacf023"><div class="ttname"><a href="class_date.html#aa65ba1cadf193e7dd69e3fcc6dacf023">Date::addMinutes</a></div><div class="ttdeci">void addMinutes(int minutes)</div><div class="ttdef"><b>Definition:</b> date.cpp:94</div></div>
+<div class="ttc" id="aclass_date_html_ab33fabb71e001e3bb98aa3aff846ea65"><div class="ttname"><a href="class_date.html#ab33fabb71e001e3bb98aa3aff846ea65">Date::operator==</a></div><div class="ttdeci">bool operator==(const Date &amp;d2) const</div><div class="ttdef"><b>Definition:</b> date.cpp:48</div></div>
+<div class="ttc" id="aclass_date_html_abdf48aa7cf29418330153fce4167e792"><div class="ttname"><a href="class_date.html#abdf48aa7cf29418330153fce4167e792">Date::addDays</a></div><div class="ttdeci">void addDays(int days)</div><div class="ttdef"><b>Definition:</b> date.cpp:68</div></div>
+<div class="ttc" id="aclass_date_html_ab5e1ae65845c10c8e304e6aa2ea5caf1"><div class="ttname"><a href="class_date.html#ab5e1ae65845c10c8e304e6aa2ea5caf1">Date::getCalendarDay</a></div><div class="ttdeci">std::string getCalendarDay() const</div><div class="ttdef"><b>Definition:</b> date.cpp:29</div></div>
+<div class="ttc" id="aclass_date_html_ab337ee138bda0f304b6646bd15fba90a"><div class="ttname"><a href="class_date.html#ab337ee138bda0f304b6646bd15fba90a">Date::getMonth</a></div><div class="ttdeci">unsigned getMonth() const</div><div class="ttdef"><b>Definition:</b> date.cpp:74</div></div>
+<div class="ttc" id="aclass_date_html_a5d2fbece5259d88f0723e777d9069741"><div class="ttname"><a href="class_date.html#a5d2fbece5259d88f0723e777d9069741">Date::isLeapYear</a></div><div class="ttdeci">static bool isLeapYear(unsigned year)</div><div class="ttdef"><b>Definition:</b> date.cpp:25</div></div>
+<div class="ttc" id="aclass_date_html_a4dedf1cbd19ff221fc1f70895ba560e7"><div class="ttname"><a href="class_date.html#a4dedf1cbd19ff221fc1f70895ba560e7">Date::getDay</a></div><div class="ttdeci">unsigned getDay() const</div><div class="ttdef"><b>Definition:</b> date.cpp:78</div></div>
+<div class="ttc" id="aclass_date_html_a35509f66a6448fc92bff03b323c9993b"><div class="ttname"><a href="class_date.html#a35509f66a6448fc92bff03b323c9993b">Date::getMinute</a></div><div class="ttdeci">unsigned getMinute() const</div><div class="ttdef"><b>Definition:</b> date.cpp:90</div></div>
+<div class="ttc" id="aclass_date_html_aa6717c78ca787262b2f4ab91d23b0280"><div class="ttname"><a href="class_date.html#aa6717c78ca787262b2f4ab91d23b0280">Date::getClockTime</a></div><div class="ttdeci">std::string getClockTime() const</div><div class="ttdef"><b>Definition:</b> date.cpp:37</div></div>
+<div class="ttc" id="aclass_date_html_a87f266cb690d7e0211be00e7f3d2f365"><div class="ttname"><a href="class_date.html#a87f266cb690d7e0211be00e7f3d2f365">Date::getCompleteDate</a></div><div class="ttdeci">std::string getCompleteDate() const</div><div class="ttdef"><b>Definition:</b> date.cpp:44</div></div>
+<div class="ttc" id="aclass_date_html"><div class="ttname"><a href="class_date.html">Date</a></div><div class="ttdef"><b>Definition:</b> date.h:14</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_fd6a74a73969d980fd1c696a478f485b.html">date</a></li><li class="navelem"><b>date.h</b></li>
+    <li class="navelem"><a class="el" href="dir_fd6a74a73969d980fd1c696a478f485b.html">date</a></li><li class="navelem"><a class="el" href="date_8h.html">date.h</a></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

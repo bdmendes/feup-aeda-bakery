@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: person/client/client.h Source File</title>
+<title>AEDA Project: person/client/client.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,9 +29,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="scratch.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">AEDA Project
    </div>
+   <div id="projectbrief">Bakery project for AEDA, FEUP, MIEIC. Work in progress.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -95,19 +97,22 @@ $(document).ready(function(){initNavTree('client_8h_source.html',''); initResiza
 <div class="title">client.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef FEUP_AEDA_PROJECT_CLIENT_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_CLIENT_H</span></div>
+<a href="client_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by bdmendes on 29/10/20.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;model/person/person.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef FEUP_AEDA_PROJECT_CLIENT_H</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_CLIENT_H</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="person_8h.html">model/person/person.h</a>&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_client.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_client.html">Client</a> : <span class="keyword">public</span> <a class="code" href="class_person.html">Person</a> {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_client.html#af37da725688f8efea2cdd6eb3b17ce97">Client</a>(std::string name, <span class="keywordtype">int</span> taxID = <a class="code" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a>, <span class="keywordtype">bool</span> premium = <span class="keyword">false</span>,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_client.html#a140c1207e590024a6438e3e42346f2ac">Client</a>(std::string name, <span class="keywordtype">bool</span> premium = <span class="keyword">false</span>, <span class="keywordtype">int</span> taxID = <a class="code" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a>,</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;           <a class="code" href="struct_credential.html">Credential</a> credential = {<a class="code" href="class_client.html#aa8701753a7ee4d53d87e609381219168">DEFAULT_USERNAME</a>, <a class="code" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">DEFAULT_PASSWORD</a>});</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_client.html#af77c74a396a63b45707e692c691e7b47">isPremium</a>() <span class="keyword">const</span>;</div>
@@ -116,59 +121,60 @@ $(document).ready(function(){initNavTree('client_8h_source.html',''); initResiza
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="class_client.html#a51940a2154ba5b40ad5d7e47a02d8aa0">getPoints</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a5883dbdff0d68ad876fb538599a32fdc">setPremium</a>(<span class="keywordtype">bool</span> premium);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    std::vector&lt;int&gt; <a class="code" href="class_client.html#a03bd446a3cb137c2a0047e3634ce3695">getEvaluations</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a4ef10217c8462686b743a0400fad8611">addPoints</a>(<span class="keywordtype">unsigned</span> points);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a5883dbdff0d68ad876fb538599a32fdc">setPremium</a>(<span class="keywordtype">bool</span> premium);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a8cae42bc309c1d13a899fdf6f4d3beec">removePoints</a>(<span class="keywordtype">unsigned</span> points);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a4ef10217c8462686b743a0400fad8611">addPoints</a>(<span class="keywordtype">unsigned</span> points);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a0fd0ba574db21b942bca23819c2f0698">resetPoints</a>();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a6e3da717642e5f5022af53ac28c50146">addEvaluation</a>(<span class="keywordtype">int</span> evaluation);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a8cae42bc309c1d13a899fdf6f4d3beec">removePoints</a>(<span class="keywordtype">unsigned</span> points);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a0fd0ba574db21b942bca23819c2f0698">resetPoints</a>();</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a494af631b56e51b8e266f085fbacbfe7">setPoints</a>(<span class="keywordtype">unsigned</span> points);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#adcfef89f979fe27bca39030a52882c07">print</a>(std::ostream&amp; os, <span class="keywordtype">bool</span> showData = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="struct_credential.html">Credential</a> <a class="code" href="class_client.html#afa513a730ab2bbafe68144eb7f524a5e">getDefaultCredential</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="class_client.html#aa8701753a7ee4d53d87e609381219168">  108</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_client.html#aa8701753a7ee4d53d87e609381219168">DEFAULT_USERNAME</a>;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">  113</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">DEFAULT_PASSWORD</a>;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">bool</span> _premium;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">unsigned</span> _points;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    std::vector&lt;int&gt; _evaluations;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;};</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_CLIENT_H</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#a6e3da717642e5f5022af53ac28c50146">addEvaluation</a>(<span class="keywordtype">int</span> evaluation);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client.html#adcfef89f979fe27bca39030a52882c07">print</a>(std::ostream&amp; os, <span class="keywordtype">bool</span> showData = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="struct_credential.html">Credential</a> <a class="code" href="class_client.html#afa513a730ab2bbafe68144eb7f524a5e">getDefaultCredential</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="class_client.html#aa8701753a7ee4d53d87e609381219168">  106</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_client.html#aa8701753a7ee4d53d87e609381219168">DEFAULT_USERNAME</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">  111</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">DEFAULT_PASSWORD</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">bool</span> _premium;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">unsigned</span> _points;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    std::vector&lt;int&gt; _evaluations;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;};</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_CLIENT_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_client_html_a8cae42bc309c1d13a899fdf6f4d3beec"><div class="ttname"><a href="class_client.html#a8cae42bc309c1d13a899fdf6f4d3beec">Client::removePoints</a></div><div class="ttdeci">void removePoints(unsigned points)</div><div class="ttdoc">Removes a certain number of points from the client points.</div><div class="ttdef"><b>Definition:</b> client.cpp:36</div></div>
-<div class="ttc" id="astruct_credential_html"><div class="ttname"><a href="struct_credential.html">Credential</a></div><div class="ttdoc">Struct relative to the login credentials.</div><div class="ttdef"><b>Definition:</b> person.h:25</div></div>
-<div class="ttc" id="aclass_client_html_a4ef10217c8462686b743a0400fad8611"><div class="ttname"><a href="class_client.html#a4ef10217c8462686b743a0400fad8611">Client::addPoints</a></div><div class="ttdeci">void addPoints(unsigned points)</div><div class="ttdoc">Adds a certain number of points to the client's.</div><div class="ttdef"><b>Definition:</b> client.cpp:32</div></div>
-<div class="ttc" id="aclass_person_html"><div class="ttname"><a href="class_person.html">Person</a></div><div class="ttdoc">Class relative to a store user.</div><div class="ttdef"><b>Definition:</b> person.h:60</div></div>
-<div class="ttc" id="aclass_client_html_af37da725688f8efea2cdd6eb3b17ce97"><div class="ttname"><a href="class_client.html#af37da725688f8efea2cdd6eb3b17ce97">Client::Client</a></div><div class="ttdeci">Client(std::string name, int taxID=Person::DEFAULT_TAX_ID, bool premium=false, Credential credential={DEFAULT_USERNAME, DEFAULT_PASSWORD})</div><div class="ttdoc">Creates a new client object.</div><div class="ttdef"><b>Definition:</b> client.cpp:10</div></div>
-<div class="ttc" id="aclass_client_html_af3ab1b4256e583e0917bdc4f7348c115"><div class="ttname"><a href="class_client.html#af3ab1b4256e583e0917bdc4f7348c115">Client::getMeanEvaluation</a></div><div class="ttdeci">float getMeanEvaluation() const</div><div class="ttdoc">Gets the order mean evaluation given by the client.</div><div class="ttdef"><b>Definition:</b> client.cpp:63</div></div>
-<div class="ttc" id="aclass_client_html_a0fd0ba574db21b942bca23819c2f0698"><div class="ttname"><a href="class_client.html#a0fd0ba574db21b942bca23819c2f0698">Client::resetPoints</a></div><div class="ttdeci">void resetPoints()</div><div class="ttdoc">Resets the client points.</div><div class="ttdef"><b>Definition:</b> client.cpp:28</div></div>
-<div class="ttc" id="aclass_client_html_af77c74a396a63b45707e692c691e7b47"><div class="ttname"><a href="class_client.html#af77c74a396a63b45707e692c691e7b47">Client::isPremium</a></div><div class="ttdeci">bool isPremium() const</div><div class="ttdoc">Checks if the client subscription type is premium.</div><div class="ttdef"><b>Definition:</b> client.cpp:14</div></div>
-<div class="ttc" id="aclass_client_html_aa8701753a7ee4d53d87e609381219168"><div class="ttname"><a href="class_client.html#aa8701753a7ee4d53d87e609381219168">Client::DEFAULT_USERNAME</a></div><div class="ttdeci">static const char * DEFAULT_USERNAME</div><div class="ttdoc">The client default login username.</div><div class="ttdef"><b>Definition:</b> client.h:108</div></div>
-<div class="ttc" id="aclass_client_html_adcfef89f979fe27bca39030a52882c07"><div class="ttname"><a href="class_client.html#adcfef89f979fe27bca39030a52882c07">Client::print</a></div><div class="ttdeci">void print(std::ostream &amp;os, bool showData=true)</div><div class="ttdoc">Prints the client data.</div><div class="ttdef"><b>Definition:</b> client.cpp:40</div></div>
-<div class="ttc" id="aclass_client_html_afa513a730ab2bbafe68144eb7f524a5e"><div class="ttname"><a href="class_client.html#afa513a730ab2bbafe68144eb7f524a5e">Client::getDefaultCredential</a></div><div class="ttdeci">Credential getDefaultCredential() override</div><div class="ttdoc">Gets the client default login credentials.</div><div class="ttdef"><b>Definition:</b> client.cpp:51</div></div>
-<div class="ttc" id="aclass_client_html_a51940a2154ba5b40ad5d7e47a02d8aa0"><div class="ttname"><a href="class_client.html#a51940a2154ba5b40ad5d7e47a02d8aa0">Client::getPoints</a></div><div class="ttdeci">unsigned getPoints() const</div><div class="ttdoc">Gets the client points.</div><div class="ttdef"><b>Definition:</b> client.cpp:18</div></div>
-<div class="ttc" id="aclass_person_html_a52661d7b661afecd42415d70f20cfe8a"><div class="ttname"><a href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a></div><div class="ttdeci">static const int DEFAULT_TAX_ID</div><div class="ttdoc">The default taxpayer identification number.</div><div class="ttdef"><b>Definition:</b> person.h:168</div></div>
-<div class="ttc" id="aclass_client_html_a5883dbdff0d68ad876fb538599a32fdc"><div class="ttname"><a href="class_client.html#a5883dbdff0d68ad876fb538599a32fdc">Client::setPremium</a></div><div class="ttdeci">void setPremium(bool premium)</div><div class="ttdoc">Sets the client subscription type.</div><div class="ttdef"><b>Definition:</b> client.cpp:22</div></div>
-<div class="ttc" id="aclass_client_html_a6e3da717642e5f5022af53ac28c50146"><div class="ttname"><a href="class_client.html#a6e3da717642e5f5022af53ac28c50146">Client::addEvaluation</a></div><div class="ttdeci">void addEvaluation(int evaluation)</div><div class="ttdoc">Adds an order evaluation given by the client.</div><div class="ttdef"><b>Definition:</b> client.cpp:59</div></div>
-<div class="ttc" id="aclass_client_html_a494af631b56e51b8e266f085fbacbfe7"><div class="ttname"><a href="class_client.html#a494af631b56e51b8e266f085fbacbfe7">Client::setPoints</a></div><div class="ttdeci">void setPoints(unsigned points)</div><div class="ttdoc">Sets the client points.</div><div class="ttdef"><b>Definition:</b> client.cpp:55</div></div>
-<div class="ttc" id="aclass_client_html_ad89af79ed76f3224159adbdbe821648a"><div class="ttname"><a href="class_client.html#ad89af79ed76f3224159adbdbe821648a">Client::DEFAULT_PASSWORD</a></div><div class="ttdeci">static const char * DEFAULT_PASSWORD</div><div class="ttdoc">The client default login password.</div><div class="ttdef"><b>Definition:</b> client.h:113</div></div>
-<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdoc">Class relative to a store client.</div><div class="ttdef"><b>Definition:</b> client.h:13</div></div>
+<div class="ttc" id="aclass_client_html_a8cae42bc309c1d13a899fdf6f4d3beec"><div class="ttname"><a href="class_client.html#a8cae42bc309c1d13a899fdf6f4d3beec">Client::removePoints</a></div><div class="ttdeci">void removePoints(unsigned points)</div><div class="ttdoc">Removes certain points of the client's points.</div><div class="ttdef"><b>Definition:</b> client.cpp:50</div></div>
+<div class="ttc" id="astruct_credential_html"><div class="ttname"><a href="struct_credential.html">Credential</a></div><div class="ttdef"><b>Definition:</b> person.h:17</div></div>
+<div class="ttc" id="aclass_client_html_a4ef10217c8462686b743a0400fad8611"><div class="ttname"><a href="class_client.html#a4ef10217c8462686b743a0400fad8611">Client::addPoints</a></div><div class="ttdeci">void addPoints(unsigned points)</div><div class="ttdoc">Adds certain points to the client's.</div><div class="ttdef"><b>Definition:</b> client.cpp:46</div></div>
+<div class="ttc" id="aclass_person_html"><div class="ttname"><a href="class_person.html">Person</a></div><div class="ttdef"><b>Definition:</b> person.h:28</div></div>
+<div class="ttc" id="aclass_client_html_a03bd446a3cb137c2a0047e3634ce3695"><div class="ttname"><a href="class_client.html#a03bd446a3cb137c2a0047e3634ce3695">Client::getEvaluations</a></div><div class="ttdeci">std::vector&lt; int &gt; getEvaluations() const</div><div class="ttdoc">Gets the list of all order's evaluation given by the client.</div><div class="ttdef"><b>Definition:</b> client.cpp:32</div></div>
+<div class="ttc" id="aclass_client_html_af3ab1b4256e583e0917bdc4f7348c115"><div class="ttname"><a href="class_client.html#af3ab1b4256e583e0917bdc4f7348c115">Client::getMeanEvaluation</a></div><div class="ttdeci">float getMeanEvaluation() const</div><div class="ttdoc">Gets the order's mean evaluation given by the client.</div><div class="ttdef"><b>Definition:</b> client.cpp:26</div></div>
+<div class="ttc" id="aclass_client_html_a0fd0ba574db21b942bca23819c2f0698"><div class="ttname"><a href="class_client.html#a0fd0ba574db21b942bca23819c2f0698">Client::resetPoints</a></div><div class="ttdeci">void resetPoints()</div><div class="ttdoc">Resets the client's points.</div><div class="ttdef"><b>Definition:</b> client.cpp:42</div></div>
+<div class="ttc" id="aclass_client_html_af77c74a396a63b45707e692c691e7b47"><div class="ttname"><a href="class_client.html#af77c74a396a63b45707e692c691e7b47">Client::isPremium</a></div><div class="ttdeci">bool isPremium() const</div><div class="ttdoc">Cheks if the client's subscription type is premium.</div><div class="ttdef"><b>Definition:</b> client.cpp:18</div></div>
+<div class="ttc" id="aclass_client_html_aa8701753a7ee4d53d87e609381219168"><div class="ttname"><a href="class_client.html#aa8701753a7ee4d53d87e609381219168">Client::DEFAULT_USERNAME</a></div><div class="ttdeci">static const char * DEFAULT_USERNAME</div><div class="ttdoc">The client's default username.</div><div class="ttdef"><b>Definition:</b> client.h:106</div></div>
+<div class="ttc" id="aclass_client_html_adcfef89f979fe27bca39030a52882c07"><div class="ttname"><a href="class_client.html#adcfef89f979fe27bca39030a52882c07">Client::print</a></div><div class="ttdeci">void print(std::ostream &amp;os, bool showData=true)</div><div class="ttdoc">Prints.</div><div class="ttdef"><b>Definition:</b> client.cpp:58</div></div>
+<div class="ttc" id="aclass_client_html_a140c1207e590024a6438e3e42346f2ac"><div class="ttname"><a href="class_client.html#a140c1207e590024a6438e3e42346f2ac">Client::Client</a></div><div class="ttdeci">Client(std::string name, bool premium=false, int taxID=Person::DEFAULT_TAX_ID, Credential credential={DEFAULT_USERNAME, DEFAULT_PASSWORD})</div><div class="ttdoc">Creates a new client.</div><div class="ttdef"><b>Definition:</b> client.cpp:13</div></div>
+<div class="ttc" id="aclass_client_html_afa513a730ab2bbafe68144eb7f524a5e"><div class="ttname"><a href="class_client.html#afa513a730ab2bbafe68144eb7f524a5e">Client::getDefaultCredential</a></div><div class="ttdeci">Credential getDefaultCredential() override</div><div class="ttdoc">Gets the default access credentials.</div><div class="ttdef"><b>Definition:</b> client.cpp:68</div></div>
+<div class="ttc" id="aclass_client_html_a51940a2154ba5b40ad5d7e47a02d8aa0"><div class="ttname"><a href="class_client.html#a51940a2154ba5b40ad5d7e47a02d8aa0">Client::getPoints</a></div><div class="ttdeci">unsigned getPoints() const</div><div class="ttdoc">Gets the client points.</div><div class="ttdef"><b>Definition:</b> client.cpp:22</div></div>
+<div class="ttc" id="aclass_person_html_a52661d7b661afecd42415d70f20cfe8a"><div class="ttname"><a href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a></div><div class="ttdeci">static const int DEFAULT_TAX_ID</div><div class="ttdoc">The default taxpayer identification number.</div><div class="ttdef"><b>Definition:</b> person.h:126</div></div>
+<div class="ttc" id="aclass_client_html_a5883dbdff0d68ad876fb538599a32fdc"><div class="ttname"><a href="class_client.html#a5883dbdff0d68ad876fb538599a32fdc">Client::setPremium</a></div><div class="ttdeci">void setPremium(bool premium)</div><div class="ttdoc">Sets the client's subscription type.</div><div class="ttdef"><b>Definition:</b> client.cpp:36</div></div>
+<div class="ttc" id="aclass_client_html_a6e3da717642e5f5022af53ac28c50146"><div class="ttname"><a href="class_client.html#a6e3da717642e5f5022af53ac28c50146">Client::addEvaluation</a></div><div class="ttdeci">void addEvaluation(int evaluation)</div><div class="ttdoc">Adds an order evaluation given by the client.</div><div class="ttdef"><b>Definition:</b> client.cpp:54</div></div>
+<div class="ttc" id="aclass_client_html_ad89af79ed76f3224159adbdbe821648a"><div class="ttname"><a href="class_client.html#ad89af79ed76f3224159adbdbe821648a">Client::DEFAULT_PASSWORD</a></div><div class="ttdeci">static const char * DEFAULT_PASSWORD</div><div class="ttdoc">The client's default password.</div><div class="ttdef"><b>Definition:</b> client.h:111</div></div>
+<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdef"><b>Definition:</b> client.h:13</div></div>
+<div class="ttc" id="aperson_8h_html"><div class="ttname"><a href="person_8h.html">person.h</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6531348fe7cbc733da9220e3a7663be1.html">person</a></li><li class="navelem"><a class="el" href="dir_bc8cb7903d0882a9d872550114c6dabf.html">client</a></li><li class="navelem"><b>client.h</b></li>
+    <li class="navelem"><a class="el" href="dir_6531348fe7cbc733da9220e3a7663be1.html">person</a></li><li class="navelem"><a class="el" href="dir_bc8cb7903d0882a9d872550114c6dabf.html">client</a></li><li class="navelem"><a class="el" href="client_8h.html">client.h</a></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

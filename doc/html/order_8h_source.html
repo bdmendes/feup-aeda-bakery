@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: order/order.h Source File</title>
+<title>AEDA Project: order/order.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,9 +29,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="scratch.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">AEDA Project
    </div>
+   <div id="projectbrief">Bakery project for AEDA, FEUP, MIEIC. Work in progress.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -95,112 +97,106 @@ $(document).ready(function(){initNavTree('order_8h_source.html',''); initResizab
 <div class="title">order.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef SRC_ORDER_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define SRC_ORDER_H</span></div>
+<a href="order_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by laimi on 15/10/2020.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;exception/product_exception.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;exception/order_exception.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef SRC_ORDER_H</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define SRC_ORDER_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;model/person/person.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;model/product/product.h&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;model/product/product_manager.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;model/date/date.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;exception/product_exception.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;exception/order_exception.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="person_8h.html">model/person/person.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="product_8h.html">model/product/product.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="product__manager_8h.html">model/product/product_manager.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="date_8h.html">model/date/date.h</a>&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_order.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_order.html">Order</a> {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_order.html#aa51383b6cd7afd001ff028f43452fc7b">Order</a>(<a class="code" href="class_client.html">Client</a>&amp; client, <a class="code" href="class_worker.html">Worker</a>&amp; worker, <a class="code" href="class_date.html">Date</a> date = {});</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_order.html#ab47fa66d2993cb8f50005eaf716cb153">hasDiscount</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_order.html#aa2bc77c5f6366786e5ff1ca20958e8c4">hasProduct</a>(<a class="code" href="class_product.html">Product</a>* product);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_order.html#a7f55ff4aac1a7b5e93c25965067adf61">wasDelivered</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_worker.html">Worker</a>* <a class="code" href="class_order.html#aa8149a6d51225cedd99c3eb561619826">getWorker</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_client.html">Client</a>* <a class="code" href="class_order.html#aee6b07c639cb14f0df9253245816e004">getClient</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    std::map&lt;Product*, unsigned int, ProductSmaller&gt; <a class="code" href="class_order.html#a6c299ee1c1a6b5d514a65f80f575d69f">getProducts</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_order.html#aec03a2e8887a697b9bd4fed50702e27e">getClientEvaluation</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_order.html#a59c22c2fa3d387e3af1213917e0d6beb">getFinalPrice</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_order.html#a8e3b6dfacb1fbed1948562f312573923">getTotal</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="class_date.html">Date</a> <a class="code" href="class_order.html#a2ae66c9dcb4372e4af58eeb4e6ff7cbd">getRequestDate</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="class_date.html">Date</a> <a class="code" href="class_order.html#ad8761add916baeb1a58cfc1b61bf65bd">getDeliverDate</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="class_product.html">Product</a>* <a class="code" href="class_order.html#a65ee4b635e4affdf0c2abbf3bf13c95c">addProduct</a>(<a class="code" href="class_product.html">Product</a>* product, <span class="keywordtype">unsigned</span> quantity = 1);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_order.html#ac783913da25dcc47096820e852c44b25">removeProduct</a>(<a class="code" href="class_product.html">Product</a>* product);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">  129</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">removeProduct</a>(<span class="keywordtype">unsigned</span> position);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_order.html#a66541a0731a2e2fd7269e6469675f2e1">deliver</a>(<span class="keywordtype">int</span> clientEvaluation, <span class="keywordtype">int</span> deliverDuration = 30);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_order.html#a21c518844f3c806a41e6b9fbf9f17ef8">operator==</a>(<span class="keyword">const</span> <a class="code" href="class_order.html">Order</a>&amp; rhs) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_order.html#ac4e3f4722666009c38b151a0dfec104f">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="class_order.html">Order</a>&amp; rhs) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_order.html#a8d1117f03be704453fef2038380439c2">print</a>(std::ostream&amp; os) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordtype">void</span> updateTotalPrice();</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    std::map&lt;Product*, unsigned int, ProductSmaller&gt; _products;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="keywordtype">float</span> _totalPrice;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <a class="code" href="class_client.html">Client</a>* _client;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <a class="code" href="class_worker.html">Worker</a>* _worker;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordtype">int</span> _clientEvaluation;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordtype">bool</span> _delivered;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <a class="code" href="class_date.html">Date</a> _requestDate;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <a class="code" href="class_date.html">Date</a> _deliverDate;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;};</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="preprocessor">#endif //SRC_ORDER_H</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_order.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_order.html">Order</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_order.html#aa51383b6cd7afd001ff028f43452fc7b">Order</a>(<a class="code" href="class_client.html">Client</a>&amp; client, <a class="code" href="class_worker.html">Worker</a>&amp; worker, <a class="code" href="class_date.html">Date</a> date = {});</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_order.html#ab47fa66d2993cb8f50005eaf716cb153">hasDiscount</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_order.html#aa2bc77c5f6366786e5ff1ca20958e8c4">hasProduct</a>(<a class="code" href="class_product.html">Product</a>* product);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_order.html#a7f55ff4aac1a7b5e93c25965067adf61">wasDelivered</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_worker.html">Worker</a>* <span class="keyword">const</span> <a class="code" href="class_order.html#adb3bb20a29fcad4474ff3d48cefd72b1">getWorker</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_client.html">Client</a>* <span class="keyword">const</span> <a class="code" href="class_order.html#a84a20e94e84800a563bd2d9a0f70ba7d">getClient</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    std::map&lt;Product*, unsigned int, ProductSmaller&gt; <a class="code" href="class_order.html#a6c299ee1c1a6b5d514a65f80f575d69f">getProducts</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_order.html#aec03a2e8887a697b9bd4fed50702e27e">getClientEvaluation</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_order.html#a59c22c2fa3d387e3af1213917e0d6beb">getFinalPrice</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_order.html#a8e3b6dfacb1fbed1948562f312573923">getTotal</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_date.html">Date</a> <a class="code" href="class_order.html#a2ae66c9dcb4372e4af58eeb4e6ff7cbd">getRequestDate</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_date.html">Date</a> <a class="code" href="class_order.html#ad8761add916baeb1a58cfc1b61bf65bd">getDeliverDate</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_product.html">Product</a>* <a class="code" href="class_order.html#a65ee4b635e4affdf0c2abbf3bf13c95c">addProduct</a>(<a class="code" href="class_product.html">Product</a>* product, <span class="keywordtype">unsigned</span> quantity = 1);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_order.html#adda694802de170ef107452d917007d4c">removeProduct</a>(<a class="code" href="class_product.html">Product</a>* product, <span class="keywordtype">unsigned</span> quantity);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_order.html#adda694802de170ef107452d917007d4c">removeProduct</a>(<a class="code" href="class_product.html">Product</a>* product);</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_order.html#ac19e2ca90d030fe695ff7ecdd41c23c4">   43</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_order.html#ac19e2ca90d030fe695ff7ecdd41c23c4">removeProduct</a>(<span class="keywordtype">unsigned</span> position, <span class="keywordtype">unsigned</span> quantity);</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">   44</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">removeProduct</a>(<span class="keywordtype">unsigned</span> position);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_order.html#a66541a0731a2e2fd7269e6469675f2e1">deliver</a>(<span class="keywordtype">int</span> clientEvaluation, <span class="keywordtype">int</span> deliverDuration = 30);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_order.html#a21c518844f3c806a41e6b9fbf9f17ef8">operator==</a>(<span class="keyword">const</span> <a class="code" href="class_order.html">Order</a>&amp; rhs) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_order.html#ac4e3f4722666009c38b151a0dfec104f">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="class_order.html">Order</a>&amp; rhs) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_order.html#a8d1117f03be704453fef2038380439c2">print</a>(std::ostream&amp; os) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::map&lt;Product*, unsigned int, ProductSmaller&gt; _products;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> updateTotalPrice();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">float</span> _totalPrice;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_client.html">Client</a>* _client;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_worker.html">Worker</a>* _worker;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">int</span> _clientEvaluation;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span> _delivered;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_date.html">Date</a> _requestDate;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="class_date.html">Date</a> _deliverDate;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif //SRC_ORDER_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_order_html_aa51383b6cd7afd001ff028f43452fc7b"><div class="ttname"><a href="class_order.html#aa51383b6cd7afd001ff028f43452fc7b">Order::Order</a></div><div class="ttdeci">Order(Client &amp;client, Worker &amp;worker, Date date={})</div><div class="ttdoc">Creates a new order object.</div><div class="ttdef"><b>Definition:</b> order.cpp:6</div></div>
-<div class="ttc" id="aclass_order_html_a6c299ee1c1a6b5d514a65f80f575d69f"><div class="ttname"><a href="class_order.html#a6c299ee1c1a6b5d514a65f80f575d69f">Order::getProducts</a></div><div class="ttdeci">std::map&lt; Product *, unsigned int, ProductSmaller &gt; getProducts() const</div><div class="ttdoc">Gets the list of all products.</div><div class="ttdef"><b>Definition:</b> order.cpp:34</div></div>
-<div class="ttc" id="aclass_order_html_a66541a0731a2e2fd7269e6469675f2e1"><div class="ttname"><a href="class_order.html#a66541a0731a2e2fd7269e6469675f2e1">Order::deliver</a></div><div class="ttdeci">void deliver(int clientEvaluation, int deliverDuration=30)</div><div class="ttdoc">Delivers the order and gets the client evaluation and deliver duration.</div><div class="ttdef"><b>Definition:</b> order.cpp:91</div></div>
-<div class="ttc" id="aclass_order_html_a8e3b6dfacb1fbed1948562f312573923"><div class="ttname"><a href="class_order.html#a8e3b6dfacb1fbed1948562f312573923">Order::getTotal</a></div><div class="ttdeci">float getTotal() const</div><div class="ttdoc">Gets the order total price (without any discount).</div><div class="ttdef"><b>Definition:</b> order.cpp:47</div></div>
-<div class="ttc" id="aclass_worker_html"><div class="ttname"><a href="class_worker.html">Worker</a></div><div class="ttdoc">Class relative to a store worker.</div><div class="ttdef"><b>Definition:</b> worker.h:13</div></div>
-<div class="ttc" id="aclass_order_html_aec03a2e8887a697b9bd4fed50702e27e"><div class="ttname"><a href="class_order.html#aec03a2e8887a697b9bd4fed50702e27e">Order::getClientEvaluation</a></div><div class="ttdeci">int getClientEvaluation() const</div><div class="ttdoc">Gets the evaluation of the order, given by the client when the order is delivered.</div><div class="ttdef"><b>Definition:</b> order.cpp:38</div></div>
-<div class="ttc" id="aclass_order_html_abcf8d506c31f8194dc43bf21c1170064"><div class="ttname"><a href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">Order::removeProduct</a></div><div class="ttdeci">void removeProduct(unsigned position)</div><div class="ttdoc">Removes a certain product, at a certain position, from the products list.</div></div>
-<div class="ttc" id="aclass_order_html_a59c22c2fa3d387e3af1213917e0d6beb"><div class="ttname"><a href="class_order.html#a59c22c2fa3d387e3af1213917e0d6beb">Order::getFinalPrice</a></div><div class="ttdeci">float getFinalPrice() const</div><div class="ttdoc">Gets the order final price (with the discount in case the client has it).</div><div class="ttdef"><b>Definition:</b> order.cpp:43</div></div>
-<div class="ttc" id="aclass_order_html_a7f55ff4aac1a7b5e93c25965067adf61"><div class="ttname"><a href="class_order.html#a7f55ff4aac1a7b5e93c25965067adf61">Order::wasDelivered</a></div><div class="ttdeci">bool wasDelivered() const</div><div class="ttdoc">Checks if the order was delivered.</div><div class="ttdef"><b>Definition:</b> order.cpp:22</div></div>
-<div class="ttc" id="aclass_order_html_a8d1117f03be704453fef2038380439c2"><div class="ttname"><a href="class_order.html#a8d1117f03be704453fef2038380439c2">Order::print</a></div><div class="ttdeci">void print(std::ostream &amp;os) const</div><div class="ttdoc">Prints all the order data: client name, request date, worker name, deliver date (if it was already de...</div><div class="ttdef"><b>Definition:</b> order.cpp:117</div></div>
-<div class="ttc" id="aclass_order_html_ac4e3f4722666009c38b151a0dfec104f"><div class="ttname"><a href="class_order.html#ac4e3f4722666009c38b151a0dfec104f">Order::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Order &amp;rhs) const</div><div class="ttdoc">Less than operator.</div><div class="ttdef"><b>Definition:</b> order.cpp:113</div></div>
-<div class="ttc" id="aclass_order_html_aa8149a6d51225cedd99c3eb561619826"><div class="ttname"><a href="class_order.html#aa8149a6d51225cedd99c3eb561619826">Order::getWorker</a></div><div class="ttdeci">Worker * getWorker() const</div><div class="ttdoc">Gets the order worker.</div><div class="ttdef"><b>Definition:</b> order.cpp:26</div></div>
-<div class="ttc" id="aclass_order_html_aee6b07c639cb14f0df9253245816e004"><div class="ttname"><a href="class_order.html#aee6b07c639cb14f0df9253245816e004">Order::getClient</a></div><div class="ttdeci">Client * getClient() const</div><div class="ttdoc">Gets the order client.</div><div class="ttdef"><b>Definition:</b> order.cpp:30</div></div>
-<div class="ttc" id="aclass_order_html_ac783913da25dcc47096820e852c44b25"><div class="ttname"><a href="class_order.html#ac783913da25dcc47096820e852c44b25">Order::removeProduct</a></div><div class="ttdeci">void removeProduct(Product *product)</div><div class="ttdoc">Removes a certain product from the products list.</div><div class="ttdef"><b>Definition:</b> order.cpp:71</div></div>
-<div class="ttc" id="aclass_order_html_ab47fa66d2993cb8f50005eaf716cb153"><div class="ttname"><a href="class_order.html#ab47fa66d2993cb8f50005eaf716cb153">Order::hasDiscount</a></div><div class="ttdeci">bool hasDiscount() const</div><div class="ttdoc">Checks if the order has discount.</div><div class="ttdef"><b>Definition:</b> order.cpp:14</div></div>
-<div class="ttc" id="aclass_product_html"><div class="ttname"><a href="class_product.html">Product</a></div><div class="ttdoc">Class relative to a store product.</div><div class="ttdef"><b>Definition:</b> product.h:22</div></div>
-<div class="ttc" id="aclass_order_html_a2ae66c9dcb4372e4af58eeb4e6ff7cbd"><div class="ttname"><a href="class_order.html#a2ae66c9dcb4372e4af58eeb4e6ff7cbd">Order::getRequestDate</a></div><div class="ttdeci">Date getRequestDate() const</div><div class="ttdoc">Gets the date when the order was requested.</div><div class="ttdef"><b>Definition:</b> order.cpp:51</div></div>
-<div class="ttc" id="aclass_order_html"><div class="ttname"><a href="class_order.html">Order</a></div><div class="ttdoc">Class relative to a store order.</div><div class="ttdef"><b>Definition:</b> order.h:19</div></div>
-<div class="ttc" id="aclass_order_html_a65ee4b635e4affdf0c2abbf3bf13c95c"><div class="ttname"><a href="class_order.html#a65ee4b635e4affdf0c2abbf3bf13c95c">Order::addProduct</a></div><div class="ttdeci">Product * addProduct(Product *product, unsigned quantity=1)</div><div class="ttdoc">Adds a product with a certain quantity to the products list.</div><div class="ttdef"><b>Definition:</b> order.cpp:62</div></div>
-<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdoc">Class relative to a store client.</div><div class="ttdef"><b>Definition:</b> client.h:13</div></div>
-<div class="ttc" id="aclass_order_html_aa2bc77c5f6366786e5ff1ca20958e8c4"><div class="ttname"><a href="class_order.html#aa2bc77c5f6366786e5ff1ca20958e8c4">Order::hasProduct</a></div><div class="ttdeci">bool hasProduct(Product *product)</div><div class="ttdoc">Checks if there is a certain product on the products list.</div><div class="ttdef"><b>Definition:</b> order.cpp:18</div></div>
-<div class="ttc" id="aclass_order_html_ad8761add916baeb1a58cfc1b61bf65bd"><div class="ttname"><a href="class_order.html#ad8761add916baeb1a58cfc1b61bf65bd">Order::getDeliverDate</a></div><div class="ttdeci">Date getDeliverDate() const</div><div class="ttdoc">Gets the date when the order was delivered.</div><div class="ttdef"><b>Definition:</b> order.cpp:150</div></div>
-<div class="ttc" id="aclass_date_html"><div class="ttname"><a href="class_date.html">Date</a></div><div class="ttdoc">Class that provides the date to order request and its delivery.</div><div class="ttdef"><b>Definition:</b> date.h:13</div></div>
-<div class="ttc" id="aclass_order_html_a21c518844f3c806a41e6b9fbf9f17ef8"><div class="ttname"><a href="class_order.html#a21c518844f3c806a41e6b9fbf9f17ef8">Order::operator==</a></div><div class="ttdeci">bool operator==(const Order &amp;rhs) const</div><div class="ttdoc">Equality operator.</div><div class="ttdef"><b>Definition:</b> order.cpp:108</div></div>
+<div class="ttc" id="aclass_order_html_aa51383b6cd7afd001ff028f43452fc7b"><div class="ttname"><a href="class_order.html#aa51383b6cd7afd001ff028f43452fc7b">Order::Order</a></div><div class="ttdeci">Order(Client &amp;client, Worker &amp;worker, Date date={})</div><div class="ttdef"><b>Definition:</b> order.cpp:10</div></div>
+<div class="ttc" id="aclass_order_html_a6c299ee1c1a6b5d514a65f80f575d69f"><div class="ttname"><a href="class_order.html#a6c299ee1c1a6b5d514a65f80f575d69f">Order::getProducts</a></div><div class="ttdeci">std::map&lt; Product *, unsigned int, ProductSmaller &gt; getProducts() const</div><div class="ttdef"><b>Definition:</b> order.cpp:38</div></div>
+<div class="ttc" id="aclass_order_html_a66541a0731a2e2fd7269e6469675f2e1"><div class="ttname"><a href="class_order.html#a66541a0731a2e2fd7269e6469675f2e1">Order::deliver</a></div><div class="ttdeci">void deliver(int clientEvaluation, int deliverDuration=30)</div><div class="ttdef"><b>Definition:</b> order.cpp:121</div></div>
+<div class="ttc" id="aclass_order_html_a8e3b6dfacb1fbed1948562f312573923"><div class="ttname"><a href="class_order.html#a8e3b6dfacb1fbed1948562f312573923">Order::getTotal</a></div><div class="ttdeci">float getTotal() const</div><div class="ttdef"><b>Definition:</b> order.cpp:51</div></div>
+<div class="ttc" id="aproduct__manager_8h_html"><div class="ttname"><a href="product__manager_8h.html">product_manager.h</a></div></div>
+<div class="ttc" id="aclass_worker_html"><div class="ttname"><a href="class_worker.html">Worker</a></div><div class="ttdef"><b>Definition:</b> worker.h:12</div></div>
+<div class="ttc" id="aclass_order_html_aec03a2e8887a697b9bd4fed50702e27e"><div class="ttname"><a href="class_order.html#aec03a2e8887a697b9bd4fed50702e27e">Order::getClientEvaluation</a></div><div class="ttdeci">int getClientEvaluation() const</div><div class="ttdef"><b>Definition:</b> order.cpp:42</div></div>
+<div class="ttc" id="aclass_order_html_adda694802de170ef107452d917007d4c"><div class="ttname"><a href="class_order.html#adda694802de170ef107452d917007d4c">Order::removeProduct</a></div><div class="ttdeci">void removeProduct(Product *product, unsigned quantity)</div><div class="ttdef"><b>Definition:</b> order.cpp:75</div></div>
+<div class="ttc" id="aclass_order_html_abcf8d506c31f8194dc43bf21c1170064"><div class="ttname"><a href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">Order::removeProduct</a></div><div class="ttdeci">void removeProduct(unsigned position)</div></div>
+<div class="ttc" id="aclass_order_html_a59c22c2fa3d387e3af1213917e0d6beb"><div class="ttname"><a href="class_order.html#a59c22c2fa3d387e3af1213917e0d6beb">Order::getFinalPrice</a></div><div class="ttdeci">float getFinalPrice() const</div><div class="ttdef"><b>Definition:</b> order.cpp:47</div></div>
+<div class="ttc" id="aclass_order_html_a7f55ff4aac1a7b5e93c25965067adf61"><div class="ttname"><a href="class_order.html#a7f55ff4aac1a7b5e93c25965067adf61">Order::wasDelivered</a></div><div class="ttdeci">bool wasDelivered() const</div><div class="ttdef"><b>Definition:</b> order.cpp:26</div></div>
+<div class="ttc" id="aproduct_8h_html"><div class="ttname"><a href="product_8h.html">product.h</a></div></div>
+<div class="ttc" id="aclass_order_html_adb3bb20a29fcad4474ff3d48cefd72b1"><div class="ttname"><a href="class_order.html#adb3bb20a29fcad4474ff3d48cefd72b1">Order::getWorker</a></div><div class="ttdeci">Worker *const getWorker() const</div><div class="ttdef"><b>Definition:</b> order.cpp:30</div></div>
+<div class="ttc" id="aclass_order_html_a8d1117f03be704453fef2038380439c2"><div class="ttname"><a href="class_order.html#a8d1117f03be704453fef2038380439c2">Order::print</a></div><div class="ttdeci">void print(std::ostream &amp;os) const</div><div class="ttdef"><b>Definition:</b> order.cpp:146</div></div>
+<div class="ttc" id="adate_8h_html"><div class="ttname"><a href="date_8h.html">date.h</a></div></div>
+<div class="ttc" id="aclass_order_html_ac4e3f4722666009c38b151a0dfec104f"><div class="ttname"><a href="class_order.html#ac4e3f4722666009c38b151a0dfec104f">Order::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Order &amp;rhs) const</div><div class="ttdef"><b>Definition:</b> order.cpp:142</div></div>
+<div class="ttc" id="aclass_order_html_ab47fa66d2993cb8f50005eaf716cb153"><div class="ttname"><a href="class_order.html#ab47fa66d2993cb8f50005eaf716cb153">Order::hasDiscount</a></div><div class="ttdeci">bool hasDiscount() const</div><div class="ttdef"><b>Definition:</b> order.cpp:18</div></div>
+<div class="ttc" id="aclass_order_html_ac19e2ca90d030fe695ff7ecdd41c23c4"><div class="ttname"><a href="class_order.html#ac19e2ca90d030fe695ff7ecdd41c23c4">Order::removeProduct</a></div><div class="ttdeci">void removeProduct(unsigned position, unsigned quantity)</div></div>
+<div class="ttc" id="aclass_product_html"><div class="ttname"><a href="class_product.html">Product</a></div><div class="ttdef"><b>Definition:</b> product.h:18</div></div>
+<div class="ttc" id="aclass_order_html_a2ae66c9dcb4372e4af58eeb4e6ff7cbd"><div class="ttname"><a href="class_order.html#a2ae66c9dcb4372e4af58eeb4e6ff7cbd">Order::getRequestDate</a></div><div class="ttdeci">Date getRequestDate() const</div><div class="ttdef"><b>Definition:</b> order.cpp:55</div></div>
+<div class="ttc" id="aclass_order_html_a84a20e94e84800a563bd2d9a0f70ba7d"><div class="ttname"><a href="class_order.html#a84a20e94e84800a563bd2d9a0f70ba7d">Order::getClient</a></div><div class="ttdeci">Client *const getClient() const</div><div class="ttdef"><b>Definition:</b> order.cpp:34</div></div>
+<div class="ttc" id="aclass_order_html"><div class="ttname"><a href="class_order.html">Order</a></div><div class="ttdef"><b>Definition:</b> order.h:20</div></div>
+<div class="ttc" id="aclass_order_html_a65ee4b635e4affdf0c2abbf3bf13c95c"><div class="ttname"><a href="class_order.html#a65ee4b635e4affdf0c2abbf3bf13c95c">Order::addProduct</a></div><div class="ttdeci">Product * addProduct(Product *product, unsigned quantity=1)</div><div class="ttdef"><b>Definition:</b> order.cpp:66</div></div>
+<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdef"><b>Definition:</b> client.h:13</div></div>
+<div class="ttc" id="aperson_8h_html"><div class="ttname"><a href="person_8h.html">person.h</a></div></div>
+<div class="ttc" id="aclass_order_html_aa2bc77c5f6366786e5ff1ca20958e8c4"><div class="ttname"><a href="class_order.html#aa2bc77c5f6366786e5ff1ca20958e8c4">Order::hasProduct</a></div><div class="ttdeci">bool hasProduct(Product *product)</div><div class="ttdef"><b>Definition:</b> order.cpp:22</div></div>
+<div class="ttc" id="aclass_order_html_ad8761add916baeb1a58cfc1b61bf65bd"><div class="ttname"><a href="class_order.html#ad8761add916baeb1a58cfc1b61bf65bd">Order::getDeliverDate</a></div><div class="ttdeci">Date getDeliverDate() const</div><div class="ttdef"><b>Definition:</b> order.cpp:179</div></div>
+<div class="ttc" id="aclass_date_html"><div class="ttname"><a href="class_date.html">Date</a></div><div class="ttdef"><b>Definition:</b> date.h:14</div></div>
+<div class="ttc" id="aclass_order_html_a21c518844f3c806a41e6b9fbf9f17ef8"><div class="ttname"><a href="class_order.html#a21c518844f3c806a41e6b9fbf9f17ef8">Order::operator==</a></div><div class="ttdeci">bool operator==(const Order &amp;rhs) const</div><div class="ttdef"><b>Definition:</b> order.cpp:137</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_8ac10b4d0c3d0c7f1285a97d88a1053a.html">order</a></li><li class="navelem"><b>order.h</b></li>
+    <li class="navelem"><a class="el" href="dir_8ac10b4d0c3d0c7f1285a97d88a1053a.html">order</a></li><li class="navelem"><a class="el" href="order_8h.html">order.h</a></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>
