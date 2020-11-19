@@ -17,8 +17,6 @@ var class_order =
     [ "operator==", "class_order.html#a21c518844f3c806a41e6b9fbf9f17ef8", null ],
     [ "print", "class_order.html#a8d1117f03be704453fef2038380439c2", null ],
     [ "removeProduct", "class_order.html#ac783913da25dcc47096820e852c44b25", null ],
-    [ "removeProduct", "class_order.html#adda694802de170ef107452d917007d4c", null ],
     [ "removeProduct", "class_order.html#abcf8d506c31f8194dc43bf21c1170064", null ],
-    [ "removeProduct", "class_order.html#ac19e2ca90d030fe695ff7ecdd41c23c4", null ],
     [ "wasDelivered", "class_order.html#a7f55ff4aac1a7b5e93c25965067adf61", null ]
 ];

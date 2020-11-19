@@ -29,10 +29,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="scratch.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AEDA Project
    </div>
-   <div id="projectbrief">Bakery project for AEDA, FEUP, MIEIC. Work in progress.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -96,49 +96,37 @@ $(document).ready(function(){initNavTree('login__menu_8h_source.html',''); initR
 <div class="title">login_menu.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="login__menu_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by bdmendes on 14/11/20.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef FEUP_AEDA_PROJECT_LOGIN_MENU_H</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_LOGIN_MENU_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ui_8h.html">ui/ui.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;ui/ui.h&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">class </span><a class="code" href="class_boss_dashboard.html">BossDashboard</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="class_client_dashboard.html">ClientDashboard</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="class_worker_dashboard.html">WorkerDashboard</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_login_menu.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_login_menu.html">LoginMenu</a>: <span class="keyword">public</span> <a class="code" href="class_u_i.html">UI</a>{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_login_menu.html#ada4a85338f0087777fc69e98ea027a90">LoginMenu</a>(<a class="code" href="class_store.html">Store</a>&amp; store);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_login_menu.html#a5ac7991bb2c3df5b7e64cb837c126001">show</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_login_menu.html#afdfc478c7eb367e653409a6c0356be19">selectPerson</a>(<span class="keywordtype">bool</span> client);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_login_menu.html#a52b514c6599cfb7c25b177ddba66838d">login</a>(<a class="code" href="class_person.html">Person</a>* person);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::vector&lt;Person*&gt; _persons;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_LOGIN_MENU_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_login_menu.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_login_menu.html">LoginMenu</a>: <span class="keyword">public</span> <a class="code" href="class_u_i.html">UI</a>{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_login_menu.html">LoginMenu</a>(<a class="code" href="class_store.html">Store</a>&amp; store);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">void</span> show() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">void</span> selectPerson(<span class="keywordtype">bool</span> client);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> login(<a class="code" href="class_person.html">Person</a>* person);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::vector&lt;Person*&gt; _persons;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_LOGIN_MENU_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aui_8h_html"><div class="ttname"><a href="ui_8h.html">ui.h</a></div></div>
-<div class="ttc" id="aclass_person_html"><div class="ttname"><a href="class_person.html">Person</a></div><div class="ttdef"><b>Definition:</b> person.h:22</div></div>
-<div class="ttc" id="aclass_login_menu_html_a5ac7991bb2c3df5b7e64cb837c126001"><div class="ttname"><a href="class_login_menu.html#a5ac7991bb2c3df5b7e64cb837c126001">LoginMenu::show</a></div><div class="ttdeci">void show() override</div><div class="ttdef"><b>Definition:</b> login_menu.cpp:10</div></div>
-<div class="ttc" id="aclass_client_dashboard_html"><div class="ttname"><a href="class_client_dashboard.html">ClientDashboard</a></div><div class="ttdef"><b>Definition:</b> client_dashboard.h:12</div></div>
-<div class="ttc" id="aclass_worker_dashboard_html"><div class="ttname"><a href="class_worker_dashboard.html">WorkerDashboard</a></div><div class="ttdef"><b>Definition:</b> worker_dashboard.h:12</div></div>
-<div class="ttc" id="aclass_store_html"><div class="ttname"><a href="class_store.html">Store</a></div><div class="ttdef"><b>Definition:</b> store.h:29</div></div>
-<div class="ttc" id="aclass_login_menu_html_a52b514c6599cfb7c25b177ddba66838d"><div class="ttname"><a href="class_login_menu.html#a52b514c6599cfb7c25b177ddba66838d">LoginMenu::login</a></div><div class="ttdeci">void login(Person *person)</div><div class="ttdef"><b>Definition:</b> login_menu.cpp:65</div></div>
-<div class="ttc" id="aclass_login_menu_html_ada4a85338f0087777fc69e98ea027a90"><div class="ttname"><a href="class_login_menu.html#ada4a85338f0087777fc69e98ea027a90">LoginMenu::LoginMenu</a></div><div class="ttdeci">LoginMenu(Store &amp;store)</div><div class="ttdef"><b>Definition:</b> login_menu.cpp:32</div></div>
-<div class="ttc" id="aclass_u_i_html"><div class="ttname"><a href="class_u_i.html">UI</a></div><div class="ttdef"><b>Definition:</b> ui.h:15</div></div>
-<div class="ttc" id="aclass_boss_dashboard_html"><div class="ttname"><a href="class_boss_dashboard.html">BossDashboard</a></div><div class="ttdef"><b>Definition:</b> boss_dashboard.h:12</div></div>
-<div class="ttc" id="aclass_login_menu_html"><div class="ttname"><a href="class_login_menu.html">LoginMenu</a></div><div class="ttdef"><b>Definition:</b> login_menu.h:14</div></div>
-<div class="ttc" id="aclass_login_menu_html_afdfc478c7eb367e653409a6c0356be19"><div class="ttname"><a href="class_login_menu.html#afdfc478c7eb367e653409a6c0356be19">LoginMenu::selectPerson</a></div><div class="ttdeci">void selectPerson(bool client)</div><div class="ttdef"><b>Definition:</b> login_menu.cpp:35</div></div>
+<div class="ttc" id="aclass_person_html"><div class="ttname"><a href="class_person.html">Person</a></div><div class="ttdoc">Class relative to a store user.</div><div class="ttdef"><b>Definition:</b> person.h:60</div></div>
+<div class="ttc" id="aclass_store_html"><div class="ttname"><a href="class_store.html">Store</a></div><div class="ttdoc">Class relative to a store.</div><div class="ttdef"><b>Definition:</b> store.h:29</div></div>
+<div class="ttc" id="aclass_u_i_html"><div class="ttname"><a href="class_u_i.html">UI</a></div><div class="ttdef"><b>Definition:</b> ui.h:13</div></div>
+<div class="ttc" id="aclass_login_menu_html"><div class="ttname"><a href="class_login_menu.html">LoginMenu</a></div><div class="ttdef"><b>Definition:</b> login_menu.h:10</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1788f8309b1a812dcb800a185471cf6c.html">ui</a></li><li class="navelem"><a class="el" href="dir_825c0e815db81312511eb17072c8b48a.html">menu</a></li><li class="navelem"><a class="el" href="dir_18ed2de26a7ccd6eb7d869b168450161.html">login</a></li><li class="navelem"><a class="el" href="login__menu_8h.html">login_menu.h</a></li>
+    <li class="navelem"><a class="el" href="dir_1788f8309b1a812dcb800a185471cf6c.html">ui</a></li><li class="navelem"><a class="el" href="dir_825c0e815db81312511eb17072c8b48a.html">menu</a></li><li class="navelem"><a class="el" href="dir_18ed2de26a7ccd6eb7d869b168450161.html">login</a></li><li class="navelem"><b>login_menu.h</b></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

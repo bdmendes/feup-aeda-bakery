@@ -29,10 +29,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="scratch.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AEDA Project
    </div>
-   <div id="projectbrief">Bakery project for AEDA, FEUP, MIEIC. Work in progress.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('worker__dashboard_8h_source.html','');
 <div class="title">worker_dashboard.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="worker__dashboard_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by bdmendes on 14/11/20.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
@@ -104,13 +104,13 @@ $(document).ready(function(){initNavTree('worker__dashboard_8h_source.html','');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_WORKER_DASHBOARD_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="ui_8h.html">ui/ui.h</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="dashboard_8h.html">ui/dashboard/dashboard.h</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;ui/ui.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;ui/dashboard/dashboard.h&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_worker_dashboard.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_worker_dashboard.html">WorkerDashboard</a> : <span class="keyword">public</span> <a class="code" href="class_dashboard.html">Dashboard</a> {</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_worker_dashboard.html#a1e254ab55e2ddd9d8872e34116d55708">WorkerDashboard</a>(<a class="code" href="class_store.html">Store</a>&amp; store, <a class="code" href="class_worker.html">Worker</a>* worker);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_worker_dashboard.html#a37d9bd912e318dc194f14477fa3f19d6">show</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_worker_dashboard.html">WorkerDashboard</a>(<a class="code" href="class_store.html">Store</a>&amp; store, <a class="code" href="class_worker.html">Worker</a>* worker);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> show() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_worker.html">Worker</a>* _worker;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
@@ -119,18 +119,14 @@ $(document).ready(function(){initNavTree('worker__dashboard_8h_source.html','');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_WORKER_DASHBOARD_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_worker_dashboard_html_a1e254ab55e2ddd9d8872e34116d55708"><div class="ttname"><a href="class_worker_dashboard.html#a1e254ab55e2ddd9d8872e34116d55708">WorkerDashboard::WorkerDashboard</a></div><div class="ttdeci">WorkerDashboard(Store &amp;store, Worker *worker)</div><div class="ttdef"><b>Definition:</b> worker_dashboard.cpp:7</div></div>
-<div class="ttc" id="aui_8h_html"><div class="ttname"><a href="ui_8h.html">ui.h</a></div></div>
-<div class="ttc" id="aclass_worker_html"><div class="ttname"><a href="class_worker.html">Worker</a></div><div class="ttdef"><b>Definition:</b> worker.h:12</div></div>
+<div class="ttc" id="aclass_worker_html"><div class="ttname"><a href="class_worker.html">Worker</a></div><div class="ttdoc">Class relative to a store worker.</div><div class="ttdef"><b>Definition:</b> worker.h:13</div></div>
 <div class="ttc" id="aclass_worker_dashboard_html"><div class="ttname"><a href="class_worker_dashboard.html">WorkerDashboard</a></div><div class="ttdef"><b>Definition:</b> worker_dashboard.h:12</div></div>
-<div class="ttc" id="aclass_store_html"><div class="ttname"><a href="class_store.html">Store</a></div><div class="ttdef"><b>Definition:</b> store.h:29</div></div>
-<div class="ttc" id="adashboard_8h_html"><div class="ttname"><a href="dashboard_8h.html">dashboard.h</a></div></div>
-<div class="ttc" id="aclass_worker_dashboard_html_a37d9bd912e318dc194f14477fa3f19d6"><div class="ttname"><a href="class_worker_dashboard.html#a37d9bd912e318dc194f14477fa3f19d6">WorkerDashboard::show</a></div><div class="ttdeci">void show() override</div><div class="ttdef"><b>Definition:</b> worker_dashboard.cpp:10</div></div>
+<div class="ttc" id="aclass_store_html"><div class="ttname"><a href="class_store.html">Store</a></div><div class="ttdoc">Class relative to a store.</div><div class="ttdef"><b>Definition:</b> store.h:29</div></div>
 <div class="ttc" id="aclass_dashboard_html"><div class="ttname"><a href="class_dashboard.html">Dashboard</a></div><div class="ttdef"><b>Definition:</b> dashboard.h:11</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1788f8309b1a812dcb800a185471cf6c.html">ui</a></li><li class="navelem"><a class="el" href="dir_ff41f2b8bef96e2057f1e87571ca86af.html">dashboard</a></li><li class="navelem"><a class="el" href="dir_58212d62643e660f3ea2a2cd93d4531b.html">worker</a></li><li class="navelem"><a class="el" href="worker__dashboard_8h.html">worker_dashboard.h</a></li>
+    <li class="navelem"><a class="el" href="dir_1788f8309b1a812dcb800a185471cf6c.html">ui</a></li><li class="navelem"><a class="el" href="dir_ff41f2b8bef96e2057f1e87571ca86af.html">dashboard</a></li><li class="navelem"><a class="el" href="dir_58212d62643e660f3ea2a2cd93d4531b.html">worker</a></li><li class="navelem"><b>worker_dashboard.h</b></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

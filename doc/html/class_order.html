@@ -147,15 +147,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <tr class="memitem:a65ee4b635e4affdf0c2abbf3bf13c95c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_product.html">Product</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#a65ee4b635e4affdf0c2abbf3bf13c95c">addProduct</a> (<a class="el" href="class_product.html">Product</a> *product, unsigned quantity=1)</td></tr>
 <tr class="memdesc:a65ee4b635e4affdf0c2abbf3bf13c95c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a product with a certain quantity to the products list.  <a href="class_order.html#a65ee4b635e4affdf0c2abbf3bf13c95c">More...</a><br /></td></tr>
 <tr class="separator:a65ee4b635e4affdf0c2abbf3bf13c95c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adda694802de170ef107452d917007d4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#adda694802de170ef107452d917007d4c">removeProduct</a> (<a class="el" href="class_product.html">Product</a> *product, unsigned quantity)</td></tr>
-<tr class="memdesc:adda694802de170ef107452d917007d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a certain quantity of a product from the products list.  <a href="class_order.html#adda694802de170ef107452d917007d4c">More...</a><br /></td></tr>
-<tr class="separator:adda694802de170ef107452d917007d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac783913da25dcc47096820e852c44b25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#ac783913da25dcc47096820e852c44b25">removeProduct</a> (<a class="el" href="class_product.html">Product</a> *product)</td></tr>
 <tr class="memdesc:ac783913da25dcc47096820e852c44b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a certain product from the products list.  <a href="class_order.html#ac783913da25dcc47096820e852c44b25">More...</a><br /></td></tr>
 <tr class="separator:ac783913da25dcc47096820e852c44b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac19e2ca90d030fe695ff7ecdd41c23c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#ac19e2ca90d030fe695ff7ecdd41c23c4">removeProduct</a> (unsigned position, unsigned quantity)</td></tr>
-<tr class="memdesc:ac19e2ca90d030fe695ff7ecdd41c23c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a certain quantity of a product, at a certain position, from the products list.  <a href="class_order.html#ac19e2ca90d030fe695ff7ecdd41c23c4">More...</a><br /></td></tr>
-<tr class="separator:ac19e2ca90d030fe695ff7ecdd41c23c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcf8d506c31f8194dc43bf21c1170064"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">removeProduct</a> (unsigned position)</td></tr>
 <tr class="memdesc:abcf8d506c31f8194dc43bf21c1170064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a certain product, at a certain position, from the products list.  <a href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">More...</a><br /></td></tr>
 <tr class="separator:abcf8d506c31f8194dc43bf21c1170064"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -391,7 +385,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div><div class="memdoc">
 
 <p>Gets the list of all products. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the list of all products </dd></dl>
 
 </div>
 </div>
@@ -564,7 +558,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div>
 </div>
 <a id="ac783913da25dcc47096820e852c44b25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac783913da25dcc47096820e852c44b25">&#9670;&nbsp;</a></span>removeProduct() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac783913da25dcc47096820e852c44b25">&#9670;&nbsp;</a></span>removeProduct() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -582,44 +576,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Removes a certain product from the products list. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">product</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="adda694802de170ef107452d917007d4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adda694802de170ef107452d917007d4c">&#9670;&nbsp;</a></span>removeProduct() <span class="overload">[2/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Order::removeProduct </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_product.html">Product</a> *&#160;</td>
-          <td class="paramname"><em>product</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>quantity</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Removes a certain quantity of a product from the products list. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
     <tr><td class="paramname">product</td><td>the product </td></tr>
-    <tr><td class="paramname">quantity</td><td>the quantity </td></tr>
   </table>
   </dd>
 </dl>
@@ -627,7 +584,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div>
 </div>
 <a id="abcf8d506c31f8194dc43bf21c1170064"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcf8d506c31f8194dc43bf21c1170064">&#9670;&nbsp;</a></span>removeProduct() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abcf8d506c31f8194dc43bf21c1170064">&#9670;&nbsp;</a></span>removeProduct() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -645,44 +602,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Removes a certain product, at a certain position, from the products list. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">position</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ac19e2ca90d030fe695ff7ecdd41c23c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac19e2ca90d030fe695ff7ecdd41c23c4">&#9670;&nbsp;</a></span>removeProduct() <span class="overload">[4/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Order::removeProduct </td>
-          <td>(</td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>position</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>quantity</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Removes a certain quantity of a product, at a certain position, from the products list. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
     <tr><td class="paramname">position</td><td>the position </td></tr>
-    <tr><td class="paramname">quantity</td><td>the quantity </td></tr>
   </table>
   </dd>
 </dl>
@@ -710,8 +630,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>order/<a class="el" href="order_8h_source.html">order.h</a></li>
-<li>order/order.cpp</li>
+<li>model/order/<a class="el" href="order_8h_source.html">order.h</a></li>
+<li>model/order/order.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

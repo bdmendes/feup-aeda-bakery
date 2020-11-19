@@ -8,8 +8,6 @@ var class_order_manager =
     [ "get", "class_order_manager.html#ac0181922f2869e81ff0b33c446bdff2c", null ],
     [ "get", "class_order_manager.html#a6d3359ce4854d8b7c42c8b99812d903e", null ],
     [ "getAll", "class_order_manager.html#a085e8d0a17ecbda0ca8bcdc09a6b648b", null ],
-    [ "getMeanEvaluation", "class_order_manager.html#a029737b88bbfc9bcbebb54dde8289646", null ],
-    [ "getMeanEvaluation", "class_order_manager.html#a470d525c93b7f7c030fe6068113a2503", null ],
     [ "has", "class_order_manager.html#a156054d638f56237112ee282def884bf", null ],
     [ "print", "class_order_manager.html#a3f700be036dd6edc4dff71ef631192ea", null ],
     [ "read", "class_order_manager.html#adf9f583d0a366812a26e30ff84a3a614", null ],

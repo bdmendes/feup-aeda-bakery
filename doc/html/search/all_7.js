@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['isleapyear_61',['isLeapYear',['../class_date.html#a5d2fbece5259d88f0723e777d9069741',1,'Date']]],
-  ['islogged_62',['isLogged',['../class_person.html#acba0343c4a411cc20c80723eccf06a4e',1,'Person']]],
-  ['ispremium_63',['isPremium',['../class_client.html#af77c74a396a63b45707e692c691e7b47',1,'Client']]],
-  ['isreserved_64',['isReserved',['../struct_credential.html#abf0496105170b4d9432c0bb5da991243',1,'Credential']]],
-  ['issmall_65',['isSmall',['../class_bread.html#a88283927a303adb18a9042613b5398ef',1,'Bread']]]
+  ['has_64',['has',['../class_order_manager.html#a156054d638f56237112ee282def884bf',1,'OrderManager::has()'],['../class_client_manager.html#ae6d6572bfdef375b7a4bfb93e4a802e5',1,'ClientManager::has()'],['../class_worker_manager.html#a53e91211ba2b28cd7202fc94d1b54330',1,'WorkerManager::has()'],['../class_product_manager.html#aa0c8167017d9bb039bf1dec905fda331',1,'ProductManager::has()']]],
+  ['hasdiscount_65',['hasDiscount',['../class_order.html#ab47fa66d2993cb8f50005eaf716cb153',1,'Order']]],
+  ['hasproduct_66',['hasProduct',['../class_order.html#aa2bc77c5f6366786e5ff1ca20958e8c4',1,'Order']]]
 ];

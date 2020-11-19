@@ -124,6 +124,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae37eccccd42504ff24058f35455a97e7"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_worker.html">Worker</a> *, <a class="el" href="struct_person_smaller.html">PersonSmaller</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ae37eccccd42504ff24058f35455a97e7">getAll</a> ()</td></tr>
 <tr class="memdesc:ae37eccccd42504ff24058f35455a97e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the workers list.  <a href="class_worker_manager.html#ae37eccccd42504ff24058f35455a97e7">More...</a><br /></td></tr>
 <tr class="separator:ae37eccccd42504ff24058f35455a97e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4d10fb34de594b25713d506c50da13d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ad4d10fb34de594b25713d506c50da13d">getWorker</a> (int taxID) const</td></tr>
+<tr class="memdesc:ad4d10fb34de594b25713d506c50da13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a worker from the workers list by its taxpayer identification number.  <a href="class_worker_manager.html#ad4d10fb34de594b25713d506c50da13d">More...</a><br /></td></tr>
+<tr class="separator:ad4d10fb34de594b25713d506c50da13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8a6f77db3f29b5e8a0093b7eda0257c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ab8a6f77db3f29b5e8a0093b7eda0257c">getLessBusyWorker</a> ()</td></tr>
 <tr class="memdesc:ab8a6f77db3f29b5e8a0093b7eda0257c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the less busy worker which is the worker with less number of undelivered orders.  <a href="class_worker_manager.html#ab8a6f77db3f29b5e8a0093b7eda0257c">More...</a><br /></td></tr>
 <tr class="separator:ab8a6f77db3f29b5e8a0093b7eda0257c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,9 +151,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa381406105c994790cfb783a16ba6f51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#aa381406105c994790cfb783a16ba6f51">print</a> (std::ostream &amp;os, bool showData=true)</td></tr>
 <tr class="memdesc:aa381406105c994790cfb783a16ba6f51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all the workers data.  <a href="class_worker_manager.html#aa381406105c994790cfb783a16ba6f51">More...</a><br /></td></tr>
 <tr class="separator:aa381406105c994790cfb783a16ba6f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4d10fb34de594b25713d506c50da13d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ad4d10fb34de594b25713d506c50da13d">getWorker</a> (int taxID) const</td></tr>
-<tr class="memdesc:ad4d10fb34de594b25713d506c50da13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a worker from the workers list by its taxpayer identification number.  <a href="class_worker_manager.html#ad4d10fb34de594b25713d506c50da13d">More...</a><br /></td></tr>
-<tr class="separator:ad4d10fb34de594b25713d506c50da13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that manages the store workers. </p>
@@ -509,8 +509,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>person/worker/<a class="el" href="worker__manager_8h_source.html">worker_manager.h</a></li>
-<li>person/worker/worker_manager.cpp</li>
+<li>model/person/worker/<a class="el" href="worker__manager_8h_source.html">worker_manager.h</a></li>
+<li>model/person/worker/worker_manager.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

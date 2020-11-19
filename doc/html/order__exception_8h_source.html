@@ -29,10 +29,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="scratch.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AEDA Project
    </div>
-   <div id="projectbrief">Bakery project for AEDA, FEUP, MIEIC. Work in progress.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('order__exception_8h_source.html',''); 
 <div class="title">order_exception.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="order__exception_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by bdmendes on 27/10/20.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
@@ -105,60 +105,51 @@ $(document).ready(function(){initNavTree('order__exception_8h_source.html',''); 
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="person_8h.html">model/person/person.h</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="date_8h.html">model/date/date.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="client_8h.html">model/person/client/client.h</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="worker_8h.html">model/person/worker/worker.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;model/person/person.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;model/date/date.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;model/person/client/client.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;model/person/worker/worker.h&quot;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_order_was_already_delivered.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_order_was_already_delivered.html">OrderWasAlreadyDelivered</a> : <span class="keyword">public</span> std::logic_error{</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_order_was_already_delivered.html#a745fc36b3b55de26fc15ffc4d170277f">OrderWasAlreadyDelivered</a>(<span class="keyword">const</span> <a class="code" href="class_client.html">Client</a>&amp; client, <span class="keyword">const</span> <a class="code" href="class_worker.html">Worker</a>&amp; worker, <span class="keyword">const</span> <a class="code" href="class_date.html">Date</a>&amp; date);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_order_was_already_delivered.html">OrderWasAlreadyDelivered</a>(<span class="keyword">const</span> <a class="code" href="class_client.html">Client</a>&amp; client, <span class="keyword">const</span> <a class="code" href="class_worker.html">Worker</a>&amp; worker, <span class="keyword">const</span> <a class="code" href="class_date.html">Date</a>&amp; date);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_order_was_not_delivered_yet.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_order_was_not_delivered_yet.html">OrderWasNotDeliveredYet</a>: <span class="keyword">public</span> std::logic_error{</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_order_was_not_delivered_yet.html#a165e0e9865e66a5f29f1d537b22fc3ca">OrderWasNotDeliveredYet</a>(<span class="keyword">const</span> <a class="code" href="class_client.html">Client</a>&amp; client, <span class="keyword">const</span> <a class="code" href="class_worker.html">Worker</a>&amp; worker, <span class="keyword">const</span> <a class="code" href="class_date.html">Date</a>&amp; date);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_order_was_not_delivered_yet.html">OrderWasNotDeliveredYet</a>(<span class="keyword">const</span> <a class="code" href="class_client.html">Client</a>&amp; client, <span class="keyword">const</span> <a class="code" href="class_worker.html">Worker</a>&amp; worker, <span class="keyword">const</span> <a class="code" href="class_date.html">Date</a>&amp; date);</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_order_does_not_exist.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_order_does_not_exist.html">OrderDoesNotExist</a> : <span class="keyword">public</span> std::invalid_argument{</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_order_does_not_exist.html#a232706ff91a9955df992f7e5d7e7f3a9">OrderDoesNotExist</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_order_does_not_exist.html">OrderDoesNotExist</a>();</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_invalid_order_evaluation.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_invalid_order_evaluation.html">InvalidOrderEvaluation</a> : <span class="keyword">public</span> std::invalid_argument{</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_invalid_order_evaluation.html#a92588fbc7341ecf90602a5061b0f04d9">InvalidOrderEvaluation</a>(<span class="keywordtype">int</span> evaluation, <span class="keyword">const</span> <a class="code" href="class_client.html">Client</a>&amp; client);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_invalid_order_evaluation.html">InvalidOrderEvaluation</a>(<span class="keywordtype">int</span> evaluation, <span class="keyword">const</span> <a class="code" href="class_client.html">Client</a>&amp; client);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_invalid_order_position.html">   35</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_invalid_order_position.html">InvalidOrderPosition</a> : <span class="keyword">public</span> std::invalid_argument{</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_invalid_order_position.html#ae5c2471522594a01b6de437247809497">InvalidOrderPosition</a>(<span class="keywordtype">unsigned</span> position, <span class="keywordtype">unsigned</span> size);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_invalid_order_position.html">InvalidOrderPosition</a>(<span class="keywordtype">unsigned</span> position, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> size);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_ORDER_EXCEPTION_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_worker_html"><div class="ttname"><a href="class_worker.html">Worker</a></div><div class="ttdef"><b>Definition:</b> worker.h:12</div></div>
+<div class="ttc" id="aclass_worker_html"><div class="ttname"><a href="class_worker.html">Worker</a></div><div class="ttdoc">Class relative to a store worker.</div><div class="ttdef"><b>Definition:</b> worker.h:13</div></div>
 <div class="ttc" id="aclass_order_was_not_delivered_yet_html"><div class="ttname"><a href="class_order_was_not_delivered_yet.html">OrderWasNotDeliveredYet</a></div><div class="ttdef"><b>Definition:</b> order_exception.h:20</div></div>
 <div class="ttc" id="aclass_invalid_order_evaluation_html"><div class="ttname"><a href="class_invalid_order_evaluation.html">InvalidOrderEvaluation</a></div><div class="ttdef"><b>Definition:</b> order_exception.h:30</div></div>
-<div class="ttc" id="aclass_order_was_already_delivered_html_a745fc36b3b55de26fc15ffc4d170277f"><div class="ttname"><a href="class_order_was_already_delivered.html#a745fc36b3b55de26fc15ffc4d170277f">OrderWasAlreadyDelivered::OrderWasAlreadyDelivered</a></div><div class="ttdeci">OrderWasAlreadyDelivered(const Client &amp;client, const Worker &amp;worker, const Date &amp;date)</div><div class="ttdef"><b>Definition:</b> order_exception.cpp:7</div></div>
-<div class="ttc" id="aclass_order_does_not_exist_html_a232706ff91a9955df992f7e5d7e7f3a9"><div class="ttname"><a href="class_order_does_not_exist.html#a232706ff91a9955df992f7e5d7e7f3a9">OrderDoesNotExist::OrderDoesNotExist</a></div><div class="ttdeci">OrderDoesNotExist()</div><div class="ttdef"><b>Definition:</b> order_exception.cpp:15</div></div>
-<div class="ttc" id="aworker_8h_html"><div class="ttname"><a href="worker_8h.html">worker.h</a></div></div>
-<div class="ttc" id="adate_8h_html"><div class="ttname"><a href="date_8h.html">date.h</a></div></div>
 <div class="ttc" id="aclass_order_was_already_delivered_html"><div class="ttname"><a href="class_order_was_already_delivered.html">OrderWasAlreadyDelivered</a></div><div class="ttdef"><b>Definition:</b> order_exception.h:15</div></div>
-<div class="ttc" id="aclass_invalid_order_position_html_ae5c2471522594a01b6de437247809497"><div class="ttname"><a href="class_invalid_order_position.html#ae5c2471522594a01b6de437247809497">InvalidOrderPosition::InvalidOrderPosition</a></div><div class="ttdeci">InvalidOrderPosition(unsigned position, unsigned size)</div><div class="ttdef"><b>Definition:</b> order_exception.cpp:23</div></div>
-<div class="ttc" id="aclass_order_was_not_delivered_yet_html_a165e0e9865e66a5f29f1d537b22fc3ca"><div class="ttname"><a href="class_order_was_not_delivered_yet.html#a165e0e9865e66a5f29f1d537b22fc3ca">OrderWasNotDeliveredYet::OrderWasNotDeliveredYet</a></div><div class="ttdeci">OrderWasNotDeliveredYet(const Client &amp;client, const Worker &amp;worker, const Date &amp;date)</div><div class="ttdef"><b>Definition:</b> order_exception.cpp:11</div></div>
 <div class="ttc" id="aclass_invalid_order_position_html"><div class="ttname"><a href="class_invalid_order_position.html">InvalidOrderPosition</a></div><div class="ttdef"><b>Definition:</b> order_exception.h:35</div></div>
 <div class="ttc" id="aclass_order_does_not_exist_html"><div class="ttname"><a href="class_order_does_not_exist.html">OrderDoesNotExist</a></div><div class="ttdef"><b>Definition:</b> order_exception.h:25</div></div>
-<div class="ttc" id="aclass_invalid_order_evaluation_html_a92588fbc7341ecf90602a5061b0f04d9"><div class="ttname"><a href="class_invalid_order_evaluation.html#a92588fbc7341ecf90602a5061b0f04d9">InvalidOrderEvaluation::InvalidOrderEvaluation</a></div><div class="ttdeci">InvalidOrderEvaluation(int evaluation, const Client &amp;client)</div><div class="ttdef"><b>Definition:</b> order_exception.cpp:19</div></div>
-<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdef"><b>Definition:</b> client.h:13</div></div>
-<div class="ttc" id="aperson_8h_html"><div class="ttname"><a href="person_8h.html">person.h</a></div></div>
-<div class="ttc" id="aclient_8h_html"><div class="ttname"><a href="client_8h.html">client.h</a></div></div>
-<div class="ttc" id="aclass_date_html"><div class="ttname"><a href="class_date.html">Date</a></div><div class="ttdef"><b>Definition:</b> date.h:14</div></div>
+<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdoc">Class relative to a store client.</div><div class="ttdef"><b>Definition:</b> client.h:13</div></div>
+<div class="ttc" id="aclass_date_html"><div class="ttname"><a href="class_date.html">Date</a></div><div class="ttdoc">Class that provides the date to order request and its delivery.</div><div class="ttdef"><b>Definition:</b> date.h:13</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_5834c169ac818fb4b61d1b6f37638e83.html">exception</a></li><li class="navelem"><a class="el" href="order__exception_8h.html">order_exception.h</a></li>
+    <li class="navelem"><a class="el" href="dir_5834c169ac818fb4b61d1b6f37638e83.html">exception</a></li><li class="navelem"><b>order_exception.h</b></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

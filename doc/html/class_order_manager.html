@@ -129,12 +129,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6d3359ce4854d8b7c42c8b99812d903e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_order.html">Order</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a6d3359ce4854d8b7c42c8b99812d903e">get</a> (<a class="el" href="class_worker.html">Worker</a> *worker) const</td></tr>
 <tr class="memdesc:a6d3359ce4854d8b7c42c8b99812d903e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of all the orders delivered by a certain worker.  <a href="class_order_manager.html#a6d3359ce4854d8b7c42c8b99812d903e">More...</a><br /></td></tr>
 <tr class="separator:a6d3359ce4854d8b7c42c8b99812d903e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a029737b88bbfc9bcbebb54dde8289646"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a029737b88bbfc9bcbebb54dde8289646">getMeanEvaluation</a> (<a class="el" href="class_client.html">Client</a> *client) const</td></tr>
-<tr class="memdesc:a029737b88bbfc9bcbebb54dde8289646"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mean evaluation of the orders requested by a certain client.  <a href="class_order_manager.html#a029737b88bbfc9bcbebb54dde8289646">More...</a><br /></td></tr>
-<tr class="separator:a029737b88bbfc9bcbebb54dde8289646"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a470d525c93b7f7c030fe6068113a2503"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a470d525c93b7f7c030fe6068113a2503">getMeanEvaluation</a> (<a class="el" href="class_worker.html">Worker</a> *worker) const</td></tr>
-<tr class="memdesc:a470d525c93b7f7c030fe6068113a2503"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mean evaluation of the orders delivered by a certain worker.  <a href="class_order_manager.html#a470d525c93b7f7c030fe6068113a2503">More...</a><br /></td></tr>
-<tr class="separator:a470d525c93b7f7c030fe6068113a2503"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ed6092892f221bc59e10e3b1baa2d86"><td class="memItemLeft" align="right" valign="top"><a id="a2ed6092892f221bc59e10e3b1baa2d86"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_manager.html#a2ed6092892f221bc59e10e3b1baa2d86">sort</a> ()</td></tr>
 <tr class="memdesc:a2ed6092892f221bc59e10e3b1baa2d86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts the orders list by the request date. <br /></td></tr>
@@ -411,60 +405,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a029737b88bbfc9bcbebb54dde8289646"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a029737b88bbfc9bcbebb54dde8289646">&#9670;&nbsp;</a></span>getMeanEvaluation() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float OrderManager::getMeanEvaluation </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_client.html">Client</a> *&#160;</td>
-          <td class="paramname"><em>client</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the mean evaluation of the orders requested by a certain client. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">client</td><td>the client </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the mean evaluation </dd></dl>
-
-</div>
-</div>
-<a id="a470d525c93b7f7c030fe6068113a2503"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a470d525c93b7f7c030fe6068113a2503">&#9670;&nbsp;</a></span>getMeanEvaluation() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float OrderManager::getMeanEvaluation </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_worker.html">Worker</a> *&#160;</td>
-          <td class="paramname"><em>worker</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the mean evaluation of the orders delivered by a certain worker. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">worker</td><td>the worker </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the mean evaluation </dd></dl>
-
-</div>
-</div>
 <a id="a156054d638f56237112ee282def884bf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a156054d638f56237112ee282def884bf">&#9670;&nbsp;</a></span>has()</h2>
 
@@ -643,8 +583,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>order/<a class="el" href="order__manager_8h_source.html">order_manager.h</a></li>
-<li>order/order_manager.cpp</li>
+<li>model/order/<a class="el" href="order__manager_8h_source.html">order_manager.h</a></li>
+<li>model/order/order_manager.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

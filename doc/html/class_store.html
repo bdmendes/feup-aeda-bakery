@@ -124,16 +124,12 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <tr class="memitem:a94da830bbe9d06f5d1e0bf3d1057a390"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_store.html#a94da830bbe9d06f5d1e0bf3d1057a390">getProfit</a> () const</td></tr>
 <tr class="memdesc:a94da830bbe9d06f5d1e0bf3d1057a390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the store's profit.  <a href="class_store.html#a94da830bbe9d06f5d1e0bf3d1057a390">More...</a><br /></td></tr>
 <tr class="separator:a94da830bbe9d06f5d1e0bf3d1057a390"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63ca141ad50fcdf28c393171124197a3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_store.html#a63ca141ad50fcdf28c393171124197a3">read</a> (const std::string &amp;dataFolderPath, bool doReset)</td></tr>
-<tr class="memdesc:a63ca141ad50fcdf28c393171124197a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads all the store data (boss, worker manager, product manager, client manager and order manager) from a a file and creates new objects of the respective classes with that data.  <a href="class_store.html#a63ca141ad50fcdf28c393171124197a3">More...</a><br /></td></tr>
-<tr class="separator:a63ca141ad50fcdf28c393171124197a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a011d206b2232115a9befb4f60cfe731a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_store.html#a011d206b2232115a9befb4f60cfe731a">read</a> (const std::string &amp;dataFolderPath)</td></tr>
+<tr class="memdesc:a011d206b2232115a9befb4f60cfe731a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads all the store data (boss, worker manager, product manager, client manager and order manager) from a a file and creates new objects of the respective classes with that data.  <a href="class_store.html#a011d206b2232115a9befb4f60cfe731a">More...</a><br /></td></tr>
+<tr class="separator:a011d206b2232115a9befb4f60cfe731a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22d0f9f02098e646e3bb699490b58725"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_store.html#a22d0f9f02098e646e3bb699490b58725">write</a> (const std::string &amp;dataFolderPath)</td></tr>
 <tr class="memdesc:a22d0f9f02098e646e3bb699490b58725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes all the store data (boss, worker manager, product manager, client manager and order manager) to a file and creates new objects of the respective classes with that data.  <a href="class_store.html#a22d0f9f02098e646e3bb699490b58725">More...</a><br /></td></tr>
 <tr class="separator:a22d0f9f02098e646e3bb699490b58725"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a379cbd51cea67bacd3b1964b8c2dc397"><td class="memItemLeft" align="right" valign="top"><a id="a379cbd51cea67bacd3b1964b8c2dc397"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_store.html#a379cbd51cea67bacd3b1964b8c2dc397">reset</a> ()</td></tr>
-<tr class="memdesc:a379cbd51cea67bacd3b1964b8c2dc397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all the store data. <br /></td></tr>
-<tr class="separator:a379cbd51cea67bacd3b1964b8c2dc397"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -236,8 +232,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a63ca141ad50fcdf28c393171124197a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63ca141ad50fcdf28c393171124197a3">&#9670;&nbsp;</a></span>read()</h2>
+<a id="a011d206b2232115a9befb4f60cfe731a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a011d206b2232115a9befb4f60cfe731a">&#9670;&nbsp;</a></span>read()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -246,18 +242,8 @@ Public Attributes</h2></td></tr>
           <td class="memname">std::string Store::read </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>dataFolderPath</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>dataFolderPath</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>doReset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -266,7 +252,6 @@ Public Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dataFolderPath</td><td>the folder path </td></tr>
-    <tr><td class="paramname">doReset</td><td>if true, resets all the store's data </td></tr>
   </table>
   </dd>
 </dl>
@@ -328,8 +313,8 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>store/<a class="el" href="store_8h_source.html">store.h</a></li>
-<li>store/store.cpp</li>
+<li>model/store/<a class="el" href="store_8h_source.html">store.h</a></li>
+<li>model/store/store.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

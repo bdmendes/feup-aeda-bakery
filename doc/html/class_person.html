@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('class_person.html',''); initResizable(
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_person-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Person Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -119,9 +120,9 @@ Inheritance diagram for Person:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a940ece7b9e17a6d39087b3eebc49d490"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a940ece7b9e17a6d39087b3eebc49d490">Person</a> (std::string name, int taxID, <a class="el" href="struct_credential.html">Credential</a> credential)</td></tr>
-<tr class="memdesc:a940ece7b9e17a6d39087b3eebc49d490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new person object.  <a href="class_person.html#a940ece7b9e17a6d39087b3eebc49d490">More...</a><br /></td></tr>
-<tr class="separator:a940ece7b9e17a6d39087b3eebc49d490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31bc6e7fb32453cea94814d92e222c73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a31bc6e7fb32453cea94814d92e222c73">Person</a> (std::string name, int taxID, <a class="el" href="struct_credential.html">Credential</a> credential, PersonRole role)</td></tr>
+<tr class="memdesc:a31bc6e7fb32453cea94814d92e222c73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new person object.  <a href="class_person.html#a31bc6e7fb32453cea94814d92e222c73">More...</a><br /></td></tr>
+<tr class="separator:a31bc6e7fb32453cea94814d92e222c73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22234d7de3132c581406f040196eef44"><td class="memItemLeft" align="right" valign="top"><a id="a22234d7de3132c581406f040196eef44"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a22234d7de3132c581406f040196eef44">~Person</a> ()=default</td></tr>
 <tr class="memdesc:a22234d7de3132c581406f040196eef44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the person object. <br /></td></tr>
@@ -159,6 +160,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:acab3096af55dd3c1823084eacdb760d2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="struct_credential.html">Credential</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#acab3096af55dd3c1823084eacdb760d2">getDefaultCredential</a> ()=0</td></tr>
 <tr class="memdesc:acab3096af55dd3c1823084eacdb760d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the default login credentials.  <a href="class_person.html#acab3096af55dd3c1823084eacdb760d2">More...</a><br /></td></tr>
 <tr class="separator:acab3096af55dd3c1823084eacdb760d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75da83ae41789d005e77540813560943"><td class="memItemLeft" align="right" valign="top">PersonRole&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a75da83ae41789d005e77540813560943">getRole</a> ()</td></tr>
+<tr class="memdesc:a75da83ae41789d005e77540813560943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the person role.  <a href="class_person.html#a75da83ae41789d005e77540813560943">More...</a><br /></td></tr>
+<tr class="separator:a75da83ae41789d005e77540813560943"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -166,12 +170,19 @@ Static Public Attributes</h2></td></tr>
 static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">DEFAULT_TAX_ID</a> = 999999999</td></tr>
 <tr class="memdesc:a52661d7b661afecd42415d70f20cfe8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default taxpayer identification number. <br /></td></tr>
 <tr class="separator:a52661d7b661afecd42415d70f20cfe8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ac0539f31e6ea9995c13df59edaab81dc"><td class="memItemLeft" align="right" valign="top"><a id="ac0539f31e6ea9995c13df59edaab81dc"></a>
+PersonRole&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_person.html#ac0539f31e6ea9995c13df59edaab81dc">_role</a></td></tr>
+<tr class="memdesc:ac0539f31e6ea9995c13df59edaab81dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The person role. <br /></td></tr>
+<tr class="separator:ac0539f31e6ea9995c13df59edaab81dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class relative to a store user. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a940ece7b9e17a6d39087b3eebc49d490"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a940ece7b9e17a6d39087b3eebc49d490">&#9670;&nbsp;</a></span>Person()</h2>
+<a id="a31bc6e7fb32453cea94814d92e222c73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31bc6e7fb32453cea94814d92e222c73">&#9670;&nbsp;</a></span>Person()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -192,7 +203,13 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="struct_credential.html">Credential</a>&#160;</td>
-          <td class="paramname"><em>credential</em>&#160;</td>
+          <td class="paramname"><em>credential</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PersonRole&#160;</td>
+          <td class="paramname"><em>role</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -285,6 +302,26 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 
 </div>
 </div>
+<a id="a75da83ae41789d005e77540813560943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75da83ae41789d005e77540813560943">&#9670;&nbsp;</a></span>getRole()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PersonRole Person::getRole </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the person role. </p>
+<dl class="section return"><dt>Returns</dt><dd>the person role </dd></dl>
+
+</div>
+</div>
 <a id="a2ffa4497d57aee137d7464b4a16f2a97"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ffa4497d57aee137d7464b4a16f2a97">&#9670;&nbsp;</a></span>getTaxId()</h2>
 
@@ -348,7 +385,7 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true, if person is less than p2, according to alphabetical order ; false, otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if person is less than p2. That means, if some person taxpayer identification number is different from the default one and the person taxpayer identification number is less than the p2's one, returns true. In case of both taxpayer identification number are equal to the default one, returns true according to alphabetical order; false, otherwise. </dd></dl>
 
 </div>
 </div>
@@ -484,8 +521,8 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>person/<a class="el" href="person_8h_source.html">person.h</a></li>
-<li>person/person.cpp</li>
+<li>model/person/<a class="el" href="person_8h_source.html">person.h</a></li>
+<li>model/person/person.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -121,6 +121,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a853b3c43d5d28242ebdb06f2e18b41ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_client.html">Client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a853b3c43d5d28242ebdb06f2e18b41ab">get</a> (unsigned position)</td></tr>
 <tr class="memdesc:a853b3c43d5d28242ebdb06f2e18b41ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the client on the clients list at a certain position.  <a href="class_client_manager.html#a853b3c43d5d28242ebdb06f2e18b41ab">More...</a><br /></td></tr>
 <tr class="separator:a853b3c43d5d28242ebdb06f2e18b41ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06973de32df93ec68b8143a5c9409e89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_client.html">Client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a06973de32df93ec68b8143a5c9409e89">getClient</a> (int taxID) const</td></tr>
+<tr class="memdesc:a06973de32df93ec68b8143a5c9409e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a client from the clients list by its taxpayer identification number.  <a href="class_client_manager.html#a06973de32df93ec68b8143a5c9409e89">More...</a><br /></td></tr>
+<tr class="separator:a06973de32df93ec68b8143a5c9409e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22d117ee4ea8170943dbb52033136560"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_client.html">Client</a> *, <a class="el" href="struct_person_smaller.html">PersonSmaller</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a22d117ee4ea8170943dbb52033136560">getAll</a> ()</td></tr>
 <tr class="memdesc:a22d117ee4ea8170943dbb52033136560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the clients list.  <a href="class_client_manager.html#a22d117ee4ea8170943dbb52033136560">More...</a><br /></td></tr>
 <tr class="separator:a22d117ee4ea8170943dbb52033136560"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,9 +145,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4e6af4aaaaff7fd72feffe6ef0984802"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a4e6af4aaaaff7fd72feffe6ef0984802">write</a> (const std::string &amp;path)</td></tr>
 <tr class="memdesc:a4e6af4aaaaff7fd72feffe6ef0984802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes all the clients data that are on the clients list (name, the taxpayer identification number and login credentials) to a file.  <a href="class_client_manager.html#a4e6af4aaaaff7fd72feffe6ef0984802">More...</a><br /></td></tr>
 <tr class="separator:a4e6af4aaaaff7fd72feffe6ef0984802"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06973de32df93ec68b8143a5c9409e89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_client.html">Client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a06973de32df93ec68b8143a5c9409e89">getClient</a> (int taxID) const</td></tr>
-<tr class="memdesc:a06973de32df93ec68b8143a5c9409e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a client from the clients list by its taxpayer identification number.  <a href="class_client_manager.html#a06973de32df93ec68b8143a5c9409e89">More...</a><br /></td></tr>
-<tr class="separator:a06973de32df93ec68b8143a5c9409e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that manages the store clients. </p>
@@ -445,8 +445,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>person/client/<a class="el" href="client__manager_8h_source.html">client_manager.h</a></li>
-<li>person/client/client_manager.cpp</li>
+<li>model/person/client/<a class="el" href="client__manager_8h_source.html">client_manager.h</a></li>
+<li>model/person/client/client_manager.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
