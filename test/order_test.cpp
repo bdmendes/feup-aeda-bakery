@@ -72,19 +72,83 @@ TEST(Order, was_delivered){
 }
 
 TEST(Order, get_worker){
+    Client client1("Alfredo Simoes");
+    Worker worker1("Beatriz Silva",950);
+    Order order1(client1, worker1);
 
+    EXPECT_EQ(worker1, *order1.getWorker());
+
+    Client client2("Carlos Monteiro");
+    Worker worker2("Joana Figueiredo", 839);
+    Order order2(client2, worker2);
+
+    EXPECT_EQ(worker2, *order2.getWorker());
 }
 
 TEST(Order, get_client){
+    Client client1("Alfredo Simoes");
+    Worker worker1("Beatriz Silva",950);
+    Order order1(client1, worker1);
 
+    EXPECT_EQ(client1, *order1.getClient());
+
+    Client client2("Carlos Monteiro");
+    Worker worker2("Joana Figueiredo", 839);
+    Order order2(client2, worker2);
+
+    EXPECT_EQ(client2  , *order2.getClient());
+}
+
+TEST(Order, get_deliver_location){
+    Client client1("Alfredo Simoes");
+    Worker worker1("Beatriz Silva",950);
+    Order order1(client1, worker1, "Matosinhos");
+
+    EXPECT_EQ("Matosinhos", order1.getDeliverLocation());
+
+    Client client2("Carlos Monteiro");
+    Worker worker2("Joana Figueiredo", 839);
+    Order order2(client2, worker2, "Vila do Conde");
+
+    EXPECT_EQ("Vila do Conde", order2.getDeliverLocation());
 }
 
 TEST(Order, set_deliver_location){
+    Client client("Alfredo Simoes");
+    Worker worker("Beatriz Silva",950);
+    Order order(client, worker);
 
+    EXPECT_EQ(Order::DEFAULT_LOCATION, order.getDeliverLocation());
+
+    order.setDeliverLocation("Porto");
+
+    EXPECT_EQ("Porto", order.getDeliverLocation());
+
+    order.setDeliverLocation("Felgueiras");
+
+    EXPECT_EQ("Felgueiras", order.getDeliverLocation());
 }
 
 TEST(Order, get_products){
+    Cake cake("Bolo de bolacha", 2.2);
+    Bread bread("Pao de cereais", 0.8);
+    Client client("Alfredo Simoes");
+    Worker worker("Beatriz Silva",950);
+    Order order(client, worker);
 
+    EXPECT_TRUE(order.getProducts().empty());
+
+    Product* product1 = order.addProduct(&cake, 10);
+
+    EXPECT_EQ(1, order.getProducts().size());
+    EXPECT_EQ(*product1, *(order.getProducts().begin()->first));
+    EXPECT_EQ(10, order.getProducts().begin()->second);
+
+    Product* product2 = order.addProduct(&bread, 7);
+
+    EXPECT_EQ(2, order.getProducts().size());
+    EXPECT_EQ(*product2, *((++order.getProducts().begin())->first));
+    EXPECT_EQ(7, (++order.getProducts().begin())->second);
 }
 
 TEST(Order, get_client_evaluation){
@@ -166,7 +230,41 @@ TEST(Order, get_total){
     EXPECT_FLOAT_EQ((3.20*10)+(1.20*15)+(0.8*8)+(0.2*3), order.getTotal());
 }
 
-TEST(Order, get_request_date){}
+TEST(Order, get_request_date){
+    Client client1("Alfredo Simoes");
+    Worker worker1("Beatriz Silva",950);
+    Date date1(23, 7, 2020, 14, 50);
+    Order order1(client1, worker1, "Matosinhos", date1);
+
+    EXPECT_TRUE(date1 == order1.getRequestDate());
+
+    Client client2("Carlos Monteiro");
+    Worker worker2("Joana Figueiredo", 839);
+    Date date2(19, 8, 2019, 22, 30);
+    Order order2(client2, worker2, "Vila do Conde", date2);
+
+    EXPECT_TRUE(date2 == order2.getRequestDate());
+}
+
+TEST(Order, get_deliver_date){
+    Client client1("Alfredo Simoes");
+    Worker worker1("Beatriz Silva",950);
+    Date date1(23, 7, 2020, 14, 50);
+    Order order1(client1, worker1, "Matosinhos", date1);
+    order1.deliver(5);
+    date1.addMinutes(30);
+
+    EXPECT_TRUE(date1 == order1.getDeliverDate());
+
+    Client client2("Carlos Monteiro");
+    Worker worker2("Joana Figueiredo", 839);
+    Date date2(19, 8, 2019, 22, 30);
+    Order order2(client2, worker2, "Vila do Conde", date2);
+    order2.deliver(5, 20);
+    date2.addMinutes(20);
+
+    EXPECT_TRUE(date2 == order2.getDeliverDate());
+}
 
 TEST(Order, add_product){
     Client client("Alfredo Simoes");
@@ -350,19 +448,4 @@ TEST(Order, less_than_operator){
     EXPECT_TRUE(order1 < order2);
     EXPECT_TRUE(order1 < order3);
     EXPECT_TRUE(order2 < order3);
-}
-
-TEST(Order, print){
-    Client client("Alfredo Simoes");
-    Worker worker("Beatriz Silva",950);
-    std::string location = "Matosinhos";
-    Date date1(13, 11, 2020, 16, 30);
-    Date date2(14, 11, 2020, 16, 30);
-    Date date3(14, 11, 2020, 16, 31);
-    Order order1(client, worker, location, date1);
-    Order order2(client, worker, location, date2);
-    Order order3(client, worker, location, date3);
-    order1.print(std::cout);
-    order2.print(std::cout);
-    order3.print(std::cout);
 }
