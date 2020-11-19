@@ -67,7 +67,7 @@ public:
      *
      * @param evaluation
      */
-    void addEvaluation (int evaluation);
+    void addEvaluation (unsigned int evaluation);
 
     /**
      * Prints the worker data.
@@ -115,7 +115,7 @@ private:
     /**
      * The list of evaluations given to each order delivered by the worker.
      */
-    std::vector<int> _evaluations;
+    std::vector<unsigned> _evaluations;
 };
 
 

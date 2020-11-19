@@ -35,10 +35,8 @@ bool UI::validInput1Cmd2ArgsDigit(const std::string &input, const std::string &c
            && isdigit(words.at(1)) && isdigit(words.at(2),acceptFloatArg2);
 }
 
-void UI::printOptions(const std::vector<std::string> &options, std::string message) {
-    if (message.empty()) message = "Available commands:";
+void UI::printOptions(const std::vector<std::string> &options, const std::string& message) {
     std::cout << message << '\n';
-
     for (const auto& o: options) std::cout << "-> " << o << '\n';
     std::cout << '\n';
 }

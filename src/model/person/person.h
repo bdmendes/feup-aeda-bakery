@@ -11,7 +11,7 @@
 #include <iostream>
 
 /**
- * The enum with the possible person role.
+ * The enum with the possible person roles.
  */
 enum class PersonRole {
     WORKER,
@@ -200,11 +200,11 @@ protected:
  */
 struct PersonSmaller{
     /**
-     * Checks if a person is smaller than other.
+     * Checks if a person should be shown before another.
      *
      * @param p1 the first person to compare with
      * @param p2 the second person to compare with
-     * @return true, if p1 is less than p2, according to alphabetical order; false, otherwise
+     * @return true, if p1 is less than p2, according to defined equality operator
      */
     bool operator()(const Person* p1, const Person* p2) const{
         return *p1 < *p2;

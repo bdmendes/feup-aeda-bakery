@@ -180,6 +180,7 @@ public:
      * The default store location.
      */
     static const char* DEFAULT_LOCATION;
+
 private:
     /**
     * Updates total price whenever is added products to the order.

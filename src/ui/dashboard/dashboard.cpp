@@ -113,7 +113,7 @@ void Dashboard::expandOrder(Order *order) {
 
 void Dashboard::managePersonalData(Person *person) {
     printLogo("Edit account details");
-    bool isClient = dynamic_cast<Client*>(person) != nullptr;
+    bool isClient = person->getRole() == PersonRole::CLIENT;
 
     std::vector<std::string> options = {
             "change credential - set new username or password",
@@ -136,7 +136,7 @@ void Dashboard::managePersonalData(Person *person) {
             } else if (validInput1Cmd1Arg(input, "change", "name")) {
                 changeName(person);
                 break;
-            } else if (isClient && validInput1Cmd1Arg(input, "set", "regular")) {
+            } else if (isClient && validInput1Cmd1Arg(input, "set", "basic")) {
                 _store.clientManager.getClient(person->getTaxId())->setPremium(false);
                 break;
             }

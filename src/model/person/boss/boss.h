@@ -11,7 +11,6 @@
  */
 class Boss : public Person {
 public:
-
     /**
      * Creates a new Boss object.
      *

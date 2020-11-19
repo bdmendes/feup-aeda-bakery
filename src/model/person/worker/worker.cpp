@@ -47,7 +47,7 @@ Credential Worker::getDefaultCredential() {
     return {DEFAULT_USERNAME, DEFAULT_PASSWORD};
 }
 
-void Worker::addEvaluation(int evaluation) {
+void Worker::addEvaluation(unsigned int evaluation) {
     _evaluations.push_back(evaluation);
 }
 
