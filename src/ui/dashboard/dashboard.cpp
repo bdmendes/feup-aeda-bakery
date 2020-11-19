@@ -47,7 +47,7 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 expandOrder(_store.orderManager.get(idx, client));
             } else if (hasOrders && validInput1Cmd1ArgDigit(input,"edit")){
-                int idx = std::stoi(to_words(input).at(1)) - 1;
+                unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 editOrder(_store.orderManager.get(idx, client));
             }
             else {printError(); continue;}
@@ -212,7 +212,7 @@ void Dashboard::editOrder(Order* order) {
                 }
                 else if (validInput1Cmd2ArgsDigit(input, "add")) {
                     unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
-                    unsigned int quantity = std::stoi(to_words(input).at(2));
+                    unsigned int quantity = (unsigned) std::stoi(to_words(input).at(2));
                     order->addProduct(_store.productManager.get(idx), quantity);
                     break;
                 } else if (validInput1Cmd1ArgDigit(input, "remove")) {
@@ -413,7 +413,7 @@ void Dashboard::manageClients() {
 void Dashboard::addClient() {
     std::cout << "\n" << SEPARATOR;
     std::string name, input;
-    int taxID;
+    unsigned long taxID;
     bool premium;
 
     std::cout << "Client name: ";
@@ -424,9 +424,9 @@ void Dashboard::addClient() {
         std::cout << "Tax ID: ";
         input = readCommand();
         if (isdigit(input)) break;
-        else std::cout << "The ID must be an integer!\n";
+        else std::cout << "The ID must be a reasonable sized integer!\n";
     }
-    taxID = std::stoi(input);
+    taxID = std::stoul(input);
 
     for (;;){
         std::cout << "Status (basic/premium): ";

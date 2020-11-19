@@ -42,7 +42,7 @@ void util::lowercase(std::string &str) {
 
 std::string util::column(std::string str, bool large) {
     unsigned long colSize = large ? LARGE_COL_WIDTH : SMALL_COL_WIDTH;
-    if (str.size() > colSize) str = str.substr(0, static_cast<unsigned long>((int) colSize - 3)) + "...";
+    if (str.size() > colSize) str = str.substr(0, colSize - 4) + "... ";
     std::ostringstream ss;
     ss << std::setw((int)colSize) << std::left << str << SPACE;
     return ss.str();

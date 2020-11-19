@@ -89,7 +89,7 @@ void WorkerManager::read(const std::string& path) {
 
     std::string name;
     float salary = Worker::DEFAULT_SALARY;
-    int taxID = Person::DEFAULT_TAX_ID;
+    unsigned long taxID = Person::DEFAULT_TAX_ID;
     Credential credential;
 
     for(std::string line; getline(file, line); ){

@@ -141,7 +141,7 @@ public:
      *
      * @param position the position
      */
-    void removeProduct(unsigned position);
+    void removeProduct(unsigned long position);
 
     /**
      * Delivers the order and gets the client evaluation and deliver duration.

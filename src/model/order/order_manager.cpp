@@ -10,7 +10,7 @@ bool OrderManager::has(Order *order) const {
     return std::find(_orders.begin(),_orders.end(),order) != _orders.end();
 }
 
-Order* OrderManager::get(unsigned int position, Client* client, Worker* worker) const {
+Order* OrderManager::get(unsigned long position, Client* client, Worker* worker) const {
     std::vector<Order*> filtered;
     if (client != nullptr && worker != nullptr) throw std::invalid_argument("Can't choose both worker and client");
     else if (client != nullptr) filtered = get(client);
@@ -72,7 +72,7 @@ void OrderManager::remove(Order *order) {
     _orders.erase(position);
 }
 
-void OrderManager::remove(unsigned position) {
+void OrderManager::remove(unsigned long position) {
     if (position >= _orders.size()) throw OrderDoesNotExist();
     if (_orders.at(position)->wasDelivered()) throw std::invalid_argument("It's not possible to delete a delivered order");
     _orders.at(position)->getWorker()->removeOrderToDeliver();
@@ -150,7 +150,7 @@ void OrderManager::read(const std::string &path) {
         if (readDetails) {
             clientEvaluation = -1;
             std::string date, time, location;
-            int clientTaxID = Person::DEFAULT_TAX_ID, workerTaxID = Person::DEFAULT_TAX_ID;
+            unsigned long clientTaxID = Person::DEFAULT_TAX_ID, workerTaxID = Person::DEFAULT_TAX_ID;
 
             std::stringstream ss(line);
             ss >> clientTaxID >> workerTaxID >> date >> time >> location >> clientEvaluation;

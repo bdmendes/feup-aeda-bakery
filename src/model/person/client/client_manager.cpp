@@ -74,7 +74,7 @@ void ClientManager::read(const std::string &path) {
     if(!file) throw FileNotFound(path);
 
     std::string name, premium;
-    int taxID = Person::DEFAULT_TAX_ID;
+    unsigned long taxID = Person::DEFAULT_TAX_ID;
     unsigned points = 0;
     Credential credential;
 

@@ -1,7 +1,7 @@
 
 #include "person.h"
 
-const int Person::DEFAULT_TAX_ID = 999999999;
+const unsigned long Person::DEFAULT_TAX_ID = 999999999;
 
 Person::Person(std::string name, unsigned long taxID, Credential credential, PersonRole role) :
         _name(std::move(name)), _taxID{taxID}, _credential{std::move(credential) }, _logged(false),
@@ -13,7 +13,7 @@ std::string Person::getName() const {
     return _name;
 }
 
-int Person::getTaxId() const {
+unsigned long Person::getTaxId() const {
     return _taxID;
 }
 

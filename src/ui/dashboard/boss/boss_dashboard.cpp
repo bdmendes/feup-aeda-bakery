@@ -63,7 +63,7 @@ void BossDashboard::show() {
 void BossDashboard::addWorker() {
     std::cout << "\n" << SEPARATOR;
     std::string name, input;
-    int taxID;
+    unsigned long taxID;
     float salary;
 
     std::cout << "Worker name: ";
@@ -76,7 +76,7 @@ void BossDashboard::addWorker() {
         if (isdigit(input)) break;
         else std::cout << "The ID must be an integer!\n";
     }
-    taxID = std::stoi(input);
+    taxID = std::stoul(input);
 
     for (;;){
         std::cout << "Salary: ";

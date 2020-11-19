@@ -85,7 +85,7 @@ public:
      *
      * @return the taxpayer identification number
      */
-    int getTaxId() const;
+    unsigned long getTaxId() const;
 
     /**
      * Gets the person login credentials.
@@ -165,7 +165,7 @@ public:
     /**
      * The default taxpayer identification number.
      */
-    static const int DEFAULT_TAX_ID;
+    static const unsigned long DEFAULT_TAX_ID;
 
 private:
     /**

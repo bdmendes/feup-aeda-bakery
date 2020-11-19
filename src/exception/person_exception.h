@@ -16,9 +16,9 @@ public:
      * Creates a new PersonDoesNotExist exception object.
      *
      * @param name the name
-     * @param tributaryNumber the taxpayer identification number
+     * @param taxID the taxpayer identification number
      */
-    PersonDoesNotExist(const std::string& name, int tributaryNumber);
+    PersonDoesNotExist(const std::string& name, unsigned long taxID);
 
     /**
      * Creates a new PersonDoesNotExist exception object.
