@@ -59,7 +59,7 @@ std::string util::to_string(float n) {
 }
 
 void util::clearScreen(){
-#ifdef WIN32
+#ifdef _WIN32
     system("cls");
 #else
     std::cout << '\n' << ANSI_CLEAR_SCREEN;
