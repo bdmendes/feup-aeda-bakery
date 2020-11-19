@@ -6,7 +6,7 @@
 
 using testing::Eq;
 
-TEST(Store, create_store){
+/*TEST(Store, create_store){
     Store store1;
 
     EXPECT_EQ("Bakery Store", store1.getName());
@@ -471,7 +471,4 @@ TEST(OrderManager, get_worker_orders){
     EXPECT_EQ(2, orderM.get(worker1).size());
     EXPECT_TRUE(order == *order2);
 }
-
-
-
-
+*/

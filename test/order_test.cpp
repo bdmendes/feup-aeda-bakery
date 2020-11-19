@@ -11,7 +11,7 @@ TEST(Order, create_order){
     Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
     Date date(14, 11, 2020, 16, 30);
-    Order order(client,worker, date);
+    Order order(client,worker, "Felgueiras", date);
 
     EXPECT_EQ(client, *order.getClient());
     EXPECT_EQ(worker, *order.getWorker());
@@ -27,16 +27,18 @@ TEST(Order, has_discount){
     Client client4("Carlos Monteiro", 1238471736, true);
     Worker worker("Beatriz Silva",950);
     Date date(14, 11, 2020, 16, 30);
+    std::string location = "Porto";
 
-    Order order1(client1,worker, date); client1.setPoints(200);
-    Order order2(client2, worker, date);
-    Order order3(client3, worker, date); client3.setPoints(100);
-    Order order4(client4, worker, date);
+    Order order1(client1,worker, location, date); client1.setPoints(200);
+    Order order2(client2, worker, location, date);
+    Order order3(client3, worker, location, date); client3.setPoints(100);
+    Order order4(client4, worker, location, date);
 
     EXPECT_TRUE(order1.hasDiscount());
     EXPECT_FALSE(order2.hasDiscount());
     EXPECT_TRUE(order3.hasDiscount());
     EXPECT_FALSE(order4.hasDiscount());
+    EXPECT_EQ(order1.getDeliverLocation(), "Porto");
 }
 
 TEST(Order, has_product){
@@ -247,7 +249,7 @@ TEST(Order, deliver){
     Client client("Alfredo Simões");
     client.addPoints(200);
     Worker worker("Beatriz Silva",950);
-    Order order1(client,worker, date);
+    Order order1(client,worker, "Penafiel", date);
 
     Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
     Bread hugeBread("Pao de sementes",0.2,false);
@@ -320,9 +322,9 @@ TEST(Order, less_than_operator){
     Date date1(13, 11, 2020, 16, 30);
     Date date2(14, 11, 2020, 16, 30);
     Date date3(14, 11, 2020, 16, 31);
-    Order order1(client, worker, date1);
-    Order order2(client, worker, date2);
-    Order order3(client, worker, date3);
+    Order order1(client, worker, "Porto", date1);
+    Order order2(client, worker, "Funchal", date2);
+    Order order3(client, worker, "Vila do Conde", date3);
 
     EXPECT_TRUE(order1 < order2);
     EXPECT_TRUE(order1 < order3);
