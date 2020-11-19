@@ -4,14 +4,15 @@
 
 #include "order.h"
 
-#include <model/product/product_manager.h>
-#include <model/person/client/client_manager.h>
-#include <model/person/worker/worker_manager.h>
+#include "model/product/product_manager.h"
+#include "model/person/client/client_manager.h"
+#include "model/person/worker/worker_manager.h"
 
 #include <exception/person_exception.h>
 
 #include <algorithm>
 #include <vector>
+#include "model/store/location_manager.h"
 
 /**
  * Class that manages the store orders.
@@ -19,16 +20,17 @@
 class OrderManager {
 public:
     /**
-     * Creates a new order manager object.
+     *  Creates a new OrderManager object.
      *
      * @param pm the product manager
      * @param cm the client manager
      * @param wm the worker manager
+     * @param lm the location manager
      */
-    OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm);
+    OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm, LocationManager* lm);
 
     /**
-     * Destructs the order manager object.
+     * Destructs the OrderManager object.
      */
     ~OrderManager();
 
@@ -59,20 +61,28 @@ public:
     std::vector<Order*> getAll() const;
 
     /**
-     * Gets the list of all the orders requested by a certain client.
+     * Gets the list of all orders requested by a certain client.
      *
      * @param client the client
-     * @return the orders list
+     * @return the orders list relative to that client
      */
     std::vector<Order*> get(Client* client) const;
 
     /**
-     * Gets the list of all the orders delivered by a certain worker.
+     * Gets the list of all orders delivered by a certain worker.
      *
      * @param worker the worker
-     * @return the orders list
+     * @return the orders list relative to that worker
      */
     std::vector<Order*> get(Worker* worker) const;
+
+    /**
+     * Gets the list of all orders delivered in a certain store location.
+     *
+     * @param location the store location
+     * @return the orders list relative to that store location
+     */
+    std::vector<Order*> get(const std::string& location) const;
 
     /**
      * Sorts the orders list by the request date.
@@ -80,26 +90,28 @@ public:
     void sort();
 
     /**
-     * Adds a new order to the orders list with a certain client and request date.
+     * Adds a new order to the orders list created from that data: client, store location and date.
      *
      * @param client the client
-     * @param date the date request
-     * @return the order requested by the client
+     * @param location the location
+     * @param date the date
+     * @return the new order add to the orders list
      */
-    Order* add(Client* client, Date date = {});
+    Order* add(Client* client, const std::string& location, Date date = {});
 
     /**
-     *Adds a new order to the orders list with a certain client, worker and a request date.
+     * Adds a new order to the orders list created from that data: client, worker, store location and date.
      *
      * @param client the client
      * @param worker the worker
-     * @param date the request date
-     * @return the order requested by the client
+     * @param location the location
+     * @param date the date
+     * @return the new order added to the orders list
      */
-    Order* add(Client* client, Worker* worker, const Date& date);
+    Order* add(Client* client, Worker* worker, const std::string& location, const Date& date = {});
 
     /**
-     * Removes an order from the orders list.
+     * Remove a certain order from the orders list.
      *
      * @param order the order
      */
@@ -158,6 +170,11 @@ private:
      * The store worker manager.
      */
     WorkerManager* _workerManager;
+
+    /**
+     * The store location manager.
+     */
+    LocationManager* _locationManager;
 
     /**
      * The list of all orders.

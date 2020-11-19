@@ -3,9 +3,12 @@
 
 #include "util/util.h"
 
-Order::Order(Client &client, Worker &worker, Date date) :
+const char* Order::DEFAULT_LOCATION = "Head Office";
+
+Order::Order(Client &client, Worker &worker, std::string location, Date date) :
         _client(&client), _worker(&worker), _clientEvaluation(0), _delivered(false),
-        _totalPrice(0.0f), _requestDate(date), _deliverDate(date), _products(){
+        _totalPrice(0.0f), _requestDate(date), _deliverDate(date), _products(),
+        _deliverLocation(std::move(location)){
     updateTotalPrice();
     _client->addPoints(10* static_cast<unsigned int>(_totalPrice)); //For each euro adds 10 points
     _worker->addOrderToDeliver();
@@ -119,11 +122,13 @@ void Order::print(std::ostream &os) const {
        << " on " << getRequestDate().getCompleteDate() << std::endl;
 
     if (!wasDelivered()){
-        os << "To be delivered by " << getWorker()->getName() << "\n\n";
+        os << "To be delivered by " << getWorker()->getName() << " " << "at " <<
+        getDeliverLocation() << "\n\n";
     }
     else {
         os << "Delivered by " << getWorker()->getName() << " on " << getDeliverDate().getCompleteDate()
-           << "\nClient evaluation: " << getClientEvaluation() << " points" << "\n\n";
+        << " " << "at " << getDeliverLocation()
+        << "\nClient evaluation: " << getClientEvaluation() << " points" << "\n\n";
     }
 
     //products
@@ -150,4 +155,13 @@ void Order::print(std::ostream &os) const {
 Date Order::getDeliverDate() const {
     if (!_delivered) throw OrderWasNotDeliveredYet(*_client, *_worker, _requestDate);
     return _deliverDate;
+}
+
+std::string Order::getDeliverLocation() const {
+    return _deliverLocation;
+}
+
+void Order::setDeliverLocation(const std::string& location) {
+    if (_delivered) throw OrderWasAlreadyDelivered(*_client,*_worker,_deliverDate);
+    _deliverLocation = location;
 }

@@ -60,7 +60,7 @@ struct Credential {
 class Person {
 public:
     /**
-     * Creates a new person object.
+     * Creates a new Person object.
      *
      * @param name the name
      * @param taxID the taxpayer identification number

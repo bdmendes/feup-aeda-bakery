@@ -2,8 +2,8 @@
 #include "order_manager.h"
 #include "exception/file_exception.h"
 
-OrderManager::OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm) :
-        _productManager(pm), _clientManager(cm), _workerManager(wm), _orders{}{
+OrderManager::OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm, LocationManager* lm) :
+        _productManager(pm), _clientManager(cm), _workerManager(wm), _locationManager(lm), _orders{}{
 }
 
 bool OrderManager::has(Order *order) const {
@@ -47,17 +47,19 @@ void OrderManager::sort() {
     std::sort(_orders.begin(), _orders.end());
 }
 
-Order* OrderManager::add(Client *client, Date date) {
+Order* OrderManager::add(Client *client, const std::string& location, Date date) {
     if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
-    auto* order = new Order(*client,*_workerManager->getLessBusyWorker(),date);
+    if (!_locationManager->has(location)) throw LocationDoesNotExist(location);
+    auto* order = new Order(*client,*_workerManager->getLessBusyWorker(),location,date);
     _orders.push_back(order);
     return order;
 }
 
-Order* OrderManager::add(Client* client, Worker* worker, const Date& date){
+Order* OrderManager::add(Client* client, Worker* worker, const std::string& location, const Date& date){
     if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
     if (!_workerManager->has(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
-    auto* order = new Order(*client,*worker,date);
+    if (!_locationManager->has(location)) throw LocationDoesNotExist(location);
+    auto* order = new Order(*client,*worker,location,date);
     _orders.push_back(order);
     return order;
 }
@@ -92,7 +94,8 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
     if (client == nullptr) os << util::column("CLIENT",true);
     if (worker == nullptr) os << util::column("WORKER",true);
     os << util::column("REQUESTED",true)
-    << util::column("DELIVERED",true) << "\n";
+    << util::column("DELIVERED",true)
+    << util::column("LOCATION", true) << "\n";
 
     int count = 1;
     for (const auto& o: toPrint){
@@ -101,7 +104,8 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
         if (worker == nullptr) os << util::column(o->getWorker()->getName(),true);
         os << util::column(o->getRequestDate().getCompleteDate(), true)
         << util::column(o->wasDelivered() ? o->getDeliverDate().getClockTime() + " (" +
-        std::to_string(o->getClientEvaluation()) + " points)" : "Not Yet",true) << "\n";
+        std::to_string(o->getClientEvaluation()) + " points)" : "Not Yet",true)
+        << util::column(o->getDeliverLocation()) << "\n";
     }
     return true;
 }
@@ -141,16 +145,17 @@ void OrderManager::read(const std::string &path) {
     for (std::string line; getline(file, line);) {
         if (readDetails) {
             clientEvaluation = -1;
-            std::string date, time;
+            std::string date, time, location;
             int clientTaxID, workerTaxID;
 
             std::stringstream ss(line);
-            ss >> clientTaxID >> workerTaxID >> date >> time >> clientEvaluation;
+            ss >> clientTaxID >> workerTaxID >> date >> time >> location >> clientEvaluation;
 
             Client* client = _clientManager->getClient(clientTaxID);
             Worker* worker = _workerManager->getWorker(workerTaxID);
+            std::replace(location.begin(),location.end(),'-',' ');
 
-            order = add(client, worker, getDate(date, time));
+            order = add(client, worker, location, getDate(date, time));
             readDetails = false;
 
         } else if (line.empty()) {
@@ -172,8 +177,10 @@ void OrderManager::write(const std::string &path) {
     if (!file) throw FileNotFound(path);
 
     for (const auto &order: _orders) {
+        std::string styledLocationName = order->getDeliverLocation();
+        std::replace(styledLocationName.begin(),styledLocationName.end(),' ','-');
         file << order->getClient()->getTaxId() << " " << order->getWorker()->getTaxId() << " "
-             << order->getRequestDate().getCompleteDate();
+             << order->getRequestDate().getCompleteDate() << " " << styledLocationName;
         if (order->wasDelivered()) file << " " << order->getClientEvaluation();
         file << "\n";
 
@@ -188,4 +195,12 @@ void OrderManager::write(const std::string &path) {
 
 OrderManager::~OrderManager() {
     for (auto& o : _orders) delete o;
+}
+
+std::vector<Order *> OrderManager::get(const std::string &location) const {
+    std::vector<Order*> filtered;
+    for (const auto& order: _orders){
+        if (order->getDeliverLocation() == location) filtered.push_back(order);
+    }
+    return filtered;
 }

@@ -14,12 +14,12 @@
 class ClientManager {
 public:
     /**
-     * Creates a new client manager object.
+     * Creates a new ClientManager object.
      */
     ClientManager();
 
     /**
-     * Destructs the client manager object.
+     * Destructs the ClientManager object.
      */
     ~ClientManager();
 

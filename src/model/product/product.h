@@ -22,7 +22,7 @@ enum class CakeCategory {
 class Product {
 public:
     /**
-     * Creates a new product object.
+     * Creates a new Product object.
      *
      * @param name the name
      * @param price the price
@@ -30,7 +30,7 @@ public:
     Product(std::string name, float price);
 
     /**
-     * Destructs the product object.
+     * Destructs the Product object.
      */
     virtual ~Product() = default;
 
@@ -88,7 +88,7 @@ protected:
 class Bread : public Product{
 public:
     /**
-     * Creates a new bread object.
+     * Creates a new Bread object.
      *
      * @param name the name
      * @param price the price
@@ -130,7 +130,7 @@ private:
 class Cake : public Product{
 public:
     /**
-     * Creates a new cake object
+     * Creates a new Cake object
      *
      * @param name the name
      * @param price the price

@@ -13,7 +13,7 @@ class Boss : public Person {
 public:
 
     /**
-     * Creates a new boss object.
+     * Creates a new Boss object.
      *
      * @param name the name
      * @param taxID the taxpayer identification number

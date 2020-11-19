@@ -14,7 +14,7 @@ class Worker : public Person{
 public:
   
     /**
-     * Creates a new worker object.
+     * Creates a new Worker object.
      *
      * @param name the name
      * @param salary the salary

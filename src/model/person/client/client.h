@@ -14,7 +14,7 @@ class Client : public Person {
 public:
 
     /**
-     * Creates a new client object.
+     * Creates a new Client object.
      *
      * @param name the name
      * @param premium the subscription type (true, if it is premium; false, otherwise)
