@@ -19,6 +19,7 @@ void LocationManager::add(const std::string& location) {
 }
 
 void LocationManager::remove(const std::string& location) {
+    if (location == Order::DEFAULT_LOCATION) throw std::logic_error("You cannot remove the Head Office.");
     if (!has(location)) throw LocationDoesNotExist(location);
     _locations.erase(std::find(_locations.begin(), _locations.end(), location));
 }
@@ -47,4 +48,12 @@ void LocationManager::write(const std::string &path) {
 
 std::set<std::string> LocationManager::getAll() {
     return _locations;
+}
+
+void LocationManager::remove(unsigned long index) {
+    if (index >= _locations.size()) throw InvalidLocationPosition(index);
+    auto it = _locations.begin();
+    std::advance(it,index);
+    if (*it == Order::DEFAULT_LOCATION) throw std::logic_error("You cannot remove the Head Office.");
+    else _locations.erase(it);
 }

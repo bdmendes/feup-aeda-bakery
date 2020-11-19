@@ -13,6 +13,7 @@ void BossDashboard::show() {
 
     const std::vector<std::string> options = {
             "edit account - change personal details",
+            "manage locations - expand your business to new places",
             "manage stock - review and modify store stock",
             "manage orders - review store orders",
             "manage staff - have a look at your workers",
@@ -35,6 +36,10 @@ void BossDashboard::show() {
         }
         else if (validInput1Cmd1Arg(input,"manage","stock")){
             manageStock();
+            break;
+        }
+        else if (validInput1Cmd1Arg(input,"manage","locations")){
+            manageLocations();
             break;
         }
         else if (validInput1Cmd1Arg(input,"manage","orders")){
@@ -147,6 +152,53 @@ void BossDashboard::showStats() {
         if (input == BACK) break;
         else printError();
     }
+}
+
+void BossDashboard::manageLocations() {
+    printLogo("Store Locations");
+    std::cout << SEPARATOR;
+
+    int count = 1;
+    for (const auto& l: _store.locationManager.getAll()){
+        std::cout << count++ << ". " << l << "\n";
+    }
+    std::cout << SEPARATOR << "\n";
+
+    std::vector<std::string> options = {
+            "add location - add order delivery location",
+            "remove <index> - remove order delivery location"
+    };
+    printOptions(options);
+
+    for(;;){
+        try {
+            std::string input = readCommand();
+            if (input == BACK) return;
+            else if (validInput1Cmd1ArgDigit(input,"remove")){
+                int idx = std::stoi(to_words(input).at(1)) - 1;
+                _store.locationManager.remove(idx);
+                break;
+            }
+            else if (validInput1Cmd1Arg(input,"add","location")){
+                addLocation();
+                break;
+            }
+            else printError();
+        }
+        catch(std::exception& e){
+            std::cout << e.what() << "\n";
+        }
+    }
+
+    manageLocations();
+}
+
+void BossDashboard::addLocation() {
+    std::cout << "\n" << SEPARATOR;
+    std::cout << "New location name: ";
+    std::string input = readCommand(false);
+    if (input == BACK) return;
+    _store.locationManager.add(input);
 }
 
 

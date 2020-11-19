@@ -14,6 +14,7 @@ public:
     bool has(const std::string& location);
     void add(const std::string& location);
     void remove(const std::string& location);
+    void remove(unsigned long index);
     void read(const std::string& path);
     void write(const std::string &path);
 private:

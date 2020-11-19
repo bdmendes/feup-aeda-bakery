@@ -18,9 +18,9 @@ public:
     explicit LocationDoesNotExist(const std::string& location);
 };
 
-class LocationAlreadyExists : public std::invalid_argument{
+class InvalidLocationPosition : public std::invalid_argument{
 public:
-    explicit LocationAlreadyExists(const std::string& location);
+    explicit InvalidLocationPosition(unsigned long position);
 };
 
 #endif //FEUP_AEDA_PROJECT_STORE_EXCEPTIONS_H
