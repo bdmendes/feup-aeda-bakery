@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['setcredential_237',['setCredential',['../class_person.html#a33aebf821826a709be53af8273db5722',1,'Person']]],
-  ['setlogged_238',['setLogged',['../class_person.html#a445803d8b6732ba5c54debfb8d5d3c83',1,'Person']]],
-  ['setname_239',['setName',['../class_person.html#a5530252bfab905eff3b3e4968206df42',1,'Person::setName()'],['../class_store.html#aba840a18a311ac64bd59cccf5229967d',1,'Store::setName()']]],
-  ['setpoints_240',['setPoints',['../class_client.html#a494af631b56e51b8e266f085fbacbfe7',1,'Client']]],
-  ['setpremium_241',['setPremium',['../class_client.html#a5883dbdff0d68ad876fb538599a32fdc',1,'Client']]],
-  ['setsalary_242',['setSalary',['../class_worker.html#a9679bba6f256cd6dfc62e067012e5ffb',1,'Worker::setSalary()'],['../class_worker_manager.html#a15b5849ca50e9017dbcbadac5d639490',1,'WorkerManager::setSalary()']]],
-  ['settaxid_243',['setTaxID',['../class_person.html#adae133522000a886adcf963189945a7f',1,'Person']]],
-  ['sort_244',['sort',['../class_order_manager.html#a2ed6092892f221bc59e10e3b1baa2d86',1,'OrderManager']]],
-  ['store_245',['Store',['../class_store.html#a06964804d6061a499607cb7c012e3593',1,'Store']]]
+  ['operator_28_29_246',['operator()',['../struct_person_smaller.html#a941c4937fe271ebc344df687a7af5b95',1,'PersonSmaller::operator()()'],['../struct_product_smaller.html#ab088c546364769c8cae0570e7a1e2d33',1,'ProductSmaller::operator()()']]],
+  ['operator_3c_247',['operator&lt;',['../class_date.html#a09704874041e417655bf7be43596da80',1,'Date::operator&lt;()'],['../class_order.html#ac4e3f4722666009c38b151a0dfec104f',1,'Order::operator&lt;()'],['../class_person.html#a7d37f59a0e7a2e520ba4ae75561a5160',1,'Person::operator&lt;()'],['../class_product.html#ac45a213fbfe36bf690bf059706c56858',1,'Product::operator&lt;()']]],
+  ['operator_3d_3d_248',['operator==',['../class_date.html#ab33fabb71e001e3bb98aa3aff846ea65',1,'Date::operator==()'],['../class_order.html#a21c518844f3c806a41e6b9fbf9f17ef8',1,'Order::operator==()'],['../struct_credential.html#ac522e6836dc92b66657fa6546bb7fb17',1,'Credential::operator==()'],['../class_person.html#aac40fe438e2d59c5a8c09e8b650819e9',1,'Person::operator==()'],['../class_product.html#a31e7c281fbf08bf2d3202f15a1342e21',1,'Product::operator==()'],['../class_bread.html#a5b6fcc59b28176c53950ded6678ad112',1,'Bread::operator==()'],['../class_cake.html#aa4296dedf826061e929b2bcf174f08c4',1,'Cake::operator==()']]],
+  ['order_249',['Order',['../class_order.html#aa51383b6cd7afd001ff028f43452fc7b',1,'Order']]],
+  ['orderdoesnotexist_250',['OrderDoesNotExist',['../class_order_does_not_exist.html#a232706ff91a9955df992f7e5d7e7f3a9',1,'OrderDoesNotExist']]],
+  ['ordermanager_251',['OrderManager',['../class_order_manager.html#a0846991278b9d8e7dc12afa410318a32',1,'OrderManager']]],
+  ['orderwasalreadydelivered_252',['OrderWasAlreadyDelivered',['../class_order_was_already_delivered.html#a745fc36b3b55de26fc15ffc4d170277f',1,'OrderWasAlreadyDelivered']]],
+  ['orderwasnotdeliveredyet_253',['OrderWasNotDeliveredYet',['../class_order_was_not_delivered_yet.html#a165e0e9865e66a5f29f1d537b22fc3ca',1,'OrderWasNotDeliveredYet']]]
 ];

@@ -97,42 +97,44 @@ $(document).ready(function(){initNavTree('person__exception_8h_source.html','');
 <div class="title">person_exception.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by up201906166 on 23/10/2020.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;model/person/person.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;model/person/person.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_person_does_not_exist.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_person_does_not_exist.html">PersonDoesNotExist</a>: <span class="keyword">public</span> std::logic_error{</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="class_person_does_not_exist.html">PersonDoesNotExist</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">int</span> tributaryNumber);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_person_does_not_exist.html">PersonDoesNotExist</a>(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_person_does_not_exist.html">PersonDoesNotExist</a>(<span class="keywordtype">int</span> taxID);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_invalid_person_position.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_invalid_person_position.html">InvalidPersonPosition</a> : <span class="keyword">public</span> std::invalid_argument{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_invalid_person_position.html">InvalidPersonPosition</a>(<span class="keywordtype">unsigned</span> position, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> size);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_invalid_credential.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_invalid_credential.html">InvalidCredential</a> : <span class="keyword">public</span> std::invalid_argument {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_invalid_credential.html">InvalidCredential</a>(<span class="keyword">const</span> std::string &amp;offending);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_person_does_not_exist.html#a343af9c1eb8f17dc57374cc45a2d2b74">PersonDoesNotExist</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">int</span> tributaryNumber);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_person_does_not_exist.html#a343af9c1eb8f17dc57374cc45a2d2b74">PersonDoesNotExist</a>(<span class="keyword">const</span> std::string&amp; name);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_person_does_not_exist.html#a343af9c1eb8f17dc57374cc45a2d2b74">PersonDoesNotExist</a>(<span class="keywordtype">int</span> taxID);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_invalid_person_position.html">   41</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_invalid_person_position.html">InvalidPersonPosition</a> : <span class="keyword">public</span> std::invalid_argument{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_invalid_person_position.html#a6cbe3ee5f12c0a86d6e0ba0136f5aa82">InvalidPersonPosition</a>(<span class="keywordtype">unsigned</span> position, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> size);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_invalid_credential.html">   55</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_invalid_credential.html">InvalidCredential</a> : <span class="keyword">public</span> std::invalid_argument {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_invalid_credential.html#aa7d6b09525a0e38bbd5558bd812047f7">InvalidCredential</a>(<span class="keyword">const</span> std::string &amp;offending);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_invalid_credential_html"><div class="ttname"><a href="class_invalid_credential.html">InvalidCredential</a></div><div class="ttdef"><b>Definition:</b> person_exception.h:25</div></div>
-<div class="ttc" id="aclass_person_does_not_exist_html"><div class="ttname"><a href="class_person_does_not_exist.html">PersonDoesNotExist</a></div><div class="ttdef"><b>Definition:</b> person_exception.h:13</div></div>
-<div class="ttc" id="aclass_invalid_person_position_html"><div class="ttname"><a href="class_invalid_person_position.html">InvalidPersonPosition</a></div><div class="ttdef"><b>Definition:</b> person_exception.h:20</div></div>
+<div class="ttc" id="aclass_invalid_credential_html_aa7d6b09525a0e38bbd5558bd812047f7"><div class="ttname"><a href="class_invalid_credential.html#aa7d6b09525a0e38bbd5558bd812047f7">InvalidCredential::InvalidCredential</a></div><div class="ttdeci">InvalidCredential(const std::string &amp;offending)</div><div class="ttdoc">Creates a new InvalidCredential object.</div><div class="ttdef"><b>Definition:</b> person_exception.cpp:23</div></div>
+<div class="ttc" id="aclass_invalid_person_position_html_a6cbe3ee5f12c0a86d6e0ba0136f5aa82"><div class="ttname"><a href="class_invalid_person_position.html#a6cbe3ee5f12c0a86d6e0ba0136f5aa82">InvalidPersonPosition::InvalidPersonPosition</a></div><div class="ttdeci">InvalidPersonPosition(unsigned position, unsigned long size)</div><div class="ttdoc">Creates a new InvalidPersonPosition object.</div><div class="ttdef"><b>Definition:</b> person_exception.cpp:19</div></div>
+<div class="ttc" id="aclass_invalid_credential_html"><div class="ttname"><a href="class_invalid_credential.html">InvalidCredential</a></div><div class="ttdoc">Class relative to the exception of an invalid credential.</div><div class="ttdef"><b>Definition:</b> person_exception.h:55</div></div>
+<div class="ttc" id="aclass_person_does_not_exist_html"><div class="ttname"><a href="class_person_does_not_exist.html">PersonDoesNotExist</a></div><div class="ttdoc">Class relative to the exception of a nonexistent person.</div><div class="ttdef"><b>Definition:</b> person_exception.h:13</div></div>
+<div class="ttc" id="aclass_invalid_person_position_html"><div class="ttname"><a href="class_invalid_person_position.html">InvalidPersonPosition</a></div><div class="ttdoc">Class relative to the exception of an invalid person position on some list.</div><div class="ttdef"><b>Definition:</b> person_exception.h:41</div></div>
+<div class="ttc" id="aclass_person_does_not_exist_html_a343af9c1eb8f17dc57374cc45a2d2b74"><div class="ttname"><a href="class_person_does_not_exist.html#a343af9c1eb8f17dc57374cc45a2d2b74">PersonDoesNotExist::PersonDoesNotExist</a></div><div class="ttdeci">PersonDoesNotExist(const std::string &amp;name, int tributaryNumber)</div><div class="ttdoc">Creates a new PersonDoesNotExist object.</div><div class="ttdef"><b>Definition:</b> person_exception.cpp:7</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

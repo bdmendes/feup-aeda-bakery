@@ -1,13 +1,9 @@
 var searchData=
 [
-  ['setcredential_103',['setCredential',['../class_person.html#a33aebf821826a709be53af8273db5722',1,'Person']]],
-  ['setlogged_104',['setLogged',['../class_person.html#a445803d8b6732ba5c54debfb8d5d3c83',1,'Person']]],
-  ['setname_105',['setName',['../class_person.html#a5530252bfab905eff3b3e4968206df42',1,'Person::setName()'],['../class_store.html#aba840a18a311ac64bd59cccf5229967d',1,'Store::setName()']]],
-  ['setpoints_106',['setPoints',['../class_client.html#a494af631b56e51b8e266f085fbacbfe7',1,'Client']]],
-  ['setpremium_107',['setPremium',['../class_client.html#a5883dbdff0d68ad876fb538599a32fdc',1,'Client']]],
-  ['setsalary_108',['setSalary',['../class_worker.html#a9679bba6f256cd6dfc62e067012e5ffb',1,'Worker::setSalary()'],['../class_worker_manager.html#a15b5849ca50e9017dbcbadac5d639490',1,'WorkerManager::setSalary()']]],
-  ['settaxid_109',['setTaxID',['../class_person.html#adae133522000a886adcf963189945a7f',1,'Person']]],
-  ['sort_110',['sort',['../class_order_manager.html#a2ed6092892f221bc59e10e3b1baa2d86',1,'OrderManager']]],
-  ['store_111',['Store',['../class_store.html',1,'Store'],['../class_store.html#a06964804d6061a499607cb7c012e3593',1,'Store::Store()']]],
-  ['storehasnoworkers_112',['StoreHasNoWorkers',['../class_store_has_no_workers.html',1,'']]]
+  ['read_103',['read',['../class_order_manager.html#adf9f583d0a366812a26e30ff84a3a614',1,'OrderManager::read()'],['../class_boss.html#a6e98a5e6ff441ed2a1007bf9ac52bda1',1,'Boss::read()'],['../class_client_manager.html#aeb5cf80ded01a5b6029d2a5f33ce435c',1,'ClientManager::read()'],['../class_worker_manager.html#a23c6487aa86b939999e2d588e4740f3c',1,'WorkerManager::read()'],['../class_product_manager.html#abd4ea53daeec046e64bf6aa1fb73b1f3',1,'ProductManager::read()'],['../class_store.html#a011d206b2232115a9befb4f60cfe731a',1,'Store::read()']]],
+  ['remove_104',['remove',['../class_order_manager.html#a26066645ed82dd06316758f935cc062f',1,'OrderManager::remove(Order *order)'],['../class_order_manager.html#af22024880b1c26fcdc38c7a4d8350cb5',1,'OrderManager::remove(unsigned position)'],['../class_client_manager.html#aa45787891a819b6e822689c1f0446563',1,'ClientManager::remove(Client *client)'],['../class_client_manager.html#ad2ec8a72fa710fa8052b448de586fd99',1,'ClientManager::remove(unsigned position)'],['../class_worker_manager.html#a90f3f7eba1edb2190efc0666174e0992',1,'WorkerManager::remove(Worker *worker)'],['../class_worker_manager.html#a5cb13ecee014680e94037ef154ba1723',1,'WorkerManager::remove(unsigned position)'],['../class_product_manager.html#ae626549e7a6da032778135aefc961b45',1,'ProductManager::remove(Product *product)'],['../class_product_manager.html#afc97445d5523135c50f70849794a9b17',1,'ProductManager::remove(unsigned position)']]],
+  ['removeordertodeliver_105',['removeOrderToDeliver',['../class_worker.html#aa0add467763c4e5191c4eddc37484b3f',1,'Worker']]],
+  ['removepoints_106',['removePoints',['../class_client.html#a8cae42bc309c1d13a899fdf6f4d3beec',1,'Client']]],
+  ['removeproduct_107',['removeProduct',['../class_order.html#ac783913da25dcc47096820e852c44b25',1,'Order::removeProduct(Product *product)'],['../class_order.html#abcf8d506c31f8194dc43bf21c1170064',1,'Order::removeProduct(unsigned position)']]],
+  ['resetpoints_108',['resetPoints',['../class_client.html#a0fd0ba574db21b942bca23819c2f0698',1,'Client']]]
 ];

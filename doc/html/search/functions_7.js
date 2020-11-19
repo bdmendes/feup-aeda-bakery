@@ -1,8 +1,15 @@
 var searchData=
 [
-  ['operator_28_29_222',['operator()',['../struct_person_smaller.html#a941c4937fe271ebc344df687a7af5b95',1,'PersonSmaller::operator()()'],['../struct_product_smaller.html#ab088c546364769c8cae0570e7a1e2d33',1,'ProductSmaller::operator()()']]],
-  ['operator_3c_223',['operator&lt;',['../class_date.html#a09704874041e417655bf7be43596da80',1,'Date::operator&lt;()'],['../class_order.html#ac4e3f4722666009c38b151a0dfec104f',1,'Order::operator&lt;()'],['../class_person.html#a7d37f59a0e7a2e520ba4ae75561a5160',1,'Person::operator&lt;()'],['../class_product.html#ac45a213fbfe36bf690bf059706c56858',1,'Product::operator&lt;()']]],
-  ['operator_3d_3d_224',['operator==',['../class_date.html#ab33fabb71e001e3bb98aa3aff846ea65',1,'Date::operator==()'],['../class_order.html#a21c518844f3c806a41e6b9fbf9f17ef8',1,'Order::operator==()'],['../struct_credential.html#ac522e6836dc92b66657fa6546bb7fb17',1,'Credential::operator==()'],['../class_person.html#aac40fe438e2d59c5a8c09e8b650819e9',1,'Person::operator==()'],['../class_product.html#a31e7c281fbf08bf2d3202f15a1342e21',1,'Product::operator==()'],['../class_bread.html#a5b6fcc59b28176c53950ded6678ad112',1,'Bread::operator==()'],['../class_cake.html#aa4296dedf826061e929b2bcf174f08c4',1,'Cake::operator==()']]],
-  ['order_225',['Order',['../class_order.html#aa51383b6cd7afd001ff028f43452fc7b',1,'Order']]],
-  ['ordermanager_226',['OrderManager',['../class_order_manager.html#a0846991278b9d8e7dc12afa410318a32',1,'OrderManager']]]
+  ['invalidcredential_232',['InvalidCredential',['../class_invalid_credential.html#aa7d6b09525a0e38bbd5558bd812047f7',1,'InvalidCredential']]],
+  ['invaliddate_233',['InvalidDate',['../class_invalid_date.html#a2bd4c7bccb0c2d593fe8d215b801aa1b',1,'InvalidDate']]],
+  ['invalidorderevaluation_234',['InvalidOrderEvaluation',['../class_invalid_order_evaluation.html#a92588fbc7341ecf90602a5061b0f04d9',1,'InvalidOrderEvaluation']]],
+  ['invalidorderposition_235',['InvalidOrderPosition',['../class_invalid_order_position.html#aabcf12972114e1dc06dc0e541a3fcf8d',1,'InvalidOrderPosition']]],
+  ['invalidpersonposition_236',['InvalidPersonPosition',['../class_invalid_person_position.html#a6cbe3ee5f12c0a86d6e0ba0136f5aa82',1,'InvalidPersonPosition']]],
+  ['invalidproductposition_237',['InvalidProductPosition',['../class_invalid_product_position.html#add373d9a73ce12e0cfe8ab9acf5c6893',1,'InvalidProductPosition']]],
+  ['isdigit_238',['isdigit',['../namespaceutil.html#a2bb5b064f61d90079653fd0aa98b9178',1,'util']]],
+  ['isleapyear_239',['isLeapYear',['../class_date.html#a5d2fbece5259d88f0723e777d9069741',1,'Date']]],
+  ['islogged_240',['isLogged',['../class_person.html#acba0343c4a411cc20c80723eccf06a4e',1,'Person']]],
+  ['ispremium_241',['isPremium',['../class_client.html#af77c74a396a63b45707e692c691e7b47',1,'Client']]],
+  ['isreserved_242',['isReserved',['../struct_credential.html#abf0496105170b4d9432c0bb5da991243',1,'Credential']]],
+  ['issmall_243',['isSmall',['../class_bread.html#a88283927a303adb18a9042613b5398ef',1,'Bread']]]
 ];
