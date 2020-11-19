@@ -11,6 +11,15 @@
 #include <iostream>
 
 /**
+ * The enum with the possible person role.
+ */
+enum class PersonRole {
+    WORKER,
+    CLIENT,
+    BOSS
+};
+
+/**
  * Struct relative to the login credentials.
  */
 struct Credential {
@@ -57,7 +66,7 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the login credentials (username and password)
      */
-    Person(std::string name, int taxID, Credential credential);
+    Person(std::string name, int taxID, Credential credential, PersonRole role);
 
     /**
      * Destructs the person object.
@@ -144,6 +153,13 @@ public:
     virtual Credential getDefaultCredential() = 0;
 
     /**
+     * Gets the person role.
+     *
+     * @return the person role
+     */
+    PersonRole getRole();
+
+    /**
      * The default taxpayer identification number.
      */
     static const int DEFAULT_TAX_ID;
@@ -168,6 +184,12 @@ private:
      * The person log status.
      */
     bool _logged;
+
+protected:
+    /**
+     * The person role.
+     */
+    PersonRole _role;
 };
 
 /**

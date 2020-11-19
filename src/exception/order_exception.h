@@ -34,7 +34,7 @@ public:
 
 class InvalidOrderPosition : public std::invalid_argument{
 public:
-    InvalidOrderPosition(unsigned position, unsigned size);
+    InvalidOrderPosition(unsigned position, unsigned long size);
 };
 
 #endif //FEUP_AEDA_PROJECT_ORDER_EXCEPTION_H

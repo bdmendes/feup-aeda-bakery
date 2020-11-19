@@ -45,26 +45,12 @@ public:
      */
     unsigned getPoints() const;
 
-/*    *//**
-     * Gets the list of all of the orders evaluation given by the client.
-     *
-     * @return the list of all of the orders evaluation
-     *//*
-    std::vector<int> getEvaluations() const;*/
-
     /**
      * Sets the client subscription type.
      *
      * @param premium true to change client subscription type to premium; false, otherwise
      */
     void setPremium(bool premium);
-
-    /**
-     * Sets the client points.
-     *
-     * @param points the new points
-     */
-    void setPoints(unsigned points);
 
     /**
      * Adds a certain number of points to the client's.
@@ -91,6 +77,14 @@ public:
      * @param evaluation the order evaluation
      */
     void addEvaluation(int evaluation);
+
+    /**
+     * Sets the client points.
+     * Sets the client's subscription type.
+     *
+     * @param points the new points
+     */
+    void setPoints(unsigned points);
 
     /**
      * Prints the client data.

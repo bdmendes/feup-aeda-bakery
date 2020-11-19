@@ -62,14 +62,13 @@ public:
     float getProfit() const;
 
     /**
-     * Reads all the store data (boss, worker manager, product manager, client manager and order manager) from a
-     * a file and creates new objects of the respective classes with that data.
-     *
-     * @param dataFolderPath the folder path
-     * @param doReset if true, resets all the store's data
-     * @return "Import succeeded." if the reading was succeeded; "Import failed!", otherwise
-     */
-    std::string read(const std::string& dataFolderPath, bool doReset);
+    * Reads all the store data (boss, worker manager, product manager, client manager and order manager) from a
+    * a file and creates new objects of the respective classes with that data.
+    *
+    * @param dataFolderPath the folder path
+    * @return "Import succeeded." if the reading was succeeded; "Import failed!", otherwise
+    */
+    std::string read(const std::string& dataFolderPath);
 
     /**
      * Writes all the store data (boss, worker manager, product manager, client manager and order manager) to a file
@@ -79,11 +78,6 @@ public:
      * @return "Export succeeded." if the writing was succeeded; "Export failed!", otherwise
      */
     std::string write(const std::string& dataFolderPath);
-
-    /**
-     * Resets all the store data.
-     */
-    void reset();
 
     /**
      * The product manager associated to the store.

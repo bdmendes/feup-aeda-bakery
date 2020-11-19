@@ -75,22 +75,6 @@ public:
     std::vector<Order*> get(Worker* worker) const;
 
     /**
-     * Gets the mean evaluation of the orders requested by a certain client.
-     *
-     * @param client the client
-     * @return the mean evaluation
-     */
-    float getMeanEvaluation(Client* client) const;
-
-    /**
-     * Gets the mean evaluation of the orders delivered by a certain worker.
-     *
-     * @param worker the worker
-     * @return the mean evaluation
-     */
-    float getMeanEvaluation(Worker *worker) const;
-
-    /**
      * Sorts the orders list by the request date.
      */
     void sort();

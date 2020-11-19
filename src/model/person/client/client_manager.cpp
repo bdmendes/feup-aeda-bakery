@@ -1,9 +1,9 @@
 
-#include "client_manager.h"
-#include <exception/file_exception.h>
-
 #include <algorithm>
-#include <iomanip>
+
+#include "client_manager.h"
+#include "exception/person_exception.h"
+#include "exception/file_exception.h"
 
 ClientManager::ClientManager() : _clients() {
 }
@@ -28,7 +28,7 @@ std::set<Client *, PersonSmaller> ClientManager::getAll() {
 
 Client* ClientManager::add(std::string name, int taxID, bool premium, Credential credential) {
     auto* client = new Client(std::move(name), taxID, premium, std::move(credential));
-    if(has(client)) throw PersonAlreadyExists(client->getName(), client->getTaxId());
+    //if(has(client)) throw PersonAlreadyExists(client->getName(), client->getTaxId());
     _clients.insert(client);
     return client;
 }

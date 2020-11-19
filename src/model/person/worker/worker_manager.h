@@ -51,6 +51,14 @@ public:
     std::set<Worker*, PersonSmaller> getAll();
 
     /**
+     * Gets a worker from the workers list by its taxpayer identification number.
+     *
+     * @param taxID the taxpayer identification number
+     * @return the worker on the workers list with that taxpayer identification number
+     */
+    Worker* getWorker(int taxID) const;
+
+    /**
      * Gets the less busy worker which is the worker with less number of undelivered orders.
      *
      * @return the less busy worker
@@ -118,15 +126,6 @@ public:
      * @return true, if there are no workers on the list yet; false, otherwise
      */
     bool print(std::ostream& os, bool showData = true);
-
-    /**
-     * Gets a worker from the workers list by its taxpayer identification number.
-     *
-     * @param taxID the taxpayer identification number
-     * @return the worker on the workers list with that taxpayer identification number
-     */
-    Worker* getWorker(int taxID) const;
-
 private:
     /**
      * The list with all of the workers.

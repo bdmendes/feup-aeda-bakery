@@ -8,7 +8,7 @@
 
 bool util::isdigit(const std::string &str, bool acceptFloat) {
     int pointCount = 0;
-    return std::all_of(str.begin(),str.end(), [&pointCount, acceptFloat](const char c){
+    return !str.empty() && std::all_of(str.begin(),str.end(), [&pointCount, acceptFloat](const char c){
         if (c == '.' && acceptFloat) return ++pointCount <= 1;
         return (bool) std::isdigit(c);
     });
@@ -18,7 +18,7 @@ bool util::contains(const std::string &str, const std::string &expected) {
     return str.find(expected) != std::string::npos;
 }
 
-void util::normalize(std::string &str, bool isName) {
+void util::normalize(std::string &str) {
     bool forceLower = false;
     for (int i = 0; i < str.size(); ++i){
         if (str.at(i) == SPACE) forceLower = false;
@@ -35,11 +35,6 @@ void util::normalize(std::string &str, bool isName) {
             str.at(i) = std::tolower(str.at(i));
             forceLower = true;
             continue;
-        }
-
-        //if it's a person name, ensure first word char is uppercase
-        if (isName && (i==0 || str.at(i-1) == SPACE) && std::islower(str.at(i))){
-            str.at(i) = std::toupper(str.at(i));
         }
     }
 }
@@ -64,7 +59,11 @@ std::string util::to_string(float n) {
 }
 
 void util::clearScreen(){
+#ifdef WIN32
+    system("cls");
+#else
     std::cout << '\n' << ANSI_CLEAR_SCREEN;
+#endif
 }
 
 void util::print(const std::string& s, const int color){

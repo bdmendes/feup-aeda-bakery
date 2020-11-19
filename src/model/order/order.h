@@ -68,7 +68,7 @@ public:
     /**
      * Gets the list of all products.
      *
-     * @return
+     * @return the list of all products
      */
     std::map<Product*, unsigned int, ProductSmaller> getProducts() const;
 
@@ -115,32 +115,16 @@ public:
     Product* addProduct(Product* product, unsigned quantity = 1);
 
     /**
-     * Removes a certain quantity of a product from the products list.
-     *
-     * @param product the product
-     * @param quantity the quantity
-     */
-    void removeProduct(Product* product, unsigned quantity);
-
-    /**
      * Removes a certain product from the products list.
      *
-     * @param product
+     * @param product the product
      */
     void removeProduct(Product* product);
 
     /**
-     * Removes a certain quantity of a product, at a certain position, from the products list.
-     *
-     * @param position the position
-     * @param quantity the quantity
-     */
-    void removeProduct(unsigned position, unsigned quantity);
-
-    /**
      * Removes a certain product, at a certain position, from the products list.
      *
-     * @param position
+     * @param position the position
      */
     void removeProduct(unsigned position);
 
@@ -179,14 +163,14 @@ public:
 
 private:
     /**
+    * Updates total price whenever is added products to the order.
+    */
+    void updateTotalPrice();
+
+    /**
      * The products list with its relative available quantity.
      */
     std::map<Product*, unsigned int, ProductSmaller> _products;
-
-    /**
-     * Updates total price whenever is added products to the order.
-     */
-    void updateTotalPrice();
 
     /**
      * The order total price (without any discount).

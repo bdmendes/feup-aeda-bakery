@@ -36,9 +36,8 @@ float Store::getProfit() const {
     return profit;
 }
 
-std::string Store::read(const std::string &dataFolderPath, bool doReset) {
+std::string Store::read(const std::string &dataFolderPath) {
     try {
-        if (doReset) reset();
         boss.read(dataFolderPath + "/boss.txt");
         productManager.read(dataFolderPath + "/products.txt");
         clientManager.read(dataFolderPath + "/clients.txt");
@@ -49,14 +48,6 @@ std::string Store::read(const std::string &dataFolderPath, bool doReset) {
         return "Import failed!\n" + std::string(e.what());
     }
     return "Import succeeded.";
-}
-
-void Store::reset() {
-    boss = Boss();
-    productManager = {};
-    clientManager = {};
-    workerManager = {};
-    orderManager = OrderManager(&productManager,&clientManager,&workerManager);
 }
 
 std::string Store::write(const std::string& dataFolderPath) {

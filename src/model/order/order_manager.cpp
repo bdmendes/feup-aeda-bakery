@@ -1,5 +1,6 @@
 
-#include <exception/file_exception.h>
+#include "order_manager.h"
+#include "exception/file_exception.h"
 
 OrderManager::OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm) :
         _productManager(pm), _clientManager(cm), _workerManager(wm), _orders{}{
@@ -103,30 +104,6 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
         std::to_string(o->getClientEvaluation()) + " points)" : "Not Yet",true) << "\n";
     }
     return true;
-}
-
-float OrderManager::getMeanEvaluation(Client *client) const {
-    int count = 0;
-    int sum = 0;
-    for (const auto& o: _orders){
-        if (o->getClient() == client && o->wasDelivered()){
-            sum += o->getClientEvaluation();
-            count++;
-        }
-    }
-    return count ? static_cast<float>(sum)/static_cast<float>(count) : 0;
-}
-
-float OrderManager::getMeanEvaluation(Worker *worker) const {
-    int count = 0;
-    int sum = 0;
-    for (const auto& o: _orders){
-        if (o->getWorker() == worker && o->wasDelivered()){
-            sum += o->getClientEvaluation();
-            count++;
-        }
-    }
-    return count ? static_cast<float>(sum)/static_cast<float>(count) : 0;
 }
 
 void OrderManager::read(const std::string &path) {

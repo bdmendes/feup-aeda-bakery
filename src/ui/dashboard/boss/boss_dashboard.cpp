@@ -29,14 +29,31 @@ void BossDashboard::show() {
             _boss->setLogged(false);
             return;
         }
-        else if (validInput1Cmd1Arg(input,"edit","account")) managePersonalData(_boss);
-        else if (validInput1Cmd1Arg(input,"manage","stock")) manageStock();
-        else if (validInput1Cmd1Arg(input,"manage","orders")) manageOrders(nullptr, nullptr);
-        else if (validInput1Cmd1Arg(input,"manage","staff")) manageStaff();
-        else if (validInput1Cmd1Arg(input,"manage","clients")) manageClients();
-        else if (validInput1Cmd1Arg(input,"check","stats")) showStats();
-        else {printError(); continue;}
-        break;
+        else if (validInput1Cmd1Arg(input,"edit","account")){
+            managePersonalData(_boss);
+            break;
+        }
+        else if (validInput1Cmd1Arg(input,"manage","stock")){
+            manageStock();
+            break;
+        }
+        else if (validInput1Cmd1Arg(input,"manage","orders")){
+            manageOrders(nullptr, nullptr);
+            break;
+        }
+        else if (validInput1Cmd1Arg(input,"manage","staff")){
+            manageStaff();
+            break;
+        }
+        else if (validInput1Cmd1Arg(input,"manage","clients")){
+            manageClients();
+            break;
+        }
+        else if (validInput1Cmd1Arg(input,"check","stats")){
+            showStats();
+            break;
+        }
+        else printError();
     }
 
     show();
@@ -113,6 +130,7 @@ void BossDashboard::manageStaff() {
             std::cout << e.what() << "\n";
         }
     }
+
     manageStaff();
 }
 

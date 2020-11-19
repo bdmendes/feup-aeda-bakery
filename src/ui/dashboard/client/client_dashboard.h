@@ -13,8 +13,6 @@ class ClientDashboard : public Dashboard {
 public:
     ClientDashboard(Store& store, Client* client);
     void show() override;
-
-    void addOrder();
 private:
     Client* _client;
 };

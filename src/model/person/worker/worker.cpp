@@ -8,7 +8,8 @@ const char* Worker::DEFAULT_PASSWORD = "worker";
 const float Worker::DEFAULT_SALARY = 1000;
 
 Worker::Worker(std::string name, int taxID, float salary, Credential credential):
-        Person(std::move(name), taxID, std::move(credential)), _salary{salary}, _undeliveredOrders(0), _evaluations(){
+        Person(std::move(name), taxID, std::move(credential), PersonRole::WORKER),
+        _salary{salary}, _undeliveredOrders(0), _evaluations(){
 }
 
 float Worker::getSalary() const{

@@ -4,14 +4,6 @@
 
 #include "store_exception.h"
 
-StoreDoesNotExist::StoreDoesNotExist(const std::string& name) :
-    std::invalid_argument(name + " Store does not exist!"){
-}
-
-StoreAlreadyExists::StoreAlreadyExists(const std::string &name) :
-    std::logic_error(name + " Store already exists!") {
-}
-
 StoreHasNoWorkers::StoreHasNoWorkers() :
     std::logic_error("This store has no workers!"){
 }

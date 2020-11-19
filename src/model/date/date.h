@@ -2,7 +2,6 @@
 #ifndef FEUP_AEDA_PROJECT_DATE_H
 #define FEUP_AEDA_PROJECT_DATE_H
 
-#include <iostream>
 #include <string>
 #include <ctime>
 
@@ -133,7 +132,7 @@ private:
     /**
      * Struct to get the current calendar time.
      */
-    std::tm _time;
+    tm _time;
 };
 
 #endif //FEUP_AEDA_PROJECT_DATE_H

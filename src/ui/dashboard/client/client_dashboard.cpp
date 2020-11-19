@@ -33,13 +33,21 @@ void ClientDashboard::show() {
                 _client->setLogged(false);
                 return;
             }
-            else if (validInput1Cmd1Arg(input, "edit", "account")) managePersonalData(_client);
-            else if (validInput1Cmd1Arg(input, "new", "order")) editOrder(_store.orderManager.add(_client));
-            else if (validInput1Cmd1Arg(input, "manage", "orders")) manageOrders(_client);
-            else { printError(); continue; }
-            break;
+            else if (validInput1Cmd1Arg(input, "edit", "account")){
+                managePersonalData(_client);
+                break;
+            }
+            else if (validInput1Cmd1Arg(input, "new", "order")){
+                editOrder(_store.orderManager.add(_client));
+                break;
+            }
+            else if (validInput1Cmd1Arg(input, "manage", "orders")){
+                manageOrders(_client);
+                break;
+            }
+            else printError();
         }
-        catch(std::exception&e){
+        catch(std::exception& e){
             std::cout << e.what() << "\n";
         }
     }

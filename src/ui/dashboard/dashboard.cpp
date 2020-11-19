@@ -302,7 +302,7 @@ void Dashboard::addCake() {
     std::cout << "\n" << SEPARATOR;
     std::string name, input;
     float price;
-    CakeCategory category;
+    CakeCategory category = CakeCategory::GENERAL;
 
     std::cout << "Cake name: ";
     name = readCommand(false);
@@ -315,7 +315,7 @@ void Dashboard::addCake() {
     }
     price = std::stof(input);
 
-    const std::vector<const char*> categories{Cake::categoryStr, Cake::categoryStr + 5};
+    const std::vector<std::string> categories = Cake::getCategories();
     for (;;){
         std::cout << "Category (";
         for (int i = 0; i < categories.size(); ++i){

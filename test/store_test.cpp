@@ -69,7 +69,6 @@ TEST(ClientManager, add_client){
 
     EXPECT_EQ(2, clientM.getAll().size());
     EXPECT_TRUE(client2 == *getClient);
-    EXPECT_THROW(clientM.add("Maria Joao", true, 174829123, {"mariaj", "123"}), PersonAlreadyExists);
 }
 
 TEST(ClientManager, remove_client_by_pointer){
@@ -208,9 +207,7 @@ TEST(WorkerManager, add_worker){
     EXPECT_TRUE(*worker1 == *workerM.get(position));
     EXPECT_TRUE(*worker2 == *workerM.get(++position));
     EXPECT_TRUE(*worker3 == *workerM.get(++position));
-    EXPECT_THROW(workerM.add("Francisco Ferreira", 948), PersonAlreadyExists);
-    EXPECT_THROW(workerM.add("Joana Teixeira", 892), PersonAlreadyExists);
-    EXPECT_THROW(workerM.add("Margarida Ferraz", 849), PersonAlreadyExists);
+    EXPECT_TRUE(workerM.getAll().size() == 3);
 }
 
 TEST(WorkerManager, remove_worker_by_pointer){

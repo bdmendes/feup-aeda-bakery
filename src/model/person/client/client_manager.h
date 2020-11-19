@@ -40,6 +40,14 @@ public:
     Client* get(unsigned position);
 
     /**
+     * Gets a client from the clients list by its taxpayer identification number.
+     *
+     * @param taxID the taxpayer identification number
+     * @return the client on the clients list with that taxpayer identification number
+     */
+    Client* getClient(int taxID) const;
+
+    /**
      * Gets the clients list.
      *
      * @return the clients list
@@ -98,15 +106,6 @@ public:
      * @param path the file path
      */
     void write(const std::string& path);
-
-    /**
-     * Gets a client from the clients list by its taxpayer identification number.
-     *
-     * @param taxID the taxpayer identification number
-     * @return the client on the clients list with that taxpayer identification number
-     */
-    Client* getClient(int taxID) const;
-
 private:
     /**
      * The list of all the clients.

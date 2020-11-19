@@ -20,6 +20,6 @@ InvalidOrderEvaluation::InvalidOrderEvaluation(int evaluation, const Client &cli
         std::invalid_argument(client.getName() + " gave an invalid evaluation of " + std::to_string(evaluation) + " to this order; should be between 0 and 5!"){
 }
 
-InvalidOrderPosition::InvalidOrderPosition(unsigned int position, unsigned size) :
+InvalidOrderPosition::InvalidOrderPosition(unsigned int position, unsigned long size) :
     std::invalid_argument(std::to_string(++position) + " is an invalid position; should be between 1 and " + std::to_string(size) + "!"){}
 

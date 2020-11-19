@@ -1,7 +1,7 @@
 
 #include "product.h"
 
-#include <util/util.h>
+#include "util/util.h"
 
 const char* Cake::categoryStr[5] = {
         "General", "Pie", "Sponge", "Puff Pastry", "Crunchy Cake"

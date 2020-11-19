@@ -19,7 +19,6 @@ public:
     void editOrder(Order* order);
 
     void managePersonalData(Person* person);
-
     void manageStock();
     void manageClients();
 

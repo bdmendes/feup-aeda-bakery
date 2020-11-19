@@ -8,16 +8,6 @@
 #include <stdexcept>
 #include <iostream>
 
-class StoreDoesNotExist : public std::invalid_argument {
-public:
-    explicit StoreDoesNotExist(const std::string& name);
-};
-
-class StoreAlreadyExists : public std::logic_error {
-public:
-    explicit StoreAlreadyExists(const std::string& name);
-};
-
 class StoreHasNoWorkers : public std::logic_error{
 public:
     explicit StoreHasNoWorkers();
