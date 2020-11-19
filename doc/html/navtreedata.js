@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "AEDA Project", "index.html", [
+  [ "My Project", "index.html", [
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -43,8 +43,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"dir_173796b10d8071ab6765507e5be96e48.html"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
