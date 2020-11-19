@@ -18,7 +18,7 @@ public:
     Date();
 
     /**
-     * Creates a new Date object.
+     * Creates a new customized Date object.
      *
      * @param day the day
      * @param month the month
@@ -66,6 +66,7 @@ public:
 
     /**
      * Gets the minute
+     *
      * @return the minute
      */
     unsigned getMinute() const;
@@ -120,7 +121,6 @@ public:
      * @return true, if the date is less than d2 (date is earlier); false, otherwise
      */
     bool operator<(const Date& d2) const;
-
 private:
     /**
      * Checks if the date is valid.
@@ -130,7 +130,7 @@ private:
     bool isValid() const;
 
     /**
-     * Struct to get the current calendar time.
+     * Struct to get the current calendar date and time.
      */
     tm _time;
 };

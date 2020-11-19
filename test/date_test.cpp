@@ -73,7 +73,7 @@ TEST(Date, add_minutes){
     EXPECT_EQ("25/07/1989 01:00", date2.getCompleteDate());
 }
 
-TEST(Date, equal_dates){
+TEST(Date, equality_operator){
     Date date1(9, 6, 2001, 10, 51);
     Date date2(9, 6, 2001, 10, 51);
     Date date3(9, 10, 2001, 10, 51);
@@ -84,7 +84,7 @@ TEST(Date, equal_dates){
     EXPECT_FALSE(date2==date3);
 }
 
-TEST(Date, earlier_date){
+TEST(Date, less_than_operator){
     Date date1(14, 5, 1874, 11, 23);
     Date date2(14, 5, 1874, 11, 24);
     Date date3(14, 5, 1873, 23, 45);
