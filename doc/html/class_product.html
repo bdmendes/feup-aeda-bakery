@@ -95,13 +95,15 @@ $(document).ready(function(){initNavTree('class_product.html',''); initResizable
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_product-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Product Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class relative to a store product.  
+ <a href="class_product.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="product_8h_source.html">product.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -110,45 +112,55 @@ Inheritance diagram for Product:</div>
  <div class="center">
   <img src="class_product.png" usemap="#Product_map" alt=""/>
   <map id="Product_map" name="Product_map">
-<area href="class_bread.html" alt="Bread" shape="rect" coords="0,56,56,80"/>
-<area href="class_cake.html" alt="Cake" shape="rect" coords="66,56,122,80"/>
+<area href="class_bread.html" title="The class relative to a specific type of product: bread." alt="Bread" shape="rect" coords="0,56,56,80"/>
+<area href="class_cake.html" title="The class relative to a specific type of products: cake." alt="Cake" shape="rect" coords="66,56,122,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a35fd1ce655c8358c95d59cb5e9682b96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a35fd1ce655c8358c95d59cb5e9682b96">Product</a> (std::string name, float price)</td></tr>
+<tr class="memdesc:a35fd1ce655c8358c95d59cb5e9682b96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new product object.  <a href="class_product.html#a35fd1ce655c8358c95d59cb5e9682b96">More...</a><br /></td></tr>
+<tr class="separator:a35fd1ce655c8358c95d59cb5e9682b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b28088bf44ce0b2a1548fb1d48709ca"><td class="memItemLeft" align="right" valign="top"><a id="a8b28088bf44ce0b2a1548fb1d48709ca"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a8b28088bf44ce0b2a1548fb1d48709ca">~Product</a> ()=default</td></tr>
+<tr class="memdesc:a8b28088bf44ce0b2a1548fb1d48709ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the product object. <br /></td></tr>
+<tr class="separator:a8b28088bf44ce0b2a1548fb1d48709ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cbd896ca6b2d95088be8ad8c3b11e3b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a9cbd896ca6b2d95088be8ad8c3b11e3b">getName</a> () const</td></tr>
+<tr class="memdesc:a9cbd896ca6b2d95088be8ad8c3b11e3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the product name.  <a href="class_product.html#a9cbd896ca6b2d95088be8ad8c3b11e3b">More...</a><br /></td></tr>
 <tr class="separator:a9cbd896ca6b2d95088be8ad8c3b11e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0aaea95b8d3241b3758246254b8575e2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a0aaea95b8d3241b3758246254b8575e2">getPrice</a> () const</td></tr>
+<tr class="memdesc:a0aaea95b8d3241b3758246254b8575e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the product price.  <a href="class_product.html#a0aaea95b8d3241b3758246254b8575e2">More...</a><br /></td></tr>
 <tr class="separator:a0aaea95b8d3241b3758246254b8575e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31e7c281fbf08bf2d3202f15a1342e21"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a31e7c281fbf08bf2d3202f15a1342e21">operator==</a> (const <a class="el" href="class_product.html">Product</a> &amp;p) const</td></tr>
+<tr class="memdesc:a31e7c281fbf08bf2d3202f15a1342e21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator.  <a href="class_product.html#a31e7c281fbf08bf2d3202f15a1342e21">More...</a><br /></td></tr>
 <tr class="separator:a31e7c281fbf08bf2d3202f15a1342e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac45a213fbfe36bf690bf059706c56858"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#ac45a213fbfe36bf690bf059706c56858">operator&lt;</a> (const <a class="el" href="class_product.html">Product</a> &amp;p) const</td></tr>
+<tr class="memdesc:ac45a213fbfe36bf690bf059706c56858"><td class="mdescLeft">&#160;</td><td class="mdescRight">Less than operator.  <a href="class_product.html#ac45a213fbfe36bf690bf059706c56858">More...</a><br /></td></tr>
 <tr class="separator:ac45a213fbfe36bf690bf059706c56858"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12f459de60dc268cd46532896f4800e8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a12f459de60dc268cd46532896f4800e8">print</a> (std::ostream &amp;os) const =0</td></tr>
+<tr class="memdesc:a12f459de60dc268cd46532896f4800e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all the product data.  <a href="class_product.html#a12f459de60dc268cd46532896f4800e8">More...</a><br /></td></tr>
 <tr class="separator:a12f459de60dc268cd46532896f4800e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a35fd1ce655c8358c95d59cb5e9682b96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a35fd1ce655c8358c95d59cb5e9682b96">Product</a> (std::string name, float price)</td></tr>
-<tr class="separator:a35fd1ce655c8358c95d59cb5e9682b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a8524c26a92b6be2db6b808a3fecd3976"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a8524c26a92b6be2db6b808a3fecd3976">_name</a></td></tr>
+<tr class="memitem:a8524c26a92b6be2db6b808a3fecd3976"><td class="memItemLeft" align="right" valign="top"><a id="a8524c26a92b6be2db6b808a3fecd3976"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a8524c26a92b6be2db6b808a3fecd3976">_name</a></td></tr>
+<tr class="memdesc:a8524c26a92b6be2db6b808a3fecd3976"><td class="mdescLeft">&#160;</td><td class="mdescRight">The product name. <br /></td></tr>
 <tr class="separator:a8524c26a92b6be2db6b808a3fecd3976"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e3eb97a1823206ce831b03e4d71454c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">_price</a></td></tr>
+<tr class="memitem:a9e3eb97a1823206ce831b03e4d71454c"><td class="memItemLeft" align="right" valign="top"><a id="a9e3eb97a1823206ce831b03e4d71454c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">_price</a></td></tr>
+<tr class="memdesc:a9e3eb97a1823206ce831b03e4d71454c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The product price. <br /></td></tr>
 <tr class="separator:a9e3eb97a1823206ce831b03e4d71454c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class relative to a store product. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a35fd1ce655c8358c95d59cb5e9682b96"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35fd1ce655c8358c95d59cb5e9682b96">&#9670;&nbsp;</a></span>Product()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Product::Product </td>
@@ -168,12 +180,16 @@ Protected Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+
+<p>Creates a new product object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>the name </td></tr>
+    <tr><td class="paramname">price</td><td>the price </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -193,6 +209,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the product name. </p>
+<dl class="section return"><dt>Returns</dt><dd>the name </dd></dl>
+
 </div>
 </div>
 <a id="a0aaea95b8d3241b3758246254b8575e2"></a>
@@ -209,6 +228,9 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the product price. </p>
+<dl class="section return"><dt>Returns</dt><dd>the price </dd></dl>
 
 </div>
 </div>
@@ -227,6 +249,15 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Less than operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>the product to compare with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if the product is less than p, according to alphabetical order; false, otherwise </dd></dl>
 
 </div>
 </div>
@@ -254,6 +285,15 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Equality operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>the product to compare with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if the products are equal; false, otherwise </dd></dl>
+
 </div>
 </div>
 <a id="a12f459de60dc268cd46532896f4800e8"></a>
@@ -280,55 +320,22 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Prints all the product data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>the output stream </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implemented in <a class="el" href="class_cake.html#a0d9544bfe4458c5d6239979b2d9bbf5d">Cake</a>, and <a class="el" href="class_bread.html#a1882ae57fd904d222c2793b73ba694df">Bread</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a8524c26a92b6be2db6b808a3fecd3976"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8524c26a92b6be2db6b808a3fecd3976">&#9670;&nbsp;</a></span>_name</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Product::_name</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9e3eb97a1823206ce831b03e4d71454c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e3eb97a1823206ce831b03e4d71454c">&#9670;&nbsp;</a></span>_price</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Product::_price</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>model/product/<a class="el" href="product_8h_source.html">product.h</a></li>
+<li>model/product/product.cpp</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

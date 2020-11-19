@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['to_5fstring_184',['to_string',['../namespaceutil.html#afd6b34a98aef992b8a458784205f5795',1,'util']]],
-  ['to_5fwords_185',['to_words',['../namespaceutil.html#a7b7615d0c09a05ba9e3617038713cfcf',1,'util']]]
+  ['_7eclientmanager_120',['~ClientManager',['../class_client_manager.html#af605d4fa9dab04b9874bf307277cd8a3',1,'ClientManager']]],
+  ['_7eordermanager_121',['~OrderManager',['../class_order_manager.html#a279292d3abda9718bbf909d7c85ad055',1,'OrderManager']]],
+  ['_7eperson_122',['~Person',['../class_person.html#a22234d7de3132c581406f040196eef44',1,'Person']]],
+  ['_7eproduct_123',['~Product',['../class_product.html#a8b28088bf44ce0b2a1548fb1d48709ca',1,'Product']]],
+  ['_7eproductmanager_124',['~ProductManager',['../class_product_manager.html#a3d2c60142919b77859659aa07a0d054a',1,'ProductManager']]],
+  ['_7eworkermanager_125',['~WorkerManager',['../class_worker_manager.html#a2245163719090a6feb4964abb20737de',1,'WorkerManager']]]
 ];
