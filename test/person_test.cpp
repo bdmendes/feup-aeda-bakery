@@ -97,6 +97,12 @@ TEST(Worker, set_credential){
     worker.setCredential(workerCredential);
 
     EXPECT_TRUE(worker.getCredential() == workerCredential);
+
+    workerCredential.password = "back";
+    EXPECT_THROW(worker.setCredential(workerCredential),InvalidCredential);
+
+    workerCredential.username = "exit";
+    EXPECT_THROW(worker.setCredential({"exit","batata"}),InvalidCredential);
 }
 
 TEST(Client, sort_clients){

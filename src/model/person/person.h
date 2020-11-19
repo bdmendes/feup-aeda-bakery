@@ -44,7 +44,7 @@ struct Credential {
     }
 
     /**
-     * Checks if the login credentials are reserved to the current user.
+     * Checks if the login credentials are UI reserved keywords
      *
      * @return true, if the login credentials are reserved; false, otherwise
      */

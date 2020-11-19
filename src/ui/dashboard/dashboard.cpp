@@ -69,29 +69,38 @@ void Dashboard::changeCredential(Person *person){
     std::cout << "\n" << SEPARATOR;
     std::string username, password;
 
-    for(;;){
-        std::cout << "New username: ";
-        std::string input1 = readCommand();
-        std::cout << "Confirm new username: ";
-        std::string input2 = readCommand();
-        if (input2 != input1) std::cout << "Usernames do not match! Try again.\n";
-        else{
-            username = input1;
+    for (;;) { // while credential is not valid
+        try {
+            for (;;) {
+                std::cout << "New username: ";
+                std::string input1 = readCommand();
+                if (input1 == BACK) return;
+                std::cout << "Confirm new username: ";
+                std::string input2 = readCommand();
+                if (input2 != input1) std::cout << "Usernames do not match! Try again.\n";
+                else {
+                    username = input1;
+                    break;
+                }
+            }
+            for (;;) {
+                std::cout << "\nNew password: ";
+                std::string input1 = readCommand();
+                std::cout << "Confirm new password: ";
+                std::string input2 = readCommand();
+                if (input2 != input1) std::cout << "Passwords do not match! Try again.\n";
+                else {
+                    password = input1;
+                    break;
+                }
+            }
+            person->setCredential({username,password});
             break;
         }
-    }
-    for(;;){
-        std::cout << "\nNew password: ";
-        std::string input1 = readCommand();
-        std::cout << "Confirm new password: ";
-        std::string input2 = readCommand();
-        if (input2 != input1) std::cout << "Passwords do not match! Try again.\n";
-        else{
-            password = input1;
-            break;
+        catch(std::exception& e){
+            std::cout << "\n" << e.what() << "\n\n";
         }
     }
-    person->setCredential({username,password});
 }
 
 void Dashboard::expandOrder(Order *order) {
@@ -158,6 +167,7 @@ void Dashboard::changeName(Person *person) {
         try {
             std::cout << "New name: ";
             std::string input1 = readCommand(false);
+            if (input1 == BACK) return;
             std::cout << "Confirm new name: ";
             std::string input2 = readCommand(false);
             if (input2 != input1) std::cout << "Names do not match! Try again.\n";

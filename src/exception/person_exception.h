@@ -54,12 +54,11 @@ public:
  */
 class InvalidCredential : public std::invalid_argument {
 public:
+
     /**
-     * Creates a new InvalidCredential  exception object.
-     *
-     * @param offending the invalid string
+     * Create new InvalidCredential exception object.
      */
-    explicit InvalidCredential(const std::string &offending);
+    explicit InvalidCredential();
 };
 
 

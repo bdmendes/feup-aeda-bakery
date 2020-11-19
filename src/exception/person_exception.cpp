@@ -17,6 +17,6 @@ InvalidPersonPosition::InvalidPersonPosition(unsigned int position, unsigned lon
     std::invalid_argument(std::to_string(++position) + " is an invalid position; should be between 1 and " + std::to_string(size) + "!"){
 }
 
-InvalidCredential::InvalidCredential(const std::string &arg) :
-    invalid_argument("You cannot use '" + arg + "' in your credential since it's a reserved word!") {
+InvalidCredential::InvalidCredential() :
+    invalid_argument("You cannot use reserved UI keywords in your credential.") {
 }
