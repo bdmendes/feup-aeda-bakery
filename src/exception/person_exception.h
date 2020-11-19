@@ -1,6 +1,3 @@
-//
-// Created by up201906166 on 23/10/2020.
-//
 
 #ifndef FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H
 #define FEUP_AEDA_PROJECT_PERSON_EXCEPTIONS_H
@@ -10,21 +7,59 @@
 
 #include "model/person/person.h"
 
+/**
+ * Class relative to the exception of a nonexistent person.
+ */
 class PersonDoesNotExist: public std::logic_error{
 public:
+    /**
+     * Creates a new PersonDoesNotExist object.
+     *
+     * @param name the name
+     * @param tributaryNumber the taxpayer identification number
+     */
     PersonDoesNotExist(const std::string& name, int tributaryNumber);
+
+    /**
+     * Creates a new PersonDoesNotExist object.
+     *
+     * @param name the name
+     */
     explicit PersonDoesNotExist(const std::string& name);
+
+    /**
+     * Creates a new PersonDoesNotExist object.
+     *
+     * @param taxID the the taxpayer identification number
+     */
     explicit PersonDoesNotExist(int taxID);
 };
 
+/**
+ * Class relative to the exception of an invalid person position on some list.
+ */
 class InvalidPersonPosition : public std::invalid_argument{
 public:
+    /**
+     * Creates a new InvalidPersonPosition object.
+     *
+     * @param position the position
+     * @param size the persons list size
+     */
     InvalidPersonPosition(unsigned position, unsigned long size);
 };
 
+/**
+ * Class relative to the exception of an invalid credential.
+ */
 class InvalidCredential : public std::invalid_argument {
 public:
-    InvalidCredential(const std::string &offending);
+    /**
+     * Creates a new InvalidCredential object.
+     *
+     * @param offending the invalid string
+     */
+    explicit InvalidCredential(const std::string &offending);
 };
 
 
