@@ -10,11 +10,13 @@ using testing::Eq;
 TEST(Order, create_order){
     Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
+    std::string location = "Porto";
     Date date(14, 11, 2020, 16, 30);
-    Order order(client,worker, date);
+    Order order(client,worker, location, date);
 
     EXPECT_EQ(client, *order.getClient());
     EXPECT_EQ(worker, *order.getWorker());
+    EXPECT_EQ(location, order.getDeliverLocation());
     EXPECT_EQ(date, order.getRequestDate());
     EXPECT_FALSE(order.hasDiscount());
     EXPECT_FALSE(order.wasDelivered());
@@ -26,12 +28,13 @@ TEST(Order, has_discount){
     Client client3("Carlos Monteiro", 1238471736, true);
     Client client4("Carlos Monteiro", 1238471736, true);
     Worker worker("Beatriz Silva",950);
+    std::string location = "Maia";
     Date date(14, 11, 2020, 16, 30);
 
-    Order order1(client1,worker, date); client1.setPoints(200);
-    Order order2(client2, worker, date);
-    Order order3(client3, worker, date); client3.setPoints(100);
-    Order order4(client4, worker, date);
+    Order order1(client1,worker, location, date); client1.setPoints(200);
+    Order order2(client2, worker, location, date);
+    Order order3(client3, worker, location, date); client3.setPoints(100);
+    Order order4(client4, worker, location, date);
 
     EXPECT_TRUE(order1.hasDiscount());
     EXPECT_FALSE(order2.hasDiscount());
@@ -66,6 +69,22 @@ TEST(Order, was_delivered){
 
     EXPECT_TRUE(order1.wasDelivered());
     EXPECT_FALSE(order2.wasDelivered());
+}
+
+TEST(Order, get_worker){
+
+}
+
+TEST(Order, get_client){
+
+}
+
+TEST(Order, set_deliver_location){
+
+}
+
+TEST(Order, get_products){
+
 }
 
 TEST(Order, get_client_evaluation){
@@ -146,6 +165,8 @@ TEST(Order, get_total){
 
     EXPECT_FLOAT_EQ((3.20*10)+(1.20*15)+(0.8*8)+(0.2*3), order.getTotal());
 }
+
+TEST(Order, get_request_date){}
 
 TEST(Order, add_product){
     Client client("Alfredo Simoes");
@@ -243,11 +264,12 @@ TEST(Order, remove_product_by_position){
 }
 
 TEST(Order, deliver){
+    std::string location = "Felgueiras";
     Date date(14, 11, 2020, 16, 30);
     Client client("Alfredo Simões");
     client.addPoints(200);
     Worker worker("Beatriz Silva",950);
-    Order order1(client,worker, date);
+    Order order1(client,worker, location, date);
 
     Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
     Bread hugeBread("Pao de sementes",0.2,false);
@@ -283,7 +305,7 @@ TEST(Order, deliver){
     EXPECT_THROW(order3.deliver(6), InvalidOrderEvaluation);
 }
 
-TEST(Order, equal_operator){
+TEST(Order, equality_operator){
     Client client1("Alfredo Simoes");
     Client client2("Anotónio Pedroso");
     Worker worker("Beatriz Silva",950);
@@ -317,12 +339,13 @@ TEST(Order, equal_operator){
 TEST(Order, less_than_operator){
     Client client("Alfredo Simoes");
     Worker worker("Beatriz Silva",950);
+    std::string location = "Matosinhos";
     Date date1(13, 11, 2020, 16, 30);
     Date date2(14, 11, 2020, 16, 30);
     Date date3(14, 11, 2020, 16, 31);
-    Order order1(client, worker, date1);
-    Order order2(client, worker, date2);
-    Order order3(client, worker, date3);
+    Order order1(client, worker, location, date1);
+    Order order2(client, worker, location, date2);
+    Order order3(client, worker, location, date3);
 
     EXPECT_TRUE(order1 < order2);
     EXPECT_TRUE(order1 < order3);
@@ -330,4 +353,16 @@ TEST(Order, less_than_operator){
 }
 
 TEST(Order, print){
+    Client client("Alfredo Simoes");
+    Worker worker("Beatriz Silva",950);
+    std::string location = "Matosinhos";
+    Date date1(13, 11, 2020, 16, 30);
+    Date date2(14, 11, 2020, 16, 30);
+    Date date3(14, 11, 2020, 16, 31);
+    Order order1(client, worker, location, date1);
+    Order order2(client, worker, location, date2);
+    Order order3(client, worker, location, date3);
+    order1.print(std::cout);
+    order2.print(std::cout);
+    order3.print(std::cout);
 }

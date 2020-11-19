@@ -1,6 +1,7 @@
 
 #include <gtest/gtest.h>
 #include "model/store/store.h"
+#include "model/store/location_manager.h"
 
 #include <algorithm>
 
@@ -129,7 +130,8 @@ TEST(WorkerManager, get_less_busy_worker){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(&productM, &clientM, &workerM);
+    LocationManager locationM;
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client1 = clientM.add("Ricardo Macedo");
     Client* client2 = clientM.add("Joana Moreira");
@@ -303,7 +305,8 @@ TEST(OrderManager, add_order){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(&productM, &clientM, &workerM);
+    LocationManager locationM;
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
     Client* client = clientM.add("Fernando Castro");
     Worker* worker = workerM.add("Josue Tome", 928);
     Order order(*client, *worker);
@@ -320,15 +323,17 @@ TEST(OrderManager, add_order_with_date){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(&productM, &clientM, &workerM);
+    LocationManager locationM;
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+    std::string location  = "Guarda"; locationM.add(location);
     Date date(16, 11, 2020, 2, 30);
     Client* client = clientM.add("Fernando Castro");
     Worker* worker = workerM.add("Josue Tome", 928);
-    Order order(*client, *worker, date);
+    Order order(*client, *worker, location, date);
 
     EXPECT_TRUE(orderM.getAll().empty());
 
-    Order* order1 = orderM.add(client, date);
+    Order* order1 = orderM.add(client, location, date);
 
     EXPECT_EQ(1, orderM.getAll().size());
     EXPECT_TRUE(order == *order1);
@@ -338,7 +343,8 @@ TEST(OrderManager, remove_order){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(&productM, &clientM, &workerM);
+    LocationManager locationM;
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client1 = clientM.add("Adelaide Santos");
     Client* client2 = clientM.add("Bruno Mendes");
@@ -375,18 +381,20 @@ TEST(OrderManager, sort_orders){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(&productM, &clientM, &workerM);
+    LocationManager locationM;
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
+    std::string location = "Lisboar"; locationM.add(location);
     Date date2(25, 11, 2019, 3, 40);
     Date date1(16, 11, 2020, 2, 30);
     Client* client1 = clientM.add("Fernando Castro");
     Client* client2 = clientM.add("Catia Fernandes");
     Worker* worker = workerM.add("Josue Tome", 928);
-    Order order1(*client1, *worker, date1);
-    Order order2(*client2, *worker, date2);
+    Order order1(*client1, *worker, location, date1);
+    Order order2(*client2, *worker, location, date2);
 
-    Order* order3 = orderM.add(client1, date1);
-    Order* order4 = orderM.add(client2, date2);
+    Order* order3 = orderM.add(client1, location, date1);
+    Order* order4 = orderM.add(client2, location, date2);
     unsigned position = 0;
 
     EXPECT_TRUE(order1 == *order3);
@@ -399,7 +407,8 @@ TEST(OrderManager, get_order_by_position){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(&productM, &clientM, &workerM);
+    LocationManager locationM;
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client1 = clientM.add("Ricardo Macedo");
     Client* client2 = clientM.add("Rosalia Martins");
@@ -426,7 +435,8 @@ TEST(OrderManager, get_client_orders){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(&productM, &clientM, &workerM);
+    LocationManager locationM;
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client1 = clientM.add("Ricardo Macedo");
     Client client2("Bruno Mendes");
@@ -451,7 +461,8 @@ TEST(OrderManager, get_worker_orders){
     ProductManager productM;
     ClientManager clientM;
     WorkerManager workerM;
-    OrderManager orderM(&productM, &clientM, &workerM);
+    LocationManager locationM;
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client = clientM.add("Ricardo Macedo");
     Worker* worker1 = workerM.add("Madalena Faria", 980);

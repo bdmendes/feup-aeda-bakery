@@ -2,6 +2,8 @@ CAKES
 Meat-Cake 30 Sponge
 Strawberry-Pie 25 Pie
 Wafer-Cake 15 Crunchy-Cake
+Bolo-de-bolacha 2.2 Pie
+Pao-de-lo 3.2 Sponge
 BREADS
 Pao-da-avo 1 big
 Pao-de-cereais 0.5 small
