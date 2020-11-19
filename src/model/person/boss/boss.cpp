@@ -6,7 +6,7 @@
 const char* Boss::DEFAULT_USERNAME = "boss";
 const char* Boss::DEFAULT_PASSWORD = "boss";
 
-Boss::Boss(std::string name, int taxID, Credential credential) :
+Boss::Boss(std::string name, unsigned long taxID, Credential credential) :
     Person(std::move(name), taxID, std::move(credential), PersonRole::BOSS) {
 }
 
@@ -19,7 +19,7 @@ void Boss::read(const std::string &path) {
     if(!file) throw FileNotFound(path);
 
     std::string name, username, password;
-    int taxID = Person::DEFAULT_TAX_ID;
+    unsigned long taxID = Person::DEFAULT_TAX_ID;
     file >> name >> taxID >> username >> password;
     util::stripCarriageReturn(password);
     std::replace(name.begin(),name.end(),'-',' ');

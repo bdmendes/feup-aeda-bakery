@@ -1,7 +1,3 @@
-//
-// Created by bdmendes on 16/11/20.
-//
-
 #include "dashboard.h"
 
 Dashboard::Dashboard(Store &store, Person *person) : UI(store), _person(person){
@@ -51,7 +47,7 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 expandOrder(_store.orderManager.get(idx, client));
             } else if (hasOrders && validInput1Cmd1ArgDigit(input,"edit")){
-                int idx = std::stoi(to_words(input).at(1)) - 1;
+                unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 editOrder(_store.orderManager.get(idx, client));
             }
             else {printError(); continue;}
@@ -61,8 +57,7 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
             std::cout << e.what() << "\n";
         }
     }
-
-    manageOrders(client);
+    manageOrders(client, worker);
 }
 
 void Dashboard::changeCredential(Person *person){
@@ -118,7 +113,7 @@ void Dashboard::expandOrder(Order *order) {
 
 void Dashboard::managePersonalData(Person *person) {
     printLogo("Edit account details");
-    bool isClient = dynamic_cast<Client*>(person) != nullptr;
+    bool isClient = person->getRole() == PersonRole::CLIENT;
 
     std::vector<std::string> options = {
             "change credential - set new username or password",
@@ -127,7 +122,7 @@ void Dashboard::managePersonalData(Person *person) {
     };
     if (isClient){
         options.emplace_back("set premium - make myself a premium client");
-        options.emplace_back("set regular - make myself a regular client");
+        options.emplace_back("set basic - make myself a basic client");
     }
 
     printOptions(options);
@@ -141,12 +136,12 @@ void Dashboard::managePersonalData(Person *person) {
             } else if (validInput1Cmd1Arg(input, "change", "name")) {
                 changeName(person);
                 break;
-            } else if (isClient && validInput1Cmd1Arg(input, "set", "regular")) {
-                dynamic_cast<Client *>(person)->setPremium(false);
+            } else if (isClient && validInput1Cmd1Arg(input, "set", "basic")) {
+                _store.clientManager.getClient(person->getTaxId())->setPremium(false);
                 break;
             }
             else if (isClient && validInput1Cmd1Arg(input, "set", "premium")) {
-                dynamic_cast<Client *>(person)->setPremium(true);
+                _store.clientManager.getClient(person->getTaxId())->setPremium(true);
                 break;
             }
             else if (validInput1Cmd1Arg(input,"change","taxid")){
@@ -217,7 +212,7 @@ void Dashboard::editOrder(Order* order) {
                 }
                 else if (validInput1Cmd2ArgsDigit(input, "add")) {
                     unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
-                    int quantity = std::stoi(to_words(input).at(2));
+                    unsigned int quantity = (unsigned) std::stoi(to_words(input).at(2));
                     order->addProduct(_store.productManager.get(idx), quantity);
                     break;
                 } else if (validInput1Cmd1ArgDigit(input, "remove")) {
@@ -367,10 +362,10 @@ void Dashboard::changeTaxID(Person *person) {
             std::string input2 = readCommand(false);
             if (input2 != input1) std::cout << "IDs did not match! Try again.\n";
             else if (isdigit(input1)){
-                person->setTaxID(std::stoi(input1));
+                person->setTaxID(std::stoul(input1));
                 break;
             }
-            else std::cout << "Please enter an integer number!\n";
+            else std::cout << "Please enter a reasonable sized integer number!\n";
         }
         catch (std::exception& e){
             std::cout << e.what() << "\n\n";
@@ -418,7 +413,7 @@ void Dashboard::manageClients() {
 void Dashboard::addClient() {
     std::cout << "\n" << SEPARATOR;
     std::string name, input;
-    int taxID;
+    unsigned long taxID;
     bool premium;
 
     std::cout << "Client name: ";
@@ -429,9 +424,9 @@ void Dashboard::addClient() {
         std::cout << "Tax ID: ";
         input = readCommand();
         if (isdigit(input)) break;
-        else std::cout << "The ID must be an integer!\n";
+        else std::cout << "The ID must be a reasonable sized integer!\n";
     }
-    taxID = std::stoi(input);
+    taxID = std::stoul(input);
 
     for (;;){
         std::cout << "Status (basic/premium): ";

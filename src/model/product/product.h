@@ -70,6 +70,7 @@ public:
      * @param os the output stream
      */
     virtual void print(std::ostream& os) const = 0;
+
 protected:
     /**
      * The product name.
@@ -104,7 +105,7 @@ public:
     bool isSmall() const;
 
     /**
-     * Equality operator.
+     * Two breads are equal if they share name, category and small attribute
      *
      * @param bread the bread to compare with
      * @return
@@ -117,6 +118,7 @@ public:
      * @param os the output stream
      */
     void print(std::ostream& os) const override;
+
 private:
     /**
      * The bread size.
@@ -146,7 +148,7 @@ public:
     CakeCategory getCategory() const;
 
     /**
-     * Equality operator
+     * Two cakes are equal if they share the name, price and cake category.
      *
      * @param cake the cake to compare with
      * @return true, if the cakes are equal; false, otherwise
@@ -171,6 +173,7 @@ public:
      * @return the list of all available cake categories as strings
      */
     static std::vector<std::string> getCategories();
+
 private:
     /**
      * The cake category.

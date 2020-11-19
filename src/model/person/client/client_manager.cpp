@@ -25,7 +25,7 @@ std::set<Client *, PersonSmaller> ClientManager::getAll() {
     return _clients;
 }
 
-Client* ClientManager::add(std::string name, int taxID, bool premium, Credential credential) {
+Client* ClientManager::add(std::string name, unsigned long taxID, bool premium, Credential credential) {
     auto* client = new Client(std::move(name), taxID, premium, std::move(credential));
     _clients.insert(client);
     return client;
@@ -50,7 +50,7 @@ bool ClientManager::print(std::ostream &os, bool showData) {
         return false;
     }
 
-    os << std::string(_clients.size()/10 + 3, util::SPACE)
+    os << std::string((_clients.size()+1) / 10 + 3, util::SPACE)
     << util::column("NAME", true)
     << util::column("TAX ID");
     if (showData){
@@ -74,7 +74,7 @@ void ClientManager::read(const std::string &path) {
     if(!file) throw FileNotFound(path);
 
     std::string name, premium;
-    int taxID = Person::DEFAULT_TAX_ID;
+    unsigned long taxID = Person::DEFAULT_TAX_ID;
     unsigned points = 0;
     Credential credential;
 
@@ -106,7 +106,7 @@ void ClientManager::write(const std::string &path) {
     }
 }
 
-Client *ClientManager::getClient(int taxID) const{
+Client *ClientManager::getClient(unsigned long taxID) const{
     for(const auto& _client : _clients){
         if (_client->getTaxId() == taxID) return _client;
     }

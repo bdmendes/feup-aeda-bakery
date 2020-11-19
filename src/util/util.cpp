@@ -1,14 +1,11 @@
-//
-// Created by bdmendes on 31/10/20.
-//
-
 #include <algorithm>
 #include <sstream>
 #include "util.h"
 
 bool util::isdigit(const std::string &str, bool acceptFloat) {
     int pointCount = 0;
-    return !str.empty() && std::all_of(str.begin(),str.end(), [&pointCount, acceptFloat](const char c){
+    return !str.empty() && str.size() <= 9
+    && std::all_of(str.begin(),str.end(), [&pointCount, acceptFloat](const char c){
         if (c == '.' && acceptFloat) return ++pointCount <= 1;
         return (bool) std::isdigit(c);
     });
@@ -45,7 +42,7 @@ void util::lowercase(std::string &str) {
 
 std::string util::column(std::string str, bool large) {
     unsigned long colSize = large ? LARGE_COL_WIDTH : SMALL_COL_WIDTH;
-    if (str.size() > colSize) str = str.substr(0, static_cast<unsigned long>((int) colSize - 3)) + "...";
+    if (str.size() > colSize) str = str.substr(0, colSize - 4) + "... ";
     std::ostringstream ss;
     ss << std::setw((int)colSize) << std::left << str << SPACE;
     return ss.str();

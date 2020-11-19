@@ -80,7 +80,7 @@ void Order::removeProduct(Product *product) {
     else throw ProductDoesNotExist(product->getName(),product->getPrice());
 }
 
-void Order::removeProduct(unsigned int position) {
+void Order::removeProduct(unsigned long position) {
     if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
     auto it = _products.begin();
     if (position < _products.size()){

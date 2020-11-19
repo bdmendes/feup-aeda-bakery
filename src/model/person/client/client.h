@@ -21,8 +21,8 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the login credentials
      */
-    explicit Client(std::string name, int taxID = Person::DEFAULT_TAX_ID, bool premium = false,
-           Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
+    explicit Client(std::string name, unsigned long taxID = Person::DEFAULT_TAX_ID, bool premium = false,
+                    Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     /**
      * Checks if the client subscription type is premium.

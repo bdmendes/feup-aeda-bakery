@@ -11,7 +11,6 @@
  */
 class Boss : public Person {
 public:
-
     /**
      * Creates a new Boss object.
      *
@@ -19,7 +18,7 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the login credentials
      */
-    explicit Boss(std::string name = "Boss", int taxID = Person::DEFAULT_TAX_ID,
+    explicit Boss(std::string name = "Boss", unsigned long taxID = Person::DEFAULT_TAX_ID,
                   Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     /**

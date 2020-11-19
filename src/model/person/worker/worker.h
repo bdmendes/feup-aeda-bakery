@@ -21,8 +21,8 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the login credentials
      */
-    explicit Worker(std::string name, int taxID = DEFAULT_TAX_ID, float salary = DEFAULT_SALARY,
-           Credential credential = {DEFAULT_USERNAME,DEFAULT_PASSWORD});
+    explicit Worker(std::string name, unsigned long taxID = DEFAULT_TAX_ID, float salary = DEFAULT_SALARY,
+                    Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     /**
      * Gets the worker salary.
@@ -67,7 +67,7 @@ public:
      *
      * @param evaluation
      */
-    void addEvaluation (int evaluation);
+    void addEvaluation (unsigned int evaluation);
 
     /**
      * Prints the worker data.
@@ -115,7 +115,7 @@ private:
     /**
      * The list of evaluations given to each order delivered by the worker.
      */
-    std::vector<int> _evaluations;
+    std::vector<unsigned> _evaluations;
 };
 
 

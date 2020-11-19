@@ -51,7 +51,7 @@ public:
      * @param worker the worker
      * @return the order at that position from the respective orders list (client or worker)
      */
-    Order* get(unsigned position, Client* client = nullptr, Worker* worker = nullptr) const;
+    Order* get(unsigned long position, Client* client = nullptr, Worker* worker = nullptr) const;
 
     /**
      * Gets the list of all orders.
@@ -122,7 +122,7 @@ public:
      *
      * @param position the position
      */
-    void remove(unsigned position);
+    void remove(unsigned long position);
 
     /**
      * Reads all the orders on the file and its data: request date, products (name, price and requested quantity),

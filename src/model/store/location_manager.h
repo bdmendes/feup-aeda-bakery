@@ -58,6 +58,7 @@ public:
      * @param path
      */
     void write(const std::string &path);
+
 private:
     /**
      * The list of all store locations available.

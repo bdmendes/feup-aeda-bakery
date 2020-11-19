@@ -1,11 +1,11 @@
 
 #include "person_exception.h"
 
-PersonDoesNotExist::PersonDoesNotExist(const std::string& name, int tributaryNumber) :
-    std::logic_error(name + ", with number " + std::to_string(tributaryNumber) + ", does not exist!"){
+PersonDoesNotExist::PersonDoesNotExist(const std::string& name, unsigned long taxID) :
+    std::logic_error(name + ", with number " + std::to_string(taxID) + ", does not exist!"){
 }
 
-PersonDoesNotExist::PersonDoesNotExist(int taxID) :
+PersonDoesNotExist::PersonDoesNotExist(unsigned long taxID) :
     std::logic_error("Person with number " + std::to_string(taxID) + " does not exist!"){
 }
 

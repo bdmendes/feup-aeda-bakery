@@ -29,8 +29,15 @@ public:
     explicit LocationDoesNotExist(const std::string& location);
 };
 
+/**
+ * To be thrown when the user searches for the location with a invalid index
+ */
 class InvalidLocationPosition : public std::invalid_argument{
 public:
+    /**
+     * Create a new Invalid
+     * @param position the set index
+     */
     explicit InvalidLocationPosition(unsigned long position);
 };
 

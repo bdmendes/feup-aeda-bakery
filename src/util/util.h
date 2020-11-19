@@ -1,4 +1,3 @@
-
 #ifndef FEUP_AEDA_PROJECT_UTIL_H
 #define FEUP_AEDA_PROJECT_UTIL_H
 

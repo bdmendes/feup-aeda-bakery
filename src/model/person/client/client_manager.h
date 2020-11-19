@@ -45,7 +45,7 @@ public:
      * @param taxID the taxpayer identification number
      * @return the client on the clients list with that taxpayer identification number
      */
-    Client* getClient(int taxID) const;
+    Client* getClient(unsigned long taxID) const;
 
     /**
      * Gets the clients list.
@@ -63,8 +63,8 @@ public:
      * @param credential the login credentials
      * @return the client added to de clients list of the client manager
      */
-    Client* add(std::string name, int taxID = Person::DEFAULT_TAX_ID, bool premium = false,
-             Credential credential = {Client::DEFAULT_USERNAME, Client::DEFAULT_PASSWORD});
+    Client* add(std::string name, unsigned long taxID = Person::DEFAULT_TAX_ID, bool premium = false,
+                Credential credential = {Client::DEFAULT_USERNAME, Client::DEFAULT_PASSWORD});
 
     /**
      * Removes a client from the clients list.

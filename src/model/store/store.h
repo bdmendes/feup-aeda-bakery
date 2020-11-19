@@ -1,4 +1,3 @@
-
 #ifndef SRC_STORE_H
 #define SRC_STORE_H
 
@@ -109,6 +108,7 @@ public:
      * The boss associated to the store.
      */
     Boss boss;
+
 private:
     /**
      * The store name.

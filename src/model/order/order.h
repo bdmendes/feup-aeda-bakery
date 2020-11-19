@@ -141,7 +141,7 @@ public:
      *
      * @param position the position
      */
-    void removeProduct(unsigned position);
+    void removeProduct(unsigned long position);
 
     /**
      * Delivers the order and gets the client evaluation and deliver duration.
@@ -180,6 +180,7 @@ public:
      * The default store location.
      */
     static const char* DEFAULT_LOCATION;
+
 private:
     /**
     * Updates total price whenever is added products to the order.

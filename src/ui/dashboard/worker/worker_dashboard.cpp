@@ -1,7 +1,3 @@
-//
-// Created by bdmendes on 14/11/20.
-//
-
 #include "worker_dashboard.h"
 
 WorkerDashboard::WorkerDashboard(Store &store, Worker *worker) : Dashboard(store, worker), _worker(worker){

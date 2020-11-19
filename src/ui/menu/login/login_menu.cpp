@@ -1,7 +1,3 @@
-//
-// Created by bdmendes on 14/11/20.
-//
-
 #include "ui/dashboard/boss/boss_dashboard.h"
 #include "ui/dashboard/worker/worker_dashboard.h"
 #include "ui/dashboard/client/client_dashboard.h"
@@ -20,11 +16,11 @@ void LoginMenu::show() {
         std::string input = readCommand();
         if (input == BACK) return;
         else if (validInput1Cmd(input, "worker")){
-            selectPerson(false);
+            selectPerson(PersonRole::WORKER);
             break;
         }
         else if (validInput1Cmd(input, "client")){
-            selectPerson(true);
+            selectPerson(PersonRole::CLIENT);
             break;
         }
         else if (validInput1Cmd(input, "boss")){
@@ -40,13 +36,13 @@ void LoginMenu::show() {
 LoginMenu::LoginMenu(Store &store) : UI(store) {
 }
 
-void LoginMenu::selectPerson(bool client) {
-    bool hasPersons;
+void LoginMenu::selectPerson(PersonRole role) {
+    bool hasPersons = false;
     printLogo("Login");
 
     std::cout << SEPARATOR;
-    if (!client) hasPersons = _store.workerManager.print(std::cout, false);
-    else hasPersons = _store.clientManager.print(std::cout, false);
+    if (role == PersonRole::CLIENT) hasPersons = _store.workerManager.print(std::cout, false);
+    else if (role == PersonRole::WORKER) hasPersons = _store.clientManager.print(std::cout, false);
     std::cout << SEPARATOR << "\n";
 
     if (hasPersons){
@@ -62,7 +58,7 @@ void LoginMenu::selectPerson(bool client) {
             if (input == BACK) return;
             else if (hasPersons && validInput1Cmd1ArgDigit(input,"login")) {
                 unsigned long personPosition = std::stoul(to_words(input).at(1)) - 1;
-                if (!client) login(_store.workerManager.get(personPosition));
+                if (role == PersonRole::CLIENT) login(_store.workerManager.get(personPosition));
                 else login(_store.clientManager.get(personPosition));
                 break;
             }
