@@ -165,5 +165,6 @@ std::string Order::getDeliverLocation() const {
 }
 
 void Order::setDeliverLocation(const std::string& location) {
+    if (_delivered) throw OrderWasAlreadyDelivered(*_client,*_worker,_deliverDate);
     _deliverLocation = location;
 }

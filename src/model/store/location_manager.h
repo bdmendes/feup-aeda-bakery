@@ -10,6 +10,7 @@
 class LocationManager {
 public:
     LocationManager();
+    std::set<std::string> getAll();
     bool has(const std::string& location);
     void add(const std::string& location);
     void remove(const std::string& location);

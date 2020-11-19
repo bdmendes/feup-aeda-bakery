@@ -3,7 +3,7 @@
 //
 
 #include <algorithm>
-#include <exception/file_exception.h>
+#include "exception/file_exception.h"
 #include "location_manager.h"
 
 LocationManager::LocationManager() : _locations(){
@@ -15,7 +15,6 @@ bool LocationManager::has(const std::string& location) {
 }
 
 void LocationManager::add(const std::string& location) {
-    if (has(location)) throw LocationAlreadyExists(location);
     _locations.insert(location);
 }
 
@@ -44,4 +43,8 @@ void LocationManager::write(const std::string &path) {
         std::replace(styledName.begin(),styledName.end(),' ','-');
         file << styledName << "\n";
     }
+}
+
+std::set<std::string> LocationManager::getAll() {
+    return _locations;
 }

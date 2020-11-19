@@ -1,7 +1,7 @@
 CAKES
-Meat-Cake 30 Sponge
-Strawberry-Pie 25 Pie
-Wafer-Cake 15 Crunchy-Cake
+Bolo-esponja 30 Sponge
+Tarte-de-morango 25 Pie
+Bolo-crocante 15 Crunchy-Cake
 BREADS
 Pao-da-avo 1 big
 Pao-de-cereais 0.5 small
