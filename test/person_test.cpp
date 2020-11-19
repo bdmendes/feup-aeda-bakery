@@ -130,7 +130,7 @@ TEST(Worker, sort_workers){
 }
 
 
-TEST(Client, equal_clients){
+/*TEST(Client, equal_clients){
     Client client1("Cristina Lopes");
     Client client2("Cristina Lopes", 999999999, false, {"client", "client"});
     Client client3("Cristina Figueiredo");
@@ -139,7 +139,7 @@ TEST(Client, equal_clients){
     EXPECT_TRUE(client1==client2);
     EXPECT_FALSE(client1==client3);
     EXPECT_FALSE(client2==client3);
-}
+}*/
 
 TEST(Worker, equal_workers){
     Worker worker1("Luis Miguel", 999999999,950);
