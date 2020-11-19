@@ -13,8 +13,19 @@
 #include <fstream>
 #include <map>
 
+/**
+ * Class relative to a store order.
+ */
 class Order {
 public:
+    /**
+     * Creates a new Order object.
+     *
+     * @param client the client
+     * @param worker the worker
+     * @param location the store location
+     * @param date the request date
+     */
     Order(Client& client, Worker& worker, std::string location = DEFAULT_LOCATION, Date date = {});
 
     /**
@@ -55,8 +66,20 @@ public:
      */
     Client* getClient() const;
 
+    /**
+     * Sets the store location where the order will be delivered.
+     *
+     * @param location the store location
+     */
     void setDeliverLocation(const std::string& location);
+
+    /**
+     * Gets the store location where the order will be delivered.
+     *
+     * @return the store location where the order will be delivered
+     */
     std::string getDeliverLocation() const;
+
     /**
      * Gets the list of all products.
      *
@@ -153,8 +176,10 @@ public:
      */
     void print(std::ostream& os) const;
 
+    /**
+     * The default store location.
+     */
     static const char* DEFAULT_LOCATION;
-
 private:
     /**
     * Updates total price whenever is added products to the order.
@@ -200,6 +225,10 @@ private:
      * The order deliver date.
      */
     Date _deliverDate;
+
+    /**
+     * The store location to deliver the order.
+     */
     std::string _deliverLocation;
 };
 

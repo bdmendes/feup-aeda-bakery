@@ -1,10 +1,9 @@
-//
-// Created by bdmendes on 19/11/20.
-//
+
+#include "location_manager.h"
+#include "exception/file_exception.h"
 
 #include <algorithm>
-#include "exception/file_exception.h"
-#include "location_manager.h"
+
 
 LocationManager::LocationManager() : _locations(){
     _locations.insert(Order::DEFAULT_LOCATION);

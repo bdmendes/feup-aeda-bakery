@@ -18,12 +18,12 @@
 class WorkerManager {
 public:
     /**
-     * Creates a new worker manager object.
+     * Creates a new WorkerManager object.
      */
     WorkerManager();
 
     /**
-     * Destructs the worker manager object.
+     * Destructs the WorkerManager object.
      */
     ~WorkerManager();
 

@@ -30,7 +30,7 @@ class Order;
 class Store {
 public:
     /**
-     * Creates a new store object.
+     * Creates a new Store object.
      *
      * @param name the name
      */
@@ -99,6 +99,10 @@ public:
      * The order manager associated to the store.
      */
     OrderManager orderManager;
+
+    /**
+     * The location manager associated to the store.
+     */
     LocationManager locationManager;
 
     /**
@@ -110,6 +114,10 @@ private:
      * The store name.
      */
     std::string _name;
+
+    /**
+     * The list of the available store locations.
+     */
     std::set<std::string> _locations;
 };
 

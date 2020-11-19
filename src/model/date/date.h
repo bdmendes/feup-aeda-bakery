@@ -13,12 +13,12 @@
 class Date{
 public:
     /**
-     * Creates a new date object which is the current calendar time.
+     * Creates a new Date object which is the current calendar time.
      */
     Date();
 
     /**
-     * Creates a new date object.
+     * Creates a new Date object.
      *
      * @param day the day
      * @param month the month

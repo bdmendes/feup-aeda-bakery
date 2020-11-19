@@ -27,12 +27,12 @@ struct ProductSmaller{
 class ProductManager {
 public:
     /**
-     * Creates a new product manager object.
+     * Creates a new ProductManager object.
      */
     ProductManager();
 
     /**
-     * Destructs the product manager object.
+     * Destructs the ProductManager object.
      */
     ~ProductManager();
 
