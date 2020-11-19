@@ -20,6 +20,7 @@
 #include "../product/product_manager.h"
 #include "../person/worker/worker_manager.h"
 #include "../order/order_manager.h"
+#include "location_manager.h"
 
 class Order;
 
@@ -98,6 +99,7 @@ public:
      * The order manager associated to the store.
      */
     OrderManager orderManager;
+    LocationManager locationManager;
 
     /**
      * The boss associated to the store.
@@ -108,6 +110,7 @@ private:
      * The store name.
      */
     std::string _name;
+    std::set<std::string> _locations;
 };
 
 #endif //SRC_STORE_H

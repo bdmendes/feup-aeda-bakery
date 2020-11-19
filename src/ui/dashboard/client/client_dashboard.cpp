@@ -5,7 +5,6 @@
 #include "client_dashboard.h"
 
 ClientDashboard::ClientDashboard(Store &store, Client *client) : Dashboard(store, client), _client(client){
-
 }
 
 void ClientDashboard::show() {
@@ -38,7 +37,7 @@ void ClientDashboard::show() {
                 break;
             }
             else if (validInput1Cmd1Arg(input, "new", "order")){
-                editOrder(_store.orderManager.add(_client));
+                editOrder(_store.orderManager.add(_client,Order::DEFAULT_LOCATION));
                 break;
             }
             else if (validInput1Cmd1Arg(input, "manage", "orders")){

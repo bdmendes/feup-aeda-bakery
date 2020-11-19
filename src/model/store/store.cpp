@@ -5,8 +5,8 @@
 
 Store::Store(std::string name) :
         _name(std::move(name)),
-        productManager(),clientManager(),workerManager(),
-        orderManager(&productManager,&clientManager,&workerManager),
+        productManager(),clientManager(),workerManager(),locationManager(),
+        orderManager(&productManager,&clientManager,&workerManager,&locationManager),
         boss("Boss", Person::DEFAULT_TAX_ID, {Boss::DEFAULT_USERNAME,Boss::DEFAULT_PASSWORD}){
 }
 
@@ -39,6 +39,7 @@ float Store::getProfit() const {
 std::string Store::read(const std::string &dataFolderPath) {
     try {
         boss.read(dataFolderPath + "/boss.txt");
+        locationManager.read(dataFolderPath + "/locations.txt");
         productManager.read(dataFolderPath + "/products.txt");
         clientManager.read(dataFolderPath + "/clients.txt");
         workerManager.read(dataFolderPath + "/workers.txt");
@@ -53,6 +54,7 @@ std::string Store::read(const std::string &dataFolderPath) {
 std::string Store::write(const std::string& dataFolderPath) {
     try {
         boss.write(dataFolderPath + "/boss.txt");
+        locationManager.write(dataFolderPath + "/locations.txt");
         productManager.write(dataFolderPath + "/products.txt");
         clientManager.write(dataFolderPath + "/clients.txt");
         workerManager.write(dataFolderPath + "/workers.txt");
@@ -63,4 +65,3 @@ std::string Store::write(const std::string& dataFolderPath) {
     }
     return "Export succeeded.";
 }
-

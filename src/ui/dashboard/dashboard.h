@@ -17,6 +17,7 @@ public:
     void manageOrders(Client* client = nullptr, Worker* worker = nullptr);
     void expandOrder(Order* order);
     void editOrder(Order* order);
+    void setOrderLocation(Order* order);
 
     void managePersonalData(Person* person);
     void manageStock();

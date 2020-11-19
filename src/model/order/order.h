@@ -13,19 +13,9 @@
 #include <fstream>
 #include <map>
 
-/**
- * Class relative to a store order.
- */
 class Order {
 public:
-    /**
-     * Creates a new order object.
-     *
-     * @param client the client
-     * @param worker the worker
-     * @param date the request date
-     */
-    Order(Client& client, Worker& worker, Date date = {});
+    Order(Client& client, Worker& worker, std::string location = DEFAULT_LOCATION, Date date = {});
 
     /**
      * Checks if the order has discount.
@@ -65,6 +55,8 @@ public:
      */
     Client* getClient() const;
 
+    void setDeliverLocation(const std::string& location);
+    std::string getDeliverLocation() const;
     /**
      * Gets the list of all products.
      *
@@ -161,6 +153,8 @@ public:
      */
     void print(std::ostream& os) const;
 
+    static const char* DEFAULT_LOCATION;
+
 private:
     /**
     * Updates total price whenever is added products to the order.
@@ -206,6 +200,7 @@ private:
      * The order deliver date.
      */
     Date _deliverDate;
+    std::string _deliverLocation;
 };
 
 #endif //SRC_ORDER_H

@@ -4,32 +4,22 @@
 
 #include "order.h"
 
-#include <model/product/product_manager.h>
-#include <model/person/client/client_manager.h>
-#include <model/person/worker/worker_manager.h>
+#include "model/product/product_manager.h"
+#include "model/person/client/client_manager.h"
+#include "model/person/worker/worker_manager.h"
 
 #include <exception/person_exception.h>
 
 #include <algorithm>
 #include <vector>
+#include "model/store/location_manager.h"
 
 /**
  * Class that manages the store orders.
  */
 class OrderManager {
 public:
-    /**
-     * Creates a new order manager object.
-     *
-     * @param pm the product manager
-     * @param cm the client manager
-     * @param wm the worker manager
-     */
-    OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm);
-
-    /**
-     * Destructs the order manager object.
-     */
+    OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager* wm, LocationManager* lm);
     ~OrderManager();
 
     /**
@@ -73,36 +63,15 @@ public:
      * @return the orders list
      */
     std::vector<Order*> get(Worker* worker) const;
+    std::vector<Order*> get(const std::string& location) const;
 
     /**
      * Sorts the orders list by the request date.
      */
     void sort();
-
-    /**
-     * Adds a new order to the orders list with a certain client and request date.
-     *
-     * @param client the client
-     * @param date the date request
-     * @return the order requested by the client
-     */
-    Order* add(Client* client, Date date = {});
-
-    /**
-     *Adds a new order to the orders list with a certain client, worker and a request date.
-     *
-     * @param client the client
-     * @param worker the worker
-     * @param date the request date
-     * @return the order requested by the client
-     */
-    Order* add(Client* client, Worker* worker, const Date& date);
-
-    /**
-     * Removes an order from the orders list.
-     *
-     * @param order the order
-     */
+  
+    Order* add(Client* client, const std::string& location, Date date = {});
+    Order* add(Client* client, Worker* worker, const std::string& location, const Date& date = {});
     void remove(Order* order);
 
     /**
@@ -158,6 +127,7 @@ private:
      * The store worker manager.
      */
     WorkerManager* _workerManager;
+    LocationManager* _locationManager;
 
     /**
      * The list of all orders.
