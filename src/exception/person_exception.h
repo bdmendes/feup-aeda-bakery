@@ -13,7 +13,7 @@
 class PersonDoesNotExist: public std::logic_error{
 public:
     /**
-     * Creates a new PersonDoesNotExist object.
+     * Creates a new PersonDoesNotExist exception object.
      *
      * @param name the name
      * @param tributaryNumber the taxpayer identification number
@@ -21,16 +21,16 @@ public:
     PersonDoesNotExist(const std::string& name, int tributaryNumber);
 
     /**
-     * Creates a new PersonDoesNotExist object.
+     * Creates a new PersonDoesNotExist exception object.
      *
      * @param name the name
      */
     explicit PersonDoesNotExist(const std::string& name);
 
     /**
-     * Creates a new PersonDoesNotExist object.
+     * Creates a new PersonDoesNotExist exception object.
      *
-     * @param taxID the the taxpayer identification number
+     * @param taxID the taxpayer identification number
      */
     explicit PersonDoesNotExist(int taxID);
 };
@@ -41,7 +41,7 @@ public:
 class InvalidPersonPosition : public std::invalid_argument{
 public:
     /**
-     * Creates a new InvalidPersonPosition object.
+     * Creates a new InvalidPersonPosition exception object.
      *
      * @param position the position
      * @param size the persons list size
@@ -55,7 +55,7 @@ public:
 class InvalidCredential : public std::invalid_argument {
 public:
     /**
-     * Creates a new InvalidCredential object.
+     * Creates a new InvalidCredential  exception object.
      *
      * @param offending the invalid string
      */

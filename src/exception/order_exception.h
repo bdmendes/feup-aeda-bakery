@@ -15,7 +15,7 @@
 class OrderWasAlreadyDelivered : public std::logic_error{
 public:
     /**
-     * Creates a new OrderWasAlreadyDelivered object.
+     * Creates a new OrderWasAlreadyDelivered exception object.
      *
      * @param client the client
      * @param worker the worker
@@ -30,7 +30,7 @@ public:
 class OrderWasNotDeliveredYet: public std::logic_error{
 public:
     /**
-     * Creates a new OrderWasNotDeliveredYet objet.
+     * Creates a new OrderWasNotDeliveredYet exception objet.
      *
      * @param client the client
      * @param worker the worker
@@ -45,7 +45,7 @@ public:
 class OrderDoesNotExist : public std::invalid_argument{
 public:
     /**
-     * Creates a new OrderDoesNotExist object.
+     * Creates a new OrderDoesNotExist exception object.
      */
     OrderDoesNotExist();
 };
@@ -56,7 +56,7 @@ public:
 class InvalidOrderEvaluation : public std::invalid_argument{
 public:
     /**
-     * Creates a new InvalidOrderEvaluation object.
+     * Creates a new InvalidOrderEvaluation exception object.
      *
      * @param evaluation the evaluation
      * @param client the client
@@ -70,7 +70,7 @@ public:
 class InvalidOrderPosition : public std::invalid_argument{
 public:
     /**
-     * Creates a new InvalidOrderPosition object.
+     * Creates a new InvalidOrderPosition exception object.
      *
      * @param position the position
      * @param size the size of the orders list

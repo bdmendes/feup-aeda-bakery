@@ -44,13 +44,23 @@ public:
     void remove(const std::string& location);
 
     /**
-     * Reads from a file all the locations data: name
+     * Reads from a file all of the locations data (name) and adds new objects created with that data to the store
+     * locations list.
+     *
+     * @param path the file path
+     */
+    void read(const std::string& path);
+
+    /**
+     * Writes to a file all of the locations data (name) that are on the store locations list.
      *
      * @param path
      */
-    void read(const std::string& path);
     void write(const std::string &path);
 private:
+    /**
+     * The list of all store locations available.
+     */
     std::set<std::string> _locations;
 };
 

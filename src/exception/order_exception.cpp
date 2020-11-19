@@ -1,6 +1,3 @@
-//
-// Created by bdmendes on 27/10/20.
-//
 
 #include "order_exception.h"
 

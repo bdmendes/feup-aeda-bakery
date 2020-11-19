@@ -97,7 +97,7 @@ public:
      * @param date the date
      * @return the new order add to the orders list
      */
-    Order* add(Client* client, const std::string& location, Date date = {});
+    Order* add(Client* client, const std::string& location = Order::DEFAULT_LOCATION, Date date = {});
 
     /**
      * Adds a new order to the orders list created from that data: client, worker, store location and date.
@@ -108,7 +108,7 @@ public:
      * @param date the date
      * @return the new order added to the orders list
      */
-    Order* add(Client* client, Worker* worker, const std::string& location, const Date& date = {});
+    Order* add(Client* client, Worker* worker, const std::string& location = Order::DEFAULT_LOCATION, const Date& date = {});
 
     /**
      * Remove a certain order from the orders list.

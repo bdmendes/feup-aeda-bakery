@@ -16,7 +16,7 @@
 class FileNotFound : public std::logic_error{
 public:
     /**
-     * Creates a new FileNotFound object.
+     * Creates a new FileNotFound exception object.
      *
      * @param path the file path
      */

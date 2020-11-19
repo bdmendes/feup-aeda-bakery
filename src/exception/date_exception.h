@@ -11,7 +11,7 @@
 class InvalidDate : public std::logic_error{
 public:
     /**
-     * Creates a new InvalidDate object.
+     * Creates a new InvalidDate exception object.
      *
      * @param completeDate the complete date
      */

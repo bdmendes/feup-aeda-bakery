@@ -11,7 +11,7 @@
 class ProductDoesNotExist : public std::invalid_argument{
 public:
     /**
-     * Creates a new ProductDoesNotExist object.
+     * Creates a new ProductDoesNotExist exceptionobject.
      *
      * @param name the name
      * @param price the price

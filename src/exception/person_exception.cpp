@@ -1,6 +1,3 @@
-//
-// Created by up201906166 on 23/10/2020.
-//
 
 #include "person_exception.h"
 
