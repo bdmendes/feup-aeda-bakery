@@ -1,6 +1,3 @@
-//
-// Created by bdmendes on 17/11/20.
-//
 
 #ifndef FEUP_AEDA_PROJECT_FILE_EXCEPTION_H
 #define FEUP_AEDA_PROJECT_FILE_EXCEPTION_H
@@ -13,9 +10,16 @@
 #include "../model/order/order_manager.h"
 #include "../model/date/date.h"
 
-
+/**
+ * Class relative to the exception of a file not found.
+ */
 class FileNotFound : public std::logic_error{
 public:
+    /**
+     * Creates a new FileNotFound object.
+     *
+     * @param path the file path
+     */
     explicit FileNotFound(const std::string& path);
 };
 

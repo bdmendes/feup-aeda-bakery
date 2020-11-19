@@ -1,6 +1,3 @@
-//
-// Created by bdmendes on 21/10/20.
-//
 
 #ifndef FEUP_AEDA_PROJECT_DATE_H
 #define FEUP_AEDA_PROJECT_DATE_H
@@ -10,31 +7,131 @@
 
 #include "exception/date_exception.h"
 
+/**
+ * Class that provides the date to order request and its delivery.
+ */
 class Date{
 public:
+    /**
+     * Creates a new date object which is the current calendar time.
+     */
     Date();
+
+    /**
+     * Creates a new date object.
+     *
+     * @param day the day
+     * @param month the month
+     * @param year the year
+     * @param hour the hour
+     * @param minute the minute
+     */
     Date(int day, int month, int year, int hour = 0, int minute = 0);
 
+    /**
+     * Checks if a year is leap.
+     *
+     * @param year the year
+     * @return true, if it is a leap year; false, otherwise
+     */
     static bool isLeapYear(unsigned year);
 
+    /**
+     * Gets the day.
+     *
+     * @return the day
+     */
     unsigned getDay() const;
+
+    /**
+     * Gets the month.
+     *
+     * @return the month
+     */
     unsigned getMonth() const;
+
+    /**
+     * Gets the year.
+     *
+     * @return the year
+     */
     unsigned getYear() const;
+
+    /**
+     * Gets the hour.
+     *
+     * @return the hour
+     */
     unsigned getHour() const;
+
+    /**
+     * Gets the minute
+     * @return the minute
+     */
     unsigned getMinute() const;
 
+    /**
+     * Gets the calender day in DD/MM/YYYY format.
+     *
+     * @return the calender day
+     */
     std::string getCalendarDay() const;
+
+    /**
+     * Gets the clock time in HH:MM format.
+     *
+     * @return the clock time
+     */
     std::string getClockTime() const;
+
+    /**
+     * Gets the complete date in DD/MM/YYYY HH:MM format.
+     *
+     * @return the complete date
+     */
     std::string getCompleteDate() const;
 
+    /**
+     * Adds days to the date.
+     *
+     * @param days the days to add
+     */
     void addDays(int days);
+
+    /**
+     * Adds minutes to the date.
+     *
+     * @param minutes the minutes to add
+     */
     void addMinutes(int minutes);
 
+    /**
+     * Equality operator.
+     *
+     * @param d2 the date to compare with
+     * @return true, if the dates are equal; false, otherwise
+     */
     bool operator==(const Date& d2) const;
+
+    /**
+     * Less than operator.
+     *
+     * @param d2 the date to compare with
+     * @return true, if the date is less than d2 (date is earlier); false, otherwise
+     */
     bool operator<(const Date& d2) const;
 
 private:
+    /**
+     * Checks if the date is valid.
+     *
+     * @return true, if it is a valid date; false, otherwise
+     */
     bool isValid() const;
+
+    /**
+     * Struct to get the current calendar time.
+     */
     tm _time;
 };
 

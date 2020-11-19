@@ -1,8 +1,6 @@
-//
-// Created by bdmendes on 29/10/20.
-//
 
 #include "worker_manager.h"
+
 #include "exception/file_exception.h"
 
 WorkerManager::WorkerManager() : _workers(){

@@ -1,6 +1,3 @@
-//
-// Created by laimi on 15/10/2020.
-//
 
 #include "product.h"
 
@@ -34,6 +31,16 @@ bool Product::operator<(const Product &p) const {
     return _name < p.getName();
 }
 
+bool Bread::operator==(const Bread &bread) const{
+    return _name == bread.getName() && _price == bread.getPrice() && _small == bread.isSmall();
+}
+
+void Bread::print(std::ostream& os) const {
+    os << util::column(_name,true)
+       << util::column(_small ? "Small bread" : "Big bread")
+       << util::column(util::to_string(_price) + " euros");
+}
+
 bool Cake::operator==(const Cake &cake) const{
     return getName() == cake.getName() && getCategory() == cake.getCategory()
     && getPrice() == cake.getPrice();
@@ -49,14 +56,5 @@ std::vector<std::string> Cake::getCategories() {
     return std::vector<std::string>(categoryStr,categoryStr + 5);
 }
 
-bool Bread::operator==(const Bread &bread) const{
-    return _name == bread.getName() && _price == bread.getPrice() && _small == bread.isSmall();
-}
-
-void Bread::print(std::ostream& os) const {
-    os << util::column(_name,true)
-       << util::column(_small ? "Small bread" : "Big bread")
-       << util::column(util::to_string(_price) + " euros");
-}
 
 
