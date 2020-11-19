@@ -179,7 +179,7 @@ struct PersonSmaller{
      *
      * @param p1 the first person to compare with
      * @param p2 the second person to compare with
-     * @return true, if p1 is less than p2; false, otherwise
+     * @return true, if p1 is less than p2, according to alphabetical order; false, otherwise
      */
     bool operator()(const Person* p1, const Person* p2) const{
         return *p1 < *p2;
