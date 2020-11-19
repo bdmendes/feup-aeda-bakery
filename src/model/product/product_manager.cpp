@@ -84,7 +84,8 @@ void ProductManager::read(const std::string &path) {
 
     for (std::string line; getline(file, line); ){
         util::stripCarriageReturn(line);
-        if (line.empty()) continue;
+        if (line.empty() || line.at(0) == '-') continue;
+
         if(line=="CAKES") readingCakes = true;
         else if(line=="BREADS") readingCakes = false;
         else if(readingCakes) {
@@ -153,7 +154,7 @@ void ProductManager::write(const std::string &path) const{
         file << nameToSave << " " << c->getPrice() << " " << styledCat << "\n";
     }
 
-    file << "BREADS\n";
+    file << util::SEPARATOR << "BREADS\n";
     for (const auto& b: breads){
         std::string nameToSave = b->getName();
         std::replace(nameToSave.begin(),nameToSave.end(),' ','-');
