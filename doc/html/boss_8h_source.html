@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AEDA Project: person/boss/boss.h Source File</title>
+<title>AEDA Project: model/person/boss/boss.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -97,45 +97,49 @@ $(document).ready(function(){initNavTree('boss_8h_source.html',''); initResizabl
 <div class="title">boss.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="boss_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by bdmendes on 14/11/20.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef FEUP_AEDA_PROJECT_BOSS_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_BOSS_H</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef FEUP_AEDA_PROJECT_BOSS_H</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_BOSS_H</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="person_8h.html">model/person/person.h</a>&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_boss.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_boss.html">Boss</a> : <span class="keyword">public</span> <a class="code" href="class_person.html">Person</a> {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_boss.html#a643cebda96d14ed2a9095758d03cc91d">Boss</a>(std::string name, <span class="keywordtype">int</span> taxID, <a class="code" href="struct_credential.html">Credential</a> credential = {<a class="code" href="class_boss.html#a98aaa7fa6ad80295128226402a8cc86e">DEFAULT_USERNAME</a>, <a class="code" href="class_boss.html#a71ab21a2a2623fa9d083859724f22749">DEFAULT_PASSWORD</a>});</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="struct_credential.html">Credential</a> <a class="code" href="class_boss.html#a82543868149c00a74267393aff5d96fd">getDefaultCredential</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_boss.html#a98aaa7fa6ad80295128226402a8cc86e">   36</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_boss.html#a98aaa7fa6ad80295128226402a8cc86e">DEFAULT_USERNAME</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_boss.html#a71ab21a2a2623fa9d083859724f22749">   41</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_boss.html#a71ab21a2a2623fa9d083859724f22749">DEFAULT_PASSWORD</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_BOSS_H</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;model/person/person.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_boss.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_boss.html">Boss</a> : <span class="keyword">public</span> <a class="code" href="class_person.html">Person</a> {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_boss.html#a0d05afdd0697d44925ed96e43e0408c9">Boss</a>(std::string name = <span class="stringliteral">&quot;Boss&quot;</span>, <span class="keywordtype">int</span> taxID = <a class="code" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a>,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                  <a class="code" href="struct_credential.html">Credential</a> credential = {<a class="code" href="class_boss.html#a98aaa7fa6ad80295128226402a8cc86e">DEFAULT_USERNAME</a>, <a class="code" href="class_boss.html#a71ab21a2a2623fa9d083859724f22749">DEFAULT_PASSWORD</a>});</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="struct_credential.html">Credential</a> <a class="code" href="class_boss.html#a82543868149c00a74267393aff5d96fd">getDefaultCredential</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_boss.html#a6e98a5e6ff441ed2a1007bf9ac52bda1">read</a>(<span class="keyword">const</span> std::string&amp; path);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_boss.html#ae0fbd96cb358a23fee9d8924635794cb">write</a>(<span class="keyword">const</span> std::string&amp; path);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="class_boss.html#a98aaa7fa6ad80295128226402a8cc86e">   50</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_boss.html#a98aaa7fa6ad80295128226402a8cc86e">DEFAULT_USERNAME</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_boss.html#a71ab21a2a2623fa9d083859724f22749">   55</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_boss.html#a71ab21a2a2623fa9d083859724f22749">DEFAULT_PASSWORD</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_BOSS_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astruct_credential_html"><div class="ttname"><a href="struct_credential.html">Credential</a></div><div class="ttdef"><b>Definition:</b> person.h:17</div></div>
-<div class="ttc" id="aclass_boss_html_a98aaa7fa6ad80295128226402a8cc86e"><div class="ttname"><a href="class_boss.html#a98aaa7fa6ad80295128226402a8cc86e">Boss::DEFAULT_USERNAME</a></div><div class="ttdeci">static const char * DEFAULT_USERNAME</div><div class="ttdoc">The default boss' access username.</div><div class="ttdef"><b>Definition:</b> boss.h:36</div></div>
-<div class="ttc" id="aclass_person_html"><div class="ttname"><a href="class_person.html">Person</a></div><div class="ttdef"><b>Definition:</b> person.h:28</div></div>
-<div class="ttc" id="aclass_boss_html_a82543868149c00a74267393aff5d96fd"><div class="ttname"><a href="class_boss.html#a82543868149c00a74267393aff5d96fd">Boss::getDefaultCredential</a></div><div class="ttdeci">Credential getDefaultCredential() override</div><div class="ttdoc">Gets the default boss' access credentials.</div><div class="ttdef"><b>Definition:</b> boss.cpp:16</div></div>
-<div class="ttc" id="aclass_boss_html_a71ab21a2a2623fa9d083859724f22749"><div class="ttname"><a href="class_boss.html#a71ab21a2a2623fa9d083859724f22749">Boss::DEFAULT_PASSWORD</a></div><div class="ttdeci">static const char * DEFAULT_PASSWORD</div><div class="ttdoc">The default boss' access password.</div><div class="ttdef"><b>Definition:</b> boss.h:41</div></div>
-<div class="ttc" id="aclass_boss_html"><div class="ttname"><a href="class_boss.html">Boss</a></div><div class="ttdef"><b>Definition:</b> boss.h:14</div></div>
-<div class="ttc" id="aclass_boss_html_a643cebda96d14ed2a9095758d03cc91d"><div class="ttname"><a href="class_boss.html#a643cebda96d14ed2a9095758d03cc91d">Boss::Boss</a></div><div class="ttdeci">Boss(std::string name, int taxID, Credential credential={DEFAULT_USERNAME, DEFAULT_PASSWORD})</div><div class="ttdoc">Creates a new boss.</div><div class="ttdef"><b>Definition:</b> boss.cpp:12</div></div>
-<div class="ttc" id="aperson_8h_html"><div class="ttname"><a href="person_8h.html">person.h</a></div></div>
+<div class="ttc" id="astruct_credential_html"><div class="ttname"><a href="struct_credential.html">Credential</a></div><div class="ttdoc">Struct relative to the login credentials.</div><div class="ttdef"><b>Definition:</b> person.h:25</div></div>
+<div class="ttc" id="aclass_boss_html_a98aaa7fa6ad80295128226402a8cc86e"><div class="ttname"><a href="class_boss.html#a98aaa7fa6ad80295128226402a8cc86e">Boss::DEFAULT_USERNAME</a></div><div class="ttdeci">static const char * DEFAULT_USERNAME</div><div class="ttdoc">The default boss login username.</div><div class="ttdef"><b>Definition:</b> boss.h:50</div></div>
+<div class="ttc" id="aclass_person_html"><div class="ttname"><a href="class_person.html">Person</a></div><div class="ttdoc">Class relative to a store user.</div><div class="ttdef"><b>Definition:</b> person.h:60</div></div>
+<div class="ttc" id="aclass_boss_html_a82543868149c00a74267393aff5d96fd"><div class="ttname"><a href="class_boss.html#a82543868149c00a74267393aff5d96fd">Boss::getDefaultCredential</a></div><div class="ttdeci">Credential getDefaultCredential() override</div><div class="ttdoc">Gets the default boss' login credentials.</div><div class="ttdef"><b>Definition:</b> boss.cpp:13</div></div>
+<div class="ttc" id="aclass_boss_html_a0d05afdd0697d44925ed96e43e0408c9"><div class="ttname"><a href="class_boss.html#a0d05afdd0697d44925ed96e43e0408c9">Boss::Boss</a></div><div class="ttdeci">Boss(std::string name=&quot;Boss&quot;, int taxID=Person::DEFAULT_TAX_ID, Credential credential={DEFAULT_USERNAME, DEFAULT_PASSWORD})</div><div class="ttdoc">Creates a new boss object.</div><div class="ttdef"><b>Definition:</b> boss.cpp:9</div></div>
+<div class="ttc" id="aclass_boss_html_a71ab21a2a2623fa9d083859724f22749"><div class="ttname"><a href="class_boss.html#a71ab21a2a2623fa9d083859724f22749">Boss::DEFAULT_PASSWORD</a></div><div class="ttdeci">static const char * DEFAULT_PASSWORD</div><div class="ttdoc">The default boss login password.</div><div class="ttdef"><b>Definition:</b> boss.h:55</div></div>
+<div class="ttc" id="aclass_boss_html"><div class="ttname"><a href="class_boss.html">Boss</a></div><div class="ttdoc">Class relative to the store boss.</div><div class="ttdef"><b>Definition:</b> boss.h:12</div></div>
+<div class="ttc" id="aclass_person_html_a52661d7b661afecd42415d70f20cfe8a"><div class="ttname"><a href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a></div><div class="ttdeci">static const int DEFAULT_TAX_ID</div><div class="ttdoc">The default taxpayer identification number.</div><div class="ttdef"><b>Definition:</b> person.h:168</div></div>
+<div class="ttc" id="aclass_boss_html_ae0fbd96cb358a23fee9d8924635794cb"><div class="ttname"><a href="class_boss.html#ae0fbd96cb358a23fee9d8924635794cb">Boss::write</a></div><div class="ttdeci">void write(const std::string &amp;path)</div><div class="ttdoc">Writes the boss data (name, the taxpayer identification number and login credentials) to a file.</div><div class="ttdef"><b>Definition:</b> boss.cpp:30</div></div>
+<div class="ttc" id="aclass_boss_html_a6e98a5e6ff441ed2a1007bf9ac52bda1"><div class="ttname"><a href="class_boss.html#a6e98a5e6ff441ed2a1007bf9ac52bda1">Boss::read</a></div><div class="ttdeci">void read(const std::string &amp;path)</div><div class="ttdoc">Reads a boss data (name, the taxpayer identification number and login credentials) from a file and cr...</div><div class="ttdef"><b>Definition:</b> boss.cpp:17</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6531348fe7cbc733da9220e3a7663be1.html">person</a></li><li class="navelem"><a class="el" href="dir_4c944ca2d90951cb134933184aa11fb1.html">boss</a></li><li class="navelem"><a class="el" href="boss_8h.html">boss.h</a></li>
+    <li class="navelem"><a class="el" href="dir_3f14f6767c31cb4a1d22c13c18cc6fc3.html">model</a></li><li class="navelem"><a class="el" href="dir_ffc5a8b469286e8572420dddab27e23d.html">person</a></li><li class="navelem"><a class="el" href="dir_1372db739e8576ecee18ab7b7eab71fd.html">boss</a></li><li class="navelem"><b>boss.h</b></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

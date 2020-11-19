@@ -101,56 +101,57 @@ $(document).ready(function(){initNavTree('class_client_manager.html',''); initRe
 </div><!--header-->
 <div class="contents">
 
+<p>Class that manages the store clients.  
+ <a href="class_client_manager.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="client__manager_8h_source.html">client_manager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad68355fab62dffa97b8ddc8df4509f7e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#ad68355fab62dffa97b8ddc8df4509f7e">ClientManager</a> ()</td></tr>
-<tr class="memdesc:ad68355fab62dffa97b8ddc8df4509f7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new client manager.  <a href="class_client_manager.html#ad68355fab62dffa97b8ddc8df4509f7e">More...</a><br /></td></tr>
+<tr class="memitem:ad68355fab62dffa97b8ddc8df4509f7e"><td class="memItemLeft" align="right" valign="top"><a id="ad68355fab62dffa97b8ddc8df4509f7e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#ad68355fab62dffa97b8ddc8df4509f7e">ClientManager</a> ()</td></tr>
+<tr class="memdesc:ad68355fab62dffa97b8ddc8df4509f7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new client manager object. <br /></td></tr>
 <tr class="separator:ad68355fab62dffa97b8ddc8df4509f7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af605d4fa9dab04b9874bf307277cd8a3"><td class="memItemLeft" align="right" valign="top"><a id="af605d4fa9dab04b9874bf307277cd8a3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#af605d4fa9dab04b9874bf307277cd8a3">~ClientManager</a> ()</td></tr>
+<tr class="memdesc:af605d4fa9dab04b9874bf307277cd8a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the client manager object. <br /></td></tr>
+<tr class="separator:af605d4fa9dab04b9874bf307277cd8a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6d6572bfdef375b7a4bfb93e4a802e5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#ae6d6572bfdef375b7a4bfb93e4a802e5">has</a> (<a class="el" href="class_client.html">Client</a> *client) const</td></tr>
-<tr class="memdesc:ae6d6572bfdef375b7a4bfb93e4a802e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the client is on the clients list of the client manager.  <a href="class_client_manager.html#ae6d6572bfdef375b7a4bfb93e4a802e5">More...</a><br /></td></tr>
+<tr class="memdesc:ae6d6572bfdef375b7a4bfb93e4a802e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the client is on the clients list.  <a href="class_client_manager.html#ae6d6572bfdef375b7a4bfb93e4a802e5">More...</a><br /></td></tr>
 <tr class="separator:ae6d6572bfdef375b7a4bfb93e4a802e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a853b3c43d5d28242ebdb06f2e18b41ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_client.html">Client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a853b3c43d5d28242ebdb06f2e18b41ab">get</a> (unsigned position)</td></tr>
-<tr class="memdesc:a853b3c43d5d28242ebdb06f2e18b41ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the client on the clients list of the client manager at a certain position.  <a href="class_client_manager.html#a853b3c43d5d28242ebdb06f2e18b41ab">More...</a><br /></td></tr>
+<tr class="memdesc:a853b3c43d5d28242ebdb06f2e18b41ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the client on the clients list at a certain position.  <a href="class_client_manager.html#a853b3c43d5d28242ebdb06f2e18b41ab">More...</a><br /></td></tr>
 <tr class="separator:a853b3c43d5d28242ebdb06f2e18b41ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06973de32df93ec68b8143a5c9409e89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_client.html">Client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a06973de32df93ec68b8143a5c9409e89">getClient</a> (int taxID) const</td></tr>
+<tr class="memdesc:a06973de32df93ec68b8143a5c9409e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a client from the clients list by its taxpayer identification number.  <a href="class_client_manager.html#a06973de32df93ec68b8143a5c9409e89">More...</a><br /></td></tr>
+<tr class="separator:a06973de32df93ec68b8143a5c9409e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22d117ee4ea8170943dbb52033136560"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_client.html">Client</a> *, <a class="el" href="struct_person_smaller.html">PersonSmaller</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a22d117ee4ea8170943dbb52033136560">getAll</a> ()</td></tr>
-<tr class="memdesc:a22d117ee4ea8170943dbb52033136560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the clients list of the client manager.  <a href="class_client_manager.html#a22d117ee4ea8170943dbb52033136560">More...</a><br /></td></tr>
+<tr class="memdesc:a22d117ee4ea8170943dbb52033136560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the clients list.  <a href="class_client_manager.html#a22d117ee4ea8170943dbb52033136560">More...</a><br /></td></tr>
 <tr class="separator:a22d117ee4ea8170943dbb52033136560"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a457b8ba73f84d818cf0773e00351ee81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_client.html">Client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a457b8ba73f84d818cf0773e00351ee81">add</a> (std::string name, bool premium=false, int taxID=<a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a>, <a class="el" href="struct_credential.html">Credential</a> credential={<a class="el" href="class_client.html#aa8701753a7ee4d53d87e609381219168">Client::DEFAULT_USERNAME</a>, <a class="el" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">Client::DEFAULT_PASSWORD</a>})</td></tr>
-<tr class="memdesc:a457b8ba73f84d818cf0773e00351ee81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a client to the clients list of the client manager.  <a href="class_client_manager.html#a457b8ba73f84d818cf0773e00351ee81">More...</a><br /></td></tr>
-<tr class="separator:a457b8ba73f84d818cf0773e00351ee81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aade9286a9fcb35a1aefe2fa608cb0058"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_client.html">Client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#aade9286a9fcb35a1aefe2fa608cb0058">add</a> (std::string name, int taxID=<a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a>, bool premium=false, <a class="el" href="struct_credential.html">Credential</a> credential={<a class="el" href="class_client.html#aa8701753a7ee4d53d87e609381219168">Client::DEFAULT_USERNAME</a>, <a class="el" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">Client::DEFAULT_PASSWORD</a>})</td></tr>
+<tr class="memdesc:aade9286a9fcb35a1aefe2fa608cb0058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a client to the clients list.  <a href="class_client_manager.html#aade9286a9fcb35a1aefe2fa608cb0058">More...</a><br /></td></tr>
+<tr class="separator:aade9286a9fcb35a1aefe2fa608cb0058"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa45787891a819b6e822689c1f0446563"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#aa45787891a819b6e822689c1f0446563">remove</a> (<a class="el" href="class_client.html">Client</a> *client)</td></tr>
-<tr class="memdesc:aa45787891a819b6e822689c1f0446563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a client from the clients list of the client manager.  <a href="class_client_manager.html#aa45787891a819b6e822689c1f0446563">More...</a><br /></td></tr>
+<tr class="memdesc:aa45787891a819b6e822689c1f0446563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a client from the clients list.  <a href="class_client_manager.html#aa45787891a819b6e822689c1f0446563">More...</a><br /></td></tr>
 <tr class="separator:aa45787891a819b6e822689c1f0446563"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2ec8a72fa710fa8052b448de586fd99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#ad2ec8a72fa710fa8052b448de586fd99">remove</a> (unsigned position)</td></tr>
-<tr class="memdesc:ad2ec8a72fa710fa8052b448de586fd99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a client from the clients list of client manager, at a certain position.  <a href="class_client_manager.html#ad2ec8a72fa710fa8052b448de586fd99">More...</a><br /></td></tr>
+<tr class="memdesc:ad2ec8a72fa710fa8052b448de586fd99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a client from the clients list at a certain position.  <a href="class_client_manager.html#ad2ec8a72fa710fa8052b448de586fd99">More...</a><br /></td></tr>
 <tr class="separator:ad2ec8a72fa710fa8052b448de586fd99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a546bf994ad578896d3a0d9ff0570b4af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a546bf994ad578896d3a0d9ff0570b4af">print</a> (std::ostream &amp;os, bool showData=true)</td></tr>
-<tr class="memdesc:a546bf994ad578896d3a0d9ff0570b4af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the clients' data.  <a href="class_client_manager.html#a546bf994ad578896d3a0d9ff0570b4af">More...</a><br /></td></tr>
+<tr class="memdesc:a546bf994ad578896d3a0d9ff0570b4af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all the clients data.  <a href="class_client_manager.html#a546bf994ad578896d3a0d9ff0570b4af">More...</a><br /></td></tr>
 <tr class="separator:a546bf994ad578896d3a0d9ff0570b4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb5cf80ded01a5b6029d2a5f33ce435c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#aeb5cf80ded01a5b6029d2a5f33ce435c">read</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:aeb5cf80ded01a5b6029d2a5f33ce435c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads all the clients data (name, the taxpayer identification number and login credentials) from a file and creates new ones with that data.  <a href="class_client_manager.html#aeb5cf80ded01a5b6029d2a5f33ce435c">More...</a><br /></td></tr>
+<tr class="separator:aeb5cf80ded01a5b6029d2a5f33ce435c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e6af4aaaaff7fd72feffe6ef0984802"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_client_manager.html#a4e6af4aaaaff7fd72feffe6ef0984802">write</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:a4e6af4aaaaff7fd72feffe6ef0984802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes all the clients data that are on the clients list (name, the taxpayer identification number and login credentials) to a file.  <a href="class_client_manager.html#a4e6af4aaaaff7fd72feffe6ef0984802">More...</a><br /></td></tr>
+<tr class="separator:a4e6af4aaaaff7fd72feffe6ef0984802"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad68355fab62dffa97b8ddc8df4509f7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad68355fab62dffa97b8ddc8df4509f7e">&#9670;&nbsp;</a></span>ClientManager()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ClientManager::ClientManager </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a457b8ba73f84d818cf0773e00351ee81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a457b8ba73f84d818cf0773e00351ee81">&#9670;&nbsp;</a></span>add()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that manages the store clients. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aade9286a9fcb35a1aefe2fa608cb0058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aade9286a9fcb35a1aefe2fa608cb0058">&#9670;&nbsp;</a></span>add()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -164,14 +165,14 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>premium</em> = <code>false</code>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>taxID</em> = <code><a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>taxID</em> = <code><a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a></code>, </td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>premium</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -186,12 +187,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adds a client to the clients list. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>the name </td></tr>
-    <tr><td class="paramname">premium</td><td>the type of subscription </td></tr>
+    <tr><td class="paramname">premium</td><td>the subscription type (true, if it is premium; false, otherwise) </td></tr>
     <tr><td class="paramname">taxID</td><td>the taxpayer identification number </td></tr>
-    <tr><td class="paramname">credential</td><td>the access credentials </td></tr>
+    <tr><td class="paramname">credential</td><td>the login credentials </td></tr>
   </table>
   </dd>
 </dl>
@@ -214,6 +217,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the client on the clients list at a certain position. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">position</td><td>the position </td></tr>
@@ -238,7 +243,36 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the clients list. </p>
 <dl class="section return"><dt>Returns</dt><dd>the clients list </dd></dl>
+
+</div>
+</div>
+<a id="a06973de32df93ec68b8143a5c9409e89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06973de32df93ec68b8143a5c9409e89">&#9670;&nbsp;</a></span>getClient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_client.html">Client</a> * ClientManager::getClient </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>taxID</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a client from the clients list by its taxpayer identification number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">taxID</td><td>the taxpayer identification number </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the client on the clients list with that taxpayer identification number </dd></dl>
 
 </div>
 </div>
@@ -257,13 +291,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if the client is on the clients list. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">client</td><td>the client </td></tr>
+    <tr><td class="paramname">client</td><td>the client to check if is on the list </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true, if the client is on clients list; false, otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if there are no clients on the list yet; false, otherwise </dd></dl>
 
 </div>
 </div>
@@ -292,15 +328,42 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>If showData is true prints all data: name, taxpayer identification number, subscription type and accumulated points. Otherwise prints just name and taxpayer identification number.</p>
+
+<p>Prints all the clients data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">os</td><td>output stream </td></tr>
-    <tr><td class="paramname">showData</td><td></td></tr>
+    <tr><td class="paramname">os</td><td>the output stream </td></tr>
+    <tr><td class="paramname">showData</td><td>if true, for all clients, prints all data: name, taxpayer identification number, subscription type, accumulated points and mean evaluation; otherwise, just prints the name, the taxpayer identification number and the log status. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true, if there are alredy clients; false, otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if there are already clients; false, otherwise </dd></dl>
+
+</div>
+</div>
+<a id="aeb5cf80ded01a5b6029d2a5f33ce435c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb5cf80ded01a5b6029d2a5f33ce435c">&#9670;&nbsp;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ClientManager::read </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads all the clients data (name, the taxpayer identification number and login credentials) from a file and creates new ones with that data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>the file path </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -319,9 +382,11 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Removes a client from the clients list. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">client</td><td>the client to remove from clients list </td></tr>
+    <tr><td class="paramname">client</td><td>the client to remove </td></tr>
   </table>
   </dd>
 </dl>
@@ -343,6 +408,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Removes a client from the clients list at a certain position. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">position</td><td>the position </td></tr>
@@ -352,6 +419,36 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a4e6af4aaaaff7fd72feffe6ef0984802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e6af4aaaaff7fd72feffe6ef0984802">&#9670;&nbsp;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ClientManager::write </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes all the clients data that are on the clients list (name, the taxpayer identification number and login credentials) to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>the file path </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>model/person/client/<a class="el" href="client__manager_8h_source.html">client_manager.h</a></li>
+<li>model/person/client/client_manager.cpp</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

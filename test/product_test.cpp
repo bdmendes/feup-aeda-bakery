@@ -1,12 +1,7 @@
-//
-// Created by laimi on 22/10/2020.
-//
 
 #include <gtest/gtest.h>
 #include "model/product/product.h"
-#include "model/product/product_manager.h"
 
-#include <algorithm>
 #include <iostream>
 
 using testing::Eq;

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AEDA Project: product/product.h Source File</title>
+<title>AEDA Project: model/product/product.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -97,89 +97,103 @@ $(document).ready(function(){initNavTree('product_8h_source.html',''); initResiz
 <div class="title">product.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="product_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by laimi on 15/10/2020.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef SRC_PRODUCT_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define SRC_PRODUCT_H</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef SRC_PRODUCT_H</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define SRC_PRODUCT_H</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;exception/product_exception.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;exception/product_exception.h&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="product_8h.html#acf5914e0bae58cb3f771d9bbefcde5d2">   14</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="product_8h.html#acf5914e0bae58cb3f771d9bbefcde5d2">CakeCategory</a> {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    GENERAL, PIE, SPONGE, PUFF_PASTRY, <a class="code" href="product_8h.html#acf5914e0bae58cb3f771d9bbefcde5d2ab61773b9b3968a9988d765d728985862">CRUNCHY</a></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;};</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_product.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_product.html">Product</a> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    std::string <a class="code" href="class_product.html#a9cbd896ca6b2d95088be8ad8c3b11e3b">getName</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_product.html#a0aaea95b8d3241b3758246254b8575e2">getPrice</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="class_product.html#a31e7c281fbf08bf2d3202f15a1342e21">operator== </a>(<span class="keyword">const</span> <a class="code" href="class_product.html">Product</a>&amp; p) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_product.html#ac45a213fbfe36bf690bf059706c56858">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="class_product.html">Product</a>&amp; p) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_product.html#a12f459de60dc268cd46532896f4800e8">   25</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_product.html#a12f459de60dc268cd46532896f4800e8">print</a>(std::ostream&amp; os) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_product.html#a35fd1ce655c8358c95d59cb5e9682b96">Product</a>(std::string name, <span class="keywordtype">float</span> price);</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_product.html#a8524c26a92b6be2db6b808a3fecd3976">   28</a></span>&#160;    std::string <a class="code" href="class_product.html#a8524c26a92b6be2db6b808a3fecd3976">_name</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">   29</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">_price</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">enum class</span> CakeCategory {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    GENERAL, PIE, SPONGE, PUFF_PASTRY, CRUNCHY</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_product.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_product.html">Product</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_product.html#a35fd1ce655c8358c95d59cb5e9682b96">Product</a>(std::string name, <span class="keywordtype">float</span> price);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_bread.html">   32</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_bread.html">Bread</a> : <span class="keyword">public</span> <a class="code" href="class_product.html">Product</a>{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_bread.html#ab358f240ce5067b05be9fd270ca86283">Bread</a>(std::string name, <span class="keywordtype">float</span> price, <span class="keywordtype">bool</span> small = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_bread.html#a88283927a303adb18a9042613b5398ef">isSmall</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="class_bread.html#a5b6fcc59b28176c53950ded6678ad112">operator==</a>(<span class="keyword">const</span> <a class="code" href="class_bread.html">Bread</a>&amp; bread) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_bread.html#a1882ae57fd904d222c2793b73ba694df">print</a>(std::ostream&amp; os) <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">bool</span> _small;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_cake.html">   42</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_cake.html">Cake</a> : <span class="keyword">public</span> <a class="code" href="class_product.html">Product</a>{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_cake.html#aa09a959dc3aaf2bafcb279cdb9925894">Cake</a>(std::string name, <span class="keywordtype">float</span> price, <a class="code" href="product_8h.html#acf5914e0bae58cb3f771d9bbefcde5d2">CakeCategory</a> category = CakeCategory::GENERAL);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="product_8h.html#acf5914e0bae58cb3f771d9bbefcde5d2">CakeCategory</a> <a class="code" href="class_cake.html#abb54162ee88f22f7f5d7c4034fbafcee">getCategory</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="class_cake.html#aa4296dedf826061e929b2bcf174f08c4">operator==</a>(<span class="keyword">const</span> <a class="code" href="class_cake.html">Cake</a>&amp; cake) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_cake.html#a0d9544bfe4458c5d6239979b2d9bbf5d">print</a>(std::ostream&amp; os) <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_cake.html#a41a651afe08f372b61d1efa393305c21">   49</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_cake.html#a41a651afe08f372b61d1efa393305c21">categoryStr</a>[5];</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="product_8h.html#acf5914e0bae58cb3f771d9bbefcde5d2">CakeCategory</a> _category;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* _categoryStr;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif //SRC_PRODUCT_H</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_product.html#a8b28088bf44ce0b2a1548fb1d48709ca">   35</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_product.html#a8b28088bf44ce0b2a1548fb1d48709ca">~Product</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::string <a class="code" href="class_product.html#a9cbd896ca6b2d95088be8ad8c3b11e3b">getName</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_product.html#a0aaea95b8d3241b3758246254b8575e2">getPrice</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="class_product.html#a31e7c281fbf08bf2d3202f15a1342e21">operator== </a>(<span class="keyword">const</span> <a class="code" href="class_product.html">Product</a>&amp; p) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_product.html#ac45a213fbfe36bf690bf059706c56858">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="class_product.html">Product</a>&amp; p) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_product.html#a12f459de60dc268cd46532896f4800e8">   72</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_product.html#a12f459de60dc268cd46532896f4800e8">print</a>(std::ostream&amp; os) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="class_product.html#a8524c26a92b6be2db6b808a3fecd3976">   77</a></span>&#160;    std::string <a class="code" href="class_product.html#a8524c26a92b6be2db6b808a3fecd3976">_name</a>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">   82</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">_price</a>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="class_bread.html">   88</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_bread.html">Bread</a> : <span class="keyword">public</span> <a class="code" href="class_product.html">Product</a>{</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="class_bread.html#ab358f240ce5067b05be9fd270ca86283">Bread</a>(std::string name, <span class="keywordtype">float</span> price, <span class="keywordtype">bool</span> small = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_bread.html#a88283927a303adb18a9042613b5398ef">isSmall</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="class_bread.html#a5b6fcc59b28176c53950ded6678ad112">operator==</a>(<span class="keyword">const</span> <a class="code" href="class_bread.html">Bread</a>&amp; bread) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_bread.html#a1882ae57fd904d222c2793b73ba694df">print</a>(std::ostream&amp; os) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">bool</span> _small;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="class_cake.html">  130</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_cake.html">Cake</a> : <span class="keyword">public</span> <a class="code" href="class_product.html">Product</a>{</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="class_cake.html#aa09a959dc3aaf2bafcb279cdb9925894">Cake</a>(std::string name, <span class="keywordtype">float</span> price, CakeCategory category = CakeCategory::GENERAL);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    CakeCategory <a class="code" href="class_cake.html#abb54162ee88f22f7f5d7c4034fbafcee">getCategory</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="class_cake.html#aa4296dedf826061e929b2bcf174f08c4">operator==</a>(<span class="keyword">const</span> <a class="code" href="class_cake.html">Cake</a>&amp; cake) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_cake.html#a0d9544bfe4458c5d6239979b2d9bbf5d">print</a>(std::ostream&amp; os) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="class_cake.html#a41a651afe08f372b61d1efa393305c21">  166</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_cake.html#a41a651afe08f372b61d1efa393305c21">categoryStr</a>[5];</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keyword">static</span> std::vector&lt;std::string&gt; <a class="code" href="class_cake.html#a951a3c79e819f02dfdf3516ff3acf3ef">getCategories</a>();</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    CakeCategory _category;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* _categoryStr;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;};</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">#endif //SRC_PRODUCT_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_cake_html_a41a651afe08f372b61d1efa393305c21"><div class="ttname"><a href="class_cake.html#a41a651afe08f372b61d1efa393305c21">Cake::categoryStr</a></div><div class="ttdeci">static const char * categoryStr[5]</div><div class="ttdef"><b>Definition:</b> product.h:49</div></div>
-<div class="ttc" id="aclass_product_html_a8524c26a92b6be2db6b808a3fecd3976"><div class="ttname"><a href="class_product.html#a8524c26a92b6be2db6b808a3fecd3976">Product::_name</a></div><div class="ttdeci">std::string _name</div><div class="ttdef"><b>Definition:</b> product.h:28</div></div>
-<div class="ttc" id="aproduct_8h_html_acf5914e0bae58cb3f771d9bbefcde5d2"><div class="ttname"><a href="product_8h.html#acf5914e0bae58cb3f771d9bbefcde5d2">CakeCategory</a></div><div class="ttdeci">CakeCategory</div><div class="ttdef"><b>Definition:</b> product.h:14</div></div>
-<div class="ttc" id="aclass_bread_html_a1882ae57fd904d222c2793b73ba694df"><div class="ttname"><a href="class_bread.html#a1882ae57fd904d222c2793b73ba694df">Bread::print</a></div><div class="ttdeci">void print(std::ostream &amp;os) const override</div><div class="ttdef"><b>Definition:</b> product.cpp:53</div></div>
-<div class="ttc" id="aclass_product_html_a35fd1ce655c8358c95d59cb5e9682b96"><div class="ttname"><a href="class_product.html#a35fd1ce655c8358c95d59cb5e9682b96">Product::Product</a></div><div class="ttdeci">Product(std::string name, float price)</div><div class="ttdef"><b>Definition:</b> product.cpp:14</div></div>
-<div class="ttc" id="aclass_product_html_a9cbd896ca6b2d95088be8ad8c3b11e3b"><div class="ttname"><a href="class_product.html#a9cbd896ca6b2d95088be8ad8c3b11e3b">Product::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdef"><b>Definition:</b> product.cpp:22</div></div>
-<div class="ttc" id="aclass_product_html_a0aaea95b8d3241b3758246254b8575e2"><div class="ttname"><a href="class_product.html#a0aaea95b8d3241b3758246254b8575e2">Product::getPrice</a></div><div class="ttdeci">float getPrice() const</div><div class="ttdef"><b>Definition:</b> product.cpp:24</div></div>
-<div class="ttc" id="aclass_cake_html_a0d9544bfe4458c5d6239979b2d9bbf5d"><div class="ttname"><a href="class_cake.html#a0d9544bfe4458c5d6239979b2d9bbf5d">Cake::print</a></div><div class="ttdeci">void print(std::ostream &amp;os) const override</div><div class="ttdef"><b>Definition:</b> product.cpp:43</div></div>
-<div class="ttc" id="aclass_bread_html_a5b6fcc59b28176c53950ded6678ad112"><div class="ttname"><a href="class_bread.html#a5b6fcc59b28176c53950ded6678ad112">Bread::operator==</a></div><div class="ttdeci">virtual bool operator==(const Bread &amp;bread) const</div><div class="ttdef"><b>Definition:</b> product.cpp:49</div></div>
-<div class="ttc" id="aclass_bread_html"><div class="ttname"><a href="class_bread.html">Bread</a></div><div class="ttdef"><b>Definition:</b> product.h:32</div></div>
-<div class="ttc" id="aclass_product_html_ac45a213fbfe36bf690bf059706c56858"><div class="ttname"><a href="class_product.html#ac45a213fbfe36bf690bf059706c56858">Product::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Product &amp;p) const</div><div class="ttdef"><b>Definition:</b> product.cpp:34</div></div>
-<div class="ttc" id="aproduct_8h_html_acf5914e0bae58cb3f771d9bbefcde5d2ab61773b9b3968a9988d765d728985862"><div class="ttname"><a href="product_8h.html#acf5914e0bae58cb3f771d9bbefcde5d2ab61773b9b3968a9988d765d728985862">CakeCategory::GENERAL</a></div><div class="ttdeci">@ GENERAL</div></div>
-<div class="ttc" id="aclass_product_html_a12f459de60dc268cd46532896f4800e8"><div class="ttname"><a href="class_product.html#a12f459de60dc268cd46532896f4800e8">Product::print</a></div><div class="ttdeci">virtual void print(std::ostream &amp;os) const =0</div></div>
-<div class="ttc" id="aclass_bread_html_ab358f240ce5067b05be9fd270ca86283"><div class="ttname"><a href="class_bread.html#ab358f240ce5067b05be9fd270ca86283">Bread::Bread</a></div><div class="ttdeci">Bread(std::string name, float price, bool small=true)</div><div class="ttdef"><b>Definition:</b> product.cpp:16</div></div>
-<div class="ttc" id="aclass_product_html_a31e7c281fbf08bf2d3202f15a1342e21"><div class="ttname"><a href="class_product.html#a31e7c281fbf08bf2d3202f15a1342e21">Product::operator==</a></div><div class="ttdeci">virtual bool operator==(const Product &amp;p) const</div><div class="ttdef"><b>Definition:</b> product.cpp:30</div></div>
-<div class="ttc" id="aclass_product_html"><div class="ttname"><a href="class_product.html">Product</a></div><div class="ttdef"><b>Definition:</b> product.h:18</div></div>
-<div class="ttc" id="aclass_cake_html"><div class="ttname"><a href="class_cake.html">Cake</a></div><div class="ttdef"><b>Definition:</b> product.h:42</div></div>
-<div class="ttc" id="aclass_cake_html_abb54162ee88f22f7f5d7c4034fbafcee"><div class="ttname"><a href="class_cake.html#abb54162ee88f22f7f5d7c4034fbafcee">Cake::getCategory</a></div><div class="ttdeci">CakeCategory getCategory() const</div><div class="ttdef"><b>Definition:</b> product.cpp:28</div></div>
-<div class="ttc" id="aclass_product_html_a9e3eb97a1823206ce831b03e4d71454c"><div class="ttname"><a href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">Product::_price</a></div><div class="ttdeci">float _price</div><div class="ttdef"><b>Definition:</b> product.h:29</div></div>
-<div class="ttc" id="aclass_bread_html_a88283927a303adb18a9042613b5398ef"><div class="ttname"><a href="class_bread.html#a88283927a303adb18a9042613b5398ef">Bread::isSmall</a></div><div class="ttdeci">bool isSmall() const</div><div class="ttdef"><b>Definition:</b> product.cpp:26</div></div>
-<div class="ttc" id="aclass_cake_html_aa09a959dc3aaf2bafcb279cdb9925894"><div class="ttname"><a href="class_cake.html#aa09a959dc3aaf2bafcb279cdb9925894">Cake::Cake</a></div><div class="ttdeci">Cake(std::string name, float price, CakeCategory category=CakeCategory::GENERAL)</div><div class="ttdef"><b>Definition:</b> product.cpp:18</div></div>
-<div class="ttc" id="aclass_cake_html_aa4296dedf826061e929b2bcf174f08c4"><div class="ttname"><a href="class_cake.html#aa4296dedf826061e929b2bcf174f08c4">Cake::operator==</a></div><div class="ttdeci">virtual bool operator==(const Cake &amp;cake) const</div><div class="ttdef"><b>Definition:</b> product.cpp:38</div></div>
+<div class="ttc" id="aclass_cake_html_a41a651afe08f372b61d1efa393305c21"><div class="ttname"><a href="class_cake.html#a41a651afe08f372b61d1efa393305c21">Cake::categoryStr</a></div><div class="ttdeci">static const char * categoryStr[5]</div><div class="ttdoc">All the possible cakes categories as a string.</div><div class="ttdef"><b>Definition:</b> product.h:166</div></div>
+<div class="ttc" id="aclass_product_html_a8524c26a92b6be2db6b808a3fecd3976"><div class="ttname"><a href="class_product.html#a8524c26a92b6be2db6b808a3fecd3976">Product::_name</a></div><div class="ttdeci">std::string _name</div><div class="ttdoc">The product name.</div><div class="ttdef"><b>Definition:</b> product.h:77</div></div>
+<div class="ttc" id="aclass_bread_html_a1882ae57fd904d222c2793b73ba694df"><div class="ttname"><a href="class_bread.html#a1882ae57fd904d222c2793b73ba694df">Bread::print</a></div><div class="ttdeci">void print(std::ostream &amp;os) const override</div><div class="ttdoc">Prints all the bread data (name, size and price).</div><div class="ttdef"><b>Definition:</b> product.cpp:38</div></div>
+<div class="ttc" id="aclass_product_html_a35fd1ce655c8358c95d59cb5e9682b96"><div class="ttname"><a href="class_product.html#a35fd1ce655c8358c95d59cb5e9682b96">Product::Product</a></div><div class="ttdeci">Product(std::string name, float price)</div><div class="ttdoc">Creates a new product object.</div><div class="ttdef"><b>Definition:</b> product.cpp:10</div></div>
+<div class="ttc" id="aclass_product_html_a9cbd896ca6b2d95088be8ad8c3b11e3b"><div class="ttname"><a href="class_product.html#a9cbd896ca6b2d95088be8ad8c3b11e3b">Product::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdoc">Gets the product name.</div><div class="ttdef"><b>Definition:</b> product.cpp:18</div></div>
+<div class="ttc" id="aclass_product_html_a0aaea95b8d3241b3758246254b8575e2"><div class="ttname"><a href="class_product.html#a0aaea95b8d3241b3758246254b8575e2">Product::getPrice</a></div><div class="ttdeci">float getPrice() const</div><div class="ttdoc">Gets the product price.</div><div class="ttdef"><b>Definition:</b> product.cpp:20</div></div>
+<div class="ttc" id="aclass_cake_html_a951a3c79e819f02dfdf3516ff3acf3ef"><div class="ttname"><a href="class_cake.html#a951a3c79e819f02dfdf3516ff3acf3ef">Cake::getCategories</a></div><div class="ttdeci">static std::vector&lt; std::string &gt; getCategories()</div><div class="ttdoc">Gets the list of all available cakes categories as strings.</div><div class="ttdef"><b>Definition:</b> product.cpp:55</div></div>
+<div class="ttc" id="aclass_cake_html_a0d9544bfe4458c5d6239979b2d9bbf5d"><div class="ttname"><a href="class_cake.html#a0d9544bfe4458c5d6239979b2d9bbf5d">Cake::print</a></div><div class="ttdeci">void print(std::ostream &amp;os) const override</div><div class="ttdoc">Prints all the bread data (name, category and price).</div><div class="ttdef"><b>Definition:</b> product.cpp:49</div></div>
+<div class="ttc" id="aclass_bread_html_a5b6fcc59b28176c53950ded6678ad112"><div class="ttname"><a href="class_bread.html#a5b6fcc59b28176c53950ded6678ad112">Bread::operator==</a></div><div class="ttdeci">virtual bool operator==(const Bread &amp;bread) const</div><div class="ttdoc">Equality operator.</div><div class="ttdef"><b>Definition:</b> product.cpp:34</div></div>
+<div class="ttc" id="aclass_bread_html"><div class="ttname"><a href="class_bread.html">Bread</a></div><div class="ttdoc">The class relative to a specific type of product: bread.</div><div class="ttdef"><b>Definition:</b> product.h:88</div></div>
+<div class="ttc" id="aclass_product_html_ac45a213fbfe36bf690bf059706c56858"><div class="ttname"><a href="class_product.html#ac45a213fbfe36bf690bf059706c56858">Product::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Product &amp;p) const</div><div class="ttdoc">Less than operator.</div><div class="ttdef"><b>Definition:</b> product.cpp:30</div></div>
+<div class="ttc" id="aclass_product_html_a12f459de60dc268cd46532896f4800e8"><div class="ttname"><a href="class_product.html#a12f459de60dc268cd46532896f4800e8">Product::print</a></div><div class="ttdeci">virtual void print(std::ostream &amp;os) const =0</div><div class="ttdoc">Prints all the product data.</div></div>
+<div class="ttc" id="aclass_bread_html_ab358f240ce5067b05be9fd270ca86283"><div class="ttname"><a href="class_bread.html#ab358f240ce5067b05be9fd270ca86283">Bread::Bread</a></div><div class="ttdeci">Bread(std::string name, float price, bool small=true)</div><div class="ttdoc">Creates a new bread object.</div><div class="ttdef"><b>Definition:</b> product.cpp:12</div></div>
+<div class="ttc" id="aclass_product_html_a8b28088bf44ce0b2a1548fb1d48709ca"><div class="ttname"><a href="class_product.html#a8b28088bf44ce0b2a1548fb1d48709ca">Product::~Product</a></div><div class="ttdeci">virtual ~Product()=default</div><div class="ttdoc">Destructs the product object.</div></div>
+<div class="ttc" id="aclass_product_html_a31e7c281fbf08bf2d3202f15a1342e21"><div class="ttname"><a href="class_product.html#a31e7c281fbf08bf2d3202f15a1342e21">Product::operator==</a></div><div class="ttdeci">virtual bool operator==(const Product &amp;p) const</div><div class="ttdoc">Equality operator.</div><div class="ttdef"><b>Definition:</b> product.cpp:26</div></div>
+<div class="ttc" id="aclass_product_html"><div class="ttname"><a href="class_product.html">Product</a></div><div class="ttdoc">Class relative to a store product.</div><div class="ttdef"><b>Definition:</b> product.h:22</div></div>
+<div class="ttc" id="aclass_cake_html"><div class="ttname"><a href="class_cake.html">Cake</a></div><div class="ttdoc">The class relative to a specific type of products: cake.</div><div class="ttdef"><b>Definition:</b> product.h:130</div></div>
+<div class="ttc" id="aclass_cake_html_abb54162ee88f22f7f5d7c4034fbafcee"><div class="ttname"><a href="class_cake.html#abb54162ee88f22f7f5d7c4034fbafcee">Cake::getCategory</a></div><div class="ttdeci">CakeCategory getCategory() const</div><div class="ttdoc">Gets the cake category.</div><div class="ttdef"><b>Definition:</b> product.cpp:24</div></div>
+<div class="ttc" id="aclass_product_html_a9e3eb97a1823206ce831b03e4d71454c"><div class="ttname"><a href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">Product::_price</a></div><div class="ttdeci">float _price</div><div class="ttdoc">The product price.</div><div class="ttdef"><b>Definition:</b> product.h:82</div></div>
+<div class="ttc" id="aclass_bread_html_a88283927a303adb18a9042613b5398ef"><div class="ttname"><a href="class_bread.html#a88283927a303adb18a9042613b5398ef">Bread::isSmall</a></div><div class="ttdeci">bool isSmall() const</div><div class="ttdoc">Checks if the bread is small.</div><div class="ttdef"><b>Definition:</b> product.cpp:22</div></div>
+<div class="ttc" id="aclass_cake_html_aa09a959dc3aaf2bafcb279cdb9925894"><div class="ttname"><a href="class_cake.html#aa09a959dc3aaf2bafcb279cdb9925894">Cake::Cake</a></div><div class="ttdeci">Cake(std::string name, float price, CakeCategory category=CakeCategory::GENERAL)</div><div class="ttdoc">Creates a new cake object.</div><div class="ttdef"><b>Definition:</b> product.cpp:14</div></div>
+<div class="ttc" id="aclass_cake_html_aa4296dedf826061e929b2bcf174f08c4"><div class="ttname"><a href="class_cake.html#aa4296dedf826061e929b2bcf174f08c4">Cake::operator==</a></div><div class="ttdeci">virtual bool operator==(const Cake &amp;cake) const</div><div class="ttdoc">Equality operator.</div><div class="ttdef"><b>Definition:</b> product.cpp:44</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_9b5dca2e7164e87c9f4fd65ea3f9e5ec.html">product</a></li><li class="navelem"><a class="el" href="product_8h.html">product.h</a></li>
+    <li class="navelem"><a class="el" href="dir_3f14f6767c31cb4a1d22c13c18cc6fc3.html">model</a></li><li class="navelem"><a class="el" href="dir_698fcf9cc60756de82f20617a7df1c69.html">product</a></li><li class="navelem"><b>product.h</b></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

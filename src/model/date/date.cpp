@@ -1,6 +1,3 @@
-//
-// Created by bdmendes on 21/10/20.
-//
 
 #include "date.h"
 #include <iomanip>

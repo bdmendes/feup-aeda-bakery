@@ -1,10 +1,13 @@
 var searchData=
 [
-  ['wasdelivered_115',['wasDelivered',['../class_order.html#a7f55ff4aac1a7b5e93c25965067adf61',1,'Order']]],
-  ['worker_116',['Worker',['../class_worker.html',1,'Worker'],['../class_worker.html#acd1766f6c8bebe35b45b50afb4040bcc',1,'Worker::Worker()']]],
-  ['worker_2ecpp_117',['worker.cpp',['../worker_8cpp.html',1,'']]],
-  ['worker_2eh_118',['worker.h',['../worker_8h.html',1,'']]],
-  ['worker_5fmanager_2ecpp_119',['worker_manager.cpp',['../worker__manager_8cpp.html',1,'']]],
-  ['worker_5fmanager_2eh_120',['worker_manager.h',['../worker__manager_8h.html',1,'']]],
-  ['workermanager_121',['WorkerManager',['../class_worker_manager.html',1,'WorkerManager'],['../class_store.html#a9d9ee3f83b27fc1f864d2b460d1b63e3',1,'Store::workerManager()'],['../class_worker_manager.html#ad5d6c4be2f1bce3334e8084395683f3d',1,'WorkerManager::WorkerManager()']]]
+  ['setcredential_103',['setCredential',['../class_person.html#a33aebf821826a709be53af8273db5722',1,'Person']]],
+  ['setlogged_104',['setLogged',['../class_person.html#a445803d8b6732ba5c54debfb8d5d3c83',1,'Person']]],
+  ['setname_105',['setName',['../class_person.html#a5530252bfab905eff3b3e4968206df42',1,'Person::setName()'],['../class_store.html#aba840a18a311ac64bd59cccf5229967d',1,'Store::setName()']]],
+  ['setpoints_106',['setPoints',['../class_client.html#a494af631b56e51b8e266f085fbacbfe7',1,'Client']]],
+  ['setpremium_107',['setPremium',['../class_client.html#a5883dbdff0d68ad876fb538599a32fdc',1,'Client']]],
+  ['setsalary_108',['setSalary',['../class_worker.html#a9679bba6f256cd6dfc62e067012e5ffb',1,'Worker::setSalary()'],['../class_worker_manager.html#a15b5849ca50e9017dbcbadac5d639490',1,'WorkerManager::setSalary()']]],
+  ['settaxid_109',['setTaxID',['../class_person.html#adae133522000a886adcf963189945a7f',1,'Person']]],
+  ['sort_110',['sort',['../class_order_manager.html#a2ed6092892f221bc59e10e3b1baa2d86',1,'OrderManager']]],
+  ['store_111',['Store',['../class_store.html',1,'Store'],['../class_store.html#a06964804d6061a499607cb7c012e3593',1,'Store::Store()']]],
+  ['storehasnoworkers_112',['StoreHasNoWorkers',['../class_store_has_no_workers.html',1,'']]]
 ];

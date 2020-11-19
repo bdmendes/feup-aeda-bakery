@@ -1,6 +1,3 @@
-//
-// Created by bdmendes on 29/10/20.
-//
 
 #include <algorithm>
 
@@ -9,6 +6,10 @@
 #include "exception/file_exception.h"
 
 ClientManager::ClientManager() : _clients() {
+}
+
+ClientManager::~ClientManager() {
+    for (auto& c: _clients) delete c;
 }
 
 bool ClientManager::has(Client *client) const {
@@ -111,6 +112,4 @@ Client *ClientManager::getClient(int taxID) const{
     throw PersonDoesNotExist(taxID);
 }
 
-ClientManager::~ClientManager() {
-    for (auto& c: _clients) delete c;
-}
+

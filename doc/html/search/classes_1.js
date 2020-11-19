@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['cake_125',['Cake',['../class_cake.html',1,'']]],
-  ['client_126',['Client',['../class_client.html',1,'']]],
-  ['clientmanager_127',['ClientManager',['../class_client_manager.html',1,'']]],
-  ['credential_128',['Credential',['../struct_credential.html',1,'']]]
+  ['cake_129',['Cake',['../class_cake.html',1,'']]],
+  ['client_130',['Client',['../class_client.html',1,'']]],
+  ['clientdashboard_131',['ClientDashboard',['../class_client_dashboard.html',1,'']]],
+  ['clientmanager_132',['ClientManager',['../class_client_manager.html',1,'']]],
+  ['credential_133',['Credential',['../struct_credential.html',1,'']]]
 ];

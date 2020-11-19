@@ -29,6 +29,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="scratch.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AEDA Project
    </div>
@@ -96,7 +97,7 @@ $(document).ready(function(){initNavTree('client__dashboard_8h_source.html','');
 <div class="title">client_dashboard.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="client__dashboard_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by bdmendes on 14/11/20.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
@@ -104,36 +105,29 @@ $(document).ready(function(){initNavTree('client__dashboard_8h_source.html','');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define FEUP_AEDA_PROJECT_CLIENT_DASHBOARD_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="ui_8h.html">ui/ui.h</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dashboard_8h.html">ui/dashboard/dashboard.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;ui/ui.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;ui/dashboard/dashboard.h&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_client_dashboard.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_client_dashboard.html">ClientDashboard</a> : <span class="keyword">public</span> <a class="code" href="class_dashboard.html">Dashboard</a> {</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_client_dashboard.html#a411508de8682559c40716a9e8eb02d07">ClientDashboard</a>(<a class="code" href="class_store.html">Store</a>&amp; store, <a class="code" href="class_client.html">Client</a>* client);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client_dashboard.html#a9fdaf8e9567eec407293d9e2952a388a">show</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_client_dashboard.html#a45187ce8e671a5edca77eadda7e21b14">   17</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_client_dashboard.html#a45187ce8e671a5edca77eadda7e21b14">addOrder</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_client.html">Client</a>* _client;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_CLIENT_DASHBOARD_H</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_client_dashboard.html">ClientDashboard</a>(<a class="code" href="class_store.html">Store</a>&amp; store, <a class="code" href="class_client.html">Client</a>* client);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> show() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_client.html">Client</a>* _client;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_CLIENT_DASHBOARD_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_client_dashboard_html_a45187ce8e671a5edca77eadda7e21b14"><div class="ttname"><a href="class_client_dashboard.html#a45187ce8e671a5edca77eadda7e21b14">ClientDashboard::addOrder</a></div><div class="ttdeci">void addOrder()</div></div>
-<div class="ttc" id="aui_8h_html"><div class="ttname"><a href="ui_8h.html">ui.h</a></div></div>
 <div class="ttc" id="aclass_client_dashboard_html"><div class="ttname"><a href="class_client_dashboard.html">ClientDashboard</a></div><div class="ttdef"><b>Definition:</b> client_dashboard.h:12</div></div>
-<div class="ttc" id="aclass_store_html"><div class="ttname"><a href="class_store.html">Store</a></div><div class="ttdef"><b>Definition:</b> store.h:29</div></div>
-<div class="ttc" id="adashboard_8h_html"><div class="ttname"><a href="dashboard_8h.html">dashboard.h</a></div></div>
-<div class="ttc" id="aclass_client_dashboard_html_a411508de8682559c40716a9e8eb02d07"><div class="ttname"><a href="class_client_dashboard.html#a411508de8682559c40716a9e8eb02d07">ClientDashboard::ClientDashboard</a></div><div class="ttdeci">ClientDashboard(Store &amp;store, Client *client)</div><div class="ttdef"><b>Definition:</b> client_dashboard.cpp:7</div></div>
-<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdef"><b>Definition:</b> client.h:13</div></div>
+<div class="ttc" id="aclass_store_html"><div class="ttname"><a href="class_store.html">Store</a></div><div class="ttdoc">Class relative to a store.</div><div class="ttdef"><b>Definition:</b> store.h:29</div></div>
+<div class="ttc" id="aclass_client_html"><div class="ttname"><a href="class_client.html">Client</a></div><div class="ttdoc">Class relative to a store client.</div><div class="ttdef"><b>Definition:</b> client.h:13</div></div>
 <div class="ttc" id="aclass_dashboard_html"><div class="ttname"><a href="class_dashboard.html">Dashboard</a></div><div class="ttdef"><b>Definition:</b> dashboard.h:11</div></div>
-<div class="ttc" id="aclass_client_dashboard_html_a9fdaf8e9567eec407293d9e2952a388a"><div class="ttname"><a href="class_client_dashboard.html#a9fdaf8e9567eec407293d9e2952a388a">ClientDashboard::show</a></div><div class="ttdeci">void show() override</div><div class="ttdef"><b>Definition:</b> client_dashboard.cpp:11</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1788f8309b1a812dcb800a185471cf6c.html">ui</a></li><li class="navelem"><a class="el" href="dir_ff41f2b8bef96e2057f1e87571ca86af.html">dashboard</a></li><li class="navelem"><a class="el" href="dir_1cdef9c3eb38db08d09a3750de1c75c6.html">client</a></li><li class="navelem"><a class="el" href="client__dashboard_8h.html">client_dashboard.h</a></li>
+    <li class="navelem"><a class="el" href="dir_1788f8309b1a812dcb800a185471cf6c.html">ui</a></li><li class="navelem"><a class="el" href="dir_ff41f2b8bef96e2057f1e87571ca86af.html">dashboard</a></li><li class="navelem"><a class="el" href="dir_1cdef9c3eb38db08d09a3750de1c75c6.html">client</a></li><li class="navelem"><b>client_dashboard.h</b></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

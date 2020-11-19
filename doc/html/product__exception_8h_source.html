@@ -29,6 +29,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="scratch.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AEDA Project
    </div>
@@ -96,7 +97,7 @@ $(document).ready(function(){initNavTree('product__exception_8h_source.html','')
 <div class="title">product_exception.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="product__exception_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by laimi on 25/10/2020.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
@@ -108,36 +109,26 @@ $(document).ready(function(){initNavTree('product__exception_8h_source.html','')
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_product_does_not_exist.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_product_does_not_exist.html">ProductDoesNotExist</a> : <span class="keyword">public</span> std::invalid_argument{</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_product_does_not_exist.html#a296cf0025b2e7fbec53e1357550dff4c">ProductDoesNotExist</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">float</span> price);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_product_does_not_exist.html#a296cf0025b2e7fbec53e1357550dff4c">ProductDoesNotExist</a>(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_product_does_not_exist.html#a296cf0025b2e7fbec53e1357550dff4c">ProductDoesNotExist</a>(<span class="keywordtype">float</span> price);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_product_does_not_exist.html">ProductDoesNotExist</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">float</span> price);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_product_does_not_exist.html">ProductDoesNotExist</a>(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_product_does_not_exist.html">ProductDoesNotExist</a>(<span class="keywordtype">float</span> price);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;};</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_product_already_exists.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_product_already_exists.html">ProductAlreadyExists</a> : <span class="keyword">public</span> std::invalid_argument{</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_invalid_product_position.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_invalid_product_position.html">InvalidProductPosition</a> : <span class="keyword">public</span> std::invalid_argument{</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_product_already_exists.html#a4a339ea496e8660965a53bdfa6b8c2cc">ProductAlreadyExists</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">float</span> price);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_product_already_exists.html#a4a339ea496e8660965a53bdfa6b8c2cc">ProductAlreadyExists</a>(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_invalid_product_position.html">InvalidProductPosition</a>(<span class="keywordtype">unsigned</span> position, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> size);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_invalid_product_position.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_invalid_product_position.html">InvalidProductPosition</a> : <span class="keyword">public</span> std::invalid_argument{</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_invalid_product_position.html#a1d6d8498383c2a72ff74432cad291a34">InvalidProductPosition</a>(<span class="keywordtype">unsigned</span> position, <span class="keywordtype">unsigned</span> size);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_PRODUCTEXCEPTIONS_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif //FEUP_AEDA_PROJECT_PRODUCTEXCEPTIONS_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_invalid_product_position_html"><div class="ttname"><a href="class_invalid_product_position.html">InvalidProductPosition</a></div><div class="ttdef"><b>Definition:</b> product_exception.h:24</div></div>
+<div class="ttc" id="aclass_invalid_product_position_html"><div class="ttname"><a href="class_invalid_product_position.html">InvalidProductPosition</a></div><div class="ttdef"><b>Definition:</b> product_exception.h:18</div></div>
 <div class="ttc" id="aclass_product_does_not_exist_html"><div class="ttname"><a href="class_product_does_not_exist.html">ProductDoesNotExist</a></div><div class="ttdef"><b>Definition:</b> product_exception.h:11</div></div>
-<div class="ttc" id="aclass_product_already_exists_html"><div class="ttname"><a href="class_product_already_exists.html">ProductAlreadyExists</a></div><div class="ttdef"><b>Definition:</b> product_exception.h:18</div></div>
-<div class="ttc" id="aclass_product_already_exists_html_a4a339ea496e8660965a53bdfa6b8c2cc"><div class="ttname"><a href="class_product_already_exists.html#a4a339ea496e8660965a53bdfa6b8c2cc">ProductAlreadyExists::ProductAlreadyExists</a></div><div class="ttdeci">ProductAlreadyExists(const std::string &amp;name, float price)</div><div class="ttdef"><b>Definition:</b> product_exception.cpp:20</div></div>
-<div class="ttc" id="aclass_invalid_product_position_html_a1d6d8498383c2a72ff74432cad291a34"><div class="ttname"><a href="class_invalid_product_position.html#a1d6d8498383c2a72ff74432cad291a34">InvalidProductPosition::InvalidProductPosition</a></div><div class="ttdeci">InvalidProductPosition(unsigned position, unsigned size)</div><div class="ttdef"><b>Definition:</b> product_exception.cpp:28</div></div>
-<div class="ttc" id="aclass_product_does_not_exist_html_a296cf0025b2e7fbec53e1357550dff4c"><div class="ttname"><a href="class_product_does_not_exist.html#a296cf0025b2e7fbec53e1357550dff4c">ProductDoesNotExist::ProductDoesNotExist</a></div><div class="ttdeci">ProductDoesNotExist(const std::string &amp;name, float price)</div><div class="ttdef"><b>Definition:</b> product_exception.cpp:8</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_5834c169ac818fb4b61d1b6f37638e83.html">exception</a></li><li class="navelem"><a class="el" href="product__exception_8h.html">product_exception.h</a></li>
+    <li class="navelem"><a class="el" href="dir_5834c169ac818fb4b61d1b6f37638e83.html">exception</a></li><li class="navelem"><b>product_exception.h</b></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
+<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a id="index__5F"></a>- _ -</h3><ul>
 <li>_name
@@ -102,14 +102,17 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>_price
 : <a class="el" href="class_product.html#a9e3eb97a1823206ce831b03e4d71454c">Product</a>
 </li>
+<li>_role
+: <a class="el" href="class_person.html#ac0539f31e6ea9995c13df59edaab81dc">Person</a>
+</li>
 </ul>
 
 
 <h3><a id="index_a"></a>- a -</h3><ul>
 <li>add()
-: <a class="el" href="class_client_manager.html#a457b8ba73f84d818cf0773e00351ee81">ClientManager</a>
-, <a class="el" href="class_order_manager.html#aede095268516489faab48e9c351e958d">OrderManager</a>
-, <a class="el" href="class_worker_manager.html#ad39b9f4bffd990f2ce078690ce541651">WorkerManager</a>
+: <a class="el" href="class_client_manager.html#aade9286a9fcb35a1aefe2fa608cb0058">ClientManager</a>
+, <a class="el" href="class_order_manager.html#ae0923c564b2f4ee83f6546fc5d5ea26e">OrderManager</a>
+, <a class="el" href="class_worker_manager.html#a08a8f5f0e3fa44b77b2d5eef53039383">WorkerManager</a>
 </li>
 <li>addBread()
 : <a class="el" href="class_product_manager.html#a52c37be4197a4e5650f69395203da2d3">ProductManager</a>
@@ -122,6 +125,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>addEvaluation()
 : <a class="el" href="class_client.html#a6e3da717642e5f5022af53ac28c50146">Client</a>
+, <a class="el" href="class_worker.html#aa1d3cf7d111d0592ce7880325d219493">Worker</a>
 </li>
 <li>addMinutes()
 : <a class="el" href="class_date.html#aa65ba1cadf193e7dd69e3fcc6dacf023">Date</a>
@@ -140,7 +144,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 <h3><a id="index_b"></a>- b -</h3><ul>
 <li>Boss()
-: <a class="el" href="class_boss.html#a643cebda96d14ed2a9095758d03cc91d">Boss</a>
+: <a class="el" href="class_boss.html#a0d05afdd0697d44925ed96e43e0408c9">Boss</a>
 </li>
 <li>boss
 : <a class="el" href="class_store.html#abe4da3457b804879391e1db02529ed59">Store</a>
@@ -159,7 +163,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="class_cake.html#a41a651afe08f372b61d1efa393305c21">Cake</a>
 </li>
 <li>Client()
-: <a class="el" href="class_client.html#a140c1207e590024a6438e3e42346f2ac">Client</a>
+: <a class="el" href="class_client.html#af37da725688f8efea2cdd6eb3b17ce97">Client</a>
 </li>
 <li>ClientManager()
 : <a class="el" href="class_client_manager.html#ad68355fab62dffa97b8ddc8df4509f7e">ClientManager</a>
@@ -179,6 +183,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 , <a class="el" href="class_client.html#ad89af79ed76f3224159adbdbe821648a">Client</a>
 , <a class="el" href="class_worker.html#a48d9914b4f039fcaa71b054b103237fa">Worker</a>
 </li>
+<li>DEFAULT_SALARY
+: <a class="el" href="class_worker.html#ac2c3361785773c0746f2d84064376bca">Worker</a>
+</li>
 <li>DEFAULT_TAX_ID
 : <a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person</a>
 </li>
@@ -196,8 +203,8 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <h3><a id="index_g"></a>- g -</h3><ul>
 <li>get()
 : <a class="el" href="class_client_manager.html#a853b3c43d5d28242ebdb06f2e18b41ab">ClientManager</a>
-, <a class="el" href="class_order_manager.html#aca612122040de5314a19d067ed0ae7af">OrderManager</a>
-, <a class="el" href="class_product_manager.html#a5dbc541f1bfdbb5d40c6710c98f9f2ae">ProductManager</a>
+, <a class="el" href="class_order_manager.html#ac0181922f2869e81ff0b33c446bdff2c">OrderManager</a>
+, <a class="el" href="class_product_manager.html#a7844f02e61c38ae155e753d93995f02c">ProductManager</a>
 , <a class="el" href="class_worker_manager.html#a62a77989a491cfda9789659dc913da9b">WorkerManager</a>
 </li>
 <li>getAll()
@@ -206,14 +213,24 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 , <a class="el" href="class_product_manager.html#a51d2b2332a7e3b04d76db54ea4f1ef91">ProductManager</a>
 , <a class="el" href="class_worker_manager.html#ae37eccccd42504ff24058f35455a97e7">WorkerManager</a>
 </li>
+<li>getBreads()
+: <a class="el" href="class_product_manager.html#a4d546cf8ffe220bdc1b074a76b5b7f3c">ProductManager</a>
+</li>
+<li>getCakes()
+: <a class="el" href="class_product_manager.html#ab47fe30faf0af751f450c97c5696589c">ProductManager</a>
+</li>
 <li>getCalendarDay()
 : <a class="el" href="class_date.html#ab5e1ae65845c10c8e304e6aa2ea5caf1">Date</a>
+</li>
+<li>getCategories()
+: <a class="el" href="class_cake.html#a951a3c79e819f02dfdf3516ff3acf3ef">Cake</a>
 </li>
 <li>getCategory()
 : <a class="el" href="class_cake.html#abb54162ee88f22f7f5d7c4034fbafcee">Cake</a>
 </li>
 <li>getClient()
-: <a class="el" href="class_order.html#a84a20e94e84800a563bd2d9a0f70ba7d">Order</a>
+: <a class="el" href="class_client_manager.html#a06973de32df93ec68b8143a5c9409e89">ClientManager</a>
+, <a class="el" href="class_order.html#aee6b07c639cb14f0df9253245816e004">Order</a>
 </li>
 <li>getClientEvaluation()
 : <a class="el" href="class_order.html#aec03a2e8887a697b9bd4fed50702e27e">Order</a>
@@ -242,9 +259,6 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>getEvaluation()
 : <a class="el" href="class_store.html#a551fca948b04e788af24f39675fb4517">Store</a>
 </li>
-<li>getEvaluations()
-: <a class="el" href="class_client.html#a03bd446a3cb137c2a0047e3634ce3695">Client</a>
-</li>
 <li>getFinalPrice()
 : <a class="el" href="class_order.html#a59c22c2fa3d387e3af1213917e0d6beb">Order</a>
 </li>
@@ -256,6 +270,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>getMeanEvaluation()
 : <a class="el" href="class_client.html#af3ab1b4256e583e0917bdc4f7348c115">Client</a>
+, <a class="el" href="class_worker.html#a35ab1699a5e5749605e21a0a06d24335">Worker</a>
 </li>
 <li>getMinute()
 : <a class="el" href="class_date.html#a35509f66a6448fc92bff03b323c9993b">Date</a>
@@ -283,6 +298,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>getRequestDate()
 : <a class="el" href="class_order.html#a2ae66c9dcb4372e4af58eeb4e6ff7cbd">Order</a>
 </li>
+<li>getRole()
+: <a class="el" href="class_person.html#a75da83ae41789d005e77540813560943">Person</a>
+</li>
 <li>getSalary()
 : <a class="el" href="class_worker.html#a703a68ad53c9b89528ff4aa5e6bd2b3d">Worker</a>
 </li>
@@ -296,7 +314,8 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="class_worker.html#a2e2f9ae273acd7ce0baedfc47b7e729a">Worker</a>
 </li>
 <li>getWorker()
-: <a class="el" href="class_order.html#adb3bb20a29fcad4474ff3d48cefd72b1">Order</a>
+: <a class="el" href="class_order.html#aa8149a6d51225cedd99c3eb561619826">Order</a>
+, <a class="el" href="class_worker_manager.html#ad4d10fb34de594b25713d506c50da13d">WorkerManager</a>
 </li>
 <li>getYear()
 : <a class="el" href="class_date.html#aa1e4066bffc24af79f604dabce27e3cc">Date</a>
@@ -330,6 +349,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>isPremium()
 : <a class="el" href="class_client.html#af77c74a396a63b45707e692c691e7b47">Client</a>
 </li>
+<li>isReserved()
+: <a class="el" href="struct_credential.html#abf0496105170b4d9432c0bb5da991243">Credential</a>
+</li>
 <li>isSmall()
 : <a class="el" href="class_bread.html#a88283927a303adb18a9042613b5398ef">Bread</a>
 </li>
@@ -360,7 +382,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="class_order.html#aa51383b6cd7afd001ff028f43452fc7b">Order</a>
 </li>
 <li>OrderManager()
-: <a class="el" href="class_order_manager.html#a94a80b08d49880233bfa4506e51cd42f">OrderManager</a>
+: <a class="el" href="class_order_manager.html#a0846991278b9d8e7dc12afa410318a32">OrderManager</a>
 </li>
 <li>orderManager
 : <a class="el" href="class_store.html#af70cd00a2ab3246d5dbce130383dda38">Store</a>
@@ -373,7 +395,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="struct_credential.html#a2a16fa9c224f4019e495f76eba87ca14">Credential</a>
 </li>
 <li>Person()
-: <a class="el" href="class_person.html#a940ece7b9e17a6d39087b3eebc49d490">Person</a>
+: <a class="el" href="class_person.html#a31bc6e7fb32453cea94814d92e222c73">Person</a>
 </li>
 <li>print()
 : <a class="el" href="class_bread.html#a1882ae57fd904d222c2793b73ba694df">Bread</a>
@@ -401,15 +423,18 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 <h3><a id="index_r"></a>- r -</h3><ul>
 <li>read()
-: <a class="el" href="class_order_manager.html#a6cf1ec5024c15ca8f8caaae87a274d5e">OrderManager</a>
-, <a class="el" href="class_product_manager.html#aaf8bc49e16f4177a38cb8372b382e267">ProductManager</a>
-, <a class="el" href="class_worker_manager.html#a1c1d4d72325433051671151f374a6c5b">WorkerManager</a>
+: <a class="el" href="class_boss.html#a6e98a5e6ff441ed2a1007bf9ac52bda1">Boss</a>
+, <a class="el" href="class_client_manager.html#aeb5cf80ded01a5b6029d2a5f33ce435c">ClientManager</a>
+, <a class="el" href="class_order_manager.html#adf9f583d0a366812a26e30ff84a3a614">OrderManager</a>
+, <a class="el" href="class_product_manager.html#abd4ea53daeec046e64bf6aa1fb73b1f3">ProductManager</a>
+, <a class="el" href="class_store.html#a011d206b2232115a9befb4f60cfe731a">Store</a>
+, <a class="el" href="class_worker_manager.html#a23c6487aa86b939999e2d588e4740f3c">WorkerManager</a>
 </li>
 <li>remove()
 : <a class="el" href="class_client_manager.html#aa45787891a819b6e822689c1f0446563">ClientManager</a>
-, <a class="el" href="class_order_manager.html#a26066645ed82dd06316758f935cc062f">OrderManager</a>
+, <a class="el" href="class_order_manager.html#af22024880b1c26fcdc38c7a4d8350cb5">OrderManager</a>
 , <a class="el" href="class_product_manager.html#ae626549e7a6da032778135aefc961b45">ProductManager</a>
-, <a class="el" href="class_worker_manager.html#a90f3f7eba1edb2190efc0666174e0992">WorkerManager</a>
+, <a class="el" href="class_worker_manager.html#a5cb13ecee014680e94037ef154ba1723">WorkerManager</a>
 </li>
 <li>removeOrderToDeliver()
 : <a class="el" href="class_worker.html#aa0add467763c4e5191c4eddc37484b3f">Worker</a>
@@ -418,7 +443,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="class_client.html#a8cae42bc309c1d13a899fdf6f4d3beec">Client</a>
 </li>
 <li>removeProduct()
-: <a class="el" href="class_order.html#ac19e2ca90d030fe695ff7ecdd41c23c4">Order</a>
+: <a class="el" href="class_order.html#abcf8d506c31f8194dc43bf21c1170064">Order</a>
 </li>
 <li>resetPoints()
 : <a class="el" href="class_client.html#a0fd0ba574db21b942bca23819c2f0698">Client</a>
@@ -436,6 +461,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>setName()
 : <a class="el" href="class_person.html#a5530252bfab905eff3b3e4968206df42">Person</a>
 , <a class="el" href="class_store.html#aba840a18a311ac64bd59cccf5229967d">Store</a>
+</li>
+<li>setPoints()
+: <a class="el" href="class_client.html#a494af631b56e51b8e266f085fbacbfe7">Client</a>
 </li>
 <li>setPremium()
 : <a class="el" href="class_client.html#a5883dbdff0d68ad876fb538599a32fdc">Client</a>
@@ -468,7 +496,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="class_order.html#a7f55ff4aac1a7b5e93c25965067adf61">Order</a>
 </li>
 <li>Worker()
-: <a class="el" href="class_worker.html#acd1766f6c8bebe35b45b50afb4040bcc">Worker</a>
+: <a class="el" href="class_worker.html#a70a25c796c3d04b82933c660eccabea9">Worker</a>
 </li>
 <li>workerManager
 : <a class="el" href="class_store.html#a9d9ee3f83b27fc1f864d2b460d1b63e3">Store</a>
@@ -476,12 +504,35 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>WorkerManager()
 : <a class="el" href="class_worker_manager.html#ad5d6c4be2f1bce3334e8084395683f3d">WorkerManager</a>
 </li>
+<li>write()
+: <a class="el" href="class_boss.html#ae0fbd96cb358a23fee9d8924635794cb">Boss</a>
+, <a class="el" href="class_client_manager.html#a4e6af4aaaaff7fd72feffe6ef0984802">ClientManager</a>
+, <a class="el" href="class_order_manager.html#a769732160364165388766e9d5b3a48eb">OrderManager</a>
+, <a class="el" href="class_product_manager.html#adec6993388c2de13c19d65507f8438bd">ProductManager</a>
+, <a class="el" href="class_store.html#a22d0f9f02098e646e3bb699490b58725">Store</a>
+, <a class="el" href="class_worker_manager.html#aa113a74fff56719ab87067d87ba4364f">WorkerManager</a>
+</li>
 </ul>
 
 
 <h3><a id="index__7E"></a>- ~ -</h3><ul>
+<li>~ClientManager()
+: <a class="el" href="class_client_manager.html#af605d4fa9dab04b9874bf307277cd8a3">ClientManager</a>
+</li>
+<li>~OrderManager()
+: <a class="el" href="class_order_manager.html#a279292d3abda9718bbf909d7c85ad055">OrderManager</a>
+</li>
 <li>~Person()
 : <a class="el" href="class_person.html#a22234d7de3132c581406f040196eef44">Person</a>
+</li>
+<li>~Product()
+: <a class="el" href="class_product.html#a8b28088bf44ce0b2a1548fb1d48709ca">Product</a>
+</li>
+<li>~ProductManager()
+: <a class="el" href="class_product_manager.html#a3d2c60142919b77859659aa07a0d054a">ProductManager</a>
+</li>
+<li>~WorkerManager()
+: <a class="el" href="class_worker_manager.html#a2245163719090a6feb4964abb20737de">WorkerManager</a>
 </li>
 </ul>
 </div><!-- contents -->

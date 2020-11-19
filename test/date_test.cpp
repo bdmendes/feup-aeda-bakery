@@ -1,6 +1,3 @@
-//
-// Created by laimi on 25/10/2020.
-//
 
 #include <gtest/gtest.h>
 #include "model/date/date.h"

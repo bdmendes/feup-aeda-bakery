@@ -101,54 +101,63 @@ $(document).ready(function(){initNavTree('class_worker_manager.html',''); initRe
 </div><!--header-->
 <div class="contents">
 
+<p>Class that manages the store workers.  
+ <a href="class_worker_manager.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="worker__manager_8h_source.html">worker_manager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad5d6c4be2f1bce3334e8084395683f3d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ad5d6c4be2f1bce3334e8084395683f3d">WorkerManager</a> ()</td></tr>
+<tr class="memitem:ad5d6c4be2f1bce3334e8084395683f3d"><td class="memItemLeft" align="right" valign="top"><a id="ad5d6c4be2f1bce3334e8084395683f3d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ad5d6c4be2f1bce3334e8084395683f3d">WorkerManager</a> ()</td></tr>
+<tr class="memdesc:ad5d6c4be2f1bce3334e8084395683f3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new worker manager object. <br /></td></tr>
 <tr class="separator:ad5d6c4be2f1bce3334e8084395683f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2245163719090a6feb4964abb20737de"><td class="memItemLeft" align="right" valign="top"><a id="a2245163719090a6feb4964abb20737de"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a2245163719090a6feb4964abb20737de">~WorkerManager</a> ()</td></tr>
+<tr class="memdesc:a2245163719090a6feb4964abb20737de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs the worker manager object. <br /></td></tr>
+<tr class="separator:a2245163719090a6feb4964abb20737de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53e91211ba2b28cd7202fc94d1b54330"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a53e91211ba2b28cd7202fc94d1b54330">has</a> (<a class="el" href="class_worker.html">Worker</a> *worker) const</td></tr>
+<tr class="memdesc:a53e91211ba2b28cd7202fc94d1b54330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the worker is on the workers list.  <a href="class_worker_manager.html#a53e91211ba2b28cd7202fc94d1b54330">More...</a><br /></td></tr>
 <tr class="separator:a53e91211ba2b28cd7202fc94d1b54330"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62a77989a491cfda9789659dc913da9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a62a77989a491cfda9789659dc913da9b">get</a> (unsigned position)</td></tr>
+<tr class="memdesc:a62a77989a491cfda9789659dc913da9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the worker on the workers list at a certain position.  <a href="class_worker_manager.html#a62a77989a491cfda9789659dc913da9b">More...</a><br /></td></tr>
 <tr class="separator:a62a77989a491cfda9789659dc913da9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae37eccccd42504ff24058f35455a97e7"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_worker.html">Worker</a> *, <a class="el" href="struct_person_smaller.html">PersonSmaller</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ae37eccccd42504ff24058f35455a97e7">getAll</a> ()</td></tr>
+<tr class="memdesc:ae37eccccd42504ff24058f35455a97e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the workers list.  <a href="class_worker_manager.html#ae37eccccd42504ff24058f35455a97e7">More...</a><br /></td></tr>
 <tr class="separator:ae37eccccd42504ff24058f35455a97e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4d10fb34de594b25713d506c50da13d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ad4d10fb34de594b25713d506c50da13d">getWorker</a> (int taxID) const</td></tr>
+<tr class="memdesc:ad4d10fb34de594b25713d506c50da13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a worker from the workers list by its taxpayer identification number.  <a href="class_worker_manager.html#ad4d10fb34de594b25713d506c50da13d">More...</a><br /></td></tr>
+<tr class="separator:ad4d10fb34de594b25713d506c50da13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8a6f77db3f29b5e8a0093b7eda0257c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ab8a6f77db3f29b5e8a0093b7eda0257c">getLessBusyWorker</a> ()</td></tr>
+<tr class="memdesc:ab8a6f77db3f29b5e8a0093b7eda0257c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the less busy worker which is the worker with less number of undelivered orders.  <a href="class_worker_manager.html#ab8a6f77db3f29b5e8a0093b7eda0257c">More...</a><br /></td></tr>
 <tr class="separator:ab8a6f77db3f29b5e8a0093b7eda0257c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15b5849ca50e9017dbcbadac5d639490"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a15b5849ca50e9017dbcbadac5d639490">setSalary</a> (unsigned position, float salary)</td></tr>
+<tr class="memdesc:a15b5849ca50e9017dbcbadac5d639490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the salary of the worker at a certain position.  <a href="class_worker_manager.html#a15b5849ca50e9017dbcbadac5d639490">More...</a><br /></td></tr>
 <tr class="separator:a15b5849ca50e9017dbcbadac5d639490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad39b9f4bffd990f2ce078690ce541651"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ad39b9f4bffd990f2ce078690ce541651">add</a> (std::string name, float salary, int taxID=<a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a>, <a class="el" href="struct_credential.html">Credential</a> credential={<a class="el" href="class_worker.html#ac5537121162d206509b2b2e9b49984c7">Worker::DEFAULT_USERNAME</a>, <a class="el" href="class_worker.html#a48d9914b4f039fcaa71b054b103237fa">Worker::DEFAULT_PASSWORD</a>})</td></tr>
-<tr class="separator:ad39b9f4bffd990f2ce078690ce541651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08a8f5f0e3fa44b77b2d5eef53039383"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_worker.html">Worker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a08a8f5f0e3fa44b77b2d5eef53039383">add</a> (std::string name, int taxID=<a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a>, float salary=<a class="el" href="class_worker.html#ac2c3361785773c0746f2d84064376bca">Worker::DEFAULT_SALARY</a>, <a class="el" href="struct_credential.html">Credential</a> credential={<a class="el" href="class_worker.html#ac5537121162d206509b2b2e9b49984c7">Worker::DEFAULT_USERNAME</a>, <a class="el" href="class_worker.html#a48d9914b4f039fcaa71b054b103237fa">Worker::DEFAULT_PASSWORD</a>})</td></tr>
+<tr class="memdesc:a08a8f5f0e3fa44b77b2d5eef53039383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a worker to the workers list.  <a href="class_worker_manager.html#a08a8f5f0e3fa44b77b2d5eef53039383">More...</a><br /></td></tr>
+<tr class="separator:a08a8f5f0e3fa44b77b2d5eef53039383"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90f3f7eba1edb2190efc0666174e0992"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a90f3f7eba1edb2190efc0666174e0992">remove</a> (<a class="el" href="class_worker.html">Worker</a> *worker)</td></tr>
+<tr class="memdesc:a90f3f7eba1edb2190efc0666174e0992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a worker from the workers list.  <a href="class_worker_manager.html#a90f3f7eba1edb2190efc0666174e0992">More...</a><br /></td></tr>
 <tr class="separator:a90f3f7eba1edb2190efc0666174e0992"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cb13ecee014680e94037ef154ba1723"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a5cb13ecee014680e94037ef154ba1723">remove</a> (unsigned position)</td></tr>
+<tr class="memdesc:a5cb13ecee014680e94037ef154ba1723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a worker from the workers list at a certain position.  <a href="class_worker_manager.html#a5cb13ecee014680e94037ef154ba1723">More...</a><br /></td></tr>
 <tr class="separator:a5cb13ecee014680e94037ef154ba1723"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c1d4d72325433051671151f374a6c5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a1c1d4d72325433051671151f374a6c5b">read</a> (std::ifstream &amp;file)</td></tr>
-<tr class="separator:a1c1d4d72325433051671151f374a6c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23c6487aa86b939999e2d588e4740f3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a23c6487aa86b939999e2d588e4740f3c">read</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:a23c6487aa86b939999e2d588e4740f3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads all the workers data (name, taxpayer identification number, salary and login credentials) from a file and creates news ones with that data.  <a href="class_worker_manager.html#a23c6487aa86b939999e2d588e4740f3c">More...</a><br /></td></tr>
+<tr class="separator:a23c6487aa86b939999e2d588e4740f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa113a74fff56719ab87067d87ba4364f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#aa113a74fff56719ab87067d87ba4364f">write</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:aa113a74fff56719ab87067d87ba4364f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes all the workers data that are on the workers list (name, taxpayer identification number, salary and login credentials) to a file.  <a href="class_worker_manager.html#aa113a74fff56719ab87067d87ba4364f">More...</a><br /></td></tr>
+<tr class="separator:aa113a74fff56719ab87067d87ba4364f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa381406105c994790cfb783a16ba6f51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#aa381406105c994790cfb783a16ba6f51">print</a> (std::ostream &amp;os, bool showData=true)</td></tr>
+<tr class="memdesc:aa381406105c994790cfb783a16ba6f51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all the workers data.  <a href="class_worker_manager.html#aa381406105c994790cfb783a16ba6f51">More...</a><br /></td></tr>
 <tr class="separator:aa381406105c994790cfb783a16ba6f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad5d6c4be2f1bce3334e8084395683f3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5d6c4be2f1bce3334e8084395683f3d">&#9670;&nbsp;</a></span>WorkerManager()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">WorkerManager::WorkerManager </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad39b9f4bffd990f2ce078690ce541651"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad39b9f4bffd990f2ce078690ce541651">&#9670;&nbsp;</a></span>add()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that manages the store workers. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a08a8f5f0e3fa44b77b2d5eef53039383"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08a8f5f0e3fa44b77b2d5eef53039383">&#9670;&nbsp;</a></span>add()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,14 +171,14 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>salary</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>taxID</em> = <code><a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>taxID</em> = <code><a class="el" href="class_person.html#a52661d7b661afecd42415d70f20cfe8a">Person::DEFAULT_TAX_ID</a></code>, </td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>salary</em> = <code><a class="el" href="class_worker.html#ac2c3361785773c0746f2d84064376bca">Worker::DEFAULT_SALARY</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -184,6 +193,18 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adds a worker to the workers list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>the name </td></tr>
+    <tr><td class="paramname">taxID</td><td>the taxpayer identification number </td></tr>
+    <tr><td class="paramname">salary</td><td>the salary </td></tr>
+    <tr><td class="paramname">credential</td><td>the login credentials </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the worker added to de workers list of the worker manager </dd></dl>
 
 </div>
 </div>
@@ -203,6 +224,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the worker on the workers list at a certain position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>the position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the worker at that position </dd></dl>
+
 </div>
 </div>
 <a id="ae37eccccd42504ff24058f35455a97e7"></a>
@@ -219,6 +249,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the workers list. </p>
+<dl class="section return"><dt>Returns</dt><dd>the wokers list </dd></dl>
 
 </div>
 </div>
@@ -237,6 +270,36 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the less busy worker which is the worker with less number of undelivered orders. </p>
+<dl class="section return"><dt>Returns</dt><dd>the less busy worker </dd></dl>
+
+</div>
+</div>
+<a id="ad4d10fb34de594b25713d506c50da13d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4d10fb34de594b25713d506c50da13d">&#9670;&nbsp;</a></span>getWorker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_worker.html">Worker</a> * WorkerManager::getWorker </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>taxID</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a worker from the workers list by its taxpayer identification number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">taxID</td><td>the taxpayer identification number </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the worker on the workers list with that taxpayer identification number </dd></dl>
+
 </div>
 </div>
 <a id="a53e91211ba2b28cd7202fc94d1b54330"></a>
@@ -254,6 +317,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if the worker is on the workers list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worker</td><td>the worker to check if is on the list </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if the worker is on workers list; false, otherwise </dd></dl>
 
 </div>
 </div>
@@ -283,10 +355,20 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Prints all the workers data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>the output stream </td></tr>
+    <tr><td class="paramname">showData</td><td>if true, prints all data: name, taxpayer identification number, salary, number of undelivered orders and mean evaluation of the delivered orders; otherwise, just prints the name, the taxpayer identification number and the log status. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, if there are no workers on the list yet; false, otherwise </dd></dl>
+
 </div>
 </div>
-<a id="a1c1d4d72325433051671151f374a6c5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c1d4d72325433051671151f374a6c5b">&#9670;&nbsp;</a></span>read()</h2>
+<a id="a23c6487aa86b939999e2d588e4740f3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23c6487aa86b939999e2d588e4740f3c">&#9670;&nbsp;</a></span>read()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -294,12 +376,20 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void WorkerManager::read </td>
           <td>(</td>
-          <td class="paramtype">std::ifstream &amp;&#160;</td>
-          <td class="paramname"><em>file</em></td><td>)</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reads all the workers data (name, taxpayer identification number, salary and login credentials) from a file and creates news ones with that data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>the file path </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -319,6 +409,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Removes a worker from the workers list at a certain position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>the position on the workers list where the worker to be removed is </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a90f3f7eba1edb2190efc0666174e0992"></a>
@@ -336,6 +434,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Removes a worker from the workers list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worker</td><td>the worker to remove </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -365,8 +471,48 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sets the salary of the worker at a certain position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>the position </td></tr>
+    <tr><td class="paramname">salary</td><td>the new salary </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the worker whose salary has been set </dd></dl>
+
 </div>
 </div>
+<a id="aa113a74fff56719ab87067d87ba4364f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa113a74fff56719ab87067d87ba4364f">&#9670;&nbsp;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorkerManager::write </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes all the workers data that are on the workers list (name, taxpayer identification number, salary and login credentials) to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>the file path </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>model/person/worker/<a class="el" href="worker__manager_8h_source.html">worker_manager.h</a></li>
+<li>model/person/worker/worker_manager.cpp</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

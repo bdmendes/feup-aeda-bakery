@@ -1,13 +1,6 @@
-//
-// Created by bdmendes on 27/10/20.
-//
 
 #include <gtest/gtest.h>
 #include "model/store/store.h"
-#include "model/person/client/client_manager.h"
-#include "model/person/worker/worker_manager.h"
-#include "model/product/product_manager.h"
-#include "model/order/order_manager.h"
 
 #include <algorithm>
 
@@ -180,9 +173,9 @@ TEST(WorkerManager, change_salary){
 }
 
 TEST(WorkerManager, add_worker){
-    Worker w1("Francisco Ferreira", 948);
-    Worker w2("Joana Teixeira", 892);
-    Worker w3("Margarida Ferraz", 849);
+    Worker w1("Francisco Ferreira", 999999999,948);
+    Worker w2("Joana Teixeira", 999999999, 892);
+    Worker w3("Margarida Ferraz", 999999999, 849);
     WorkerManager workerM;
     unsigned position = 0;
 
@@ -193,14 +186,14 @@ TEST(WorkerManager, add_worker){
     EXPECT_EQ(1, workerM.getAll().size());
     EXPECT_TRUE(*worker1 == *workerM.get(position));
 
-    Worker* worker2 = workerM.add("Joana Teixeira", 892);
+    Worker* worker2 = workerM.add("Joana Teixeira", 999999999, 892);
     position = 0;
 
     EXPECT_EQ(2, workerM.getAll().size());
     EXPECT_TRUE(*worker1 == *workerM.get(position));
     EXPECT_TRUE(*worker2 == *workerM.get(++position));
 
-    Worker* worker3 = workerM.add("Margarida Ferraz", 849);
+    Worker* worker3 = workerM.add("Margarida Ferraz", 999999999, 849);
     position = 0;
 
     EXPECT_EQ(3, workerM.getAll().size());
@@ -212,9 +205,9 @@ TEST(WorkerManager, add_worker){
 
 TEST(WorkerManager, remove_worker_by_pointer){
     WorkerManager workerM;
-    Worker* worker1 = workerM.add("Francisco Ferreira", 948);
-    Worker* worker2 = workerM.add("Joana Teixeira", 892);
-    Worker* worker3 = workerM.add("Margarida Ferraz", 849);
+    Worker* worker1 = workerM.add("Francisco Ferreira", 999999999, 948);
+    Worker* worker2 = workerM.add("Joana Teixeira", 999999999, 892);
+    Worker* worker3 = workerM.add("Margarida Ferraz", 999999999, 849);
     unsigned position = 0;
 
     EXPECT_EQ(3, workerM.getAll().size());
@@ -245,9 +238,9 @@ TEST(WorkerManager, remove_worker_by_pointer){
 
 TEST(WorkerManager, remove_worker_by_position){
     WorkerManager workerM;
-    Worker* worker1 = workerM.add("Francisco Ferreira", 948);
-    Worker* worker2 = workerM.add("Joana Teixeira", 892);
-    Worker* worker3 = workerM.add("Margarida Ferraz", 849);
+    Worker* worker1 = workerM.add("Francisco Ferreira", 999999999, 948);
+    Worker* worker2 = workerM.add("Joana Teixeira", 999999999, 892);
+    Worker* worker3 = workerM.add("Margarida Ferraz", 999999999, 849);
     unsigned position = 0, positionToRemove = 0;
 
     EXPECT_EQ(3, workerM.getAll().size());

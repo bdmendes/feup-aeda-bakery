@@ -1,6 +1,3 @@
-//
-// Created by bdmendes on 29/10/20.
-//
 
 #include "order_manager.h"
 #include "exception/file_exception.h"
