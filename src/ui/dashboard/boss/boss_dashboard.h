@@ -17,6 +17,8 @@ public:
 private:
     void manageStaff();
     void addWorker();
+    void manageLocations();
+    void addLocation();
     void showStats();
     Boss* _boss;
 };

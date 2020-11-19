@@ -32,14 +32,19 @@ public:
 /**
  * Class relative to the exception of an already existent store location.
  */
-class LocationAlreadyExists : public std::invalid_argument{
+class LocationAlreadyExists : public std::invalid_argument {
 public:
     /**
      * Creates a new LocationAlreadyExists exception object.
      *
      * @param location the store location
      */
-    explicit LocationAlreadyExists(const std::string& location);
+    explicit LocationAlreadyExists(const std::string &location);
+};
+
+class InvalidLocationPosition : public std::invalid_argument{
+public:
+    explicit InvalidLocationPosition(unsigned long position);
 };
 
 #endif //FEUP_AEDA_PROJECT_STORE_EXCEPTIONS_H

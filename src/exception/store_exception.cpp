@@ -12,3 +12,7 @@ LocationDoesNotExist::LocationDoesNotExist(const std::string &location):
 LocationAlreadyExists::LocationAlreadyExists(const std::string &location):
     invalid_argument(location + " already exists.") {
 }
+
+InvalidLocationPosition::InvalidLocationPosition(unsigned long position):
+    invalid_argument(std::to_string(++position) + " is not a valid index.") {
+}

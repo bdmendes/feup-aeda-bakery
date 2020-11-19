@@ -193,7 +193,8 @@ void Dashboard::editOrder(Order* order) {
 
         const std::vector<std::string> options = {
                 "add <product_number> <quantity> - add product from stock",
-                "remove <product_number> - remove product from order"
+                "remove <product_number> - remove product from order",
+                "change location - set new deliver location"
         };
         printOptions(options);
 
@@ -208,14 +209,16 @@ void Dashboard::editOrder(Order* order) {
                     int idx = std::stoi(to_words(input).at(1)) - 1;
                     int quantity = std::stoi(to_words(input).at(2));
                     order->addProduct(_store.productManager.get(idx), quantity);
+                    break;
                 } else if (validInput1Cmd1ArgDigit(input, "remove")) {
                     int idx = std::stoi(to_words(input).at(1)) - 1;
                     order->removeProduct(idx);
-                } else {
-                    printError();
-                    continue;
+                    break;
+                } else if (validInput1Cmd1Arg(input,"change","location")){
+                    setOrderLocation(order);
+                    break;
                 }
-                break;
+                else printError();
             }
             catch (std::exception &e) {
                 std::cout << e.what() << "\n";
@@ -431,4 +434,29 @@ void Dashboard::addClient() {
     }
 
     _store.clientManager.add(name,taxID,premium);
+}
+
+void Dashboard::setOrderLocation(Order *order) {
+    std::cout << "\n" << SEPARATOR
+    << "New location (";
+
+    std::string locations;
+    for (const auto& l: _store.locationManager.getAll()){
+        locations += l + ", ";
+    }
+    if (!locations.empty()) locations = locations.substr(0,locations.size()-2);
+
+    std::cout << locations << "): ";
+    for(;;){
+        try{
+            std::string input = readCommand(false);
+            if (input == BACK) return;
+            if (!_store.locationManager.has(input)) throw LocationDoesNotExist(input);
+            order->setDeliverLocation(input);
+            break;
+        }
+        catch(std::exception& e){
+            std::cout << e.what() << "\n";
+        }
+    }
 }

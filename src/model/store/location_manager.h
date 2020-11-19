@@ -1,4 +1,3 @@
-
 #ifndef FEUP_AEDA_PROJECT_LOCATION_MANAGER_H
 #define FEUP_AEDA_PROJECT_LOCATION_MANAGER_H
 
@@ -43,6 +42,8 @@ public:
      */
     void remove(const std::string& location);
 
+    void remove(unsigned long index);
+
     /**
      * Reads from a file all of the locations data (name) and adds new objects created with that data to the store
      * locations list.
@@ -63,6 +64,5 @@ private:
      */
     std::set<std::string> _locations;
 };
-
 
 #endif //FEUP_AEDA_PROJECT_LOCATION_MANAGER_H
