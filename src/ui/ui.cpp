@@ -1,7 +1,3 @@
-//
-// Created by bdmendes on 07/11/20.
-//
-
 #include "ui.h"
 
 const char* UI::BACK = "back";

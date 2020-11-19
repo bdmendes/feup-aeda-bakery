@@ -1,7 +1,3 @@
-//
-// Created by bdmendes on 14/11/20.
-//
-
 #ifndef FEUP_AEDA_PROJECT_LOGIN_MENU_H
 #define FEUP_AEDA_PROJECT_LOGIN_MENU_H
 
@@ -14,6 +10,5 @@ public:
     void selectPerson(bool client);
     void login(Person* person);
 };
-
 
 #endif //FEUP_AEDA_PROJECT_LOGIN_MENU_H

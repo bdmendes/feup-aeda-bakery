@@ -3,7 +3,7 @@
 
 const int Person::DEFAULT_TAX_ID = 999999999;
 
-Person::Person(std::string name, int taxID, Credential credential, PersonRole role) :
+Person::Person(std::string name, unsigned long taxID, Credential credential, PersonRole role) :
         _name(std::move(name)), _taxID{taxID}, _credential{std::move(credential) }, _logged(false),
         _role(role) {
     if (credential.isReserved()) throw InvalidCredential();
@@ -48,7 +48,7 @@ void Person::setLogged(bool logged) {
     _logged = logged;
 }
 
-void Person::setTaxID(int taxID) {
+void Person::setTaxID(unsigned long taxID) {
     _taxID = taxID;
 }
 

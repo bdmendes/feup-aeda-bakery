@@ -27,7 +27,7 @@ Worker* WorkerManager::setSalary(unsigned position, float salary) {
     return *it;
 }
 
-Worker* WorkerManager::add(std::string name, int taxID, float salary, Credential credential) {
+Worker* WorkerManager::add(std::string name, unsigned long taxID, float salary, Credential credential) {
     auto* worker = new Worker(std::move(name), taxID, salary, std::move(credential));
     _workers.insert(worker);
     return worker;
@@ -52,7 +52,7 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
         return false;
     }
 
-    os << std::string(_workers.size() / 10 + 3, util::SPACE)
+    os << std::string((_workers.size()+1) / 10 + 3, util::SPACE)
     << util::column("NAME", true)
     << util::column("TAX ID");
     if (showData){
@@ -116,7 +116,7 @@ void WorkerManager::write(const std::string &path) {
     }
 }
 
-Worker* WorkerManager::getWorker(int taxID) const {
+Worker* WorkerManager::getWorker(unsigned long taxID) const {
     for(const auto& _worker : _workers){
         if (_worker->getTaxId() == taxID) return _worker;
     }

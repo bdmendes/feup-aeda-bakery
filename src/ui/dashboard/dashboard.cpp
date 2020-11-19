@@ -1,7 +1,3 @@
-//
-// Created by bdmendes on 16/11/20.
-//
-
 #include "dashboard.h"
 
 Dashboard::Dashboard(Store &store, Person *person) : UI(store), _person(person){
@@ -61,8 +57,7 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
             std::cout << e.what() << "\n";
         }
     }
-
-    manageOrders(client);
+    manageOrders(client, worker);
 }
 
 void Dashboard::changeCredential(Person *person){
@@ -127,7 +122,7 @@ void Dashboard::managePersonalData(Person *person) {
     };
     if (isClient){
         options.emplace_back("set premium - make myself a premium client");
-        options.emplace_back("set regular - make myself a regular client");
+        options.emplace_back("set basic - make myself a basic client");
     }
 
     printOptions(options);
@@ -142,11 +137,11 @@ void Dashboard::managePersonalData(Person *person) {
                 changeName(person);
                 break;
             } else if (isClient && validInput1Cmd1Arg(input, "set", "regular")) {
-                dynamic_cast<Client *>(person)->setPremium(false);
+                _store.clientManager.getClient(person->getTaxId())->setPremium(false);
                 break;
             }
             else if (isClient && validInput1Cmd1Arg(input, "set", "premium")) {
-                dynamic_cast<Client *>(person)->setPremium(true);
+                _store.clientManager.getClient(person->getTaxId())->setPremium(true);
                 break;
             }
             else if (validInput1Cmd1Arg(input,"change","taxid")){
@@ -217,7 +212,7 @@ void Dashboard::editOrder(Order* order) {
                 }
                 else if (validInput1Cmd2ArgsDigit(input, "add")) {
                     unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
-                    int quantity = std::stoi(to_words(input).at(2));
+                    unsigned int quantity = std::stoi(to_words(input).at(2));
                     order->addProduct(_store.productManager.get(idx), quantity);
                     break;
                 } else if (validInput1Cmd1ArgDigit(input, "remove")) {
@@ -367,10 +362,10 @@ void Dashboard::changeTaxID(Person *person) {
             std::string input2 = readCommand(false);
             if (input2 != input1) std::cout << "IDs did not match! Try again.\n";
             else if (isdigit(input1)){
-                person->setTaxID(std::stoi(input1));
+                person->setTaxID(std::stoul(input1));
                 break;
             }
-            else std::cout << "Please enter an integer number!\n";
+            else std::cout << "Please enter a reasonable sized integer number!\n";
         }
         catch (std::exception& e){
             std::cout << e.what() << "\n\n";

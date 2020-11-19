@@ -1,7 +1,3 @@
-//
-// Created by bdmendes on 14/11/20.
-//
-
 #include "intro_menu.h"
 #include "ui/menu/login/login_menu.h"
 

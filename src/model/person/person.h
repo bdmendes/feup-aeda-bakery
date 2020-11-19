@@ -66,7 +66,7 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the login credentials (username and password)
      */
-    Person(std::string name, int taxID, Credential credential, PersonRole role);
+    Person(std::string name, unsigned long taxID, Credential credential, PersonRole role);
 
     /**
      * Destructs the person object.
@@ -120,7 +120,7 @@ public:
      *
      * @param taxID the taxpayer identification number
      */
-    void setTaxID(int taxID);
+    void setTaxID(unsigned long taxID);
 
     /**
      * Sets the person login credentials.
@@ -176,7 +176,7 @@ private:
     /**
      * The person taxpayer identification number.
      */
-    int _taxID;
+    unsigned long _taxID;
 
     /**
      * The person login credentials.

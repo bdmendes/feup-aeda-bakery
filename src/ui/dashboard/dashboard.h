@@ -1,10 +1,5 @@
-//
-// Created by bdmendes on 16/11/20.
-//
-
 #ifndef FEUP_AEDA_PROJECT_DASHBOARD_H
 #define FEUP_AEDA_PROJECT_DASHBOARD_H
-
 
 #include <ui/ui.h>
 

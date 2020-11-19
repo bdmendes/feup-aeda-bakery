@@ -6,7 +6,7 @@
 const char* Boss::DEFAULT_USERNAME = "boss";
 const char* Boss::DEFAULT_PASSWORD = "boss";
 
-Boss::Boss(std::string name, int taxID, Credential credential) :
+Boss::Boss(std::string name, unsigned long taxID, Credential credential) :
     Person(std::move(name), taxID, std::move(credential), PersonRole::BOSS) {
 }
 

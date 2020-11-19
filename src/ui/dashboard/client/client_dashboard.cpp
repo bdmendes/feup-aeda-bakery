@@ -1,7 +1,3 @@
-//
-// Created by bdmendes on 14/11/20.
-//
-
 #include "client_dashboard.h"
 
 ClientDashboard::ClientDashboard(Store &store, Client *client) : Dashboard(store, client), _client(client){

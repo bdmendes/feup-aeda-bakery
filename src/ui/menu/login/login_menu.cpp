@@ -1,7 +1,3 @@
-//
-// Created by bdmendes on 14/11/20.
-//
-
 #include "ui/dashboard/boss/boss_dashboard.h"
 #include "ui/dashboard/worker/worker_dashboard.h"
 #include "ui/dashboard/client/client_dashboard.h"

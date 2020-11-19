@@ -25,7 +25,7 @@ public:
      *
      * @param taxID the taxpayer identification number
      */
-    explicit PersonDoesNotExist(int taxID);
+    explicit PersonDoesNotExist(unsigned long taxID);
 };
 
 /**

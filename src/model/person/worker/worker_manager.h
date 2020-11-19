@@ -56,7 +56,7 @@ public:
      * @param taxID the taxpayer identification number
      * @return the worker on the workers list with that taxpayer identification number
      */
-    Worker* getWorker(int taxID) const;
+    Worker* getWorker(unsigned long taxID) const;
 
     /**
      * Gets the less busy worker which is the worker with less number of undelivered orders.
@@ -83,8 +83,8 @@ public:
      * @param credential the login credentials
      * @return the worker added to de workers list of the worker manager
      */
-    Worker* add(std::string name, int taxID = Person::DEFAULT_TAX_ID, float salary = Worker::DEFAULT_SALARY,
-             Credential credential = {Worker::DEFAULT_USERNAME,Worker::DEFAULT_PASSWORD});
+    Worker* add(std::string name, unsigned long taxID = Person::DEFAULT_TAX_ID, float salary = Worker::DEFAULT_SALARY,
+                Credential credential = {Worker::DEFAULT_USERNAME, Worker::DEFAULT_PASSWORD});
 
     /**
      * Removes a worker from the workers list.

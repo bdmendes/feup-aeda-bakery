@@ -7,7 +7,7 @@
 const char* Client::DEFAULT_USERNAME = "client";
 const char* Client::DEFAULT_PASSWORD = "client";
 
-Client::Client(std::string name, int taxID, bool premium, Credential credential):
+Client::Client(std::string name, unsigned long taxID, bool premium, Credential credential):
         Person(std::move(name), taxID, std::move(credential), PersonRole::CLIENT), _points{0}, _premium(premium), _evaluations(){
 }
 
@@ -20,8 +20,6 @@ unsigned Client::getPoints() const {
 }
 
 void Client::setPremium(bool premium) {
-    if (_premium && premium) throw std::invalid_argument("Already a premium client!");
-    else if (!_premium && !premium) throw std::invalid_argument("Already a regular client!");
     _premium = premium;
 }
 

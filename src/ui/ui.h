@@ -1,7 +1,3 @@
-//
-// Created by bdmendes on 07/11/20.
-//
-
 #ifndef FEUP_AEDA_PROJECT_UI_H
 #define FEUP_AEDA_PROJECT_UI_H
 
