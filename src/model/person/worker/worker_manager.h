@@ -41,7 +41,7 @@ public:
      * @param position the position
      * @return the worker at that position
      */
-    Worker* get(unsigned position);
+    Worker* get(unsigned long position);
 
     /**
      * Gets the workers list.
@@ -98,7 +98,7 @@ public:
      *
      * @param position the position on the workers list where the worker to be removed is
      */
-    void remove(unsigned position);
+    void remove(unsigned long position);
 
     /**
      * Reads all the workers data (name, taxpayer identification number, salary and login credentials) from a file and

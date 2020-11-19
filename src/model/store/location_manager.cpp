@@ -1,8 +1,6 @@
 #include "location_manager.h"
 #include "exception/file_exception.h"
 
-#include <algorithm>
-
 LocationManager::LocationManager() : _locations(){
     _locations.insert(Order::DEFAULT_LOCATION);
 }

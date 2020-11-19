@@ -20,7 +20,7 @@ bool util::contains(const std::string &str, const std::string &expected) {
 
 void util::normalize(std::string &str) {
     bool forceLower = false;
-    for (int i = 0; i < str.size(); ++i){
+    for (unsigned long i = 0; i < str.size(); ++i){
         if (str.at(i) == SPACE) forceLower = false;
 
         //strip unneeded spaces
@@ -32,7 +32,7 @@ void util::normalize(std::string &str) {
 
         //ensure only first word char is uppercase
         if (forceLower || (std::isupper(str.at(i)) && i > 0 && std::isupper(str.at(i-1)))){
-            str.at(i) = std::tolower(str.at(i));
+            str.at(i) = (char) std::tolower(str.at(i));
             forceLower = true;
             continue;
         }
@@ -44,10 +44,10 @@ void util::lowercase(std::string &str) {
 }
 
 std::string util::column(std::string str, bool large) {
-    int colSize = large ? LARGE_COL_WIDTH : SMALL_COL_WIDTH;
-    if (str.size() > colSize) str = str.substr(0,colSize - 3) + "...";
+    unsigned long colSize = large ? LARGE_COL_WIDTH : SMALL_COL_WIDTH;
+    if (str.size() > colSize) str = str.substr(0, static_cast<unsigned long>((int) colSize - 3)) + "...";
     std::ostringstream ss;
-    ss << std::setw(colSize) << std::left << str << SPACE;
+    ss << std::setw((int)colSize) << std::left << str << SPACE;
     return ss.str();
 }
 

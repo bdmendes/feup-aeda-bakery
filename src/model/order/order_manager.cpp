@@ -115,7 +115,7 @@ void OrderManager::read(const std::string &path) {
     if (!file) throw FileNotFound(path);
 
     auto getDate = [](std::string dateStr, std::string timeStr) {
-        int day, month, year, hour, minute;
+        int day = 1, month = 1, year = 1900, hour = 0, minute = 0;
         std::replace(dateStr.begin(), dateStr.end(), '/', ' ');
         std::stringstream ssDate(dateStr);
         ssDate >> day >> month >> year;
@@ -128,8 +128,8 @@ void OrderManager::read(const std::string &path) {
 
     auto getProduct = [&](const std::string &productLine) {
         std::string productName;
-        float price;
-        int quantity;
+        float price = 1;
+        int quantity = 1;
 
         std::stringstream ss(productLine);
         ss >> productName >> price >> quantity;
@@ -141,7 +141,7 @@ void OrderManager::read(const std::string &path) {
 
     bool readDetails = true;
     Order *order = nullptr;
-    int clientEvaluation;
+    int clientEvaluation = -1;
     
     for (std::string line; getline(file, line);) {
         util::stripCarriageReturn(line);
@@ -150,7 +150,7 @@ void OrderManager::read(const std::string &path) {
         if (readDetails) {
             clientEvaluation = -1;
             std::string date, time, location;
-            int clientTaxID, workerTaxID;
+            int clientTaxID = Person::DEFAULT_TAX_ID, workerTaxID = Person::DEFAULT_TAX_ID;
 
             std::stringstream ss(line);
             ss >> clientTaxID >> workerTaxID >> date >> time >> location >> clientEvaluation;

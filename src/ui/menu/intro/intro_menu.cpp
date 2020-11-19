@@ -37,7 +37,7 @@ void IntroMenu::show() {
         else printError();
     }
 
-    show(); // allow back
+    show();
 }
 
 IntroMenu::IntroMenu(Store &s) : UI(s) {

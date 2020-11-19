@@ -14,7 +14,7 @@ bool ProductManager::has(Product *product) const {
     return std::find(_products.begin(), _products.end(), product) != _products.end();
 }
 
-Product* ProductManager::get(unsigned int position) {
+Product* ProductManager::get(unsigned long position) {
     if (position >= _products.size()) throw InvalidProductPosition(position, _products.size());
     auto it = _products.begin(); std::advance(it, position);
     return *it;
@@ -42,7 +42,7 @@ void ProductManager::remove(Product *product) {
     _products.erase(position);
 }
 
-void ProductManager::remove(unsigned int position) {
+void ProductManager::remove(unsigned long position) {
     if (position >= _products.size()) throw std::invalid_argument("Product does not exist");
     auto it = _products.begin();
     advance(it,position);
@@ -52,7 +52,7 @@ void ProductManager::remove(unsigned int position) {
 
 void ProductManager::print(std::ostream &os) const {
     if (!_products.empty()) {
-        os << std::string(static_cast<unsigned long>(_products.size()) / 10 + 3, util::SPACE)
+        os << std::string(_products.size() / 10 + 3, util::SPACE)
            << util::column("NAME", true)
            << util::column("CATEGORY")
            << util::column("UNIT PRICE") << "\n";
@@ -91,7 +91,7 @@ void ProductManager::read(const std::string &path) {
         else if(readingCakes) {
             std::stringstream ss(line);
             std::string name, cakeCategory;
-            float price;
+            float price = 1;
 
             ss >> name >> price >> cakeCategory;
             CakeCategory categoryToSave = CakeCategory::GENERAL;
@@ -108,7 +108,7 @@ void ProductManager::read(const std::string &path) {
         else{
             std::stringstream ss(line);
             std::string name, small;
-            float price;
+            float price = 1;
 
             ss>>name>>price>>small;
             std::replace(name.begin(), name.end(), '-', ' ');

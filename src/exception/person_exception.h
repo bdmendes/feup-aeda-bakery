@@ -23,13 +23,6 @@ public:
     /**
      * Creates a new PersonDoesNotExist exception object.
      *
-     * @param name the name
-     */
-    explicit PersonDoesNotExist(const std::string& name);
-
-    /**
-     * Creates a new PersonDoesNotExist exception object.
-     *
      * @param taxID the taxpayer identification number
      */
     explicit PersonDoesNotExist(int taxID);
@@ -46,7 +39,7 @@ public:
      * @param position the position
      * @param size the persons list size
      */
-    InvalidPersonPosition(unsigned position, unsigned long size);
+    InvalidPersonPosition(unsigned long position, unsigned long size);
 };
 
 /**

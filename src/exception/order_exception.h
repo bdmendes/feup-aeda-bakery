@@ -75,7 +75,7 @@ public:
      * @param position the position
      * @param size the size of the orders list
      */
-    InvalidOrderPosition(unsigned position, unsigned long size);
+    InvalidOrderPosition(unsigned long position, unsigned long size);
 };
 
 #endif //FEUP_AEDA_PROJECT_ORDER_EXCEPTION_H

@@ -61,7 +61,7 @@ void LoginMenu::selectPerson(bool client) {
             std::string input = readCommand();
             if (input == BACK) return;
             else if (hasPersons && validInput1Cmd1ArgDigit(input,"login")) {
-                unsigned personPosition = std::stoi(to_words(input).at(1)) - 1;
+                unsigned long personPosition = std::stoul(to_words(input).at(1)) - 1;
                 if (!client) login(_store.workerManager.get(personPosition));
                 else login(_store.clientManager.get(personPosition));
                 break;

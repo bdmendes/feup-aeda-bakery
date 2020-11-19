@@ -13,8 +13,6 @@ public:
     void show() override;
     void selectPerson(bool client);
     void login(Person* person);
-private:
-    std::vector<Person*> _persons;
 };
 
 

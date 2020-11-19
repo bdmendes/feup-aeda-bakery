@@ -2,7 +2,6 @@
 #include <algorithm>
 
 #include "client_manager.h"
-#include "exception/person_exception.h"
 #include "exception/file_exception.h"
 
 ClientManager::ClientManager() : _clients() {
@@ -16,7 +15,7 @@ bool ClientManager::has(Client *client) const {
     return _clients.find(client) != _clients.end();
 }
 
-Client *ClientManager::get(unsigned position) {
+Client *ClientManager::get(unsigned long position) {
     if (position >= _clients.size()) throw InvalidPersonPosition(position, _clients.size());
     auto it = _clients.begin(); std::advance(it, position);
     return *it;
@@ -28,7 +27,6 @@ std::set<Client *, PersonSmaller> ClientManager::getAll() {
 
 Client* ClientManager::add(std::string name, int taxID, bool premium, Credential credential) {
     auto* client = new Client(std::move(name), taxID, premium, std::move(credential));
-    //if(has(client)) throw PersonAlreadyExists(client->getName(), client->getTaxId());
     _clients.insert(client);
     return client;
 }
@@ -40,7 +38,7 @@ void ClientManager::remove(Client *client) {
     _clients.erase(position);
 }
 
-void ClientManager::remove(unsigned position) {
+void ClientManager::remove(unsigned long position) {
     if(position >= _clients.size()) throw InvalidPersonPosition(position, _clients.size());
     auto it = _clients.begin(); std::advance(it, position);
     _clients.erase(it);
@@ -76,8 +74,8 @@ void ClientManager::read(const std::string &path) {
     if(!file) throw FileNotFound(path);
 
     std::string name, premium;
-    int taxID;
-    unsigned points;
+    int taxID = Person::DEFAULT_TAX_ID;
+    unsigned points = 0;
     Credential credential;
 
     for(std::string line; getline(file, line); ){
@@ -114,5 +112,4 @@ Client *ClientManager::getClient(int taxID) const{
     }
     throw PersonDoesNotExist(taxID);
 }
-
 

@@ -72,6 +72,7 @@ void BossDashboard::addWorker() {
 
     std::cout << "Worker name: ";
     name = readCommand(false);
+    if (name == BACK) return;
 
     for(;;){
         std::cout << "Tax ID: ";
@@ -112,7 +113,7 @@ void BossDashboard::manageStaff() {
             std::string input = readCommand();
             if (input == BACK) return;
             else if (hasStaff && validInput1Cmd1ArgDigit(input,"fire")){
-                int idx = std::stoi(to_words(input).at(1)) - 1;
+                unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 if (!_store.orderManager.get(_store.workerManager.get(idx)).empty()){
                     throw std::logic_error("You can't fire a worker who has been involved in orders.");
                 }
@@ -120,7 +121,7 @@ void BossDashboard::manageStaff() {
                 break;
             }
             else if (hasStaff && validInput1Cmd2ArgsDigit(input,"set_salary",true)){
-                int idx = std::stoi(to_words(input).at(1)) - 1;
+                unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 float salary = std::stof(to_words(input).at(2));
                 _store.workerManager.get(idx)->setSalary(salary);
                 break;
@@ -149,7 +150,7 @@ void BossDashboard::showStats() {
 
     for(;;) {
         std::string input = readCommand();
-        if (input == BACK) break;
+        if (input == BACK) return;
         else printError();
     }
 }
@@ -175,7 +176,7 @@ void BossDashboard::manageLocations() {
             std::string input = readCommand();
             if (input == BACK) return;
             else if (validInput1Cmd1ArgDigit(input,"remove")){
-                int idx = std::stoi(to_words(input).at(1)) - 1;
+                unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 _store.locationManager.remove(idx);
                 break;
             }

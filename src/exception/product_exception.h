@@ -17,20 +17,6 @@ public:
      * @param price the price
      */
     ProductDoesNotExist(const std::string& name, float price);
-
-    /**
-     * Creates a new ProductDoesNotExist object.
-     *
-     * @param name the name
-     */
-    explicit ProductDoesNotExist(const std::string& name);
-
-    /**
-     * Creates a new ProductDoesNotExist object.
-     *
-     * @param price the price
-     */
-    explicit ProductDoesNotExist(float price);
 };
 
 /**
@@ -44,7 +30,7 @@ public:
      * @param position the position
      * @param size the products list size
      */
-    InvalidProductPosition(unsigned position, unsigned long size);
+    InvalidProductPosition(unsigned long position, unsigned long size);
 };
 
 

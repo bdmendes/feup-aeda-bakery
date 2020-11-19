@@ -50,7 +50,7 @@ public:
      * @param position the position
      * @return the product at that position
      */
-    Product* get(unsigned position);
+    Product* get(unsigned long position);
 
     /**
      * Gets the product on the products list with a certain name and price.
@@ -114,7 +114,7 @@ public:
      *
      * @param position the position
      */
-    void remove(unsigned position);
+    void remove(unsigned long position);
 
     /**
      * Reads all the products data (name, price, size if it is a bread and category if it is a cake) from a file and

@@ -37,7 +37,7 @@ public:
      * @param position the position
      * @return the client in that position
      */
-    Client* get(unsigned position);
+    Client* get(unsigned long position);
 
     /**
      * Gets a client from the clients list by its taxpayer identification number.
@@ -78,7 +78,7 @@ public:
      *
      * @param position the position
      */
-    void remove(unsigned position);
+    void remove(unsigned long position);
 
     /**
      * Prints all the clients data.

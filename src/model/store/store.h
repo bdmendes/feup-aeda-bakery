@@ -114,11 +114,6 @@ private:
      * The store name.
      */
     std::string _name;
-
-    /**
-     * The list of the available store locations.
-     */
-    std::set<std::string> _locations;
 };
 
 #endif //SRC_STORE_H

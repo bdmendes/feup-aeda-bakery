@@ -19,7 +19,7 @@ void Boss::read(const std::string &path) {
     if(!file) throw FileNotFound(path);
 
     std::string name, username, password;
-    int taxID;
+    int taxID = Person::DEFAULT_TAX_ID;
     file >> name >> taxID >> username >> password;
     util::stripCarriageReturn(password);
     std::replace(name.begin(),name.end(),'-',' ');

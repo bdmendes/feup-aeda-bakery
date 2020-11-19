@@ -10,7 +10,7 @@ bool WorkerManager::has(Worker *worker) const {
     return _workers.find(worker) != _workers.end();
 }
 
-Worker* WorkerManager::get(unsigned int position) {
+Worker* WorkerManager::get(unsigned long position) {
     if (position >= _workers.size()) throw InvalidPersonPosition(position, _workers.size());
     auto it = _workers.begin(); std::advance(it, position);
     return *it;
@@ -39,7 +39,7 @@ void WorkerManager::remove(Worker *worker) {
     _workers.erase(position);
 }
 
-void WorkerManager::remove(unsigned position) {
+void WorkerManager::remove(unsigned long position) {
     if(position >= _workers.size()) throw InvalidPersonPosition(position, _workers.size());
     auto it = _workers.begin();
     std::advance(it, position);
@@ -52,7 +52,7 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
         return false;
     }
 
-    os << std::string(static_cast<unsigned long>(_workers.size()) / 10 + 3, util::SPACE)
+    os << std::string(_workers.size() / 10 + 3, util::SPACE)
     << util::column("NAME", true)
     << util::column("TAX ID");
     if (showData){
@@ -88,8 +88,8 @@ void WorkerManager::read(const std::string& path) {
     if(!file) throw FileNotFound(path);
 
     std::string name;
-    float salary;
-    int taxID;
+    float salary = Worker::DEFAULT_SALARY;
+    int taxID = Person::DEFAULT_TAX_ID;
     Credential credential;
 
     for(std::string line; getline(file, line); ){

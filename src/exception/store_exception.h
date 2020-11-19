@@ -29,19 +29,6 @@ public:
     explicit LocationDoesNotExist(const std::string& location);
 };
 
-/**
- * Class relative to the exception of an already existent store location.
- */
-class LocationAlreadyExists : public std::invalid_argument {
-public:
-    /**
-     * Creates a new LocationAlreadyExists exception object.
-     *
-     * @param location the store location
-     */
-    explicit LocationAlreadyExists(const std::string &location);
-};
-
 class InvalidLocationPosition : public std::invalid_argument{
 public:
     explicit InvalidLocationPosition(unsigned long position);

@@ -41,14 +41,14 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
             std::string input = readCommand();
             if (input == BACK) return;
             else if (hasOrders && client != nullptr && validInput1Cmd2ArgsDigit(input, "deliver")) {
-                int idx = std::stoi(to_words(input).at(1)) - 1;
+                unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 int eval = std::stoi(to_words(input).at(2));
                 _store.orderManager.get(idx, client)->deliver(eval, 0);
             } else if (hasOrders && client != nullptr && validInput1Cmd1ArgDigit(input,"remove")){
-                int idx = std::stoi(to_words(input).at(1)) - 1;
+                unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 _store.orderManager.remove(idx);
             } else if (hasOrders && validInput1Cmd1ArgDigit(input, "expand")) {
-                int idx = std::stoi(to_words(input).at(1)) - 1;
+                unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 expandOrder(_store.orderManager.get(idx, client));
             } else if (hasOrders && validInput1Cmd1ArgDigit(input,"edit")){
                 int idx = std::stoi(to_words(input).at(1)) - 1;
@@ -128,7 +128,7 @@ void Dashboard::managePersonalData(Person *person) {
     if (isClient){
         options.emplace_back("set premium - make myself a premium client");
         options.emplace_back("set regular - make myself a regular client");
-    };
+    }
 
     printOptions(options);
     for (;;){
@@ -216,12 +216,12 @@ void Dashboard::editOrder(Order* order) {
                     return;
                 }
                 else if (validInput1Cmd2ArgsDigit(input, "add")) {
-                    int idx = std::stoi(to_words(input).at(1)) - 1;
+                    unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                     int quantity = std::stoi(to_words(input).at(2));
                     order->addProduct(_store.productManager.get(idx), quantity);
                     break;
                 } else if (validInput1Cmd1ArgDigit(input, "remove")) {
-                    int idx = std::stoi(to_words(input).at(1)) - 1;
+                    unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                     order->removeProduct(idx);
                     break;
                 } else if (validInput1Cmd1Arg(input,"change","location")){
@@ -262,7 +262,7 @@ void Dashboard::manageStock() {
                     addBread();
                     break;
                 } else if (validInput1Cmd1ArgDigit(input, "remove")){
-                    int idx = std::stoi(to_words(input).at(1)) - 1;
+                    unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                     for (const auto& o: _store.orderManager.getAll()){
                         if (o->hasProduct(_store.productManager.get(idx)))
                             throw std::logic_error("You cannot remove a product that's part of an order.");
@@ -286,6 +286,7 @@ void Dashboard::addBread() {
 
     std::cout << "Bread name: ";
     name = readCommand(false);
+    if (name == BACK) return;
 
     for(;;){
         std::cout << "Unit price: ";
@@ -319,6 +320,7 @@ void Dashboard::addCake() {
 
     std::cout << "Cake name: ";
     name = readCommand(false);
+    if (name == BACK) return;
 
     for(;;){
         std::cout << "Unit price: ";
@@ -331,7 +333,7 @@ void Dashboard::addCake() {
     const std::vector<std::string> categories = Cake::getCategories();
     for (;;){
         std::cout << "Category (";
-        for (int i = 0; i < categories.size(); ++i){
+        for (unsigned long i = 0; i < categories.size(); ++i){
             std::cout << categories.at(i);
             if (i != categories.size() - 1) std::cout << ", ";
         }
@@ -339,7 +341,7 @@ void Dashboard::addCake() {
 
         input = readCommand();
         bool found = false;
-        for (int i = 0; i < categories.size(); ++i) {
+        for (unsigned long i = 0; i < categories.size(); ++i) {
             std::string catName = categories.at(i);
             lowercase(catName);
             if (input == catName) {
@@ -360,6 +362,7 @@ void Dashboard::changeTaxID(Person *person) {
         try {
             std::cout << "New tax ID: ";
             std::string input1 = readCommand(false);
+            if (input1 == BACK) return;
             std::cout << "Confirm new tax ID: ";
             std::string input2 = readCommand(false);
             if (input2 != input1) std::cout << "IDs did not match! Try again.\n";
@@ -393,7 +396,7 @@ void Dashboard::manageClients() {
                 std::string input = readCommand();
                 if (input == BACK) return;
                 else if (hasClients && validInput1Cmd1ArgDigit(input, "kick")) {
-                    int idx = std::stoi(to_words(input).at(1)) - 1;
+                    unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                     for (const auto& o: _store.orderManager.getAll()){
                         if (o->getClient() == _store.clientManager.get(idx))
                             throw std::logic_error("You can't kick a client that has requested an order.");
@@ -420,6 +423,7 @@ void Dashboard::addClient() {
 
     std::cout << "Client name: ";
     name = readCommand(false);
+    if (name == BACK) return;
 
     for(;;){
         std::cout << "Tax ID: ";

@@ -1,9 +1,9 @@
 
 #include "date.h"
 #include <iomanip>
-#include <sstream>
 
-Date::Date() {
+Date::Date() :
+    _time{0,0,0,1,1,1900,0,0,-1,0,nullptr} {
     time_t t = std::time(nullptr);
     localtime_r(&t, &_time);
 }
@@ -70,23 +70,23 @@ void Date::addDays(int days) {
 }
 
 unsigned Date::getMonth() const {
-    return _time.tm_mon + 1;
+    return (unsigned) _time.tm_mon + 1;
 }
 
 unsigned Date::getDay() const {
-    return _time.tm_mday;
+    return (unsigned) _time.tm_mday;
 }
 
 unsigned Date::getYear() const {
-    return _time.tm_year + 1900;
+    return (unsigned) _time.tm_year + 1900;
 }
 
 unsigned Date::getHour() const {
-    return _time.tm_hour;
+    return (unsigned) _time.tm_hour;
 }
 
 unsigned Date::getMinute() const {
-    return _time.tm_min;
+    return (unsigned) _time.tm_min;
 }
 
 void Date::addMinutes(int minutes) {
