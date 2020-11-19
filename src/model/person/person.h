@@ -133,7 +133,10 @@ public:
      * Less than operator.
      *
      * @param p2 the person to compare with
-     * @return true, if person is less than p2, according to alphabetical order ; false, otherwise.
+     * @return true, if person is less than p2. That means, if some person taxpayer identification number is different
+     * from the default one and the person taxpayer identification number is less than the p2's one, returns true. In
+     * case of both taxpayer identification number are equal to the default one, returns true according to alphabetical
+     * order; false, otherwise.
      */
     bool operator<(const Person& p2) const;
 

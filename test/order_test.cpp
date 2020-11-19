@@ -1,6 +1,3 @@
-//
-// Created by bdmendes on 19/10/20.
-//
 
 #include <gtest/gtest.h>
 #include "model/order/order.h"

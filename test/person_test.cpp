@@ -1,6 +1,3 @@
-//
-// Created by bdmendes on 27/10/20.
-//
 
 #include <gtest/gtest.h>
 #include "model/person/person.h"
@@ -113,13 +110,17 @@ TEST(Client, sort_clients){
 }
 
 TEST(Worker, sort_workers){
-    Worker worker1("Cristina Martins", 938);
-    Worker worker2("Sara Ribeiro", 839);
-    Worker worker3("Sara Couto", 940);
+    Worker worker1("Cristina Martins", 184391272);
+    Worker worker2 ("Cristina Martins");
+    Worker worker3("Sara Ribeiro", 249123948);
+    Worker worker4("Sara Couto");
 
     EXPECT_TRUE(worker1 < worker2);
+    EXPECT_TRUE(worker1 < worker3);
+    EXPECT_TRUE(worker1 < worker4);
     EXPECT_TRUE(worker3 < worker2);
-    EXPECT_FALSE(worker3 < worker1);
+    EXPECT_TRUE(worker2 < worker4);
+    EXPECT_TRUE(worker3 < worker4);
 }
 
 
