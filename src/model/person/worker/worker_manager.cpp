@@ -93,6 +93,9 @@ void WorkerManager::read(const std::string& path) {
     Credential credential;
 
     for(std::string line; getline(file, line); ){
+        util::stripCarriageReturn(line);
+        if (line.empty()) continue;
+
         std::stringstream ss(line);
         ss >> name >> taxID >> salary >> credential.username >> credential.password;
         std::replace(name.begin(), name.end(), '-', ' ');

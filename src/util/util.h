@@ -130,6 +130,12 @@ namespace util {
      * @param color the color
      */
     void print(const std::string& s, int color);
+
+    /**
+     * Erase Windows carriage return char from the string.
+     * @param line - string to be manipulated.
+     */
+    void stripCarriageReturn(std::string& line);
 }
 
 #endif //FEUP_AEDA_PROJECT_UTIL_H

@@ -81,6 +81,9 @@ void ClientManager::read(const std::string &path) {
     Credential credential;
 
     for(std::string line; getline(file, line); ){
+        util::stripCarriageReturn(line);
+        if (line.empty()) continue;
+
         std::stringstream ss(line);
         ss>>name>>taxID>>premium>>points>>credential.username>>credential.password;
 

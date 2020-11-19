@@ -21,6 +21,7 @@ void Boss::read(const std::string &path) {
     std::string name, username, password;
     int taxID;
     file >> name >> taxID >> username >> password;
+    util::stripCarriageReturn(password);
     std::replace(name.begin(),name.end(),'-',' ');
     setName(name);
     setTaxID(taxID);

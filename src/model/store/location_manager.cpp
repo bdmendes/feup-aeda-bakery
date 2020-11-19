@@ -27,6 +27,7 @@ void LocationManager::read(const std::string& path) {
     if (!file) throw FileNotFound(path);
 
     for (std::string line; std::getline(file,line);){
+        util::stripCarriageReturn(line);
         if (line.empty()) continue;
         std::replace(line.begin(),line.end(),'-',' ');
         add(line);

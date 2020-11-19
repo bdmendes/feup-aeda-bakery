@@ -78,10 +78,13 @@ Product *ProductManager::get(const std::string &name, float price) {
 void ProductManager::read(const std::string &path) {
     std::ifstream file(path);
     if(!file) throw FileNotFound(path);
+
     bool readingCakes = true;
+    std::vector<std::string> cakeCategories = Cake::getCategories();
 
     for (std::string line; getline(file, line); ){
-        std::vector<std::string> cakeCategories = Cake::getCategories();
+        util::stripCarriageReturn(line);
+        if (line.empty()) continue;
         if(line=="CAKES") readingCakes = true;
         else if(line=="BREADS") readingCakes = false;
         else if(readingCakes) {

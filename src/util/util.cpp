@@ -80,3 +80,8 @@ std::vector<std::string> util::to_words(const std::string& input) {
 void util::uppercase(std::string &str) {
     std::transform(str.begin(),str.end(),str.begin(),[](unsigned char c){return std::toupper(c);});
 }
+
+void util::stripCarriageReturn(std::string& line){
+    line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
+}
+

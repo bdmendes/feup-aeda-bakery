@@ -142,7 +142,11 @@ void OrderManager::read(const std::string &path) {
     bool readDetails = true;
     Order *order = nullptr;
     int clientEvaluation;
+    
     for (std::string line; getline(file, line);) {
+        util::stripCarriageReturn(line);
+        if (line.empty()) continue;
+
         if (readDetails) {
             clientEvaluation = -1;
             std::string date, time, location;
@@ -158,13 +162,13 @@ void OrderManager::read(const std::string &path) {
             order = add(client, worker, location, getDate(date, time));
             readDetails = false;
 
-        } else if (line.empty()) {
+        } else if (line.at(0) == '-') {
             if (clientEvaluation != -1 && order) order->deliver(clientEvaluation);
             readDetails = true;
             order = nullptr;
             continue;
         }
-        else{
+        else {
             Product *product = getProduct(line);
             if (!order) throw OrderDoesNotExist();
             order->addProduct(product);
@@ -189,7 +193,7 @@ void OrderManager::write(const std::string &path) {
             std::replace(nameToSave.begin(),nameToSave.end(),' ','-');
             file << nameToSave << " " << p.first->getPrice() << " " << p.second << "\n";
         }
-        file << "\n";
+        file << util::SEPARATOR;
     }
 }
 
