@@ -23,6 +23,7 @@
 #include "../product/product_manager.h"
 #include "../person/worker/worker_manager.h"
 #include "../order/order_manager.h"
+#include "location_manager.h"
 
 class Order;
 
@@ -42,9 +43,11 @@ public:
     ClientManager clientManager;
     WorkerManager workerManager;
     OrderManager orderManager;
+    LocationManager locationManager;
     Boss boss;
 private:
     std::string _name;
+    std::set<std::string> _locations;
 };
 
 #endif //SRC_STORE_H

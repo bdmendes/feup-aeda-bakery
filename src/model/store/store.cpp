@@ -8,8 +8,8 @@
 
 Store::Store(std::string name) :
         _name(std::move(name)),
-        productManager(),clientManager(),workerManager(),
-        orderManager(&productManager,&clientManager,&workerManager),
+        productManager(),clientManager(),workerManager(),locationManager(),
+        orderManager(&productManager,&clientManager,&workerManager,&locationManager),
         boss("Boss", Person::DEFAULT_TAX_ID, {Boss::DEFAULT_USERNAME,Boss::DEFAULT_PASSWORD}){
 }
 
@@ -66,4 +66,3 @@ std::string Store::write(const std::string& dataFolderPath) {
     }
     return "Export succeeded.";
 }
-

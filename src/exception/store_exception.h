@@ -13,4 +13,14 @@ public:
     explicit StoreHasNoWorkers();
 };
 
+class LocationDoesNotExist : public std::invalid_argument{
+public:
+    explicit LocationDoesNotExist(const std::string& location);
+};
+
+class LocationAlreadyExists : public std::invalid_argument{
+public:
+    explicit LocationAlreadyExists(const std::string& location);
+};
+
 #endif //FEUP_AEDA_PROJECT_STORE_EXCEPTIONS_H

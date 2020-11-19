@@ -16,10 +16,9 @@
 #include <fstream>
 #include <map>
 
-
 class Order {
 public:
-    Order(Client& client, Worker& worker, Date date = {});
+    Order(Client& client, Worker& worker, std::string location = DEFAULT_LOCATION, Date date = {});
 
     bool hasDiscount() const;
     bool hasProduct(Product* product);
@@ -27,6 +26,9 @@ public:
 
     Worker* getWorker() const;
     Client* getClient() const;
+
+    void setDeliverLocation(const std::string& location);
+    std::string getDeliverLocation() const;
 
     std::map<Product*, unsigned int, ProductSmaller> getProducts() const;
 
@@ -48,6 +50,8 @@ public:
 
     void print(std::ostream& os) const;
 
+    static const char* DEFAULT_LOCATION;
+
 private:
     void updateTotalPrice();
     std::map<Product*, unsigned int, ProductSmaller> _products;
@@ -58,6 +62,7 @@ private:
     bool _delivered;
     Date _requestDate;
     Date _deliverDate;
+    std::string _deliverLocation;
 };
 
 #endif //SRC_ORDER_H
