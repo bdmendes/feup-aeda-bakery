@@ -6,7 +6,7 @@ const int Person::DEFAULT_TAX_ID = 999999999;
 Person::Person(std::string name, int taxID, Credential credential, PersonRole role) :
         _name(std::move(name)), _taxID{taxID}, _credential{std::move(credential) }, _logged(false),
         _role(role) {
-    if (credential.isReserved()) throw InvalidCredential();
+    if (_credential.isReserved()) throw InvalidCredential();
 }
 
 std::string Person::getName() const {
