@@ -130,18 +130,21 @@ public:
     void setCredential(const Credential& credential);
 
     /**
-     * Less than operator.
+     * One person is less than the other according to the comparison of their names by alphabetical order, in case both
+     * of their taxpayer identification number are equal to the default one. Otherwise, if one person taxpayer
+     * identification number is different from the default, one person is less than the other if their taxpayer
+     * identification number is lass than the other's.
      *
      * @param p2 the person to compare with
-     * @return true, if person is less than p2. That means, if some person taxpayer identification number is different
-     * from the default one and the person taxpayer identification number is less than the p2's one, returns true. In
-     * case of both taxpayer identification number are equal to the default one, returns true according to alphabetical
+     * @return true, if person is less than p2; false, otherwise
      * order; false, otherwise.
      */
     bool operator<(const Person& p2) const;
 
     /**
-     * Equality operator.
+     * Two persons are equal if their name are equal, in case both of their taxpayer identification number are equal to
+     * the default one. Otherwise, if one person taxpayer identification number is different from the default, two
+     * persons are equal if their taxpayer identification numbers are equal.
      *
      * @param p2 the person to compare with
      * @return true, if persons are equal; false, otherwise.

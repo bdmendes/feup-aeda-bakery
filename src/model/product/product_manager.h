@@ -10,7 +10,7 @@
  */
 struct ProductSmaller{
     /**
-     * Checks if a product is smaller than other.
+     * Checks if a should be shown before another..
      *
      * @param p1 the first product to compare with
      * @param p2 the second product to compare with

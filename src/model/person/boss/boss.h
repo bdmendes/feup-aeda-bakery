@@ -22,7 +22,7 @@ public:
                   Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     /**
-     * Gets the default boss' login credentials.
+     * Gets the default boss login credentials.
      *
      * @return the default login credentials
      */

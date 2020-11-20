@@ -46,7 +46,7 @@ public:
     /**
      * Gets the workers list.
      *
-     * @return the wokers list
+     * @return the workers list
      */
     std::set<Worker*, PersonSmaller> getAll();
 

@@ -107,7 +107,7 @@ public:
     void addMinutes(int minutes);
 
     /**
-     * Equality operator.
+     * One date is equal to other when their complete dates are equal.
      *
      * @param d2 the date to compare with
      * @return true, if the dates are equal; false, otherwise
@@ -115,10 +115,10 @@ public:
     bool operator==(const Date& d2) const;
 
     /**
-     * Less than operator.
+     * One date is less than the other if it corresponds to an earlier date.
      *
      * @param d2 the date to compare with
-     * @return true, if the date is less than d2 (date is earlier); false, otherwise
+     * @return true, if the date is less than d2; false, otherwise
      */
     bool operator<(const Date& d2) const;
 private:

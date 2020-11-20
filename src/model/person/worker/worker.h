@@ -65,7 +65,7 @@ public:
     /**
      * Adds an evaluation to the orders evaluations list.
      *
-     * @param evaluation
+     * @param evaluation the evaluation
      */
     void addEvaluation (unsigned int evaluation);
 
