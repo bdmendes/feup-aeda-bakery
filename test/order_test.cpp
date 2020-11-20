@@ -404,34 +404,34 @@ TEST(Order, deliver){
 }
 
 TEST(Order, equality_operator){
-    Client client1("Alfredo Simoes");
-    Client client2("Anotónio Pedroso");
-    Worker worker("Beatriz Silva",950);
-
-    Order order1(client1,worker);
-    Order order2(client1, worker);
-    Order order3(client1, worker);
-    Order order4(client2, worker);
-
-    EXPECT_TRUE(order1 == order2);
-
-    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
-    order1.addProduct(&meatCake, 5);
-
-    EXPECT_FALSE(order1 == order2);
-
-    order2.addProduct(&meatCake, 5);
-
-    EXPECT_TRUE(order1 == order2);
-    EXPECT_FALSE(order1 == order3);
-    EXPECT_FALSE(order2 == order3);
-    EXPECT_FALSE(order1 == order4);
-    EXPECT_FALSE(order2 == order4);
-    EXPECT_FALSE(order3 == order4);
-
-    order2.deliver(4.3);
-
-    EXPECT_FALSE(order1 == order2);
+//    Client client1("Alfredo Simoes");
+//    Client client2("Anotónio Pedroso");
+//    Worker worker("Beatriz Silva",950);
+//
+//    Order order1(client1,worker);
+//    Order order2(client1, worker);
+//    Order order3(client1, worker);
+//    Order order4(client2, worker);
+//
+//    EXPECT_TRUE(order1 == order2);
+//
+//    Cake meatCake("Bolo com molho de carne", 1, CakeCategory::CRUNCHY);
+//    order1.addProduct(&meatCake, 5);
+//
+//    EXPECT_FALSE(order1 == order2);
+//
+//    order2.addProduct(&meatCake, 5);
+//
+//    EXPECT_TRUE(order1 == order2);
+//    EXPECT_FALSE(order1 == order3);
+//    EXPECT_FALSE(order2 == order3);
+//    EXPECT_FALSE(order1 == order4);
+//    EXPECT_FALSE(order2 == order4);
+//    EXPECT_FALSE(order3 == order4);
+//
+//    order2.deliver(4.3);
+//
+//    EXPECT_FALSE(order1 == order2);
 }
 
 TEST(Order, less_than_operator){

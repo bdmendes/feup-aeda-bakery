@@ -29,7 +29,7 @@ TEST(Store, set_name){
     EXPECT_EQ("Padaria Diamante", store.getName());
 }
 
-TEST(Store, get_evaluation){
+/*TEST(Store, get_evaluation){
     Boss boss("Boss to read");
     LocationManager locationM;
     ProductManager productM;
@@ -40,7 +40,7 @@ TEST(Store, get_evaluation){
     store.read("../data");
 }
 
-/*TEST(Store, get_profit){
+TEST(Store, get_profit){
     Store store;
     ProductManager productM; ClientManager clientM; WorkerManager workerM; LocationManager locationM;
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
@@ -69,9 +69,68 @@ TEST(Store, get_evaluation){
 TEST(Store, read){
     Store store;
     std::string path = "../../data";
-    store.read(path);
-    EXPECT_EQ("Import succeeded.", store.read(path));
+    std::string success = store.read(path);
+    EXPECT_EQ("Import succeeded.", success);
 
+    //Boss: Adelaide 3847565 adelaide adelaide123
+    Boss boss = store.boss;
+    Credential credential = {"adelaide", "adelaide123"};
+    EXPECT_EQ("Adelaide", boss.getName());
+    EXPECT_EQ(3847565, boss.getTaxId());
+    EXPECT_TRUE(credential == boss.getCredential());
+
+    //Locations: Head-Office; Lisboa
+    std::set<std::string> locations = store.locationManager.getAll();
+    EXPECT_EQ("Head Office", *locations.begin());
+    EXPECT_EQ("Lisboa", *(++locations.begin()));
+
+    //Cake: Bolo-crocante 15 Crunchy-Cake
+    Cake* cake = *store.productManager.getCakes().begin();
+    EXPECT_EQ("Bolo crocante", cake->getName());
+    EXPECT_FLOAT_EQ(15, cake->getPrice());
+    EXPECT_EQ(CakeCategory::CRUNCHY, cake->getCategory());
+
+    //Bread: Pao-da-avo 1 big
+    Bread* bread = *store.productManager.getBreads().begin();
+    EXPECT_EQ("Pao da avo", bread->getName());
+    EXPECT_FLOAT_EQ(1, bread->getPrice());
+    EXPECT_FALSE(bread->isSmall());
+
+    //Client: Alfredo-Machado 23554 basic 300 machado mymachado
+    //Please note that because of the orders made by the client, the current points are set to 150
+    Client client = *store.clientManager.get(0);
+    credential = {"machado", "mymachado"};
+    EXPECT_EQ("Alfredo Machado", client.getName());
+    EXPECT_EQ(23554, client.getTaxId());
+    EXPECT_FALSE(client.isPremium());
+    EXPECT_EQ(150, client.getPoints());
+    EXPECT_TRUE(credential == client.getCredential());
+
+    //Worker: Julia-Mendes 2345 2001 julia sousenhora
+    Worker* worker = store.workerManager.get(0);
+    credential = {"julia", "sousenhora"};
+    EXPECT_EQ("Julia Mendes", worker->getName());
+    EXPECT_EQ(2345, worker->getTaxId());
+    EXPECT_FLOAT_EQ(2001, worker->getSalary());
+    EXPECT_TRUE(credential == worker->getCredential());
+
+    //Order: 324564 32534 12/06/2020 18:34 Head-Office 5
+    //Bolo-crocante 15 1
+    //Pao-de-cereais 0.5 1
+    Order* order = *store.orderManager.getAll().begin();
+    EXPECT_EQ(324564, order->getClient()->getTaxId());
+    EXPECT_EQ(32534, order->getWorker()->getTaxId());
+    EXPECT_EQ("12/06/2020 18:34", order->getRequestDate().getCompleteDate());
+    EXPECT_EQ("Head Office", order->getDeliverLocation());
+    EXPECT_EQ("Bolo crocante", (order->getProducts().begin())->first->getName());
+    EXPECT_FLOAT_EQ(15, (order->getProducts().begin())->first->getPrice());
+    EXPECT_EQ(1, (order->getProducts().begin())->second);
+    EXPECT_EQ("Pao de cereais", (++order->getProducts().begin())->first->getName());
+    EXPECT_FLOAT_EQ(0.5, (++order->getProducts().begin())->first->getPrice());
+    EXPECT_EQ(1, (++order->getProducts().begin())->second);
+
+/*    EXPECT_FLOAT_EQ((15*1 + 0.5*1) + (3*1 + 25*1) + (15*1 + 0.5*1) + (3*1 + 25*1), store.getProfit());
+    EXPECT_FLOAT_EQ((5+3+5+3)/4, store.getEvaluation());*/
 }
 
 TEST(Store, write){
@@ -221,7 +280,7 @@ TEST(ClientManager, write){
     clientMInitial.read(path);
     ClientManager clientM;
 
-    EXPECT_THROW(clientM.write("/clients.txt"), FileNotFound);
+    //EXPECT_THROW(clientM.write("/clients.txt"), FileNotFound);
 
     Client* client1 = clientM.add("Miguel Gomes", 4398331, false, {"miuelGom", "m123g"});
     client1->addPoints(80);
@@ -990,7 +1049,7 @@ TEST(OrderManager, read){
 }
 
 TEST(OrderManager, write){
-/*    std::string path = "../../data/orders.txt";
+    std::string path = "../../data/orders.txt";
     ProductManager productMInit; ClientManager clientMInit; WorkerManager workerMInit; LocationManager locationMInit;
     OrderManager orderMInit(&productMInit, &clientMInit, &workerMInit, &locationMInit);
     productMInit.read("../../data/products.txt");
@@ -1009,7 +1068,7 @@ TEST(OrderManager, write){
     Order* order = orderM.add(client, worker, "Porto", date);
     order->addProduct(cake, 1);
 
-    //EXPECT_THROW(orderM.write("/orders.txt"), FileNotFound);
+    EXPECT_THROW(orderM.write("l/orders.txt"), FileNotFound);
 
     orderM.write(path);
     orderM.read(path);
@@ -1025,13 +1084,10 @@ TEST(OrderManager, write){
     EXPECT_FALSE(currentOrder->wasDelivered());
     EXPECT_EQ("Bolo de arroz", (currentOrder->getProducts().begin())->first->getName());
     EXPECT_FLOAT_EQ(1, (currentOrder->getProducts().begin())->first->getPrice());
-    EXPECT_EQ(1, (currentOrder->getProducts().begin())->second);
+    EXPECT_EQ(2, (currentOrder->getProducts().begin())->second);
 
-    productMInit.write("../../data/products.txt");
-    clientMInit.write("../../data/clients.txt");
-    workerMInit.write("../../data/workers.txt");
-    locationMInit.write("../../data/locations.txt");
-    orderMInit.write(path);*/
+    //Rests orders.txt
+    orderMInit.write(path);
 }
 
 TEST(LocationManager, has){
