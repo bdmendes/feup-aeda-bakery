@@ -41,8 +41,8 @@ void LoginMenu::selectPerson(PersonRole role) {
     printLogo("Login");
 
     std::cout << SEPARATOR;
-    if (role == PersonRole::CLIENT) hasPersons = _store.workerManager.print(std::cout, false);
-    else if (role == PersonRole::WORKER) hasPersons = _store.clientManager.print(std::cout, false);
+    if (role == PersonRole::WORKER) hasPersons = _store.workerManager.print(std::cout, false);
+    else if (role == PersonRole::CLIENT) hasPersons = _store.clientManager.print(std::cout, false);
     std::cout << SEPARATOR << "\n";
 
     if (hasPersons){
@@ -58,7 +58,7 @@ void LoginMenu::selectPerson(PersonRole role) {
             if (input == BACK) return;
             else if (hasPersons && validInput1Cmd1ArgDigit(input,"login")) {
                 unsigned long personPosition = std::stoul(to_words(input).at(1)) - 1;
-                if (role == PersonRole::CLIENT) login(_store.workerManager.get(personPosition));
+                if (role == PersonRole::WORKER) login(_store.workerManager.get(personPosition));
                 else login(_store.clientManager.get(personPosition));
                 break;
             }
