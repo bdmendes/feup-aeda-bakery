@@ -52,7 +52,7 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
         return false;
     }
 
-    os << std::string((_workers.size()+1) / 10 + 3, util::SPACE)
+    os << std::string(_workers.size() / 10 + 3, util::SPACE)
     << util::column("NAME", true)
     << util::column("TAX ID");
     if (showData){
@@ -67,7 +67,7 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
 
     int count = 1;
     for (const auto& w: _workers){
-        os << std::to_string(count++) + ". ";
+        os << std::setw((int)_workers.size() / 10 + 3) << std::to_string(count++) + ". ";
         w->print(os, showData);
         os << "\n";
     }

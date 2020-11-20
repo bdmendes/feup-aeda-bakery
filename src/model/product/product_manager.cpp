@@ -52,14 +52,14 @@ void ProductManager::remove(unsigned long position) {
 
 void ProductManager::print(std::ostream &os) const {
     if (!_products.empty()) {
-        os << std::string((_products.size()+1) / 10 + 3, util::SPACE)
+        os << std::string(_products.size() / 10 + 3, util::SPACE)
            << util::column("NAME", true)
            << util::column("CATEGORY")
            << util::column("UNIT PRICE") << "\n";
 
         int count = 1;
         for (const auto &p: _products) {
-            os << std::to_string(count++) + ". ";
+            os << std::setw((int)_products.size() / 10 + 3) << std::to_string(count++) + ". ";
             p->print(os);
             os << "\n";
         }

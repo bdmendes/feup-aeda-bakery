@@ -90,7 +90,7 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
         return false;
     }
 
-    os << std::string(toPrint.size() / 10 + 3,util::SPACE);
+    os << std::string(toPrint.size() / 10 + 3 ,util::SPACE);
     if (client == nullptr) os << util::column("CLIENT",true);
     if (worker == nullptr) os << util::column("WORKER",true);
     os << util::column("REQUESTED",true)
@@ -99,7 +99,7 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
 
     int count = 1;
     for (const auto& o: toPrint){
-        os << std::to_string(count++) + ". ";
+        os << std::setw((int)toPrint.size() / 10 + 3) << std::to_string(count++) + ". ";
         if (client == nullptr) os << util::column(o->getClient()->getName(),true);
         if (worker == nullptr) os << util::column(o->getWorker()->getName(),true);
         os << util::column(o->getRequestDate().getCompleteDate(), true)
