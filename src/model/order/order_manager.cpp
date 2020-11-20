@@ -15,7 +15,8 @@ bool OrderManager::has(Order *order) const {
 
 Order* OrderManager::get(unsigned long position, Client* client, Worker* worker) const {
     std::vector<Order*> filtered;
-    if (client != nullptr && worker != nullptr) throw std::invalid_argument("Can't choose both worker and client");
+    if (client != nullptr && worker != nullptr)
+        throw std::invalid_argument("Can't choose both worker and client");
     else if (client != nullptr) filtered = get(client);
     else if (worker != nullptr) filtered = get(worker);
     else filtered = getAll();
