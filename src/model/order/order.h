@@ -31,9 +31,8 @@ public:
     /**
      * Checks if the order has discount.
      *
-     * @return true, if the client has 100 points and the subscription type is premium (there is a
-     * discount of 5%) or if the client has 200 points and the subscription type is basic (there is a discount of 2%);
-     * false, otherwise
+     * @return true, if the client has 100 points and the subscription type is premium (there is a discount of 5%) or
+     * if the client has 200 points and the subscription type is basic (there is a discount of 2%); false, otherwise
      */
     bool hasDiscount() const;
 
@@ -76,21 +75,21 @@ public:
     /**
      * Gets the store location where the order will be delivered.
      *
-     * @return the store location where the order will be delivered
+     * @return the store location
      */
     std::string getDeliverLocation() const;
 
     /**
-     * Gets the list of all products.
+     * Gets the list of all products with the respective requested quantity.
      *
-     * @return the list of all products
+     * @return the list of all products and their quantity
      */
     std::map<Product*, unsigned int, ProductSmaller> getProducts() const;
 
     /**
      * Gets the evaluation of the order, given by the client when the order is delivered.
      *
-     * @return the client evaluation of the order
+     * @return the client evaluation
      */
     int getClientEvaluation() const;
 
@@ -116,7 +115,7 @@ public:
     /**
      * Gets the date when the order was delivered.
      *
-     * @return the order deliver date
+     * @return the order delivery date
      */
     Date getDeliverDate() const;
 
@@ -160,7 +159,7 @@ public:
     bool operator==(const Order& rhs) const;
 
     /**
-     * Less than operator.
+     * One order is less than order if it was requested first than the other one.
      *
      * @param rhs the order to compare with
      * @return true, if the order was requested first than the rhs; false, otherwise

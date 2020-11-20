@@ -93,7 +93,7 @@ public:
 
     /**
      * Reads all the clients data (name, the taxpayer identification number and login credentials) from a file
-     *  and creates new ones with that data.
+     * and creates new ones with that data.
      *
      * @param path the file path
      */
