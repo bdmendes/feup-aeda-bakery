@@ -32,6 +32,7 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
         else if (!worker){ // boss
             options.emplace_back("sort_by client - sort orders by client");
             options.emplace_back("sort_by worker - sort orders by worker");
+            options.emplace_back("sort_by date - sort orders by request date");
         }
         printOptions(options);
     }
@@ -46,6 +47,10 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
             }
             else if (!client && !worker && validInput1Cmd1Arg(input,"sort_by","worker")){
                 _store.orderManager.sortByWorker();
+                break;
+            }
+            else if (!client && !worker && validInput1Cmd1Arg(input,"sort_by","date")){
+                _store.orderManager.sortByDate();
                 break;
             }
             else if (hasOrders && client != nullptr && validInput1Cmd2ArgsDigit(input, "deliver")) {
