@@ -194,5 +194,3 @@ void BossDashboard::addLocation() {
     if (input == BACK) return;
     _store.locationManager.add(input);
 }
-
-

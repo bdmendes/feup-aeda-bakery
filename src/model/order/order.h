@@ -152,7 +152,7 @@ public:
     void deliver(int clientEvaluation, int deliverDuration = 30);
 
     /**
-     * Equality operator.
+     * Two orders are equal if they share the same client, worker and delivery location.
      *
      * @param rhs the order to compare with
      * @return true, if the orders are equal; false, otherwise
