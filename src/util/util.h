@@ -34,7 +34,7 @@ namespace util {
     static const int SMALL_COL_WIDTH = 15;
 
     /**
-     * Checks if a string is a digit.
+     * Checks if a string is a digit. Negative numbers are rejected.
      *
      * @param str the string
      * @param acceptFloat true, if it accepts float numbers; false, otherwise

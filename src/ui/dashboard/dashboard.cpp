@@ -25,9 +25,13 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
                 "expand <index> - view order details",
                 "edit <index> - edit order details"
         };
-        if (client != nullptr){
+        if (client){
             options.emplace_back("deliver <index> <evaluation> - mark order as delivered and evaluate it");
             options.emplace_back("remove <index> - cancel requested order");
+        }
+        else if (!worker){ // boss
+            options.emplace_back("sort_by client - sort orders by client");
+            options.emplace_back("sort_by worker - sort orders by worker");
         }
         printOptions(options);
     }
@@ -36,22 +40,31 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
         try {
             std::string input = readCommand();
             if (input == BACK) return;
+            else if (!client && !worker && validInput1Cmd1Arg(input,"sort_by", "client")){
+                break; // to do
+            }
+            else if (!client && !worker && validInput1Cmd1Arg(input,"sort_by","worker")){
+                break; // to do
+            }
             else if (hasOrders && client != nullptr && validInput1Cmd2ArgsDigit(input, "deliver")) {
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 int eval = std::stoi(to_words(input).at(2));
                 _store.orderManager.get(idx, client)->deliver(eval, 0);
+                break;
             } else if (hasOrders && client != nullptr && validInput1Cmd1ArgDigit(input,"remove")){
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 _store.orderManager.remove(idx);
+                break;
             } else if (hasOrders && validInput1Cmd1ArgDigit(input, "expand")) {
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 expandOrder(_store.orderManager.get(idx, client));
+                break;
             } else if (hasOrders && validInput1Cmd1ArgDigit(input,"edit")){
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 editOrder(_store.orderManager.get(idx, client));
+                break;
             }
-            else {printError(); continue;}
-            break;
+            else printError();
         }
         catch (std::exception& e){
             std::cout << e.what() << "\n";
