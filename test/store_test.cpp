@@ -1,7 +1,6 @@
 
 #include <gtest/gtest.h>
 #include "model/store/store.h"
-#include "model/store/location_manager.h"
 #include "exception/file_exception.h"
 
 #include <algorithm>
@@ -29,42 +28,24 @@ TEST(Store, set_name){
     EXPECT_EQ("Padaria Diamante", store.getName());
 }
 
-/*TEST(Store, get_evaluation){
-    Boss boss("Boss to read");
-    LocationManager locationM;
-    ProductManager productM;
-    ClientManager clientM;
-    WorkerManager workerM;
-    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
-    Store store;
-    store.read("../data");
-}
-
 TEST(Store, get_profit){
     Store store;
-    ProductManager productM; ClientManager clientM; WorkerManager workerM; LocationManager locationM;
-    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
-    Client* client = clientM.add("Fernando Castro");
-    Worker* worker = workerM.add("Josue Tome", 928);
-    Cake* cake = productM.addCake("Bolo de chocolate", 3.2);
-    Order* order1 = orderM.add(client, worker);
+    Client* client = store.clientManager.add("Fernando Castro");
+    Worker* worker = store.workerManager.add("Josue Tome", 928);
+    Cake* cake = store.productManager.addCake("Bolo de chocolate", 3.2);
+    Order* order1 = store.orderManager.add(client, worker);
     order1->addProduct(cake, 10);
     order1->deliver(5);
-    store.productManager = productM;
-    store.clientManager =  clientM;
-    store.workerManager = workerM;
-    store.orderManager = orderM;
-    store.locationManager = locationM;
 
-    EXPECT_FLOAT_EQ(10*3.2, orderM.getAll().begin());
+    EXPECT_FLOAT_EQ(order1->getFinalPrice(), store.getProfit());
 
     client->addPoints(200);
-    Order* order2 = orderM.add(client, worker);
+    Order* order2 = store.orderManager.add(client, worker);
     order2->addProduct(cake, 7);
     order2->deliver(4);
 
-    EXPECT_FLOAT_EQ((10*3.2)+(7*3.2)*0.98, store.getProfit());
-}*/
+    EXPECT_FLOAT_EQ(order1->getFinalPrice()+order2->getFinalPrice(), store.getProfit());
+}
 
 TEST(Store, read){
     Store store;
@@ -128,13 +109,65 @@ TEST(Store, read){
     EXPECT_EQ("Pao de cereais", (++order->getProducts().begin())->first->getName());
     EXPECT_FLOAT_EQ(0.5, (++order->getProducts().begin())->first->getPrice());
     EXPECT_EQ(1, (++order->getProducts().begin())->second);
-
-/*    EXPECT_FLOAT_EQ((15*1 + 0.5*1) + (3*1 + 25*1) + (15*1 + 0.5*1) + (3*1 + 25*1), store.getProfit());
-    EXPECT_FLOAT_EQ((5+3+5+3)/4, store.getEvaluation());*/
+    EXPECT_FLOAT_EQ((5+3+5+3)/4, store.getEvaluation());
 }
 
 TEST(Store, write){
+    std::string path = "../../data";
+    Store storeInit;
+    storeInit.read(path);
 
+    Store store;
+    Client* client = store.clientManager.add("Joao Miguel", 123823);
+    Worker* worker = store.workerManager.add("Mario Cordeiro", 823823);
+    Cake* cake = store.productManager.addCake("Bolo de arroz", 1);
+    Date date(23, 5, 2019, 21, 30);
+    store.locationManager.add("Porto");
+    Order* order = store.orderManager.add(client, worker, "Porto", date);
+    order->addProduct(cake, 1);
+
+    store.write(path);
+    store.read(path);
+
+    //Client: Joao-Miguel 123823 basic 0 client client
+    Client* currentClient = store.clientManager.get(0);
+    EXPECT_EQ("Joao Miguel", currentClient->getName());
+    EXPECT_EQ(123823, currentClient->getTaxId());
+    EXPECT_FALSE(currentClient->isPremium());
+    EXPECT_TRUE(currentClient->getDefaultCredential() == currentClient->getCredential());
+
+    //Worker: Mario-Cordeiro 823823 1000 worker worker
+    Worker* currentWorker = store.workerManager.get(0);
+    EXPECT_EQ("Mario Cordeiro", currentWorker->getName());
+    EXPECT_EQ(823823, currentWorker->getTaxId());
+    EXPECT_FLOAT_EQ(Worker::DEFAULT_SALARY, currentWorker->getSalary());
+    EXPECT_TRUE(currentWorker->getDefaultCredential() == currentWorker->getCredential());
+
+    //Product: Bolo-de-arroz 1 1
+    Cake* currentCake = *store.productManager.getCakes().begin();
+    EXPECT_EQ("Bolo de arroz", currentCake->getName());
+    EXPECT_FLOAT_EQ(1, currentCake->getPrice());
+    EXPECT_EQ(CakeCategory::GENERAL, currentCake->getCategory());
+
+    //Order: 123823 823823 23/05/2019 21:30 Porto
+    //Bolo-de-arroz 1 1
+    Order* currentOrder = store.orderManager.getAll().at(0);
+    EXPECT_EQ(123823, currentOrder->getClient()->getTaxId());
+    EXPECT_EQ(823823, currentOrder->getWorker()->getTaxId());
+    EXPECT_EQ("23/05/2019 21:30", currentOrder->getRequestDate().getCompleteDate());
+    EXPECT_EQ("Porto", currentOrder->getDeliverLocation());
+    EXPECT_FALSE(currentOrder->wasDelivered());
+    EXPECT_EQ("Bolo de arroz", (currentOrder->getProducts().begin())->first->getName());
+    EXPECT_FLOAT_EQ(1, (currentOrder->getProducts().begin())->first->getPrice());
+    EXPECT_EQ(2, (currentOrder->getProducts().begin())->second);
+
+    //Location: Head-Office Porto
+    EXPECT_EQ("Head Office", *store.locationManager.getAll().begin());
+    EXPECT_EQ("Porto", *(++store.locationManager.getAll().begin()));
+
+    //Reset the client points that have been changed because of the orders
+    storeInit.clientManager.get(0)->setPoints(300);
+    storeInit.write(path);
 }
 
 TEST(ClientManager, has_client){
