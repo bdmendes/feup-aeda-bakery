@@ -1204,4 +1204,48 @@ TEST(LocationManager, write){
     locationMInit.write(path);
 }
 
+TEST(OrderManager, sortByClient){
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM;
+    LocationManager locationM;
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+
+    Client* client1 = clientM.add("Ricardo Macedo");
+    Client* client2 = clientM.add("Rosalia Martins");
+    Client* client3 = clientM.add("Beatriz Mendes");
+
+    Worker* worker1 = workerM.add("Madalena Faria", 980);
+    Worker* worker2 = workerM.add("Maria Miguel", 980);
+    Worker* worker3 = workerM.add("Ana Santos", 980);
+
+    orderM.add(client1, worker1);
+    orderM.add(client2,worker2);
+    orderM.add(client3, worker3);
+    orderM.sortByClient();
+    EXPECT_EQ("Beatriz Mendes", orderM.getAll().at(0)->getClient()->getName());
+}
+
+TEST(OrderManager, sortByWorker){
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM;
+    LocationManager locationM;
+
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+
+    Client* client1 = clientM.add("Ricardo Macedo");
+    Client* client2 = clientM.add("Rosalia Martins");
+    Client* client3 = clientM.add("Beatriz Mendes");
+
+    Worker* worker1 = workerM.add("Madalena Faria", 980);
+    Worker* worker2 = workerM.add("Maria Miguel", 980);
+    Worker* worker3 = workerM.add("Ana Santos", 980);
+
+    orderM.add(client1, worker1);
+    orderM.add(client2,worker2);
+    orderM.add(client3, worker3);
+    orderM.sortByWorker();
+    EXPECT_EQ("Ana Santos", orderM.getAll().at(0)->getWorker()->getName());
+}
 
