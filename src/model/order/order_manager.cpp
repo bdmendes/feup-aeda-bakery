@@ -47,7 +47,7 @@ void OrderManager::sort() {
     std::sort(_orders.begin(), _orders.end());
 }
 
-Order* OrderManager::add(Client *client, const std::string& location, Date date) {
+Order* OrderManager::add(Client *client, const std::string& location, const Date &date) {
     if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
     if (!_locationManager->has(location)) throw LocationDoesNotExist(location);
     auto* order = new Order(*client,*_workerManager->getLessBusyWorker(),location,date);
