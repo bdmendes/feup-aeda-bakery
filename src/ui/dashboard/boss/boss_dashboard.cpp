@@ -110,9 +110,6 @@ void BossDashboard::manageStaff() {
             if (input == BACK) return;
             else if (hasStaff && validInput1Cmd1ArgDigit(input,"fire")){
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
-                if (!_store.orderManager.get(_store.workerManager.get(idx)).empty()){
-                    throw std::logic_error("You can't fire a worker who has been involved in orders.");
-                }
                 _store.workerManager.remove(idx);
                 break;
             }

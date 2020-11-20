@@ -109,8 +109,8 @@ void Order::deliver(int clientEvaluation, int deliverDuration) {
 }
 
 bool Order::operator==(const Order &rhs) const {
-    return _client == rhs.getClient() && _worker == rhs.getWorker()
-    && _delivered == rhs.wasDelivered() && _products == rhs.getProducts();
+    return *_client == *rhs.getClient() && *_worker == *rhs.getWorker()
+    && _deliverLocation == rhs.getDeliverLocation();
 }
 
 bool Order::operator<(const Order &o2) const {

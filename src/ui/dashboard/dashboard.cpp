@@ -258,10 +258,6 @@ void Dashboard::manageStock() {
                     break;
                 } else if (validInput1Cmd1ArgDigit(input, "remove")){
                     unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
-                    for (const auto& o: _store.orderManager.getAll()){
-                        if (o->hasProduct(_store.productManager.get(idx)))
-                            throw std::logic_error("You cannot remove a product that's part of an order.");
-                    }
                     _store.productManager.remove(idx);
                     break;
                 } else printError();
@@ -392,10 +388,6 @@ void Dashboard::manageClients() {
                 if (input == BACK) return;
                 else if (hasClients && validInput1Cmd1ArgDigit(input, "kick")) {
                     unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
-                    for (const auto& o: _store.orderManager.getAll()){
-                        if (o->getClient() == _store.clientManager.get(idx))
-                            throw std::logic_error("You can't kick a client that has requested an order.");
-                    }
                     _store.clientManager.remove(idx);
                     break;
                 } else if (validInput1Cmd1Arg(input, "add", "client")) {
@@ -441,7 +433,6 @@ void Dashboard::addClient() {
         }
         else std::cout << "Basic/premium are the only accepted inputs.\n";
     }
-
     _store.clientManager.add(name,taxID,premium);
 }
 

@@ -7,7 +7,10 @@ OrderManager::OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager*
 }
 
 bool OrderManager::has(Order *order) const {
-    return std::find(_orders.begin(),_orders.end(),order) != _orders.end();
+    auto comp = [order](const Order* o2){
+        return *order == *o2;
+    };
+    return std::find_if(_orders.begin(),_orders.end(),comp) != _orders.end();
 }
 
 Order* OrderManager::get(unsigned long position, Client* client, Worker* worker) const {
@@ -148,6 +151,7 @@ void OrderManager::read(const std::string &path) {
         if (line.empty()) continue;
 
         if (readDetails) {
+            readDetails = false;
             clientEvaluation = -1;
             std::string date, time, location;
             unsigned long clientTaxID = Person::DEFAULT_TAX_ID, workerTaxID = Person::DEFAULT_TAX_ID;
@@ -159,19 +163,22 @@ void OrderManager::read(const std::string &path) {
             Worker* worker = _workerManager->getWorker(workerTaxID);
             std::replace(location.begin(),location.end(),'-',' ');
 
+            Order toTest(*client,*worker,location,getDate(date,time));
+            if (has(&toTest)) {
+                order = get(client,worker,location,getDate(date,time));
+                continue;
+            }
             order = add(client, worker, location, getDate(date, time));
-            readDetails = false;
 
         } else if (line.at(0) == '-') {
-            if (clientEvaluation != -1 && order) order->deliver(clientEvaluation);
+            if (order && !order->wasDelivered() && clientEvaluation != -1) order->deliver(clientEvaluation);
             readDetails = true;
             order = nullptr;
-            continue;
         }
         else {
             Product *product = getProduct(line);
             if (!order) throw OrderDoesNotExist();
-            order->addProduct(product);
+            if (!order->wasDelivered() && _productManager->has(product)) order->addProduct(product);
         }
     }
 }
@@ -207,4 +214,10 @@ std::vector<Order *> OrderManager::get(const std::string &location) const {
         if (order->getDeliverLocation() == location) filtered.push_back(order);
     }
     return filtered;
+}
+
+Order *OrderManager::get(Client *client, Worker *worker, const std::string &location, const Date &date) {
+    Order toTest = Order(*client,*worker,location,date);
+    for (const auto& o: _orders) if (*o == toTest) return o;
+    throw OrderDoesNotExist();
 }

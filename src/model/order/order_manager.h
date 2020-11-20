@@ -61,6 +61,16 @@ public:
     std::vector<Order*> getAll() const;
 
     /**
+     * Get the pointer to the order with provided details.
+     * @param client who requested the order
+     * @param worker who is assigned to the order
+     * @param location the order delivery location
+     * @param date the order request date
+     * @return order if found
+     */
+    Order* get(Client* client, Worker* worker, const std::string& location, const Date& date);
+
+    /**
      * Gets the list of all orders requested by a certain client.
      *
      * @param client the client
