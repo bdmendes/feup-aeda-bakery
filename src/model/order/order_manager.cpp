@@ -73,15 +73,18 @@ Order* OrderManager::add(Client* client, Worker* worker, const std::string& loca
 void OrderManager::remove(Order *order) {
     auto position = std::find(_orders.begin(),_orders.end(),order);
     if (position == _orders.end()) throw OrderDoesNotExist();
-    if (order->wasDelivered()) throw std::invalid_argument("It's not possible to delete a delivered order");
+    if (order->wasDelivered())
+        throw OrderWasAlreadyDelivered(*order->getClient(),*order->getWorker(),order->getRequestDate());
     order->getWorker()->removeOrderToDeliver();
     _orders.erase(position);
 }
 
 void OrderManager::remove(unsigned long position) {
     if (position >= _orders.size()) throw OrderDoesNotExist();
-    if (_orders.at(position)->wasDelivered()) throw std::invalid_argument("It's not possible to delete a delivered order");
-    _orders.at(position)->getWorker()->removeOrderToDeliver();
+    Order* order = _orders.at(position);
+    if (order->wasDelivered())
+        throw OrderWasAlreadyDelivered(*order->getClient(),*order->getWorker(),order->getRequestDate());
+    order->getWorker()->removeOrderToDeliver();
     _orders.erase(_orders.begin() + position);
 }
 
