@@ -97,7 +97,17 @@ public:
     /**
      * Sorts the orders list by the request date.
      */
-    void sort();
+    void sortByDate();
+
+    /**
+     * Sorts the orders list by client.
+     */
+    void sortByClient();
+
+    /**
+     * Sorts the orders list by worker.
+     */
+    void sortByWorker();
 
     /**
      * Adds a new order to the orders list created from that data: client, store location and date.
@@ -107,6 +117,7 @@ public:
      * @param date the date
      * @return the new order add to the orders list
      */
+
     Order* add(Client* client, const std::string& location = Order::DEFAULT_LOCATION, const Date &date = {});
 
     /**

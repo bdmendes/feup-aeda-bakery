@@ -1,6 +1,11 @@
+#ifdef _WIN32
+#include <wchar.h>
+#include <windows.h>
+#endif
+
 #include "ui/menu/intro/intro_menu.h"
 #include "model/store/store.h"
-
+#define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
 /**
  * Enable Windows 10 terminal support for ANSI escape codes
  * @return enabling success

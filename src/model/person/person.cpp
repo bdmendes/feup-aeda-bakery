@@ -31,7 +31,9 @@ void Person::setCredential(const Credential &credential) {
 }
 
 bool Person::operator<(const Person &p2) const {
-    if (p2.getTaxId() != DEFAULT_TAX_ID || _taxID != DEFAULT_TAX_ID) return _taxID < p2.getTaxId();
+    if ((p2.getTaxId() != DEFAULT_TAX_ID || _taxID != DEFAULT_TAX_ID) && _taxID != p2.getTaxId()){
+        return _taxID < p2.getTaxId();
+    }
     else return _name < p2.getName();
 }
 
