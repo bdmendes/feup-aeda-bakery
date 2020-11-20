@@ -3,7 +3,7 @@
 #include <iomanip>
 
 Date::Date() :
-    _time{0,0,0,1,1,1900,0,0,-1,0,nullptr} {
+    _time{0,0,0,1,1} {
     time_t t = std::time(nullptr);
     localtime_r(&t, &_time);
 }
