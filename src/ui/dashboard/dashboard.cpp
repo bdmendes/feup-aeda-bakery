@@ -41,10 +41,12 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
             std::string input = readCommand();
             if (input == BACK) return;
             else if (!client && !worker && validInput1Cmd1Arg(input,"sort_by", "client")){
-                break; // to do
+                _store.orderManager.sortByClient();
+                break;
             }
             else if (!client && !worker && validInput1Cmd1Arg(input,"sort_by","worker")){
-                break; // to do
+                _store.orderManager.sortByWorker();
+                break;
             }
             else if (hasOrders && client != nullptr && validInput1Cmd2ArgsDigit(input, "deliver")) {
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
