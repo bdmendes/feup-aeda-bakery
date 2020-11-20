@@ -52,7 +52,7 @@ public:
      * Equality operator.
      *
      * @param p the product to compare with
-     * @return true, if the products are equal; false, otherwise
+     * @return true, if the products have the same name and the same price; false, otherwise
      */
     virtual bool operator== (const Product& p) const;
 
