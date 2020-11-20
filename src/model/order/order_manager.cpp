@@ -142,7 +142,7 @@ void OrderManager::read(const std::string &path) {
     bool readDetails = true;
     Order *order = nullptr;
     int clientEvaluation = -1;
-    
+
     for (std::string line; getline(file, line);) {
         util::stripCarriageReturn(line);
         if (line.empty()) continue;
@@ -150,7 +150,7 @@ void OrderManager::read(const std::string &path) {
         if (readDetails) {
             clientEvaluation = -1;
             std::string date, time, location;
-            int clientTaxID = Person::DEFAULT_TAX_ID, workerTaxID = Person::DEFAULT_TAX_ID;
+            unsigned long clientTaxID = Person::DEFAULT_TAX_ID, workerTaxID = Person::DEFAULT_TAX_ID;
 
             std::stringstream ss(line);
             ss >> clientTaxID >> workerTaxID >> date >> time >> location >> clientEvaluation;

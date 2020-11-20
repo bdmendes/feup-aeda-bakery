@@ -87,7 +87,7 @@ void ClientManager::read(const std::string &path) {
 
         std::replace(name.begin(), name.end(), '-', ' ');
         Client* client = add(name, taxID, premium == "premium", credential);
-        client ->setPoints(points);
+        client->setPoints(points);
     }
 }
 
