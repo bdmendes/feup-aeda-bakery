@@ -11,7 +11,7 @@ ProductManager::ProductManager(): _products(){
 }
 
 bool ProductManager::has(Product *product) const {
-    return std::find(_products.begin(), _products.end(), product) != _products.end();
+    return _products.find(product) != _products.end();
 }
 
 Product* ProductManager::get(unsigned long position) {
