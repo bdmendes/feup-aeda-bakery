@@ -142,7 +142,7 @@ void OrderManager::read(const std::string &path) {
     bool readDetails = true;
     Order *order = nullptr;
     int clientEvaluation = -1;
-    
+
     for (std::string line; getline(file, line);) {
         util::stripCarriageReturn(line);
         if (line.empty()) continue;

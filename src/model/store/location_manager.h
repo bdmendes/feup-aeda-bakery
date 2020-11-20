@@ -42,6 +42,11 @@ public:
      */
     void remove(const std::string& location);
 
+    /**
+     * Removes the location with a certain index on the locations list.
+     *
+     * @param index the index
+     */
     void remove(unsigned long index);
 
     /**
