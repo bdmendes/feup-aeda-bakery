@@ -20,29 +20,6 @@ TEST(Bread, create_bread){
     EXPECT_FALSE(bread2.isSmall());
 }
 
-TEST(Bread, equal_breads){
-    Bread bread1("Pao de sementes", 0.8);
-    Bread bread2("Pao de sementes", 0.8);
-    Bread bread3("Pao de sementes", 0.8, false);
-    Bread bread4("Pao de sementes", 1);
-
-    EXPECT_TRUE(bread1==bread2);
-    EXPECT_FALSE(bread1==bread3);
-    EXPECT_FALSE(bread1==bread4);
-    EXPECT_FALSE(bread2==bread3);
-    EXPECT_FALSE(bread2==bread4);
-}
-
-TEST(Bread, sort_breads) {
-    Bread bread1("Pao de alfarroba", 0.6);
-    Bread bread2("Pao de água", 0.45);
-    Bread bread3("Pao normal", 0.1);
-
-    EXPECT_TRUE(bread1 < bread2);
-    EXPECT_TRUE(bread1 < bread3);
-    EXPECT_TRUE(bread2 < bread3);
-}
-
 TEST(Cake, create_cake){
     Cake cake1("Pao de lo", 17.30);
 
@@ -57,7 +34,52 @@ TEST(Cake, create_cake){
     EXPECT_EQ(CakeCategory::PIE,cake2.getCategory());
 }
 
-TEST(Cake, equal_cakes){
+TEST(Product, less_than_operator){
+    Bread bread1("Pao de alfarroba", 0.6);
+    Bread bread2("Pao de agua", 0.45);
+    Cake cake1("Bolo de amendoa", 1.2);
+    Cake cake2("Bolo de arroz", 1);
+
+    EXPECT_TRUE(cake1 < bread1);
+    EXPECT_TRUE(cake1 < bread2);
+    EXPECT_TRUE(cake2 < bread1);
+    EXPECT_TRUE(cake2 < bread2);
+}
+
+TEST(Bread, less_than_operator){
+    Bread bread1("Pao de agua", 0.45);
+    Bread bread2("Pao de alfarroba", 0.6);
+    Bread bread3("Pao normal", 0.1);
+
+    EXPECT_TRUE(bread1 < bread2);
+    EXPECT_TRUE(bread1 < bread3);
+    EXPECT_TRUE(bread2 < bread3);
+}
+
+TEST(Bread, equality_operator){
+    Bread bread1("Pao de sementes", 0.8);
+    Bread bread2("Pao de sementes", 0.8);
+    Bread bread3("Pao de sementes", 0.8, false);
+    Bread bread4("Pao de sementes", 1);
+
+    EXPECT_TRUE(bread1==bread2);
+    EXPECT_FALSE(bread1==bread3);
+    EXPECT_FALSE(bread1==bread4);
+    EXPECT_FALSE(bread2==bread3);
+    EXPECT_FALSE(bread2==bread4);
+}
+
+TEST(Cake, less_than_operator){
+    Cake cake1("Bolo de amendoa", 1.2);
+    Cake cake2("Bolo de arroz", 1);
+    Cake cake3("Bolo de chocolate", 0.9);
+
+    EXPECT_TRUE(cake1 < cake2);
+    EXPECT_TRUE(cake1 < cake3);
+    EXPECT_TRUE(cake2 < cake3);
+}
+
+TEST(Cake, equality_operator){
     Cake cake1("Tarte de bolacha", 13.2);
     Cake cake2("Tarte de bolacha", 13.2);
     Cake cake3("Tarte de bolacha", 14.5);
@@ -70,24 +92,3 @@ TEST(Cake, equal_cakes){
     EXPECT_FALSE(cake2==cake4);
 }
 
-TEST(Cake, sort_cakes){
-    Cake cake1("Bolo de amêndoa", 1.2);
-    Cake cake2("Bolo de arroz", 1);
-    Cake cake3("Bolo de chocolate", 0.9);
-
-    EXPECT_TRUE(cake1 < cake2);
-    EXPECT_TRUE(cake1 < cake3);
-    EXPECT_TRUE(cake2 < cake3);
-}
-
-TEST(Product, sort_products){
-    Bread bread1("Pao de alfarroba", 0.6);
-    Bread bread2("Pao de agua", 0.45);
-    Cake cake1("Bolo de amendoa", 1.2);
-    Cake cake2("Bolo de arroz", 1);
-
-    EXPECT_TRUE(cake1 < bread1);
-    EXPECT_TRUE(cake1 < bread2);
-    EXPECT_TRUE(cake2 < bread1);
-    EXPECT_TRUE(cake2 < bread2);
-}
