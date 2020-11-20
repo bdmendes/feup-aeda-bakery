@@ -80,7 +80,6 @@ public:
 
     /**
      * Sets the client points.
-     * Sets the client's subscription type.
      *
      * @param points the new points
      */

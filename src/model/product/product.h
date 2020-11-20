@@ -49,7 +49,7 @@ public:
     float getPrice() const;
 
     /**
-     * Equality operator.
+     * Two products are equal if their names and prices are equal.
      *
      * @param p the product to compare with
      * @return true, if the products are equal; false, otherwise
@@ -57,10 +57,10 @@ public:
     virtual bool operator== (const Product& p) const;
 
     /**
-     * Less than operator.
+     * One product is less than according to the comparison of their names by alphabetical order.
      *
      * @param p the product to compare with
-     * @return true, if the product is less than p, according to alphabetical order; false, otherwise
+     * @return true, if the product is less than p; false, otherwise
      */
     bool operator<(const Product& p) const;
 
@@ -108,7 +108,7 @@ public:
      * Two breads are equal if they share name, category and small attribute
      *
      * @param bread the bread to compare with
-     * @return
+     * @return true, if the breads are equal; false, otherwise
      */
     virtual bool operator==(const Bread& bread) const;
 
