@@ -18,8 +18,10 @@ int Store::getEvaluation() const {
     std::vector<int> evaluations;
     int count = 0;
     for(const auto& order : orderManager.getAll()) {
-        if (order->wasDelivered()) evaluations.push_back(order->getClientEvaluation());
-        count++;
+        if (order->wasDelivered()) {
+            evaluations.push_back(order->getClientEvaluation());
+            count++;
+        }
     }
     return count ? std::accumulate(evaluations.begin(),evaluations.end(),0) / count : 0;
 }
