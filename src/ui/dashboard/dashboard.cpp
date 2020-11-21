@@ -93,6 +93,7 @@ void Dashboard::changeCredential(Person *person){
                 std::cout << "Confirm new username: ";
                 std::string input2 = readCommand();
                 if (input2 != input1) std::cout << "Usernames do not match! Try again.\n";
+                else if (to_words(input1).size() != 1) std::cout << "Must have exactly one word! Try again.\n";
                 else {
                     username = input1;
                     break;
@@ -104,6 +105,7 @@ void Dashboard::changeCredential(Person *person){
                 std::cout << "Confirm new password: ";
                 std::string input2 = readCommand();
                 if (input2 != input1) std::cout << "Passwords do not match! Try again.\n";
+                else if (to_words(input1).size() != 1) std::cout << "Must have exactly one word! Try again.\n";
                 else {
                     password = input1;
                     break;
