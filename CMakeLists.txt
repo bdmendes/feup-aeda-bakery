@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10.2)
 project(feup-aeda-project)
 
 # Use C++14
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 # Require (at least) it
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Don't use e.g. GNU extension (like -std=gnu++11) for portability
@@ -31,7 +31,7 @@ add_subdirectory(src)
 option(BUILD_TESTING "Build the testing tree." ON)
 # Only build tests if we are the top-level project
 # Allows this to be used by super projects with `add_subdirectory`
-if (BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
+if (BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR) AND (EXISTS(test)))
     enable_testing()
     add_subdirectory(test)
 endif ()
