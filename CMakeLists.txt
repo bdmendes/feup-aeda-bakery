@@ -33,5 +33,5 @@ option(BUILD_TESTING "Build the testing tree." ON)
 # Allows this to be used by super projects with `add_subdirectory`
 if (BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
     enable_testing()
-    if (EXISTS(test)) add_subdirectory(test)
+    add_subdirectory(test)
 endif ()
