@@ -91,7 +91,7 @@ void Order::removeProduct(unsigned long position) {
     else throw InvalidProductPosition(position, _products.size());
 }
 
-void Order::deliver(int clientEvaluation, int deliverDuration) {
+void Order::deliver(int clientEvaluation, bool updatePoints, int deliverDuration) {
     if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
     if (clientEvaluation < 0 || clientEvaluation > 5) throw InvalidOrderEvaluation(clientEvaluation,*_client);
 
@@ -104,8 +104,10 @@ void Order::deliver(int clientEvaluation, int deliverDuration) {
     if (deliverDuration != 0) _deliverDate.addMinutes(deliverDuration);
     else _deliverDate = Date();
 
-    if (hasDiscount()) _client->resetPoints();
-    _client->addPoints(10* static_cast<unsigned int>(_totalPrice)); //For each euro adds 10 points
+    if (updatePoints){
+        if (hasDiscount()) _client->resetPoints();
+        _client->addPoints(10* static_cast<unsigned int>(_totalPrice)); //For each euro adds 10 points
+    }
 }
 
 bool Order::operator==(const Order &rhs) const {

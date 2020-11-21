@@ -192,7 +192,7 @@ void OrderManager::read(const std::string &path) {
             order = add(client, worker, location, getDate(date, time));
 
         } else if (line.at(0) == '-') {
-            if (order && !order->wasDelivered() && clientEvaluation != -1) order->deliver(clientEvaluation);
+            if (order && !order->wasDelivered() && clientEvaluation != -1) order->deliver(clientEvaluation,false);
             readDetails = true;
             order = nullptr;
         }

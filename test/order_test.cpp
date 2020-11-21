@@ -260,7 +260,7 @@ TEST(Order, get_deliver_date){
     Worker worker2("Joana Figueiredo", 839);
     Date date2(19, 8, 2019, 22, 30);
     Order order2(client2, worker2, "Vila do Conde", date2);
-    order2.deliver(5, 20);
+    order2.deliver(5, true, 20);
     date2.addMinutes(20);
 
     EXPECT_TRUE(date2 == order2.getDeliverDate());
@@ -300,7 +300,7 @@ TEST(Order, add_product){
     EXPECT_FLOAT_EQ(10.6, order.getTotal());
 
     Bread barleyBread("Pao de cevada", 0.4, false);
-    order.deliver(4.3);
+    order.deliver(4);
 
     EXPECT_THROW(order.addProduct(&barleyBread), OrderWasAlreadyDelivered);
 }
@@ -376,7 +376,7 @@ TEST(Order, deliver){
 
     EXPECT_FALSE(order1.wasDelivered());
 
-    order1.deliver(3, 20);
+    order1.deliver(3, true,20);
     date.addMinutes(20);
 
     EXPECT_TRUE(order1.wasDelivered());

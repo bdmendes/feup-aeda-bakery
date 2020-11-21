@@ -146,9 +146,10 @@ public:
      * Delivers the order and gets the client evaluation and deliver duration.
      *
      * @param clientEvaluation the client evaluation
+     * @param updatePoints whether to add points to the client
      * @param deliverDuration the deliver duration
      */
-    void deliver(int clientEvaluation, int deliverDuration = 30);
+    void deliver(int clientEvaluation, bool updatePoints = true, int deliverDuration = 30);
 
     /**
      * Two orders are equal if they share the same client, worker and delivery location.

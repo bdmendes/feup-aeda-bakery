@@ -1,0 +1,12 @@
+CAKES
+Bolo-crocante 15 Crunchy-Cake
+Bolo-de-bolacha 2.2 Pie
+Bolo-esponja 30 Sponge
+Pao-de-lo 3.2 Sponge
+Tarte-de-morango 25 Pie
+------------------------------------------------------------------------------------------------------------
+BREADS
+Pao-da-avo 1 big
+Pao-de-cereais 0.5 small
+Pao-de-sementes 0.8 small
+Regueifa 3 big

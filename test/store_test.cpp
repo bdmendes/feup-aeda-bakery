@@ -35,21 +35,21 @@ TEST(Store, get_profit){
     Cake* cake = store.productManager.addCake("Bolo de chocolate", 3.2);
     Order* order1 = store.orderManager.add(client, worker);
     order1->addProduct(cake, 10);
-    order1->deliver(5);
+    order1->deliver(5,false);
 
     EXPECT_FLOAT_EQ(order1->getFinalPrice(), store.getProfit());
 
     client->addPoints(200);
     Order* order2 = store.orderManager.add(client, worker);
     order2->addProduct(cake, 7);
-    order2->deliver(4);
+    order2->deliver(4,false);
 
     EXPECT_FLOAT_EQ(order1->getFinalPrice()+order2->getFinalPrice(), store.getProfit());
 }
 
 TEST(Store, read){
     Store store;
-    std::string path = "../../data";
+    std::string path = "../../test/data";
     std::string success = store.read(path);
     EXPECT_EQ("Import succeeded.", success);
 
@@ -84,7 +84,7 @@ TEST(Store, read){
     EXPECT_EQ("Alfredo Machado", client.getName());
     EXPECT_EQ(23554, client.getTaxId());
     EXPECT_FALSE(client.isPremium());
-    EXPECT_EQ(150, client.getPoints());
+    EXPECT_EQ(300, client.getPoints());
     EXPECT_TRUE(credential == client.getCredential());
 
     //Worker: Julia-Mendes 2345 2001 julia sousenhora
@@ -113,7 +113,7 @@ TEST(Store, read){
 }
 
 TEST(Store, write){
-    std::string path = "../../data";
+    std::string path = "../../test/data";
     Store storeInit;
     storeInit.read(path);
 
@@ -179,10 +179,9 @@ TEST(ClientManager, has_client){
 
     EXPECT_TRUE(clientM.has(client1));
 
-    Client* client2 = clientM.add("Joao Manuel", false, 284917316, {"jonasManel", "joao123"});
+    Client* client2 = clientM.add("Joao Manuel", 21121323, true,{"jonasManel", "joao123"});
 
     EXPECT_TRUE(clientM.has(client1));
-    EXPECT_TRUE(clientM.has(client2));
 }
 
 TEST(ClientManager, get_client_by_position){
@@ -274,7 +273,7 @@ TEST(ClientManager, read){
 
     EXPECT_THROW(clientM.read("/clients.txt"), FileNotFound);
 
-    clientM.read("../../data/clients.txt");
+    clientM.read("../../test/data/clients.txt");
     unsigned position = 0;
     Client* currentClient = clientM.get(position);
 
@@ -308,7 +307,7 @@ TEST(ClientManager, read){
 }
 
 TEST(ClientManager, write){
-    const std::string path = "../../data/clients.txt";
+    const std::string path = "../../test/data/clients.txt";
     ClientManager clientMInitial;
     clientMInitial.read(path);
     ClientManager clientM;
@@ -552,7 +551,7 @@ TEST(WorkerManager, read){
 
     EXPECT_THROW(workerM.read("/workers.txt"), FileNotFound);
 
-    workerM.read("../../data/workers.txt");
+    workerM.read("../../test/data/workers.txt");
     unsigned position = 0;
     Worker* currentWorker = workerM.get(position);
 
@@ -583,7 +582,7 @@ TEST(WorkerManager, read){
 }
 
 TEST(WorkerManager, write){
-    const std::string path = "../../data/workers.txt";
+    const std::string path = "../../test/data/workers.txt";
     WorkerManager workerMInitial;
     workerMInitial.read(path);
     WorkerManager workerM;
@@ -749,7 +748,7 @@ TEST(ProductManager, read){
 
     EXPECT_THROW(productM.read("/products.txt"), FileNotFound);
 
-    productM.read("../../data/products.txt");
+    productM.read("../../test/data/products.txt");
     unsigned position = 0;
     Cake* cake = *productM.getCakes().begin();
 
@@ -767,7 +766,7 @@ TEST(ProductManager, read){
 }
 
 TEST(ProductManager, write){
-    std::string path = "../../data/products.txt";
+    std::string path = "../../test/data/products.txt";
     ProductManager productMInitial; productMInitial.read(path);
     ProductManager productM;
     Bread* bread = productM.addBread("Pao de sementes", 0.8, true);
@@ -1031,7 +1030,7 @@ TEST(OrderManager, get_order_by_position){
 }
 
 TEST(OrderManager, read){
-    std::string path = "../../data/orders.txt";
+    std::string path = "../../test/data/orders.txt";
     ProductManager productM; ClientManager clientM; WorkerManager workerM; LocationManager locationM;
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
@@ -1082,13 +1081,13 @@ TEST(OrderManager, read){
 }
 
 TEST(OrderManager, write){
-    std::string path = "../../data/orders.txt";
+    std::string path = "../../test/data/orders.txt";
     ProductManager productMInit; ClientManager clientMInit; WorkerManager workerMInit; LocationManager locationMInit;
     OrderManager orderMInit(&productMInit, &clientMInit, &workerMInit, &locationMInit);
-    productMInit.read("../../data/products.txt");
-    clientMInit.read("../../data/clients.txt");
-    workerMInit.read("../../data/workers.txt");
-    locationMInit.read("../../data/locations.txt");
+    productMInit.read("../../test/data/products.txt");
+    clientMInit.read("../../test/data/clients.txt");
+    workerMInit.read("../../test/data/workers.txt");
+    locationMInit.read("../../test/data/locations.txt");
     orderMInit.read(path);
 
     ProductManager productM; ClientManager clientM; WorkerManager workerM; LocationManager locationM;
@@ -1177,7 +1176,7 @@ TEST(LocationManager, remove_by_position){
 
 TEST(LocationManager, read){
     LocationManager locationM;
-    locationM.read("../../data/locations.txt");
+    locationM.read("../../test/data/locations.txt");
 
     //Head-Office
     //Lisboa
@@ -1186,7 +1185,7 @@ TEST(LocationManager, read){
 }
 
 TEST(LocationManager, write){
-    std::string path = "../../data/locations.txt";
+    std::string path = "../../test/data/locations.txt";
     LocationManager locationMInit;
     locationMInit.read(path);
 
