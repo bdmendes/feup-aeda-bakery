@@ -151,7 +151,7 @@ void Order::print(std::ostream &os) const {
 
     //total price
     const std::string discount = hasDiscount() ? "With discount" : "No discount";
-    os << std::endl << util::to_string(getFinalPrice()) + "euros (" + discount + ")" << "\n";
+    os << std::endl << util::to_string(getFinalPrice()) + " euros (" + discount + ")" << "\n";
 }
 
 Date Order::getDeliverDate() const {
