@@ -36,6 +36,10 @@ public:
      */
     virtual std::string getCategory() const = 0;
 
+    bool operator==(const Product& rhs) const;
+
+    bool operator<(const Product& rhs) const;
+
     unsigned getTimesIncluded() const;
     void addInclusion();
     void removeInclusion();
@@ -59,7 +63,7 @@ public:
      *
      * @param os the output stream
      */
-    virtual void print(std::ostream& os) const = 0;
+    void print(std::ostream& os, bool showInclusions = false) const;
 
 protected:
     /**
@@ -99,13 +103,6 @@ public:
 
     bool isSmall() const;
 
-    /**
-     * Prints all the bread data (name, size and price).
-     *
-     * @param os the output stream
-     */
-    void print(std::ostream& os) const override;
-
 private:
     /**
      * The bread size.
@@ -132,13 +129,6 @@ public:
      * @return _categoryStr
      */
     std::string getCategory() const override;
-
-    /**
-     * Prints all the bread data (name, category and price).
-     *
-     * @param os the output stream
-     */
-    void print(std::ostream& os) const override;
 
     /**
      * All the possible cakes categories as a string.

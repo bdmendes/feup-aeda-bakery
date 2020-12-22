@@ -5,6 +5,23 @@
 #include "product.h"
 #include "util/bst.h"
 
+class ProductEntry {
+public:
+    ProductEntry() : _product(nullptr) {};
+    explicit ProductEntry(Product* product) : _product(product) {};
+    Product* getProduct() const { return _product; };
+    bool operator<(const ProductEntry& rhs) const{
+        if (!getProduct() || !rhs.getProduct()) return false;
+        return *getProduct() < *rhs.getProduct();
+    }
+    bool operator==(const ProductEntry& rhs) const {
+        if (!getProduct() || !rhs.getProduct()) return false;
+        return *getProduct() == *rhs.getProduct();
+    }
+private:
+    Product* _product;
+};
+
 /**
  * Struct to compare two product pointers.
  */
@@ -17,10 +34,7 @@ struct ProductSmaller{
      * @return true, if p1 is less than p2
      */
     bool operator()(const Product* p1, const Product* p2) const {
-        if (p1->getTimesIncluded() != p2->getTimesIncluded()){
-            return p1->getTimesIncluded() < p2->getTimesIncluded();
-        }
-        return p1->getCategory() < p2->getCategory();
+        return *p1 < *p2;
     }
 };
 
@@ -146,7 +160,7 @@ private:
     /**
      * The list of all the products.
      */
-    BST<Product*> _products;
+    BST<ProductEntry> _products;
 };
 
 

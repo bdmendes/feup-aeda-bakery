@@ -25,24 +25,19 @@ float Product::getPrice() const {
     return _price;
 }
 
-void Bread::print(std::ostream& os) const {
+void Product::print(std::ostream& os, bool showInclusions) const {
     os << util::column(_name,true)
        << util::column(getCategory())
        << util::column(util::to_string(_price) + " euros");
+    if (showInclusions) os << util::column(std::to_string(getTimesIncluded()));
 }
 
 std::string Bread::getCategory() const {
-    return _small ? "Small bread" : "Big bread";
+    return _small ? "Small Bread" : "Big Bread";
 }
 
 bool Bread::isSmall() const {
     return _small;
-}
-
-void Cake::print(std::ostream& os) const {
-    os << util::column(_name,true)
-    << util::column(_categoryStr)
-    << util::column(util::to_string(_price) + " euros");
 }
 
 std::vector<std::string> Cake::getCategories() {
@@ -66,3 +61,16 @@ unsigned Product::getTimesIncluded() const {
     return _timesIncluded;
 }
 
+bool Product::operator==(const Product &rhs) const {
+    return getName() == rhs.getName() && getCategory() == rhs.getCategory();
+}
+
+bool Product::operator<(const Product &rhs) const {
+    if (getTimesIncluded() != rhs.getTimesIncluded()){
+        return getTimesIncluded() < rhs.getTimesIncluded();
+    }
+    if (getCategory() != rhs.getCategory()){
+        return getCategory() < rhs.getCategory();
+    }
+    return getName() < rhs.getName();
+}
