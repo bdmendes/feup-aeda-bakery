@@ -14,10 +14,13 @@ struct ProductSmaller{
      *
      * @param p1 the first product to compare with
      * @param p2 the second product to compare with
-     * @return true, if p1 is less than p2, according to the defined equality operator
+     * @return true, if p1 is less than p2
      */
     bool operator()(const Product* p1, const Product* p2) const {
-        return *p1 < *p2;
+        if (p1->getTimesIncluded() != p2->getTimesIncluded()){
+            return p1->getTimesIncluded() < p2->getTimesIncluded();
+        }
+        return p1->getCategory() < p2->getCategory();
     }
 };
 

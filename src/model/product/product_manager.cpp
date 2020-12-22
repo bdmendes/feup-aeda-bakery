@@ -148,7 +148,7 @@ void ProductManager::write(const std::string &path) const{
         std::string nameToSave = c->getName();
         std::replace(nameToSave.begin(),nameToSave.end(),' ','-');
 
-        std::string styledCat = cakeCategories.at(static_cast<unsigned long>(c->getCategory()));
+        std::string styledCat = c->getCategory();
         std::replace(styledCat.begin(),styledCat.end(),' ','-');
 
         file << nameToSave << " " << c->getPrice() << " " << styledCat << "\n";
