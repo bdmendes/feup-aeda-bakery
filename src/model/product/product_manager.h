@@ -3,7 +3,7 @@
 #define FEUP_AEDA_PROJECT_PRODUCT_MANAGER_H
 
 #include "product.h"
-#include <set>
+#include "util/bst.h"
 
 /**
  * Struct to compare two product pointers.
@@ -69,21 +69,21 @@ public:
      *
      * @return the cakes on products list
      */
-    std::set<Cake*, ProductSmaller> getCakes() const;
+    std::vector<Cake*> getCakes() const;
 
     /**
      * Gets all the breads on the products list.
      *
      * @return the breads on the products list
      */
-    std::set<Bread*, ProductSmaller> getBreads() const;
+    std::vector<Bread*> getBreads() const;
 
     /**
      * Gets all the products on the products list.
      *
      * @return the products list
      */
-    std::set<Product*, ProductSmaller> getAll();
+    std::vector<Product*> getAll() const;
 
     /**
      * Adds a bread to the product list.
@@ -146,7 +146,7 @@ private:
     /**
      * The list of all the products.
      */
-    std::set<Product*, ProductSmaller> _products;
+    BST<Product*> _products;
 };
 
 

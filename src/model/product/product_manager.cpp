@@ -7,21 +7,28 @@
 #include "util/util.h"
 #include "exception/file_exception.h"
 
-ProductManager::ProductManager(): _products(){
+ProductManager::ProductManager(): _products(nullptr){
 }
 
 bool ProductManager::has(Product *product) const {
-    return _products.find(product) != _products.end();
+    return _products.find(product) != nullptr;
 }
 
 Product* ProductManager::get(unsigned long position) {
-    if (position >= _products.size()) throw InvalidProductPosition(position, _products.size());
-    auto it = _products.begin(); std::advance(it, position);
-    return *it;
+    unsigned count = 0;
+    for (BSTItrIn<Product*> it(_products); !it.isAtEnd(); it.advance()){
+        if (count == position) return it.retrieve();
+        count++;
+    }
+    throw InvalidProductPosition(position, count);
 }
 
-std::set<Product*, ProductSmaller> ProductManager::getAll() {
-    return _products;
+std::vector<Product*> ProductManager::getAll() const {
+    std::vector<Product*> res;
+    for (BSTItrIn<Product*> it(_products); !it.isAtEnd(); it.advance()){
+        res.push_back(it.retrieve());
+    }
+    return res;
 }
 
 Bread* ProductManager::addBread(std::string name, float price, bool small) {
@@ -37,29 +44,35 @@ Cake* ProductManager::addCake(std::string name, float price, CakeCategory catego
 }
 
 void ProductManager::remove(Product *product) {
-    auto position = _products.find(product);
-    if (position == _products.end()) throw ProductDoesNotExist(product->getName(),product->getPrice());
-    _products.erase(position);
+    auto p = _products.find(product);
+    if (p == nullptr) throw ProductDoesNotExist(product->getName(),product->getPrice());
+    _products.remove(p);
 }
 
 void ProductManager::remove(unsigned long position) {
-    if (position >= _products.size()) throw std::invalid_argument("Product does not exist");
-    auto it = _products.begin();
-    advance(it,position);
-    _products.erase(it);
+    unsigned count = 0;
+    for (BSTItrIn<Product*> it(_products); !it.isAtEnd(); it.advance()){
+        if (count == position) {
+            _products.remove(it.retrieve());
+            return;
+        }
+        count++;
+    }
+    throw std::invalid_argument("Product does not exist");
 }
 
 
 void ProductManager::print(std::ostream &os) const {
-    if (!_products.empty()) {
-        os << std::string(_products.size() / 10 + 3, util::SPACE)
+    std::vector<Product*> vec = getAll();
+    if (!vec.empty()) {
+        os << std::string(vec.size() / 10 + 3, util::SPACE)
            << util::column("NAME", true)
            << util::column("CATEGORY")
            << util::column("UNIT PRICE") << "\n";
 
-        int count = 1;
-        for (const auto &p: _products) {
-            os << std::setw((int)_products.size() / 10 + 3) << std::to_string(count++) + ". ";
+        unsigned count = 1;
+        for (const auto &p: vec) {
+            os << std::setw((int)vec.size() / 10 + 3) << std::to_string(count++) + ". ";
             p->print(os);
             os << "\n";
         }
@@ -68,9 +81,9 @@ void ProductManager::print(std::ostream &os) const {
 }
 
 Product *ProductManager::get(const std::string &name, float price) {
-    for(const auto& p : _products){
-        if(p->getName()==name && p->getPrice()==price)
-            return p;
+    for (BSTItrIn<Product*> it(_products); !it.isAtEnd(); it.advance()){
+        Product* p = it.retrieve();
+        if (p->getName() == name && p->getPrice() == price) return p;
     }
     throw ProductDoesNotExist(name, price);
 }
@@ -117,22 +130,22 @@ void ProductManager::read(const std::string &path) {
     }
 }
 
-std::set<Cake *, ProductSmaller> ProductManager::getCakes() const {
-    std::set<Cake *, ProductSmaller> s;
-    for (const auto& p: _products){
-        auto cake = dynamic_cast<Cake*>(p);
-        if (cake) s.insert(cake);
+std::vector<Cake*> ProductManager::getCakes() const {
+    std::vector<Cake*> res;
+    for (BSTItrIn<Product*> it(_products); !it.isAtEnd(); it.advance()){
+        auto cake = dynamic_cast<Cake*>(it.retrieve());
+        if (cake) res.push_back(cake);
     }
-    return s;
+    return res;
 }
 
-std::set<Bread *, ProductSmaller> ProductManager::getBreads() const {
-    std::set<Bread *, ProductSmaller> s;
-    for (const auto& p: _products){
-        auto bread = dynamic_cast<Bread*>(p);
-        if (bread) s.insert(bread);
+std::vector<Bread*> ProductManager::getBreads() const {
+    std::vector<Bread*> res;
+    for (BSTItrIn<Product*> it(_products); !it.isAtEnd(); it.advance()){
+        auto bread = dynamic_cast<Bread*>(it.retrieve());
+        if (bread) res.push_back(bread);
     }
-    return s;
+    return res;
 }
 
 void ProductManager::write(const std::string &path) const{
@@ -140,8 +153,8 @@ void ProductManager::write(const std::string &path) const{
     if(!file) throw FileNotFound(path);
 
     std::vector<std::string> cakeCategories=Cake::getCategories();
-    std::set<Cake*,ProductSmaller> cakes = getCakes();
-    std::set<Bread*,ProductSmaller> breads = getBreads();
+    auto cakes = getCakes();
+    auto breads = getBreads();
 
     file << "CAKES\n";
     for (const auto& c: cakes){
@@ -163,5 +176,7 @@ void ProductManager::write(const std::string &path) const{
 }
 
 ProductManager::~ProductManager() {
-    for (auto& p : _products) delete p;
+    for (BSTItrIn<Product*> it(_products); !it.isAtEnd(); it.advance()){
+        delete it.retrieve();
+    }
 }
