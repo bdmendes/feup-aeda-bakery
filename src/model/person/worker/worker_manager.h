@@ -9,8 +9,28 @@
 #include <algorithm>
 #include <vector>
 #include <fstream>
+#include <unordered_set>
 
 #include "util/util.h"
+
+struct WorkerHash
+{
+    int operator() (const Worker* worker) const
+    {
+        int hashValue = 0;
+        for(const auto & item: worker->getName()){
+            hashValue = hashValue * 37 + item;
+        }
+        return hashValue;
+    }
+
+    bool operator() (const Worker* worker1, const Worker* worker2) const
+    {
+        return worker1->getName()==worker2->getName();
+    }
+};
+
+typedef std::unordered_set<Worker*, WorkerHash, WorkerHash> tabHWorker;
 
 /**
  * Class that manages the store workers.
@@ -130,6 +150,7 @@ private:
     /**
      * The list with all of the workers.
      */
+    tabHWorker workers;
     std::set<Worker*, PersonSmaller> _workers;
 };
 

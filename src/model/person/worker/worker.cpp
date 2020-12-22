@@ -1,15 +1,17 @@
 
 #include <util/util.h>
 #include <numeric>
+#include <utility>
 #include "worker.h"
 
 const char* Worker::DEFAULT_USERNAME = "worker";
 const char* Worker::DEFAULT_PASSWORD = "worker";
 const float Worker::DEFAULT_SALARY = 1000;
+const char* Worker::DEFAULT_LOCATION = "Porto";
 
-Worker::Worker(std::string name, unsigned long taxID, float salary, Credential credential):
+Worker::Worker(std::string name, unsigned long taxID, float salary, Credential credential, std::string location):
         Person(std::move(name), taxID, std::move(credential), PersonRole::WORKER),
-        _salary{salary}, _undeliveredOrders(0), _evaluations(){
+        _salary{salary}, _undeliveredOrders(0), _evaluations(), _location(std::move(location)){
 }
 
 float Worker::getSalary() const{
@@ -18,6 +20,10 @@ float Worker::getSalary() const{
 
 unsigned Worker::getUndeliveredOrders() const {
     return _undeliveredOrders;
+}
+
+std::string Worker::getLocation() const {
+    return _location;
 }
 
 void Worker::addOrderToDeliver() {

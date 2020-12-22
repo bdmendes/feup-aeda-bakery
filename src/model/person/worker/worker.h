@@ -22,7 +22,7 @@ public:
      * @param credential the login credentials
      */
     explicit Worker(std::string name, unsigned long taxID = DEFAULT_TAX_ID, float salary = DEFAULT_SALARY,
-                    Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
+                    Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD}, std::string location = DEFAULT_LOCATION);
 
     /**
      * Gets the worker salary.
@@ -87,6 +87,8 @@ public:
      */
     Credential getDefaultCredential() override;
 
+    std::string getLocation() const;
+
     /**
      * The worker default login username.
      */
@@ -101,6 +103,8 @@ public:
      * The worker default salary.
      */
     static const float DEFAULT_SALARY;
+
+    static const char* DEFAULT_LOCATION;
 private:
     /**
      * The number of undelivered orders by the worker.
@@ -116,6 +120,7 @@ private:
      * The list of evaluations given to each order delivered by the worker.
      */
     std::vector<unsigned> _evaluations;
+    std::string _location;
 };
 
 
