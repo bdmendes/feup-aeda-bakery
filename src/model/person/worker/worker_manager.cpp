@@ -1,8 +1,6 @@
 
 #include "worker_manager.h"
-
 #include <utility>
-
 #include "exception/file_exception.h"
 
 WorkerManager::WorkerManager(LocationManager* lm) : _workers(), _locationManager(lm) {
@@ -78,13 +76,21 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
     return true;
 }
 
-Worker* WorkerManager::getLessBusyWorker() {
+Worker* WorkerManager::getLessBusyWorker(const std::string& location) {
     if (_workers.empty()) throw StoreHasNoWorkers();
 
-    auto orderComp = [](const Worker *worker1, const Worker *worker2) {
+    auto orderComp = [location](const Worker *worker1, const Worker *worker2) {
+        if (worker1->getLocation() == location && worker2->getLocation() != location){
+            return true;
+        }
+        if (worker1->getLocation() != location && worker2->getLocation() == location){
+            return false;
+        }
         return worker1->getUndeliveredOrders() < worker2->getUndeliveredOrders();
     };
-    return *std::min_element(_workers.begin(), _workers.end(), orderComp);
+    Worker* lessBusyWorker = *std::min_element(_workers.begin(), _workers.end(), orderComp);
+    if (lessBusyWorker->getUndeliveredOrders() == Worker::MAX_ORDERS_AT_A_TIME) throw AllWorkersAreBusy();
+    return lessBusyWorker;
 }
 
 void WorkerManager::read(const std::string& path) {

@@ -2,10 +2,7 @@
 #ifndef FEUP_AEDA_PROJECT_PERSON_H
 #define FEUP_AEDA_PROJECT_PERSON_H
 
-#include <exception/person_exception.h>
-
 #include <string>
-#include <stdexcept>
 #include <set>
 
 #include <iostream>

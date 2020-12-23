@@ -7,6 +7,7 @@
 const char* Worker::DEFAULT_USERNAME = "worker";
 const char* Worker::DEFAULT_PASSWORD = "worker";
 const float Worker::DEFAULT_SALARY = 1000;
+const unsigned Worker::MAX_ORDERS_AT_A_TIME = 1;
 
 Worker::Worker(std::string location, std::string name, unsigned long taxID, float salary, Credential credential):
         Person(std::move(name), taxID, std::move(credential), PersonRole::WORKER),
@@ -22,6 +23,7 @@ unsigned Worker::getUndeliveredOrders() const {
 }
 
 void Worker::addOrderToDeliver() {
+    if (getUndeliveredOrders() >= MAX_ORDERS_AT_A_TIME) return;
     _undeliveredOrders++;
 }
 

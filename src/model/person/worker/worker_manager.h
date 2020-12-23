@@ -60,11 +60,14 @@ public:
     Worker* getWorker(unsigned long taxID) const;
 
     /**
-     * Gets the less busy worker which is the worker with less number of undelivered orders.
+     * Gets the less busy worker which is the worker with less number of undelivered orders,
+     * who works at the selected delivery location. If no one works at that location, the less
+     * busy worker from other location will be chosen.
+     * If all workers are at the maximum delivery capacity, throws an exception.
      *
      * @return the less busy worker
      */
-    Worker* getLessBusyWorker();
+    Worker* getLessBusyWorker(const std::string& location);
 
     /**
      * Sets the salary of the worker at a certain position.

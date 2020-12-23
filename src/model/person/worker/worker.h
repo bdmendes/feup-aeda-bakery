@@ -103,6 +103,9 @@ public:
      * The worker default salary.
      */
     static const float DEFAULT_SALARY;
+
+    static const unsigned MAX_ORDERS_AT_A_TIME;
+
 private:
     /**
      * The number of undelivered orders by the worker.
