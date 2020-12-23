@@ -1,9 +1,11 @@
 
 #include "worker_manager.h"
 
+#include <utility>
+
 #include "exception/file_exception.h"
 
-WorkerManager::WorkerManager() : _workers(){
+WorkerManager::WorkerManager(LocationManager* lm) : _workers(), _locationManager(lm) {
 }
 
 bool WorkerManager::has(Worker *worker) const {
@@ -27,8 +29,9 @@ Worker* WorkerManager::setSalary(unsigned position, float salary) {
     return *it;
 }
 
-Worker* WorkerManager::add(std::string name, unsigned long taxID, float salary, Credential credential) {
-    auto* worker = new Worker(std::move(name), taxID, salary, std::move(credential));
+Worker* WorkerManager::add(std::string location, std::string name, unsigned long taxID, float salary, Credential credential) {
+    if (!_locationManager->has(location)) throw LocationDoesNotExist(location);
+    auto* worker = new Worker(std::move(location), std::move(name), taxID, salary, std::move(credential));
     _workers.insert(worker);
     return worker;
 }
@@ -58,7 +61,8 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
     if (showData){
         os << util::column("SALARY")
         << util::column("TO DELIVER")
-        << util::column("RATING");
+        << util::column("RATING")
+        << util::column("LOCATION");
     }
     else {
         os << util::column("LOGGED IN");
@@ -87,7 +91,7 @@ void WorkerManager::read(const std::string& path) {
     std::ifstream file(path);
     if(!file) throw FileNotFound(path);
 
-    std::string name;
+    std::string name, location;
     float salary = Worker::DEFAULT_SALARY;
     unsigned long taxID = Person::DEFAULT_TAX_ID;
     Credential credential;
@@ -97,9 +101,10 @@ void WorkerManager::read(const std::string& path) {
         if (line.empty()) continue;
 
         std::stringstream ss(line);
-        ss >> name >> taxID >> salary >> credential.username >> credential.password;
+        ss >> name >> taxID >> salary >> credential.username >> credential.password >> location;
         std::replace(name.begin(), name.end(), '-', ' ');
-        add(name, taxID, salary, credential);
+        std::replace(location.begin(),location.end(),'-',' ');
+        add(location, name, taxID, salary, credential);
     }
 }
 
@@ -107,12 +112,15 @@ void WorkerManager::write(const std::string &path) {
     std::ofstream file(path);
     if(!file) throw FileNotFound(path);
 
-    std::string nameToSave;
     for(const auto & worker: _workers){
-        nameToSave = worker->getName();
+        std::string nameToSave = worker->getName();
+        std::string locationToSave = worker->getLocation();
         std::replace(nameToSave.begin(), nameToSave.end(), ' ', '-');
+        std::replace(locationToSave.begin(), locationToSave.end(), ' ', '-');
+
         file << nameToSave << " " << worker->getTaxId() << " " << worker->getSalary()
-        << " " << worker->getCredential().username << " " << worker->getCredential().password<<'\n';
+        << " " << worker->getCredential().username << " " << worker->getCredential().password
+        << " " << locationToSave << '\n';
     }
 }
 

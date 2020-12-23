@@ -5,13 +5,14 @@ WorkerDashboard::WorkerDashboard(Store &store, Worker *worker) : Dashboard(store
 
 void WorkerDashboard::show() {
     Dashboard::show();
-    std::cout << "\nSalary: " << util::to_string(_worker->getSalary()) << " euros"
+    std::cout << "\nWork location: " << _worker->getLocation()
+              << "\nSalary: " << util::to_string(_worker->getSalary()) << " euros"
               << "\nTo deliver: " << _worker->getUndeliveredOrders() << " orders\n"
               << "\nRating: ";
     if (_worker->getMeanEvaluation() != 0) std::cout << util::to_string(_worker->getMeanEvaluation()) << " points\n";
     else std::cout << "None yet\n";
-    std::cout << SEPARATOR << "\n";
 
+    std::cout << SEPARATOR << "\n";
     const std::vector<std::string> options = {
             "edit account - change personal details",
             "manage stock - review and modify store stock",

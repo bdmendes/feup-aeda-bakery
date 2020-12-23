@@ -62,14 +62,16 @@ void BossDashboard::show() {
 
 void BossDashboard::addWorker() {
     std::cout << "\n" << SEPARATOR;
-    std::string name, input;
+    std::string name, input, location;
     unsigned long taxID;
     float salary;
 
+    /* Name */
     std::cout << "Worker name: ";
     name = readCommand(false);
     if (name == BACK) return;
 
+    /* taxID */
     for(;;){
         std::cout << "Tax ID: ";
         input = readCommand();
@@ -78,6 +80,7 @@ void BossDashboard::addWorker() {
     }
     taxID = std::stoul(input);
 
+    /* Salary */
     for (;;){
         std::cout << "Salary: ";
         input = readCommand();
@@ -86,7 +89,29 @@ void BossDashboard::addWorker() {
     }
     salary = std::stof(input);
 
-    _store.workerManager.add(name,taxID,salary);
+    /* Location */
+    std::cout << "Work location (";
+    {
+        std::string locations;
+        for (const auto& l: _store.locationManager.getAll()){
+            locations += l + ", ";
+        }
+        if (!locations.empty()) locations = locations.substr(0,locations.size()-2);
+        std::cout << locations << "): ";
+    }
+    for(;;){
+        try{
+            input = readCommand(false);
+            if (!_store.locationManager.has(input)) throw LocationDoesNotExist(input);
+            location = input;
+            break;
+        }
+        catch(std::exception& e){
+            std::cout << e.what() << "\n";
+        }
+    }
+
+    _store.workerManager.add(location, name,taxID,salary);
 }
 
 void BossDashboard::manageStaff() {

@@ -1,15 +1,16 @@
 
 #include <util/util.h>
 #include <numeric>
+#include <utility>
 #include "worker.h"
 
 const char* Worker::DEFAULT_USERNAME = "worker";
 const char* Worker::DEFAULT_PASSWORD = "worker";
 const float Worker::DEFAULT_SALARY = 1000;
 
-Worker::Worker(std::string name, unsigned long taxID, float salary, Credential credential):
+Worker::Worker(std::string location, std::string name, unsigned long taxID, float salary, Credential credential):
         Person(std::move(name), taxID, std::move(credential), PersonRole::WORKER),
-        _salary{salary}, _undeliveredOrders(0), _evaluations(){
+        _salary{salary}, _undeliveredOrders(0), _evaluations(), _location(std::move(location)){
 }
 
 float Worker::getSalary() const{
@@ -38,7 +39,8 @@ void Worker::print(std::ostream &os, bool showData) {
     if (showData){
         os << util::column(util::to_string(getSalary()) + " euros")
         << util::column(std::to_string(getUndeliveredOrders()) + " orders")
-        << util::column(getMeanEvaluation() != 0 ? util::to_string(getMeanEvaluation()) + " points" : "None yet");
+        << util::column(getMeanEvaluation() != 0 ? util::to_string(getMeanEvaluation()) + " points" : "None yet")
+        << util::column(getLocation());
     }
     else os << util::column(isLogged() ? "Yes" : "No");
 }
@@ -54,4 +56,8 @@ void Worker::addEvaluation(unsigned int evaluation) {
 float Worker::getMeanEvaluation() const {
     return _evaluations.empty()? 0 :
            std::accumulate(_evaluations.begin(),_evaluations.end(),0.0f) / _evaluations.size();
+}
+
+std::string Worker::getLocation() const {
+    return _location;
 }

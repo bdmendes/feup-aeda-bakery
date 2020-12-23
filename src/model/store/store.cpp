@@ -5,10 +5,13 @@
 
 Store::Store(std::string name) :
         _name(std::move(name)),
-        productManager(),clientManager(),workerManager(),locationManager(),
+        locationManager(),
+        productManager(),
+        clientManager(),
+        workerManager(&locationManager),
         orderManager(&productManager,&clientManager,&workerManager,&locationManager),
-        boss("Boss", Person::DEFAULT_TAX_ID, {Boss::DEFAULT_USERNAME,Boss::DEFAULT_PASSWORD}){
-}
+        boss("Boss", Person::DEFAULT_TAX_ID, {Boss::DEFAULT_USERNAME,Boss::DEFAULT_PASSWORD})
+        {}
 
 std::string Store::getName() const {
     return _name;

@@ -3,6 +3,7 @@
 #define FEUP_AEDA_PROJECT_WORKER_MANAGER_H
 
 #include "worker.h"
+#include "../../store/location_manager.h"
 
 #include <exception/store_exception.h>
 
@@ -20,7 +21,7 @@ public:
     /**
      * Creates a new WorkerManager object.
      */
-    WorkerManager();
+    WorkerManager(LocationManager* lm);
 
     /**
      * Destructs the WorkerManager object.
@@ -83,7 +84,7 @@ public:
      * @param credential the login credentials
      * @return the worker added to de workers list of the worker manager
      */
-    Worker* add(std::string name, unsigned long taxID = Person::DEFAULT_TAX_ID, float salary = Worker::DEFAULT_SALARY,
+    Worker* add(std::string location, std::string name, unsigned long taxID = Person::DEFAULT_TAX_ID, float salary = Worker::DEFAULT_SALARY,
                 Credential credential = {Worker::DEFAULT_USERNAME, Worker::DEFAULT_PASSWORD});
 
     /**
@@ -131,6 +132,8 @@ private:
      * The list with all of the workers.
      */
     std::set<Worker*, PersonSmaller> _workers;
+
+    LocationManager* _locationManager;
 };
 
 
