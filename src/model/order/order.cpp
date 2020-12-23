@@ -130,7 +130,8 @@ void Order::print(std::ostream &os) const {
        << " on " << getRequestDate().getCompleteDate() << std::endl;
 
     if (!wasDelivered()){
-        os << "To be delivered by " << getWorker()->getName() << " " << "at " <<
+        os << "To be delivered by " << getWorker()->getName() << " (who works at " <<
+        getWorker()->getLocation() << ") at " <<
         getDeliverLocation() << "\n\n";
     }
     else {
@@ -169,7 +170,10 @@ std::string Order::getDeliverLocation() const {
     return _deliverLocation;
 }
 
-void Order::setDeliverLocation(const std::string& location) {
+void Order::setDeliverLocation(const std::string& location, Worker* newWorker) {
     if (_delivered) throw OrderWasAlreadyDelivered(*_client,*_worker,_deliverDate);
+    getWorker()->removeOrderToDeliver();
+    _worker = newWorker;
+    _worker->addOrderToDeliver();
     _deliverLocation = location;
 }

@@ -270,4 +270,7 @@ void OrderManager::removeProduct(Order *order, unsigned long position) {
     _productManager->add(it->first);
 }
 
-
+void OrderManager::setDeliveryLocation(Order *order, const string &location) {
+    Worker* newWorker = _workerManager->getLessBusyWorker(location);
+    order->setDeliverLocation(location,newWorker);
+}

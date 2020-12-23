@@ -66,13 +66,6 @@ public:
     Client* getClient() const;
 
     /**
-     * Sets the store location where the order will be delivered.
-     *
-     * @param location the store location
-     */
-    void setDeliverLocation(const std::string& location);
-
-    /**
      * Gets the store location where the order will be delivered.
      *
      * @return the store location
@@ -161,6 +154,15 @@ public:
     friend class OrderManager;
 
 private:
+
+    /**
+    * Sets the store location where the order will be delivered.
+    * A new worker (possibly working at the new desired location) will be assigned.
+    *
+    * @param location the store location
+    */
+    void setDeliverLocation(const std::string& location, Worker* newWorker);
+
     /**
     * Adds a product with a certain quantity to the products list.
      *

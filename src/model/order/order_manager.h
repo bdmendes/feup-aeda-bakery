@@ -150,6 +150,8 @@ public:
     void removeProduct(Order* order, Product* product);
     void removeProduct(Order* order, unsigned long position);
 
+    void setDeliveryLocation(Order* order, const std::string& location);
+
     /**
      * Reads all the orders on the file and its data: request date, products (name, price and requested quantity),
      * client (taxpayer identification number), worker (taxpayer identification number), delivery date (if the order was

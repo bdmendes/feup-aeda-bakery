@@ -474,7 +474,7 @@ void Dashboard::setOrderLocation(Order *order) {
             std::string input = readCommand(false);
             if (input == BACK) return;
             if (!_store.locationManager.has(input)) throw LocationDoesNotExist(input);
-            order->setDeliverLocation(input);
+            _store.orderManager.setDeliveryLocation(order,input);
             break;
         }
         catch(std::exception& e){
