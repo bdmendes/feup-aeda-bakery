@@ -62,18 +62,20 @@ void ProductManager::remove(unsigned long position) {
 }
 
 
-void ProductManager::print(std::ostream &os) const {
+void ProductManager::print(std::ostream &os, bool showInclusions) const {
     std::vector<Product*> vec = getAll();
     if (!vec.empty()) {
         os << std::string(vec.size() / 10 + 3, util::SPACE)
            << util::column("NAME", true)
            << util::column("CATEGORY")
-           << util::column("UNIT PRICE") << "\n";
+           << util::column("UNIT PRICE");
+        if (showInclusions) os << util::column("INCLUSIONS");
+        os << "\n";
 
         unsigned count = 1;
         for (const auto &p: vec) {
             os << std::setw((int)vec.size() / 10 + 3) << std::to_string(count++) + ". ";
-            p->print(os, true);
+            p->print(os, showInclusions);
             os << "\n";
         }
     }
@@ -184,4 +186,20 @@ ProductManager::~ProductManager() {
 Product *ProductManager::add(Product *product) {
     _products.insert(ProductEntry(product));
     return product;
+}
+
+std::vector<Product *> ProductManager::getUsed() const {
+    std::vector<Product*> res;
+    for (BSTItrIn<ProductEntry> it(_products); !it.isAtEnd(); it.advance()){
+        if (it.retrieve().getProduct()->getTimesIncluded()) res.push_back(it.retrieve().getProduct());
+    }
+    return res;
+}
+
+std::vector<Product *> ProductManager::getUnused() const {
+    std::vector<Product*> res;
+    for (BSTItrIn<ProductEntry> it(_products); !it.isAtEnd(); it.advance()){
+        if (!it.retrieve().getProduct()->getTimesIncluded()) res.push_back(it.retrieve().getProduct());
+    }
+    return res;
 }

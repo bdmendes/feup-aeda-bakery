@@ -29,7 +29,7 @@ void Product::print(std::ostream& os, bool showInclusions) const {
     os << util::column(_name,true)
        << util::column(getCategory())
        << util::column(util::to_string(_price) + " euros");
-    if (showInclusions) os << util::column(std::to_string(getTimesIncluded()));
+    if (showInclusions) os << util::column(std::to_string(getTimesIncluded()) + " orders");
 }
 
 std::string Bread::getCategory() const {

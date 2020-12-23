@@ -99,6 +99,9 @@ public:
      */
     std::vector<Product*> getAll() const;
 
+    std::vector<Product*> getUsed() const;
+    std::vector<Product*> getUnused() const;
+
     /**
      * Adds a bread to the product list.
      *
@@ -156,7 +159,7 @@ public:
      *
      * @param os the output stream
      */
-    void print(std::ostream& os) const;
+    void print(std::ostream& os, bool showInclusions = true) const;
 
 private:
     /**

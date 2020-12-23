@@ -212,7 +212,7 @@ void Dashboard::editOrder(Order* order) {
     for(;;){
         printLogo("Edit order");
         std::cout << "AVAILABLE STOCK\n" << SEPARATOR;
-        _store.productManager.print(std::cout);
+        _store.productManager.print(std::cout, false);
         std::cout << SEPARATOR << "\n"
                   << "ORDER DETAILS\n" << SEPARATOR;
         order->print(std::cout);
