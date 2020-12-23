@@ -33,7 +33,7 @@ std::vector<Product*> ProductManager::getAll() const {
 
 Bread* ProductManager::addBread(std::string name, float price, bool small) {
     auto it = new Bread(std::move(name),price,small);
-    _products.insert(ProductEntry(it));
+    bool hi = _products.insert(ProductEntry(it));
     return it;
 }
 
@@ -179,4 +179,9 @@ ProductManager::~ProductManager() {
     for (BSTItrIn<ProductEntry> it(_products); !it.isAtEnd(); it.advance()){
         delete it.retrieve().getProduct();
     }
+}
+
+Product *ProductManager::add(Product *product) {
+    _products.insert(ProductEntry(product));
+    return product;
 }

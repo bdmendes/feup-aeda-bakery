@@ -120,35 +120,12 @@ public:
     Date getDeliverDate() const;
 
     /**
-     * Adds a product with a certain quantity to the products list.
-     *
-     * @param product the product
-     * @param quantity the quantity
-     * @return the product added to the products list
-     */
-    Product* addProduct(Product* product, unsigned quantity = 1);
-
-    /**
-     * Removes a certain product from the products list.
-     *
-     * @param product the product
-     */
-    void removeProduct(Product* product);
-
-    /**
-     * Removes a certain product, at a certain position, from the products list.
-     *
-     * @param position the position
-     */
-    void removeProduct(unsigned long position);
-
-    /**
-     * Delivers the order and gets the client evaluation and deliver duration.
-     *
+    * Delivers the order and gets the client evaluation and deliver duration.
+    *
      * @param clientEvaluation the client evaluation
      * @param updatePoints whether to add points to the client
      * @param deliverDuration the deliver duration
-     */
+    */
     void deliver(int clientEvaluation, bool updatePoints = true, int deliverDuration = 30);
 
     /**
@@ -181,7 +158,32 @@ public:
      */
     static const char* DEFAULT_LOCATION;
 
+    friend class OrderManager;
+
 private:
+    /**
+    * Adds a product with a certain quantity to the products list.
+     *
+    * @param product the product
+    * @param quantity the quantity
+    * @return the product added to the products list
+    */
+    Product* addProduct(Product* product, unsigned quantity = 1);
+
+    /**
+     * Removes a certain product from the products list.
+     *
+     * @param product the product
+     */
+    void removeProduct(Product* product);
+
+    /**
+     * Removes a certain product, at a certain position, from the products list.
+     *
+     * @param position the position
+     */
+    void removeProduct(unsigned long position);
+
     /**
     * Updates total price whenever is added products to the order.
     */

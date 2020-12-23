@@ -119,6 +119,8 @@ public:
      */
     Cake* addCake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
 
+    Product* add(Product* product);
+
     /**
      * Removes a product from the products list.
      *
