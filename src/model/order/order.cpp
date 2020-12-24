@@ -116,7 +116,7 @@ bool Order::operator==(const Order &rhs) const {
 }
 
 bool Order::operator<(const Order &o2) const {
-    return _requestDate < o2.getRequestDate();
+    return o2.getRequestDate() < _requestDate;
 }
 
 void Order::print(std::ostream &os) const {

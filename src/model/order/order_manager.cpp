@@ -61,27 +61,6 @@ std::priority_queue<OrderEntry> OrderManager::get(Worker *worker) const {
     return filtered;
 }
 
-/*void OrderManager::sortByDate() {
-    auto comp = [](const Order* o1, const Order* o2){
-        return *o1 < *o2;
-    };
-    std::sort(_orders.begin(), _orders.end(),comp);
-}
-
-void OrderManager::sortByClient() {
-    auto comp = [](const Order* o1, const Order* o2){
-        return *(o1->getClient()) < *(o2->getClient());
-    };
-    std::sort(_orders.begin(), _orders.end(), comp);
-}
-
-void OrderManager::sortByWorker() {
-    auto comp = [](const Order* o1, const Order* o2){
-        return *(o1->getWorker()) < *(o2->getWorker());
-    };
-    std::sort(_orders.begin(), _orders.end(), comp);
-}*/
-
 Order* OrderManager::add(Client *client, const std::string& location, const Date &date) {
     if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
     if (!_locationManager->has(location)) throw LocationDoesNotExist(location);
