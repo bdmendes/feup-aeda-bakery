@@ -65,8 +65,12 @@ void Order::updateTotalPrice() {
 Product * Order::addProduct(Product* product, unsigned quantity) {
     if (quantity == 0) throw std::invalid_argument("Quantity cannot be 0!");
     if (_delivered) throw OrderWasAlreadyDelivered(*_client, *_worker, _requestDate);
+
     if (hasProduct(product)) _products[product] += quantity;
-    else _products[product] = quantity;
+    else{
+        _products[product] = quantity;
+        product->addInclusion();
+    }
     updateTotalPrice();
     return product;
 }
@@ -76,6 +80,7 @@ void Order::removeProduct(Product *product) {
     if (hasProduct(product)){
         _products.erase(product);
         updateTotalPrice();
+        product->removeInclusion();
     }
     else throw ProductDoesNotExist(product->getName(),product->getPrice());
 }
@@ -87,6 +92,7 @@ void Order::removeProduct(unsigned long position) {
         std::advance(it,position);
         _products.erase(it);
         updateTotalPrice();
+        it->first->removeInclusion();
     }
     else throw InvalidProductPosition(position, _products.size());
 }
@@ -124,7 +130,8 @@ void Order::print(std::ostream &os) const {
        << " on " << getRequestDate().getCompleteDate() << std::endl;
 
     if (!wasDelivered()){
-        os << "To be delivered by " << getWorker()->getName() << " " << "at " <<
+        os << "To be delivered by " << getWorker()->getName() << " (who works at " <<
+        getWorker()->getLocation() << ") at " <<
         getDeliverLocation() << "\n\n";
     }
     else {
@@ -163,7 +170,10 @@ std::string Order::getDeliverLocation() const {
     return _deliverLocation;
 }
 
-void Order::setDeliverLocation(const std::string& location) {
+void Order::setDeliverLocation(const std::string& location, Worker* newWorker) {
     if (_delivered) throw OrderWasAlreadyDelivered(*_client,*_worker,_deliverDate);
+    getWorker()->removeOrderToDeliver();
+    _worker = newWorker;
+    _worker->addOrderToDeliver();
     _deliverLocation = location;
 }

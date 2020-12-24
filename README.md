@@ -1,5 +1,5 @@
 # feup-aeda-project
-[![Build Status](https://travis-ci.com/bdmendes/feup-aeda-project.svg?branch=main)](https://travis-ci.com/bdmendes/feup-aeda-project)
+[![Build Status](https://travis-ci.com/bdmendes/feup-aeda-bakery.svg?branch=main)](https://travis-ci.com/bdmendes/feup-aeda-bakery)
 [![codecov](https://codecov.io/gh/bdmendes/feup-aeda-project/branch/main/graph/badge.svg?token=GDYAY2O2DQ)](https://codecov.io/gh/bdmendes/feup-aeda-project)
 
 Bakery Store management application serving as AEDA 1st project.
