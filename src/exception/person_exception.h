@@ -5,7 +5,7 @@
 #include <utility>
 #include <stdexcept>
 
-#include "model/person/person.h"
+#include "model/person/worker/worker.h"
 
 /**
  * Class relative to the exception of a nonexistent person.
@@ -52,6 +52,11 @@ public:
      * Create new InvalidCredential exception object.
      */
     explicit InvalidCredential();
+};
+
+class AllWorkersAreBusy : public std::logic_error {
+public:
+    explicit AllWorkersAreBusy();
 };
 
 

@@ -81,6 +81,11 @@ public:
     std::string write(const std::string& dataFolderPath);
 
     /**
+     * The location manager associated to the store.
+    */
+    LocationManager locationManager;
+
+    /**
      * The product manager associated to the store.
      */
     ProductManager productManager;
@@ -99,11 +104,6 @@ public:
      * The order manager associated to the store.
      */
     OrderManager orderManager;
-
-    /**
-     * The location manager associated to the store.
-     */
-    LocationManager locationManager;
 
     /**
      * The boss associated to the store.

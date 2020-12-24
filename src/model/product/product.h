@@ -29,10 +29,20 @@ public:
      */
     Product(std::string name, float price);
 
-    /**
-     * Destructs the Product object.
-     */
     virtual ~Product() = default;
+
+    /**
+     * Get textual description of the product category.
+     */
+    virtual std::string getCategory() const = 0;
+
+    bool operator==(const Product& rhs) const;
+
+    bool operator<(const Product& rhs) const;
+
+    unsigned getTimesIncluded() const;
+    void addInclusion();
+    void removeInclusion();
 
     /**
      * Gets the product name.
@@ -49,27 +59,11 @@ public:
     float getPrice() const;
 
     /**
-     * Two products are equal if their names and prices are equal.
-     *
-     * @param p the product to compare with
-     * @return true, if the products have the same name and the same price; false, otherwise
-     */
-    virtual bool operator== (const Product& p) const;
-
-    /**
-     * One product is less than according to the comparison of their names by alphabetical order.
-     *
-     * @param p the product to compare with
-     * @return true, if the product is less than p; false, otherwise
-     */
-    bool operator<(const Product& p) const;
-
-    /**
      * Prints all the product data.
      *
      * @param os the output stream
      */
-    virtual void print(std::ostream& os) const = 0;
+    void print(std::ostream& os, bool showInclusions = false) const;
 
 protected:
     /**
@@ -81,6 +75,11 @@ protected:
      * The product price.
      */
     float _price;
+
+    /**
+     * Total times the product was included in an order.
+     */
+    unsigned _timesIncluded;
 };
 
 /**
@@ -98,26 +97,11 @@ public:
     Bread(std::string name, float price, bool small = true);
 
     /**
-     * Checks if the bread is small.
-     *
-     * @return true, if it is small; false, otherwise
+     * Get bread size as a string.
      */
+    std::string getCategory() const override;
+
     bool isSmall() const;
-
-    /**
-     * Two breads are equal if they share name, category and small attribute
-     *
-     * @param bread the bread to compare with
-     * @return true, if the breads are equal; false, otherwise
-     */
-    virtual bool operator==(const Bread& bread) const;
-
-    /**
-     * Prints all the bread data (name, size and price).
-     *
-     * @param os the output stream
-     */
-    void print(std::ostream& os) const override;
 
 private:
     /**
@@ -141,26 +125,10 @@ public:
     Cake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
 
     /**
-     * Gets the cake category.
-     *
-     * @return the cake category
+     * Get cake category string.
+     * @return _categoryStr
      */
-    CakeCategory getCategory() const;
-
-    /**
-     * Two cakes are equal if they share the name, price and cake category.
-     *
-     * @param cake the cake to compare with
-     * @return true, if the cakes are equal; false, otherwise
-     */
-    virtual bool operator==(const Cake& cake) const;
-
-    /**
-     * Prints all the bread data (name, category and price).
-     *
-     * @param os the output stream
-     */
-    void print(std::ostream& os) const override;
+    std::string getCategory() const override;
 
     /**
      * All the possible cakes categories as a string.

@@ -64,9 +64,9 @@ std::priority_queue<OrderEntry> OrderManager::get(Worker *worker) const {
 Order* OrderManager::add(Client *client, const std::string& location, const Date &date) {
     if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
     if (!_locationManager->has(location)) throw LocationDoesNotExist(location);
-    auto order = OrderEntry(new Order(*client,*_workerManager->getLessBusyWorker(),location,date));
-    _orders.push(order);
-    return order.getOrder();
+    auto orderEntry = OrderEntry(new Order(*client,*_workerManager->getLessBusyWorker(location),location,date));
+    _orders.push(orderEntry);
+    return orderEntry.getOrder();
 }
 
 Order* OrderManager::add(Client* client, Worker* worker, const std::string& location, const Date& date){
@@ -127,11 +127,10 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
     << util::column("DELIVERED",true)
     << util::column("LOCATION", true) << "\n";
 
-    int count = 1;
-    std::priority_queue<OrderEntry> orders = _orders;
-    while(!orders.empty()){
-        const auto& order = orders.top().getOrder();
-        orders.pop();
+    unsigned count = 1;
+    while(!toPrint.empty()){
+        const auto& order = toPrint.top().getOrder();
+        toPrint.pop();
         os << std::setw((int)toPrint.size() / 10 + 3) << std::to_string(count++) + ". ";
         if (client == nullptr) os << util::column(order->getClient()->getName(),true);
         if (worker == nullptr) os << util::column(order->getWorker()->getName(),true);
@@ -168,7 +167,6 @@ void OrderManager::read(const std::string &path) {
         ss >> productName >> price >> quantity;
         std::replace(productName.begin(),productName.end(),'-',' ');
         Product *product = _productManager->get(productName, price);
-        if (!_productManager->has(product)) throw ProductDoesNotExist(productName, price);
         return product;
     };
 
@@ -208,7 +206,7 @@ void OrderManager::read(const std::string &path) {
         else {
             Product *product = getProduct(line);
             if (!order) throw OrderDoesNotExist();
-            if (!order->wasDelivered() && _productManager->has(product)) order->addProduct(product);
+            if (!order->wasDelivered() && _productManager->has(product)) addProduct(order,product);
         }
     }
 }
@@ -262,4 +260,35 @@ Order* OrderManager::get(Client *client, Worker *worker, const std::string &loca
     throw OrderDoesNotExist();
 }
 
+Product *OrderManager::addProduct(Order *order, Product *product, unsigned int quantity) {
+    if (!has(order)) throw OrderDoesNotExist();
+    _productManager->remove(product);
+    order->addProduct(product,quantity);
+    _productManager->add(product);
+    return product;
+}
 
+void OrderManager::removeProduct(Order *order, Product *product) {
+    if (!has(order)) throw OrderDoesNotExist();
+    _productManager->remove(product);
+    order->removeProduct(product);
+    _productManager->add(product);
+}
+
+void OrderManager::removeProduct(Order *order, unsigned long position) {
+    if (!has(order)) throw OrderDoesNotExist();
+
+    auto orderProd = order->getProducts();
+    auto it = orderProd.begin();
+    if (position >= orderProd.size()) throw std::invalid_argument("Invalid product position");
+    std::advance(it,position);
+
+    _productManager->remove(it->first);
+    order->removeProduct(position);
+    _productManager->add(it->first);
+}
+
+void OrderManager::setDeliveryLocation(Order *order, const string &location) {
+    Worker* newWorker = _workerManager->getLessBusyWorker(location);
+    order->setDeliverLocation(location,newWorker);
+}

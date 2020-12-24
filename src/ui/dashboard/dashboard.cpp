@@ -212,7 +212,7 @@ void Dashboard::editOrder(Order* order) {
     for(;;){
         printLogo("Edit order");
         std::cout << "AVAILABLE STOCK\n" << SEPARATOR;
-        _store.productManager.print(std::cout);
+        _store.productManager.print(std::cout, false);
         std::cout << SEPARATOR << "\n"
                   << "ORDER DETAILS\n" << SEPARATOR;
         order->print(std::cout);
@@ -235,11 +235,11 @@ void Dashboard::editOrder(Order* order) {
                 else if (validInput1Cmd2ArgsDigit(input, "add")) {
                     unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                     unsigned int quantity = (unsigned) std::stoi(to_words(input).at(2));
-                    order->addProduct(_store.productManager.get(idx), quantity);
+                    _store.orderManager.addProduct(order,_store.productManager.get(idx), quantity);
                     break;
                 } else if (validInput1Cmd1ArgDigit(input, "remove")) {
                     unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
-                    order->removeProduct(idx);
+                    _store.orderManager.removeProduct(order,idx);
                     break;
                 } else if (validInput1Cmd1Arg(input,"change","location")){
                     setOrderLocation(order);
@@ -474,7 +474,7 @@ void Dashboard::setOrderLocation(Order *order) {
             std::string input = readCommand(false);
             if (input == BACK) return;
             if (!_store.locationManager.has(input)) throw LocationDoesNotExist(input);
-            order->setDeliverLocation(input);
+            _store.orderManager.setDeliveryLocation(order,input);
             break;
         }
         catch(std::exception& e){

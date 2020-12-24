@@ -21,7 +21,7 @@ public:
      * @param taxID the taxpayer identification number
      * @param credential the login credentials
      */
-    explicit Worker(std::string name, unsigned long taxID = DEFAULT_TAX_ID, float salary = DEFAULT_SALARY,
+    explicit Worker(std::string location, std::string name, unsigned long taxID = DEFAULT_TAX_ID, float salary = DEFAULT_SALARY,
                     Credential credential = {DEFAULT_USERNAME, DEFAULT_PASSWORD});
 
     /**
@@ -37,6 +37,8 @@ public:
      * @return the number of undelivered orders
      */
     unsigned getUndeliveredOrders() const;
+
+    std::string getLocation() const;
 
     /**
      * Sets the worker salary.
@@ -101,6 +103,9 @@ public:
      * The worker default salary.
      */
     static const float DEFAULT_SALARY;
+
+    static const unsigned MAX_ORDERS_AT_A_TIME;
+
 private:
     /**
      * The number of undelivered orders by the worker.
@@ -116,6 +121,11 @@ private:
      * The list of evaluations given to each order delivered by the worker.
      */
     std::vector<unsigned> _evaluations;
+
+    /**
+     * Where the worker does its job.
+     */
+    std::string _location;
 };
 
 
