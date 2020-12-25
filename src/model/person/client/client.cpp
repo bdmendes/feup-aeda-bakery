@@ -8,11 +8,19 @@ const char* Client::DEFAULT_USERNAME = "client";
 const char* Client::DEFAULT_PASSWORD = "client";
 
 Client::Client(std::string name, unsigned long taxID, bool premium, Credential credential):
-        Person(std::move(name), taxID, std::move(credential), PersonRole::CLIENT), _points{0}, _premium(premium), _evaluations(){
+        Person(std::move(name), taxID, std::move(credential), PersonRole::CLIENT), _points{0}, _premium(premium), _evaluations(), _numDiscounts(0){
 }
 
 bool Client::isPremium() const {
     return _premium;
+}
+
+void Client::addDiscount(){
+    _numDiscounts++;
+}
+
+unsigned Client::getNumDiscounts() const {
+    return _numDiscounts;
 }
 
 unsigned Client::getPoints() const {

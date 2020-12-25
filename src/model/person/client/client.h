@@ -38,6 +38,9 @@ public:
      */
     float getMeanEvaluation() const;
 
+    unsigned getNumDiscounts() const;
+    void addDiscount();
+
     /**
      * Gets the client points.
      *
@@ -125,6 +128,8 @@ private:
      * The list of all order evaluations given by the client.
      */
     std::vector<int> _evaluations;
+
+    unsigned _numDiscounts;
 };
 
 

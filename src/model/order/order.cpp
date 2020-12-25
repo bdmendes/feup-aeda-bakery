@@ -56,6 +56,7 @@ Date Order::getRequestDate() const {
 }
 
 void Order::updateTotalPrice() {
+    if(hasDiscount()) _client->addDiscount();
     _totalPrice = 0;
     for(const auto &product : _products){
         _totalPrice += (product.first->getPrice() * product.second);
@@ -122,7 +123,9 @@ bool Order::operator==(const Order &rhs) const {
 }
 
 bool Order::operator<(const Order &o2) const {
-    return o2.getRequestDate() < _requestDate;
+    if (_client->getMeanEvaluation() == o2._client->getMeanEvaluation())
+        return o2._client->getNumDiscounts() < _client->getNumDiscounts();
+    return o2._client->getMeanEvaluation() < _client->getMeanEvaluation();
 }
 
 void Order::print(std::ostream &os) const {
