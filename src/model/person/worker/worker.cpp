@@ -8,13 +8,15 @@ const char* Worker::DEFAULT_USERNAME = "worker";
 const char* Worker::DEFAULT_PASSWORD = "worker";
 const float Worker::DEFAULT_SALARY = 1000;
 const char* Worker::DEFAULT_LOCATION = "Porto";
+const unsigned Worker::MAX_ORDERS_AT_A_TIME = 5;
+const float Worker::MINIMUM_SALARY = 0.0;
 
-Worker::Worker(std::string name, unsigned long taxID, float salary, Credential credential, std::string location):
+Worker::Worker(std::string location, std::string name, unsigned long taxID, float salary, Credential credential):
         Person(std::move(name), taxID, std::move(credential), PersonRole::WORKER),
         _salary{salary}, _undeliveredOrders(0), _evaluations(), _location(std::move(location)){
 }
 
-float Worker::getSalary() const{
+float Worker::getSalary() const {
     return _salary;
 }
 
@@ -27,6 +29,7 @@ std::string Worker::getLocation() const {
 }
 
 void Worker::addOrderToDeliver() {
+    if (getUndeliveredOrders() >= MAX_ORDERS_AT_A_TIME) return;
     _undeliveredOrders++;
 }
 
@@ -44,7 +47,8 @@ void Worker::print(std::ostream &os, bool showData) {
     if (showData){
         os << util::column(util::to_string(getSalary()) + " euros")
         << util::column(std::to_string(getUndeliveredOrders()) + " orders")
-        << util::column(getMeanEvaluation() != 0 ? util::to_string(getMeanEvaluation()) + " points" : "None yet");
+        << util::column(getMeanEvaluation() != 0 ? util::to_string(getMeanEvaluation()) + " points" : "None yet")
+        << util::column(getLocation());
     }
     else os << util::column(isLogged() ? "Yes" : "No");
 }
@@ -61,3 +65,4 @@ float Worker::getMeanEvaluation() const {
     return _evaluations.empty()? 0 :
            std::accumulate(_evaluations.begin(),_evaluations.end(),0.0f) / _evaluations.size();
 }
+

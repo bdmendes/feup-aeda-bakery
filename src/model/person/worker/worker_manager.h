@@ -3,6 +3,7 @@
 #define FEUP_AEDA_PROJECT_WORKER_MANAGER_H
 
 #include "worker.h"
+#include "../../store/location_manager.h"
 
 #include <exception/store_exception.h>
 
@@ -26,7 +27,7 @@ struct WorkerHash
 
     bool operator() (const Worker* worker1, const Worker* worker2) const
     {
-        return worker1->getName()==worker2->getName();
+        return *worker1==*worker2;
     }
 };
 
@@ -40,7 +41,7 @@ public:
     /**
      * Creates a new WorkerManager object.
      */
-    WorkerManager();
+    WorkerManager(LocationManager* lm);
 
     /**
      * Destructs the WorkerManager object.
@@ -68,7 +69,7 @@ public:
      *
      * @return the workers list
      */
-    std::set<Worker*, PersonSmaller> getAll();
+    tabHWorker getAll();
 
     /**
      * Gets a worker from the workers list by its taxpayer identification number.
@@ -79,11 +80,14 @@ public:
     Worker* getWorker(unsigned long taxID) const;
 
     /**
-     * Gets the less busy worker which is the worker with less number of undelivered orders.
+     * Gets the less busy worker which is the worker with less number of undelivered orders,
+     * who works at the selected delivery location. If no one works at that location, the less
+     * busy worker from other location will be chosen.
+     * If all workers are at the maximum delivery capacity, throws an exception.
      *
      * @return the less busy worker
      */
-    Worker* getLessBusyWorker();
+    Worker* getLessBusyWorker(const std::string& location);
 
     /**
      * Sets the salary of the worker at a certain position.
@@ -103,7 +107,7 @@ public:
      * @param credential the login credentials
      * @return the worker added to de workers list of the worker manager
      */
-    Worker* add(std::string name, unsigned long taxID = Person::DEFAULT_TAX_ID, float salary = Worker::DEFAULT_SALARY,
+    Worker* add(std::string location, std::string name, unsigned long taxID = Person::DEFAULT_TAX_ID, float salary = Worker::DEFAULT_SALARY,
                 Credential credential = {Worker::DEFAULT_USERNAME, Worker::DEFAULT_PASSWORD});
 
     /**
@@ -146,12 +150,16 @@ public:
      * @return true, if there are no workers on the list yet; false, otherwise
      */
     bool print(std::ostream& os, bool showData = true);
+    void raiseSalary(float percentage);
+    void decreaseSalary(float percentage);
 private:
     /**
      * The list with all of the workers.
      */
-    tabHWorker workers;
-    std::set<Worker*, PersonSmaller> _workers;
+    tabHWorker _workers;
+    //std::set<Worker*, PersonSmaller> _workers;
+
+    LocationManager* _locationManager;
 };
 
 

@@ -16,3 +16,7 @@ InvalidPersonPosition::InvalidPersonPosition(unsigned long position, unsigned lo
 InvalidCredential::InvalidCredential() :
     invalid_argument("You cannot use reserved UI keywords in your credential.") {
 }
+
+AllWorkersAreBusy::AllWorkersAreBusy() :
+    std::logic_error("All workers are at their maximum capacity: " + std::to_string(Worker::MAX_ORDERS_AT_A_TIME) + " orders at a time! Come back later."){
+}

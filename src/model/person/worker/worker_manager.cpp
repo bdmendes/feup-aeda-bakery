@@ -1,9 +1,9 @@
 
 #include "worker_manager.h"
-
+#include <utility>
 #include "exception/file_exception.h"
 
-WorkerManager::WorkerManager() : _workers(){
+WorkerManager::WorkerManager(LocationManager* lm) : _workers(), _locationManager(lm) {
 }
 
 bool WorkerManager::has(Worker *worker) const {
@@ -16,7 +16,7 @@ Worker* WorkerManager::get(unsigned long position) {
     return *it;
 }
 
-std::set<Worker *, PersonSmaller> WorkerManager::getAll() {
+tabHWorker WorkerManager::getAll() {
     return _workers;
 }
 
@@ -27,8 +27,9 @@ Worker* WorkerManager::setSalary(unsigned position, float salary) {
     return *it;
 }
 
-Worker* WorkerManager::add(std::string name, unsigned long taxID, float salary, Credential credential) {
-    auto* worker = new Worker(std::move(name), taxID, salary, std::move(credential));
+Worker* WorkerManager::add(std::string location, std::string name, unsigned long taxID, float salary, Credential credential) {
+    if (!_locationManager->has(location)) throw LocationDoesNotExist(location);
+    auto* worker = new Worker(std::move(location), std::move(name), taxID, salary, std::move(credential));
     _workers.insert(worker);
     return worker;
 }
@@ -58,7 +59,8 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
     if (showData){
         os << util::column("SALARY")
         << util::column("TO DELIVER")
-        << util::column("RATING");
+        << util::column("RATING")
+        << util::column("LOCATION");
     }
     else {
         os << util::column("LOGGED IN");
@@ -74,20 +76,28 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
     return true;
 }
 
-Worker* WorkerManager::getLessBusyWorker() {
+Worker* WorkerManager::getLessBusyWorker(const std::string& location) {
     if (_workers.empty()) throw StoreHasNoWorkers();
 
-    auto orderComp = [](const Worker *worker1, const Worker *worker2) {
+    auto orderComp = [location](const Worker *worker1, const Worker *worker2) {
+        if (worker1->getLocation() == location && worker2->getLocation() != location){
+            return true;
+        }
+        if (worker1->getLocation() != location && worker2->getLocation() == location){
+            return false;
+        }
         return worker1->getUndeliveredOrders() < worker2->getUndeliveredOrders();
     };
-    return *std::min_element(_workers.begin(), _workers.end(), orderComp);
+    Worker* lessBusyWorker = *std::min_element(_workers.begin(), _workers.end(), orderComp);
+    if (lessBusyWorker->getUndeliveredOrders() == Worker::MAX_ORDERS_AT_A_TIME) throw AllWorkersAreBusy();
+    return lessBusyWorker;
 }
 
 void WorkerManager::read(const std::string& path) {
     std::ifstream file(path);
     if(!file) throw FileNotFound(path);
 
-    std::string name;
+    std::string name, location;
     float salary = Worker::DEFAULT_SALARY;
     unsigned long taxID = Person::DEFAULT_TAX_ID;
     Credential credential;
@@ -97,9 +107,10 @@ void WorkerManager::read(const std::string& path) {
         if (line.empty()) continue;
 
         std::stringstream ss(line);
-        ss >> name >> taxID >> salary >> credential.username >> credential.password;
+        ss >> name >> taxID >> salary >> credential.username >> credential.password >> location;
         std::replace(name.begin(), name.end(), '-', ' ');
-        add(name, taxID, salary, credential);
+        std::replace(location.begin(),location.end(),'-',' ');
+        add(location, name, taxID, salary, credential);
     }
 }
 
@@ -107,12 +118,15 @@ void WorkerManager::write(const std::string &path) {
     std::ofstream file(path);
     if(!file) throw FileNotFound(path);
 
-    std::string nameToSave;
     for(const auto & worker: _workers){
-        nameToSave = worker->getName();
+        std::string nameToSave = worker->getName();
+        std::string locationToSave = worker->getLocation();
         std::replace(nameToSave.begin(), nameToSave.end(), ' ', '-');
+        std::replace(locationToSave.begin(), locationToSave.end(), ' ', '-');
+
         file << nameToSave << " " << worker->getTaxId() << " " << worker->getSalary()
-        << " " << worker->getCredential().username << " " << worker->getCredential().password<<'\n';
+        << " " << worker->getCredential().username << " " << worker->getCredential().password
+        << " " << locationToSave << '\n';
     }
 }
 
@@ -125,6 +139,19 @@ Worker* WorkerManager::getWorker(unsigned long taxID) const {
 
 WorkerManager::~WorkerManager() {
     for (auto& w: _workers) delete w;
+}
+
+void WorkerManager::raiseSalary(float percentage) {
+    for(const auto &worker : _workers){
+        worker->setSalary(worker->getSalary()+(worker->getSalary()*percentage/100));
+    }
+}
+
+void WorkerManager::decreaseSalary(float percentage) {
+    for(const auto &worker : _workers){
+        worker->setSalary(worker->getSalary()-(worker->getSalary()*percentage/100));
+        if(worker->getSalary()<Worker::MINIMUM_SALARY) worker->setSalary(Worker::MINIMUM_SALARY);
+    }
 }
 
 

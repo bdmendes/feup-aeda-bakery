@@ -1,5 +1,6 @@
 
 #include "person.h"
+#include "exception/person_exception.h"
 
 const unsigned long Person::DEFAULT_TAX_ID = 999999999;
 

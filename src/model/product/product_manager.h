@@ -3,7 +3,24 @@
 #define FEUP_AEDA_PROJECT_PRODUCT_MANAGER_H
 
 #include "product.h"
-#include <set>
+#include "util/bst.h"
+
+class ProductEntry {
+public:
+    ProductEntry() : _product(nullptr) {};
+    explicit ProductEntry(Product* product) : _product(product) {};
+    Product* getProduct() const { return _product; };
+    bool operator<(const ProductEntry& rhs) const{
+        if (!getProduct() || !rhs.getProduct()) return false;
+        return *getProduct() < *rhs.getProduct();
+    }
+    bool operator==(const ProductEntry& rhs) const {
+        if (!getProduct() || !rhs.getProduct()) return false;
+        return *getProduct() == *rhs.getProduct();
+    }
+private:
+    Product* _product;
+};
 
 /**
  * Struct to compare two product pointers.
@@ -14,7 +31,7 @@ struct ProductSmaller{
      *
      * @param p1 the first product to compare with
      * @param p2 the second product to compare with
-     * @return true, if p1 is less than p2, according to the defined equality operator
+     * @return true, if p1 is less than p2
      */
     bool operator()(const Product* p1, const Product* p2) const {
         return *p1 < *p2;
@@ -66,21 +83,24 @@ public:
      *
      * @return the cakes on products list
      */
-    std::set<Cake*, ProductSmaller> getCakes() const;
+    std::vector<Cake*> getCakes() const;
 
     /**
      * Gets all the breads on the products list.
      *
      * @return the breads on the products list
      */
-    std::set<Bread*, ProductSmaller> getBreads() const;
+    std::vector<Bread*> getBreads() const;
 
     /**
      * Gets all the products on the products list.
      *
      * @return the products list
      */
-    std::set<Product*, ProductSmaller> getAll();
+    std::vector<Product*> getAll() const;
+
+    std::vector<Product*> getUsed() const;
+    std::vector<Product*> getUnused() const;
 
     /**
      * Adds a bread to the product list.
@@ -101,6 +121,8 @@ public:
      * @return the cake added to the products list
      */
     Cake* addCake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
+
+    Product* add(Product* product);
 
     /**
      * Removes a product from the products list.
@@ -137,13 +159,13 @@ public:
      *
      * @param os the output stream
      */
-    void print(std::ostream& os) const;
+    void print(std::ostream& os, bool showInclusions = true) const;
 
 private:
     /**
      * The list of all the products.
      */
-    std::set<Product*, ProductSmaller> _products;
+    BST<ProductEntry> _products;
 };
 
 
