@@ -29,11 +29,6 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
             options.emplace_back("deliver <index> <evaluation> - mark order as delivered and evaluate it");
             options.emplace_back("remove <index> - cancel requested order");
         }
-        else if (!worker){ // boss
-            options.emplace_back("sort_by client - sort orders by client");
-            options.emplace_back("sort_by worker - sort orders by worker");
-            options.emplace_back("sort_by date - sort orders by request date");
-        }
         printOptions(options);
     }
 
