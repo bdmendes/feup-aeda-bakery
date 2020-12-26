@@ -36,19 +36,7 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
         try {
             std::string input = readCommand();
             if (input == BACK) return;
-            /*else if (!client && !worker && validInput1Cmd1Arg(input,"sort_by", "client")){
-                _store.orderManager.sortByClient();
-                break;
-            }
-            else if (!client && !worker && validInput1Cmd1Arg(input,"sort_by","worker")){
-                _store.orderManager.sortByWorker();
-                break;
-            }
-            else if (!client && !worker && validInput1Cmd1Arg(input,"sort_by","date")){
-                _store.orderManager.sortByDate();
-                break;
-            }*/
-            else if (hasOrders && client != nullptr && validInput1Cmd2ArgsDigit(input, "deliver")) {
+            if (hasOrders && client != nullptr && validInput1Cmd2ArgsDigit(input, "deliver")) {
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 int eval = std::stoi(to_words(input).at(2));
                 _store.orderManager.get(idx, client)->deliver(eval, 0);
