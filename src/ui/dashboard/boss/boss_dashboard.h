@@ -29,7 +29,9 @@ private:
      * Add new ones or fire current ones, provided they haven't been assigned to any order yet.
      * Change salaries.
      */
-    void manageStaff();
+    void manageStaff(std::string location = {});
+
+    std::string askLocationHighlight() const;
 
     /**
      * Add new worker: provide name, taxID and salary.
@@ -50,7 +52,7 @@ private:
     /**
      * Show total revenue, and the store mean client evaluation.
      */
-    void showStats();
+    void showStats() const;
 
     /**
      * The boss who's logged in.

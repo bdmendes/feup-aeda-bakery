@@ -39,7 +39,7 @@ public:
      * View order details: client, worker, request and deliver dates, deliver location, products and final price.
      * @param order from which to view details
      */
-    void expandOrder(Order* order);
+    void expandOrder(Order* order) const;
 
     /**
      * View order details and current store stock, to allow adding new products and removing old ones.
@@ -77,7 +77,7 @@ public:
      * Print uppercased blue store logo, followed by an hyphen, "<personName>'s Personal Area", another hyphen, and detail
      * @param detail to be displayed after the dashboard indicative
      */
-    void printLogo(const std::string& detail) override;
+    void printLogo(const std::string& detail) const override;
 
 protected:
     /**

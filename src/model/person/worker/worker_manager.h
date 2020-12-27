@@ -10,8 +10,28 @@
 #include <algorithm>
 #include <vector>
 #include <fstream>
+#include <unordered_set>
 
 #include "util/util.h"
+
+struct WorkerHash
+{
+    int operator() (const Worker* worker) const
+    {
+        int hashValue = 0;
+        for (const auto & item: worker->getName()){
+            hashValue = hashValue * 37 + item;
+        }
+        return hashValue;
+    }
+
+    bool operator() (const Worker* worker1, const Worker* worker2) const
+    {
+        return *worker1 == *worker2;
+    }
+};
+
+typedef std::unordered_set<Worker*, WorkerHash, WorkerHash> tabHWorker;
 
 /**
  * Class that manages the store workers.
@@ -21,7 +41,7 @@ public:
     /**
      * Creates a new WorkerManager object.
      */
-    WorkerManager(LocationManager* lm);
+    explicit WorkerManager(LocationManager* lm);
 
     /**
      * Destructs the WorkerManager object.
@@ -49,7 +69,9 @@ public:
      *
      * @return the workers list
      */
-    std::set<Worker*, PersonSmaller> getAll();
+    tabHWorker getAll();
+
+    tabHWorker getByLocation(const std::string& location);
 
     /**
      * Gets a worker from the workers list by its taxpayer identification number.
@@ -129,12 +151,15 @@ public:
      * identification number and the log status.
      * @return true, if there are no workers on the list yet; false, otherwise
      */
-    bool print(std::ostream& os, bool showData = true);
+    bool print(std::ostream& os, bool showData = true, const std::string& location = {});
+    void raiseSalary(float percentage);
+    void decreaseSalary(float percentage);
 private:
     /**
      * The list with all of the workers.
      */
-    std::set<Worker*, PersonSmaller> _workers;
+    tabHWorker _workers;
+    //std::set<Worker*, PersonSmaller> _workers;
 
     LocationManager* _locationManager;
 };

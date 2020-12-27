@@ -82,7 +82,7 @@ protected:
      * Print at blue uppercase letters the store name, followed by hyphen and detail
      * @param detail the string to be displayed in front of the store name
      */
-    virtual void printLogo(const std::string& detail);
+    virtual void printLogo(const std::string& detail) const;
 
     /**
      * UI reserved keyword to go back at each screen

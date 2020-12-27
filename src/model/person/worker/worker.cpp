@@ -8,10 +8,12 @@ const char* Worker::DEFAULT_USERNAME = "worker";
 const char* Worker::DEFAULT_PASSWORD = "worker";
 const float Worker::DEFAULT_SALARY = 1000;
 const unsigned Worker::MAX_ORDERS_AT_A_TIME = 5;
+const float Worker::MINIMUM_SALARY = 0.0;
 
 Worker::Worker(std::string location, std::string name, unsigned long taxID, float salary, Credential credential):
         Person(std::move(name), taxID, std::move(credential), PersonRole::WORKER),
         _salary{salary}, _undeliveredOrders(0), _evaluations(), _location(std::move(location)){
+    if (_salary < MINIMUM_SALARY) _salary = MINIMUM_SALARY;
 }
 
 float Worker::getSalary() const {
@@ -20,6 +22,10 @@ float Worker::getSalary() const {
 
 unsigned Worker::getUndeliveredOrders() const {
     return _undeliveredOrders;
+}
+
+std::string Worker::getLocation() const {
+    return _location;
 }
 
 void Worker::addOrderToDeliver() {
@@ -60,6 +66,3 @@ float Worker::getMeanEvaluation() const {
            std::accumulate(_evaluations.begin(),_evaluations.end(),0.0f) / _evaluations.size();
 }
 
-std::string Worker::getLocation() const {
-    return _location;
-}

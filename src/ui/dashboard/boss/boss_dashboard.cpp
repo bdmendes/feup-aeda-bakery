@@ -114,10 +114,10 @@ void BossDashboard::addWorker() {
     _store.workerManager.add(location, name,taxID,salary);
 }
 
-void BossDashboard::manageStaff() {
+void BossDashboard::manageStaff(std::string location) {
     printLogo("The Staff");
     std::cout << SEPARATOR;
-    bool hasStaff = _store.workerManager.print(std::cout);
+    bool hasStaff = _store.workerManager.print(std::cout, true, location);
     std::cout << SEPARATOR << "\n";
 
     std::vector<std::string> options = {
@@ -126,6 +126,10 @@ void BossDashboard::manageStaff() {
     if (hasStaff){
         options.emplace_back("fire <index> - remove worker's account");
         options.emplace_back("set_salary <index> <salary> - change worker's salary");
+        options.emplace_back("raise_salary <percentage> (without %) - raise all active workers' salary");
+        options.emplace_back("decrease_salary <percentage> (without %) - decrease all active workers' salary");
+        options.emplace_back("highlight location - highlight workers from a specific location");
+        options.emplace_back("remove highlights - remove location highlights");
     }
     printOptions(options);
 
@@ -144,8 +148,26 @@ void BossDashboard::manageStaff() {
                 _store.workerManager.get(idx)->setSalary(salary);
                 break;
             }
+            else if (hasStaff && validInput1Cmd1ArgDigit(input, "raise_salary", true)){
+                float percentage = std::stof(to_words(input).at(1));
+                _store.workerManager.raiseSalary(percentage);
+                break;
+            }
+            else if (hasStaff && validInput1Cmd1ArgDigit(input, "decrease_salary", true)){
+                float percentage = std::stof(to_words(input).at(1));
+                _store.workerManager.decreaseSalary(percentage);
+                break;
+            }
             else if (validInput1Cmd1Arg(input,"add","worker")){
                 addWorker();
+                break;
+            }
+            else if (validInput1Cmd1Arg(input, "highlight", "location")) {
+                location = askLocationHighlight();
+                break;
+            }
+            else if (validInput1Cmd1Arg(input, "remove", "highlights")){
+                location = {};
                 break;
             }
             else printError();
@@ -155,10 +177,34 @@ void BossDashboard::manageStaff() {
         }
     }
 
-    manageStaff();
+    manageStaff(location);
 }
 
-void BossDashboard::showStats() {
+std::string BossDashboard::askLocationHighlight() const {
+    std::cout << "\n" << SEPARATOR
+              << "Select location to highlight (";
+
+    std::string locations;
+    for (const auto& l: _store.locationManager.getAll()){
+        locations += l + ", ";
+    }
+    if (!locations.empty()) locations = locations.substr(0,locations.size()-2);
+
+    std::cout << locations << "): ";
+    for(;;){
+        try{
+            std::string input = readCommand(false);
+            if (input == BACK) return std::string();
+            if (!_store.locationManager.has(input)) throw LocationDoesNotExist(input);
+            return input;
+        }
+        catch(std::exception& e){
+            std::cout << e.what() << "\n";
+        }
+    }
+}
+
+void BossDashboard::showStats() const{
     printLogo("Some quick maths");
     std::cout << SEPARATOR;
     util::print(_store.getName(), util::BLUE);
