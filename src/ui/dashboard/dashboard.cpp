@@ -39,7 +39,7 @@ void Dashboard::manageOrders(Client *client, Worker* worker) {
             if (hasOrders && client != nullptr && validInput1Cmd2ArgsDigit(input, "deliver")) {
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;
                 int eval = std::stoi(to_words(input).at(2));
-                _store.orderManager.get(idx, client)->deliver(eval, 0);
+                _store.orderManager.deliver(_store.orderManager.get(idx, client), eval, true);
                 break;
             } else if (hasOrders && client != nullptr && validInput1Cmd1ArgDigit(input,"remove")){
                 unsigned long idx = std::stoul(to_words(input).at(1)) - 1;

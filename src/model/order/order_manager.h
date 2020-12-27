@@ -140,20 +140,22 @@ public:
      *
      * @param order the order
      */
-    void remove(Order* order);
+    void remove(Order* order, bool updateWorkerOrders = true);
 
     /**
      * Removes an order from the orders list at a certain position.
      *
      * @param position the position
      */
-    void remove(unsigned long position);
+    void remove(unsigned long position, bool updateWorkerOrders = true);
 
     Product* addProduct(Order* order, Product* product, unsigned quantity = 1);
     void removeProduct(Order* order, Product* product);
     void removeProduct(Order* order, unsigned long position);
 
     void setDeliveryLocation(Order* order, const std::string& location);
+
+    void deliver(Order* order, int clientEvaluation, bool updatePoints = true, int deliverDuration = 30);
 
     /**
      * Reads all the orders on the file and its data: request date, products (name, price and requested quantity),

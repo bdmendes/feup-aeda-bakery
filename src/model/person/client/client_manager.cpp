@@ -56,7 +56,8 @@ bool ClientManager::print(std::ostream &os, bool showData) {
     if (showData){
         os << util::column("TYPE")
         << util::column("ACCUMULATED")
-        << util::column("FEEDBACK");
+        << util::column("FEEDBACK")
+        << util::column("BENEFITED");
     }
     else os << util::column("LOGGED IN");
     std::cout << "\n";

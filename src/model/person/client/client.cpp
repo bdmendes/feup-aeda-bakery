@@ -53,7 +53,8 @@ void Client::print(std::ostream &os, bool showData) {
     if (showData){
         os << util::column(isPremium() ? "Premium" : "Basic")
         << util::column(std::to_string(getPoints()) + " points")
-        << util::column(getMeanEvaluation() != 0 ? util::to_string(getMeanEvaluation()) + " points": "None yet");
+        << util::column(getMeanEvaluation() != 0 ? util::to_string(getMeanEvaluation()) + " points": "None yet")
+        << util::column(std::to_string(getNumDiscounts()) + " discounts");
     }
     else os << util::column(isLogged() ? "Yes" : "No");
 }

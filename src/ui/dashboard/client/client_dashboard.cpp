@@ -7,6 +7,7 @@ void ClientDashboard::show() {
     Dashboard::show();
     std::cout << "\nStatus: " << (_client->isPremium() ? "Premium" : "Basic")
             << "\nAccumulated: " << _client->getPoints() << " points\n"
+            << "Benefited from: " << _client->getNumDiscounts() << " discounts\n"
             << "\nFeedback: ";
     if (_client->getMeanEvaluation() != 0) std::cout << util::to_string(_client->getMeanEvaluation()) << " points\n";
     else std::cout << "None yet\n";

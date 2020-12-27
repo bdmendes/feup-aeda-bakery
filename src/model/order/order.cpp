@@ -9,6 +9,7 @@ Order::Order(Client &client, Worker &worker, std::string location, Date date) :
         _client(&client), _worker(&worker), _clientEvaluation(0), _delivered(false),
         _totalPrice(0.0f), _requestDate(date), _deliverDate(date), _products(),
         _deliverLocation(std::move(location)){
+    _worker->addOrderToDeliver();
 }
 
 bool Order::hasDiscount() const {
@@ -117,18 +118,25 @@ void Order::deliver(int clientEvaluation, bool updatePoints, int deliverDuration
 
 bool Order::operator==(const Order &rhs) const {
     return *_client == *rhs.getClient() && *_worker == *rhs.getWorker()
-    && _deliverLocation == rhs.getDeliverLocation();
+    && _deliverLocation == rhs.getDeliverLocation() && _requestDate == rhs.getRequestDate()
+    && wasDelivered() == rhs.wasDelivered() && getProducts() == rhs.getProducts();
 }
 
 bool Order::operator<(const Order &o2) const {
-    if (_client->getMeanEvaluation() == o2._client->getMeanEvaluation())
-        return o2._client->getNumDiscounts() < _client->getNumDiscounts();
-    return o2._client->getMeanEvaluation() < _client->getMeanEvaluation();
+    if (wasDelivered() != o2.wasDelivered()){
+        return wasDelivered();
+    }
+    if (_client->getMeanEvaluation() != o2._client->getMeanEvaluation()){
+        return _client->getMeanEvaluation() > o2._client->getMeanEvaluation();
+    }
+    return _client->getNumDiscounts() > o2._client->getNumDiscounts();
 }
 
 void Order::print(std::ostream &os) const {
-    os << "Requested by " << getClient()->getName()
-       << " on " << getRequestDate().getCompleteDate() << std::endl;
+    os << "Requested by " << getClient()->getName() << " (mean evaluation: "
+       << util::to_string(getClient()->getMeanEvaluation()) << "; past discounts: "
+       << getClient()->getNumDiscounts()
+       << ") on " << getRequestDate().getCompleteDate() << std::endl;
 
     if (!wasDelivered()){
         os << "To be delivered by " << getWorker()->getName() << " (who works at " <<
@@ -136,7 +144,8 @@ void Order::print(std::ostream &os) const {
         getDeliverLocation() << "\n\n";
     }
     else {
-        os << "Delivered by " << getWorker()->getName() << " on " << getDeliverDate().getCompleteDate()
+        os << "Delivered by " << getWorker()->getName() << " (who works at "
+        << getWorker()->getLocation() << ") on " << getDeliverDate().getCompleteDate()
         << " " << "at " << getDeliverLocation()
         << "\nClient evaluation: " << getClientEvaluation() << " points" << "\n\n";
     }
