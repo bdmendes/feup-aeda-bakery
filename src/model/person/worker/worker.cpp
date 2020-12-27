@@ -34,7 +34,7 @@ void Worker::addOrderToDeliver() {
 }
 
 void Worker::removeOrderToDeliver(){
-    _undeliveredOrders--;
+    if (_undeliveredOrders != 0) _undeliveredOrders--;
 }
 
 void Worker::setSalary(float salary) {

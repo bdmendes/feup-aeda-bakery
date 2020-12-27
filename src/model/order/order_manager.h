@@ -11,8 +11,27 @@
 #include <exception/person_exception.h>
 
 #include <algorithm>
-#include <vector>
+#include <queue>
 #include "model/store/location_manager.h"
+
+
+class OrderEntry{
+public:
+    OrderEntry() : _order(nullptr){};
+    explicit OrderEntry(Order* order) : _order(order) {};
+    Order* getOrder() const { return _order; };
+    void setOrder(Order* order) { _order = order; };
+    bool operator<(const OrderEntry& rhs) const{
+        if(!getOrder() || !rhs.getOrder()) return false;
+        return *getOrder() < *rhs.getOrder();
+    }
+    bool operator==(const OrderEntry& rhs) const{
+        if(!getOrder() || !rhs.getOrder()) return false;
+        return *getOrder() == *rhs.getOrder();
+    }
+private:
+    Order* _order;
+};
 
 /**
  * Class that manages the store orders.
@@ -58,7 +77,7 @@ public:
      *
      * @return the list of all orders
      */
-    std::vector<Order*> getAll() const;
+    std::priority_queue<OrderEntry> getAll() const;
 
     /**
      * Gets the pointer to the order with provided details.
@@ -77,7 +96,7 @@ public:
      * @param client the client
      * @return the orders list relative to that client
      */
-    std::vector<Order*> get(Client* client) const;
+    std::priority_queue<OrderEntry> get(Client* client) const;
 
     /**
      * Gets the list of all orders delivered by a certain worker.
@@ -85,7 +104,7 @@ public:
      * @param worker the worker
      * @return the orders list relative to that worker
      */
-    std::vector<Order*> get(Worker* worker) const;
+    std::priority_queue<OrderEntry> get(Worker* worker) const;
 
     /**
      * Gets the list of all orders delivered in a certain store location.
@@ -93,22 +112,7 @@ public:
      * @param location the store location
      * @return the orders list relative to that store location
      */
-    std::vector<Order*> get(const std::string& location) const;
-
-    /**
-     * Sorts the orders list by the request date.
-     */
-    void sortByDate();
-
-    /**
-     * Sorts the orders list by client.
-     */
-    void sortByClient();
-
-    /**
-     * Sorts the orders list by worker.
-     */
-    void sortByWorker();
+    std::priority_queue<OrderEntry> get(const std::string& location) const;
 
     /**
      * Adds a new order to the orders list created from that data: client, store location and date.
@@ -118,7 +122,6 @@ public:
      * @param date the date
      * @return the new order add to the orders list
      */
-
     Order* add(Client* client, const std::string& location = Order::DEFAULT_LOCATION, const Date &date = {});
 
     /**
@@ -137,20 +140,22 @@ public:
      *
      * @param order the order
      */
-    void remove(Order* order);
+    void remove(Order* order, bool updateWorkerOrders = true);
 
     /**
      * Removes an order from the orders list at a certain position.
      *
      * @param position the position
      */
-    void remove(unsigned long position);
+    void remove(unsigned long position, bool updateWorkerOrders = true);
 
     Product* addProduct(Order* order, Product* product, unsigned quantity = 1);
     void removeProduct(Order* order, Product* product);
     void removeProduct(Order* order, unsigned long position);
 
     void setDeliveryLocation(Order* order, const std::string& location);
+
+    void deliver(Order* order, int clientEvaluation, bool updatePoints = true, int deliverDuration = 30);
 
     /**
      * Reads all the orders on the file and its data: request date, products (name, price and requested quantity),
@@ -207,7 +212,8 @@ private:
     /**
      * The list of all orders.
      */
-    std::vector<Order*> _orders;
+    //std::vector<Order*> _orders;
+    std::priority_queue<OrderEntry> _orders;
 };
 
 #endif //FEUP_AEDA_PROJECT_ORDER_MANAGER_H

@@ -5,6 +5,7 @@
 #include <string>
 #include <algorithm>
 #include <map>
+#include <queue>
 
 #include "model/person/person.h"
 #include "model/person/boss/boss.h"

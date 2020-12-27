@@ -8,11 +8,23 @@ const char* Client::DEFAULT_USERNAME = "client";
 const char* Client::DEFAULT_PASSWORD = "client";
 
 Client::Client(std::string name, unsigned long taxID, bool premium, Credential credential):
-        Person(std::move(name), taxID, std::move(credential), PersonRole::CLIENT), _points{0}, _premium(premium), _evaluations(){
+        Person(std::move(name), taxID, std::move(credential), PersonRole::CLIENT), _points{0}, _premium(premium), _evaluations(), _numDiscounts(0){
 }
 
 bool Client::isPremium() const {
     return _premium;
+}
+
+void Client::addDiscount(){
+    _numDiscounts++;
+}
+
+void Client::removeDiscount(){
+    if (_numDiscounts != 0) _numDiscounts--;
+}
+
+unsigned Client::getNumDiscounts() const {
+    return _numDiscounts;
 }
 
 unsigned Client::getPoints() const {
@@ -41,7 +53,8 @@ void Client::print(std::ostream &os, bool showData) {
     if (showData){
         os << util::column(isPremium() ? "Premium" : "Basic")
         << util::column(std::to_string(getPoints()) + " points")
-        << util::column(getMeanEvaluation() != 0 ? util::to_string(getMeanEvaluation()) + " points": "None yet");
+        << util::column(getMeanEvaluation() != 0 ? util::to_string(getMeanEvaluation()) + " points": "None yet")
+        << util::column(std::to_string(getNumDiscounts()) + " discounts");
     }
     else os << util::column(isLogged() ? "Yes" : "No");
 }

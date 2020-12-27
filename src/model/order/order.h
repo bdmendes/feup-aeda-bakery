@@ -113,15 +113,6 @@ public:
     Date getDeliverDate() const;
 
     /**
-    * Delivers the order and gets the client evaluation and deliver duration.
-    *
-     * @param clientEvaluation the client evaluation
-     * @param updatePoints whether to add points to the client
-     * @param deliverDuration the deliver duration
-    */
-    void deliver(int clientEvaluation, bool updatePoints = true, int deliverDuration = 30);
-
-    /**
      * Two orders are equal if they share the same client, worker and delivery location.
      *
      * @param rhs the order to compare with
@@ -162,6 +153,15 @@ private:
     * @param location the store location
     */
     void setDeliverLocation(const std::string& location, Worker* newWorker);
+
+    /**
+    * Delivers the order and gets the client evaluation and deliver duration.
+    *
+    * @param clientEvaluation the client evaluation
+    * @param updatePoints whether to add points to the client
+    * @param deliverDuration the deliver duration
+    */
+    void deliver(int clientEvaluation, bool updatePoints = true, int deliverDuration = 30);
 
     /**
     * Adds a product with a certain quantity to the products list.

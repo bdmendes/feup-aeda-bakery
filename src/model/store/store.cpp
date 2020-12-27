@@ -20,8 +20,11 @@ std::string Store::getName() const {
 int Store::getEvaluation() const {
     std::vector<int> evaluations;
     int count = 0;
-    for(const auto& order : orderManager.getAll()) {
-        if (order->wasDelivered()) {
+    std::priority_queue<OrderEntry> orders = orderManager.getAll();
+    while(!orders.empty()){
+        const auto& order = orders.top().getOrder();
+        orders.pop();
+        if(order->wasDelivered()){
             evaluations.push_back(order->getClientEvaluation());
             count++;
         }
@@ -35,8 +38,11 @@ void Store::setName(const std::string& name) {
 
 float Store::getProfit() const {
     float profit = 0.0f;
-    for (const auto& o: orderManager.getAll()){
-        if (o->wasDelivered()) profit += o->getFinalPrice();
+    std::priority_queue<OrderEntry> orders = orderManager.getAll();
+    while(!orders.empty()){
+        const auto& order = orders.top().getOrder();
+        orders.pop();
+        if(order->wasDelivered()) profit += order->getFinalPrice();
     }
     return profit;
 }
