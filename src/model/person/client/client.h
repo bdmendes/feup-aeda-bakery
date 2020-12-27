@@ -39,7 +39,10 @@ public:
     float getMeanEvaluation() const;
 
     unsigned getNumDiscounts() const;
+
     void addDiscount();
+
+    void removeDiscount();
 
     /**
      * Gets the client points.

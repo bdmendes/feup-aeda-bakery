@@ -24,7 +24,6 @@ Order* OrderManager::get(unsigned long position, Client* client, Worker* worker)
     else if (worker != nullptr) filtered = get(worker);
     else filtered = getAll();
 
-    if (position >= filtered.size()) throw InvalidOrderPosition(position, filtered.size());
     unsigned long counter = 0;
     std::priority_queue<OrderEntry> orders = _orders;
     while(!orders.empty()) {
@@ -33,6 +32,7 @@ Order* OrderManager::get(unsigned long position, Client* client, Worker* worker)
         if(counter == position) return order;
         counter++;
     }
+    throw InvalidOrderPosition(position, filtered.size());
 }
 
 std::priority_queue<OrderEntry> OrderManager::getAll() const {

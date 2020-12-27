@@ -19,6 +19,10 @@ void Client::addDiscount(){
     _numDiscounts++;
 }
 
+void Client::removeDiscount(){
+    if (_numDiscounts != 0) _numDiscounts--;
+}
+
 unsigned Client::getNumDiscounts() const {
     return _numDiscounts;
 }

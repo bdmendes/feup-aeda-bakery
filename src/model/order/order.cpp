@@ -9,9 +9,6 @@ Order::Order(Client &client, Worker &worker, std::string location, Date date) :
         _client(&client), _worker(&worker), _clientEvaluation(0), _delivered(false),
         _totalPrice(0.0f), _requestDate(date), _deliverDate(date), _products(),
         _deliverLocation(std::move(location)){
-    updateTotalPrice();
-    _client->addPoints(10* static_cast<unsigned int>(_totalPrice)); //For each euro adds 10 points
-    _worker->addOrderToDeliver();
 }
 
 bool Order::hasDiscount() const {
@@ -56,8 +53,7 @@ Date Order::getRequestDate() const {
 }
 
 void Order::updateTotalPrice() {
-    if(hasDiscount()) _client->addDiscount();
-    _totalPrice = 0;
+    _totalPrice = 0.0f;
     for(const auto &product : _products){
         _totalPrice += (product.first->getPrice() * product.second);
     }
@@ -110,6 +106,8 @@ void Order::deliver(int clientEvaluation, bool updatePoints, int deliverDuration
 
     if (deliverDuration != 0) _deliverDate.addMinutes(deliverDuration);
     else _deliverDate = Date();
+
+    if (hasDiscount()) _client->addDiscount();
 
     if (updatePoints){
         if (hasDiscount()) _client->resetPoints();
