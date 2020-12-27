@@ -104,9 +104,6 @@ public:
      */
     static const float DEFAULT_SALARY;
 
-
-    static const char* DEFAULT_LOCATION;
-
     static const unsigned MAX_ORDERS_AT_A_TIME;
 
     static const float MINIMUM_SALARY;

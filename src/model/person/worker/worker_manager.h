@@ -19,7 +19,7 @@ struct WorkerHash
     int operator() (const Worker* worker) const
     {
         int hashValue = 0;
-        for(const auto & item: worker->getName()){
+        for (const auto & item: worker->getName()){
             hashValue = hashValue * 37 + item;
         }
         return hashValue;
@@ -27,7 +27,7 @@ struct WorkerHash
 
     bool operator() (const Worker* worker1, const Worker* worker2) const
     {
-        return *worker1==*worker2;
+        return *worker1 == *worker2;
     }
 };
 
@@ -41,7 +41,7 @@ public:
     /**
      * Creates a new WorkerManager object.
      */
-    WorkerManager(LocationManager* lm);
+    explicit WorkerManager(LocationManager* lm);
 
     /**
      * Destructs the WorkerManager object.
@@ -70,6 +70,8 @@ public:
      * @return the workers list
      */
     tabHWorker getAll();
+
+    tabHWorker getByLocation(const std::string& location);
 
     /**
      * Gets a worker from the workers list by its taxpayer identification number.
@@ -149,7 +151,7 @@ public:
      * identification number and the log status.
      * @return true, if there are no workers on the list yet; false, otherwise
      */
-    bool print(std::ostream& os, bool showData = true);
+    bool print(std::ostream& os, bool showData = true, const std::string& location = {});
     void raiseSalary(float percentage);
     void decreaseSalary(float percentage);
 private:

@@ -45,7 +45,7 @@ void UI::printError() {
     std::cout << "Unrecognized command. Try again.\n";
 }
 
-void UI::printLogo(const std::string& detail) {
+void UI::printLogo(const std::string& detail) const {
     util::clearScreen();
     std::string title = _store.getName();
     if (!detail.empty()) title += " - " + detail;

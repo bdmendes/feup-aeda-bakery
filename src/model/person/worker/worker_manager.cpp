@@ -47,7 +47,7 @@ void WorkerManager::remove(unsigned long position) {
     _workers.erase(it);
 }
 
-bool WorkerManager::print(std::ostream &os, bool showData) {
+bool WorkerManager::print(std::ostream &os, bool showData, const std::string& location) {
     if (_workers.empty()){
         os << "No workers yet.\n";
         return false;
@@ -71,6 +71,7 @@ bool WorkerManager::print(std::ostream &os, bool showData) {
     for (const auto& w: _workers){
         os << std::setw((int)_workers.size() / 10 + 3) << std::to_string(count++) + ". ";
         w->print(os, showData);
+        if (!location.empty() && w->getLocation() == location) os << " <--";
         os << "\n";
     }
     return true;
@@ -154,5 +155,8 @@ void WorkerManager::decreaseSalary(float percentage) {
     }
 }
 
-
-
+tabHWorker WorkerManager::getByLocation(const std::string &location) {
+    tabHWorker res;
+    for (const auto& w : _workers) if (w->getLocation() == location) res.insert(w);
+    return res;
+}

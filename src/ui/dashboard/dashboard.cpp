@@ -120,7 +120,7 @@ void Dashboard::changeCredential(Person *person){
     }
 }
 
-void Dashboard::expandOrder(Order *order) {
+void Dashboard::expandOrder(Order *order) const {
     printLogo("Order details");
     std::cout << SEPARATOR;
     order->print(std::cout);
@@ -199,7 +199,7 @@ void Dashboard::changeName(Person *person) {
     }
 }
 
-void Dashboard::printLogo(const std::string &detail) {
+void Dashboard::printLogo(const std::string &detail) const {
     util::clearScreen();
     std::string title = _store.getName() + " - " + _person->getName() + "'s personal area";
     if (!detail.empty()) title += " - " + detail;
