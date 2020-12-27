@@ -140,14 +140,14 @@ public:
      *
      * @param order the order
      */
-    void remove(Order* order, bool updateWorkerOrders = true);
+    void remove(Order* order, bool updateWorkerOrders = true, bool destroy = true);
 
     /**
      * Removes an order from the orders list at a certain position.
      *
      * @param position the position
      */
-    void remove(unsigned long position, bool updateWorkerOrders = true);
+    void remove(unsigned long position, bool updateWorkerOrders = true, bool destroy = true);
 
     Product* addProduct(Order* order, Product* product, unsigned quantity = 1);
     void removeProduct(Order* order, Product* product);

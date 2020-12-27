@@ -7,10 +7,9 @@ OrderManager::OrderManager(ProductManager* pm, ClientManager* cm, WorkerManager*
 }
 
 bool OrderManager::has(Order *order) const {
-    std::priority_queue<OrderEntry> orders = _orders;
-    while (!orders.empty()){
-        const auto& o = orders.top().getOrder();
-        orders.pop();
+    std::priority_queue<OrderEntry> tmpOrders = _orders;
+    for (; !tmpOrders.empty(); tmpOrders.pop()){
+        const auto& o = tmpOrders.top().getOrder();
         if (*o == *order) return true;
     }
     return false;
@@ -18,19 +17,14 @@ bool OrderManager::has(Order *order) const {
 
 Order* OrderManager::get(unsigned long position, Client* client, Worker* worker) const {
     std::priority_queue<OrderEntry> filtered;
-    if (client != nullptr && worker != nullptr)
-        throw std::invalid_argument("Can't choose both worker and client");
+    if (client != nullptr && worker != nullptr) throw std::invalid_argument("Can't choose both worker and client");
     else if (client != nullptr) filtered = get(client);
     else if (worker != nullptr) filtered = get(worker);
     else filtered = getAll();
 
-    unsigned long counter = 0;
-    std::priority_queue<OrderEntry> orders = _orders;
-    while(!orders.empty()) {
-        const auto& order = orders.top().getOrder();
-        orders.pop();
-        if(counter == position) return order;
-        counter++;
+    for (unsigned long counter = 0; !filtered.empty(); filtered.pop()) {
+        const auto& order = filtered.top().getOrder();
+        if(counter++ == position) return order;
     }
     throw InvalidOrderPosition(position, filtered.size());
 }
@@ -41,10 +35,9 @@ std::priority_queue<OrderEntry> OrderManager::getAll() const {
 
 std::priority_queue<OrderEntry> OrderManager::get(Client *client) const {
     if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
-    std::priority_queue<OrderEntry> filtered, orders = _orders;
-    while(!orders.empty()){
-        const auto& orderEntry = orders.top();
-        orders.pop();
+    std::priority_queue<OrderEntry> filtered, tmpOrders = _orders;
+    for (; !tmpOrders.empty(); tmpOrders.pop()){
+        const auto& orderEntry = tmpOrders.top();
         if(*orderEntry.getOrder()->getClient() == *client) filtered.push(orderEntry);
     }
     return filtered;
@@ -53,9 +46,8 @@ std::priority_queue<OrderEntry> OrderManager::get(Client *client) const {
 std::priority_queue<OrderEntry> OrderManager::get(Worker *worker) const {
     if (!_workerManager->has(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
     std::priority_queue<OrderEntry> filtered, orders = _orders;
-    while(!orders.empty()){
+    for(; !orders.empty(); orders.pop()){
         const auto& orderEntry = orders.top();
-        orders.pop();
         if(*orderEntry.getOrder()->getWorker() == *worker) filtered.push(orderEntry);
     }
     return filtered;
@@ -65,6 +57,7 @@ Order* OrderManager::add(Client *client, const std::string& location, const Date
     if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
     if (!_locationManager->has(location)) throw LocationDoesNotExist(location);
     auto orderEntry = OrderEntry(new Order(*client,*_workerManager->getLessBusyWorker(location),location,date));
+    orderEntry.getOrder()->getWorker()->addOrderToDeliver();
     _orders.push(orderEntry);
     return orderEntry.getOrder();
 }
@@ -73,44 +66,43 @@ Order* OrderManager::add(Client* client, Worker* worker, const std::string& loca
     if (!_clientManager->has(client)) throw PersonDoesNotExist(client->getName(), client->getTaxId());
     if (!_workerManager->has(worker)) throw PersonDoesNotExist(worker->getName(), worker->getTaxId());
     if (!_locationManager->has(location)) throw LocationDoesNotExist(location);
-    auto order = OrderEntry(new Order(*client,*worker,location,date));
-    _orders.push(order);
-    return order.getOrder();
+    auto orderEntry = OrderEntry(new Order(*client, *worker, location, date));
+    orderEntry.getOrder()->getWorker()->addOrderToDeliver();
+    _orders.push(orderEntry);
+    return orderEntry.getOrder();
 }
 
-void OrderManager::remove(Order *order, bool updateWorkerOrders) {
-    if(order->wasDelivered())
-        throw OrderWasAlreadyDelivered(*order->getClient(),*order->getWorker(),order->getRequestDate());
+void OrderManager::remove(Order *order, bool updateWorkerOrders, bool destroy) {
+    if(order->wasDelivered()) throw OrderWasAlreadyDelivered(*order->getClient(),*order->getWorker(),order->getRequestDate());
+
     bool found = false;
     std::priority_queue<OrderEntry> newQueue;
-    while(!_orders.empty()){
+    for(; !_orders.empty(); _orders.pop()){
        const auto orderEntry = _orders.top();
-        _orders.pop();
         if(!found && *orderEntry.getOrder() == *order){
             found = true;
             if (updateWorkerOrders) orderEntry.getOrder()->getWorker()->removeOrderToDeliver();
+            if (destroy) delete orderEntry.getOrder();
         }
         else newQueue.push(orderEntry);
     }
     _orders = newQueue;
-    if(!found) throw OrderDoesNotExist();
+    if (!found) throw OrderDoesNotExist();
 }
 
-void OrderManager::remove(unsigned long position, bool updateWorkerOrders) {
+void OrderManager::remove(unsigned long position, bool updateWorkerOrders, bool destroy) {
     if (position >= _orders.size()) throw OrderDoesNotExist();
     OrderEntry orderToRemove;
-    unsigned long counter = 0;
     std::priority_queue<OrderEntry> newQueue;
 
-    while(!_orders.empty()){
+    for(unsigned long counter = 0; !_orders.empty(); _orders.pop()){
         const auto& orderEntry = _orders.top();
-        _orders.pop();
-        if(counter == position) orderToRemove.setOrder(orderEntry.getOrder());
+        if (counter++ == position) orderToRemove.setOrder(orderEntry.getOrder());
         else newQueue.push(orderEntry);
-        counter++;
     }
     _orders = newQueue;
     if (updateWorkerOrders) orderToRemove.getOrder()->getWorker()->removeOrderToDeliver();
+    if (destroy) delete orderToRemove.getOrder();
 }
 
 bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const {
@@ -127,17 +119,15 @@ bool OrderManager::print(std::ostream &os, Client* client, Worker* worker) const
     os << "Note: Orders at the top have higher delivery priority.\n";
     os << "Delivered orders are kept at the bottom for historical reasons.\n\n";
 
-    os << std::string(toPrint.size() / 10 + 3 ,util::SPACE);
+    os << std::string(toPrint.size() / 10 + 3 , util::SPACE);
     if (client == nullptr) os << util::column("CLIENT",true);
     if (worker == nullptr) os << util::column("WORKER",true);
     os << util::column("REQUESTED",true)
     << util::column("DELIVERED",true)
     << util::column("LOCATION", true) << "\n";
 
-    unsigned count = 1;
-    while(!toPrint.empty()){
+    for(unsigned count = 1; !toPrint.empty(); toPrint.pop()){
         const auto& order = toPrint.top().getOrder();
-        toPrint.pop();
         os << std::setw((int)toPrint.size() / 10 + 3) << std::to_string(count++) + ". ";
         if (client == nullptr) os << util::column(order->getClient()->getName(),true);
         if (worker == nullptr) os << util::column(order->getWorker()->getName(),true);
@@ -225,10 +215,9 @@ void OrderManager::write(const std::string &path) {
     std::ofstream file(path);
     if (!file) throw FileNotFound(path);
 
-    std::priority_queue<OrderEntry> orders = _orders;
-    while(!orders.empty()){
+    std::priority_queue<OrderEntry> tmpOrders = _orders;
+    for(; !tmpOrders.empty(); tmpOrders.pop()){
         const auto& order = _orders.top().getOrder();
-        _orders.pop();
         std::string styledLocationName = order->getDeliverLocation();
         std::replace(styledLocationName.begin(),styledLocationName.end(),' ','-');
         file << order->getClient()->getTaxId() << " " << order->getWorker()->getTaxId() << " "
@@ -246,29 +235,26 @@ void OrderManager::write(const std::string &path) {
 }
 
 OrderManager::~OrderManager() {
-    while(!_orders.empty()){
+    for(; !_orders.empty(); _orders.pop()){
         delete _orders.top().getOrder();
-        _orders.pop();
     }
 }
 
 std::priority_queue<OrderEntry> OrderManager::get(const std::string &location) const {
-    std::priority_queue<OrderEntry> filtered, orders = _orders;
-    while(!orders.empty()){
-        auto orderEntry = orders.top();
-        orders.pop();
+    std::priority_queue<OrderEntry> filtered, tmpOrders = _orders;
+    for (; !tmpOrders.empty(); tmpOrders.pop()){
+        auto orderEntry = tmpOrders.top();
         if(orderEntry.getOrder()->getDeliverLocation() == location) filtered.push(orderEntry);
     }
     return filtered;
 }
 
 Order* OrderManager::get(Client *client, Worker *worker, const std::string &location, const Date &date) {
-    std::priority_queue<OrderEntry> orders = _orders;
+    std::priority_queue<OrderEntry> tmpOrders = _orders;
     Order toTest = Order(*client, *worker, location, date);
-    while(!orders.empty()){
-        const auto& order = orders.top().getOrder();
-        orders.pop();
-        if(*order == toTest) return order;
+    for (; !tmpOrders.empty(); tmpOrders.pop()){
+        const auto& order = tmpOrders.top().getOrder();
+        if (*order == toTest) return order;
     }
     throw OrderDoesNotExist();
 }
@@ -302,12 +288,15 @@ void OrderManager::removeProduct(Order *order, unsigned long position) {
 }
 
 void OrderManager::setDeliveryLocation(Order *order, const string &location) {
+    order->getWorker()->removeOrderToDeliver();
     Worker* newWorker = _workerManager->getLessBusyWorker(location);
     order->setDeliverLocation(location,newWorker);
+    order->getWorker()->addOrderToDeliver();
 }
 
 void OrderManager::deliver(Order *order, int clientEvaluation, bool updatePoints, int deliverDuration) {
-    remove(order, false);
+    remove(order, false, false);
     order->deliver(clientEvaluation, updatePoints, deliverDuration);
+    order->getWorker()->removeOrderToDeliver();
     _orders.push(OrderEntry(order));
 }

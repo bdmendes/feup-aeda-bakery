@@ -9,7 +9,6 @@ Order::Order(Client &client, Worker &worker, std::string location, Date date) :
         _client(&client), _worker(&worker), _clientEvaluation(0), _delivered(false),
         _totalPrice(0.0f), _requestDate(date), _deliverDate(date), _products(),
         _deliverLocation(std::move(location)){
-    _worker->addOrderToDeliver();
 }
 
 bool Order::hasDiscount() const {
@@ -101,7 +100,6 @@ void Order::deliver(int clientEvaluation, bool updatePoints, int deliverDuration
 
     _clientEvaluation = clientEvaluation;
     _delivered = true;
-    _worker->removeOrderToDeliver();
     _worker->addEvaluation(clientEvaluation);
     _client->addEvaluation(clientEvaluation);
 
@@ -118,8 +116,7 @@ void Order::deliver(int clientEvaluation, bool updatePoints, int deliverDuration
 
 bool Order::operator==(const Order &rhs) const {
     return *_client == *rhs.getClient() && *_worker == *rhs.getWorker()
-    && _deliverLocation == rhs.getDeliverLocation() && _requestDate == rhs.getRequestDate()
-    && wasDelivered() == rhs.wasDelivered() && getProducts() == rhs.getProducts();
+    && _deliverLocation == rhs.getDeliverLocation() && _requestDate == rhs.getRequestDate();
 }
 
 bool Order::operator<(const Order &o2) const {
@@ -182,8 +179,6 @@ std::string Order::getDeliverLocation() const {
 
 void Order::setDeliverLocation(const std::string& location, Worker* newWorker) {
     if (_delivered) throw OrderWasAlreadyDelivered(*_client,*_worker,_deliverDate);
-    getWorker()->removeOrderToDeliver();
     _worker = newWorker;
-    _worker->addOrderToDeliver();
     _deliverLocation = location;
 }
