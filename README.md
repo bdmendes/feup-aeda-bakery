@@ -1,4 +1,4 @@
-# feup-aeda-project
+# feup-aeda-bakery
 [![Build Status](https://travis-ci.com/bdmendes/feup-aeda-bakery.svg?branch=main)](https://travis-ci.com/bdmendes/feup-aeda-bakery)
 [![codecov](https://codecov.io/gh/bdmendes/feup-aeda-project/branch/main/graph/badge.svg?token=GDYAY2O2DQ)](https://codecov.io/gh/bdmendes/feup-aeda-project)
 
