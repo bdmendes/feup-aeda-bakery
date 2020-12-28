@@ -13,7 +13,9 @@
 #include <unordered_set>
 
 #include "util/util.h"
-
+/**
+ * Hash Table where the key is determined by the worker´s name
+ */
 struct WorkerHash
 {
     int operator() (const Worker* worker) const
@@ -152,15 +154,29 @@ public:
      * @return true, if there are no workers on the list yet; false, otherwise
      */
     bool print(std::ostream& os, bool showData = true, const std::string& location = {});
+
+    /**
+     * Raise all active workers salary in a certain percentage
+     *
+     * @param percentage - increased salary percentage
+     */
     void raiseSalary(float percentage);
+
+    /**
+     * Decrease all active workers salary in a certain percentage
+     *
+     * @param percentage - decreased salary percentage
+     */
     void decreaseSalary(float percentage);
+
 private:
     /**
-     * The list with all of the workers.
+     * The hash table with all the active workers.
      */
     tabHWorker _workers;
-    //std::set<Worker*, PersonSmaller> _workers;
-
+    /**
+     * The store location manager.
+     */
     LocationManager* _locationManager;
 };
 

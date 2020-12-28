@@ -104,8 +104,14 @@ public:
      */
     static const float DEFAULT_SALARY;
 
+    /**
+     * The worker max orders at a time
+     */
     static const unsigned MAX_ORDERS_AT_A_TIME;
 
+    /**
+     * The minimum salary a worker can have
+     */
     static const float MINIMUM_SALARY;
 
 private:
