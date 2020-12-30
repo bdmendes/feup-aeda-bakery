@@ -6,7 +6,7 @@
 
 using testing::Eq;
 
-TEST(Bread, create_bread){
+/*TEST(Bread, create_bread){
     Bread bread1("Pao de cereais", 0.7);
 
     EXPECT_EQ("Pao de cereais", bread1.getName());
@@ -90,5 +90,5 @@ TEST(Cake, equality_operator){
     EXPECT_FALSE(cake1==cake4);
     EXPECT_FALSE(cake2==cake3);
     EXPECT_FALSE(cake2==cake4);
-}
+}*/
 
