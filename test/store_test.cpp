@@ -28,6 +28,31 @@ TEST(Store, set_name){
     EXPECT_EQ("Padaria Diamante", store.getName());
 }
 
+TEST(Store, get_evaluation){
+    Store store("AEDA Bakery");
+
+    Client* client = store.clientManager.add("Joao Fonseca");
+    Worker* worker = store.workerManager.add(Order::DEFAULT_LOCATION, "Manuel Lopes");
+
+    Order* order1 = store.orderManager.add(client, worker);
+    Order* order2 = store.orderManager.add(client, worker);
+    Order* order3 = store.orderManager.add(client, worker);
+
+    EXPECT_EQ(0, store.getEvaluation());
+
+    store.orderManager.deliver(order1, 4);
+
+    EXPECT_EQ(4, store.getEvaluation());
+
+    store.orderManager.deliver(order2, 5);
+
+    EXPECT_EQ((4+5)/2, store.getEvaluation());
+
+    store.orderManager.deliver(order3, 2);
+
+    EXPECT_EQ((2+4+5)/3, store.getEvaluation());
+}
+
 TEST(Store, get_profit){
     Store store;
     Client* client = store.clientManager.add("Fernando Castro");
@@ -214,6 +239,8 @@ TEST(ClientManager, get_client_by_position){
     EXPECT_TRUE(*client1 == *clientM.get(position));
     EXPECT_TRUE(*client2 == *clientM.get(++position));
     EXPECT_TRUE(*client3 == *clientM.get(++position));
+
+    EXPECT_THROW(clientM.get(++position), InvalidPersonPosition);
 }
 
 TEST(ClientManager, get_client_by_taxID){
@@ -225,6 +252,8 @@ TEST(ClientManager, get_client_by_taxID){
     EXPECT_TRUE(*client1 == *clientM.getClient(Person::DEFAULT_TAX_ID));
     EXPECT_TRUE(*client2 == *clientM.getClient(123812321));
     EXPECT_TRUE(*client3 == *clientM.getClient(495483123));
+
+    EXPECT_THROW(clientM.getClient(3244313), PersonDoesNotExist);
 }
 
 TEST(ClientManager, add_client){
@@ -395,6 +424,8 @@ TEST(WorkerManager, get_worker_by_position){
     EXPECT_TRUE(*worker1 == *workerM.get(position));
     EXPECT_TRUE(*worker3 == *workerM.get(++position));
     EXPECT_TRUE(*worker2 == *workerM.get(++position));
+
+    EXPECT_THROW(workerM.get(++position), InvalidPersonPosition);
 }
 
 TEST(WorkerManager, get_workers_by_location){
@@ -430,6 +461,8 @@ TEST(WorkerManager, get_worker_by_taxID){
     EXPECT_TRUE(*worker1 == *workerM.getWorker(Person::DEFAULT_TAX_ID));
     EXPECT_TRUE(*worker2 == *workerM.getWorker(123812321));
     EXPECT_TRUE(*worker3 == *workerM.getWorker(495483123));
+
+    EXPECT_THROW(workerM.getWorker(8984313), PersonDoesNotExist);
 }
 
 TEST(WorkerManager, get_less_busy_worker){
@@ -439,6 +472,8 @@ TEST(WorkerManager, get_less_busy_worker){
     ClientManager clientM;
     WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+
+    EXPECT_THROW(workerM.getLessBusyWorker(Order::DEFAULT_LOCATION), StoreHasNoWorkers);
 
     Client* client1 = clientM.add("Ricardo Macedo");
     Client* client2 = clientM.add("Joana Moreira");
@@ -460,6 +495,37 @@ TEST(WorkerManager, get_less_busy_worker){
     EXPECT_EQ(1, worker1->getUndeliveredOrders());
     EXPECT_EQ(1, worker2->getUndeliveredOrders());
     EXPECT_TRUE(*worker2 == *(workerM.getLessBusyWorker("Head Office")));
+
+    orderM.deliver(order1, 5);
+    orderM.deliver(order2, 3);
+    Worker* worker3 = workerM.add(Order::DEFAULT_LOCATION, "Manuel Pimenta");
+    Worker* worker4 = workerM.add(Order::DEFAULT_LOCATION, "Gustavo Silva");
+
+    orderM.add(client1, worker1);
+    orderM.add(client1, worker1);
+    orderM.add(client1, worker1);
+    orderM.add(client1, worker1);
+    orderM.add(client1, worker1);
+
+    orderM.add(client1, worker2);
+    orderM.add(client1, worker2);
+    orderM.add(client1, worker2);
+    orderM.add(client1, worker2);
+    orderM.add(client1, worker2);
+
+    orderM.add(client1, worker3);
+    orderM.add(client1, worker3);
+    orderM.add(client1, worker3);
+    orderM.add(client1, worker3);
+    orderM.add(client1, worker3);
+
+    orderM.add(client1, worker4);
+    orderM.add(client1, worker4);
+    orderM.add(client1, worker4);
+    orderM.add(client1, worker4);
+    orderM.add(client1, worker4);
+
+    EXPECT_THROW(workerM.getLessBusyWorker(Order::DEFAULT_LOCATION), AllWorkersAreBusy);
 }
 
 TEST(WorkerManager, set_salary){
@@ -493,6 +559,7 @@ TEST(WorkerManager, add_worker){
     WorkerManager workerM(&locationM);
     unsigned position = 0;
 
+    EXPECT_THROW(workerM.add("Lisboa", "Jeronimo Martins"), LocationDoesNotExist);
     EXPECT_TRUE(workerM.getAll().empty());
 
     Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Francisco Ferreira", 948);
@@ -511,6 +578,10 @@ TEST(WorkerManager, add_worker){
 TEST(WorkerManager, remove_worker_by_pointer){
     LocationManager locationM;
     WorkerManager workerM(&locationM);
+    Worker worker(Order::DEFAULT_LOCATION, "Olivia Martins");
+
+    EXPECT_THROW(workerM.remove(&worker), PersonDoesNotExist);
+
     Worker* worker2 = workerM.add(Order::DEFAULT_LOCATION, "Francisco Ferreira", Person::DEFAULT_TAX_ID, 948);
     Worker* worker3 = workerM.add(Order::DEFAULT_LOCATION, "Joana Teixeira", Person::DEFAULT_TAX_ID, 892);
     Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Margarida Ferraz", Person::DEFAULT_TAX_ID, 849);
@@ -575,6 +646,7 @@ TEST(WorkerManager, remove_worker_by_position){
     workerM.remove(positionToRemove);
 
     EXPECT_TRUE(workerM.getAll().empty());
+    EXPECT_THROW(workerM.get(position), InvalidPersonPosition);
 }
 
 TEST(WorkerManager, read){
@@ -698,10 +770,15 @@ TEST(ProductManager, get_by_position){
     currentProduct = productM.get(++position);
 
     EXPECT_TRUE(*static_cast<Product*>(bread) == *currentProduct);
+    EXPECT_THROW(productM.get(++position), InvalidProductPosition);
 }
 
 TEST(ProductManager, get_by_string_and_price){
     ProductManager productM;
+
+    EXPECT_THROW(productM.get("Pao de sementes", 0.8), ProductDoesNotExist);
+    EXPECT_THROW(productM.get("Tarte de bolacha", 3.40), ProductDoesNotExist);
+
     Bread* bread = productM.addBread("Pao de sementes", 0.8, true);
     Cake* cake = productM.addCake("Tarte de bolacha", 3.40, CakeCategory::PIE);
 
@@ -783,6 +860,24 @@ TEST(ProductManager, add_cake){
     EXPECT_FLOAT_EQ(1, productM.get(position)->getPrice());
 }
 
+TEST(ProductManager, add_product){
+    ProductManager productM;
+
+    EXPECT_TRUE(productM.getAll().empty());
+
+    Product* product1 = new Bread("Pao de sementes", 0.8);
+    Product* product2 = productM.add(product1);
+
+    EXPECT_EQ(1, productM.getAll().size());
+    EXPECT_TRUE(*product1 == *product2);
+
+    Product* product3 = new Cake("Bolo de bolachas", 1.2);
+    Product* product4 = productM.add(product3);
+
+    EXPECT_EQ(2, productM.getAll().size());
+    EXPECT_TRUE(*product3 == *product4);
+}
+
 TEST(ProductManager, remove_by_pointer){
     Bread bread1("Pao de cereais", 0.9, false);
     ProductManager productM;
@@ -811,9 +906,12 @@ TEST(ProductManager, remove_by_pointer){
 
 TEST(ProductManager, remove_by_position){
     ProductManager productM;
+    unsigned position = 0;
+
+    EXPECT_THROW(productM.remove(position), std::invalid_argument);
+
     Cake* cake = productM.addCake("Tarte de bolacha", 3.40, CakeCategory::PIE);
     Bread* bread = productM.addBread("Pao de sementes", 0.8, true);
-    unsigned position = 0;
 
     EXPECT_EQ(1, productM.getBreads().size());
     EXPECT_EQ(1, productM.getCakes().size());
@@ -908,12 +1006,15 @@ TEST(OrderManager, get_by_position_client_and_worker){
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
     Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Josue Tome", 928);
 
+    EXPECT_THROW(orderM.get(0, nullptr, worker), InvalidOrderPosition);
+
     Client* client1 = clientM.add("Carlos Caetano");
     Date date1(10, 4, 2020, 19, 30);
     Order* order1 = orderM.add(client1, worker, Order::DEFAULT_LOCATION, date1);
     Date date2(23, 7, 2020, 12, 30);
     Order* order2 = orderM.add(client1, worker, Order::DEFAULT_LOCATION, date2);
 
+    EXPECT_THROW(orderM.get(0, client1, worker), std::invalid_argument);
     EXPECT_TRUE(*order1 == *orderM.get(0, client1));
     EXPECT_TRUE(*order2 == *orderM.get(1, client1));
     EXPECT_TRUE(*order1 == *orderM.get(0, nullptr, worker));
@@ -979,9 +1080,13 @@ TEST(OrderManager, get_location_orders){
     ProductManager productM; ClientManager clientM; WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
+
     Client* client = clientM.add("Ricardo Macedo");
     Worker* worker = workerM.add(location, "Madalena Faria", 980);
     Date date1(19, 10, 2020, 17, 30);
+
+    EXPECT_THROW(orderM.get(client, worker, location, date1), OrderDoesNotExist);
+
     Order* order1 = orderM.add(client, worker, location, date1);
     Date date2(21, 10, 2020, 18, 10);
     Order* order2 = orderM.add(client, worker, location, date2);
@@ -1013,6 +1118,11 @@ TEST(OrderManager, add_order){
 
     EXPECT_EQ(1, orderM.getAll().size());
     EXPECT_TRUE(order == *order1);
+
+    Client client1("Joao Fonseca");
+
+    EXPECT_THROW(orderM.add(&client1), PersonDoesNotExist);
+    EXPECT_THROW(orderM.add(client, "Lisboa"), LocationDoesNotExist);
 }
 
 TEST(OrderManager, add_order_with_worker){
@@ -1034,9 +1144,16 @@ TEST(OrderManager, add_order_with_worker){
 
     EXPECT_EQ(1, orderM.getAll().size());
     EXPECT_TRUE(order == *order1);
+
+    Client client1("Joao Fonseca");
+    Worker worker1(Order::DEFAULT_LOCATION, "Joana Lima");
+
+    EXPECT_THROW(orderM.add(&client1, worker), PersonDoesNotExist);
+    EXPECT_THROW(orderM.add(client, &worker1), PersonDoesNotExist);
+    EXPECT_THROW(orderM.add(client, worker, "Lisboa"), LocationDoesNotExist);
 }
 
-TEST(OrderManager, remove_order){
+TEST(OrderManager, remove_order_by_pointer){
     LocationManager locationM;
     ProductManager productM;
     ClientManager clientM;
@@ -1072,6 +1189,44 @@ TEST(OrderManager, remove_order){
     position = 0;
 
     EXPECT_TRUE(orderM.getAll().empty());//Throw exception  for empty orders
+
+    Order* order4 = orderM.add(client4);
+    orderM.deliver(order4, 4);
+
+    EXPECT_THROW(orderM.remove(order4), OrderWasAlreadyDelivered);
+}
+
+TEST(OrderManager, remove_order_by_position){
+    LocationManager locationM;
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM(&locationM);
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+
+    Client* client1 = clientM.add("Joao Manuel");
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Francisca Costa");
+    unsigned position = 0;
+
+    EXPECT_TRUE(orderM.getAll().empty());
+    EXPECT_THROW(orderM.remove(position), OrderDoesNotExist);
+
+    Order* order1 = orderM.add(client1, worker);
+    Order* order2 = orderM.add(client1, worker);
+    Order* order3 = orderM.add(client1, worker);
+    Order* order4 = orderM.add(client1, worker);
+
+    EXPECT_EQ(4, orderM.getAll().size());
+    EXPECT_EQ(4, worker->getUndeliveredOrders());
+
+    orderM.remove(position, true, false);
+
+    EXPECT_EQ(3, worker->getUndeliveredOrders());
+    EXPECT_EQ(3, orderM.getAll().size());
+
+    orderM.remove(position, false, false);
+
+    EXPECT_EQ(3, worker->getUndeliveredOrders());
+    EXPECT_EQ(2, orderM.getAll().size());
 }
 
 TEST(OrderManager, sort_orders){
@@ -1205,6 +1360,7 @@ TEST(OrderManager, remove_product_by_pointer_and_position){
     orderM.removeProduct(order, position);
 
     EXPECT_TRUE(order->getProducts().empty());
+    EXPECT_THROW(orderM.removeProduct(order, position), std::invalid_argument);
 }
 
 TEST(OrderManager, set_delivery_location){
@@ -1355,6 +1511,7 @@ TEST(LocationManager, add){
 TEST(LocationManager, remove_by_string){
     LocationManager locationM;
 
+    EXPECT_THROW(locationM.remove(Order::DEFAULT_LOCATION), std::logic_error);
     EXPECT_THROW(locationM.remove("Braga"), LocationDoesNotExist);
     EXPECT_EQ(1, locationM.getAll().size());
     EXPECT_EQ(Order::DEFAULT_LOCATION, *locationM.getAll().begin());
@@ -1380,6 +1537,7 @@ TEST(LocationManager, remove_by_position){
 
     EXPECT_EQ(2, locationM.getAll().size());
     EXPECT_EQ("Aveiro", *locationM.getAll().begin());
+    EXPECT_THROW(locationM.remove(2), InvalidLocationPosition);
 }
 
 TEST(LocationManager, read){

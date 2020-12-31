@@ -16,7 +16,9 @@ bool Order::hasDiscount() const {
 }
 
 bool Order::hasProduct(Product* product){
-    return _products.find(product) != _products.end() && _products[product] > 0;
+    for(const auto & _product : _products)
+        if((*_product.first == *product) && (_product.second > 0)) return true;
+    return false;
 }
 
 bool Order::wasDelivered() const {
