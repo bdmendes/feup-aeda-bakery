@@ -420,10 +420,12 @@ TEST(WorkerManager, get_worker_by_position){
     Worker* worker2 = workerM.add("Porto", "Henrique Vaz");
     Worker* worker3 = workerM.add("Porto", "Sofia Rebelo");
     unsigned position = 0;
+    tabHWorker workers = workerM.getAll();
+    auto it = workers.begin();
 
-    EXPECT_TRUE(*worker1 == *workerM.get(position));
-    EXPECT_TRUE(*worker3 == *workerM.get(++position));
-    EXPECT_TRUE(*worker2 == *workerM.get(++position));
+    EXPECT_TRUE(workers.find(workerM.get(position)) != workers.end());
+    EXPECT_TRUE(workers.find(workerM.get(++position)) != workers.end());
+    EXPECT_TRUE(workers.find(workerM.get(++position)) != workers.end());
 
     EXPECT_THROW(workerM.get(++position), InvalidPersonPosition);
 }
@@ -437,14 +439,13 @@ TEST(WorkerManager, get_workers_by_location){
     Worker* worker1 = workerM.add(location, "Ana Faria");
     Worker* worker2 = workerM.add(location, "Marco Moreira");
     Worker* worker3 = workerM.add(Order::DEFAULT_LOCATION, "Joao Lopes");
-
     tabHWorker workers = workerM.getByLocation(location);
     auto it = workers.begin();
 
     EXPECT_EQ(2, workers.size());
-    EXPECT_TRUE(*worker2 == **it);
-    it++;
-    EXPECT_TRUE(*worker1 == **it);
+    EXPECT_TRUE(workers.find(worker1) != workers.end());
+    EXPECT_TRUE(workers.find(worker2) != workers.end());
+    EXPECT_FALSE(workers.find(worker3) != workers.end());
 }
 
 TEST(WorkerManager, get_worker_by_taxID){
@@ -553,9 +554,6 @@ TEST(WorkerManager, set_salary){
 
 TEST(WorkerManager, add_worker){
     LocationManager locationM;
-    Worker w1(Order::DEFAULT_LOCATION, "Francisco Ferreira", Person::DEFAULT_TAX_ID,948);
-    Worker w2(Order::DEFAULT_LOCATION, "Joana Teixeira", Person::DEFAULT_TAX_ID, 892);
-    Worker w3(Order::DEFAULT_LOCATION, "Margarida Ferraz", Person::DEFAULT_TAX_ID, 849);
     WorkerManager workerM(&locationM);
     unsigned position = 0;
 
@@ -565,14 +563,12 @@ TEST(WorkerManager, add_worker){
     Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Francisco Ferreira", 948);
 
     EXPECT_EQ(1, workerM.getAll().size());
-    EXPECT_TRUE(*worker1 == *workerM.get(position));
+    EXPECT_TRUE(workerM.has(worker1));
 
     Worker* worker2 = workerM.add(Order::DEFAULT_LOCATION, "Joana Teixeira", Person::DEFAULT_TAX_ID, 892);
-    position = 0;
 
     EXPECT_EQ(2, workerM.getAll().size());
-    EXPECT_TRUE(*worker2 == *workerM.get(position));
-    EXPECT_TRUE(*worker1 == *workerM.get(++position));
+    EXPECT_TRUE(workerM.has(worker2));
 }
 
 TEST(WorkerManager, remove_worker_by_pointer){
@@ -588,26 +584,23 @@ TEST(WorkerManager, remove_worker_by_pointer){
     unsigned position = 0;
 
     EXPECT_EQ(3, workerM.getAll().size());
-    EXPECT_TRUE(*worker1 == *workerM.get(position));
-    EXPECT_TRUE(*worker2 == *workerM.get(++position));
-    EXPECT_TRUE(*worker3 == *workerM.get(++position));
 
     workerM.remove(worker1);
     position = 0;
 
     EXPECT_EQ(2, workerM.getAll().size());
-    EXPECT_TRUE(*worker2 == *workerM.get(position));
-    EXPECT_TRUE(*worker3 == *workerM.get(++position));
+    EXPECT_FALSE(workerM.has(worker1));
 
     workerM.remove(worker2);
     position = 0;
 
     EXPECT_EQ(1, workerM.getAll().size());
-    EXPECT_TRUE(*worker3 == *workerM.getWorker(worker3->getTaxId()));
+    EXPECT_FALSE(workerM.has(worker2));
 
     workerM.remove(worker3);
 
     EXPECT_TRUE(workerM.getAll().empty());
+    EXPECT_FALSE(workerM.has(worker3));
     EXPECT_THROW(workerM.remove(worker1), PersonDoesNotExist);
     EXPECT_THROW(workerM.remove(worker2), PersonDoesNotExist);
     EXPECT_THROW(workerM.remove(worker3), PersonDoesNotExist);
@@ -619,34 +612,31 @@ TEST(WorkerManager, remove_worker_by_position){
     Worker* worker2 = workerM.add(Order::DEFAULT_LOCATION, "Francisco Ferreira", Person::DEFAULT_TAX_ID, 948);
     Worker* worker3 = workerM.add(Order::DEFAULT_LOCATION, "Joana Teixeira", Person::DEFAULT_TAX_ID, 892);
     Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Margarida Ferraz", Person::DEFAULT_TAX_ID, 849);
-    unsigned position = 0, positionToRemove = 0;
+    unsigned positionToRemove = 0;
 
     EXPECT_EQ(3, workerM.getAll().size());
     EXPECT_THROW(workerM.remove(3), InvalidPersonPosition);
-    EXPECT_TRUE(*worker1 == *workerM.get(position));
-    EXPECT_TRUE(*worker2 == *workerM.get(++position));
-    EXPECT_TRUE(*worker3 == *workerM.get(++position));
 
+    Worker* workerToRemove = workerM.get(positionToRemove);
     workerM.remove(positionToRemove);
-    position = 0;
 
     EXPECT_EQ(2, workerM.getAll().size());
     EXPECT_THROW(workerM.remove(2), InvalidPersonPosition);
-    EXPECT_TRUE(*worker2 == *workerM.get(position));
-    EXPECT_TRUE(*worker3 == *workerM.get(++position));
+    EXPECT_FALSE(workerM.has(workerToRemove));
 
-
+    workerToRemove = workerM.get(positionToRemove);
     workerM.remove(positionToRemove);
-    position = 0;
 
     EXPECT_EQ(1, workerM.getAll().size());
     EXPECT_THROW(workerM.remove(1), InvalidPersonPosition);
-    EXPECT_TRUE(*worker3 == *workerM.get(position));
+    EXPECT_FALSE(workerM.has(workerToRemove));
 
+    workerToRemove = workerM.get(positionToRemove);
     workerM.remove(positionToRemove);
 
     EXPECT_TRUE(workerM.getAll().empty());
-    EXPECT_THROW(workerM.get(position), InvalidPersonPosition);
+    EXPECT_FALSE(workerM.has(workerToRemove));
+    EXPECT_THROW(workerM.get(positionToRemove), InvalidPersonPosition);
 }
 
 TEST(WorkerManager, read){
