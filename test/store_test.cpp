@@ -1,4 +1,3 @@
-/*
 
 #include <gtest/gtest.h>
 #include "model/store/store.h"
@@ -32,18 +31,18 @@ TEST(Store, set_name){
 TEST(Store, get_profit){
     Store store;
     Client* client = store.clientManager.add("Fernando Castro");
-    Worker* worker = store.workerManager.add("Josue Tome", 928);
+    Worker* worker = store.workerManager.add(Order::DEFAULT_LOCATION, "Josue Tome", 928);
     Cake* cake = store.productManager.addCake("Bolo de chocolate", 3.2);
     Order* order1 = store.orderManager.add(client, worker);
-    order1->addProduct(cake, 10);
-    order1->deliver(5,false);
+    store.orderManager.addProduct(order1, cake, 10);
+    store.orderManager.deliver(order1, 5, false);
 
     EXPECT_FLOAT_EQ(order1->getFinalPrice(), store.getProfit());
 
     client->addPoints(200);
     Order* order2 = store.orderManager.add(client, worker);
-    order2->addProduct(cake, 7);
-    order2->deliver(4,false);
+    store.orderManager.addProduct(order2, cake, 7);
+    store.orderManager.deliver(order2, 4,false);
 
     EXPECT_FLOAT_EQ(order1->getFinalPrice()+order2->getFinalPrice(), store.getProfit());
 }
@@ -66,11 +65,11 @@ TEST(Store, read){
     EXPECT_EQ("Head Office", *locations.begin());
     EXPECT_EQ("Lisboa", *(++locations.begin()));
 
-    //Cake: Bolo-crocante 15 Crunchy-Cake
+    //Cake: Bolo-de-bolacha 2.2 Pie
     Cake* cake = *store.productManager.getCakes().begin();
-    EXPECT_EQ("Bolo crocante", cake->getName());
-    EXPECT_FLOAT_EQ(15, cake->getPrice());
-    EXPECT_EQ(CakeCategory::CRUNCHY, cake->getCategory());
+    EXPECT_EQ("Bolo de bolacha", cake->getName());
+    EXPECT_FLOAT_EQ(2.2, cake->getPrice());
+    EXPECT_EQ("Pie", cake->getCategory());
 
     //Bread: Pao-da-avo 1 big
     Bread* bread = *store.productManager.getBreads().begin();
@@ -88,29 +87,49 @@ TEST(Store, read){
     EXPECT_EQ(300, client.getPoints());
     EXPECT_TRUE(credential == client.getCredential());
 
-    //Worker: Julia-Mendes 2345 2001 julia sousenhora
+    //Worker: Maria-Gil 7978 2000 mg bolachas Lisboaa
     Worker* worker = store.workerManager.get(0);
-    credential = {"julia", "sousenhora"};
-    EXPECT_EQ("Julia Mendes", worker->getName());
-    EXPECT_EQ(2345, worker->getTaxId());
-    EXPECT_FLOAT_EQ(2001, worker->getSalary());
+    credential = {"mg", "bolachas"};
+    EXPECT_EQ("Maria Gil", worker->getName());
+    EXPECT_EQ(7978, worker->getTaxId());
+    EXPECT_FLOAT_EQ(2000, worker->getSalary());
     EXPECT_TRUE(credential == worker->getCredential());
 
-    //Order: 324564 32534 12/06/2020 18:34 Head-Office 5
-    //Bolo-crocante 15 1
-    //Pao-de-cereais 0.5 1
-    Order* order = *store.orderManager.getAll().begin();
-    EXPECT_EQ(324564, order->getClient()->getTaxId());
-    EXPECT_EQ(32534, order->getWorker()->getTaxId());
-    EXPECT_EQ("12/06/2020 18:34", order->getRequestDate().getCompleteDate());
-    EXPECT_EQ("Head Office", order->getDeliverLocation());
-    EXPECT_EQ("Bolo crocante", (order->getProducts().begin())->first->getName());
-    EXPECT_FLOAT_EQ(15, (order->getProducts().begin())->first->getPrice());
-    EXPECT_EQ(1, (order->getProducts().begin())->second);
-    EXPECT_EQ("Pao de cereais", (++order->getProducts().begin())->first->getName());
-    EXPECT_FLOAT_EQ(0.5, (++order->getProducts().begin())->first->getPrice());
-    EXPECT_EQ(1, (++order->getProducts().begin())->second);
-    EXPECT_FLOAT_EQ((5+3+5+3)/4, store.getEvaluation());
+    //Order: 23554 7978 12/12/2020 14:45 Lisboa
+    //Pao-da-avo 1 1
+    //Bolo-de-bolacha 2.2 10
+    Order* order = store.orderManager.getAll().top().getOrder();
+    EXPECT_EQ(23554, order->getClient()->getTaxId());
+    EXPECT_EQ(7978, order->getWorker()->getTaxId());
+    EXPECT_EQ("12/12/2020 14:45", order->getRequestDate().getCompleteDate());
+    EXPECT_EQ("Lisboa", order->getDeliverLocation());
+
+    std::map<Product*, unsigned int, ProductSmaller> products = store.orderManager.getAll().top().getOrder()->getProducts();
+    std::string productName = "Pao da avo", productCategory = "Big Bread";
+    float productPrice = 1;
+    unsigned int productQuantity = 1;
+    auto it = std::find_if(products.begin(), products.end(),
+                           [productName, productPrice, productCategory, productQuantity]
+                                (const std::pair<Product*, unsigned int> p1){
+                            return p1.first->getName() == productName && p1.first->getPrice() == productPrice &&
+                                p1.first->getCategory() == productCategory && p1.second == productQuantity;
+    });
+    EXPECT_TRUE(it != products.end());
+
+    productName = "Bolo de bolacha";
+    productCategory = "Pie";
+    productPrice = 2.2;
+    productQuantity = 1;
+    it = std::find_if(products.begin(), products.end(),
+                      [productName, productPrice, productCategory, productQuantity]
+                              (const std::pair<Product*, unsigned int> p1){
+                          return p1.first->getName() == productName && p1.first->getPrice() == productPrice &&
+                                 p1.first->getCategory() == productCategory && p1.second == productQuantity;
+                      });
+
+    EXPECT_TRUE(it != products.end());
+
+    EXPECT_FLOAT_EQ(4, store.getEvaluation());
 }
 
 TEST(Store, write){
@@ -118,14 +137,14 @@ TEST(Store, write){
     Store storeInit;
     storeInit.read(path);
 
-    Store store;
-    Client* client = store.clientManager.add("Joao Miguel", 123823);
-    Worker* worker = store.workerManager.add("Mario Cordeiro", 823823);
-    Cake* cake = store.productManager.addCake("Bolo de arroz", 1);
     Date date(23, 5, 2019, 21, 30);
+    Store store;
     store.locationManager.add("Porto");
+    Client* client = store.clientManager.add("Joao Miguel", 123823);
+    Worker* worker = store.workerManager.add("Porto", "Mario Cordeiro", 823823);
+    Cake* cake = store.productManager.addCake("Bolo de arroz", 1);
     Order* order = store.orderManager.add(client, worker, "Porto", date);
-    order->addProduct(cake, 1);
+    Product* addedProduct = store.orderManager.addProduct(order, cake, 1);
 
     store.write(path);
     store.read(path);
@@ -148,11 +167,11 @@ TEST(Store, write){
     Cake* currentCake = *store.productManager.getCakes().begin();
     EXPECT_EQ("Bolo de arroz", currentCake->getName());
     EXPECT_FLOAT_EQ(1, currentCake->getPrice());
-    EXPECT_EQ(CakeCategory::GENERAL, currentCake->getCategory());
+    EXPECT_EQ("General", currentCake->getCategory());
 
     //Order: 123823 823823 23/05/2019 21:30 Porto
     //Bolo-de-arroz 1 1
-    Order* currentOrder = store.orderManager.getAll().at(0);
+    Order* currentOrder = store.orderManager.getAll().top().getOrder();
     EXPECT_EQ(123823, currentOrder->getClient()->getTaxId());
     EXPECT_EQ(823823, currentOrder->getWorker()->getTaxId());
     EXPECT_EQ("23/05/2019 21:30", currentOrder->getRequestDate().getCompleteDate());
@@ -160,7 +179,7 @@ TEST(Store, write){
     EXPECT_FALSE(currentOrder->wasDelivered());
     EXPECT_EQ("Bolo de arroz", (currentOrder->getProducts().begin())->first->getName());
     EXPECT_FLOAT_EQ(1, (currentOrder->getProducts().begin())->first->getPrice());
-    EXPECT_EQ(2, (currentOrder->getProducts().begin())->second);
+    EXPECT_EQ(1, (currentOrder->getProducts().begin())->second);
 
     //Location: Head-Office Porto
     EXPECT_EQ("Head Office", *store.locationManager.getAll().begin());
@@ -285,26 +304,6 @@ TEST(ClientManager, read){
     EXPECT_FALSE(currentClient->isPremium());
     EXPECT_EQ(300, currentClient->getPoints());
     EXPECT_TRUE(credential == currentClient->getCredential());
-
-    currentClient = clientM.get(++position);
-
-    //Angela-Coelho 324564 premium 280 angela angela123
-    credential = {"angela", "angela123"};
-    EXPECT_EQ("Angela Coelho", currentClient->getName());
-    EXPECT_EQ(324564, currentClient->getTaxId());
-    EXPECT_TRUE(currentClient->isPremium());
-    EXPECT_EQ(280, currentClient->getPoints());
-    EXPECT_TRUE(credential == currentClient->getCredential());
-
-    currentClient = clientM.get(++position);
-
-    //Bruno-Mendes 879789 premium 280 bdmendes mendes
-    credential = {"bdmendes", "mendes"};
-    EXPECT_EQ("Bruno Mendes", currentClient->getName());
-    EXPECT_EQ(879789, currentClient->getTaxId());
-    EXPECT_TRUE(currentClient->isPremium());
-    EXPECT_EQ(280, currentClient->getPoints());
-    EXPECT_TRUE(credential == currentClient->getCredential());
 }
 
 TEST(ClientManager, write){
@@ -359,41 +358,74 @@ TEST(ClientManager, write){
 }
 
 TEST(WorkerManager, has_worker){
-    Worker worker1("Francisco Ferreira", 948);
-    Worker worker2("Margarida Ferraz", 849);
-    WorkerManager wm;
+    LocationManager locationM;
+    locationM.add("Lisboa");
+    locationM.add("Porto");
 
-    EXPECT_FALSE(wm.has(&worker1));
-    EXPECT_FALSE(wm.has(&worker2));
+    WorkerManager workerM(&locationM);
+    Worker worker1("Lisboa", "Francisco Ferreira", 948);
+    Worker worker2("Porto", "Margarida Ferraz", 849);
 
-    wm.add("Francisco Ferreira", 948);
+    EXPECT_FALSE(workerM.has(&worker1));
+    EXPECT_FALSE(workerM.has(&worker2));
 
-    EXPECT_TRUE(wm.has(&worker1));
-    EXPECT_FALSE(wm.has(&worker2));
+    workerM.add("Lisboa", "Francisco Ferreira", 948);
 
-    wm.add("Margarida Ferraz", 849);
+    EXPECT_TRUE(workerM.has(&worker1));
+    EXPECT_FALSE(workerM.has(&worker2));
 
-    EXPECT_TRUE(wm.has(&worker1));
-    EXPECT_TRUE(wm.has(&worker2));
+    workerM.add("Porto", "Margarida Ferraz", 849);
+
+    EXPECT_TRUE(workerM.has(&worker1));
+    EXPECT_TRUE(workerM.has(&worker2));
 }
 
 TEST(WorkerManager, get_worker_by_position){
-    WorkerManager workerM;
-    Worker* worker1 = workerM.add("Alvaro Campos");
-    Worker* worker2 = workerM.add("Henrique Vaz");
-    Worker* worker3 = workerM.add("Sofia Rebelo");
+    LocationManager locationM;
+    locationM.add("Lisboa");
+    locationM.add("Aveiro");
+    locationM.add("Porto");
+
+    WorkerManager workerM(&locationM);
+    Worker* worker1 = workerM.add("Lisboa", "Alvaro Campos");
+    Worker* worker2 = workerM.add("Porto", "Henrique Vaz");
+    Worker* worker3 = workerM.add("Porto", "Sofia Rebelo");
     unsigned position = 0;
 
     EXPECT_TRUE(*worker1 == *workerM.get(position));
-    EXPECT_TRUE(*worker2 == *workerM.get(++position));
     EXPECT_TRUE(*worker3 == *workerM.get(++position));
+    EXPECT_TRUE(*worker2 == *workerM.get(++position));
+}
+
+TEST(WorkerManager, get_workers_by_location){
+    std::string location = "Braga";
+    LocationManager locationM;
+    locationM.add(location);
+    WorkerManager workerM(&locationM);
+
+    Worker* worker1 = workerM.add(location, "Ana Faria");
+    Worker* worker2 = workerM.add(location, "Marco Moreira");
+    Worker* worker3 = workerM.add(Order::DEFAULT_LOCATION, "Joao Lopes");
+
+    tabHWorker workers = workerM.getByLocation(location);
+    auto it = workers.begin();
+
+    EXPECT_EQ(2, workers.size());
+    EXPECT_TRUE(*worker2 == **it);
+    it++;
+    EXPECT_TRUE(*worker1 == **it);
 }
 
 TEST(WorkerManager, get_worker_by_taxID){
-    WorkerManager workerM;
-    Worker* worker1 = workerM.add("Alvaro Campos", Person::DEFAULT_TAX_ID);
-    Worker* worker2 = workerM.add("Henrique Vaz", 123812321);
-    Worker* worker3 = workerM.add("Sofia Rebelo", 495483123);
+    LocationManager locationM;
+    locationM.add("Lisboa");
+    locationM.add("Aveiro");
+    locationM.add("Porto");
+
+    WorkerManager workerM(&locationM);
+    Worker* worker1 = workerM.add("Lisboa", "Alvaro Campos", Person::DEFAULT_TAX_ID);
+    Worker* worker2 = workerM.add("Aveiro", "Henrique Vaz", 123812321);
+    Worker* worker3 = workerM.add("Porto", "Sofia Rebelo", 495483123);
 
     EXPECT_TRUE(*worker1 == *workerM.getWorker(Person::DEFAULT_TAX_ID));
     EXPECT_TRUE(*worker2 == *workerM.getWorker(123812321));
@@ -402,89 +434,86 @@ TEST(WorkerManager, get_worker_by_taxID){
 
 TEST(WorkerManager, get_less_busy_worker){
     Store store("Aeda");
+    LocationManager locationM;
     ProductManager productM;
     ClientManager clientM;
-    WorkerManager workerM;
-    LocationManager locationM;
+    WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client1 = clientM.add("Ricardo Macedo");
     Client* client2 = clientM.add("Joana Moreira");
-    Worker* worker1 = workerM.add("Jose Figueiras", 890);
-    Worker* worker2 = workerM.add("Madalena Faria", 980);
+    Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Jose Figueiras");
+    Worker* worker2 = workerM.add(Order::DEFAULT_LOCATION, "Madalena Faria");
 
     EXPECT_EQ(0, worker1->getUndeliveredOrders());
     EXPECT_EQ(0, worker2->getUndeliveredOrders());
-    EXPECT_TRUE(*worker1 == *(workerM.getLessBusyWorker()));
+    EXPECT_TRUE(*worker2 == *(workerM.getLessBusyWorker("Head Office")));
 
     Order* order1 = orderM.add(client1);
 
-    EXPECT_EQ(1,worker1->getUndeliveredOrders());
-    EXPECT_EQ(0, worker2->getUndeliveredOrders());
-    EXPECT_TRUE(*worker2 == *(workerM.getLessBusyWorker()));
+    EXPECT_EQ(1,worker2->getUndeliveredOrders());
+    EXPECT_EQ(0, worker1->getUndeliveredOrders());
+    EXPECT_TRUE(*worker1 == *(workerM.getLessBusyWorker("Head Office")));
 
     Order* order2 = orderM.add(client2);
 
     EXPECT_EQ(1, worker1->getUndeliveredOrders());
     EXPECT_EQ(1, worker2->getUndeliveredOrders());
-    EXPECT_TRUE(*worker1 == *(workerM.getLessBusyWorker()));
+    EXPECT_TRUE(*worker2 == *(workerM.getLessBusyWorker("Head Office")));
 }
 
 TEST(WorkerManager, set_salary){
-    WorkerManager workerM;
-    Worker* worker1 = workerM.add("Francisco Ferreira", 9665679,948);
-    Worker* worker2 = workerM.add("Margarida Ferraz", 54498698,849);
+    LocationManager locationM;
+    WorkerManager workerM(&locationM);
+    Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Francisco Ferreira", 9665679, 948);
+
+    EXPECT_FLOAT_EQ(948, workerM.getWorker(worker1->getTaxId())->getSalary());
+
     unsigned position = 0;
-
-    EXPECT_FLOAT_EQ(948, workerM.get(position)->getSalary());
-    EXPECT_FLOAT_EQ(849, workerM.get(++position)->getSalary());
-
-    position = 0;
-    workerM.setSalary(position, 900);
-    workerM.setSalary(++position, 950);
-
-    EXPECT_THROW(workerM.setSalary(++position, 950), InvalidPersonPosition);
+    workerM.setSalary(position, 900); // for worker2
     EXPECT_THROW(workerM.setSalary(++position, 950), InvalidPersonPosition);
     EXPECT_FLOAT_EQ(900, worker1->getSalary());
+
+    Worker* worker2 = workerM.add(Order::DEFAULT_LOCATION, "Margarida Ferraz", 54498698, 849);
+    EXPECT_FLOAT_EQ(849, workerM.getWorker(worker2->getTaxId())->getSalary());
+
+    position = 0;
+    workerM.setSalary(position, 950); // for worker1
+
+    position = 3;
+    EXPECT_THROW(workerM.setSalary(position, 950), InvalidPersonPosition);
     EXPECT_FLOAT_EQ(950, worker2->getSalary());
 }
 
 TEST(WorkerManager, add_worker){
-    Worker w1("Francisco Ferreira", 999999999,948);
-    Worker w2("Joana Teixeira", 999999999, 892);
-    Worker w3("Margarida Ferraz", 999999999, 849);
-    WorkerManager workerM;
+    LocationManager locationM;
+    Worker w1(Order::DEFAULT_LOCATION, "Francisco Ferreira", Person::DEFAULT_TAX_ID,948);
+    Worker w2(Order::DEFAULT_LOCATION, "Joana Teixeira", Person::DEFAULT_TAX_ID, 892);
+    Worker w3(Order::DEFAULT_LOCATION, "Margarida Ferraz", Person::DEFAULT_TAX_ID, 849);
+    WorkerManager workerM(&locationM);
     unsigned position = 0;
 
     EXPECT_TRUE(workerM.getAll().empty());
 
-    Worker* worker1 = workerM.add("Francisco Ferreira", 948);
+    Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Francisco Ferreira", 948);
 
     EXPECT_EQ(1, workerM.getAll().size());
     EXPECT_TRUE(*worker1 == *workerM.get(position));
 
-    Worker* worker2 = workerM.add("Joana Teixeira", 999999999, 892);
+    Worker* worker2 = workerM.add(Order::DEFAULT_LOCATION, "Joana Teixeira", Person::DEFAULT_TAX_ID, 892);
     position = 0;
 
     EXPECT_EQ(2, workerM.getAll().size());
-    EXPECT_TRUE(*worker1 == *workerM.get(position));
-    EXPECT_TRUE(*worker2 == *workerM.get(++position));
-
-    Worker* worker3 = workerM.add("Margarida Ferraz", 999999999, 849);
-    position = 0;
-
-    EXPECT_EQ(3, workerM.getAll().size());
-    EXPECT_TRUE(*worker1 == *workerM.get(position));
-    EXPECT_TRUE(*worker2 == *workerM.get(++position));
-    EXPECT_TRUE(*worker3 == *workerM.get(++position));
-    EXPECT_TRUE(workerM.getAll().size() == 3);
+    EXPECT_TRUE(*worker2 == *workerM.get(position));
+    EXPECT_TRUE(*worker1 == *workerM.get(++position));
 }
 
 TEST(WorkerManager, remove_worker_by_pointer){
-    WorkerManager workerM;
-    Worker* worker1 = workerM.add("Francisco Ferreira", 999999999, 948);
-    Worker* worker2 = workerM.add("Joana Teixeira", 999999999, 892);
-    Worker* worker3 = workerM.add("Margarida Ferraz", 999999999, 849);
+    LocationManager locationM;
+    WorkerManager workerM(&locationM);
+    Worker* worker2 = workerM.add(Order::DEFAULT_LOCATION, "Francisco Ferreira", Person::DEFAULT_TAX_ID, 948);
+    Worker* worker3 = workerM.add(Order::DEFAULT_LOCATION, "Joana Teixeira", Person::DEFAULT_TAX_ID, 892);
+    Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Margarida Ferraz", Person::DEFAULT_TAX_ID, 849);
     unsigned position = 0;
 
     EXPECT_EQ(3, workerM.getAll().size());
@@ -503,7 +532,7 @@ TEST(WorkerManager, remove_worker_by_pointer){
     position = 0;
 
     EXPECT_EQ(1, workerM.getAll().size());
-    EXPECT_TRUE(*worker3 == *workerM.get(position));
+    EXPECT_TRUE(*worker3 == *workerM.getWorker(worker3->getTaxId()));
 
     workerM.remove(worker3);
 
@@ -514,10 +543,11 @@ TEST(WorkerManager, remove_worker_by_pointer){
 }
 
 TEST(WorkerManager, remove_worker_by_position){
-    WorkerManager workerM;
-    Worker* worker1 = workerM.add("Francisco Ferreira", 999999999, 948);
-    Worker* worker2 = workerM.add("Joana Teixeira", 999999999, 892);
-    Worker* worker3 = workerM.add("Margarida Ferraz", 999999999, 849);
+    LocationManager locationM;
+    WorkerManager workerM(&locationM);
+    Worker* worker2 = workerM.add(Order::DEFAULT_LOCATION, "Francisco Ferreira", Person::DEFAULT_TAX_ID, 948);
+    Worker* worker3 = workerM.add(Order::DEFAULT_LOCATION, "Joana Teixeira", Person::DEFAULT_TAX_ID, 892);
+    Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Margarida Ferraz", Person::DEFAULT_TAX_ID, 849);
     unsigned position = 0, positionToRemove = 0;
 
     EXPECT_EQ(3, workerM.getAll().size());
@@ -548,59 +578,60 @@ TEST(WorkerManager, remove_worker_by_position){
 }
 
 TEST(WorkerManager, read){
-    WorkerManager workerM;
+    LocationManager locationM;
+    locationM.add("Lisboa");
+    WorkerManager workerM(&locationM);
 
     EXPECT_THROW(workerM.read("/workers.txt"), FileNotFound);
 
     workerM.read("../../test/data/workers.txt");
-    unsigned position = 0;
-    Worker* currentWorker = workerM.get(position);
+    Worker* currentWorker = workerM.get(0);
 
-    //Julia-Mendes 2345 2001 julia sousenhora
-    Credential credential = {"julia", "sousenhora"};
-    EXPECT_EQ("Julia Mendes", currentWorker->getName());
-    EXPECT_EQ(2345, currentWorker->getTaxId());
-    EXPECT_EQ(2001, currentWorker->getSalary());
-    EXPECT_TRUE(credential == currentWorker->getCredential());
-
-    currentWorker = workerM.get(++position);
-
-    //Maria-Gil 7978 2000 mg bolachas
-    credential = {"mg", "bolachas"};
+    //Maria-Gil 7978 2000 mg bolachas Lisboa
+    Credential credential  = {"mg", "bolachas"};
     EXPECT_EQ("Maria Gil", currentWorker->getName());
     EXPECT_EQ(7978, currentWorker->getTaxId());
     EXPECT_EQ(2000, currentWorker->getSalary());
     EXPECT_TRUE(credential == currentWorker->getCredential());
-
-    currentWorker = workerM.get(++position);
-
-    //Osvaldo-Ribeiro 32534 1500 osvaldo souoosvaldo
-    credential = {"osvaldo", "souoosvaldo"};
-    EXPECT_EQ("Osvaldo Ribeiro", currentWorker->getName());
-    EXPECT_EQ(32534, currentWorker->getTaxId());
-    EXPECT_EQ(1500, currentWorker->getSalary());
-    EXPECT_TRUE(credential == currentWorker->getCredential());
+    EXPECT_EQ("Lisboa", currentWorker->getLocation());
 }
 
 TEST(WorkerManager, write){
     const std::string path = "../../test/data/workers.txt";
-    WorkerManager workerMInitial;
+    LocationManager locationMInitial;
+    locationMInitial.add("Lisboa");
+    WorkerManager workerMInitial(&locationMInitial);
     workerMInitial.read(path);
-    WorkerManager workerM;
+
+    LocationManager locationM;
+    locationM.add("Lisboa");
+    locationM.add("Porto");
+    WorkerManager workerM(&locationM);
 
     EXPECT_THROW(workerM.write("/workers.txt"), FileNotFound);
 
-    Worker* worker1 = workerM.add("Miguel Gomes", 4398331, 900, {"miuelGom", "m123g"});
-    Worker* worker2 = workerM.add("Joana Moreira", 38470348, 1000, {"juMoreira", "joanaMoreira"});
-    Worker* worker3 = workerM.add("Ricardo Macedo", Person::DEFAULT_TAX_ID, 870, {"ricM", "ricardo_948"});
+    Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Miguel Gomes", 4398331, 900, {"miuelGom", "m123g"});
+    Worker* worker2 = workerM.add("Lisboa", "Joana Moreira", 38470348, 1000, {"juMoreira", "joanaMoreira"});
+    Worker* worker3 = workerM.add("Porto", "Ricardo Macedo", Person::DEFAULT_TAX_ID, 870, {"ricM", "ricardo_948"});
 
     workerM.write(path);
     workerM.read(path);
     unsigned position = 0;
     Worker* currentWorker = workerM.get(position);
 
+    //Ricardo-Macedo 999999999 870 ricM ricardo_948
+    Credential credential = {"ricM", "ricardo_948"};
+    EXPECT_EQ("Porto", currentWorker->getLocation());
+    EXPECT_EQ("Ricardo Macedo", currentWorker->getName());
+    EXPECT_EQ(Person::DEFAULT_TAX_ID, currentWorker->getTaxId());
+    EXPECT_EQ(870, currentWorker->getSalary());
+    EXPECT_TRUE(credential == currentWorker->getCredential());
+
+    currentWorker = workerM.get(++position);
+
     //Miguel-Gomes 4398331 900 miuelGom m123g
-    Credential credential = {"miuelGom", "m123g"};
+    credential = {"miuelGom", "m123g"};
+    EXPECT_EQ(Order::DEFAULT_LOCATION, currentWorker->getLocation());
     EXPECT_EQ("Miguel Gomes", currentWorker->getName());
     EXPECT_EQ(4398331, currentWorker->getTaxId());
     EXPECT_EQ(900, currentWorker->getSalary());
@@ -610,21 +641,37 @@ TEST(WorkerManager, write){
 
     //Joana-Moreira 38470348 1000 juMoreira joanaMoreira
     credential = {"juMoreira", "joanaMoreira"};
+    EXPECT_EQ("Lisboa", currentWorker->getLocation());
     EXPECT_EQ("Joana Moreira", currentWorker->getName());
     EXPECT_EQ(38470348, currentWorker->getTaxId());
     EXPECT_EQ(1000, currentWorker->getSalary());
     EXPECT_TRUE(credential == currentWorker->getCredential());
 
-    currentWorker = workerM.get(++position);
-
-    //Ricardo-Macedo 999999999 870 ricM ricardo_948
-    credential = {"ricM", "ricardo_948"};
-    EXPECT_EQ("Ricardo Macedo", currentWorker->getName());
-    EXPECT_EQ(Person::DEFAULT_TAX_ID, currentWorker->getTaxId());
-    EXPECT_EQ(870, currentWorker->getSalary());
-    EXPECT_TRUE(credential == currentWorker->getCredential());
-
     workerMInitial.write(path);
+}
+
+TEST(WorkerManager, raise_salary){
+    LocationManager locationM;
+    WorkerManager workerM(&locationM);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Juliana Ribeiro", Person::DEFAULT_TAX_ID, 900);
+
+    EXPECT_FLOAT_EQ(900, worker->getSalary());
+
+    workerM.raiseSalary(20);
+
+    EXPECT_FLOAT_EQ(900*1.20, worker->getSalary());
+}
+
+TEST(WorkerManager, decrease_salary){
+    LocationManager locationM;
+    WorkerManager workerM(&locationM);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Juliana Ribeiro", Person::DEFAULT_TAX_ID, 900);
+
+    EXPECT_FLOAT_EQ(900, worker->getSalary());
+
+    workerM.decreaseSalary(20);
+
+    EXPECT_FLOAT_EQ(900*0.80, worker->getSalary());
 }
 
 TEST(ProductManager, has){
@@ -642,15 +689,15 @@ TEST(ProductManager, has){
 
 TEST(ProductManager, get_by_position){
     ProductManager productM;
-    Bread* bread = productM.addBread("Pao de sementes", 0.8, true);
     Cake* cake = productM.addCake("Tarte de bolacha", 3.40, CakeCategory::PIE);
+    Bread* bread = productM.addBread("Pao de sementes", 0.8, true);
     unsigned position = 0; Product* currentProduct = productM.get(position);
 
-    EXPECT_TRUE(*static_cast<Product*>(bread) == *currentProduct);
+    EXPECT_TRUE(*static_cast<Product*>(cake) == *currentProduct);
 
     currentProduct = productM.get(++position);
 
-    EXPECT_TRUE(*static_cast<Product*>(cake) == *currentProduct);
+    EXPECT_TRUE(*static_cast<Product*>(bread) == *currentProduct);
 }
 
 TEST(ProductManager, get_by_string_and_price){
@@ -663,6 +710,48 @@ TEST(ProductManager, get_by_string_and_price){
 
     currentProduct = productM.get("Tarte de bolacha", 3.40);
     EXPECT_TRUE(*static_cast<Product*>(cake) == *currentProduct);
+}
+
+TEST(ProductManager, get_used){
+    LocationManager locationM;
+    ClientManager clientM;
+    WorkerManager workerM(&locationM);
+    ProductManager productM;
+
+    Bread* bread = productM.addBread("Pao de sementes", 0.7);
+    Cake* cake = productM.addCake("Bolo de chocolate", 1.2);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Miguel Simoes");
+    Client* client = clientM.add("Joao Martins");
+
+    EXPECT_TRUE(productM.getUsed().empty());
+
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+    Order* order = orderM.add(client, worker);
+    orderM.addProduct(order, bread, 10);
+
+    EXPECT_EQ(1, productM.getUsed().size());
+    EXPECT_TRUE(*bread == *productM.getUsed().at(0));
+}
+
+TEST(ProductManager, get_unused){
+    LocationManager locationM;
+    ClientManager clientM;
+    WorkerManager workerM(&locationM);
+    ProductManager productM;
+
+    Bread* bread = productM.addBread("Pao de sementes", 0.7);
+    Cake* cake = productM.addCake("Bolo de chocolate", 1.2);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Miguel Simoes");
+    Client* client = clientM.add("Joao Martins");
+
+    EXPECT_EQ(2, productM.getUnused().size());
+
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+    Order* order = orderM.add(client, worker);
+    orderM.addProduct(order, bread, 10);
+
+    EXPECT_EQ(1, productM.getUnused().size());
+    EXPECT_TRUE(*cake == *productM.getUnused().at(0));
 }
 
 TEST(ProductManager, add_bread) {
@@ -722,8 +811,8 @@ TEST(ProductManager, remove_by_pointer){
 
 TEST(ProductManager, remove_by_position){
     ProductManager productM;
-    Bread* bread = productM.addBread("Pao de sementes", 0.8, true);
     Cake* cake = productM.addCake("Tarte de bolacha", 3.40, CakeCategory::PIE);
+    Bread* bread = productM.addBread("Pao de sementes", 0.8, true);
     unsigned position = 0;
 
     EXPECT_EQ(1, productM.getBreads().size());
@@ -732,10 +821,10 @@ TEST(ProductManager, remove_by_position){
 
     productM.remove(position);
 
-    EXPECT_TRUE(productM.getBreads().empty());
-    EXPECT_EQ(1, productM.getCakes().size());
+    EXPECT_TRUE(productM.getCakes().empty());
+    EXPECT_EQ(1, productM.getBreads().size());
     EXPECT_EQ(1, productM.getAll().size());
-    EXPECT_TRUE(*cake == **productM.getCakes().begin());
+    EXPECT_TRUE(*bread == **productM.getBreads().begin());
 
     productM.remove(position);
 
@@ -753,10 +842,10 @@ TEST(ProductManager, read){
     unsigned position = 0;
     Cake* cake = *productM.getCakes().begin();
 
-    //Bolo-crocante 15 Crunchy-Cake
-    EXPECT_EQ("Bolo crocante", cake->getName());
-    EXPECT_FLOAT_EQ(15, cake->getPrice());
-    EXPECT_EQ(CakeCategory::CRUNCHY, cake->getCategory());
+    //Bolo-de-bolacha 2.2 Pie
+    EXPECT_EQ("Bolo de bolacha", cake->getName());
+    EXPECT_FLOAT_EQ(2.2, cake->getPrice());
+    EXPECT_EQ("Pie", cake->getCategory());
 
     Bread* bread = *productM.getBreads().begin();
 
@@ -783,7 +872,7 @@ TEST(ProductManager, write){
     //Tarte-de-bolacha 3.40 Pie
     EXPECT_EQ("Tarte de bolacha", cake1->getName());
     EXPECT_FLOAT_EQ(3.4, cake1->getPrice());
-    EXPECT_EQ(CakeCategory::PIE, cake1->getCategory());
+    EXPECT_EQ("Pie", cake1->getCategory());
 
     Bread* bread1 = *productM.getBreads().begin();
 
@@ -796,9 +885,10 @@ TEST(ProductManager, write){
 }
 
 TEST(OrderManager, has){
-    ProductManager productM; ClientManager clientM; WorkerManager workerM; LocationManager locationM;
+    LocationManager locationM;
+    ProductManager productM; ClientManager clientM; WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
-    Worker* worker = workerM.add("Josue Tome", 928);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Josue Tome", 928);
 
     Client* client1 = clientM.add("Carlos Caetano");
     Date date1(10, 4, 2020, 19, 30);
@@ -813,9 +903,10 @@ TEST(OrderManager, has){
 }
 
 TEST(OrderManager, get_by_position_client_and_worker){
-    ProductManager productM; ClientManager clientM; WorkerManager workerM; LocationManager locationM;
+    LocationManager locationM;
+    ProductManager productM; ClientManager clientM; WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
-    Worker* worker = workerM.add("Josue Tome", 928);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Josue Tome", 928);
 
     Client* client1 = clientM.add("Carlos Caetano");
     Date date1(10, 4, 2020, 19, 30);
@@ -830,15 +921,15 @@ TEST(OrderManager, get_by_position_client_and_worker){
 }
 
 TEST(OrderManager, get_client_orders){
+    LocationManager locationM;
     ProductManager productM;
     ClientManager clientM;
-    WorkerManager workerM;
-    LocationManager locationM;
+    WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client1 = clientM.add("Ricardo Macedo");
     Client client2("Bruno Mendes");
-    Worker* worker = workerM.add("Madalena Faria", 980);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Madalena Faria", 980);
     Order order(*client1, *worker);
 
     EXPECT_TRUE(orderM.get(client1).empty());
@@ -856,15 +947,15 @@ TEST(OrderManager, get_client_orders){
 }
 
 TEST(OrderManager, get_worker_orders){
+    LocationManager locationM;
     ProductManager productM;
     ClientManager clientM;
-    WorkerManager workerM;
-    LocationManager locationM;
+    WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client = clientM.add("Ricardo Macedo");
-    Worker* worker1 = workerM.add("Madalena Faria", 980);
-    Worker worker2("Rafael Macedo", 985);
+    Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Madalena Faria", 980);
+    Worker worker2(Order::DEFAULT_LOCATION, "Rafael Macedo", 985);
     Order order(*client, *worker1);
 
     EXPECT_TRUE(orderM.get(worker1).empty());
@@ -882,32 +973,38 @@ TEST(OrderManager, get_worker_orders){
 }
 
 TEST(OrderManager, get_location_orders){
-    ProductManager productM; ClientManager clientM; WorkerManager workerM; LocationManager locationM;
-    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
     std::string location = "Gaia";
+    LocationManager locationM;
     locationM.add(location);
+    ProductManager productM; ClientManager clientM; WorkerManager workerM(&locationM);
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client = clientM.add("Ricardo Macedo");
-    Worker* worker = workerM.add("Madalena Faria", 980);
+    Worker* worker = workerM.add(location, "Madalena Faria", 980);
     Date date1(19, 10, 2020, 17, 30);
     Order* order1 = orderM.add(client, worker, location, date1);
     Date date2(21, 10, 2020, 18, 10);
     Order* order2 = orderM.add(client, worker, location, date2);
     unsigned position = 0;
 
+    std::priority_queue<OrderEntry> ordersEntry = orderM.get(location);
+
     EXPECT_EQ(2, orderM.get(location).size());
-    EXPECT_TRUE(*order1 == *orderM.get(location).at(position));
-    EXPECT_TRUE(*order2 == *orderM.get(location).at(++position));
+    EXPECT_TRUE(*order1 == *ordersEntry.top().getOrder());
+
+    ordersEntry.pop();
+
+    EXPECT_TRUE(*order2 == *ordersEntry.top().getOrder());
 }
 
 TEST(OrderManager, add_order){
+    LocationManager locationM;
     ProductManager productM;
     ClientManager clientM;
-    WorkerManager workerM;
-    LocationManager locationM;
+    WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
     Client* client = clientM.add("Fernando Castro");
-    Worker* worker = workerM.add("Josue Tome", 928);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Josue Tome", 928);
     Order order(*client, *worker);
 
     EXPECT_TRUE(orderM.getAll().empty());
@@ -919,15 +1016,16 @@ TEST(OrderManager, add_order){
 }
 
 TEST(OrderManager, add_order_with_worker){
+    std::string location  = "Guarda";
+    LocationManager locationM;
+    locationM.add(location);
     ProductManager productM;
     ClientManager clientM;
-    WorkerManager workerM;
-    LocationManager locationM;
+    WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
-    std::string location  = "Guarda"; locationM.add(location);
     Date date(16, 11, 2020, 2, 30);
     Client* client = clientM.add("Fernando Castro");
-    Worker* worker = workerM.add("Josue Tome", 928);
+    Worker* worker = workerM.add(location, "Josue Tome", 928);
     Order order(*client, *worker, location, date);
 
     EXPECT_TRUE(orderM.getAll().empty());
@@ -939,17 +1037,17 @@ TEST(OrderManager, add_order_with_worker){
 }
 
 TEST(OrderManager, remove_order){
+    LocationManager locationM;
     ProductManager productM;
     ClientManager clientM;
-    WorkerManager workerM;
-    LocationManager locationM;
+    WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client1 = clientM.add("Adelaide Santos");
     Client* client2 = clientM.add("Bruno Mendes");
     Client* client3 = clientM.add("Ricardo Macedo");
     Client* client4 = clientM.add("Ze Manel");
-    Worker* worker = workerM.add("Madalena Faria", 980);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Madalena Faria", 980);
     Order order(*client1, *worker);
 
     EXPECT_THROW(orderM.remove(&order), OrderDoesNotExist);
@@ -977,18 +1075,19 @@ TEST(OrderManager, remove_order){
 }
 
 TEST(OrderManager, sort_orders){
+    std::string location = "Lisboa";
+    LocationManager locationM;
+    locationM.add(location);
     ProductManager productM;
     ClientManager clientM;
-    WorkerManager workerM;
-    LocationManager locationM;
+    WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
-    std::string location = "Lisboar"; locationM.add(location);
     Date date2(25, 11, 2019, 3, 40);
     Date date1(16, 11, 2020, 2, 30);
     Client* client1 = clientM.add("Fernando Castro");
     Client* client2 = clientM.add("Catia Fernandes");
-    Worker* worker = workerM.add("Josue Tome", 928);
+    Worker* worker = workerM.add(location, "Josue Tome", 928);
     Order order1(*client1, *worker, location, date1);
     Order order2(*client2, *worker, location, date2);
 
@@ -1003,15 +1102,15 @@ TEST(OrderManager, sort_orders){
 }
 
 TEST(OrderManager, get_order_by_position){
+    LocationManager locationM;
     ProductManager productM;
     ClientManager clientM;
-    WorkerManager workerM;
-    LocationManager locationM;
+    WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     Client* client1 = clientM.add("Ricardo Macedo");
     Client* client2 = clientM.add("Rosalia Martins");
-    Worker* worker = workerM.add("Madalena Faria", 980);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Madalena Faria", 980);
     Order order1(*client1, *worker);
     Order order2(*client2, *worker);
 
@@ -1030,60 +1129,167 @@ TEST(OrderManager, get_order_by_position){
     EXPECT_THROW(orderM.get(++position), InvalidOrderPosition);
 }
 
+TEST(OrderManager, add_product){
+    LocationManager locationM;
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM(&locationM);
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+
+    Cake* cake = productM.addCake("Bolo de chocolate", 1.2);
+    Client* client = clientM.add("Fernando Castro");
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Josue Tome", 928);
+
+    Order order1(*client, *worker);
+    EXPECT_THROW(orderM.addProduct(&order1, cake), OrderDoesNotExist);
+
+    Order* order = orderM.add(client);
+
+    EXPECT_TRUE(order->getProducts().empty());
+
+    Product* product = orderM.addProduct(order, cake);
+
+    EXPECT_EQ(1, order->getProducts().size());
+    EXPECT_TRUE(*product == *order->getProducts().begin()->first);
+    EXPECT_EQ(1, order->getProducts().begin()->second);
+}
+
+TEST(OrderManager, remove_product_by_pointers){
+    LocationManager locationM;
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM(&locationM);
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+
+    Cake* cake = productM.addCake("Bolo de chocolate", 1.2);
+    Client* client = clientM.add("Fernando Castro");
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Josue Tome", 928);
+
+    Order order1(*client, *worker);
+    EXPECT_THROW(orderM.addProduct(&order1, cake), OrderDoesNotExist);
+
+    Order* order = orderM.add(client);
+    Product* product = orderM.addProduct(order, cake);
+
+    EXPECT_EQ(1, order->getProducts().size());
+    EXPECT_TRUE(*product == *order->getProducts().begin()->first);
+    EXPECT_EQ(1, order->getProducts().begin()->second);
+
+    orderM.removeProduct(order, cake);
+
+    EXPECT_TRUE(order->getProducts().empty());
+}
+
+TEST(OrderManager, remove_product_by_pointer_and_position){
+    LocationManager locationM;
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM(&locationM);
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+
+    Cake* cake = productM.addCake("Bolo de chocolate", 1.2);
+    Client* client = clientM.add("Fernando Castro");
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Josue Tome", 928);
+
+    Order order1(*client, *worker);
+    EXPECT_THROW(orderM.addProduct(&order1, cake), OrderDoesNotExist);
+
+    Order* order = orderM.add(client);
+    Product* product = orderM.addProduct(order, cake);
+
+    EXPECT_EQ(1, order->getProducts().size());
+    EXPECT_TRUE(*product == *order->getProducts().begin()->first);
+    EXPECT_EQ(1, order->getProducts().begin()->second);
+
+    unsigned int position = 0;
+    orderM.removeProduct(order, position);
+
+    EXPECT_TRUE(order->getProducts().empty());
+}
+
+TEST(OrderManager, set_delivery_location){
+    LocationManager locationM;
+    locationM.add("Lisboa");
+    ProductManager productM;
+    ClientManager clientM;
+    WorkerManager workerM(&locationM);
+    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
+
+    Cake* cake = productM.addCake("Bolo de chocolate", 1.2);
+    Client* client = clientM.add("Fernando Castro");
+    Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Josue Tome", 928);
+    Worker* worker2 = workerM.add("Lisboa", "Marta Loureiro", 900);
+
+    Order* order = orderM.add(client, worker1);
+
+    EXPECT_EQ(Order::DEFAULT_LOCATION, order->getDeliverLocation());
+
+    orderM.setDeliveryLocation(order, "Lisboa");
+
+    EXPECT_EQ("Lisboa", order->getDeliverLocation());
+    EXPECT_TRUE(*worker2 == *order->getWorker());
+}
+
 TEST(OrderManager, read){
     std::string path = "../../test/data/orders.txt";
-    ProductManager productM; ClientManager clientM; WorkerManager workerM; LocationManager locationM;
+    LocationManager locationM;
+    locationM.add("Lisboa");
+    ProductManager productM; ClientManager clientM; WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
 
     EXPECT_THROW(orderM.read("/orders.txt"), FileNotFound);
     EXPECT_THROW(orderM.read(path), PersonDoesNotExist);
 
-    productM.read("../../data/products.txt");
-    clientM.read("../../data/clients.txt");
-    workerM.read("../../data/workers.txt");
-    locationM.read("../../data/locations.txt");
+    productM.read("../../test/data/products.txt");
+    clientM.read("../../test/data/clients.txt");
+    workerM.read("../../test/data/workers.txt");
+    locationM.read("../../test/data/locations.txt");
     orderM.read(path);
     unsigned position = 0;
-    Order* currentOrder = orderM.getAll().at(position);
+    Order* currentOrder = orderM.getAll().top().getOrder();
 
-    //324564 32534 12/06/2020 18:34 Head-Office 5
-    //Bolo-crocante 15 1
-    //Pao-de-cereais 0.5 1
-    EXPECT_EQ(324564, currentOrder->getClient()->getTaxId());
-    EXPECT_EQ(32534, currentOrder->getWorker()->getTaxId());
-    EXPECT_EQ("12/06/2020 18:34", currentOrder->getRequestDate().getCompleteDate());
-    EXPECT_EQ("Head Office", currentOrder->getDeliverLocation());
-    EXPECT_TRUE(currentOrder->wasDelivered());
-    EXPECT_EQ(5, currentOrder->getClientEvaluation());
-    EXPECT_EQ("Bolo crocante", (currentOrder->getProducts().begin())->first->getName());
-    EXPECT_FLOAT_EQ(15, (currentOrder->getProducts().begin())->first->getPrice());
-    EXPECT_EQ(1, (currentOrder->getProducts().begin())->second);
-    EXPECT_EQ("Pao de cereais", (++currentOrder->getProducts().begin())->first->getName());
-    EXPECT_FLOAT_EQ(0.5, (++currentOrder->getProducts().begin())->first->getPrice());
-    EXPECT_EQ(1, (++currentOrder->getProducts().begin())->second);
-
-    currentOrder = orderM.getAll().at(++position);
-
-    //324564 32534 12/12/2020 14:45 Lisboa
-    //Bolo-esponja 30 1
+    //23554 7978 12/12/2020 14:45 Lisboa 4
     //Pao-da-avo 1 1
-    //Pao-de-sementes 0.8 1
-    EXPECT_EQ(324564, currentOrder->getClient()->getTaxId());
-    EXPECT_EQ(32534, currentOrder->getWorker()->getTaxId());
+    //Bolo-de-bolacha 2.2 1
+    EXPECT_EQ(23554, currentOrder->getClient()->getTaxId());
+    EXPECT_EQ(7978, currentOrder->getWorker()->getTaxId());
     EXPECT_EQ("12/12/2020 14:45", currentOrder->getRequestDate().getCompleteDate());
     EXPECT_EQ("Lisboa", currentOrder->getDeliverLocation());
-    EXPECT_FALSE(currentOrder->wasDelivered());
-    EXPECT_EQ("Bolo esponja", (currentOrder->getProducts().begin())->first->getName());
-    EXPECT_FLOAT_EQ(30, (currentOrder->getProducts().begin())->first->getPrice());
-    EXPECT_EQ(1, (currentOrder->getProducts().begin())->second);
-    EXPECT_EQ("Pao da avo", (++currentOrder->getProducts().begin())->first->getName());
-    EXPECT_FLOAT_EQ(1, (++currentOrder->getProducts().begin())->first->getPrice());
-    EXPECT_EQ(1, (++currentOrder->getProducts().begin())->second);
+    EXPECT_TRUE(currentOrder->wasDelivered());
+    EXPECT_EQ(4, currentOrder->getClientEvaluation());
+
+    std::map<Product*, unsigned int, ProductSmaller> products = orderM.getAll().top().getOrder()->getProducts();
+    std::string productName = "Pao da avo", productCategory = "Big Bread";
+    float productPrice = 1;
+    unsigned int productQuantity = 1;
+    auto it = std::find_if(products.begin(), products.end(),
+                           [productName, productPrice, productCategory, productQuantity]
+                                   (const std::pair<Product*, unsigned int> p1){
+                               return p1.first->getName() == productName && p1.first->getPrice() == productPrice &&
+                                      p1.first->getCategory() == productCategory && p1.second == productQuantity;
+                           });
+
+    EXPECT_TRUE(it != products.end());
+
+    productName = "Bolo de bolacha";
+    productCategory = "Pie";
+    productPrice = 2.2;
+    productQuantity = 1;
+    it = std::find_if(products.begin(), products.end(),
+                           [productName, productPrice, productCategory, productQuantity]
+                                   (const std::pair<Product*, unsigned int> p1){
+                               return p1.first->getName() == productName && p1.first->getPrice() == productPrice &&
+                                      p1.first->getCategory() == productCategory && p1.second == productQuantity;
+                           });
+
+    EXPECT_TRUE(it != products.end());
 }
 
 TEST(OrderManager, write){
     std::string path = "../../test/data/orders.txt";
-    ProductManager productMInit; ClientManager clientMInit; WorkerManager workerMInit; LocationManager locationMInit;
+    LocationManager locationMInit;
+    locationMInit.add("Lisboa");
+    ProductManager productMInit; ClientManager clientMInit; WorkerManager workerMInit(&locationMInit);
     OrderManager orderMInit(&productMInit, &clientMInit, &workerMInit, &locationMInit);
     productMInit.read("../../test/data/products.txt");
     clientMInit.read("../../test/data/clients.txt");
@@ -1091,22 +1297,23 @@ TEST(OrderManager, write){
     locationMInit.read("../../test/data/locations.txt");
     orderMInit.read(path);
 
-    ProductManager productM; ClientManager clientM; WorkerManager workerM; LocationManager locationM;
+    LocationManager locationM;
+    ProductManager productM; ClientManager clientM; WorkerManager workerM(&locationM);
     OrderManager orderM(&productM, &clientM, &workerM, &locationM);
     Client* client = clientM.add("Joao Miguel", 123823);
-    Worker* worker = workerM.add("Mario Cordeiro", 823823);
+    Worker* worker = workerM.add(Order::DEFAULT_LOCATION, "Mario Cordeiro", 823823);
     Cake* cake = productM.addCake("Bolo de arroz", 1);
     Date date(23, 5, 2019, 21, 30);
     locationM.add("Porto");
     Order* order = orderM.add(client, worker, "Porto", date);
-    order->addProduct(cake, 1);
+    orderM.addProduct(order, cake);
 
     EXPECT_THROW(orderM.write("l/orders.txt"), FileNotFound);
 
     orderM.write(path);
     orderM.read(path);
     unsigned position = 0;
-    Order* currentOrder = orderM.getAll().at(position);
+    Order* currentOrder = orderM.getAll().top().getOrder();
 
     //123823 823823 23/05/2019 21:30 Porto
     //Bolo-de-arroz 1 1
@@ -1203,50 +1410,3 @@ TEST(LocationManager, write){
 
     locationMInit.write(path);
 }
-
-TEST(OrderManager, sortByClient){
-    ProductManager productM;
-    ClientManager clientM;
-    WorkerManager workerM;
-    LocationManager locationM;
-    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
-
-    Client* client1 = clientM.add("Ricardo Macedo");
-    Client* client2 = clientM.add("Rosalia Martins");
-    Client* client3 = clientM.add("Beatriz Mendes");
-
-    Worker* worker1 = workerM.add("Madalena Faria", 980);
-    Worker* worker2 = workerM.add("Maria Miguel", 980);
-    Worker* worker3 = workerM.add("Ana Santos", 980);
-
-    orderM.add(client1, worker1);
-    orderM.add(client2,worker2);
-    orderM.add(client3, worker3);
-    orderM.sortByClient();
-    EXPECT_EQ("Beatriz Mendes", orderM.getAll().at(0)->getClient()->getName());
-}
-
-TEST(OrderManager, sortByWorker){
-    ProductManager productM;
-    ClientManager clientM;
-    WorkerManager workerM;
-    LocationManager locationM;
-
-    OrderManager orderM(&productM, &clientM, &workerM, &locationM);
-
-    Client* client1 = clientM.add("Ricardo Macedo");
-    Client* client2 = clientM.add("Rosalia Martins");
-    Client* client3 = clientM.add("Beatriz Mendes");
-
-    Worker* worker1 = workerM.add("Madalena Faria", 980);
-    Worker* worker2 = workerM.add("Maria Miguel", 980);
-    Worker* worker3 = workerM.add("Ana Santos", 980);
-
-    orderM.add(client1, worker1);
-    orderM.add(client2,worker2);
-    orderM.add(client3, worker3);
-    orderM.sortByWorker();
-    EXPECT_EQ("Ana Santos", orderM.getAll().at(0)->getWorker()->getName());
-}
-
-*/

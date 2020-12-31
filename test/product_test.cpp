@@ -6,7 +6,7 @@
 
 using testing::Eq;
 
-/*TEST(Bread, create_bread){
+TEST(Bread, create_bread){
     Bread bread1("Pao de cereais", 0.7);
 
     EXPECT_EQ("Pao de cereais", bread1.getName());
@@ -25,13 +25,13 @@ TEST(Cake, create_cake){
 
     EXPECT_EQ("Pao de lo", cake1.getName());
     EXPECT_FLOAT_EQ(17.30, cake1.getPrice());
-    EXPECT_EQ(CakeCategory::GENERAL, cake1.getCategory());
+    EXPECT_EQ("General", cake1.getCategory());
 
     Cake cake2("Bolinho fofinho", 22.30, CakeCategory::PIE);
 
     EXPECT_EQ("Bolinho fofinho", cake2.getName());
     EXPECT_FLOAT_EQ(22.30,cake2.getPrice());
-    EXPECT_EQ(CakeCategory::PIE,cake2.getCategory());
+    EXPECT_EQ("Pie" ,cake2.getCategory());
 }
 
 TEST(Product, less_than_operator){
@@ -60,13 +60,10 @@ TEST(Bread, equality_operator){
     Bread bread1("Pao de sementes", 0.8);
     Bread bread2("Pao de sementes", 0.8);
     Bread bread3("Pao de sementes", 0.8, false);
-    Bread bread4("Pao de sementes", 1);
 
     EXPECT_TRUE(bread1==bread2);
     EXPECT_FALSE(bread1==bread3);
-    EXPECT_FALSE(bread1==bread4);
     EXPECT_FALSE(bread2==bread3);
-    EXPECT_FALSE(bread2==bread4);
 }
 
 TEST(Cake, less_than_operator){
@@ -82,13 +79,10 @@ TEST(Cake, less_than_operator){
 TEST(Cake, equality_operator){
     Cake cake1("Tarte de bolacha", 13.2);
     Cake cake2("Tarte de bolacha", 13.2);
-    Cake cake3("Tarte de bolacha", 14.5);
-    Cake cake4("Tarte de bolacha", 13.2, CakeCategory::PIE);
+    Cake cake3("Tarte de bolacha", 13.2, CakeCategory::CRUNCHY);
 
     EXPECT_TRUE(cake1==cake2);
     EXPECT_FALSE(cake1==cake3);
-    EXPECT_FALSE(cake1==cake4);
     EXPECT_FALSE(cake2==cake3);
-    EXPECT_FALSE(cake2==cake4);
-}*/
+}
 
