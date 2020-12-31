@@ -33,12 +33,13 @@ TEST(Client, create_client){
 }
 
 TEST(Worker, create_worker){
-    EXPECT_THROW(Worker("Maria Luisa", 293847162, 900, {"back", "luisa"}), InvalidCredential);
-    EXPECT_THROW(Worker("Maria Luisa", 293847162, 900, {"luisa", "exit"}), InvalidCredential);
+    EXPECT_THROW(Worker("Head Office", "Maria Luisa", 293847162, 900, {"back", "luisa"}), InvalidCredential);
+    EXPECT_THROW(Worker("Head Office", "Maria Luisa", 293847162, 900, {"luisa", "exit"}), InvalidCredential);
 
-    Worker worker1("Joao Filipe", Person::DEFAULT_TAX_ID,950);
+    Worker worker1("Head Office", "Joao Filipe", Person::DEFAULT_TAX_ID,950);
     Credential credential = {"worker", "worker"};
 
+    EXPECT_EQ("Head Office", worker1.getLocation());
     EXPECT_EQ("Joao Filipe", worker1.getName());
     EXPECT_FLOAT_EQ(950, worker1.getSalary());
     EXPECT_EQ(Person::DEFAULT_TAX_ID, worker1.getTaxId());
@@ -48,9 +49,10 @@ TEST(Worker, create_worker){
     EXPECT_TRUE(worker1.getCredential() == credential);
     EXPECT_FLOAT_EQ(950, worker1.getSalary());
 
-    Worker worker2("Filipa Ribeiro",  293013289, 893,{"FilipaRibeiro","filipaRibeiro_9201"});
+    Worker worker2("Lisboa", "Filipa Ribeiro",  293013289, 893,{"FilipaRibeiro","filipaRibeiro_9201"});
     credential = {"FilipaRibeiro", "filipaRibeiro_9201"};
 
+    EXPECT_EQ("Lisboa", worker2.getLocation());
     EXPECT_EQ("Filipa Ribeiro", worker2.getName());
     EXPECT_FLOAT_EQ(893,worker2.getSalary());
     EXPECT_EQ(293013289, worker2.getTaxId());
@@ -87,7 +89,7 @@ TEST(Person, set_logged){
 
     EXPECT_TRUE(client.isLogged());
 
-    Worker worker("Manuel Miranda");
+    Worker worker("Head Office", "Manuel Miranda");
     worker.setLogged(true);
 
     EXPECT_TRUE(worker.isLogged());
@@ -106,7 +108,7 @@ TEST(Person, set_name){
     client.setName("Filipe Gomes");
     EXPECT_EQ("Filipe Gomes", client.getName());
 
-    Worker worker("Maria Rodrigues", 790);
+    Worker worker("Head Office", "Maria Rodrigues", 790);
     worker.setName("Sandra Rodrigues");
 
     EXPECT_EQ("Sandra Rodrigues", worker.getName());
@@ -127,7 +129,7 @@ TEST(Person, set_tax_id){
 
     EXPECT_EQ(2138329, client.getTaxId());
 
-    Worker worker("Goncalo Oliveira");
+    Worker worker("Head Office", "Goncalo Oliveira");
     worker.setTaxID(9482371);
 
     EXPECT_EQ(9482371, worker.getTaxId());
@@ -156,7 +158,7 @@ TEST(Person, set_credential){
     clientCredential.username = "exit";
     EXPECT_THROW(client.setCredential({"exit","123"}),InvalidCredential);
 
-    Worker worker("Luis Figo", 920);
+    Worker worker("Head Office", "Luis Figo", 920);
     Credential workerCredential = {"figoLuis13", "921-figo"};
     worker.setCredential(workerCredential);
 
@@ -199,10 +201,10 @@ TEST(Person, less_than_operator){
     EXPECT_TRUE(client2 < client3);
     EXPECT_FALSE(client3 < client1);
 
-    Worker worker1("Cristina Martins", 184391272);
-    Worker worker2 ("Cristina Martins");
-    Worker worker3("Sara Ribeiro", 249123948);
-    Worker worker4("Sara Couto");
+    Worker worker1("Head Office", "Cristina Martins", 184391272);
+    Worker worker2 ("Head Office", "Cristina Martins");
+    Worker worker3("Head Office", "Sara Ribeiro", 249123948);
+    Worker worker4("Head Office", "Sara Couto");
 
     EXPECT_TRUE(worker1 < worker2);
     EXPECT_TRUE(worker1 < worker3);
@@ -232,10 +234,10 @@ TEST(Person, equality_operator){
     EXPECT_FALSE(client2==client3);
     EXPECT_FALSE(client1==client4);
 
-    Worker worker1("Luis Miguel", Person::DEFAULT_TAX_ID,950);
-    Worker worker2("Luis Miguel",  Person::DEFAULT_TAX_ID,950, {"worker", "worker"});
-    Worker worker3("Luis Filipe", 890);
-    Worker worker4("Joao Manuel", 284917316,950, {"jonasManel", "joao123"});
+    Worker worker1("Head Office", "Luis Miguel", Person::DEFAULT_TAX_ID,950);
+    Worker worker2("Head Office", "Luis Miguel",  Person::DEFAULT_TAX_ID,950, {"worker", "worker"});
+    Worker worker3("Head Office", "Luis Filipe", 890);
+    Worker worker4("Head Office", "Joao Manuel", 284917316,950, {"jonasManel", "joao123"});
 
     EXPECT_TRUE(worker1==worker2);
     EXPECT_FALSE(worker1==worker3);
@@ -251,6 +253,35 @@ TEST(Person, equality_operator){
     EXPECT_FALSE(boss1==boss3);
     EXPECT_FALSE(boss2==boss3);
     EXPECT_FALSE(boss1==boss4);
+}
+
+TEST(Client, add_discount){
+    Client client("Joana Ferraz");
+    EXPECT_EQ(0, client.getNumDiscounts());
+
+    client.addDiscount();
+    EXPECT_EQ(1, client.getNumDiscounts());
+
+    client.addDiscount();
+    client.addDiscount();
+    client.addDiscount();
+    EXPECT_EQ(4, client.getNumDiscounts());
+}
+
+TEST(Client, remove_discount){
+    Client client("Joana Ferraz");
+    client.addDiscount();
+    client.addDiscount();
+    client.addDiscount();
+    client.addDiscount();
+
+    client.removeDiscount();
+    EXPECT_EQ(3, client.getNumDiscounts());
+
+    client.removeDiscount();
+    client.removeDiscount();
+    client.removeDiscount();
+    EXPECT_EQ(0, client.getNumDiscounts());
 }
 
 TEST(Client, set_premium){
@@ -308,7 +339,7 @@ TEST(Client, reset_poinst){
     EXPECT_EQ(0, client.getPoints());
 }
 
-TEST(Client, get_mean_evaluation){
+TEST(Client, add_evaluation){
     Client client("Rodrigo Machado");
 
     EXPECT_FLOAT_EQ(0, client.getMeanEvaluation());
@@ -325,7 +356,7 @@ TEST(Client, get_mean_evaluation){
 }
 
 TEST(Worker, set_salary){
-    Worker worker("Miguel Filipe", 830);
+    Worker worker("Head Office", "Miguel Filipe", 830);
     worker.setSalary(920);
 
     EXPECT_FLOAT_EQ(920, worker.getSalary());
@@ -336,7 +367,7 @@ TEST(Worker, set_salary){
 }
 
 TEST(Worker, add_order_to_deliver){
-    Worker worker("Afonso Duarte", 923);
+    Worker worker("Head Office", "Afonso Duarte", 923);
     worker.addOrderToDeliver();
     worker.addOrderToDeliver();
 
@@ -344,7 +375,7 @@ TEST(Worker, add_order_to_deliver){
 }
 
 TEST(Worker, remove_order_to_deliver){
-    Worker worker("Rafael Simao", 872);
+    Worker worker("Head Office", "Rafael Simao", 872);
     worker.addOrderToDeliver();
     worker.addOrderToDeliver();
     worker.addOrderToDeliver();
@@ -354,8 +385,8 @@ TEST(Worker, remove_order_to_deliver){
     EXPECT_EQ(1, worker.getUndeliveredOrders());
 }
 
-TEST(Worker, get_mean_evaluation){
-    Worker worker("Rodrigo Machado");
+TEST(Worker, add_evaluation){
+    Worker worker("Head Office", "Rodrigo Machado");
 
     EXPECT_FLOAT_EQ(0, worker.getMeanEvaluation());
 
