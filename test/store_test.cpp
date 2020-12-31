@@ -682,9 +682,7 @@ TEST(WorkerManager, write){
 
     EXPECT_THROW(workerM.write("/workers.txt"), FileNotFound);
 
-    Worker* worker1 = workerM.add(Order::DEFAULT_LOCATION, "Miguel Gomes", 4398331, 900, {"miuelGom", "m123g"});
-    Worker* worker2 = workerM.add("Lisboa", "Joana Moreira", 38470348, 1000, {"juMoreira", "joanaMoreira"});
-    Worker* worker3 = workerM.add("Porto", "Ricardo Macedo", Person::DEFAULT_TAX_ID, 870, {"ricM", "ricardo_948"});
+    Worker* worker1 = workerM.add("Porto", "Ricardo Macedo", Person::DEFAULT_TAX_ID, 870, {"ricM", "ricardo_948"});
 
     workerM.write(path);
     workerM.read(path);
@@ -697,26 +695,6 @@ TEST(WorkerManager, write){
     EXPECT_EQ("Ricardo Macedo", currentWorker->getName());
     EXPECT_EQ(Person::DEFAULT_TAX_ID, currentWorker->getTaxId());
     EXPECT_EQ(870, currentWorker->getSalary());
-    EXPECT_TRUE(credential == currentWorker->getCredential());
-
-    currentWorker = workerM.get(++position);
-
-    //Miguel-Gomes 4398331 900 miuelGom m123g
-    credential = {"miuelGom", "m123g"};
-    EXPECT_EQ(Order::DEFAULT_LOCATION, currentWorker->getLocation());
-    EXPECT_EQ("Miguel Gomes", currentWorker->getName());
-    EXPECT_EQ(4398331, currentWorker->getTaxId());
-    EXPECT_EQ(900, currentWorker->getSalary());
-    EXPECT_TRUE(credential == currentWorker->getCredential());
-
-    currentWorker = workerM.get(++position);
-
-    //Joana-Moreira 38470348 1000 juMoreira joanaMoreira
-    credential = {"juMoreira", "joanaMoreira"};
-    EXPECT_EQ("Lisboa", currentWorker->getLocation());
-    EXPECT_EQ("Joana Moreira", currentWorker->getName());
-    EXPECT_EQ(38470348, currentWorker->getTaxId());
-    EXPECT_EQ(1000, currentWorker->getSalary());
     EXPECT_TRUE(credential == currentWorker->getCredential());
 
     workerMInitial.write(path);
