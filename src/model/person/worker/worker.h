@@ -16,6 +16,7 @@ public:
     /**
      * Creates a new Worker object.
      *
+     * @param location the store delivery location for which the worker has preference
      * @param name the name
      * @param salary the salary
      * @param taxID the taxpayer identification number

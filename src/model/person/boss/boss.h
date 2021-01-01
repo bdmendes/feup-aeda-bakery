@@ -54,5 +54,4 @@ public:
     static const char* DEFAULT_PASSWORD;
 };
 
-
 #endif //FEUP_AEDA_PROJECT_BOSS_H

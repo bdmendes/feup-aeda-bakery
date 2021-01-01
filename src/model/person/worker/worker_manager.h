@@ -73,6 +73,11 @@ public:
      */
     tabHWorker getAll();
 
+    /**
+     * Get the list of all clients working in a specified location.
+     * @param location the location to search for.
+     * @return the filtered unordered set of workers from the requested location
+     */
     tabHWorker getByLocation(const std::string& location);
 
     /**
@@ -105,6 +110,7 @@ public:
     /**
      * Adds a worker to the workers list.
      *
+     * @param location the worker location
      * @param name the name
      * @param taxID the taxpayer identification number
      * @param salary the salary

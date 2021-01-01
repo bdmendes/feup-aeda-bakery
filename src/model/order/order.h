@@ -23,8 +23,8 @@ public:
      *
      * @param client the client
      * @param worker the worker
-     * @param location the store location
-     * @param date the request date
+     * @param location the store location; defaults to Head Office
+     * @param date the request date; defaults to the current date
      */
     Order(Client& client, Worker& worker, std::string location = DEFAULT_LOCATION, Date date = {});
 
@@ -75,7 +75,7 @@ public:
     /**
      * Gets the list of all products with the respective requested quantity.
      *
-     * @return the list of all products and their quantity
+     * @return map of included products to their quantities
      */
     std::map<Product*, unsigned int, ProductSmaller> getProducts() const;
 
@@ -113,7 +113,7 @@ public:
     Date getDeliverDate() const;
 
     /**
-     * Two orders are equal if they share the same client, worker and delivery location.
+     * Two orders are equal if they share the same client, worker, delivery location and request date.
      *
      * @param rhs the order to compare with
      * @return true, if the orders are equal; false, otherwise
@@ -121,10 +121,11 @@ public:
     bool operator==(const Order& rhs) const;
 
     /**
-     * One order is less than order if it was requested first than the other one.
+     * One order loses priority over another if it has already been delivered, if the client feedback
+     * is higher, or the client has benefited from more discounts.
      *
      * @param rhs the order to compare with
-     * @return true, if the order was requested first than the rhs; false, otherwise
+     * @return whether the order has lessy priority than rhs
      */
     bool operator<(const Order& rhs) const;
 

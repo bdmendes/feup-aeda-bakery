@@ -38,10 +38,20 @@ public:
      */
     float getMeanEvaluation() const;
 
+    /**
+     * Gets the number of times the client has benefited from order discounts.
+     * @return _numDiscounts
+     */
     unsigned getNumDiscounts() const;
 
+    /**
+     * Signal a new order discount.
+     */
     void addDiscount();
 
+    /**
+     * Remove a order discount (e.g. the order was cancelled)
+     */
     void removeDiscount();
 
     /**
@@ -132,6 +142,9 @@ private:
      */
     std::vector<int> _evaluations;
 
+    /**
+     * The times this client had order discounts (which are applied once the order is delivered).
+     */
     unsigned _numDiscounts;
 };
 

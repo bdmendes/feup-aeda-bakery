@@ -5,20 +5,47 @@
 #include "product.h"
 #include "util/bst.h"
 
+/**
+ * Class that encapsulates a Product* so that operator overloading is possible.
+ */
 class ProductEntry {
 public:
+    /**
+     * Create a new null ProductEntry object.
+     */
     ProductEntry() : _product(nullptr) {};
+    /**
+     * Create a new ProductEntry object.
+     * @param product the product that shall be encapsulated
+     */
     explicit ProductEntry(Product* product) : _product(product) {};
+    /**
+     * Get the product that the object encapsulates.
+     * @return the product pointer
+     */
     Product* getProduct() const { return _product; };
+    /**
+     * A comparison between two ProductEntry is based on the defined operators for Product.
+     * @param rhs the product to be compared to
+     * @return the product inequality
+     */
     bool operator<(const ProductEntry& rhs) const{
         if (!getProduct() || !rhs.getProduct()) return false;
         return *getProduct() < *rhs.getProduct();
     }
+    /**
+     * A comparison between two ProductEntry is based on the defined operators for Product.
+     * @param rhs the product to be compared to
+     * @return the product equality
+     */
     bool operator==(const ProductEntry& rhs) const {
         if (!getProduct() || !rhs.getProduct()) return false;
         return *getProduct() == *rhs.getProduct();
     }
 private:
+    /**
+     * The pointer that the class encapsulates.
+     */
     Product* _product;
 };
 
@@ -99,7 +126,16 @@ public:
      */
     std::vector<Product*> getAll() const;
 
+    /**
+     * Get the products that were ever included in orders.
+     * @return the ever included products
+     */
     std::vector<Product*> getUsed() const;
+
+    /**
+     * Get the products that were never included in orders.
+     * @return the never included products
+     */
     std::vector<Product*> getUnused() const;
 
     /**
@@ -122,6 +158,11 @@ public:
      */
     Cake* addCake(std::string name, float price, CakeCategory category = CakeCategory::GENERAL);
 
+    /**
+     * Add a new product to the products BST.
+     * @param product the product to be added
+     * @return the added product
+     */
     Product* add(Product* product);
 
     /**
@@ -167,6 +208,5 @@ private:
      */
     BST<ProductEntry> _products;
 };
-
 
 #endif //FEUP_AEDA_PROJECT_PRODUCT_MANAGER_H

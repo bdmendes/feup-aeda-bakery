@@ -36,12 +36,36 @@ public:
      */
     virtual std::string getCategory() const = 0;
 
+    /**
+     * Two products are equal if their names and categories are equal
+     * @param rhs the product to be compared to
+     * @return the product equality
+     */
     bool operator==(const Product& rhs) const;
 
+    /**
+     * One product is less than the other if it was included less times in orders, and then if
+     * the category comes before alphabetically, then if the name comes before alphabetically.
+     * @param rhs the product to be compared to
+     * @return the product inequality
+     */
     bool operator<(const Product& rhs) const;
 
+    /**
+     * Get the total times this product was included in orders (the included quantity is irrelevant;
+     * a order appearance is always one inclusion)
+     * @return
+     */
     unsigned getTimesIncluded() const;
+
+    /**
+     * Signal a new order inclusion.
+     */
     void addInclusion();
+
+    /**
+     * Signal a new order removal.
+     */
     void removeInclusion();
 
     /**

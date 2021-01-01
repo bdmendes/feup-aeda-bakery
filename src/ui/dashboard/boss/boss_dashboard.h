@@ -28,9 +28,14 @@ private:
      * Show store workers.
      * Add new ones or fire current ones, provided they haven't been assigned to any order yet.
      * Change salaries.
+     * @param location the location to be highlighted; if none, no highlight will be shown
      */
     void manageStaff(std::string location = {});
 
+    /**
+     * Ask which location to highlight (may be used for order and worker highlighting for the provided location)
+     * @return the user input location
+     */
     std::string askLocationHighlight() const;
 
     /**
@@ -59,6 +64,5 @@ private:
      */
     Boss* _boss;
 };
-
 
 #endif //FEUP_AEDA_PROJECT_BOSS_DASHBOARD_H

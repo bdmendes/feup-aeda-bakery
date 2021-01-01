@@ -14,22 +14,52 @@
 #include <queue>
 #include "model/store/location_manager.h"
 
-
+/**
+ * Class which encapsulates a Order* and allows operators to be overloaded for them.
+ */
 class OrderEntry{
 public:
+    /**
+     * Create a new null OrderEntry object.
+     */
     OrderEntry() : _order(nullptr){};
+    /**
+     * Create a new OrderEntry object.
+     * @param order
+     */
     explicit OrderEntry(Order* order) : _order(order) {};
+    /**
+     * Get the Order* which the OrderEntry encapsulates
+     * @return the pointer to the order
+     */
     Order* getOrder() const { return _order; };
+    /**
+     * Sets a new order
+     * @param order the order to be set
+     */
     void setOrder(Order* order) { _order = order; };
+    /**
+     * A OrderEntry comparison is based on the Order defined operator.
+     * @param rhs the product to be compared to
+     * @return the inequality of the orders
+     */
     bool operator<(const OrderEntry& rhs) const{
         if(!getOrder() || !rhs.getOrder()) return false;
         return *getOrder() < *rhs.getOrder();
     }
+    /**
+     * A OrderEntry comparison is based on the Order defined operator.
+     * @param rhs the product to be compared to
+     * @return the equality of the orders
+     */
     bool operator==(const OrderEntry& rhs) const{
         if(!getOrder() || !rhs.getOrder()) return false;
         return *getOrder() == *rhs.getOrder();
     }
 private:
+    /**
+     * The pointer that is encapsulated.
+     */
     Order* _order;
 };
 
@@ -57,13 +87,13 @@ public:
      * Checks if the order is on the orders list.
      *
      * @param order the order
-     * @return true, if the order is on orders list; false, otherwise
+     * @return true, if the order is on the orders queue; false, otherwise
      */
     bool has(Order* order) const;
 
     /**
-     * Gets the order, at a certain position, either from the orders list of the client, or from the orders list of the
-     * worker, never from both.
+     * Gets the order, at a certain position, either from the orders queue of the client, or from the orders queue of the
+     * worker. If neither is provided, all orders are considered to count the position.
      *
      * @param position the position
      * @param client the client
@@ -149,12 +179,47 @@ public:
      */
     void remove(unsigned long position, bool updateWorkerOrders = true, bool destroy = true);
 
+
+    /**
+     * Wrapper to Order::addProduct(...) which updates the products BST to reflect the addition.
+     * @param order the order to add the product; should be in the queue
+     * @param product the product to be added; should be in the BST
+     * @param quantity the requested quantity; defaults to 1
+     * @return the product added
+     */
     Product* addProduct(Order* order, Product* product, unsigned quantity = 1);
+
+    /**
+     * Wrapper to Order::removeProduct(...) which updates the products BST to reflect the removal.
+     * @param order the order to remove the product; should be in the queue
+     * @param product the product to be removed
+     */
     void removeProduct(Order* order, Product* product);
+
+    /**
+     * Wrapper to Order::removeProduct(...) which updates the products BST to reflect the removal.
+     * @param order the order to remove the product; should be in the queue
+     * @param position the position of the product in the map of products to quantities in the order
+     */
     void removeProduct(Order* order, unsigned long position);
 
+    /**
+     * Wrapper to Order::setDeliveryLocation(...) which allocates a new worker to deliver the order
+     * in the newly requested location (if possible, working in that location) and frees the old one from the duty.
+     * @param order the order to change the delivery location; should be in the queue
+     * @param location the new delivery location
+     */
     void setDeliveryLocation(Order* order, const std::string& location);
 
+    /**
+     * Wrapper to Order::deliver(...) which updates the orders queue to reflect the deliverance of the order
+     * (the order now loses priority; stays in the queue for historical reasons).
+     * @param order the order to be delivered
+     * @param clientEvaluation the evaluation the client gave the order
+     * @param updatePoints whether the client points should be updated; make false when reading from file so that the
+     * previously read points from the client file aren't reset
+     * @param deliverDuration the time the worker took to delivery the order; defaults to 30
+     */
     void deliver(Order* order, int clientEvaluation, bool updatePoints = true, int deliverDuration = 30);
 
     /**
@@ -210,9 +275,8 @@ private:
     LocationManager* _locationManager;
 
     /**
-     * The list of all orders.
+     * The queue of all orders. Delivered orders are kept in the end for historical reasons.
      */
-    //std::vector<Order*> _orders;
     std::priority_queue<OrderEntry> _orders;
 };
 

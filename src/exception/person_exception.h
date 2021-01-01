@@ -54,8 +54,14 @@ public:
     explicit InvalidCredential();
 };
 
+/**
+ * To be thrown when all workers have reached their maximum delivery capacity.
+ */
 class AllWorkersAreBusy : public std::logic_error {
 public:
+    /**
+     * Create new AllWorkersAreBusy exception object.
+     */
     explicit AllWorkersAreBusy();
 };
 
