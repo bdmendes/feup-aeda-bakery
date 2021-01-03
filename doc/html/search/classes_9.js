@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ui_206',['UI',['../class_u_i.html',1,'']]]
+  ['store_241',['Store',['../class_store.html',1,'']]],
+  ['storehasnoworkers_242',['StoreHasNoWorkers',['../class_store_has_no_workers.html',1,'']]]
 ];

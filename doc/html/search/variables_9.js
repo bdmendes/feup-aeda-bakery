@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['workermanager_382',['workerManager',['../class_store.html#a9d9ee3f83b27fc1f864d2b460d1b63e3',1,'Store']]]
+  ['username_434',['username',['../struct_credential.html#a1388c093c538c1dac2711f497a1dea62',1,'Credential']]]
 ];

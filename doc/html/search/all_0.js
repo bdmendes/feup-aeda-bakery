@@ -4,5 +4,6 @@ var searchData=
   ['_5fperson_1',['_person',['../class_dashboard.html#a3f5a2320a78db636701a515f1bacf970',1,'Dashboard']]],
   ['_5fprice_2',['_price',['../class_product.html#a9e3eb97a1823206ce831b03e4d71454c',1,'Product']]],
   ['_5frole_3',['_role',['../class_person.html#ac0539f31e6ea9995c13df59edaab81dc',1,'Person']]],
-  ['_5fstore_4',['_store',['../class_u_i.html#a0ddd4da48ad1ef3b1f5f4c5ff7e8dc7f',1,'UI']]]
+  ['_5fstore_4',['_store',['../class_u_i.html#a0ddd4da48ad1ef3b1f5f4c5ff7e8dc7f',1,'UI']]],
+  ['_5ftimesincluded_5',['_timesIncluded',['../class_product.html#a610cb3974dabf639b3c3c826a41d0c6a',1,'Product']]]
 ];

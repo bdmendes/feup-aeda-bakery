@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['username_381',['username',['../struct_credential.html#a1388c093c538c1dac2711f497a1dea62',1,'Credential']]]
+  ['password_432',['password',['../struct_credential.html#a2a16fa9c224f4019e495f76eba87ca14',1,'Credential']]],
+  ['productmanager_433',['productManager',['../class_store.html#aa81b71fb17be0dca5e3cd0350c420543',1,'Store']]]
 ];
